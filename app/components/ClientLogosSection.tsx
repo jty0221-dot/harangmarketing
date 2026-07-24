@@ -4,22 +4,22 @@
 // 사장님이 실제 로고 이미지를 제공하면 Image 태그로 교체
 
 const LOGOS = [
-  { name: "고양 A카페", color: "bg-amber-100 text-amber-800" },
-  { name: "마포 B음식점", color: "bg-blue-100 text-blue-800" },
-  { name: "강서 C피부과", color: "bg-purple-100 text-purple-700" },
-  { name: "수원 D네일", color: "bg-pink-100 text-pink-700" },
-  { name: "안양 E한의원", color: "bg-green-100 text-green-800" },
-  { name: "고양 F학원", color: "bg-orange-100 text-orange-700" },
-  { name: "분당 G카페", color: "bg-teal-100 text-teal-800" },
-  { name: "홍대 H술집", color: "bg-red-100 text-red-700" },
-  { name: "강남 I클리닉", color: "bg-indigo-100 text-indigo-800" },
-  { name: "서울 J쇼핑몰", color: "bg-yellow-100 text-yellow-800" },
-  { name: "파주 K카페", color: "bg-cyan-100 text-cyan-800" },
-  { name: "부천 L베이커리", color: "bg-rose-100 text-rose-700" },
-  { name: "인천 M음식점", color: "bg-violet-100 text-violet-800" },
-  { name: "수원 N미용실", color: "bg-lime-100 text-lime-800" },
-  { name: "성남 O병원", color: "bg-sky-100 text-sky-800" },
-  { name: "고양 P치과", color: "bg-fuchsia-100 text-fuchsia-800" },
+  { name: "고양 A카페", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "마포 B음식점", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "강서 C피부과", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "수원 D네일", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "안양 E한의원", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "고양 F학원", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "분당 G카페", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "홍대 H술집", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "강남 I클리닉", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "서울 J쇼핑몰", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "파주 K카페", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "부천 L베이커리", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "인천 M음식점", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "수원 N미용실", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "성남 O병원", color: "border border-gray-200 bg-white text-gray-700" },
+  { name: "고양 P치과", color: "border border-gray-200 bg-white text-gray-700" },
 ];
 
 // Duplicate for seamless loop
@@ -27,7 +27,7 @@ const ALL = [...LOGOS, ...LOGOS, ...LOGOS];
 
 export default function ClientLogosSection() {
   return (
-    <section className="py-10 md:py-14 bg-gray-50 overflow-hidden border-y border-gray-100">
+    <section className="py-10 md:py-14 overflow-hidden" style={{ background: "var(--h-bg)", borderTop: "1px solid var(--h-border)", borderBottom: "1px solid var(--h-border)" }}>
       <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 mb-6">
         <div className="flex items-center gap-4">
           <p className="text-xs font-black text-gray-400 uppercase tracking-widest shrink-0">함께한 매장</p>
@@ -39,10 +39,10 @@ export default function ClientLogosSection() {
       <div className="relative">
         {/* Left fade */}
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #f9fafb, transparent)" }} />
+          style={{ background: "linear-gradient(to right, var(--h-bg), transparent)" }} />
         {/* Right fade */}
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #f9fafb, transparent)" }} />
+          style={{ background: "linear-gradient(to left, var(--h-bg), transparent)" }} />
 
         {/* Row 1 - scroll right */}
         <div className="flex gap-3 mb-3 animate-logo-scroll-r" style={{ width: "max-content" }}>

@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400">
       {/* Pre-footer CTA strip */}
-      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700">
+      <div style={{ background: "var(--h-dark)" }}>
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
             <div>
@@ -13,18 +13,19 @@ export default function Footer() {
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={12} className="text-yellow-300 fill-yellow-300" />
                 ))}
-                <span className="text-blue-200 text-xs ml-2">고객 만족도 4.9/5.0</span>
+                <span className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.4)" }}>고객 만족도 4.9/5.0</span>
               </div>
               <h3 className="text-lg md:text-xl font-black text-white mb-1">
                 지금 바로 무료 전략 진단을 받아보세요
               </h3>
-              <p className="text-blue-200 text-sm">
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
                 상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락 보장
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
               <Link href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-blue-700 font-bold text-sm hover:bg-blue-50 transition-colors shadow-sm">
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white font-bold text-sm hover:bg-gray-100 transition-colors shadow-sm"
+                style={{ color: "var(--h-navy)" }}>
                 무료 진단 신청 <ArrowRight size={14} />
               </Link>
               <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
@@ -132,7 +133,7 @@ export default function Footer() {
               <div className="space-y-2 mb-4">
                 <a href="tel:010-7541-9054"
                   className="flex items-center gap-2.5 group bg-white/5 hover:bg-white/10 border border-white/8 rounded-xl px-3 py-2.5 transition-colors">
-                  <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "var(--h-navy)" }}>
                     <Phone size={12} className="text-white" />
                   </div>
                   <div>
@@ -152,8 +153,8 @@ export default function Footer() {
                 </a>
                 <a href="mailto:harangmarketing@naver.com"
                   className="flex items-center gap-2.5 group bg-white/5 hover:bg-white/10 border border-white/8 rounded-xl px-3 py-2.5 transition-colors">
-                  <div className="w-7 h-7 rounded-lg bg-blue-600/30 flex items-center justify-center shrink-0">
-                    <Mail size={12} className="text-blue-400" />
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(12,35,81,0.3)" }}>
+                    <Mail size={12} className="text-white" />
                   </div>
                   <div>
                     <div className="text-gray-300 text-xs group-hover:text-gray-100 transition-colors">harangmarketing@naver.com</div>
@@ -193,7 +194,7 @@ export default function Footer() {
             ["24시간 내 연락", "대표 직접 응답"],
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">
-              <span className="text-blue-500 font-black">{val}</span>
+              <span className="font-black" style={{ color: "var(--h-blue-light)" }}>{val}</span>
               <span className="text-gray-700">·</span>
               <span>{sub}</span>
             </div>

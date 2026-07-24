@@ -223,19 +223,19 @@ function ChecklistSection() {
   const count = checked.size;
   const urgency = count >= 5 ? { text: "즉시 전략 점검이 필요합니다", color: "text-red-400" }
     : count >= 3 ? { text: "마케팅 방향 재설정이 필요합니다", color: "text-amber-400" }
-    : count >= 1 ? { text: "개선 여지가 있습니다", color: "text-blue-400" }
+    : count >= 1 ? { text: "개선 여지가 있습니다", color: "text-white/70" }
     : { text: "해당 항목을 클릭해보세요", color: "text-gray-500" };
 
   return (
     <section className="py-14 md:py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-6 md:p-10 shadow-xl shadow-blue-200">
+        <div className="rounded-2xl p-6 md:p-10 shadow-xl" style={{ background: "var(--h-navy)" }}>
           <div className="text-center mb-8">
-            <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-3">Self-Check</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Self-Check</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-2">
               지금 이 중 하나라도 해당되시나요?
             </h2>
-            <p className="text-blue-100 text-sm">해당 항목을 클릭하면 얼마나 시급한지 알 수 있습니다</p>
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>해당 항목을 클릭하면 얼마나 시급한지 알 수 있습니다</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {CHECKLIST_ITEMS.map((item, i) => (
@@ -251,7 +251,7 @@ function ChecklistSection() {
                 <div className={`w-4 h-4 rounded border shrink-0 mt-0.5 flex items-center justify-center transition-colors ${
                   checked.has(i) ? "border-white bg-white" : "border-white/40 bg-white/20"
                 }`}>
-                  {checked.has(i) && <CheckCircle2 size={10} className="text-blue-600" strokeWidth={3} />}
+                  {checked.has(i) && <CheckCircle2 size={10} strokeWidth={3} style={{ color: "var(--h-navy)" }} />}
                 </div>
                 <span className={`text-sm leading-relaxed transition-colors ${checked.has(i) ? "text-white font-semibold" : "text-blue-50"}`}>
                   {item}
@@ -289,7 +289,8 @@ function ChecklistSection() {
 
           <div className="text-center">
             <Link href={count > 0 ? `/contact?checklist=${count}` : "/contact"}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base transition-colors shadow-lg shadow-blue-600/25">
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-bold text-base transition-opacity hover:opacity-90 shadow-lg"
+              style={{ background: "white", color: "var(--h-navy)" }}>
               {count >= 3 ? `${count}가지 문제 지금 해결하기` : count > 0 ? `${count}가지 무료 진단받기` : "무료 전략 진단 신청"}
               <ArrowRight size={15} />
             </Link>
@@ -306,13 +307,13 @@ function PromoSection() {
   const { d, h, m, s } = useMonthEndCountdown();
   const pad = (n: number | null) => n === null ? "--" : String(n).padStart(2, "0");
   return (
-    <section className="py-10 md:py-12 bg-gradient-to-r from-blue-50 to-indigo-50 border-y border-blue-100">
+    <section className="py-10 md:py-12 border-y" style={{ background: "var(--h-bg)", borderColor: "var(--h-border)" }}>
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              <span className="text-xs font-black text-blue-600 uppercase tracking-widest">이번 달 한정</span>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--h-navy)" }} />
+              <span className="text-xs font-black uppercase tracking-widest" style={{ color: "var(--h-navy)" }}>이번 달 한정</span>
             </div>
             <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1">
               신규 상담 3팀에게 무료 경쟁사 분석 리포트 제공
@@ -321,11 +322,11 @@ function PromoSection() {
               내 업종 상위 경쟁 매장 분석 · 키워드 격차 리포트 · 맞춤 전략 제안 — 비용 없이 받아보세요.
             </p>
             {/* Countdown */}
-            <div className="inline-flex items-center gap-1.5 bg-white border border-blue-200 rounded-xl px-3 py-2 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 bg-white rounded-xl px-3 py-2 shadow-sm" style={{ border: "1px solid var(--h-border)" }}>
               <span className="text-[10px] text-gray-400 font-semibold mr-1">마감까지</span>
               {[{ val: pad(d), label: "일" }, { val: pad(h), label: "시간" }, { val: pad(m), label: "분" }, { val: pad(s), label: "초" }].map(({ val, label }, i) => (
                 <React.Fragment key={label}>
-                  {i > 0 && <span className="text-blue-400 font-black text-sm">:</span>}
+                  {i > 0 && <span className="font-black text-sm" style={{ color: "var(--h-muted)" }}>:</span>}
                   <div className="flex flex-col items-center">
                     <span className="text-base font-black text-gray-900 tabular-nums leading-none">{val}</span>
                     <span className="text-[8px] text-gray-400">{label}</span>
@@ -338,14 +339,16 @@ function PromoSection() {
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 {[1, 2, 3].map((n) => (
-                  <div key={n} className={`w-6 h-6 rounded-lg border text-[10px] font-black flex items-center justify-center ${n <= 1 ? "bg-blue-100 border-blue-200 text-blue-400 line-through" : n <= 2 ? "bg-blue-100 border-blue-200 text-blue-600" : "bg-gray-100 border-gray-200 text-gray-300"}`}>
+                  <div key={n} className={`w-6 h-6 rounded-lg border text-[10px] font-black flex items-center justify-center ${n <= 1 ? "line-through" : n <= 2 ? "" : "bg-gray-100 border-gray-200 text-gray-300"}`}
+                    style={n <= 2 ? { background: "var(--h-surface)", borderColor: "var(--h-border)", color: n <= 1 ? "var(--h-muted)" : "var(--h-navy)" } : {}}>
                     {n}
                   </div>
                 ))}
               </div>
               <span className="text-xs text-gray-400">3팀 중 1팀 남음</span>
             </div>
-            <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm">
+            <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-white font-bold text-sm transition-opacity hover:opacity-90 shadow-sm"
+              style={{ background: "var(--h-navy)" }}>
               지금 신청하기 <ArrowRight size={14} />
             </Link>
           </div>
@@ -532,7 +535,7 @@ export default function HomePage() {
         <HeroSection />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
-        <div className="bg-blue-600 py-3 overflow-hidden">
+        <div className="py-3 overflow-hidden" style={{ background: "var(--h-navy)" }}>
           <div className="flex animate-marquee whitespace-nowrap">
             {([
               { text: "플레이스 Top 5 진입 · 평균 6주 만에", dot: "bg-white/60" },
@@ -582,25 +585,25 @@ export default function HomePage() {
         </div>
 
         {/* ══ 플랫폼 신뢰 스트립 ══ */}
-        <section className="py-8 bg-white border-b border-gray-100">
+        <section className="py-7 bg-white border-b" style={{ borderColor: "var(--h-border)" }}>
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest shrink-0">운영 플랫폼</p>
-              <div className="h-px flex-1 bg-gray-100 hidden sm:block" />
-              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4 md:gap-6">
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] shrink-0" style={{ color: "var(--h-muted)" }}>운영 플랫폼</p>
+              <div className="h-px flex-1 hidden sm:block" style={{ background: "var(--h-border)" }} />
+              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-3 md:gap-5">
                 {[
-                  { name: "네이버 플레이스", color: "text-green-600", bg: "bg-green-50", border: "border-green-100", letter: "N" },
-                  { name: "카카오맵", color: "text-yellow-700", bg: "bg-yellow-50", border: "border-yellow-100", letter: "K" },
-                  { name: "배달의민족", color: "text-blue-700", bg: "bg-blue-50", border: "border-blue-100", letter: "B" },
-                  { name: "쿠팡이츠", color: "text-orange-700", bg: "bg-orange-50", border: "border-orange-100", letter: "C" },
-                  { name: "인스타그램", color: "text-purple-700", bg: "bg-purple-50", border: "border-purple-100", letter: "I" },
-                  { name: "구글 리뷰", color: "text-red-600", bg: "bg-red-50", border: "border-red-100", letter: "G" },
+                  { name: "네이버 플레이스", letter: "N" },
+                  { name: "카카오맵", letter: "K" },
+                  { name: "배달의민족", letter: "B" },
+                  { name: "쿠팡이츠", letter: "C" },
+                  { name: "인스타그램", letter: "I" },
+                  { name: "구글 리뷰", letter: "G" },
                 ].map((p) => (
                   <div key={p.name} className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded-lg ${p.bg} border ${p.border} flex items-center justify-center text-[11px] font-black ${p.color}`}>
+                    <div className="w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-black text-white" style={{ background: "var(--h-navy)" }}>
                       {p.letter}
                     </div>
-                    <span className="text-xs font-semibold text-gray-500 whitespace-nowrap">{p.name}</span>
+                    <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "var(--h-muted)" }}>{p.name}</span>
                   </div>
                 ))}
               </div>
@@ -612,18 +615,19 @@ export default function HomePage() {
         <DifferenceSection />
 
         {/* ══ 견적 계산기 배너 ══ */}
-        <section className="py-8 bg-gradient-to-r from-indigo-50 via-blue-50 to-indigo-50 border-b border-blue-100">
+        <section className="py-8 border-b" style={{ background: "var(--h-bg)", borderColor: "var(--h-border)" }}>
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
-                <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-1">신규 · 3분 완성</p>
-                <p className="text-base md:text-lg font-black text-gray-900">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>신규 · 3분 완성</p>
+                <p className="text-base md:text-lg font-black" style={{ color: "var(--h-dark)" }}>
                   내 업종·예산에 맞는 마케팅 패키지가 궁금하신가요?
                 </p>
-                <p className="text-sm text-gray-500">업종을 선택하면 예상 ROI와 추천 패키지를 즉시 계산해드립니다</p>
+                <p className="text-sm" style={{ color: "var(--h-muted)" }}>업종을 선택하면 예상 ROI와 추천 패키지를 즉시 계산해드립니다</p>
               </div>
               <Link href="/estimate"
-                className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-600/20">
+                className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90 shadow-sm"
+                style={{ background: "var(--h-navy)" }}>
                 <Calculator size={15} />
                 패키지 견적 계산기
                 <ArrowRight size={14} />
@@ -633,15 +637,15 @@ export default function HomePage() {
         </section>
 
         {/* ══ 업종별 특화 ══ */}
-        <section className="py-16 md:py-24 bg-gray-50">
+        <section className="py-16 md:py-24" style={{ background: "var(--h-bg)" }}>
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-12">
               <RevealOnScroll>
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>실제 성과 데이터</p>
+                    <div className="w-8 h-[2px]" style={{ background: "var(--h-navy)" }} />
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>실제 성과 데이터</p>
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                     내 업종에도<br />효과가 있을까요?
@@ -659,58 +663,50 @@ export default function HomePage() {
               {INDUSTRIES.map((ind) => {
                 const Icon = ind.icon;
                 return (
-                  <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`} className="group relative rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-200 block card-hover">
-                    {/* Photo placeholder */}
-                    <div className="relative">
-                      <PhotoPlaceholder
-                        label={`${ind.name} 실제 매장 사진`}
-                        hint="실제 클라이언트 매장 외관 또는 내부 사진"
-                        height="h-40"
-                        className="rounded-none"
-                      />
-                      {/* Result badge over photo */}
-                      <div className={`absolute top-3 right-3 bg-gradient-to-r ${ind.color} text-white px-2.5 py-1.5 rounded-xl text-sm font-black shadow-lg`}>
-                        {ind.result}
-                        <div className="text-[9px] text-white/80 font-normal">{ind.resultLabel}</div>
+                  <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`}
+                    className="group relative bg-white overflow-hidden block card-hover card-navy-accent"
+                    style={{ borderRadius: "16px", border: "1px solid var(--h-border)", borderTop: "3px solid var(--h-navy)" }}>
+                    {/* Result ribbon */}
+                    <div className="px-5 pt-5 pb-4 flex items-start justify-between" style={{ borderBottom: "1px solid var(--h-border)" }}>
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "var(--h-navy)" }}>
+                          <Icon size={17} className="text-white" strokeWidth={2} />
+                        </div>
+                        <div>
+                          <h3 className="font-black text-sm leading-tight" style={{ color: "var(--h-dark)" }}>{ind.name}</h3>
+                          <p className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>{ind.location} · {ind.duration}</p>
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className="text-lg font-black leading-none tabular-nums" style={{ color: "var(--h-amber)" }}>{ind.result}</div>
+                        <div className="text-[10px] mt-0.5" style={{ color: "var(--h-muted)" }}>{ind.resultLabel}</div>
                       </div>
                     </div>
-                    <div className="p-5">
-                      {/* header */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${ind.color} flex items-center justify-center shadow-sm shrink-0`}>
-                            <Icon size={16} className="text-white" strokeWidth={2} />
-                          </div>
-                          <div>
-                            <h3 className="font-black text-gray-900 text-sm leading-tight">{ind.name}</h3>
-                            <p className="text-[11px] text-gray-400 mt-0.5">{ind.location} · {ind.duration}</p>
-                          </div>
-                        </div>
-                      </div>
 
+                    <div className="p-5">
                       {/* before / after */}
-                      <div className="flex items-center gap-2 mb-4 bg-white rounded-xl p-3 border border-white/80 shadow-sm">
+                      <div className="flex items-center gap-2 mb-4 rounded-xl p-3" style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)" }}>
                         <div className="flex-1 text-center">
-                          <div className="text-[10px] font-bold text-red-400 mb-1">BEFORE</div>
-                          <div className="text-xs font-semibold text-gray-600">{ind.before}</div>
+                          <div className="text-[10px] font-bold text-red-500 mb-1">BEFORE</div>
+                          <div className="text-xs font-semibold" style={{ color: "var(--h-muted)" }}>{ind.before}</div>
                         </div>
-                        <ChevronRight size={14} className="text-gray-300 shrink-0" />
+                        <ChevronRight size={14} strokeWidth={1.5} style={{ color: "var(--h-border)" }} className="shrink-0" />
                         <div className="flex-1 text-center">
-                          <div className="text-[10px] font-bold text-blue-600 mb-1">AFTER</div>
-                          <div className="text-xs font-bold text-gray-900">{ind.after}</div>
+                          <div className="text-[10px] font-bold mb-1" style={{ color: "var(--h-blue)" }}>AFTER</div>
+                          <div className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{ind.after}</div>
                         </div>
                       </div>
 
                       {/* strategy points */}
-                      <ul className="space-y-1 mb-4">
+                      <ul className="space-y-1.5 mb-4">
                         {ind.points.map((p) => (
-                          <li key={p} className="flex items-center gap-2 text-[11px] text-gray-500">
-                            <CheckCircle2 size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
+                          <li key={p} className="flex items-center gap-2 text-[11px]" style={{ color: "var(--h-muted)" }}>
+                            <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--h-navy)" }} />
                             {p}
                           </li>
                         ))}
                       </ul>
-                      <div className="flex items-center gap-1 text-xs text-blue-600 font-bold group-hover:gap-2 transition-all">
+                      <div className="flex items-center gap-1 text-xs font-bold group-hover:gap-2 transition-all" style={{ color: "var(--h-blue)" }}>
                         이 업종 무료 진단받기 <ArrowRight size={11} />
                       </div>
                     </div>
@@ -720,10 +716,11 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 text-center">
-              <p className="text-sm text-gray-400 mb-4">위 업종 외에도 상담 가능합니다</p>
+              <p className="text-sm mb-4" style={{ color: "var(--h-muted)" }}>위 업종 외에도 상담 가능합니다</p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold text-sm transition-opacity hover:opacity-90 shadow-sm"
+                style={{ background: "var(--h-navy)" }}
               >
                 내 업종 무료 진단 받기
                 <ArrowRight size={15} strokeWidth={2.5} />
@@ -832,7 +829,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
               {/* Content */}
               <RevealOnScroll from="left"><div>
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-5">About CEO</p>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] mb-5" style={{ color: "var(--h-navy)" }}>About CEO</p>
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
                   실패해 본 대표가<br />성공하는 길을<br />가장 잘 압니다
                 </h2>
@@ -909,14 +906,14 @@ export default function HomePage() {
         <ChecklistSection />
 
         {/* ══ 신뢰 지표 (카운터) ══ */}
-        <section className="py-14 md:py-20 relative overflow-hidden" style={{ background: "var(--h-surface)" }}>
-          <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
+        <section className="py-14 md:py-20 relative overflow-hidden" style={{ background: "var(--h-navy)" }}>
+          <div className="absolute inset-0 dot-grid-navy pointer-events-none" />
           <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <RevealOnScroll>
               <div className="flex items-center gap-3 justify-center mb-10">
-                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                <p className="text-xs font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>10년 운영 데이터</p>
-                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                <div className="w-8 h-[1px] bg-white/30" />
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/60">10년 운영 데이터</p>
+                <div className="w-8 h-[1px] bg-white/30" />
               </div>
             </RevealOnScroll>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -928,25 +925,25 @@ export default function HomePage() {
               ].map((item, i) => (
                 <RevealOnScroll key={item.label} delay={i * 80}>
                   <div className="text-center">
-                    <div className="text-4xl md:text-5xl font-black mb-2 tabular-nums" style={{ color: "var(--h-amber)" }}>
+                    <div className="text-4xl md:text-5xl font-black mb-2 tabular-nums text-white">
                       <AnimatedCounter to={item.to} suffix={item.suffix} duration={1600} />
                     </div>
-                    <div className="text-sm md:text-base font-bold mb-0.5" style={{ color: "var(--h-dark)" }}>{item.label}</div>
-                    <div className="text-xs" style={{ color: "var(--h-muted)" }}>{item.sub}</div>
+                    <div className="text-sm md:text-base font-bold mb-0.5 text-white/80">{item.label}</div>
+                    <div className="text-xs text-white/40">{item.sub}</div>
                   </div>
                 </RevealOnScroll>
               ))}
             </div>
-            <div className="mt-10 pt-8 border-t grid grid-cols-2 md:grid-cols-4 gap-4 text-center" style={{ borderColor: "var(--h-border)" }}>
+            <div className="mt-10 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               {TRUST_ITEMS.map((item) => {
                 const Icon = item.icon;
                 return (
                   <div key={item.title} className="flex flex-col items-center gap-1.5">
-                    <div className="w-8 h-8 rounded-lg bg-white border flex items-center justify-center shadow-sm" style={{ borderColor: "var(--h-border)" }}>
-                      <Icon size={14} strokeWidth={2} style={{ color: "var(--h-blue)" }} />
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                      <Icon size={15} strokeWidth={1.8} className="text-white" />
                     </div>
-                    <p className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{item.title}</p>
-                    <p className="text-[10px]" style={{ color: "var(--h-muted)" }}>{item.desc}</p>
+                    <p className="text-xs font-bold text-white/80">{item.title}</p>
+                    <p className="text-[10px] text-white/40">{item.desc}</p>
                   </div>
                 );
               })}
@@ -955,14 +952,19 @@ export default function HomePage() {
         </section>
 
         {/* ══ 결과 보장 약속 ══ */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+        <section className="py-16 md:py-20 relative overflow-hidden" style={{ background: "var(--h-dark)" }}>
+          <div className="absolute inset-0 dot-grid-navy pointer-events-none" />
+          <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-3">하랑의 약속</p>
+              <div className="flex items-center gap-3 justify-center mb-4">
+                <div className="w-8 h-[1px] bg-white/20" />
+                <p className="text-[10px] font-black text-white/50 uppercase tracking-[0.22em]">하랑의 약속</p>
+                <div className="w-8 h-[1px] bg-white/20" />
+              </div>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
                 결과가 없으면 말씀드립니다
               </h2>
-              <p className="text-blue-200 text-sm md:text-base max-w-xl mx-auto">
+              <p className="text-white/50 text-sm md:text-base max-w-xl mx-auto">
                 과장된 약속보다 정직한 진단을 드립니다.<br />
                 계약 전에 성과 가능 여부를 먼저 솔직하게 말씀드립니다.
               </p>
@@ -987,19 +989,22 @@ export default function HomePage() {
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all hover:-translate-y-1 card-hover">
-                    <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4 shadow-sm">
-                      <Icon size={18} className="text-white" strokeWidth={2} />
+                  <div key={item.title} className="rounded-2xl p-6 card-hover transition-all hover:-translate-y-1"
+                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                      style={{ background: "var(--h-navy)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                      <Icon size={18} className="text-white" strokeWidth={1.8} />
                     </div>
                     <h3 className="font-black text-white text-base mb-2">{item.title}</h3>
-                    <p className="text-blue-100 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 );
               })}
             </div>
             <div className="text-center mt-8">
               <Link href="/free-check"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-blue-700 font-bold hover:bg-blue-50 transition-colors shadow-sm">
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold transition-opacity hover:opacity-90 shadow-sm"
+                style={{ background: "white", color: "var(--h-navy)" }}>
                 무료 플레이스 진단 신청
                 <ArrowRight size={15} />
               </Link>
@@ -1026,7 +1031,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
               {/* Connector line (desktop) */}
-              <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-400 z-0" />
+              <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px z-0" style={{ background: "var(--h-border)" }} />
 
               {PROCESS_STEPS.map((s, i) => {
                 const Icon = s.icon;
@@ -1034,12 +1039,12 @@ export default function HomePage() {
                   <div key={s.step} className="relative z-10 flex flex-col md:items-center text-left md:text-center px-3 pb-8 md:pb-0">
                     {/* Mobile connector */}
                     {i < PROCESS_STEPS.length - 1 && (
-                      <div className="md:hidden absolute left-5 top-12 bottom-0 w-px bg-blue-100" />
+                      <div className="md:hidden absolute left-5 top-12 bottom-0 w-px" style={{ background: "var(--h-border)" }} />
                     )}
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shadow-md mb-4 shrink-0`}>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm mb-4 shrink-0" style={{ background: "var(--h-navy)" }}>
                       <Icon size={17} className="text-white" strokeWidth={2} />
                     </div>
-                    <div className="text-xs font-black text-blue-500 mb-1">{s.step}</div>
+                    <div className="text-xs font-black mb-1" style={{ color: "var(--h-navy)" }}>{s.step}</div>
                     <h3 className="font-black text-gray-900 text-sm md:text-base mb-1.5">{s.title}</h3>
                     <p className="text-xs text-gray-400 leading-relaxed max-w-[160px] mx-auto md:mx-0">{s.desc}</p>
                   </div>
@@ -1048,7 +1053,9 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-sm">
+              <Link href="/contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-bold transition-opacity hover:opacity-90 shadow-sm"
+                style={{ background: "var(--h-navy)" }}>
                 01단계 시작하기 (무료)
                 <ArrowRight size={15} />
               </Link>
@@ -1082,7 +1089,7 @@ export default function HomePage() {
               {[
                 {
                   tag: "플레이스 SEO",
-                  headerColor: "from-blue-600 to-blue-800",
+                  headerBg: "var(--h-navy)",
                   title: "네이버 플레이스 순위 올리는 핵심 3가지",
                   desc: "리뷰 수, 키워드 세팅, 저장수. 이 세 가지만 잡아도 경쟁 매장보다 2배 빠르게 상위에 오릅니다.",
                   readTime: "3분",
@@ -1091,7 +1098,7 @@ export default function HomePage() {
                 },
                 {
                   tag: "리뷰 마케팅",
-                  headerColor: "from-blue-500 to-indigo-600",
+                  headerBg: "var(--h-navy-mid)",
                   title: "리뷰 하나가 신규 고객 10명을 데려오는 이유",
                   desc: "리뷰는 단순 평점이 아닙니다. 검색 알고리즘과 신뢰도를 동시에 올리는 방법을 소개합니다.",
                   readTime: "4분",
@@ -1100,7 +1107,7 @@ export default function HomePage() {
                 },
                 {
                   tag: "업종별 전략",
-                  headerColor: "from-blue-700 to-indigo-800",
+                  headerBg: "var(--h-dark)",
                   title: "카페·의원·학원 — 마케팅 채널이 달라야 하는 이유",
                   desc: "같은 비용을 써도 업종에 맞는 채널을 선택해야 ROI가 나옵니다. 업종별 최적 채널 선택 가이드.",
                   readTime: "5분",
@@ -1112,7 +1119,7 @@ export default function HomePage() {
                 return (
                   <Link key={post.title} href="/blog"
                     className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col">
-                    <div className={`bg-gradient-to-br ${post.headerColor} p-5`}>
+                    <div className="p-5" style={{ background: post.headerBg }}>
                       <div className="flex items-start justify-between mb-3">
                         <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
                           <PostIcon size={16} className="text-white" strokeWidth={2} />
@@ -1122,11 +1129,11 @@ export default function HomePage() {
                       <span className="text-[11px] font-black text-white/90 uppercase tracking-wider">{post.tag}</span>
                     </div>
                     <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-black text-gray-900 text-sm leading-snug mb-2 group-hover:text-blue-600 transition-colors flex-1">{post.title}</h3>
+                      <h3 className="font-black text-gray-900 text-sm leading-snug mb-2 transition-colors flex-1 group-hover:opacity-80">{post.title}</h3>
                       <p className="text-xs text-gray-500 leading-relaxed mb-4">{post.desc}</p>
                       <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                         <span className="text-[11px] text-gray-400">{post.readTime} 읽기</span>
-                        <div className="flex items-center gap-1 text-xs text-blue-600 font-bold group-hover:gap-2 transition-all">
+                        <div className="flex items-center gap-1 text-xs font-bold group-hover:gap-2 transition-all" style={{ color: "var(--h-navy)" }}>
                           읽으러 가기 <ArrowRight size={11} />
                         </div>
                       </div>
@@ -1195,7 +1202,8 @@ export default function HomePage() {
                 },
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-                  className="group flex flex-col bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all overflow-hidden">
+                  className="group flex flex-col bg-white rounded-2xl border border-gray-100 hover:shadow-md transition-all overflow-hidden"
+                  style={{ borderColor: "var(--h-border)" }}>
                   <div className="flex items-center gap-4 p-5 pb-3">
                     <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center font-black text-xl shadow-sm shrink-0 group-hover:scale-105 transition-transform ${s.darkText ? "text-gray-900" : "text-white"}`}>
                       {s.letter}
@@ -1207,7 +1215,7 @@ export default function HomePage() {
                       </div>
                       <div className="text-xs text-gray-400">{s.desc}</div>
                     </div>
-                    <ChevronRight size={14} className="text-gray-300 shrink-0 group-hover:text-blue-400 transition-colors" />
+                    <ChevronRight size={14} className="text-gray-300 shrink-0 transition-colors group-hover:opacity-60" />
                   </div>
                   <div className="mx-5 mb-4 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
                     <p className="text-[11px] text-gray-400 truncate">{s.preview}</p>
@@ -1236,21 +1244,21 @@ export default function HomePage() {
             {/* 인기 3대 서비스 */}
             <div className="mb-5">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[11px] font-black text-blue-600 uppercase tracking-widest">인기 서비스</span>
-                <div className="h-px flex-1 bg-blue-100" />
+                <span className="text-[11px] font-black uppercase tracking-widest" style={{ color: "var(--h-navy)" }}>인기 서비스</span>
+                <div className="h-px flex-1" style={{ background: "var(--h-border)" }} />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-children">
                 {SERVICES.filter((s) => s.popular).map((service) => {
                   const Icon = service.icon;
                   return (
-                    <Link key={service.title} href="/services" className="group bg-white rounded-2xl p-5 border border-blue-200 ring-1 ring-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all relative block card-hover">
-                      <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-black">인기</span>
-                      <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform`}>
+                    <Link key={service.title} href="/services" className="group bg-white rounded-2xl p-5 hover:shadow-lg hover:-translate-y-1 transition-all relative block card-hover" style={{ border: "1px solid var(--h-navy-mid)" }}>
+                      <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-white text-[10px] font-black" style={{ background: "var(--h-navy)" }}>인기</span>
+                      <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform" style={{ background: "var(--h-navy)" }}>
                         <Icon size={18} className="text-white" strokeWidth={2} />
                       </div>
                       <h3 className="font-black text-gray-900 text-[15px] mb-2">{service.title}</h3>
                       <p className="text-sm text-gray-500 leading-relaxed mb-4">{service.desc}</p>
-                      <div className="flex items-center gap-1 text-blue-600 text-xs font-bold group-hover:gap-2 transition-all">
+                      <div className="flex items-center gap-1 text-xs font-bold group-hover:gap-2 transition-all" style={{ color: "var(--h-blue)" }}>
                         자세히 보기 <ArrowRight size={11} />
                       </div>
                     </Link>
@@ -1269,8 +1277,8 @@ export default function HomePage() {
                 {SERVICES.filter((s) => !s.popular).map((service) => {
                   const Icon = service.icon;
                   return (
-                    <Link key={service.title} href="/services" className="group flex gap-4 items-start bg-white rounded-xl p-4 border border-gray-100 hover:border-blue-100 hover:shadow-md transition-all">
-                      <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-sm shrink-0 group-hover:scale-105 transition-transform`}>
+                    <Link key={service.title} href="/services" className="group flex gap-4 items-start bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition-all" style={{ borderColor: "var(--h-border)" }}>
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm shrink-0 group-hover:scale-105 transition-transform" style={{ background: "var(--h-navy)" }}>
                         <Icon size={15} className="text-white" strokeWidth={2} />
                       </div>
                       <div className="min-w-0">
@@ -1284,7 +1292,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-sm">
+              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90 shadow-sm" style={{ background: "var(--h-navy)" }}>
                 어떤 서비스가 맞는지 무료 진단받기 <ArrowRight size={15} />
               </Link>
             </div>
@@ -1296,11 +1304,11 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-full mb-4">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-4" style={{ background: "var(--h-surface)", color: "var(--h-navy)", border: "1px solid var(--h-border)" }}>
                   <Search size={10} strokeWidth={2.5} /> 10년 분석 인사이트
                 </span>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">
-                  네이버 플레이스 상위 노출,<br /><span className="text-blue-600">이 3가지가 핵심입니다</span>
+                  네이버 플레이스 상위 노출,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   많은 분들이 "사진만 예쁘게 올리면 되는 거 아닌가요?"라고 물어보세요.
@@ -1308,17 +1316,17 @@ export default function HomePage() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { rank: "1위", factor: "리뷰 수 · 최신성", weight: "40%", desc: "리뷰가 많고 최근에 달린 매장이 알고리즘에서 우선순위를 가집니다. 답글 달린 리뷰는 추가 가점.", bar: "w-[80%]", color: "bg-blue-500" },
-                    { rank: "2위", factor: "키워드 일치도", weight: "35%", desc: "업체명·카테고리·소개글의 키워드가 검색어와 얼마나 맞는지 분석합니다. 숨겨진 태그도 포함.", bar: "w-[70%]", color: "bg-indigo-500" },
-                    { rank: "3위", factor: "저장수 · 클릭률", weight: "25%", desc: "플레이스 저장 및 클릭이 많을수록 인기 매장으로 인식됩니다. 체험단·SNS 연동이 여기를 올립니다.", bar: "w-[50%]", color: "bg-blue-700" },
+                    { rank: "1위", factor: "리뷰 수 · 최신성", weight: "40%", desc: "리뷰가 많고 최근에 달린 매장이 알고리즘에서 우선순위를 가집니다. 답글 달린 리뷰는 추가 가점.", bar: "w-[80%]", color: "bg-[#0C2351]" },
+                    { rank: "2위", factor: "키워드 일치도", weight: "35%", desc: "업체명·카테고리·소개글의 키워드가 검색어와 얼마나 맞는지 분석합니다. 숨겨진 태그도 포함.", bar: "w-[70%]", color: "bg-[#1A3A6E]" },
+                    { rank: "3위", factor: "저장수 · 클릭률", weight: "25%", desc: "플레이스 저장 및 클릭이 많을수록 인기 매장으로 인식됩니다. 체험단·SNS 연동이 여기를 올립니다.", bar: "w-[50%]", color: "bg-[#1860D5]" },
                   ].map((f) => (
                     <div key={f.rank} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-black text-white bg-blue-600 rounded-full w-5 h-5 flex items-center justify-center">{f.rank.charAt(0)}</span>
+                          <span className="text-xs font-black text-white rounded-full w-5 h-5 flex items-center justify-center" style={{ background: "var(--h-navy)" }}>{f.rank.charAt(0)}</span>
                           <span className="text-sm font-bold text-gray-900">{f.factor}</span>
                         </div>
-                        <span className="text-xs font-black text-blue-600">{f.weight}</span>
+                        <span className="text-xs font-black" style={{ color: "var(--h-navy)" }}>{f.weight}</span>
                       </div>
                       <div className="h-1.5 bg-gray-200 rounded-full mb-2">
                         <div className={`h-full rounded-full ${f.color} ${f.bar}`} />
@@ -1332,7 +1340,7 @@ export default function HomePage() {
                 <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-black text-gray-900 text-base">경쟁 매장과 비교해보세요</h3>
-                    <span className="text-[10px] text-blue-600 font-black bg-blue-50 border border-blue-100 px-2 py-1 rounded-lg">실제 사례 기반</span>
+                    <span className="text-[10px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>실제 사례 기반</span>
                   </div>
                   <div className="space-y-3">
                     {[
@@ -1358,7 +1366,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <Link href="/contact"
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors">
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-white font-bold text-sm transition-opacity hover:opacity-90"
+                  style={{ background: "var(--h-navy)" }}>
                   내 매장 플레이스 무료 진단받기 <ArrowRight size={14} />
                 </Link>
               </div>
@@ -1370,7 +1379,7 @@ export default function HomePage() {
         <section className="py-16 md:py-24 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">패키지</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>패키지</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">대략적인 가격대가 궁금하신가요?</h2>
               <p className="text-gray-500 text-base max-w-xl mx-auto">
                 아래는 예시 패키지이며, 실제 견적은 업종·목표·상황에 따라 달라집니다.<br />
@@ -1379,7 +1388,7 @@ export default function HomePage() {
             </div>
 
             {/* ROI 계산 힌트 */}
-            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5 md:p-6 mb-8">
+            <div className="rounded-2xl p-5 md:p-6 mb-8" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
                   { label: "월 마케팅 비용", value: "50만원", note: "그로스 패키지 기준" },
@@ -1387,7 +1396,7 @@ export default function HomePage() {
                   { label: "투자 대비 수익", value: "2.4배", note: "ROI 기준" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <div className="text-xl md:text-2xl font-black text-blue-600">{item.value}</div>
+                    <div className="text-xl md:text-2xl font-black" style={{ color: "var(--h-navy)" }}>{item.value}</div>
                     <div className="text-xs font-bold text-gray-700 mt-0.5">{item.label}</div>
                     <div className="text-[10px] text-gray-400">{item.note}</div>
                   </div>
@@ -1398,31 +1407,33 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 stagger-children">
               {PACKAGES.map((pkg) => (
-                <div key={pkg.name} className={`relative rounded-2xl border overflow-hidden card-hover ${pkg.popular ? "border-blue-300 shadow-xl shadow-blue-100" : "border-gray-200 shadow-sm"}`}>
+                <div key={pkg.name} className={`relative rounded-2xl overflow-hidden card-hover ${pkg.popular ? "shadow-xl" : "shadow-sm"}`}
+                  style={{ border: pkg.popular ? "2px solid var(--h-navy)" : "1px solid var(--h-border)" }}>
                   {pkg.popular && (
-                    <div className="bg-blue-600 text-white text-xs font-black text-center py-2 tracking-wider uppercase">
+                    <div className="text-white text-xs font-black text-center py-2 tracking-wider uppercase" style={{ background: "var(--h-navy)" }}>
                       가장 많이 선택
                     </div>
                   )}
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <div className={`inline-flex px-3 py-1.5 rounded-full bg-gradient-to-r ${pkg.color} text-white text-xs font-black`}>
+                      <div className="inline-flex px-3 py-1.5 rounded-full text-white text-xs font-black" style={{ background: "var(--h-navy)" }}>
                         {pkg.name}
                       </div>
-                      <span className="text-[10px] font-black text-blue-700 bg-blue-50 border border-blue-100 px-2 py-1 rounded-lg">{pkg.roi}</span>
+                      <span className="text-[10px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{pkg.roi}</span>
                     </div>
                     <div className="text-lg font-black text-gray-900 mb-0.5">{pkg.priceHint}</div>
                     <p className="text-xs text-gray-400 mb-5">{pkg.desc}</p>
                     <ul className="space-y-2.5 mb-6">
                       {pkg.features.map((f) => (
                         <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
-                          <CheckCircle2 size={14} className="text-blue-500 shrink-0" strokeWidth={2.5} />
+                          <CheckCircle2 size={14} className="shrink-0" strokeWidth={2.5} style={{ color: "var(--h-navy)" }} />
                           {f}
                         </li>
                       ))}
                     </ul>
                     <Link href="/contact"
-                      className={`block text-center py-3 rounded-xl font-bold text-sm transition-colors ${pkg.popular ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
+                      className={`block text-center py-3 rounded-xl font-bold text-sm transition-opacity hover:opacity-90 ${pkg.popular ? "text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                      style={pkg.popular ? { background: "var(--h-navy)" } : {}}>
                       이 패키지 문의하기
                     </Link>
                   </div>
@@ -1440,7 +1451,7 @@ export default function HomePage() {
         <section className="py-16 md:py-24 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full mb-4">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-4" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
                 <ShieldCheck size={11} strokeWidth={2.5} /> 직접 비교
               </span>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">하랑마케팅이 다른 이유</h2>
@@ -1451,9 +1462,9 @@ export default function HomePage() {
             <div className="hidden md:block rounded-2xl overflow-hidden shadow-lg border border-gray-100">
               <div className="grid grid-cols-[160px_1fr_1fr]">
                 <div className="p-5 text-xs font-bold uppercase tracking-wider flex items-end" style={{ background: "var(--h-dark)", color: "#6B7280" }}>구분</div>
-                <div className="bg-blue-600 p-5 text-center">
+                <div className="p-5 text-center" style={{ background: "var(--h-navy)" }}>
                   <div className="text-white font-black text-sm tracking-wide">하랑마케팅</div>
-                  <div className="text-blue-200 text-[11px] mt-0.5">10년 경력 · 데이터 기반</div>
+                  <div className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>10년 경력 · 데이터 기반</div>
                 </div>
                 <div className="p-5 text-center" style={{ background: "var(--h-surface)" }}>
                   <div className="font-bold text-sm" style={{ color: "#374151" }}>일반 대행사</div>
@@ -1463,9 +1474,9 @@ export default function HomePage() {
               {COMPARE_ITEMS.map((item, i) => (
                 <div key={item.category} className={`grid grid-cols-[160px_1fr_1fr] border-t border-gray-100 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
                   <div className="p-4 md:p-5 font-black text-gray-600 text-xs flex items-center border-r border-gray-100">{item.category}</div>
-                  <div className="p-4 md:p-5 bg-blue-50/40 border-r border-blue-100">
+                  <div className="p-4 md:p-5 border-r" style={{ background: "rgba(12,35,81,0.03)", borderColor: "var(--h-border)" }}>
                     <div className="flex items-start gap-2">
-                      <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--h-navy)" }}>
                         <CheckCircle2 size={10} className="text-white" strokeWidth={3} />
                       </div>
                       <span className="text-gray-800 text-xs md:text-sm leading-relaxed font-medium">{item.harang}</span>
@@ -1483,7 +1494,7 @@ export default function HomePage() {
               ))}
               <div className="grid grid-cols-[160px_1fr_1fr] border-t border-gray-200">
                 <div className="bg-gray-50 p-4" />
-                <div className="bg-blue-600 p-4 text-center">
+                <div className="p-4 text-center" style={{ background: "var(--h-navy)" }}>
                   <Link href="/contact" className="inline-flex items-center gap-1.5 text-white text-xs font-black bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
                     무료 상담 신청 <ArrowRight size={11} />
                   </Link>
@@ -1499,11 +1510,11 @@ export default function HomePage() {
                   <div className="px-4 py-2.5 text-xs font-black" style={{ background: "var(--h-dark)", color: "#9CA3AF" }}>{item.category}</div>
                   <div className="divide-y divide-gray-100">
                     <div className="flex items-start gap-3 p-4 bg-blue-50/50">
-                      <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--h-navy)" }}>
                         <CheckCircle2 size={11} className="text-white" strokeWidth={3} />
                       </div>
                       <div>
-                        <div className="text-[10px] font-black text-blue-600 mb-0.5">하랑마케팅</div>
+                        <div className="text-[10px] font-black mb-0.5" style={{ color: "var(--h-navy)" }}>하랑마케팅</div>
                         <span className="text-gray-800 text-xs leading-relaxed font-medium">{item.harang}</span>
                       </div>
                     </div>
@@ -1519,7 +1530,8 @@ export default function HomePage() {
                   </div>
                 </div>
               ))}
-              <Link href="/contact" className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-blue-600 text-white text-sm font-black mt-2 hover:bg-blue-700 transition-colors">
+              <Link href="/contact" className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-white text-sm font-black mt-2 transition-opacity hover:opacity-90"
+                style={{ background: "var(--h-navy)" }}>
                 무료 상담 신청 <ArrowRight size={14} />
               </Link>
             </div>
@@ -1531,11 +1543,11 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">진행 사례</p>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>진행 사례</p>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">실제 매장, 실제 수치입니다</h2>
                 <p className="text-gray-400 text-sm">과장 없는 실제 클라이언트의 before·after 데이터</p>
               </div>
-              <Link href="/cases" className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-sm hover:underline shrink-0">
+              <Link href="/cases" className="inline-flex items-center gap-1.5 font-bold text-sm hover:underline shrink-0" style={{ color: "var(--h-navy)" }}>
                 전체 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
@@ -1611,15 +1623,15 @@ export default function HomePage() {
                           <div className="text-[10px] text-gray-400 mb-1 leading-tight">{c.before.label}</div>
                           <div className="text-sm font-black text-red-500">{c.before.value}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-2.5 text-center">
-                          <div className="text-[9px] font-black text-blue-600 mb-0.5 uppercase">After</div>
+                        <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
+                          <div className="text-[9px] font-black mb-0.5 uppercase" style={{ color: "var(--h-navy)" }}>After</div>
                           <div className="text-[10px] text-gray-400 mb-1 leading-tight">{c.after.label}</div>
-                          <div className="text-sm font-black text-blue-700">{c.after.value}</div>
+                          <div className="text-sm font-black" style={{ color: "var(--h-navy)" }}>{c.after.value}</div>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-[10px] text-gray-400">{c.period}</span>
-                        <span className="text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">{c.highlight}</span>
+                        <span className="text-[10px] font-black px-2 py-0.5 rounded-full" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{c.highlight}</span>
                       </div>
                     </div>
                   </div>
@@ -1628,7 +1640,7 @@ export default function HomePage() {
             </div>
             <div className="text-center mt-6">
               <Link href="/cases"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-colors">
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-gray-600 font-bold text-sm transition-colors hover:opacity-80" style={{ borderColor: "var(--h-border)" }}>
                 더 많은 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>

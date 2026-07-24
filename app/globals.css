@@ -4,15 +4,17 @@
   --background: #ffffff;
   --foreground: #111827;
 
-  /* 하랑마케팅 디자인 토큰 */
-  --h-dark: #0F1923;
-  --h-navy: #1D3461;
-  --h-blue: #2563EB;
-  --h-amber: #D97706;
-  --h-bg: #FAFAFA;
-  --h-surface: #F3F4F6;
-  --h-border: #E5E7EB;
-  --h-muted: #9CA3AF;
+  /* 하랑마케팅 디자인 토큰 — Navy/White Professional */
+  --h-dark: #091D3E;
+  --h-navy: #0C2351;
+  --h-navy-mid: #1A3A6E;
+  --h-blue: #1860D5;
+  --h-blue-light: #2F78EE;
+  --h-amber: #B45309;
+  --h-bg: #F4F8FD;
+  --h-surface: #E8EEF8;
+  --h-border: #C5D3E8;
+  --h-muted: #637698;
 
   /* Hero dark tokens */
   --hero-bg: #080E1D;
@@ -374,7 +376,18 @@ body { overflow-x: hidden; }
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+  box-shadow: 0 12px 36px rgba(9,29,62,0.13);
+}
+
+/* Navy card border accent */
+.card-navy-accent {
+  border-top: 3px solid var(--h-navy);
+}
+
+/* Dot grid navy variant */
+.dot-grid-navy {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 /* Shimmer text */

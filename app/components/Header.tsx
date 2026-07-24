@@ -116,7 +116,8 @@ export default function Header() {
             </div>
             <Link
               href={msg.ctaHref}
-              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-black text-[11px] transition-colors"
+              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-white font-black text-[11px] transition-opacity hover:opacity-90"
+              style={{ background: "var(--h-navy)" }}
             >
               <Clock size={10} strokeWidth={2.5} />
               {msg.ctaLabel}
@@ -150,10 +151,10 @@ export default function Header() {
                     scrolled || !isHome ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  하랑<span className="text-blue-500">마케팅</span>
+                  하랑<span style={{ color: "var(--h-navy)" }}>마케팅</span>
                 </span>
                 {(scrolled || !isHome) && (
-                  <div className="text-[10px] font-bold text-blue-500 leading-none mt-0.5 tracking-tight">
+                  <div className="text-[10px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
                     10년 경력 · 대표 직접 담당
                   </div>
                 )}
@@ -175,8 +176,8 @@ export default function Header() {
                       className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                         pathname.startsWith(item.href)
                           ? scrolled || !isHome
-                            ? "text-blue-600"
-                            : "text-blue-300"
+                            ? "text-[#0C2351]"
+                            : "text-blue-200"
                           : scrolled || !isHome
                           ? "text-gray-600 hover:text-gray-900"
                           : "text-gray-300 hover:text-white"
@@ -206,7 +207,7 @@ export default function Header() {
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       pathname === item.href
                         ? scrolled || !isHome
-                          ? "bg-blue-50 text-blue-600"
+                          ? ""
                           : "bg-white/10 text-white"
                         : scrolled || !isHome
                         ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
@@ -235,7 +236,8 @@ export default function Header() {
               </a>
               <Link
                 href="/contact"
-                className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
+                className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-sm font-bold transition-opacity hover:opacity-90 shadow-sm"
+                style={{ background: "var(--h-navy)" }}
               >
                 무료 진단
               </Link>
@@ -270,7 +272,7 @@ export default function Header() {
                     href={item.href}
                     className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
                       pathname === item.href || pathname.startsWith(item.href)
-                        ? "bg-blue-50 text-blue-600"
+                        ? "bg-gray-100 text-gray-900 font-black"
                         : "text-gray-700 hover:bg-gray-50"
                     }`}
                   >
@@ -295,7 +297,8 @@ export default function Header() {
             <div className="px-4 pb-4 pt-2 border-t border-gray-100 space-y-2">
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-1.5 w-full py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm"
+                className="flex items-center justify-center gap-1.5 w-full py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90"
+                style={{ background: "var(--h-navy)" }}
               >
                 무료 진단 신청 (0원)
               </Link>
