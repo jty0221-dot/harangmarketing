@@ -37,7 +37,10 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/"],
       },
     ],
-    sitemap: "https://www.harangmarketing.com/sitemap.xml",
+    sitemap: [
+      "https://www.harangmarketing.com/sitemap.xml",
+      "https://www.harangmarketing.com/rss.xml",
+    ],
     host: "https://www.harangmarketing.com",
   };
 }
