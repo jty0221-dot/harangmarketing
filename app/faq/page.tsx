@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 FAQ — 상담 전 미리 확인하세요",
     description: "비용, 계약, 효과, 업종별 질문 등 상담 전에 궁금한 것들을 정리했습니다.",
     url: "https://www.harangmarketing.com/faq",
-    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
 

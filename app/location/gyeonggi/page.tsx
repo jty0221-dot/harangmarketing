@@ -13,7 +13,7 @@ const GYEONGGI_LD = {
   "name": "하랑마케팅 — 경기도 소상공인 마케팅",
   "url": `${BASE}/location/gyeonggi`,
   "logo": `${BASE}/favicon.svg`,
-  "image": `${BASE}/opengraph-image`,
+  "image": `${BASE}/og-image.png`,
   "telephone": "010-0000-0000",
   "description": "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 네이버 플레이스 상위노출, 리뷰 확보, SNS 운영까지.",
   "areaServed": [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "경기도 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "경기도 지역 특화 마케팅. 일산·분당·수원·고양 실제 성과 보유.",
     url: `${BASE}/location/gyeonggi`,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
   },
 };
 

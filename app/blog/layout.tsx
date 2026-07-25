@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 블로그 — 소상공인 마케팅 노하우",
     description: "10년 경력 대표가 직접 쓰는 소상공인 마케팅 인사이트",
     url: "https://www.harangmarketing.com/blog",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 블로그 — 소상공인 마케팅 노하우" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 블로그 — 소상공인 마케팅 노하우" }],
   },
 };
 

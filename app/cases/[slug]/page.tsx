@@ -120,7 +120,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: c.title,
       description: c.story,
       url: `https://harangmarketing.com/cases/${slug}`,
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: c.title }],
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: c.title }],
     },
   };
 }

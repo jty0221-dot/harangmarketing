@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "카페·베이커리 마케팅 대행 — 하랑마케팅",
     description: "네이버 플레이스 상위노출 · 포토리뷰 전략 · 인스타 비주얼. 3개월 만에 방문객 167% 증가 실제 사례.",
     url: "https://www.harangmarketing.com/services/cafe",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "카페 마케팅 대행 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "카페 마케팅 대행 하랑마케팅" }],
   },
 };
 

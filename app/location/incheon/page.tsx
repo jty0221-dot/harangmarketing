@@ -13,7 +13,7 @@ const INCHEON_LD = {
   "name": "하랑마케팅 — 인천 소상공인 마케팅",
   "url": `${BASE}/location/incheon`,
   "logo": `${BASE}/favicon.svg`,
-  "image": `${BASE}/opengraph-image`,
+  "image": `${BASE}/og-image.png`,
   "description": "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 대표 직접 담당.",
   "areaServed": [
     { "@type": "City", "name": "인천광역시" },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "인천 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "인천 부평·송도·부천·검단 지역 실제 성과. 10년 경력 대표 직접 담당.",
     url: `${BASE}/location/incheon`,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "인천 마케팅 대행사 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "인천 마케팅 대행사 하랑마케팅" }],
   },
 };
 

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "플레이스·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 상담 무료, 재계약률 95%, 경기·서울·인천 전 지역.",
     images: [
       {
-        url: "https://www.harangmarketing.com/opengraph-image",
+        url: "https://www.harangmarketing.com/og-image.png",
         width: 1200,
         height: 630,
         type: "image/png",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
     description: "10년 경력 대표 직접 담당 · 플레이스 SEO · 블로그 · 체험단 · 인스타그램 · 재계약률 95%",
-    images: ["/opengraph-image"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
@@ -173,7 +173,7 @@ export default function RootLayout({
                 "width": 400,
                 "height": 400,
               },
-              "image": "https://www.harangmarketing.com/opengraph-image",
+              "image": "https://www.harangmarketing.com/og-image.png",
               "description": "10년 경력의 마케팅 전문가 전태영 대표가 직접 운영하는 소상공인·자영업자 전문 마케팅 대행사입니다. 네이버 플레이스 SEO, 블로그 마케팅, 체험단 모집, 인스타그램 마케팅 서비스를 제공합니다. 재계약률 95%, 500건 이상 프로젝트 완료.",
               "foundingDate": "2015",
               "founder": {
@@ -216,7 +216,7 @@ export default function RootLayout({
               "@type": ["LocalBusiness", "ProfessionalService", "MarketingAgency"],
               "@id": "https://www.harangmarketing.com/#localbusiness",
               "name": "하랑마케팅",
-              "image": "https://www.harangmarketing.com/opengraph-image",
+              "image": "https://www.harangmarketing.com/og-image.png",
               "url": "https://harangmarketing.com",
               "telephone": "010-7541-9054",
               "email": "harangmarketing@naver.com",

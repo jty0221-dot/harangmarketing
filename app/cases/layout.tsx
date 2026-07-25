@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 성공 사례 — 실제 매장의 매출·방문객 증가 스토리",
     description: "플레이스 1위 달성, 방문객 +167%, 매출 +113% — 하랑마케팅과 함께한 업종별 실제 성과를 확인하세요.",
     url: "https://www.harangmarketing.com/cases",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 성공 사례" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 성공 사례" }],
   },
 };
 

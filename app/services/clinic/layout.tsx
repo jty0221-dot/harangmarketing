@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "의원·한의원·피부과 마케팅 대행 — 하랑마케팅",
     description: "블로그 신뢰도 강화 · 체험단 후기 · 플레이스 SEO. 4개월 만에 월 신규 예약 175% 증가.",
     url: "https://www.harangmarketing.com/services/clinic",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "병원 마케팅 대행 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "병원 마케팅 대행 하랑마케팅" }],
   },
 };
 

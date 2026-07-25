@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "쇼핑몰·소매점 마케팅 대행사 — 하랑마케팅",
     description: "온·오프라인 매출을 동시에 올리는 쇼핑몰 마케팅.",
     url: "https://www.harangmarketing.com/services/shopping",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "쇼핑몰 마케팅 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "쇼핑몰 마케팅 하랑마케팅" }],
   },
 };
 

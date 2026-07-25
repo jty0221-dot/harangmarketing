@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "미용·네일·피부샵 마케팅 — 하랑마케팅",
     description: "인스타그램·플레이스 동시 상승으로 예약을 꽉 채우는 뷰티샵 마케팅.",
     url: "https://www.harangmarketing.com/services/beauty",
-    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
 

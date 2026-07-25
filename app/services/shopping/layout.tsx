@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "온라인 쇼핑몰 마케팅 대행 — 하랑마케팅",
     description: "블로그 SEO · 체험단 후기 · 콘텐츠 마케팅. 4개월 만에 월 매출 64% 증가.",
     url: "https://www.harangmarketing.com/services/shopping",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "쇼핑몰 마케팅 대행 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "쇼핑몰 마케팅 대행 하랑마케팅" }],
   },
 };
 

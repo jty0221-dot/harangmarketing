@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 서비스 — 소상공인 맞춤 마케팅",
     description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 월 30만원부터 시작, 상담 무료.",
     url: "https://www.harangmarketing.com/services",
-    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
 

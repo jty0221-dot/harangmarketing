@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 — 대표 직접 담당, 결과 없으면 솔직히 말씀드립니다",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: `${BASE}/about`,
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
   },
 };
 

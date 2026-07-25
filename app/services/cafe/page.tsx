@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "카페·베이커리 마케팅 — 하랑마케팅",
     description: "플레이스 상위 노출부터 포토리뷰 확보까지. 카페 전문 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/cafe",
-    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
 

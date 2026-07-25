@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "의원·한의원·피부과 마케팅 — 하랑마케팅",
     description: "의료법을 준수하면서 신환이 늘어나는 병원 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/clinic",
-    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "학원·교육 마케팅 대행 — 하랑마케팅",
     description: "맘카페 입소문 · 홈페이지형 블로그 · 지역 키워드 SEO. 3개월 만에 수강생 55% 증가.",
     url: "https://www.harangmarketing.com/services/academy",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "학원 마케팅 대행 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "학원 마케팅 대행 하랑마케팅" }],
   },
 };
 

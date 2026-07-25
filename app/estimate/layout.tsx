@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 견적 계산기 — 업종별 맞춤 패키지 즉시 확인",
     description: "3분만에 내 매장에 맞는 마케팅 패키지와 예상 성과를 확인하세요.",
     url: "https://www.harangmarketing.com/estimate",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 견적 계산기" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 견적 계산기" }],
   },
 };
 

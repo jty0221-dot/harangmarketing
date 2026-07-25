@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "미용·네일·뷰티 마케팅 대행 — 하랑마케팅",
     description: "인스타그램 포트폴리오 · 체험단 · 예약 전환 최적화. 2개월 만에 예약 100% 마감.",
     url: "https://www.harangmarketing.com/services/beauty",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "미용 마케팅 대행 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "미용 마케팅 대행 하랑마케팅" }],
   },
 };
 

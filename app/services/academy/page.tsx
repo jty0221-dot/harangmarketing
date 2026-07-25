@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "학원·교육 마케팅 대행사 — 하랑마케팅",
     description: "수강생을 늘리는 학원 마케팅 전략. 실제 성과 보유.",
     url: "https://www.harangmarketing.com/services/academy",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "학원 마케팅 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "학원 마케팅 하랑마케팅" }],
   },
 };
 

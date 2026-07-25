@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: "진행 과정 — 하랑마케팅",
     description: "상담부터 성과까지 6단계 진행 과정을 미리 확인하세요.",
     url: "https://www.harangmarketing.com/process",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 진행 과정" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 진행 과정" }],
   },
 };
 

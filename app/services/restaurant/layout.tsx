@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "음식점·배달 마케팅 대행 — 하랑마케팅",
     description: "배달앱 리뷰 전략 · 맘카페 바이럴 · 블로그 맛집 등록. 4개월 만에 배달 매출 113% 증가.",
     url: "https://www.harangmarketing.com/services/restaurant",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "음식점 마케팅 대행 하랑마케팅" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "음식점 마케팅 대행 하랑마케팅" }],
   },
 };
 

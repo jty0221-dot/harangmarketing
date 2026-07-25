@@ -768,7 +768,7 @@ export async function generateMetadata(
         publishedTime: dynamicPost.date,
         authors: ["하랑마케팅 전태영"],
         tags: ["소상공인 마케팅", "네이버 플레이스", "블로그 마케팅"],
-        images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: dynamicPost.title }],
+        images: [{ url: "/og-image.png", width: 1200, height: 630, alt: dynamicPost.title }],
       },
     };
   }
@@ -789,7 +789,7 @@ export async function generateMetadata(
       publishedTime: meta?.date,
       authors: ["하랑마케팅 전태영"],
       tags: ["소상공인 마케팅", post.tag, "네이버 마케팅"],
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: post.title }],
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
     },
   };
 }
@@ -817,7 +817,7 @@ function blogPostingLd(slug: string, title: string, excerpt: string, tag: string
       "url": BASE,
       "logo": { "@type": "ImageObject", "url": `${BASE}/favicon.svg` },
     },
-    "image": `${BASE}/opengraph-image`,
+    "image": `${BASE}/og-image.png`,
     "inLanguage": "ko-KR",
     "isPartOf": { "@type": "Blog", "name": "하랑마케팅 블로그", "url": `${BASE}/blog` },
     "keywords": ["소상공인 마케팅", tag, "네이버 플레이스", "블로그 마케팅", "하랑마케팅"],
