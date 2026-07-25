@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "음식점·식당 마케팅 대행사 — 하랑마케팅",
     description: "배달·홀 매출 동시 증대. 음식점 전문 마케팅 전략.",
-    url: "https://harangmarketing.com/services/restaurant",
+    url: "https://www.harangmarketing.com/services/restaurant",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "음식점 마케팅 하랑마케팅" }],
   },
 };

@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "하랑마케팅 블로그 — 소상공인 실전 마케팅 인사이트",
     description: "플레이스 SEO, 블로그, 리뷰 관리 등 실제 성과로 검증된 소상공인 마케팅 노하우를 무료로 공유합니다.",
-    url: "https://harangmarketing.com/blog",
-    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    url: "https://www.harangmarketing.com/blog",
+    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
   },
 };
 

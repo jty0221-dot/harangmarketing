@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "하랑마케팅 진행 과정 — 상담부터 성과까지 6단계",
     description: "투명하게 공개하는 6단계 마케팅 진행 과정. 상담 비용 0원.",
-    url: "https://harangmarketing.com/process",
-    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    url: "https://www.harangmarketing.com/process",
+    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
   },
 };
 

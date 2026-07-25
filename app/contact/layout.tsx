@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "하랑마케팅 무료 상담 신청 — 10년 경력 대표 직접 응대",
     description: "카카오·전화·폼 중 편한 방법으로 신청하세요. 업종 분석부터 맞춤 전략까지 0원에 제공합니다.",
-    url: "https://harangmarketing.com/contact",
+    url: "https://www.harangmarketing.com/contact",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 무료 상담 신청" }],
   },
 };

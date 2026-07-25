@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "소상공인플레이스", "대표직접담당마케팅", "재계약률95",
     "카페플레이스상위노출", "음식점플레이스", "학원블로그마케팅",
   ],
-  authors: [{ name: "하랑마케팅 대표 전태영", url: "https://harangmarketing.com/about" }],
+  authors: [{ name: "하랑마케팅 대표 전태영", url: "https://www.harangmarketing.com/about" }],
   creator: "하랑마케팅",
   publisher: "하랑마케팅",
   alternates: {
@@ -38,16 +38,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://harangmarketing.com",
+    url: "https://www.harangmarketing.com",
     siteName: "하랑마케팅",
     title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
       "플레이스·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 상담 무료, 재계약률 95%, 경기·서울·인천 전 지역.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "https://www.harangmarketing.com/opengraph-image",
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: "하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 95% · 10년 경력",
       },
     ],
@@ -140,15 +141,15 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://harangmarketing.com/#website",
+              "@id": "https://www.harangmarketing.com/#website",
               "name": "하랑마케팅",
               "alternateName": ["하랑 마케팅", "Harang Marketing"],
-              "url": "https://harangmarketing.com",
+              "url": "https://www.harangmarketing.com",
               "description": "소상공인·자영업자 전문 마케팅 대행사. 네이버 플레이스 SEO, 블로그 마케팅, 체험단, 인스타그램 마케팅. 10년 경력 대표 직접 담당.",
               "inLanguage": "ko-KR",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": { "@type": "EntryPoint", "urlTemplate": "https://harangmarketing.com/blog?q={search_term_string}" },
+                "target": { "@type": "EntryPoint", "urlTemplate": "https://www.harangmarketing.com/blog?q={search_term_string}" },
                 "query-input": "required name=search_term_string",
               },
             }),
@@ -161,18 +162,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": "https://harangmarketing.com/#organization",
+              "@id": "https://www.harangmarketing.com/#organization",
               "name": "하랑마케팅",
               "alternateName": "Harang Marketing",
               "legalName": "하랑마케팅",
-              "url": "https://harangmarketing.com",
+              "url": "https://www.harangmarketing.com",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://harangmarketing.com/favicon.svg",
+                "url": "https://www.harangmarketing.com/favicon.svg",
                 "width": 400,
                 "height": 400,
               },
-              "image": "https://harangmarketing.com/opengraph-image",
+              "image": "https://www.harangmarketing.com/opengraph-image",
               "description": "10년 경력의 마케팅 전문가 전태영 대표가 직접 운영하는 소상공인·자영업자 전문 마케팅 대행사입니다. 네이버 플레이스 SEO, 블로그 마케팅, 체험단 모집, 인스타그램 마케팅 서비스를 제공합니다. 재계약률 95%, 500건 이상 프로젝트 완료.",
               "foundingDate": "2015",
               "founder": {
@@ -213,9 +214,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": ["LocalBusiness", "ProfessionalService", "MarketingAgency"],
-              "@id": "https://harangmarketing.com/#localbusiness",
+              "@id": "https://www.harangmarketing.com/#localbusiness",
               "name": "하랑마케팅",
-              "image": "https://harangmarketing.com/opengraph-image",
+              "image": "https://www.harangmarketing.com/opengraph-image",
               "url": "https://harangmarketing.com",
               "telephone": "010-7541-9054",
               "email": "harangmarketing@naver.com",

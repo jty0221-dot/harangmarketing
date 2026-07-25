@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "무료 플레이스 진단 신청 — 하랑마케팅",
     description: "지금 내 매장 순위, 리뷰, 경쟁사 비교까지 무료로 확인하세요.",
-    url: "https://harangmarketing.com/free-check",
+    url: "https://www.harangmarketing.com/free-check",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "무료 플레이스 진단 — 하랑마케팅" }],
   },
 };
