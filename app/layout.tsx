@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.harangmarketing.com",
     languages: { "ko-KR": "https://www.harangmarketing.com" },
+    types: {
+      "application/rss+xml": "https://www.harangmarketing.com/rss.xml",
+    },
   },
   openGraph: {
     type: "website",
