@@ -4,14 +4,51 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users, Anchor } from "lucide-react";
 
+const BASE = "https://www.harangmarketing.com";
+
+const INCHEON_LD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BASE}/location/incheon`,
+  "name": "하랑마케팅 — 인천 소상공인 마케팅",
+  "url": `${BASE}/location/incheon`,
+  "logo": `${BASE}/favicon.svg`,
+  "image": `${BASE}/opengraph-image`,
+  "description": "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 대표 직접 담당.",
+  "areaServed": [
+    { "@type": "City", "name": "인천광역시" },
+    { "@type": "AdministrativeArea", "name": "부평구" },
+    { "@type": "AdministrativeArea", "name": "연수구" },
+    { "@type": "AdministrativeArea", "name": "계양구" },
+    { "@type": "AdministrativeArea", "name": "서구" },
+    { "@type": "AdministrativeArea", "name": "남동구" },
+    { "@type": "City", "name": "부천시" },
+  ],
+  "knowsAbout": ["네이버 플레이스 SEO", "인천 소상공인 마케팅", "블로그 마케팅", "체험단 마케팅", "송도 마케팅"],
+  "parentOrganization": { "@type": "Organization", "name": "하랑마케팅", "url": BASE },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "홈", "item": BASE },
+      { "@type": "ListItem", "position": 2, "name": "지역별 서비스", "item": `${BASE}/location` },
+      { "@type": "ListItem", "position": 3, "name": "인천", "item": `${BASE}/location/incheon` },
+    ],
+  },
+};
+
 export const metadata: Metadata = {
   title: "인천 소상공인 마케팅 대행사 — 하랑마케팅 | 부평·송도·부천·검단 전문",
   description: "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 대표 직접 담당. 무료 상담.",
-  keywords: ["인천 마케팅 대행사", "인천 소상공인 마케팅", "부평 마케팅", "송도 마케팅", "인천 플레이스 SEO", "검단 마케팅"],
+  keywords: [
+    "인천 마케팅 대행사", "인천 소상공인 마케팅", "부평 마케팅", "송도 마케팅",
+    "인천 플레이스 SEO", "검단 마케팅", "부천 마케팅", "계양 마케팅",
+    "인천 네이버 플레이스", "인천 블로그 마케팅", "인천 체험단",
+  ],
+  alternates: { canonical: `${BASE}/location/incheon` },
   openGraph: {
     title: "인천 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "인천 부평·송도·부천·검단 지역 실제 성과. 10년 경력 대표 직접 담당.",
-    url: "https://harangmarketing.com/location/incheon",
+    url: `${BASE}/location/incheon`,
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "인천 마케팅 대행사 하랑마케팅" }],
   },
 };
@@ -26,6 +63,7 @@ const REGIONS = [
 export default function IncheonPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(INCHEON_LD) }} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         <section className="bg-gray-950 py-16 md:py-24 relative overflow-hidden">

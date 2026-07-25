@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import ScrollProgressBar from "../../components/ScrollProgressBar";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "../../lib/blog-posts";
+import { BLOG_META } from "../../lib/blog-meta";
 
 const POSTS: Record<string, {
   title: string;
@@ -756,26 +757,79 @@ export async function generateMetadata(
     return {
       title: `${dynamicPost.title} — 하랑마케팅 블로그`,
       description: dynamicPost.excerpt,
+      keywords: ["소상공인 마케팅", "하랑마케팅", "마케팅 노하우", dynamicPost.title],
+      authors: [{ name: "하랑마케팅 대표 전태영" }],
+      alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
       openGraph: {
         title: dynamicPost.title,
         description: dynamicPost.excerpt,
-        url: `https://harangmarketing.com/blog/${slug}`,
+        url: `https://www.harangmarketing.com/blog/${slug}`,
         type: "article",
+        publishedTime: dynamicPost.date,
+        authors: ["하랑마케팅 전태영"],
+        tags: ["소상공인 마케팅", "네이버 플레이스", "블로그 마케팅"],
         images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: dynamicPost.title }],
       },
     };
   }
   const post = POSTS[slug];
   if (!post) return { title: "포스트를 찾을 수 없습니다" };
+  const meta = BLOG_META.find((m) => m.slug === slug);
   return {
     title: `${post.title} — 하랑마케팅 블로그`,
     description: post.summary,
+    keywords: ["소상공인 마케팅", "하랑마케팅", post.tag, "마케팅 노하우", post.title],
+    authors: [{ name: "하랑마케팅 대표 전태영" }],
+    alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.summary,
-      url: `https://harangmarketing.com/blog/${slug}`,
+      url: `https://www.harangmarketing.com/blog/${slug}`,
       type: "article",
+      publishedTime: meta?.date,
+      authors: ["하랑마케팅 전태영"],
+      tags: ["소상공인 마케팅", post.tag, "네이버 마케팅"],
       images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: post.title }],
+    },
+  };
+}
+
+const BASE = "https://www.harangmarketing.com";
+
+function blogPostingLd(slug: string, title: string, excerpt: string, tag: string, date?: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": excerpt,
+    "url": `${BASE}/blog/${slug}`,
+    "datePublished": date ?? "2024-11-01",
+    "dateModified": date ?? "2024-11-01",
+    "author": {
+      "@type": "Person",
+      "name": "전태영",
+      "url": `${BASE}/about`,
+      "jobTitle": "하랑마케팅 대표",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "하랑마케팅",
+      "url": BASE,
+      "logo": { "@type": "ImageObject", "url": `${BASE}/favicon.svg` },
+    },
+    "image": `${BASE}/opengraph-image`,
+    "inLanguage": "ko-KR",
+    "isPartOf": { "@type": "Blog", "name": "하랑마케팅 블로그", "url": `${BASE}/blog` },
+    "keywords": ["소상공인 마케팅", tag, "네이버 플레이스", "블로그 마케팅", "하랑마케팅"],
+    "articleSection": tag,
+    "about": { "@type": "Thing", "name": tag },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": BASE },
+        { "@type": "ListItem", "position": 2, "name": "마케팅 인사이트", "item": `${BASE}/blog` },
+        { "@type": "ListItem", "position": 3, "name": title, "item": `${BASE}/blog/${slug}` },
+      ],
     },
   };
 }
@@ -788,6 +842,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (dynamicPost) {
     return (
       <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd(slug, dynamicPost.title, dynamicPost.excerpt, "마케팅 인사이트", dynamicPost.date)) }} />
         <ScrollProgressBar />
         <Header />
         <main className="pt-[104px] md:pt-[108px]">
@@ -862,35 +917,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = POSTS[slug];
   if (!post) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.summary,
-    author: {
-      "@type": "Person",
-      name: "하랑마케팅 대표",
-      url: "https://harangmarketing.com",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "하랑마케팅",
-      url: "https://harangmarketing.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://harangmarketing.com/opengraph-image",
-      },
-    },
-    url: `https://harangmarketing.com/blog/${slug}`,
-    mainEntityOfPage: `https://harangmarketing.com/blog/${slug}`,
-    image: "https://harangmarketing.com/opengraph-image",
-  };
+  const meta = BLOG_META.find((m) => m.slug === slug);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd(slug, post.title, post.summary, post.tag, meta?.date)) }}
       />
       <ScrollProgressBar />
       <Header />

@@ -10,14 +10,80 @@ import {
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 
+const BASE = "https://www.harangmarketing.com";
+
+const ABOUT_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": `${BASE}/about`,
+      "url": `${BASE}/about`,
+      "name": "하랑마케팅 회사소개",
+      "description": "해병대 장교 출신 대표가 직접 운영하는 소상공인 전문 마케팅 대행사. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 진짜 이야기.",
+      "isPartOf": { "@type": "WebSite", "url": BASE, "name": "하랑마케팅" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "홈", "item": BASE },
+          { "@type": "ListItem", "position": 2, "name": "회사소개", "item": `${BASE}/about` },
+        ],
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${BASE}/about#ceo`,
+      "name": "전태영",
+      "jobTitle": "대표이사",
+      "description": "해병대 장교 출신, 카페 창업 실패 경험을 바탕으로 소상공인 전문 마케팅 대행사 하랑마케팅을 창업. 10년 이상의 마케팅 경력, 500곳 이상의 소상공인 성장 지원.",
+      "url": `${BASE}/about`,
+      "worksFor": {
+        "@type": "Organization",
+        "@id": `${BASE}#org`,
+        "name": "하랑마케팅",
+        "url": BASE,
+      },
+      "knowsAbout": [
+        "네이버 플레이스 SEO",
+        "소상공인 마케팅",
+        "블로그 마케팅",
+        "체험단 마케팅",
+        "인스타그램 마케팅",
+        "로컬 비즈니스 마케팅",
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "해병대",
+      },
+    },
+    {
+      "@type": "MarketingAgency",
+      "@id": `${BASE}#org`,
+      "name": "하랑마케팅",
+      "url": BASE,
+      "logo": `${BASE}/favicon.svg`,
+      "founder": { "@id": `${BASE}/about#ceo` },
+      "foundingDate": "2015",
+      "description": "소상공인·자영업자 전문 마케팅 대행사. 네이버 플레이스 상위노출, 블로그 마케팅, 체험단 대행, SNS 마케팅 전문.",
+      "areaServed": ["서울", "경기도", "인천", "수도권"],
+      "knowsAbout": ["네이버 플레이스 마케팅", "소상공인 마케팅", "로컬 SEO", "블로그 마케팅"],
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "회사소개 — 하랑마케팅 | 10년 경력 소상공인 전문 마케팅 대행사",
   description: "해병대 장교 출신 대표가 직접 운영. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 진짜 이야기.",
-  keywords: ["하랑마케팅 소개", "소상공인 마케팅 대행사", "마케팅 대행사 신뢰", "투명한 마케팅"],
+  keywords: [
+    "하랑마케팅 소개", "소상공인 마케팅 대행사", "마케팅 대행사 신뢰", "투명한 마케팅",
+    "마케팅 대행사 대표", "전태영", "경기 마케팅 대행사", "수도권 마케팅 대행사",
+    "소상공인 마케팅 전문가", "네이버 플레이스 전문가",
+  ],
+  alternates: { canonical: `${BASE}/about` },
   openGraph: {
     title: "하랑마케팅 — 대표 직접 담당, 결과 없으면 솔직히 말씀드립니다",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
-    url: "https://harangmarketing.com/about",
+    url: `${BASE}/about`,
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
   },
 };
@@ -100,6 +166,10 @@ const FAQS = [
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_LD) }}
+      />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
 

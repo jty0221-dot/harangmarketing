@@ -4,14 +4,56 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MapPin, TrendingUp, Star, Clock, Users, ShieldCheck } from "lucide-react";
 
+const BASE = "https://www.harangmarketing.com";
+
+const GYEONGGI_LD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BASE}/location/gyeonggi`,
+  "name": "하랑마케팅 — 경기도 소상공인 마케팅",
+  "url": `${BASE}/location/gyeonggi`,
+  "logo": `${BASE}/favicon.svg`,
+  "image": `${BASE}/opengraph-image`,
+  "telephone": "010-0000-0000",
+  "description": "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 네이버 플레이스 상위노출, 리뷰 확보, SNS 운영까지.",
+  "areaServed": [
+    { "@type": "State", "name": "경기도" },
+    { "@type": "City", "name": "고양시" },
+    { "@type": "City", "name": "성남시" },
+    { "@type": "City", "name": "수원시" },
+    { "@type": "City", "name": "부천시" },
+    { "@type": "City", "name": "화성시" },
+    { "@type": "City", "name": "용인시" },
+    { "@type": "City", "name": "안양시" },
+    { "@type": "City", "name": "파주시" },
+    { "@type": "City", "name": "김포시" },
+  ],
+  "knowsAbout": ["네이버 플레이스 SEO", "소상공인 마케팅", "경기도 마케팅 대행", "블로그 마케팅", "체험단 마케팅"],
+  "sameAs": [`${BASE}`],
+  "parentOrganization": { "@type": "Organization", "name": "하랑마케팅", "url": BASE },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "홈", "item": BASE },
+      { "@type": "ListItem", "position": 2, "name": "지역별 서비스", "item": `${BASE}/location` },
+      { "@type": "ListItem", "position": 3, "name": "경기도", "item": `${BASE}/location/gyeonggi` },
+    ],
+  },
+};
+
 export const metadata: Metadata = {
   title: "경기도 소상공인 마케팅 대행사 — 하랑마케팅 | 네이버 플레이스 SEO 전문",
   description: "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 플레이스 상위 노출, 리뷰 확보, SNS 운영까지. 무료 상담.",
-  keywords: ["경기도 마케팅 대행사", "경기 소상공인 마케팅", "경기도 플레이스 SEO", "일산 마케팅", "분당 마케팅", "수원 마케팅", "고양 마케팅", "성남 마케팅"],
+  keywords: [
+    "경기도 마케팅 대행사", "경기 소상공인 마케팅", "경기도 플레이스 SEO",
+    "일산 마케팅", "분당 마케팅", "수원 마케팅", "고양 마케팅", "성남 마케팅",
+    "경기도 네이버 플레이스", "경기 블로그 마케팅", "경기도 체험단", "화성 마케팅", "용인 마케팅",
+  ],
+  alternates: { canonical: `${BASE}/location/gyeonggi` },
   openGraph: {
     title: "경기도 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "경기도 지역 특화 마케팅. 일산·분당·수원·고양 실제 성과 보유.",
-    url: "https://harangmarketing.com/location/gyeonggi",
+    url: `${BASE}/location/gyeonggi`,
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
   },
 };
@@ -36,6 +78,7 @@ const RESULTS = [
 export default function GyeonggiPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(GYEONGGI_LD) }} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}

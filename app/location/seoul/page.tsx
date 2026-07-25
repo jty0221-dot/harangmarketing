@@ -4,14 +4,52 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users, Star, Building2 } from "lucide-react";
 
+const BASE = "https://www.harangmarketing.com";
+
+const SEOUL_LD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BASE}/location/seoul`,
+  "name": "하랑마케팅 — 서울 소상공인 마케팅",
+  "url": `${BASE}/location/seoul`,
+  "logo": `${BASE}/favicon.svg`,
+  "image": `${BASE}/opengraph-image`,
+  "description": "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 대표 직접 담당. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문.",
+  "areaServed": [
+    { "@type": "City", "name": "서울특별시" },
+    { "@type": "AdministrativeArea", "name": "강남구" },
+    { "@type": "AdministrativeArea", "name": "강서구" },
+    { "@type": "AdministrativeArea", "name": "마포구" },
+    { "@type": "AdministrativeArea", "name": "성동구" },
+    { "@type": "AdministrativeArea", "name": "종로구" },
+    { "@type": "AdministrativeArea", "name": "송파구" },
+    { "@type": "AdministrativeArea", "name": "영등포구" },
+  ],
+  "knowsAbout": ["네이버 플레이스 SEO", "서울 소상공인 마케팅", "블로그 마케팅", "체험단 마케팅", "인스타그램 마케팅"],
+  "parentOrganization": { "@type": "Organization", "name": "하랑마케팅", "url": BASE },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "홈", "item": BASE },
+      { "@type": "ListItem", "position": 2, "name": "지역별 서비스", "item": `${BASE}/location` },
+      { "@type": "ListItem", "position": 3, "name": "서울", "item": `${BASE}/location/seoul` },
+    ],
+  },
+};
+
 export const metadata: Metadata = {
   title: "서울 소상공인 마케팅 대행사 — 하랑마케팅 | 네이버 플레이스·블로그·SNS",
   description: "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 대표 직접 담당. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문. 무료 상담.",
-  keywords: ["서울 마케팅 대행사", "서울 소상공인 마케팅", "서울 플레이스 SEO", "강남 마케팅", "강서 마케팅", "마포 마케팅", "성수 마케팅", "홍대 마케팅"],
+  keywords: [
+    "서울 마케팅 대행사", "서울 소상공인 마케팅", "서울 플레이스 SEO",
+    "강남 마케팅", "강서 마케팅", "마포 마케팅", "성수 마케팅", "홍대 마케팅",
+    "서울 네이버 플레이스", "서울 블로그 마케팅", "서울 체험단", "종로 마케팅", "송파 마케팅",
+  ],
+  alternates: { canonical: `${BASE}/location/seoul` },
   openGraph: {
     title: "서울 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "서울 강남·강서·마포·성수·홍대 지역 실제 성과 보유. 10년 경력 대표 직접 담당.",
-    url: "https://harangmarketing.com/location/seoul",
+    url: `${BASE}/location/seoul`,
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "서울 마케팅 대행사 하랑마케팅" }],
   },
 };
@@ -30,6 +68,7 @@ const REGIONS = [
 export default function SeoulPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SEOUL_LD) }} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         <section className="bg-gray-950 py-16 md:py-24 relative overflow-hidden">

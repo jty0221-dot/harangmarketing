@@ -13,12 +13,24 @@ import PhotoPlaceholder from "../components/PhotoPlaceholder";
 export const metadata: Metadata = {
   title: "마케팅 서비스 — 하랑마케팅 | 플레이스 SEO · 블로그 · 체험단 · SNS",
   description: "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 업종별 최적 패키지와 실제 성과를 확인하세요.",
-  keywords: ["마케팅 서비스", "네이버 플레이스 SEO", "블로그 마케팅", "체험단 모집", "리뷰 마케팅", "인스타그램 마케팅", "맘카페 바이럴", "소상공인 마케팅"],
+  keywords: [
+    "마케팅 서비스", "네이버 플레이스 SEO", "플레이스 상위노출",
+    "블로그 마케팅", "블로그 상위노출", "키워드 SEO",
+    "체험단 모집", "체험단 대행", "리뷰 마케팅",
+    "인스타그램 마케팅", "릴스 마케팅", "SNS 마케팅",
+    "맘카페 바이럴", "맘카페 마케팅",
+    "카카오맵 마케팅", "카카오맵 상위노출",
+    "소상공인 마케팅", "자영업자 마케팅", "소상공인 광고",
+    "카페 마케팅", "음식점 마케팅", "미용실 마케팅",
+    "학원 마케팅", "병원 마케팅", "피부과 마케팅",
+    "네이버 블로그 대행", "플레이스 최적화", "구글 지도 마케팅",
+  ],
+  alternates: { canonical: "https://www.harangmarketing.com/services" },
   openGraph: {
     title: "하랑마케팅 서비스 — 소상공인 맞춤 마케팅",
-    description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스.",
-    url: "https://harangmarketing.com/services",
-    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+    description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 월 30만원부터 시작, 상담 무료.",
+    url: "https://www.harangmarketing.com/services",
+    images: [{ url: "https://www.harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
   },
 };
 
@@ -213,9 +225,91 @@ const INDUSTRY_LINKS = [
   { name: "쇼핑몰·소매점", href: "/services/shopping", color: "from-purple-500 to-purple-700", desc: "스마트스토어 · 인스타 · 오프라인" },
 ];
 
+const SERVICES_LD = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "하랑마케팅 마케팅 서비스",
+  "description": "소상공인·자영업자 전문 마케팅 대행 서비스 목록",
+  "url": "https://www.harangmarketing.com/services",
+  "numberOfItems": 6,
+  "itemListElement": [
+    {
+      "@type": "ListItem", "position": 1,
+      "item": {
+        "@type": "Service",
+        "name": "블로그 마케팅",
+        "description": "네이버 블로그 상위 노출 최적화. 키워드 SEO, 콘텐츠 제작, 블로그 배포 대행. 평균 3개월 내 지역 키워드 상위 10위 진입.",
+        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+        "url": "https://www.harangmarketing.com/services#blog",
+      },
+    },
+    {
+      "@type": "ListItem", "position": 2,
+      "item": {
+        "@type": "Service",
+        "name": "네이버 플레이스 SEO",
+        "description": "네이버 지도·플레이스 상위 노출 최적화. 리뷰 관리, 키워드 세팅, 사진 최적화. 평균 4주 내 Top 5 진입.",
+        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+        "url": "https://www.harangmarketing.com/services#place",
+      },
+    },
+    {
+      "@type": "ListItem", "position": 3,
+      "item": {
+        "@type": "Service",
+        "name": "체험단 모집 대행",
+        "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행. 네이버 플레이스·블로그·배달앱 리뷰 확보.",
+        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+        "url": "https://www.harangmarketing.com/services#review",
+      },
+    },
+    {
+      "@type": "ListItem", "position": 4,
+      "item": {
+        "@type": "Service",
+        "name": "인스타그램·SNS 마케팅",
+        "description": "인스타그램 콘텐츠 기획, 릴스 제작, 팔로워 증가, DM 자동화. 카페·미용·네일 업종에 특화.",
+        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+        "url": "https://www.harangmarketing.com/services#sns",
+      },
+    },
+    {
+      "@type": "ListItem", "position": 5,
+      "item": {
+        "@type": "Service",
+        "name": "카카오맵 마케팅",
+        "description": "카카오맵 플레이스 등록 및 상위 노출 최적화, 트렌드 랭킹 진입 전략. 2개월 만에 Top 3 진입 사례.",
+        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+      },
+    },
+    {
+      "@type": "ListItem", "position": 6,
+      "item": {
+        "@type": "Service",
+        "name": "맘카페 바이럴 마케팅",
+        "description": "지역 맘카페 커뮤니티 바이럴 마케팅. 학원·카페·음식점·네일 업종에 특화. 일반 블로그 대비 전환율 2~3배.",
+        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+      },
+    },
+  ],
+};
+
 export default function ServicesPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_LD) }} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
