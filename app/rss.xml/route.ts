@@ -1,9 +1,14 @@
-import { getAllPosts } from "../lib/blog-posts";
+import { getNaverBlogPosts } from "../lib/naver-blog";
+
+export const revalidate = 3600; // 1시간 캐시
 
 const BASE = "https://www.harangmarketing.com";
 
 function toRfc822(dateStr: string): string {
-  return new Date(dateStr).toUTCString();
+  // dateStr 형식: "2024.03.15" 또는 ISO
+  const normalized = dateStr.replace(/\./g, "-");
+  const d = new Date(normalized);
+  return isNaN(d.getTime()) ? new Date().toUTCString() : d.toUTCString();
 }
 
 function escapeXml(str: string): string {
@@ -16,22 +21,24 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const posts = getAllPosts();
+  const posts = await getNaverBlogPosts();
+  const top50 = posts.slice(0, 50);
 
-  const items = posts
+  const items = top50
     .map((post) => {
-      const url = `${BASE}/blog/${post.slug}`;
+      const pubDate = toRfc822(post.pubDate);
       return `    <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${url}</link>
-      <description>${escapeXml(post.excerpt)}</description>
-      <pubDate>${toRfc822(post.date)}</pubDate>
-      <guid isPermaLink="true">${url}</guid>
+      <link>${escapeXml(post.link)}</link>
+      <description>${escapeXml(post.excerpt || post.title)}</description>
+      <pubDate>${pubDate}</pubDate>
+      <guid isPermaLink="true">${escapeXml(post.link)}</guid>
+      <category>${escapeXml(post.category || post.group)}</category>
     </item>`;
     })
     .join("\n");
 
-  const lastBuild = posts.length > 0 ? toRfc822(posts[0].date) : new Date().toUTCString();
+  const lastBuild = top50.length > 0 ? toRfc822(top50[0].pubDate) : new Date().toUTCString();
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
