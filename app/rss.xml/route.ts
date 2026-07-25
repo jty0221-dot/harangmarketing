@@ -1,14 +1,11 @@
-import { getNaverBlogPosts } from "../lib/naver-blog";
+import { BLOG_META } from "../lib/blog-meta";
 
-export const revalidate = 3600; // 1시간 캐시
+export const revalidate = 86400;
 
 const BASE = "https://www.harangmarketing.com";
 
 function toRfc822(dateStr: string): string {
-  // dateStr 형식: "2024.03.15" 또는 ISO
-  const normalized = dateStr.replace(/\./g, "-");
-  const d = new Date(normalized);
-  return isNaN(d.getTime()) ? new Date().toUTCString() : d.toUTCString();
+  return new Date(dateStr).toUTCString();
 }
 
 function escapeXml(str: string): string {
@@ -21,24 +18,23 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const posts = await getNaverBlogPosts();
-  const top50 = posts.slice(0, 50);
+  const sorted = [...BLOG_META].sort((a, b) => b.date.localeCompare(a.date));
 
-  const items = top50
+  const items = sorted
     .map((post) => {
-      const pubDate = toRfc822(post.pubDate);
+      const url = `${BASE}/blog/${post.slug}`;
       return `    <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${escapeXml(post.link)}</link>
-      <description>${escapeXml(post.excerpt || post.title)}</description>
-      <pubDate>${pubDate}</pubDate>
-      <guid isPermaLink="true">${escapeXml(post.link)}</guid>
-      <category>${escapeXml(post.category || post.group)}</category>
+      <link>${url}</link>
+      <description>${escapeXml(post.excerpt)}</description>
+      <pubDate>${toRfc822(post.date)}</pubDate>
+      <guid isPermaLink="true">${url}</guid>
+      <category>${escapeXml(post.tag)}</category>
     </item>`;
     })
     .join("\n");
 
-  const lastBuild = top50.length > 0 ? toRfc822(top50[0].pubDate) : new Date().toUTCString();
+  const lastBuild = toRfc822(sorted[0]?.date ?? new Date().toISOString());
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -61,7 +57,7 @@ ${items}
   return new Response(xml, {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+      "Cache-Control": "public, max-age=86400, stale-while-revalidate=3600",
     },
   });
 }
