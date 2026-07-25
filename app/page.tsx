@@ -906,44 +906,48 @@ export default function HomePage() {
         <ChecklistSection />
 
         {/* ══ 신뢰 지표 (카운터) ══ */}
-        <section className="py-14 md:py-20 relative overflow-hidden" style={{ background: "var(--h-navy)" }}>
-          <div className="absolute inset-0 dot-grid-navy pointer-events-none" />
-          <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+        <section className="py-16 md:py-24 bg-white overflow-hidden" style={{ borderTop: "1px solid var(--h-border)", borderBottom: "1px solid var(--h-border)" }}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <RevealOnScroll>
-              <div className="flex items-center gap-3 justify-center mb-10">
-                <div className="w-8 h-[1px] bg-white/30" />
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/60">10년 운영 데이터</p>
-                <div className="w-8 h-[1px] bg-white/30" />
+              <div className="flex items-center gap-3 mb-12">
+                <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
+                <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>10년 운영 데이터</p>
               </div>
             </RevealOnScroll>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+
+            {/* Editorial large stats — divided columns */}
+            <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
                 { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2015년~현재" },
                 { to: 95, suffix: "%", label: "재계약률", sub: "6개월 이상 계약 기준" },
                 { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당 전담" },
                 { to: 89, suffix: "%", label: "평균 매출 상승", sub: "3개월 계약 실측치" },
               ].map((item, i) => (
-                <RevealOnScroll key={item.label} delay={i * 80}>
-                  <div className="text-center">
-                    <div className="text-4xl md:text-5xl font-black mb-2 tabular-nums text-white">
+                <RevealOnScroll key={item.label} delay={i * 70}>
+                  <div className="px-5 md:px-8 py-6 md:py-8" style={{ borderRight: "1px solid var(--h-border)" }}>
+                    <div className="editorial-num tabular-nums mb-1" style={{ color: "var(--h-dark)" }}>
                       <AnimatedCounter to={item.to} suffix={item.suffix} duration={1600} />
                     </div>
-                    <div className="text-sm md:text-base font-bold mb-0.5 text-white/80">{item.label}</div>
-                    <div className="text-xs text-white/40">{item.sub}</div>
+                    <div className="text-sm font-bold text-gray-700 mb-0.5">{item.label}</div>
+                    <div className="text-[11px]" style={{ color: "var(--h-muted)" }}>{item.sub}</div>
                   </div>
                 </RevealOnScroll>
               ))}
             </div>
-            <div className="mt-10 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+
+            {/* Trust items as inline row */}
+            <div className="mt-10 pt-8 grid grid-cols-2 md:grid-cols-4 gap-4" style={{ borderTop: "1px solid var(--h-border)" }}>
               {TRUST_ITEMS.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="flex flex-col items-center gap-1.5">
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                      <Icon size={15} strokeWidth={1.8} className="text-white" />
+                  <div key={item.title} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
+                      <Icon size={14} strokeWidth={1.8} style={{ color: "var(--h-navy)" }} />
                     </div>
-                    <p className="text-xs font-bold text-white/80">{item.title}</p>
-                    <p className="text-[10px] text-white/40">{item.desc}</p>
+                    <div>
+                      <p className="text-xs font-bold text-gray-800">{item.title}</p>
+                      <p className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>{item.desc}</p>
+                    </div>
                   </div>
                 );
               })}
@@ -952,59 +956,57 @@ export default function HomePage() {
         </section>
 
         {/* ══ 결과 보장 약속 ══ */}
-        <section className="py-16 md:py-20 relative overflow-hidden" style={{ background: "var(--h-dark)" }}>
-          <div className="absolute inset-0 dot-grid-navy pointer-events-none" />
-          <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <div className="flex items-center gap-3 justify-center mb-4">
-                <div className="w-8 h-[1px] bg-white/20" />
-                <p className="text-[10px] font-black text-white/50 uppercase tracking-[0.22em]">하랑의 약속</p>
-                <div className="w-8 h-[1px] bg-white/20" />
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            {/* Section header — editorial style */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-end mb-14">
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>하랑의 약속</p>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
+                  결과가 없으면<br />말씀드립니다
+                </h2>
               </div>
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-                결과가 없으면 말씀드립니다
-              </h2>
-              <p className="text-white/50 text-sm md:text-base max-w-xl mx-auto">
-                과장된 약속보다 정직한 진단을 드립니다.<br />
+              <p className="text-sm md:text-base leading-relaxed max-w-xs" style={{ color: "var(--h-muted)" }}>
+                과장된 약속보다 정직한 진단.<br />
                 계약 전에 성과 가능 여부를 먼저 솔직하게 말씀드립니다.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-children">
+
+            {/* 3-column split — each promise as a full editorial block */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0" style={{ border: "1px solid var(--h-border)", borderRadius: "16px", overflow: "hidden" }}>
               {[
-                {
-                  icon: ShieldCheck,
-                  title: "무결과 시 비용 조정",
-                  desc: "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 눈속임 없이.",
-                },
-                {
-                  icon: Handshake,
-                  title: "대표 직접 담당",
-                  desc: "외주·인턴 없이 대표가 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다.",
-                },
-                {
-                  icon: Clock,
-                  title: "24시간 내 연락 보장",
-                  desc: "상담 신청 후 24시간 이내에 반드시 연락드립니다. 응답이 늦으면 먼저 연락드립니다.",
-                },
-              ].map((item) => {
+                { icon: ShieldCheck, num: "01", title: "무결과 시 비용 조정", desc: "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 눈속임 없이." },
+                { icon: Handshake, num: "02", title: "대표 직접 담당", desc: "외주·인턴 없이 대표가 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다." },
+                { icon: Clock, num: "03", title: "24시간 내 연락", desc: "상담 신청 후 24시간 이내에 반드시 연락드립니다. 응답이 늦으면 먼저 연락드립니다." },
+              ].map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="rounded-2xl p-6 card-hover transition-all hover:-translate-y-1"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                      style={{ background: "var(--h-navy)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                      <Icon size={18} className="text-white" strokeWidth={1.8} />
+                  <div key={item.title} className="relative p-6 md:p-8 flex flex-col gap-4"
+                    style={{
+                      borderRight: idx < 2 ? "1px solid var(--h-border)" : undefined,
+                      borderTop: idx > 0 ? "1px solid var(--h-border)" : undefined,
+                    }}>
+                    {/* Ghost number */}
+                    <div className="absolute top-4 right-5 text-6xl font-black select-none" style={{ color: "var(--h-surface)", letterSpacing: "-0.04em" }}>{item.num}</div>
+                    <div className="relative">
+                      <Icon size={28} strokeWidth={1.5} style={{ color: "var(--h-navy)" }} />
                     </div>
-                    <h3 className="font-black text-white text-base mb-2">{item.title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                    <div>
+                      <h3 className="font-black text-lg mb-2" style={{ color: "var(--h-dark)" }}>{item.title}</h3>
+                      <p className="text-sm leading-relaxed" style={{ color: "var(--h-muted)" }}>{item.desc}</p>
+                    </div>
                   </div>
                 );
               })}
             </div>
-            <div className="text-center mt-8">
+
+            <div className="mt-8">
               <Link href="/free-check"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold transition-opacity hover:opacity-90 shadow-sm"
-                style={{ background: "white", color: "var(--h-navy)" }}>
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold transition-opacity hover:opacity-90"
+                style={{ background: "var(--h-dark)", color: "white" }}>
                 무료 플레이스 진단 신청
                 <ArrowRight size={15} />
               </Link>
@@ -1013,50 +1015,63 @@ export default function HomePage() {
         </section>
 
         {/* ══ 진행 프로세스 ══ */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+        <section className="py-16 md:py-24 overflow-hidden" style={{ background: "var(--h-surface)" }}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <RevealOnScroll>
-            <div className="text-center mb-12">
-              <div className="flex items-center gap-3 justify-center mb-4">
-                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>프로세스</span>
-                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
-                어떻게 진행되나요?
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
+              <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>진행 과정</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end mb-14">
+              <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
+                신청 후 4단계,<br />전부 대표가 직접 합니다
               </h2>
-              <p className="text-base" style={{ color: "var(--h-muted)" }}>상담 신청부터 성과 확인까지 4단계면 됩니다</p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--h-muted)" }}>
+                상담부터 성과 보고까지<br />외주 없이 대표가 직접 담당
+              </p>
             </div>
             </RevealOnScroll>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
-              {/* Connector line (desktop) */}
-              <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px z-0" style={{ background: "var(--h-border)" }} />
-
+            {/* Editorial steps — horizontal rule-divided list */}
+            <div style={{ borderTop: "1px solid var(--h-border)" }}>
               {PROCESS_STEPS.map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <div key={s.step} className="relative z-10 flex flex-col md:items-center text-left md:text-center px-3 pb-8 md:pb-0">
-                    {/* Mobile connector */}
-                    {i < PROCESS_STEPS.length - 1 && (
-                      <div className="md:hidden absolute left-5 top-12 bottom-0 w-px" style={{ background: "var(--h-border)" }} />
-                    )}
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm mb-4 shrink-0" style={{ background: "var(--h-navy)" }}>
-                      <Icon size={17} className="text-white" strokeWidth={2} />
+                  <div key={s.step} className="grid grid-cols-[auto_1fr] md:grid-cols-[120px_1fr_auto] gap-4 md:gap-8 items-start py-6 md:py-8"
+                    style={{ borderBottom: "1px solid var(--h-border)" }}>
+                    {/* Ghost number */}
+                    <div className="w-[72px] md:w-[120px] shrink-0 leading-none font-black select-none tabular-nums"
+                      style={{ fontSize: "clamp(40px, 5vw, 72px)", color: "var(--h-border)", letterSpacing: "-0.05em" }}>
+                      {s.step}
                     </div>
-                    <div className="text-xs font-black mb-1" style={{ color: "var(--h-navy)" }}>{s.step}</div>
-                    <h3 className="font-black text-gray-900 text-sm md:text-base mb-1.5">{s.title}</h3>
-                    <p className="text-xs text-gray-400 leading-relaxed max-w-[160px] mx-auto md:mx-0">{s.desc}</p>
+                    {/* Content */}
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                          style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
+                          <Icon size={13} strokeWidth={2} style={{ color: "var(--h-navy)" }} />
+                        </div>
+                        <h3 className="font-black text-base md:text-lg" style={{ color: "var(--h-dark)" }}>{s.title}</h3>
+                      </div>
+                      <p className="text-sm leading-relaxed" style={{ color: "var(--h-muted)" }}>{s.desc}</p>
+                    </div>
+                    {/* Step label — desktop only */}
+                    <div className="hidden md:flex items-center self-center">
+                      {i === 0 && (
+                        <span className="text-[10px] font-black px-2.5 py-1 rounded-full"
+                          style={{ background: "var(--h-amber)", color: "white" }}>무료</span>
+                      )}
+                    </div>
                   </div>
                 );
               })}
             </div>
 
-            <div className="text-center mt-10">
+            <div className="mt-10">
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-bold transition-opacity hover:opacity-90 shadow-sm"
-                style={{ background: "var(--h-navy)" }}>
-                01단계 시작하기 (무료)
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90"
+                style={{ background: "var(--h-dark)" }}>
+                01 무료 상담 시작하기
                 <ArrowRight size={15} />
               </Link>
             </div>
@@ -1227,73 +1242,66 @@ export default function HomePage() {
         </section>
 
         {/* ══ 서비스 ══ */}
-        <section className="py-16 md:py-24" style={{ background: "var(--h-surface)" }}>
+        <section className="py-16 md:py-24 bg-white">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <RevealOnScroll>
-            <div className="text-center mb-12">
-              <div className="flex items-center gap-3 justify-center mb-4">
-                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>서비스</span>
-                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-end mb-14">
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>서비스</span>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
+                  카페·병원·학원,<br />업종마다 전략이 다릅니다
+                </h2>
               </div>
-              <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>카페·병원·학원, 업종마다<br className="md:hidden" /> 전략이 다릅니다</h2>
-              <p className="text-sm md:text-base max-w-xl mx-auto" style={{ color: "var(--h-muted)" }}>일괄 패키지 없이 업종별 데이터 기반으로 가장 효과적인 서비스를 추천해드립니다. 어떤 걸 선택할지 몰라도 됩니다.</p>
+              <p className="text-sm leading-relaxed max-w-xs" style={{ color: "var(--h-muted)" }}>
+                일괄 패키지 없이 업종별 데이터 기반으로<br />가장 효과적인 서비스를 추천해드립니다.
+              </p>
             </div>
             </RevealOnScroll>
 
-            {/* 인기 3대 서비스 */}
-            <div className="mb-5">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-[11px] font-black uppercase tracking-widest" style={{ color: "var(--h-navy)" }}>인기 서비스</span>
-                <div className="h-px flex-1" style={{ background: "var(--h-border)" }} />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-children">
-                {SERVICES.filter((s) => s.popular).map((service) => {
-                  const Icon = service.icon;
-                  return (
-                    <Link key={service.title} href="/services" className="group bg-white rounded-2xl p-5 hover:shadow-lg hover:-translate-y-1 transition-all relative block card-hover" style={{ border: "1px solid var(--h-navy-mid)" }}>
-                      <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-white text-[10px] font-black" style={{ background: "var(--h-navy)" }}>인기</span>
-                      <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform" style={{ background: "var(--h-navy)" }}>
-                        <Icon size={18} className="text-white" strokeWidth={2} />
+            {/* Editorial numbered service list */}
+            <div style={{ borderTop: "1px solid var(--h-border)" }}>
+              {SERVICES.map((service, idx) => {
+                const Icon = service.icon;
+                const num = String(idx + 1).padStart(2, "0");
+                return (
+                  <Link key={service.title} href="/services"
+                    className="svc-row group flex items-center gap-4 md:gap-8 py-4 md:py-5 px-2 -mx-2">
+                    {/* Number */}
+                    <span className="text-[11px] font-black tabular-nums w-6 shrink-0" style={{ color: "var(--h-border)" }}>{num}</span>
+                    {/* Icon */}
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
+                      <Icon size={15} strokeWidth={2} style={{ color: "var(--h-navy)" }} />
+                    </div>
+                    {/* Title + badge */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="font-black text-sm md:text-base" style={{ color: "var(--h-dark)" }}>{service.title}</h3>
+                        {service.popular && (
+                          <span className="text-[9px] font-black px-1.5 py-0.5 rounded" style={{ background: "var(--h-amber)", color: "white" }}>인기</span>
+                        )}
                       </div>
-                      <h3 className="font-black text-gray-900 text-[15px] mb-2">{service.title}</h3>
-                      <p className="text-sm text-gray-500 leading-relaxed mb-4">{service.desc}</p>
-                      <div className="flex items-center gap-1 text-xs font-bold group-hover:gap-2 transition-all" style={{ color: "var(--h-blue)" }}>
-                        자세히 보기 <ArrowRight size={11} />
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
+                      <p className="text-xs md:text-sm mt-0.5 line-clamp-1 hidden sm:block" style={{ color: "var(--h-muted)" }}>{service.desc}</p>
+                    </div>
+                    {/* Arrow */}
+                    <ArrowRight size={14} strokeWidth={2} className="shrink-0 transition-transform group-hover:translate-x-1" style={{ color: "var(--h-border)" }} />
+                  </Link>
+                );
+              })}
             </div>
 
-            {/* 나머지 서비스 */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest">추가 서비스</span>
-                <div className="h-px flex-1 bg-gray-100" />
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-                {SERVICES.filter((s) => !s.popular).map((service) => {
-                  const Icon = service.icon;
-                  return (
-                    <Link key={service.title} href="/services" className="group flex gap-4 items-start bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition-all" style={{ borderColor: "var(--h-border)" }}>
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm shrink-0 group-hover:scale-105 transition-transform" style={{ background: "var(--h-navy)" }}>
-                        <Icon size={15} className="text-white" strokeWidth={2} />
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="font-bold text-gray-900 text-xs mb-1 leading-tight">{service.title}</h3>
-                        <p className="text-[11px] text-gray-400 leading-relaxed line-clamp-2">{service.desc}</p>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="text-center mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90 shadow-sm" style={{ background: "var(--h-navy)" }}>
-                어떤 서비스가 맞는지 무료 진단받기 <ArrowRight size={15} />
+            <div className="mt-10 flex flex-col sm:flex-row gap-3">
+              <Link href="/contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90"
+                style={{ background: "var(--h-dark)" }}>
+                업종별 맞춤 전략 무료 진단 <ArrowRight size={15} />
+              </Link>
+              <Link href="/services"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm transition-colors hover:bg-gray-50"
+                style={{ color: "var(--h-navy)", border: "1px solid var(--h-border)" }}>
+                전체 서비스 보기 <ArrowRight size={14} />
               </Link>
             </div>
           </div>

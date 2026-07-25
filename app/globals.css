@@ -4,17 +4,21 @@
   --background: #ffffff;
   --foreground: #111827;
 
-  /* 하랑마케팅 디자인 토큰 — Navy/White Professional */
-  --h-dark: #091D3E;
-  --h-navy: #0C2351;
-  --h-navy-mid: #1A3A6E;
-  --h-blue: #1860D5;
-  --h-blue-light: #2F78EE;
-  --h-amber: #B45309;
-  --h-bg: #F4F8FD;
-  --h-surface: #E8EEF8;
-  --h-border: #C5D3E8;
-  --h-muted: #637698;
+  /* 하랑마케팅 디자인 토큰 — Clean Agency */
+  --h-dark:       #1A1A2E;
+  --h-navy:       #0F2044;
+  --h-navy-mid:   #1A3560;
+  --h-blue:       #1A5DC8;
+  --h-blue-light: #3576E8;
+  --h-amber:      #C2650A;
+  --h-amber-light:#F5A623;
+  /* warm off-white — no blue tint */
+  --h-bg:         #F9F8F6;
+  --h-surface:    #F1EDE8;
+  --h-border:     #DDD8D0;
+  --h-muted:      #6C6C74;
+  /* editorial accent */
+  --h-rule:       3px solid #C2650A;
 
   /* Hero dark tokens */
   --hero-bg: #080E1D;
@@ -388,6 +392,63 @@ body { overflow-x: hidden; }
 .dot-grid-navy {
   background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+
+/* ─── Editorial / Agency layout utilities ─── */
+
+/* Oversized editorial number */
+.editorial-num {
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* Ghost step number (decorative) */
+.ghost-num {
+  font-size: clamp(72px, 12vw, 140px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--h-surface);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Amber rule left accent */
+.rule-amber {
+  border-left: 3px solid var(--h-amber);
+  padding-left: 1rem;
+}
+
+/* Thin section divider line */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(to right, var(--h-border), transparent 70%);
+}
+
+/* Editorial service row */
+.svc-row {
+  border-bottom: 1px solid var(--h-border);
+  transition: background 0.18s ease;
+}
+.svc-row:hover {
+  background: var(--h-bg);
+}
+
+/* Dark split panel */
+.split-dark {
+  background: var(--h-dark);
+}
+
+/* Angled top separator */
+.angle-top::before {
+  content: '';
+  display: block;
+  height: 48px;
+  background: white;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+  margin-bottom: -1px;
 }
 
 /* Shimmer text */
