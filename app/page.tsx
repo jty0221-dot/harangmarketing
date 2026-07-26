@@ -14,7 +14,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
 import AnimatedCounter from "./components/AnimatedCounter";
-import YouTubeCard from "./components/YouTubeCard";
+import YouTubeSectionNew from "./components/YouTubeSection";
 import PhotoPlaceholder from "./components/PhotoPlaceholder";
 import RevealOnScroll from "./components/RevealOnScroll";
 import ReviewsSection from "./components/ReviewsSection";
@@ -358,102 +358,6 @@ function PromoSection() {
   );
 }
 
-// ──────────────────────────────────────────
-// 유튜브 영상 목록 — 영상 ID를 실제 값으로 교체하세요
-// YouTube URL: https://www.youtube.com/watch?v=VIDEO_ID
-// ──────────────────────────────────────────
-const YOUTUBE_VIDEOS = [
-  {
-    videoId: "LWjHEAujJr0",
-    title: "리뷰 마케팅 실전 전략 — 소상공인이 꼭 알아야 할 리뷰 관리법",
-    desc: "리뷰 수집부터 답글·활용까지, 매출로 연결되는 리뷰 마케팅 전 과정",
-    badge: "리뷰 마케팅",
-  },
-  {
-    videoId: "owgcIulD8xk",
-    title: "네이버 플레이스 예약·쿠폰·마케팅 메시지 100% 활용법",
-    desc: "예약 시스템·쿠폰 설정·마케팅 메시지로 재방문율 높이는 실전 가이드",
-    badge: "플레이스 활용",
-  },
-  {
-    videoId: "1oiqvVTtF_w",
-    title: "네이버 플레이스 등록부터 SEO 최적화 세팅까지 한 번에",
-    desc: "플레이스 신규 등록 방법과 상위 노출을 위한 SEO 세팅 완전 정복",
-    badge: "플레이스 SEO",
-  },
-];
-
-function YouTubeSection() {
-  const hasRealVideos = YOUTUBE_VIDEOS.some(v => !v.videoId.startsWith("PLACEHOLDER"));
-  return (
-    <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center shadow-sm">
-                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </div>
-              <span className="text-xs font-bold text-red-500 uppercase tracking-widest">YouTube</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-1">
-              마케팅 노하우, 영상으로 공유합니다
-            </h2>
-            <p className="text-gray-500 text-sm">실전 전략을 무료로 공개 — 구독하면 최신 영상을 받아볼 수 있습니다</p>
-          </div>
-          <a
-            href="https://www.youtube.com/@madaenam"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-sm transition-colors"
-          >
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-            채널 구독하기
-          </a>
-        </div>
-
-        {hasRealVideos ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {YOUTUBE_VIDEOS.map(v => (
-              <YouTubeCard key={v.videoId} {...v} />
-            ))}
-          </div>
-        ) : (
-          /* 영상 ID 미입력 상태 — 채널 배너만 표시 */
-          <a
-            href="https://www.youtube.com/@madaenam"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block group"
-          >
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-red-900/40 to-gray-900 border border-red-500/20 p-8 md:p-10 text-center hover:border-red-500/40 transition-colors">
-              <div className="w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center mx-auto mb-5 shadow-xl shadow-red-900/40 group-hover:scale-105 transition-transform">
-                <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </div>
-              <h3 className="text-xl font-black text-white mb-2">마대남 — 마케팅 대신 해주는 남자</h3>
-              <p className="text-gray-400 text-sm mb-5">
-                소상공인 마케팅 실전 전략을 영상으로 무료 공개합니다.<br />
-                플레이스 SEO, 리뷰 마케팅, SNS 전략 등 바로 써먹는 콘텐츠
-              </p>
-              <span className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-black px-6 py-2.5 rounded-xl text-sm transition-colors">
-                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                유튜브 채널 바로가기
-              </span>
-            </div>
-          </a>
-        )}
-      </div>
-    </section>
-  );
-}
 
 const HOME_FAQS = [
   {
@@ -2208,7 +2112,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ 유튜브 채널 섹션 ══ */}
-        <YouTubeSection />
+        <YouTubeSectionNew />
 
         {/* ══ 지역 커버리지 ══ */}
         <section className="py-12 md:py-16 bg-gray-950 border-t border-white/5">
