@@ -1,9 +1,19 @@
-import { getLatestVideos } from "../lib/youtube-rss";
 import YouTubeCard from "./YouTubeCard";
 
-const CHANNEL_ID = "UCGCBCIO5B-TALayNqmtAyUg";
+interface YTVideo {
+  videoId: string;
+  title: string;
+  published: string;
+}
+
 const CHANNEL_URL = "https://www.youtube.com/@madaenam";
 const SUBSCRIBE_URL = "https://www.youtube.com/@madaenam?sub_confirmation=1";
+
+const FALLBACK_LATEST: YTVideo[] = [
+  { videoId: "L0XdKXCN_Zw", title: "문신·반영구 사장님, 이제 당당하게 네이버 마케팅 하세요 | 2026 정책 완전정리", published: "2026-07-18" },
+  { videoId: "q2IcOuqWLjE", title: "출장 서비스업 대표님들! 마케팅 이렇게만 하세요", published: "2026-07-09" },
+  { videoId: "u06CD3BTqyE", title: "2026년 블로그 상위노출 네이버의 충격적인 결정(네이버 메이트, AI 브리핑)", published: "2026-07-01" },
+];
 
 const YT_ICON = (
   <svg viewBox="0 0 24 24" className="fill-current">
@@ -11,7 +21,6 @@ const YT_ICON = (
   </svg>
 );
 
-// 교육교재 커리큘럼 (순서 고정)
 const CURRICULUM = [
   {
     step: "STEP 1",
@@ -51,15 +60,14 @@ const CURRICULUM = [
   },
 ];
 
-export default async function YouTubeSection() {
-  const latest = await getLatestVideos(CHANNEL_ID, 3);
+export default function YouTubeSection() {
+  const latest = FALLBACK_LATEST;
 
   return (
     <>
-      {/* ── 1. 최신 영상 ── */}
-      <section className="py-14 md:py-20 bg-gray-950">
+      {/* 1. 최신 영상 */}
+      <section className="py-10 md:py-16 bg-gray-950">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-          {/* 헤더 */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-3">
@@ -84,7 +92,6 @@ export default async function YouTubeSection() {
             </a>
           </div>
 
-          {/* 최신 영상 카드 3개 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {latest.map((v, i) => (
               <div key={v.videoId} className="relative">
@@ -111,7 +118,7 @@ export default async function YouTubeSection() {
         </div>
       </section>
 
-      {/* ── 2. 구독 유도 CTA 배너 ── */}
+      {/* 2. 구독 유도 CTA 배너 */}
       <section className="relative overflow-hidden bg-red-600">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #fff 0%, transparent 60%), radial-gradient(circle at 80% 20%, #fff 0%, transparent 50%)" }} />
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
@@ -146,10 +153,9 @@ export default async function YouTubeSection() {
         </div>
       </section>
 
-      {/* ── 3. 교육교재 커리큘럼 ── */}
-      <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
+      {/* 3. 교육교재 커리큘럼 */}
+      <section className="py-10 md:py-16" style={{ background: "var(--h-surface)" }}>
         <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-          {/* 헤더 */}
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
@@ -164,7 +170,6 @@ export default async function YouTubeSection() {
             </p>
           </div>
 
-          {/* 커리큘럼 리스트 */}
           <div className="space-y-4">
             {CURRICULUM.map((item) => (
               <CurriculumCard key={item.videoId} {...item} />
@@ -205,7 +210,6 @@ function CurriculumCard({
       rel="noopener noreferrer"
       className="group flex gap-4 md:gap-5 p-4 md:p-5 rounded-2xl bg-white border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all"
     >
-      {/* Step badge */}
       <div className="shrink-0 flex flex-col items-center gap-2 pt-0.5">
         <span className={`${stepColor} text-white text-[10px] font-black px-2.5 py-1 rounded-lg whitespace-nowrap`}>
           {step}
@@ -213,13 +217,11 @@ function CurriculumCard({
         <div className="w-px flex-1 bg-gray-100 min-h-[20px]" />
       </div>
 
-      {/* Thumbnail */}
       <div className="shrink-0 w-28 md:w-36 rounded-xl overflow-hidden aspect-video bg-gray-100 relative">
         <img
           src={thumb}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          onError={undefined}
         />
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
         <div className="absolute inset-0 flex items-center justify-center">
@@ -231,7 +233,6 @@ function CurriculumCard({
         </div>
       </div>
 
-      {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2 mb-1.5">
           <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{badge}</span>
