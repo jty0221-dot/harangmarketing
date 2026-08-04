@@ -240,7 +240,7 @@ export default function AboutPage() {
                 <div className="w-full bg-blue-50 border border-blue-100 rounded-2xl p-4 text-center">
                   <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
                   <div className="text-xs text-blue-600 font-bold">하랑마케팅 대표</div>
-                  <div className="text-[11px] text-gray-400 mt-1">해병대 장교 출신 · 마케팅 경력 10년+</div>
+                  <div className="text-[11px] text-gray-400 mt-1">해병대 장교 출신 · 마케팅 경력 10년+ · 7년차 대표</div>
                   <div className="flex gap-0.5 justify-center mt-2">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} size={11} className="text-amber-400 fill-amber-400" />
@@ -256,9 +256,9 @@ export default function AboutPage() {
                   실패해 본 마케터가<br /><span className="text-blue-600">성공하는 길을 가장 잘 압니다</span>
                 </h2>
                 <div className="space-y-4 text-gray-600 text-base leading-relaxed">
-                  <p>저는 단순한 마케터가 아닙니다. 어린 시절부터 장사, 판매, 사업을 직접 경험했고, <strong className="text-gray-900">해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 코로나라는 재난 상황이었지만, 아무것도 몰랐던 저는 금방 망했습니다.</p>
-                  <p>카페 사장이었던 시절 마케팅 대행사에게 사기도 당해봤습니다. 그 절박함과 분노를 누구보다 잘 알기에, <strong className="text-gray-900">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong></p>
-                  <p>이후 마케팅 실행사, 블로그 체험단 업체 등 현업에서 매니저, 주임, 대리, 팀장까지 다양한 직책을 수행했고, 어느덧 10년 경력의 전문가로 하랑마케팅을 운영하고 있습니다.</p>
+                  <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="text-gray-900">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
+                  <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="text-gray-900">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, "내가 직접 제대로 된 대행사를 만들자"는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
+                  <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 — <strong className="text-gray-900">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
                 </div>
 
                 <div className="mt-7 p-5 rounded-2xl bg-blue-50 border border-blue-100">
@@ -406,7 +406,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { value: "10년+", label: "마케팅 경력", sub: "2014년부터 현재까지" },
+                { value: "10년+", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
                 { value: "500+", label: "함께한 매장", sub: "전국 소상공인" },
                 { value: "95%", label: "재계약률", sub: "성과로 증명" },
                 { value: "0원", label: "상담 비용", sub: "계약 강요 없음" },
@@ -508,12 +508,13 @@ export default function AboutPage() {
                 <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gray-100" />
                 <div className="space-y-6">
                   {[
-                    { year: "2014", event: "해병대 장교 전역 후 카페 창업 도전", note: "마케팅 몰라서 6개월 만에 폐업 — 이게 출발점이 됨" },
-                    { year: "2015", event: "소상공인 마케팅 독학 시작", note: "플레이스 SEO, 블로그, 체험단 직접 실험" },
-                    { year: "2017", event: "하랑마케팅 공식 설립", note: "처음 10개 매장 무료로 진행하며 성과 데이터 축적" },
-                    { year: "2019", event: "누적 클라이언트 100곳 돌파", note: "카페·음식점 중심 → 병원·뷰티·학원으로 업종 확장" },
-                    { year: "2022", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
-                    { year: "2024", event: "누적 클라이언트 500곳+, 재계약률 95%", note: "대표 직접 담당 원칙 유지 중" },
+                    { year: "2014~", event: "대학생 서포터즈 활동 — 마케팅 경력 시작", note: "브랜드 홍보, 콘텐츠 제작, 현장 마케팅 경험 축적" },
+                    { year: "2018", event: "해병대 장교 전역 · 카페 창업 도전", note: "마케팅을 몰라 단기간 폐업 — 소상공인의 아픔을 직접 경험" },
+                    { year: "2018~", event: "마케팅 대행사 취업 · 팀장까지 근무", note: "내부에서 목격한 허위 보고·불성실 대응에 혐오감 → 직접 창업 결심" },
+                    { year: "2020", event: "하랑마케팅 공식 설립 (4월 15일)", note: "'제대로 된 대행사를 만들자' — 소상공인 전문 마케팅 대행 시작" },
+                    { year: "2022", event: "누적 클라이언트 100곳 돌파", note: "카페·음식점 중심 → 병원·뷰티·학원으로 업종 확장" },
+                    { year: "2024", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
+                    { year: "2026", event: "누적 클라이언트 500곳+, 재계약률 95%", note: "7년차 — 대표 직접 담당 원칙 유지 중" },
                   ].map((item, i) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
                       <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
