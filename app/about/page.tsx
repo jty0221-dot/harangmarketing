@@ -63,7 +63,7 @@ const ABOUT_LD = {
       "url": BASE,
       "logo": `${BASE}/favicon.svg`,
       "founder": { "@id": `${BASE}/about#ceo` },
-      "foundingDate": "2015",
+      "foundingDate": "2020",
       "description": "소상공인·자영업자 전문 마케팅 대행사. 네이버 플레이스 상위노출, 블로그 마케팅, 체험단 대행, SNS 마케팅 전문.",
       "areaServed": ["서울", "경기도", "인천", "수도권"],
       "knowsAbout": ["네이버 플레이스 마케팅", "소상공인 마케팅", "로컬 SEO", "블로그 마케팅"],

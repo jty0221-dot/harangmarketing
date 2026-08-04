@@ -175,12 +175,12 @@ export default function RootLayout({
               },
               "image": "https://www.harangmarketing.com/og-image.png",
               "description": "10년 경력의 마케팅 전문가 전태영 대표가 직접 운영하는 소상공인·자영업자 전문 마케팅 대행사입니다. 네이버 플레이스 SEO, 블로그 마케팅, 체험단 모집, 인스타그램 마케팅 서비스를 제공합니다. 재계약률 95%, 500건 이상 프로젝트 완료.",
-              "foundingDate": "2015",
+              "foundingDate": "2020",
               "founder": {
                 "@type": "Person",
                 "name": "전태영",
                 "jobTitle": "대표",
-                "description": "해병대 장교 출신. 카페 창업 실패 후 마케팅 전문가로 전향. 10년 경력.",
+                "description": "해병대 장교 출신. 2018년 전역 후 카페 창업 실패, 마케팅 대행사 팀장 근무 후 2020년 하랑마케팅 설립. 10년+ 경력.",
               },
               "address": {
                 "@type": "PostalAddress",

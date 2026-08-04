@@ -171,7 +171,7 @@ const PACKAGES = [
 
 
 const TRUST_ITEMS = [
-  { icon: ShieldCheck, title: "검증된 10년 경력", desc: "2014년부터 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
+  { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
   { icon: Handshake, title: "95% 재계약률", desc: "성과로 증명. 고객이 먼저 다시 찾는 대행사", color: "from-blue-500 to-blue-700" },
   { icon: Clock, title: "24시간 내 응답", desc: "문의 후 24시간 이내 연락, 평일 항상 대응", color: "from-blue-600 to-indigo-700" },
   { icon: TrendingUp, title: "매출 중심 관리", desc: "노출 수가 아닌 실제 매출 증대를 목표로 운영", color: "from-blue-700 to-indigo-800" },
@@ -495,16 +495,17 @@ export default function HomePage() {
                 </div>
 
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                  해병대 장교로 전역 후 전 재산을 털어 일산에서 카페를 창업했다가 실패했습니다. 그때 마케팅 대행사에게 사기도 당했습니다.
-                  그 절박함을 직접 겪었기 때문에 <strong className="text-gray-800">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
-                  이후 10년간 수도권·전국 현장을 직접 뛰어 소상공인 500곳 이상과 함께 성장해왔습니다.
+                  2018년 해병대 장교로 전역 후 카페를 창업했다가 실패했습니다. 이후 마케팅 대행사에 취업해 팀장까지 올라갔지만,
+                  고객을 대충 대하고 성과도 없이 돈만 받는 방식에 혐오감을 느껴 2020년 직접 창업했습니다.
+                  <strong className="text-gray-800">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
+                  현재까지 소상공인 500곳 이상과 함께 성장해왔습니다.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-7">
                   {[
                     { label: "해병대 장교 출신", sub: "책임감·원칙" },
                     { label: "카페 창업 실패", sub: "현장 공감" },
-                    { label: "수도권·전국 10년", sub: "현장 전문가" },
+                    { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
                     { label: "결과 미달 시 조정", sub: "성과 보장" },
                     { label: "외주 없음", sub: "대표 직접 전담" },
@@ -563,7 +564,7 @@ export default function HomePage() {
             {/* Editorial large stats — divided columns */}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
-                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2015년~현재" },
+                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2020년~현재" },
                 { to: 95, suffix: "%", label: "재계약률", sub: "6개월 이상 계약 기준" },
                 { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당 전담" },
                 { to: 89, suffix: "%", label: "평균 매출 상승", sub: "3개월 계약 실측치" },
