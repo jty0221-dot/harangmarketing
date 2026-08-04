@@ -20,6 +20,7 @@ import RevealOnScroll from "./components/RevealOnScroll";
 import ClientLogosSection from "./components/ClientLogosSection";
 import DifferenceSection from "./components/DifferenceSection";
 import EntryPopup from "./components/EntryPopup";
+import Card3DTilt from "./components/Card3DTilt";
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -317,7 +318,8 @@ export default function HomePage() {
               {INDUSTRIES.map((ind) => {
                 const Icon = ind.icon;
                 return (
-                  <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`}
+                  <Card3DTilt key={ind.name} style={{ borderRadius: "16px" }}>
+                  <Link href={`/contact?industry=${encodeURIComponent(ind.name)}`}
                     className="group relative bg-white overflow-hidden block card-hover card-navy-accent"
                     style={{ borderRadius: "16px", border: "1px solid var(--h-border)", borderTop: "3px solid var(--h-navy)" }}>
                     {/* Result ribbon */}
@@ -365,6 +367,7 @@ export default function HomePage() {
                       </div>
                     </div>
                   </Link>
+                  </Card3DTilt>
                 );
               })}
             </div>

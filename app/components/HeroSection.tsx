@@ -84,6 +84,22 @@ export default function HeroSection({
           0%,100% { transform: translateY(0);  opacity: .55; }
           50%     { transform: translateY(7px); opacity: 1;   }
         }
+        @keyframes haFloat0 {
+          0%,100% { transform: perspective(600px) rotateX(4deg) rotateY(-6deg) translateY(0px); }
+          50%     { transform: perspective(600px) rotateX(2deg) rotateY(-4deg) translateY(-10px); }
+        }
+        @keyframes haFloat1 {
+          0%,100% { transform: perspective(600px) rotateX(-3deg) rotateY(5deg) translateY(0px); }
+          50%     { transform: perspective(600px) rotateX(-5deg) rotateY(3deg) translateY(-12px); }
+        }
+        @keyframes haFloat2 {
+          0%,100% { transform: perspective(600px) rotateX(5deg) rotateY(4deg) translateY(0px); }
+          50%     { transform: perspective(600px) rotateX(3deg) rotateY(6deg) translateY(-8px); }
+        }
+        @keyframes haStatIn {
+          from { opacity: 0; transform: perspective(600px) rotateX(20deg) translateY(30px); }
+          to   { opacity: 1; }
+        }
       `}</style>
 
       <section
@@ -340,6 +356,64 @@ export default function HeroSection({
               </Link>
             </div>
           )}
+        </div>
+
+        {/* ── 3D 떠다니는 통계 카드 (데스크톱만) ── */}
+        <div
+          style={{
+            position: "absolute",
+            right: "clamp(24px,5vw,80px)",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 5,
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+            pointerEvents: "none",
+          }}
+          className="hidden lg:flex"
+        >
+          {[
+            { value: "500+", label: "누적 클라이언트", sub: "7년간 직접 관리", delay: "1s", anim: "haFloat0" },
+            { value: "95%", label: "재계약률", sub: "성과가 증명한 신뢰", delay: "1.15s", anim: "haFloat1" },
+            { value: "10년+", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              style={{
+                background: "rgba(255,255,255,0.07)",
+                backdropFilter: "blur(18px)",
+                WebkitBackdropFilter: "blur(18px)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: 16,
+                padding: "16px 22px",
+                minWidth: 160,
+                boxShadow: "0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15)",
+                animation: `haStatIn .9s cubic-bezier(.2,.7,.2,1) ${stat.delay} both, ${stat.anim} 5s ease-in-out ${stat.delay} infinite`,
+                transformStyle: "preserve-3d",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "clamp(20px,1.8vw,28px)",
+                  fontWeight: 800,
+                  color: "#fff",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1,
+                  marginBottom: 4,
+                  textShadow: "0 2px 12px rgba(0,0,0,0.3)",
+                }}
+              >
+                {stat.value}
+              </div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.9)", marginBottom: 2 }}>
+                {stat.label}
+              </div>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em" }}>
+                {stat.sub}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* ── 스크롤 큐 ── */}
