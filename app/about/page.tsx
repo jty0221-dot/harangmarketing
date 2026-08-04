@@ -566,36 +566,36 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* ── 심볼마크 ── */}
+            {/* ── 로고타입 — 가로형 ── */}
             <div className="mb-16">
-              <h3 className="text-base font-black text-gray-900 mb-1">심볼마크</h3>
-              <p className="text-sm text-gray-400 mb-8">두 사람이 손을 잡아 서로를 끌어올리는 형상 — 상생과 동반성장의 의미를 담았습니다.</p>
+              <h3 className="text-base font-black text-gray-900 mb-1">로고타입 — 가로형</h3>
+              <p className="text-sm text-gray-400 mb-8">기본 사용 형태입니다. 넓은 지면 및 디지털 환경, 명함, 인쇄물 등에 사용합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* 컬러 */}
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gray-50 flex items-center justify-center h-52 p-8">
-                    <img src="/ci/ci-symbol-color.png" alt="하랑마케팅 심볼마크 컬러" className="max-h-full max-w-full object-contain" />
+                  <div className="bg-gray-50 flex items-center justify-center h-44 px-10 py-6">
+                    <img src="/ci/ci-logo-h-color.jpg" alt="하랑마케팅 가로형 로고 컬러" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">컬러</p>
                     <p className="text-[11px] text-gray-400 mt-0.5">기본 사용 버전</p>
                   </div>
                 </div>
-                {/* 블루 반전 */}
+                {/* 블루 배경 */}
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="flex items-center justify-center h-52 p-8" style={{ background: "#1A56FF" }}>
-                    <img src="/ci/ci-symbol-white.png" alt="하랑마케팅 심볼마크 화이트" className="max-h-full max-w-full object-contain" />
+                  <div className="flex items-center justify-center h-44 px-10 py-6" style={{ background: "#1A56FF" }}>
+                    <img src="/ci/ci-logo-h-blue.jpg" alt="하랑마케팅 가로형 로고 블루배경" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
-                    <p className="text-xs font-bold text-gray-700">화이트 (블루 배경)</p>
+                    <p className="text-xs font-bold text-gray-700">블루 배경</p>
                     <p className="text-[11px] text-gray-400 mt-0.5">컬러 배경 사용 시</p>
                   </div>
                 </div>
                 {/* 흑백 */}
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gray-50 flex items-center justify-center h-52 p-8">
-                    <img src="/ci/ci-symbol-bw.png" alt="하랑마케팅 심볼마크 흑백" className="max-h-full max-w-full object-contain" />
+                  <div className="bg-gray-50 flex items-center justify-center h-44 px-10 py-6">
+                    <img src="/ci/ci-logo-h-bw.jpg" alt="하랑마케팅 가로형 로고 흑백" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">흑백</p>
@@ -605,51 +605,15 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* ── 로고타입 (가로형) ── */}
-            <div className="mb-16">
-              <h3 className="text-base font-black text-gray-900 mb-1">로고타입 — 가로형</h3>
-              <p className="text-sm text-gray-400 mb-8">가로 방향 배치가 기본 사용 형태입니다. 넓은 지면 및 디지털 환경에 사용합니다.</p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gray-50 flex items-center justify-center h-40 px-10 py-6">
-                    <img src="/ci/ci-logo-h-color.png" alt="하랑마케팅 가로형 로고 컬러" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <div className="px-4 py-3 border-t border-gray-100">
-                    <p className="text-xs font-bold text-gray-700">컬러</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">기본 사용 버전</p>
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="flex items-center justify-center h-40 px-10 py-6" style={{ background: "#1A56FF" }}>
-                    <img src="/ci/ci-logo-h-white.png" alt="하랑마케팅 가로형 로고 화이트" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <div className="px-4 py-3 border-t border-gray-100">
-                    <p className="text-xs font-bold text-gray-700">화이트 (블루 배경)</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">컬러 배경 사용 시</p>
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gray-50 flex items-center justify-center h-40 px-10 py-6">
-                    <img src="/ci/ci-logo-h-bw.png" alt="하랑마케팅 가로형 로고 흑백" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <div className="px-4 py-3 border-t border-gray-100">
-                    <p className="text-xs font-bold text-gray-700">흑백</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">흑백 인쇄 시</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ── 로고타입 (세로형) ── */}
+            {/* ── 로고타입 — 세로형 ── */}
             <div className="mb-16">
               <h3 className="text-base font-black text-gray-900 mb-1">로고타입 — 세로형</h3>
               <p className="text-sm text-gray-400 mb-8">정방형 지면, SNS 프로필, 앱 아이콘 등 세로 배치가 적합한 환경에 사용합니다.</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
                   <div className="bg-gray-50 flex items-center justify-center h-64 p-8">
-                    <img src="/ci/ci-logo-v-en.png" alt="하랑마케팅 세로형 영문 로고" className="max-h-full max-w-full object-contain" />
+                    <img src="/ci/ci-logo-v-en.jpg" alt="하랑마케팅 세로형 영문 로고" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">영문형</p>
@@ -658,20 +622,11 @@ export default function AboutPage() {
                 </div>
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
                   <div className="bg-gray-50 flex items-center justify-center h-64 p-8">
-                    <img src="/ci/ci-logo-v-ko.png" alt="하랑마케팅 세로형 국문 로고" className="max-h-full max-w-full object-contain" />
+                    <img src="/ci/ci-logo-v-ko.jpg" alt="하랑마케팅 세로형 국문 로고" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">국문형</p>
                     <p className="text-[11px] text-gray-400 mt-0.5">하랑 국문 로고타입</p>
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gray-50 flex items-center justify-center h-64 p-8">
-                    <img src="/ci/ci-logo-v-ko2.png" alt="하랑마케팅 세로형 국문 로고 2" className="max-h-full max-w-full object-contain" />
-                  </div>
-                  <div className="px-4 py-3 border-t border-gray-100">
-                    <p className="text-xs font-bold text-gray-700">국문형 2</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">심볼 강조 버전</p>
                   </div>
                 </div>
               </div>
