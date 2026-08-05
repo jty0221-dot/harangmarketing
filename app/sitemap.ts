@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BLOG_META } from "./lib/blog-meta";
+import { getBlogIndex } from "./lib/blog-index";
 import { SITE } from "./lib/seo";
 
 const BASE = SITE.base;
@@ -46,7 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const blogPages: MetadataRoute.Sitemap = BLOG_META.map((post) => ({
+  // /admin 발행 글 + 기존 정적 글을 함께 포함한다 (getBlogIndex 참고)
+  const blogPages: MetadataRoute.Sitemap = getBlogIndex().map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly",

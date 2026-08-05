@@ -1,5 +1,5 @@
 import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
-import { BLOG_META } from "../lib/blog-meta";
+import { getBlogIndex } from "../lib/blog-index";
 
 /**
  * /llms.txt — 생성형 엔진 최적화(GEO) 전용 엔드포인트
@@ -14,8 +14,8 @@ export const revalidate = 86400;
 const B = SITE.base;
 
 export async function GET() {
-  const recentPosts = [...BLOG_META]
-    .sort((a, b) => b.date.localeCompare(a.date))
+  // /admin 발행 글 포함, 최신 12편 (getBlogIndex 가 정렬·병합 담당)
+  const recentPosts = getBlogIndex()
     .slice(0, 12)
     .map((p) => `- [${p.title}](${B}/blog/${p.slug}): ${p.excerpt}`)
     .join("\n");

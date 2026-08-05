@@ -1,4 +1,4 @@
-import { BLOG_META } from "../lib/blog-meta";
+import { getBlogIndex } from "../lib/blog-index";
 
 export const revalidate = 86400;
 
@@ -18,7 +18,8 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const sorted = [...BLOG_META].sort((a, b) => b.date.localeCompare(a.date));
+  // getBlogIndex() 가 이미 최신순 정렬 + /admin 발행 글 병합까지 처리한다
+  const sorted = getBlogIndex();
 
   const items = sorted
     .map((post) => {
