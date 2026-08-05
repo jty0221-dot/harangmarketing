@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import JsonLd from "../components/JsonLd";
+import AnswerBlock from "../components/AnswerBlock";
+import { SITE, ANSWER_SENTENCES, faqLd, webPageLd, breadcrumbLd } from "../lib/seo";
 import Link from "next/link";
 import {
   ArrowRight, MessageCircle, Phone, CheckCircle2,
@@ -189,28 +192,31 @@ const FAQ_CATEGORIES = [
   },
 ];
 
-const JSON_LD_FAQ = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQ_CATEGORIES.flatMap((cat) =>
-    cat.questions.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    }))
+/* 화면에 렌더링되는 FAQ_CATEGORIES 를 그대로 FAQPage 로 변환한다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거함) */
+const FAQ_LD = [
+  faqLd(
+    FAQ_CATEGORIES.flatMap((cat) => cat.questions.map((f) => ({ q: f.q, a: f.a }))),
+    `${SITE.base}/faq`
   ),
-};
+  // QAPage 가 아니라 WebPage — QAPage 는 사용자 답변형 단일 질문 페이지를 뜻하므로
+  // 공식 FAQ 목록에 쓰면 FAQPage 와 신호가 충돌한다.
+  webPageLd({
+    path: "/faq",
+    name: "자주 묻는 질문 — 하랑마케팅",
+    description:
+      "하랑마케팅 상담 전 가장 많이 물어보시는 질문과 답변. 비용, 계약 기간, 성과, 지역, 업종별 궁금증을 정리했습니다.",
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "자주 묻는 질문", path: "/faq" },
+  ]),
+];
 
 export default function FAQPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_FAQ) }}
-      />
+      <JsonLd data={FAQ_LD} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
@@ -258,6 +264,18 @@ export default function FAQPage() {
           </div>
         </section>
 
+        {/* AEO — 가장 많이 묻는 두 질문의 한 줄 정답 */}
+        <AnswerBlock
+          question="하랑마케팅 마케팅 비용은 얼마이고, 상담은 유료인가요?"
+          answer={ANSWER_SENTENCES.price}
+          facts={[
+            { label: "단독 서비스", value: "월 30~50만" },
+            { label: "묶음 패키지", value: "월 70~120만" },
+            { label: "통합 관리", value: "월 150~250만" },
+            { label: "상담·진단", value: "0원" },
+          ]}
+        />
+
         {/* FAQ Categories */}
         <section className="py-12 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 space-y-10">
@@ -282,12 +300,12 @@ export default function FAQPage() {
                           <div className={`w-5 h-5 rounded-lg bg-gradient-to-br ${cat.color} text-white text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5`}>
                             Q
                           </div>
-                          <span className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</span>
+                          <h3 className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</h3>
                           <svg className="w-4 h-4 text-gray-400 shrink-0 mt-0.5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                           </svg>
                         </summary>
-                        <div className="px-5 pb-5 pt-3 ml-8 text-sm text-gray-500 leading-relaxed border-t border-blue-50">
+                        <div className="speakable px-5 pb-5 pt-3 ml-8 text-sm text-gray-500 leading-relaxed border-t border-blue-50">
                           {faq.a}
                         </div>
                       </details>

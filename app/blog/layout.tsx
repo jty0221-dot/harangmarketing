@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "../components/JsonLd";
+import { SITE, ORG_ID, SITE_ID, webPageLd, breadcrumbLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "마케팅 인사이트 블로그 — 하랑마케팅 | 소상공인 마케팅 노하우",
@@ -12,6 +14,45 @@ export const metadata: Metadata = {
   },
 };
 
+/* Blog 엔티티 — AI 가 "이 주제에 대한 하랑마케팅 글"을 찾을 때의 진입점 */
+const BLOG_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${SITE.base}/blog#blog`,
+    name: "하랑마케팅 마케팅 인사이트",
+    description:
+      "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, 인스타그램 등 소상공인이 바로 적용할 수 있는 실전 마케팅 노하우를 10년 경력 대표가 직접 씁니다.",
+    url: `${SITE.base}/blog`,
+    inLanguage: "ko-KR",
+    isPartOf: { "@id": SITE_ID },
+    publisher: { "@id": ORG_ID },
+    author: { "@id": `${SITE.base}/about#founder` },
+    about: [
+      "네이버 플레이스 SEO",
+      "블로그 마케팅",
+      "체험단 마케팅",
+      "인스타그램 마케팅",
+      "소상공인 마케팅",
+    ],
+  },
+  webPageLd({
+    path: "/blog",
+    type: "CollectionPage",
+    name: "마케팅 인사이트 — 하랑마케팅",
+    description: "소상공인이 바로 적용할 수 있는 실전 마케팅 노하우 모음.",
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "마케팅 인사이트", path: "/blog" },
+  ]),
+];
+
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <JsonLd data={BLOG_LD} />
+      {children}
+    </>
+  );
 }

@@ -41,7 +41,7 @@ export default function ReviewsSection() {
             {/* Trust stats */}
             <div className="grid grid-cols-3 gap-4 w-full mt-2">
               {[
-                { icon: Star, val: "4.9", sub: "평균 만족도" },
+                { icon: Star, val: "95%", sub: "재계약률" },
                 { icon: ShieldCheck, val: "95%", sub: "재계약률" },
                 { icon: Clock, val: "500+", sub: "완료 프로젝트" },
               ].map(({ icon: Icon, val, sub }) => (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MapPin, TrendingUp, Star, Clock, Users, ShieldCheck } from "lucide-react";
 
@@ -109,6 +110,19 @@ export default function GyeonggiPage() {
             </div>
           </div>
         </section>
+
+        {/* AEO — 지역 질의 한 줄 정답 */}
+        <AnswerBlock
+          question="경기도 마케팅 대행사를 찾고 있습니다"
+          answer="하랑마케팅은 경기도 고양시 일산동구에 본사를 둔 경기도 소상공인 전문 마케팅 대행사입니다. 고양·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴 전환율이 일반 블로그의 2~3배입니다. 실제 성과로 경기 고양 카페 방문객 +167%(3개월), 경기 파주 네일샵 예약 100% 마감(6주), 경기 고양 학원 수강생 +55%(3개월), 경기 안양 한의원 초진 예약 +175%(4개월)를 달성했습니다. 전화 010-7541-9054로 무료 상담이 가능합니다."
+          facts={[
+            { label: "본사", value: "경기 고양 일산" },
+            { label: "카페 방문객", value: "+167%" },
+            { label: "학원 수강생", value: "+55%" },
+            { label: "상담 비용", value: "0원" },
+          ]}
+        />
+
 
         {/* 수치 */}
         <section className="py-10 bg-white border-b border-gray-100">

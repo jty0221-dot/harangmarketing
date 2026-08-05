@@ -5,9 +5,12 @@ import type { FC } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { TrendingUp, ArrowRight, MessageCircle, Star, Clock, Filter, Search, X } from "lucide-react";
+import { TrendingUp, ArrowRight, MessageCircle, Clock, Filter, Search, X, Handshake } from "lucide-react";
 import AnimatedCounter from "../components/AnimatedCounter";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import JsonLd from "../components/JsonLd";
+import AnswerBlock from "../components/AnswerBlock";
+import { itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
 
 const ALL_CASES = [
   {
@@ -110,6 +113,32 @@ const ALL_CASES = [
 
 const CATEGORIES = ["전체", "카페", "음식점", "병원·의원", "뷰티·네일", "카카오맵", "학원·교육", "온라인 쇼핑몰", "한의원·한방"];
 
+/* ─── 구조화 데이터 ───────────────────────────────
+   ItemList 로 사례 목록을 노출하면 AI 가 "어떤 성과 사례가 있나" 질의에
+   개별 사례를 항목 단위로 인용할 수 있다. */
+const CASES_LD = [
+  itemListLd({
+    path: "/cases",
+    name: "하랑마케팅 마케팅 성공 사례",
+    items: ALL_CASES.map((c) => ({
+      name: `${c.location} ${c.category} — ${c.title}`,
+      path: "/cases",
+      description: `${c.period} 진행, ${c.metricLabel} ${c.metric}. ${c.story}`,
+    })),
+  }),
+  webPageLd({
+    path: "/cases",
+    type: "CollectionPage",
+    name: "마케팅 성공 사례 — 하랑마케팅",
+    description:
+      "하랑마케팅이 진행한 소상공인 마케팅 실제 성과 사례. 업종별 진행 기간과 전후 수치를 그대로 공개합니다.",
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "진행 사례", path: "/cases" },
+  ]),
+];
+
 const CasesPage: FC = () => {
   const [active, setActive] = useState("전체");
   const [query, setQuery] = useState("");
@@ -123,6 +152,7 @@ const CasesPage: FC = () => {
 
   return (
     <>
+      <JsonLd data={CASES_LD} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
@@ -146,7 +176,7 @@ const CasesPage: FC = () => {
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2014년~현재", color: "text-blue-600" },
+                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "대표 경력 10년+ 누적", color: "text-blue-600" },
                 { to: 95, suffix: "%", label: "재계약률", sub: "업계 최고 수준", color: "text-blue-600" },
                 { to: 6, suffix: "개+", label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
                 { to: 300, suffix: "%", label: "최대 매출 상승", sub: "실제 달성 수치", color: "text-blue-700" },
@@ -162,6 +192,18 @@ const CasesPage: FC = () => {
             </div>
           </div>
         </section>
+
+        {/* AEO — 성과 질의 한 줄 정답 */}
+        <AnswerBlock
+          question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
+          answer="하랑마케팅의 대표 성과는 경기 고양 카페 3개월 만에 '일산 카페' 플레이스 1위 및 방문객 +167%(일 28명→75명), 서울 강서 피부과 6개월간 신규 예약 +300%(월 12건→33건), 서울 마포 음식점 4개월간 배달 매출 +113%(월 480만원→1,022만원), 경기 파주 네일샵 6주 만에 예약 가동률 40%→100% 마감입니다. 모든 수치는 실제 진행한 프로젝트의 전후 실측값이며 업종·지역 경쟁 강도에 따라 달라질 수 있습니다."
+          facts={[
+            { label: "완료 프로젝트", value: "500건+" },
+            { label: "재계약률", value: "95%" },
+            { label: "최대 매출 상승", value: "+300%" },
+            { label: "최대 방문객 증가", value: "+167%" },
+          ]}
+        />
 
         {/* Filter + Cases */}
         <section className="py-12 md:py-20 bg-gray-50">
@@ -375,9 +417,9 @@ const CasesPage: FC = () => {
           <div className="absolute -top-24 -right-24 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <div className="flex gap-0.5 justify-center mb-4">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} className="text-yellow-300 fill-yellow-300" />)}
-                <span className="text-gray-400 text-xs ml-2 mt-0.5">고객 만족도 4.9/5.0</span>
+              <div className="flex items-center justify-center gap-1.5 mb-4">
+                <Handshake size={15} className="text-yellow-300" strokeWidth={2.5} />
+                <span className="text-gray-400 text-xs">재계약률 95% · 500+ 프로젝트</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-snug">
                 다음 성공 사례의 주인공이 되세요

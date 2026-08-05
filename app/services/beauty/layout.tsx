@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "../../components/JsonLd";
+import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "미용·네일·뷰티 마케팅 대행 — 하랑마케팅 | 예약 100% 마감 달성",
@@ -23,12 +25,23 @@ export default function BeautyLayout({ children }: { children: React.ReactNode }
             "@context": "https://schema.org",
             "@type": "Service",
             "name": "미용·네일·뷰티 마케팅 대행",
-            "provider": { "@type": "LocalBusiness", "name": "하랑마케팅", "url": "https://www.harangmarketing.com", "telephone": "010-7541-9054" },
+            "provider": { "@id": LOCAL_ID },
+            "brand": { "@id": ORG_ID },
+            "inLanguage": "ko-KR",
+            "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "미용·네일·뷰티 전문 마케팅. 실측 성과: 경기 파주 네일샵 예약 가동률 40%→100% 마감(6주)." },
+            "offers": { "@type": "Offer", "price": "300000", "priceCurrency": "KRW", "description": "월 30만원부터 시작. 상담·진단 0원." },
             "description": "미용실·네일샵·뷰티샵 전문 인스타그램 마케팅, 체험단, 플레이스 SEO 대행",
             "areaServed": ["서울", "경기도", "인천"],
             "url": "https://www.harangmarketing.com/services/beauty",
           }),
         }}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "홈", path: "/" },
+          { name: "서비스", path: "/services" },
+          { name: "미용·네일·뷰티 마케팅", path: "/services/beauty" },
+        ])}
       />
       {children}
     </>

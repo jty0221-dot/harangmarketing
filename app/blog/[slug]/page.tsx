@@ -880,7 +880,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div>
                   <p className="font-black text-gray-900 text-sm mb-0.5">전태영 · 하랑마케팅 대표</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    2014년부터 소상공인 전문 마케팅 대행. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
+                    2014년 마케팅 경력을 시작해 2020년 하랑마케팅을 설립했습니다. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
                   </p>
                 </div>
               </div>
@@ -987,7 +987,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div>
                 <p className="font-black text-gray-900 text-sm mb-0.5">전태영 · 하랑마케팅 대표</p>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  2014년부터 소상공인 전문 마케팅 대행. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
+                  2014년 마케팅 경력을 시작해 2020년 하랑마케팅을 설립했습니다. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
                 </p>
               </div>
             </div>

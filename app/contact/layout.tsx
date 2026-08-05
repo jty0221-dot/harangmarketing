@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "../components/JsonLd";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "무료 상담 신청 — 하랑마케팅 | 24시간 내 연락 보장",
@@ -12,6 +14,45 @@ export const metadata: Metadata = {
   },
 };
 
+/* ContactPage + ContactPoint — "하랑마케팅 연락처/상담 신청" 질의 대응 */
+const CONTACT_LD = [
+  webPageLd({
+    path: "/contact",
+    type: "ContactPage",
+    name: "무료 상담 신청 — 하랑마케팅",
+    description: ANSWER_SENTENCES.contact,
+  }),
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPoint",
+    "@id": `${SITE.base}/contact#contactpoint`,
+    contactType: "sales",
+    name: "하랑마케팅 무료 상담",
+    telephone: SITE.phoneIntl,
+    email: SITE.email,
+    url: `${SITE.base}/contact`,
+    availableLanguage: ["ko"],
+    areaServed: "KR",
+    description: ANSWER_SENTENCES.contact,
+    hoursAvailable: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    parentOrganization: { "@id": ORG_ID },
+  },
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "무료 상담", path: "/contact" },
+  ]),
+];
+
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <JsonLd data={CONTACT_LD} />
+      {children}
+    </>
+  );
 }

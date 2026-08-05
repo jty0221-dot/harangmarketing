@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "../../components/JsonLd";
+import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "음식점·배달 마케팅 대행 — 하랑마케팅 | 배달 매출 113% 증가",
@@ -23,12 +25,23 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
             "@context": "https://schema.org",
             "@type": "Service",
             "name": "음식점·배달 마케팅 대행",
-            "provider": { "@type": "LocalBusiness", "name": "하랑마케팅", "url": "https://www.harangmarketing.com", "telephone": "010-7541-9054" },
+            "provider": { "@id": LOCAL_ID },
+            "brand": { "@id": ORG_ID },
+            "inLanguage": "ko-KR",
+            "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "음식점·배달 전문 마케팅. 실측 성과: 서울 마포 음식점 월 배달 매출 480만원→1,022만원(+113%, 4개월)." },
+            "offers": { "@type": "Offer", "price": "300000", "priceCurrency": "KRW", "description": "월 30만원부터 시작. 상담·진단 0원." },
             "description": "음식점·배달 전문 배달앱 리뷰, 맘카페 바이럴, 블로그 맛집 마케팅 대행",
             "areaServed": ["서울", "경기도", "인천"],
             "url": "https://www.harangmarketing.com/services/restaurant",
           }),
         }}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "홈", path: "/" },
+          { name: "서비스", path: "/services" },
+          { name: "음식점·배달 마케팅", path: "/services/restaurant" },
+        ])}
       />
       {children}
     </>

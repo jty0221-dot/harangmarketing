@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Star } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Handshake } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -9,11 +9,9 @@ export default function Footer() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
             <div>
-              <div className="flex gap-0.5 mb-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={12} className="text-yellow-300 fill-yellow-300" />
-                ))}
-                <span className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.4)" }}>고객 만족도 4.9/5.0</span>
+              <div className="flex items-center gap-1.5 mb-2">
+                <Handshake size={13} className="text-yellow-300" strokeWidth={2.5} />
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>재계약률 95% · 500+ 프로젝트</span>
               </div>
               <h3 className="text-lg md:text-xl font-black text-white mb-1">
                 지금 바로 무료 전략 진단을 받아보세요
@@ -190,7 +188,7 @@ export default function Footer() {
           {[
             ["재계약률 95%", "10년간 유지"],
             ["상담 비용 0원", "계약 강요 없음"],
-            ["500+ 프로젝트", "2014~현재"],
+            ["500+ 프로젝트", "대표 경력 10년+"],
             ["24시간 내 연락", "대표 직접 응답"],
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">

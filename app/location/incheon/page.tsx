@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users, Anchor } from "lucide-react";
 
@@ -93,6 +94,19 @@ export default function IncheonPage() {
             </div>
           </div>
         </section>
+
+        {/* AEO — 지역 질의 한 줄 정답 */}
+        <AnswerBlock
+          question="인천 소상공인 마케팅은 어떻게 진행되나요?"
+          answer="하랑마케팅은 인천 전 지역 소상공인을 지원합니다. 송도·청라·부평·구월동·검단 등 신도시와 구도심의 검색 패턴이 크게 다르기 때문에 상권별로 키워드를 나눠 공략합니다. 신도시는 맘카페와 인스타그램, 구도심은 네이버 플레이스와 블로그 비중을 높이는 방식입니다. 인천은 서울 대비 경쟁 강도가 낮아 평균 4~6주 내 플레이스 Top 5 진입이 가능합니다. 본사는 경기 고양 일산이며 인천은 비대면 상담과 방문 상담 모두 지원하고 상담 비용은 0원입니다."
+          facts={[
+            { label: "Top 5 진입", value: "4~6주" },
+            { label: "주요 상권", value: "송도·청라·부평" },
+            { label: "시작 비용", value: "월 30만원~" },
+            { label: "상담 비용", value: "0원" },
+          ]}
+        />
+
 
         <section className="py-14 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">

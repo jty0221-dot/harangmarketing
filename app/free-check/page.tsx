@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, Phone, MessageCircle,
   Search, TrendingUp, Star, Shield, Clock, Users,
-  MapPin, BarChart3, AlertCircle,
+  MapPin, BarChart3, AlertCircle, Handshake,
 } from "lucide-react";
 
 const CHECKS = [
@@ -173,11 +173,9 @@ export default function FreeCheckPage() {
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Form header */}
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-5">
-                  <div className="flex gap-0.5 mb-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={11} className="text-yellow-300 fill-yellow-300" />
-                    ))}
-                    <span className="text-blue-200 text-[11px] ml-1.5">고객 만족 4.9/5.0</span>
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Handshake size={12} className="text-yellow-300" strokeWidth={2.5} />
+                    <span className="text-blue-200 text-[11px]">재계약률 95% · 500+ 프로젝트</span>
                   </div>
                   <h2 className="text-white font-black text-lg leading-tight">무료 플레이스 진단 신청</h2>
                   <p className="text-blue-200 text-xs mt-1">비용 0원 · 계약 강요 없음 · 1영업일 내 결과</p>

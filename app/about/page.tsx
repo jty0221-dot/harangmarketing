@@ -9,67 +9,60 @@ import {
   Award, Handshake, AlertTriangle, Zap, Users,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import JsonLd from "../components/JsonLd";
+import AnswerBlock from "../components/AnswerBlock";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd } from "../lib/seo";
 
-const BASE = "https://www.harangmarketing.com";
+const BASE = SITE.base;
 
-const ABOUT_LD = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "AboutPage",
-      "@id": `${BASE}/about`,
-      "url": `${BASE}/about`,
-      "name": "하랑마케팅 회사소개",
-      "description": "해병대 장교 출신 대표가 직접 운영하는 소상공인 전문 마케팅 대행사. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 진짜 이야기.",
-      "isPartOf": { "@type": "WebSite", "url": BASE, "name": "하랑마케팅" },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "홈", "item": BASE },
-          { "@type": "ListItem", "position": 2, "name": "회사소개", "item": `${BASE}/about` },
-        ],
-      },
-    },
-    {
-      "@type": "Person",
-      "@id": `${BASE}/about#ceo`,
-      "name": "전태영",
-      "jobTitle": "대표이사",
-      "description": "해병대 장교 출신, 카페 창업 실패 경험을 바탕으로 소상공인 전문 마케팅 대행사 하랑마케팅을 창업. 10년 이상의 마케팅 경력, 500곳 이상의 소상공인 성장 지원.",
-      "url": `${BASE}/about`,
-      "worksFor": {
-        "@type": "Organization",
-        "@id": `${BASE}#org`,
-        "name": "하랑마케팅",
-        "url": BASE,
-      },
-      "knowsAbout": [
-        "네이버 플레이스 SEO",
-        "소상공인 마케팅",
-        "블로그 마케팅",
-        "체험단 마케팅",
-        "인스타그램 마케팅",
-        "로컬 비즈니스 마케팅",
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "해병대",
-      },
-    },
-    {
-      "@type": "MarketingAgency",
-      "@id": `${BASE}#org`,
-      "name": "하랑마케팅",
-      "url": BASE,
-      "logo": `${BASE}/favicon.svg`,
-      "founder": { "@id": `${BASE}/about#ceo` },
-      "foundingDate": "2020",
-      "description": "소상공인·자영업자 전문 마케팅 대행사. 네이버 플레이스 상위노출, 블로그 마케팅, 체험단 대행, SNS 마케팅 전문.",
-      "areaServed": ["서울", "경기도", "인천", "수도권"],
-      "knowsAbout": ["네이버 플레이스 마케팅", "소상공인 마케팅", "로컬 SEO", "블로그 마케팅"],
-    },
-  ],
-};
+/* 회사소개 구조화 데이터
+
+   중요: Organization / Person 의 @id 는 루트 layout 에서 선언한 것과 반드시 같아야 한다.
+   같은 회사를 다른 @id 로 두 번 선언하면 엔티티 그래프가 쪼개져
+   구글·AI 가 "하랑마케팅"을 하나의 주체로 합치지 못한다.
+   여기서는 참조(@id)만 하고 대표(Person) 정보만 상세히 확장한다. */
+const ABOUT_LD = [
+  webPageLd({
+    path: "/about",
+    type: "AboutPage",
+    name: "회사소개 — 하랑마케팅",
+    description:
+      "해병대 장교 출신 전태영 대표가 직접 운영하는 소상공인 전문 마케팅 대행사. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 이야기.",
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "회사소개", path: "/about" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${BASE}/about#founder`,
+    name: "전태영",
+    givenName: "태영",
+    familyName: "전",
+    jobTitle: "대표",
+    url: `${BASE}/about`,
+    image: `${BASE}/og-image.png`,
+    description:
+      "하랑마케팅 대표. 해병대 장교로 복무 후 2018년 전역, 카페 창업과 마케팅 대행사 팀장 경험을 거쳐 2020년 4월 하랑마케팅을 설립했습니다. 마케팅 경력 10년 이상, 소상공인 500곳 이상의 성장을 지원했습니다.",
+    worksFor: { "@id": ORG_ID },
+    founderOf: { "@id": ORG_ID },
+    nationality: { "@type": "Country", name: "대한민국" },
+    knowsLanguage: ["ko"],
+    knowsAbout: [
+      "네이버 플레이스 SEO",
+      "네이버 플레이스 상위 노출",
+      "소상공인 마케팅",
+      "블로그 마케팅",
+      "체험단 마케팅",
+      "인스타그램 마케팅",
+      "맘카페 바이럴 마케팅",
+      "로컬 비즈니스 마케팅",
+    ],
+    alumniOf: { "@type": "Organization", name: "대한민국 해병대" },
+    sameAs: [SITE.instagram, SITE.naverBlog],
+  },
+];
 
 export const metadata: Metadata = {
   title: "회사소개 — 하랑마케팅 | 10년 경력 소상공인 전문 마케팅 대행사",
@@ -166,10 +159,7 @@ const FAQS = [
 export default function AboutPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_LD) }}
-      />
+      <JsonLd data={ABOUT_LD} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
 
@@ -203,6 +193,18 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* AEO — 회사·대표 정체성 한 줄 정답 */}
+        <AnswerBlock
+          question="하랑마케팅 대표는 누구이고, 회사는 어떤 곳인가요?"
+          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 사장님 입장을 겪어본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
+          facts={[
+            { label: "대표", value: "전태영" },
+            { label: "설립", value: "2020.04" },
+            { label: "본사", value: "경기 고양 일산" },
+            { label: "클라이언트", value: "500곳+" },
+          ]}
+        />
 
         {/* Pain Points */}
         <section className="py-14 md:py-20 bg-white border-b border-gray-100">

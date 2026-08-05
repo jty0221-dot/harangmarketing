@@ -9,6 +9,10 @@ import {
   Navigation, Palette,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import JsonLd from "../components/JsonLd";
+import AnswerBlock from "../components/AnswerBlock";
+import GlossarySection from "../components/GlossarySection";
+import { ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "마케팅 서비스 — 하랑마케팅 | 플레이스 SEO · 블로그 · 체험단 · SNS",
@@ -239,7 +243,7 @@ const SERVICES_LD = {
         "@type": "Service",
         "name": "블로그 마케팅",
         "description": "네이버 블로그 상위 노출 최적화. 키워드 SEO, 콘텐츠 제작, 블로그 배포 대행. 평균 3개월 내 지역 키워드 상위 10위 진입.",
-        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#blog",
@@ -251,7 +255,7 @@ const SERVICES_LD = {
         "@type": "Service",
         "name": "네이버 플레이스 SEO",
         "description": "네이버 지도·플레이스 상위 노출 최적화. 리뷰 관리, 키워드 세팅, 사진 최적화. 평균 4주 내 Top 5 진입.",
-        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#place",
@@ -263,7 +267,7 @@ const SERVICES_LD = {
         "@type": "Service",
         "name": "체험단 모집 대행",
         "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행. 네이버 플레이스·블로그·배달앱 리뷰 확보.",
-        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#review",
@@ -275,7 +279,7 @@ const SERVICES_LD = {
         "@type": "Service",
         "name": "인스타그램·SNS 마케팅",
         "description": "인스타그램 콘텐츠 기획, 릴스 제작, 팔로워 증가, DM 자동화. 카페·미용·네일 업종에 특화.",
-        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#sns",
@@ -287,7 +291,7 @@ const SERVICES_LD = {
         "@type": "Service",
         "name": "카카오맵 마케팅",
         "description": "카카오맵 플레이스 등록 및 상위 노출 최적화, 트렌드 랭킹 진입 전략. 2개월 만에 Top 3 진입 사례.",
-        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
       },
@@ -298,7 +302,7 @@ const SERVICES_LD = {
         "@type": "Service",
         "name": "맘카페 바이럴 마케팅",
         "description": "지역 맘카페 커뮤니티 바이럴 마케팅. 학원·카페·음식점·네일 업종에 특화. 일반 블로그 대비 전환율 2~3배.",
-        "provider": { "@type": "Organization", "name": "하랑마케팅" },
+        "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
       },
@@ -306,10 +310,26 @@ const SERVICES_LD = {
   ],
 };
 
+const SERVICES_PAGE_LD = [
+  SERVICES_LD,
+  webPageLd({
+    path: "/services",
+    type: "CollectionPage",
+    name: "서비스 — 하랑마케팅",
+    description: ANSWER_SENTENCES.whatWeDo,
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "서비스", path: "/services" },
+  ]),
+  // 아래 GlossarySection 렌더링과 짝을 이룸
+  definitionsLd("/services"),
+];
+
 export default function ServicesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_LD) }} />
+      <JsonLd data={SERVICES_PAGE_LD} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
@@ -338,6 +358,18 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
+
+        {/* AEO — 서비스·가격 한 줄 정답 */}
+        <AnswerBlock
+          question="하랑마케팅은 어떤 서비스를 얼마에 제공하나요?"
+          answer={`${ANSWER_SENTENCES.whatWeDo} ${ANSWER_SENTENCES.price}`}
+          facts={[
+            { label: "핵심 서비스", value: "6종" },
+            { label: "특화 업종", value: "6개" },
+            { label: "시작 비용", value: "월 30만원~" },
+            { label: "상담·진단", value: "0원" },
+          ]}
+        />
 
         {/* Key numbers */}
         <section className="py-6 bg-white border-b border-gray-100">
@@ -687,7 +719,7 @@ export default function ServicesPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 {[
                   { val: "95%", label: "재계약률", sub: "10년 유지" },
-                  { val: "4.9/5", label: "고객 만족도", sub: "500+ 클라이언트" },
+                  { val: "95%", label: "재계약률", sub: "500+ 클라이언트" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
                   { val: "24h", label: "연락 보장", sub: "대표 직접 응대" },
                 ].map((s) => (
@@ -1025,6 +1057,9 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
+
+        {/* 용어 정의 — definitionsLd("/services") 와 짝 */}
+        <GlossarySection />
 
         {/* 업종별 전문 페이지 링크 */}
         <section className="py-14 md:py-20 bg-white">

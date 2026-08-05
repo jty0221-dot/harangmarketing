@@ -4,6 +4,9 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ArrowLeft, ArrowRight, TrendingUp, Clock, MapPin, CheckCircle2, Star, MessageCircle } from "lucide-react";
+import JsonLd from "../../components/JsonLd";
+import AnswerBlock from "../../components/AnswerBlock";
+import { SITE, ORG_ID, breadcrumbLd } from "../../lib/seo";
 
 const CASES: Record<string, {
   title: string;
@@ -113,13 +116,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = CASES[slug];
   if (!c) return {};
+  const summary = `${c.location} ${c.category} 매장이 ${c.period} 만에 ${c.metricLabel} ${c.metric}를 달성한 실제 사례입니다. ${c.story}`;
   return {
     title: `${c.title} — 하랑마케팅 성공 사례`,
-    description: c.story,
+    description: summary,
+    keywords: [c.category, c.location, ...c.services, "마케팅 성공사례", "하랑마케팅"],
+    // canonical 은 www 도메인으로 통일 (도메인 표기가 갈리면 색인이 분산됨)
+    alternates: { canonical: `${SITE.base}/cases/${slug}` },
     openGraph: {
+      type: "article",
       title: c.title,
-      description: c.story,
-      url: `https://harangmarketing.com/cases/${slug}`,
+      description: summary,
+      url: `${SITE.base}/cases/${slug}`,
       images: [{ url: "/og-image.png", width: 1200, height: 630, alt: c.title }],
     },
   };
@@ -130,8 +138,44 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   const c = CASES[slug];
   if (!c) notFound();
 
+  /* 사례를 Article 로 선언해 AI 답변에서 개별 사례가 출처와 함께 인용되게 한다.
+     본문 수치(results)를 그대로 요약문에 담아 발췌 정확도를 높인다. */
+  const resultLine = c.results
+    .map((r) => `${r.label} ${r.before} → ${r.after}`)
+    .join(", ");
+
+  const caseLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "@id": `${SITE.base}/cases/${slug}#article`,
+      headline: c.title,
+      description: c.story,
+      articleSection: "마케팅 성공 사례",
+      about: `${c.location} ${c.category} 마케팅`,
+      abstract: `${c.location} ${c.category} 매장을 ${c.period} 동안 ${c.services.join("·")}로 진행해 ${c.metricLabel} ${c.metric}를 달성했습니다. ${resultLine}.`,
+      inLanguage: "ko-KR",
+      url: `${SITE.base}/cases/${slug}`,
+      mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.base}/cases/${slug}` },
+      image: `${SITE.base}/og-image.png`,
+      author: { "@id": ORG_ID },
+      publisher: { "@id": ORG_ID },
+      keywords: [c.category, c.location, ...c.services].join(", "),
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", ".speakable"],
+      },
+    },
+    breadcrumbLd([
+      { name: "홈", path: "/" },
+      { name: "진행 사례", path: "/cases" },
+      { name: c.title, path: `/cases/${slug}` },
+    ]),
+  ];
+
   return (
     <>
+      <JsonLd data={caseLd} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         <section className="bg-gray-950 py-14 md:py-20 relative overflow-hidden">
@@ -157,6 +201,13 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
             </div>
           </div>
         </section>
+
+        {/* AEO — 사례 요약 한 문단 (AI 인용 대상) */}
+        <AnswerBlock
+          question={`${c.location} ${c.category}는 어떤 마케팅으로 어떤 성과를 냈나요?`}
+          answer={`${c.location} ${c.category} 매장은 하랑마케팅과 ${c.period} 동안 ${c.services.join(", ")}을 진행해 ${c.metricLabel} ${c.metric}를 달성했습니다. 구체적으로 ${resultLine} 로 변화했습니다. ${c.challenge}`}
+          facts={c.results.map((r) => ({ label: r.label, value: r.after }))}
+        />
 
         <section className="py-10 bg-white border-b border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">

@@ -21,6 +21,29 @@ import ClientLogosSection from "./components/ClientLogosSection";
 import DifferenceSection from "./components/DifferenceSection";
 import EntryPopup from "./components/EntryPopup";
 import Card3DTilt from "./components/Card3DTilt";
+import JsonLd from "./components/JsonLd";
+import AnswerBlock from "./components/AnswerBlock";
+import FaqAccordion from "./components/FaqAccordion";
+import GlossarySection from "./components/GlossarySection";
+import {
+  SITE, CORE_FAQ, ANSWER_SENTENCES,
+  faqLd, webPageLd, breadcrumbLd, definitionsLd,
+} from "./lib/seo";
+
+/* ─── AEO/GEO 구조화 데이터 (홈) ───────────────────
+   FAQPage·DefinedTermSet 는 아래 화면에 실제로 렌더링되는
+   FaqAccordion / GlossarySection 과 1:1로 대응한다.
+   둘 중 하나를 지우면 나머지도 반드시 함께 지울 것. */
+const HOME_LD = [
+  webPageLd({
+    path: "/",
+    name: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
+    description: ANSWER_SENTENCES.whoWeAre,
+  }),
+  breadcrumbLd([{ name: "홈", path: "/" }]),
+  faqLd(CORE_FAQ, `${SITE.base}/`),
+  definitionsLd("/"),
+];
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -182,12 +205,25 @@ const TRUST_ITEMS = [
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={HOME_LD} />
       <EntryPopup />
       <Header />
       <main>
 
         {/* ══ Hero — 클로드 디자인 영상 히어로 ══ */}
         <HeroSection />
+
+        {/* ══ AEO — AI 답변 엔진이 인용하는 한 줄 정답 ══ */}
+        <AnswerBlock
+          question="하랑마케팅은 어떤 회사인가요?"
+          answer={ANSWER_SENTENCES.whoWeAre}
+          facts={[
+            { label: "설립", value: "2020년" },
+            { label: "누적 프로젝트", value: "500건+" },
+            { label: "재계약률", value: "95%" },
+            { label: "시작 비용", value: "월 30만원~" },
+          ]}
+        />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
         <div className="py-3 overflow-hidden" style={{ background: "var(--h-navy)" }}>
@@ -1325,7 +1361,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-8 shrink-0">
                 {[
-                  { val: "4.9/5", label: "평균 만족도" },
+                  { val: "10년+", label: "대표 경력" },
                   { val: "95%", label: "재계약률" },
                   { val: "500+", label: "누적 고객사" },
                 ].map((s) => (
@@ -1442,7 +1478,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══ FAQ 섹션 ══ */}
+        {/* ══ 용어 정의 — 정의형 질의 대응 (AEO) ══ */}
+        <GlossarySection />
+
+        {/* ══ FAQ 섹션 — 화면 노출 + FAQPage 구조화 데이터 (HOME_LD 와 짝) ══ */}
+        <FaqAccordion
+          items={CORE_FAQ}
+          title="사장님들이 가장 많이 묻는 질문"
+          subtitle="10년간 상담하며 가장 많이 받은 질문을 그대로 정리했습니다. 상담 전에 미리 확인해보세요."
+          showMoreHref="/faq"
+        />
 
         {/* ══ 무료 가이드 리드 마그넷 ══ */}
         <section className="py-8 md:py-12 bg-white">
@@ -1534,7 +1579,7 @@ export default function HomePage() {
                 { icon: ShieldCheck, text: "상담 비용 0원" },
                 { icon: Handshake, text: "계약 강요 없음" },
                 { icon: Clock, text: "24시간 내 대표 직접 연락" },
-                { icon: Star, text: "4.9 / 5.0 만족도" },
+                { icon: Star, text: "재계약률 95%" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs text-gray-600">
                   <Icon size={12} className="text-blue-500" strokeWidth={2} />

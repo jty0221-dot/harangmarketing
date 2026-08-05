@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users, Star, Building2 } from "lucide-react";
 
@@ -110,6 +111,19 @@ export default function SeoulPage() {
             </div>
           </div>
         </section>
+
+        {/* AEO — 지역 질의 한 줄 정답 */}
+        <AnswerBlock
+          question="서울 소상공인 마케팅 대행사, 어디에 맡겨야 하나요?"
+          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열해 플레이스 상위 노출까지 보통 1~2개월이 걸리며, 하랑마케팅이 진행한 서울 강서 피부과는 6개월간 신규 예약 +300%, 서울 마포 음식점은 4개월간 배달 매출 +113%를 달성했습니다. 본사는 경기 고양 일산이며 서울 전 지역 방문 상담과 비대면 상담 모두 가능합니다. 상담 비용은 0원입니다."
+          facts={[
+            { label: "서울 대표 성과", value: "신규예약 +300%" },
+            { label: "상위 노출 기간", value: "1~2개월" },
+            { label: "시작 비용", value: "월 30만원~" },
+            { label: "상담 비용", value: "0원" },
+          ]}
+        />
+
 
         <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "../../components/JsonLd";
+import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "온라인 쇼핑몰 마케팅 대행 — 하랑마케팅 | 월 매출 64% 증가",
@@ -23,12 +25,23 @@ export default function ShoppingLayout({ children }: { children: React.ReactNode
             "@context": "https://schema.org",
             "@type": "Service",
             "name": "온라인 쇼핑몰 마케팅 대행",
-            "provider": { "@type": "LocalBusiness", "name": "하랑마케팅", "url": "https://www.harangmarketing.com", "telephone": "010-7541-9054" },
+            "provider": { "@id": LOCAL_ID },
+            "brand": { "@id": ORG_ID },
+            "inLanguage": "ko-KR",
+            "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "온라인 쇼핑몰 전문 마케팅. 실측 성과: 월 매출 230만원→377만원(+64%, 4개월)." },
+            "offers": { "@type": "Offer", "price": "300000", "priceCurrency": "KRW", "description": "월 30만원부터 시작. 상담·진단 0원." },
             "description": "온라인 쇼핑몰 전문 블로그 SEO, 체험단, 콘텐츠 마케팅 대행",
             "areaServed": "대한민국",
             "url": "https://www.harangmarketing.com/services/shopping",
           }),
         }}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "홈", path: "/" },
+          { name: "서비스", path: "/services" },
+          { name: "온라인 쇼핑몰 마케팅", path: "/services/shopping" },
+        ])}
       />
       {children}
     </>

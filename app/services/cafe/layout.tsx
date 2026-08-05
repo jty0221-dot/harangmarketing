@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "../../components/JsonLd";
+import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "카페·베이커리 마케팅 대행 — 하랑마케팅 | 네이버 플레이스 상위노출 전문",
@@ -23,12 +25,10 @@ export default function CafeLayout({ children }: { children: React.ReactNode }) 
             "@context": "https://schema.org",
             "@type": "Service",
             "name": "카페·베이커리 마케팅 대행",
-            "provider": {
-              "@type": "LocalBusiness",
-              "name": "하랑마케팅",
-              "url": "https://www.harangmarketing.com",
-              "telephone": "010-7541-9054",
-            },
+            "provider": { "@id": LOCAL_ID },
+            "brand": { "@id": ORG_ID },
+            "inLanguage": "ko-KR",
+            "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "카페·베이커리 전문 마케팅. 실측 성과: 플레이스 순위 27위→3위(2개월), 월 방문객 120명→380명(3개월), 네이버 리뷰 31개→140개(4개월)." },
             "description": "카페·베이커리 전문 네이버 플레이스 SEO, 포토리뷰 전략, 인스타그램 마케팅 대행 서비스",
             "areaServed": ["서울", "경기도", "인천"],
             "serviceType": "마케팅 대행",
@@ -41,6 +41,13 @@ export default function CafeLayout({ children }: { children: React.ReactNode }) 
             },
           }),
         }}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "홈", path: "/" },
+          { name: "서비스", path: "/services" },
+          { name: "카페·베이커리 마케팅", path: "/services/cafe" },
+        ])}
       />
       {children}
     </>

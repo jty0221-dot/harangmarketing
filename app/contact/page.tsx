@@ -8,6 +8,7 @@ import {
   Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2,
   Clock, Star, ArrowRight, ChevronRight,
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle,
+  Handshake,
 } from "lucide-react";
 import { GA_EVENTS } from "../components/Analytics";
 
@@ -375,10 +376,10 @@ function ContactPageInner() {
                         <Phone size={15} />010-7541-9054
                       </a>
                     </div>
-                    <div className="flex justify-center gap-0.5 mb-1">
-                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={13} className="text-amber-400 fill-amber-400" />)}
+                    <div className="flex justify-center items-center gap-1.5">
+                      <Handshake size={13} className="text-amber-400" strokeWidth={2.5} />
+                      <p className="text-xs text-gray-400">재계약률 95% · 500+ 프로젝트</p>
                     </div>
-                    <p className="text-xs text-gray-400">고객 만족도 4.9/5.0 · 재계약률 95%</p>
                   </div>
                 )}
               </div>

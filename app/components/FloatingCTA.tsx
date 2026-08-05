@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, X, ChevronUp, ArrowRight, Clock, Star, Zap, Shield } from "lucide-react";
+import { Phone, MessageCircle, X, ChevronUp, ArrowRight, Clock, Zap, Shield, Handshake } from "lucide-react";
 
 function useBusinessHours() {
   const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
@@ -68,11 +68,9 @@ export default function FloatingCTA() {
                   <X size={14} />
                 </button>
               </div>
-              <div className="flex gap-0.5 mb-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={9} className="text-amber-400 fill-amber-400" />
-                ))}
-                <span className="text-[10px] text-gray-400 ml-1">4.9/5.0 · 500+ 프로젝트</span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <Handshake size={10} className="text-amber-400" strokeWidth={2.5} />
+                <span className="text-[10px] text-gray-400">재계약률 95% · 500+ 프로젝트</span>
               </div>
               {/* Business hours status */}
               <div className="flex items-center gap-1.5 mt-1.5">

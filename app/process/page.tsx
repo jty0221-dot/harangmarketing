@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import JsonLd from "../components/JsonLd";
+import AnswerBlock from "../components/AnswerBlock";
+import { howToLd, webPageLd, breadcrumbLd } from "../lib/seo";
 import {
   Phone, MessageCircle, ArrowRight, CheckCircle2, Clock,
   Search, FileText, TrendingUp, BarChart3, Handshake,
@@ -119,9 +122,37 @@ const TRUST_POINTS = [
   { icon: Clock, label: "24시간 소통 가능" },
 ];
 
+/* ─── AEO 구조화 데이터 ───────────────────────────
+   HowTo 는 "마케팅 대행 어떻게 진행돼?" 같은 절차형 질의에서
+   AI 답변 엔진이 단계별로 그대로 인용하는 스키마다.
+   step 배열은 화면에 렌더링되는 STEPS 와 같은 원본을 쓴다. */
+const PROCESS_LD = [
+  howToLd({
+    path: "/process",
+    name: "하랑마케팅 마케팅 대행 진행 과정 6단계",
+    description:
+      "하랑마케팅의 마케팅 대행은 무료 상담 신청, 무료 경쟁사 분석, 맞춤 전략 제안, 계약 및 킥오프, 실행 및 콘텐츠 제작, 월간 성과 리포트 6단계로 진행됩니다. 상담과 분석은 비용 0원이며 계약 강요가 없습니다.",
+    totalTime: "P7D",
+    steps: STEPS.map((s) => ({
+      name: s.title,
+      text: `${s.desc} (${s.duration}) ${s.details.join(". ")}`,
+    })),
+  }),
+  webPageLd({
+    path: "/process",
+    name: "진행 과정 — 하랑마케팅",
+    description: "상담 신청부터 월간 성과 리포트까지 6단계 마케팅 대행 진행 과정.",
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "진행 과정", path: "/process" },
+  ]),
+];
+
 export default function ProcessPage() {
   return (
     <>
+      <JsonLd data={PROCESS_LD} />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero — dark editorial */}
@@ -164,6 +195,18 @@ export default function ProcessPage() {
             </div>
           </div>
         </section>
+
+        {/* AEO — 절차형 질의 한 줄 정답 */}
+        <AnswerBlock
+          question="하랑마케팅 마케팅 대행은 어떻게 진행되나요?"
+          answer="하랑마케팅의 마케팅 대행은 6단계로 진행됩니다. 1) 무료 상담 신청(당일), 2) 무료 경쟁사 분석 리포트 제공(1~2일), 3) 예산·목표 맞춤 전략 제안(3일), 4) 계약 및 킥오프 후 당일 실행 착수(4~7일), 5) 콘텐츠 제작·배포와 리뷰 캠페인 가동(1개월~), 6) 매월 말 성과 리포트와 전략 조정 순입니다. 상담과 분석 단계는 비용이 0원이며 계약을 강요하지 않습니다."
+          facts={[
+            { label: "상담·분석 비용", value: "0원" },
+            { label: "첫 연락까지", value: "1영업일" },
+            { label: "계약~착수", value: "당일" },
+            { label: "리포트 주기", value: "매월" },
+          ]}
+        />
 
         {/* Timeline — dark */}
         <section className="py-14 md:py-20 bg-gray-900">

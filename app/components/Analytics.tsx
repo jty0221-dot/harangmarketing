@@ -1,7 +1,8 @@
 "use client";
 
 // gtag 전환 이벤트 헬퍼
-// GA4 측정 ID를 G-XXXXXXXXXX → 실제 ID로 교체 후 사용
+// gtag.js 자체는 app/layout.tsx 의 <head> 에서 로드된다.
+// 여기서는 로드된 gtag 로 전환 이벤트만 전송한다.
 
 declare global {
   interface Window {
