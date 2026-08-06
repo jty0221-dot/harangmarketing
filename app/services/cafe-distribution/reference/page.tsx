@@ -41,7 +41,7 @@ const LD = [
   breadcrumbLd([
     { name: "홈", path: "/" },
     { name: "서비스", path: "/services" },
-    { name: "블로그 배포 (최적화·카페)", path: "/services/cafe-distribution" },
+    { name: "최적화 블로그 · 카페 배포", path: "/services/cafe-distribution" },
     { name: "레퍼런스", path: PATH },
   ]),
   {

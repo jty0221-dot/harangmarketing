@@ -11,7 +11,7 @@ import {
 } from "../../lib/cafe-distribution";
 
 /**
- * 카페 배포 상품 상세페이지
+ * 최적화 블로그 · 카페 배포 상품 상세페이지
  *
  * design_handoff_cafe_distribution 의 Cafe-Detail-Page 를 그대로 재현한다.
  * - 기준 폭 860px 중앙 정렬 (모바일에서만 폭·패딩 축소)
@@ -34,7 +34,7 @@ const LD = [
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${URL}#service`,
-    name: "블로그 배포 (최적화·카페)",
+    name: "최적화 블로그 · 카페 배포",
     alternateName: ["카페 배포", "최적화 블로그 배포", "최블 카페 배포"],
     serviceType: "네이버 카페·블로그 배포 대행",
     provider: { "@id": LOCAL_ID },
@@ -78,7 +78,7 @@ const LD = [
   },
   webPageLd({
     path: PATH,
-    name: "블로그 배포 (최적화·카페) — 하랑마케팅",
+    name: "최적화 블로그 · 카페 배포 — 하랑마케팅",
     description:
       "블로그 탭과 카페 탭에 동시 노출하는 배포 상품. 구성별 가격과 업종별 실사 레퍼런스를 공개합니다.",
   }),
@@ -86,7 +86,7 @@ const LD = [
   breadcrumbLd([
     { name: "홈", path: "/" },
     { name: "서비스", path: "/services" },
-    { name: "블로그 배포 (최적화·카페)", path: PATH },
+    { name: "최적화 블로그 · 카페 배포", path: PATH },
   ]),
   {
     "@context": "https://schema.org",
@@ -223,7 +223,7 @@ export default function CafeDistributionPage() {
               className="inline-block rounded-full px-6 py-2.5 text-[15px] font-black text-white md:px-[34px] md:py-3 md:text-[19px]"
               style={{ background: "var(--cd-primary-lt)" }}
             >
-              하랑마케팅 카페 배포 상품 OPEN
+              하랑마케팅 최적화 블로그 · 카페 배포 상품 OPEN
             </span>
 
             {/* 로고 카드 — 로고가 흰 배경 JPG라 반드시 흰 카드 안에 넣는다 */}
@@ -244,7 +244,7 @@ export default function CafeDistributionPage() {
               className="cd-display mt-8 text-[40px] leading-[1.06] text-white md:mt-10 md:text-[62px]"
               style={{ letterSpacing: "-2px" }}
             >
-              카페 배포 상품
+              최적화 블로그 · 카페 배포
               <br />
               <span style={{ color: "var(--cd-primary-lt3)" }}>출시 이벤트</span>
             </h1>

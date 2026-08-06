@@ -45,7 +45,7 @@ const SERVICES = [
     icon: Layers,
     color: "from-blue-600 to-indigo-700",
     tag: "배포",
-    title: "블로그 배포 (최적화·카페)",
+    title: "최적화 블로그 · 카페 배포",
     subtitle: "블로그 탭 + 카페 탭 동시 노출",
     desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다.",
     timeline: "게시 시작 3~7일 · 수량별 순차 진행",
@@ -267,7 +267,7 @@ const SERVICES_LD = {
       "@type": "ListItem", "position": 1,
       "item": {
         "@type": "Service",
-        "name": "블로그 배포 (최적화·카페)",
+        "name": "최적화 블로그 · 카페 배포",
         "description": "최적화 블로그 배포와 네이버 카페 배포를 함께 진행해 블로그 탭·카페 탭에 동시 노출. 1건당 28,600원부터(부가세 별도), 게시 URL 전체 보고.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",

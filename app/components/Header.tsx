@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock, Gift, TrendingUp, Shield, Calculator } from "lucide-react";
@@ -49,7 +49,7 @@ const NAV_ITEMS = [
     href: "/services",
     sub: [
       // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로 연결한다
-      { label: "블로그 배포 (최적화·카페)", href: "/services/cafe-distribution" },
+      { label: "최적화 블로그 · 카페 배포", href: "/services/cafe-distribution" },
       { label: "블로그·기자단", href: "/services#blog" },
       { label: "플레이스 SEO", href: "/services#place" },
       { label: "SNS 마케팅", href: "/services#sns" },
@@ -68,6 +68,24 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  /**
+   * 드롭다운 닫힘 지연 타이머.
+   * 트리거와 메뉴 사이를 지날 때 순간적으로 hover 가 끊겨도 바로 닫히지 않게 한다.
+   * (메뉴로 내려가다 닫혀서 하위 항목을 못 누르는 문제)
+   */
+  const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openDropdown = () => {
+    if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
+    setDropdownOpen(true);
+  };
+  const closeDropdown = () => {
+    if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
+    dropdownTimer.current = setTimeout(() => setDropdownOpen(false), 180);
+  };
+  useEffect(() => () => {
+    if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
+  }, []);
   const [annClosed, setAnnClosed] = useState(true); // start true to avoid SSR flash
   const [annIdx, setAnnIdx] = useState(0);
   const pathname = usePathname();
@@ -170,8 +188,10 @@ export default function Header() {
                   <div
                     key={item.href}
                     className="relative"
-                    onMouseEnter={() => setDropdownOpen(true)}
-                    onMouseLeave={() => setDropdownOpen(false)}
+                    onMouseEnter={openDropdown}
+                    onMouseLeave={closeDropdown}
+                    onFocus={openDropdown}
+                    onBlur={closeDropdown}
                   >
                     <Link
                       href={item.href}
@@ -189,17 +209,23 @@ export default function Header() {
                       <ChevronDown size={13} className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
                     </Link>
                     {dropdownOpen && (
-                      // w-56 — 가장 긴 항목("블로그 배포 (최적화·카페)")이 한 줄에 들어가는 폭
-                      <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden py-1">
-                        {item.sub.map((s) => (
-                          <Link
-                            key={s.href}
-                            href={s.href}
-                            className="block whitespace-nowrap px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-                          >
-                            {s.label}
-                          </Link>
-                        ))}
+                      /* pt-2 는 트리거와 메뉴 사이를 잇는 투명 브릿지다.
+                         여기에 여백을 margin 으로 주면 그 틈에서 hover 가 끊겨
+                         메뉴로 내려가는 도중 닫힌다. 반드시 padding 으로 둘 것. */
+                      <div className="absolute left-0 top-full z-50 pt-2">
+                        {/* w-64 — 가장 긴 항목이 한 줄에 들어가는 폭 */}
+                        <div className="w-64 overflow-hidden rounded-xl border border-gray-100 bg-white py-1 shadow-lg">
+                          {item.sub.map((s) => (
+                            <Link
+                              key={s.href}
+                              href={s.href}
+                              onClick={() => setDropdownOpen(false)}
+                              className="flex min-h-[44px] items-center whitespace-nowrap px-4 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+                            >
+                              {s.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
