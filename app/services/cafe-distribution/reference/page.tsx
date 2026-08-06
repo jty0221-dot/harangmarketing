@@ -6,7 +6,7 @@ import JsonLd from "../../../components/JsonLd";
 import ReferenceClient from "./ReferenceClient";
 import { SITE, ORG_ID, breadcrumbLd, webPageLd } from "../../../lib/seo";
 import { REF_CATEGORIES, REF_TOTAL } from "../../../lib/cafe-distribution";
-import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 
 const PATH = "/services/cafe-distribution/reference";
 const URL = `${SITE.base}${PATH}`;
@@ -80,71 +80,102 @@ export default async function ReferencePage({
     <>
       <JsonLd data={LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
+      <main className="cafe-dist pt-[104px] md:pt-[108px]" style={{ background: "var(--cd-dark)" }}>
 
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-10 md:py-16">
-          <div className="absolute top-0 right-1/4 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
-          <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            {/* -my-2 py-2 로 시각적 여백은 유지하면서 터치 영역만 44px 로 넓힌다 */}
-            <Link
-              href="/services/cafe-distribution"
-              className="-my-2 mb-3 inline-flex items-center gap-1.5 py-2 text-xs text-gray-400 transition-colors hover:text-white"
+        {/* ══ 배너 ══ */}
+        <div className="px-3 pt-5 md:px-8 md:pt-8">
+          <div className="mx-auto w-full max-w-[1080px] overflow-hidden rounded-t-[20px] md:rounded-t-[26px]">
+            {/* 상단 그라디언트 라인 */}
+            <div className="h-3" style={{ background: "linear-gradient(90deg,#2f6bf5,#7fa6ff)" }} />
+
+            <div
+              className="px-5 py-10 text-center md:px-12 md:py-14"
+              style={{ background: "linear-gradient(165deg,#1655e8,#1449c8 60%,#0f42c0)" }}
             >
-              <ArrowLeft size={13} /> 카페 배포 상품
-            </Link>
+              <Link
+                href="/services/cafe-distribution"
+                className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[14px] font-black transition-opacity hover:opacity-90 md:text-[15px]"
+                style={{ color: "var(--cd-primary-deep)" }}
+              >
+                <img src="/harang-icon.svg" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
+                하랑마케팅
+              </Link>
 
-            <p className="mb-3 text-[11px] font-black uppercase tracking-[0.2em] text-blue-400">Reference</p>
-            <h1 className="mb-4 text-2xl font-black leading-tight text-white md:text-4xl">
-              카페 상위 노출,<br />
-              <span className="text-blue-400">실제 화면으로 확인하세요</span>
-            </h1>
-            <p className="max-w-2xl text-sm leading-relaxed text-gray-300 md:text-base">
-              하랑마케팅이 진행한 9개 업종 {REF_TOTAL}개 키워드의
-              네이버 모바일 통합검색 카페 영역 노출 캡처입니다. 보정 없이 그대로 싣습니다.
-            </p>
+              <p
+                className="mx-auto mb-7 w-full max-w-[560px] rounded-full px-5 py-3 text-[14px] font-bold text-white md:text-[17px]"
+                style={{ background: "rgba(255,255,255,.14)", border: "1px solid rgba(255,255,255,.35)" }}
+              >
+                카페배포 상위 노출 · 주간 1000건 이상
+              </p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {[`${REF_CATEGORIES.length}개 업종`, `${REF_TOTAL}개 키워드`, "모바일 통합검색 기준"].map((t) => (
-                <span
-                  key={t}
-                  className="inline-flex items-center rounded-xl border border-blue-400/30 bg-white/5 px-3 py-1.5 text-xs font-semibold text-blue-100"
-                >
-                  {t}
-                </span>
-              ))}
+              <h1
+                className="cd-display text-[52px] leading-[.98] text-white md:text-[88px]"
+                style={{ letterSpacing: "-4px", textShadow: "0 8px 0 rgba(0,0,0,.18)" }}
+              >
+                카페배포
+                <br />
+                레퍼런스
+              </h1>
+
+              <div className="mx-auto mt-8 flex w-full max-w-[620px] flex-col gap-3">
+                {[
+                  "모바일 통합검색 기준 100% 카페 상위 노출",
+                  "실제 대행사에 전달된 100% 실사 증빙 자료",
+                  "지역맘 카페 · 대형 카페 100% 커뮤니티 노출",
+                ].map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full bg-white px-4 py-3 text-[14px] font-black md:px-6 md:py-3.5 md:text-[21px]"
+                    style={{ color: "var(--cd-primary-deep)" }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+
+        {/* ══ 구분 바 ══ */}
+        <div className="px-3 py-7 text-center md:px-8 md:py-9" style={{ background: "var(--cd-dark)" }}>
+          <p className="flex items-center justify-center gap-2 text-[15px] font-black text-white md:text-[26px]">
+            <ChevronDown size={18} strokeWidth={3} className="shrink-0" />
+            <span>인기주제 · 인기카페글 · 인기글 각 영역 레퍼런스</span>
+            <ChevronDown size={18} strokeWidth={3} className="shrink-0" />
+          </p>
+        </div>
 
         <ReferenceClient initialSlug={initialSlug} />
 
-        {/* CTA */}
-        <section className="py-12 md:py-16" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <h2
-              className="mb-3 text-xl font-black md:text-2xl"
-              style={{ color: "var(--h-dark)", letterSpacing: "-0.02em" }}
-            >
-              내 업종 키워드도 가능한지 확인해 드립니다
+        {/* ══ 하단 CTA ══ */}
+        <section
+          className="px-5 py-14 text-center md:px-8 md:py-20"
+          style={{ background: "linear-gradient(165deg,#101a36,#0b1226)" }}
+        >
+          <div className="mx-auto w-full max-w-[720px]">
+            <h2 className="text-[20px] font-bold leading-[1.4] text-white md:text-[26px]">
+              노출된 결과만 증빙으로 남깁니다
             </h2>
-            <p className="mb-7 text-sm leading-relaxed" style={{ color: "var(--h-muted)" }}>
-              업종과 목표 키워드를 알려주시면 진행 가능 여부와 예상 수량을 안내드립니다. 상담 비용은 0원입니다.
+            <p className="mt-3 text-[14px] md:text-[16px]" style={{ color: "var(--cd-on-dark-2)" }}>
+              진행 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다. 상담 비용 0원.
             </p>
-            <div className="flex flex-col justify-center gap-3 sm:flex-row">
+
+            <div className="mx-auto mt-8 flex w-full max-w-[520px] flex-col gap-3">
               <Link
                 href="/contact?service=cafe-distribution"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-7 py-3.5 text-sm font-black text-white shadow-sm transition-colors hover:bg-blue-700"
+                className="flex items-center justify-center gap-2 rounded-full py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:py-5 md:text-[21px]"
+                style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
               >
-                무료 상담 신청 <ArrowRight size={15} />
+                카페 배포 문의 바로가기 <ArrowRight size={17} />
               </Link>
               <a
                 href="https://pf.kakao.com/_MuUkG/chat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-7 py-3.5 text-sm font-bold text-gray-900 transition-colors hover:bg-yellow-300"
+                className="flex items-center justify-center gap-2 rounded-full py-3.5 text-[15px] font-bold text-gray-900 transition-opacity hover:opacity-90"
+                style={{ background: "#FAE100" }}
               >
-                <MessageCircle size={15} /> 카카오톡 상담
+                <MessageCircle size={16} /> 카카오톡 상담
               </a>
             </div>
           </div>

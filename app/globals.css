@@ -484,3 +484,76 @@ body { overflow-x: hidden; }
   100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 .animate-pulse-ring { animation: pulseRing 2s ease-out infinite; }
+
+/* ─────────────────────────────────────────────────────────────
+   카페 배포 상세 · 레퍼런스 페이지 전용 토큰
+   design_handoff_cafe_distribution/README.md 의 Design Tokens 값 그대로.
+   사이트 공통 토큰(--h-*)과 별개다 — 임의로 통합하지 말 것.
+   ───────────────────────────────────────────────────────────── */
+.cafe-dist {
+  --cd-primary:      #1655e8;
+  --cd-primary-deep: #1449c8;
+  --cd-primary-dark: #0f42c0;
+  --cd-primary-lt:   #2f6bf5;
+  --cd-primary-lt2:  #5b8dfa;
+  --cd-primary-lt3:  #7fa6ff;
+
+  --cd-tint:    #f3f6fc;
+  --cd-tint-2:  #eaf1ff;
+  --cd-tint-3:  #f1f4fb;
+
+  --cd-border:   #dde5f4;
+  --cd-border-2: #e2e8f5;
+
+  --cd-ink:   #12172a;
+  --cd-ink-2: #131a2b;
+  --cd-ink-3: #111111;
+
+  --cd-body:  #3c4459;
+  --cd-body-2:#5a627a;
+
+  --cd-muted:   #7a8298;
+  --cd-muted-2: #8c95ab;
+  --cd-muted-3: #a2aabd;
+
+  --cd-dark:   #0b1226;
+  --cd-dark-2: #101a36;
+  --cd-dark-3: #16224a;
+
+  --cd-on-dark:   #c6cfe4;
+  --cd-on-dark-2: #98a3bc;
+  --cd-on-dark-3: #93a2c4;
+  --cd-on-dark-4: #6c7488;
+
+  --cd-sale:    #e02b2b;
+  --cd-sale-bg: #fff3f3;
+}
+
+/* 대형 헤드라인·숫자 전용 디스플레이 서체.
+   한글 대형 텍스트는 letter-spacing 음수값이 필수 — 빠지면 완전히 다른 디자인이 된다. */
+.cd-display {
+  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.cd-num {
+  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* 진행 바 등장 애니메이션 */
+@keyframes cdFillbar { from { width: 0; } }
+.cd-fillbar { animation: cdFillbar 1.4s ease-out both; }
+
+/* CTA 버튼 상하 부유 */
+@keyframes cdPulseCta {
+  0%, 100% { transform: translateY(0);     box-shadow: 0 12px 30px rgba(47,107,245,.35); }
+  50%      { transform: translateY(-4px);  box-shadow: 0 20px 44px rgba(47,107,245,.5); }
+}
+.cd-pulse-cta { animation: cdPulseCta 2.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cd-fillbar, .cd-pulse-cta { animation: none; }
+}

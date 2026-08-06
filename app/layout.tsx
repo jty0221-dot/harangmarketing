@@ -130,6 +130,13 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
         />
+        {/* Black Han Sans — 카페 배포 상세/레퍼런스의 대형 헤드라인·숫자 전용 (본문 사용 금지) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+        />
         {/* 네이버 서치어드바이저 소유권 확인 */}
         <meta name="naver-site-verification" content="5e058632e3ac9891ac91638c144b083a4d694d0b" />
         {/* Bing Webmaster Tools — NEXT_PUBLIC_BING_VERIFICATION 설정 시에만 삽입 */}
