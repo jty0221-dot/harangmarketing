@@ -7,7 +7,7 @@ import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import {
   CAMPAIGN, REWARD_WITH_COPY, REWARD_WITHOUT_COPY, PRICE_NOTE,
   WHY_CAFE, PROCESS_STEPS, CAFE_FAQ, REF_CATEGORIES, REF_TOTAL, won,
-  PROOF_SAMPLES, GUARANTEES,
+  PROOF_SAMPLES, GUARANTEES, daysUntilDeadline, allocationRate,
   type RewardPlan,
 } from "../../lib/cafe-distribution";
 
@@ -196,7 +196,13 @@ function RewardCard({ p }: { p: RewardPlan }) {
   );
 }
 
+/** D-day 가 날짜에 따라 움직이므로 하루 단위로 다시 생성한다 */
+export const revalidate = 3600;
+
 export default function CafeDistributionPage() {
+  const dday = daysUntilDeadline();
+  const rate = allocationRate();
+
   return (
     <>
       <JsonLd data={LD} />
@@ -274,9 +280,9 @@ export default function CafeDistributionPage() {
             <div className="mx-auto w-full max-w-[860px]">
               <dl className="flex">
                 {[
-                  { label: "참여 마감", value: CAMPAIGN.deadlineLabel, unit: "", accent: true },
+                  { label: "참여 마감", value: dday > 0 ? `D-${dday}` : "마감", unit: "", accent: true },
                   { label: "이번 회차 잔여", value: String(CAMPAIGN.remainingSlots), unit: "슬롯" },
-                  { label: "누적 진행", value: CAMPAIGN.cumulativeCount, unit: "건" },
+                  { label: "카페 배포 주간 처리", value: CAMPAIGN.weeklyVolume.toLocaleString("ko-KR"), unit: "건+" },
                 ].map((m, i) => (
                   <div
                     key={m.label}
@@ -301,14 +307,14 @@ export default function CafeDistributionPage() {
                 <div
                   className="cd-fillbar h-full rounded-full"
                   style={{
-                    width: `${CAMPAIGN.allocationRate}%`,
+                    width: `${rate}%`,
                     background: "linear-gradient(90deg,#1655e8,#7fa6ff)",
                   }}
                 />
               </div>
               <div className="mt-2 flex justify-between text-[12px]" style={{ color: "var(--cd-on-dark-4)" }}>
-                <span>이번 회차 배정률 {CAMPAIGN.allocationRate}%</span>
-                <span>마감 시 다음 회차 대기</span>
+                <span>이번 회차 배정률 {rate}%</span>
+                <span>누적 진행 {CAMPAIGN.cumulativeCount.toLocaleString("ko-KR")}건 · 마감 시 다음 회차 대기</span>
               </div>
             </div>
           </section>
@@ -432,6 +438,23 @@ export default function CafeDistributionPage() {
                 아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
                 보정하지 않았고, 진행 건마다 이런 캡처와 게시 URL을 함께 드립니다.
               </p>
+
+              {/* 배포 기준 — 레퍼런스 배너와 동일한 지표 */}
+              <div className="mt-6 flex flex-col gap-2.5">
+                {[
+                  "모바일 통합검색 기준 100% 카페 상위 노출",
+                  "실제 대행사에 전달된 100% 실사 증빙 자료",
+                  "지역맘 카페 · 대형 카페 100% 커뮤니티 노출",
+                ].map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full bg-white px-4 py-2.5 text-center text-[13px] font-black md:px-6 md:py-3 md:text-[16px]"
+                    style={{ color: "var(--cd-primary-deep)" }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
 
               <div className="mt-7 flex flex-col gap-3 md:gap-4">
                 {PROOF_SAMPLES.map((s) => (

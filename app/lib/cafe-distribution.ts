@@ -10,18 +10,39 @@
 /* ─────────────────────────────────────────────────────────
    캠페인 지표
 
-   주의: 아래 값은 핸드오프 시점의 임시값이다.
-   실제 잔여 슬롯·마감일과 다르면 허위 표시가 되므로
-   운영값으로 교체하거나 showCampaignBar 를 false 로 둘 것.
+   마감일은 날짜로 관리하고 D-day 는 렌더 시점에 계산한다.
+   "D-14" 같은 문자열을 박아두면 시간이 지나도 그대로 남아 허위 표기가 된다.
+   상세페이지는 revalidate 로 주기적으로 다시 생성되므로 값이 따라 움직인다.
+
+   회차가 끝나면 deadline 을 다음 마감일로, remainingSlots 를 새 잔여 수로 바꾼다.
+   관리가 어려운 기간에는 showCampaignBar 를 false 로 두면 바 전체가 사라진다.
    ───────────────────────────────────────────────────────── */
 export const CAMPAIGN = {
-  /** 캠페인 지표 바 노출 여부 — 실제 수치를 관리하지 않는 동안에는 false 권장 */
-  showCampaignBar: false,
-  deadlineLabel: "D-14",
+  /** 캠페인 지표 바 노출 여부 */
+  showCampaignBar: true,
+  /** 이번 회차 마감일 (KST 기준 날짜) */
+  deadline: "2026-08-20",
+  /** 회차 총 슬롯 */
+  totalSlots: 50,
+  /** 이번 회차 잔여 슬롯 */
   remainingSlots: 11,
-  cumulativeCount: "1,480",
-  allocationRate: 78,
+  /** 누적 진행 건수 */
+  cumulativeCount: 1480,
+  /** 카페 배포 주간 처리량 */
+  weeklyVolume: 1000,
 } as const;
+
+/** 마감까지 남은 일수. 지났으면 0. */
+export function daysUntilDeadline(now: Date = new Date()): number {
+  const end = new Date(`${CAMPAIGN.deadline}T23:59:59+09:00`).getTime();
+  return Math.max(0, Math.ceil((end - now.getTime()) / 86_400_000));
+}
+
+/** 이번 회차 배정률(%) — 잔여 슬롯에서 역산하므로 따로 관리하지 않는다. */
+export function allocationRate(): number {
+  const used = CAMPAIGN.totalSlots - CAMPAIGN.remainingSlots;
+  return Math.round((used / CAMPAIGN.totalSlots) * 100);
+}
 
 export interface RewardPlan {
   /** 기준 상품 수량 */
