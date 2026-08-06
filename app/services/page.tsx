@@ -6,10 +6,11 @@ import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare, Quote,
-  Navigation, Palette,
+  Navigation, Palette, Layers,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
+import { REF_TOTAL } from "../lib/cafe-distribution";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -39,6 +40,31 @@ export const metadata: Metadata = {
 };
 
 const SERVICES = [
+  {
+    id: "cafe-distribution",
+    icon: Layers,
+    color: "from-blue-600 to-indigo-700",
+    tag: "배포",
+    title: "블로그 배포 (최적화·카페)",
+    subtitle: "블로그 탭 + 카페 탭 동시 노출",
+    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다.",
+    timeline: "게시 시작 3~7일 · 수량별 순차 진행",
+    deliverables: [
+      { label: "카페 배포", value: "최대 20건 추가", note: "최블 30건 진행 시" },
+      { label: "1건당 단가", value: "28,600원~", note: "부가세 별도" },
+      { label: "결과 보고", value: "게시 URL 전체", note: "링크 정리 전달" },
+    ],
+    features: [
+      "업종·지역·목표 키워드 기준 카페 배정",
+      "원고 작성 포함 / 미포함 선택 가능",
+      "카페별 게시 형식에 맞춘 편집 처리",
+      "게시 완료 후 전체 URL 정리 보고",
+      "수량 분할 진행 협의 가능",
+    ],
+    rec: "블로그 노출은 되는데 검색 유입이 더 필요한 매장",
+    result: `9개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,
+    href: "/services/cafe-distribution",
+  },
   {
     id: "blog",
     icon: BookOpen,
@@ -235,10 +261,22 @@ const SERVICES_LD = {
   "name": "하랑마케팅 마케팅 서비스",
   "description": "소상공인·자영업자 전문 마케팅 대행 서비스 목록",
   "url": "https://www.harangmarketing.com/services",
-  "numberOfItems": 6,
+  "numberOfItems": 7,
   "itemListElement": [
     {
       "@type": "ListItem", "position": 1,
+      "item": {
+        "@type": "Service",
+        "name": "블로그 배포 (최적화·카페)",
+        "description": "최적화 블로그 배포와 네이버 카페 배포를 함께 진행해 블로그 탭·카페 탭에 동시 노출. 1건당 28,600원부터(부가세 별도), 게시 URL 전체 보고.",
+        "provider": { "@id": ORG_ID },
+        "areaServed": "대한민국",
+        "offers": { "@type": "Offer", "priceCurrency": "KRW", "price": 483000 },
+        "url": "https://www.harangmarketing.com/services/cafe-distribution",
+      },
+    },
+    {
+      "@type": "ListItem", "position": 2,
       "item": {
         "@type": "Service",
         "name": "블로그 마케팅",
@@ -250,7 +288,7 @@ const SERVICES_LD = {
       },
     },
     {
-      "@type": "ListItem", "position": 2,
+      "@type": "ListItem", "position": 3,
       "item": {
         "@type": "Service",
         "name": "네이버 플레이스 SEO",
@@ -262,7 +300,7 @@ const SERVICES_LD = {
       },
     },
     {
-      "@type": "ListItem", "position": 3,
+      "@type": "ListItem", "position": 4,
       "item": {
         "@type": "Service",
         "name": "체험단 모집 대행",
@@ -274,7 +312,7 @@ const SERVICES_LD = {
       },
     },
     {
-      "@type": "ListItem", "position": 4,
+      "@type": "ListItem", "position": 5,
       "item": {
         "@type": "Service",
         "name": "인스타그램·SNS 마케팅",
@@ -286,7 +324,7 @@ const SERVICES_LD = {
       },
     },
     {
-      "@type": "ListItem", "position": 5,
+      "@type": "ListItem", "position": 6,
       "item": {
         "@type": "Service",
         "name": "카카오맵 마케팅",
@@ -297,7 +335,7 @@ const SERVICES_LD = {
       },
     },
     {
-      "@type": "ListItem", "position": 6,
+      "@type": "ListItem", "position": 7,
       "item": {
         "@type": "Service",
         "name": "맘카페 바이럴 마케팅",
@@ -478,6 +516,16 @@ export default function ServicesPage() {
                         </div>
                       </div>
                     </div>
+
+                    {/* 별도 상세페이지가 있는 서비스만 노출 */}
+                    {"href" in s && s.href && (
+                      <Link
+                        href={s.href}
+                        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-blue-700 sm:w-auto"
+                      >
+                        상품 상세 · 가격 보기 <ArrowRight size={14} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               );
