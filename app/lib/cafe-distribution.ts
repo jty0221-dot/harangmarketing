@@ -501,6 +501,27 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
 ];
 
+/**
+ * 상세페이지 인라인 증거용 대표 캡처.
+ *
+ * 와디즈형 상세페이지는 "말"보다 "실제 화면"이 설득력을 만든다.
+ * 레퍼런스 페이지로 넘어가지 않아도 상세페이지에서 바로 실물을 보게 한다.
+ * 업종이 한쪽으로 쏠리지 않게 맛집 2 + 타 업종 2로 구성.
+ */
+export const PROOF_SAMPLES: { keyword: string; image: string; industry: string }[] = [
+  { keyword: "광안리 현지인 맛집", image: "/cafe-ref/ref-r-37.png", industry: "맛집 / 외식" },
+  { keyword: "서귀포 흑돼지 맛집",  image: "/cafe-ref/ref-r-118.png", industry: "맛집 / 외식" },
+  { keyword: "목동필라테스",        image: "/cafe-ref/ref-f-02.png",  industry: "헬스 / PT" },
+  { keyword: "강아지 눈물사료 추천", image: "/cafe-ref/ref-p-04.png",  industry: "반려동물" },
+];
+
+/** 상세페이지 신뢰 보장 항목 */
+export const GUARANTEES = [
+  { title: "게시 URL 전체 전달", desc: "진행한 건마다 실제 게시 링크를 정리해 드립니다. 확인 못 하는 작업은 없습니다." },
+  { title: "표기 금액 부가세 별도", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
+  { title: "상담·업종 가능 여부 진단 0원", desc: "진행이 어려운 업종이면 계약 전에 솔직하게 말씀드립니다." },
+];
+
 /** 레퍼런스 총 키워드 수 */
 export const REF_TOTAL = REF_CATEGORIES.reduce((n, c) => n + c.keywords.length, 0);
 

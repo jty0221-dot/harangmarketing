@@ -7,6 +7,7 @@ import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import {
   CAMPAIGN, REWARD_WITH_COPY, REWARD_WITHOUT_COPY, PRICE_NOTE,
   WHY_CAFE, PROCESS_STEPS, CAFE_FAQ, REF_CATEGORIES, REF_TOTAL, won,
+  PROOF_SAMPLES, GUARANTEES,
   type RewardPlan,
 } from "../../lib/cafe-distribution";
 
@@ -313,7 +314,63 @@ export default function CafeDistributionPage() {
           </section>
         )}
 
-        {/* ══ 3. WHY CAFE ══ */}
+        {/* ══ 3. 문제 제기 — 스크롤 서사의 출발점 ══ */}
+        <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-dark-2)" }}>
+          <div className={INNER}>
+            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary-lt3)" }}>
+              PROBLEM
+            </p>
+            <h2
+              className="cd-display text-[28px] leading-[1.25] text-white md:text-[42px]"
+              style={{ letterSpacing: "-1.5px" }}
+            >
+              블로그는 올리고 있는데
+              <br />
+              왜 문의는 그대로일까요
+            </h2>
+
+            <p className="mt-6 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
+              블로그 탭에서 내 글을 본 사람은 이미 봤습니다.
+              문제는 <strong className="font-bold text-white">블로그를 건너뛰고 카페 탭부터 여는 사람들</strong>입니다.
+              광고 같지 않은 후기를 찾으려는 사람일수록 그렇습니다. 이쪽에는 우리 이야기가 아예 없습니다.
+            </p>
+
+            {/* 있음 / 없음 대비 */}
+            <div className="mt-9 grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
+              <div
+                className="rounded-[18px] p-5 md:p-7"
+                style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.12)" }}
+              >
+                <p className="mb-2 text-[13px] font-bold" style={{ color: "var(--cd-on-dark-2)" }}>
+                  블로그만 진행했을 때
+                </p>
+                <p className="cd-display text-[22px] leading-tight md:text-[26px]" style={{ color: "#8f9cba" }}>
+                  블로그 탭에서만 노출
+                </p>
+                <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: "var(--cd-on-dark-2)" }}>
+                  카페 탭으로 넘어간 고객에게는 우리 매장이 보이지 않습니다.
+                </p>
+              </div>
+
+              <div
+                className="rounded-[18px] p-5 md:p-7"
+                style={{ background: "rgba(22,85,232,.18)", border: "1px solid rgba(127,166,255,.45)" }}
+              >
+                <p className="mb-2 text-[13px] font-bold" style={{ color: "var(--cd-primary-lt3)" }}>
+                  카페 배포를 함께 했을 때
+                </p>
+                <p className="cd-display text-[22px] leading-tight text-white md:text-[26px]">
+                  블로그 + 카페 양쪽 노출
+                </p>
+                <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: "var(--cd-on-dark)" }}>
+                  어느 탭을 열든 우리 이야기가 한 번은 보입니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ 4. WHY CAFE ══ */}
         <section className="bg-white py-14 md:py-[66px]">
           <div className={INNER}>
             <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
@@ -356,7 +413,80 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 4·5. REWARD 01 / 02 ══ */}
+        {/* ══ 5. 실제 노출 증거 — 가격을 보기 전에 실물을 먼저 보여준다 ══ */}
+        <section className="bg-white pb-14 md:pb-[66px]">
+          <div className={INNER}>
+            <div className="rounded-[20px] p-5 md:p-8" style={{ background: "var(--cd-dark)" }}>
+              <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary-lt3)" }}>
+                PROOF
+              </p>
+              <h2
+                className="cd-display text-[24px] leading-[1.25] text-white md:text-[34px]"
+                style={{ letterSpacing: "-1.5px" }}
+              >
+                말로 설명하지 않겠습니다.
+                <br />
+                실제 검색 화면입니다
+              </h2>
+              <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
+                아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
+                보정하지 않았고, 진행 건마다 이런 캡처와 게시 URL을 함께 드립니다.
+              </p>
+
+              <div className="mt-7 flex flex-col gap-3 md:gap-4">
+                {PROOF_SAMPLES.map((s) => (
+                  <figure key={s.image} className="overflow-hidden rounded-[14px] bg-white">
+                    <figcaption
+                      className="flex items-center gap-2.5 px-3 py-2.5 md:px-[18px] md:py-3"
+                      style={{ background: "var(--cd-tint)", borderBottom: "1px solid var(--cd-border-2)" }}
+                    >
+                      <span
+                        className="shrink-0 rounded-[5px] px-2 py-1 text-[11px] font-black text-white"
+                        style={{ background: "var(--cd-primary)" }}
+                      >
+                        N
+                      </span>
+                      <span
+                        className="min-w-0 flex-1 truncate text-[14px] font-bold md:text-[16px]"
+                        style={{ color: "var(--cd-ink-2)" }}
+                        title={s.keyword}
+                      >
+                        {s.keyword}
+                      </span>
+                      <span className="hidden shrink-0 text-[12px] sm:block" style={{ color: "var(--cd-muted)" }}>
+                        {s.industry}
+                      </span>
+                    </figcaption>
+                    <img
+                      src={s.image}
+                      alt={`'${s.keyword}' 검색 시 네이버 카페 영역 노출 화면`}
+                      width={1000}
+                      height={290}
+                      loading="lazy"
+                      decoding="async"
+                      className="block h-auto w-full"
+                    />
+                  </figure>
+                ))}
+              </div>
+
+              <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+                <p className="text-[14px]" style={{ color: "var(--cd-on-dark-2)" }}>
+                  이 외에 {REF_CATEGORIES.length}개 업종 {REF_TOTAL}개 키워드를 모두 공개하고 있습니다.
+                </p>
+                <Link
+                  href={`${PATH}/reference`}
+                  className="inline-flex w-full shrink-0 items-center justify-center rounded-full px-6 py-3 text-[15px] font-black text-white transition-opacity hover:opacity-90 sm:w-auto"
+                  style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+                >
+                  레퍼런스 {REF_TOTAL}건 전체 보기
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ 6·7. REWARD 01 / 02 ══ */}
         <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-tint)" }}>
           <div className={INNER}>
             {/* REWARD 01 */}
@@ -437,7 +567,78 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 6. PROCESS ══ */}
+        {/* ══ 8. 신뢰 보장 — 가격을 본 직후의 망설임을 받아준다 ══ */}
+        <section className="bg-white py-14 md:py-[66px]">
+          <div className={INNER}>
+            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
+              PROMISE
+            </p>
+            <h2
+              className="cd-display mb-8 text-[28px] leading-[1.25] md:text-[38px]"
+              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
+            >
+              결제 전에 먼저 밝히는 것들
+            </h2>
+
+            <div className="flex flex-col gap-3">
+              {GUARANTEES.map((g) => (
+                <div
+                  key={g.title}
+                  className="flex items-start gap-4 rounded-[16px] p-5 md:p-6"
+                  style={{ background: "var(--cd-tint)" }}
+                >
+                  <span
+                    className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "var(--cd-primary)" }}
+                  >
+                    <Check size={15} className="text-white" strokeWidth={3} />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="mb-1 text-[16px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
+                      {g.title}
+                    </h3>
+                    <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+                      {g.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 중간 CTA — 스크롤이 긴 상세페이지에서 이탈 지점을 잡아준다 */}
+            <div
+              className="mt-9 flex flex-col items-center gap-4 rounded-[20px] px-5 py-7 text-center md:px-8"
+              style={{ background: "var(--cd-tint-2)" }}
+            >
+              <p className="text-[16px] font-bold leading-[1.6] md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
+                내 업종도 카페 배포가 되는지부터 확인해 보세요
+              </p>
+              <p className="-mt-2 text-[14px]" style={{ color: "var(--cd-body-2)" }}>
+                업종과 목표 키워드만 알려주시면 가능 여부를 먼저 알려드립니다. 상담 0원.
+              </p>
+              <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
+                <Link
+                  href={CTA_HREF}
+                  className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-[15px] font-black text-white transition-opacity hover:opacity-90"
+                  style={{ background: "var(--cd-primary)" }}
+                >
+                  가능 여부 문의하기
+                </Link>
+                <a
+                  href={KAKAO_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-[15px] font-bold text-gray-900 transition-opacity hover:opacity-90"
+                  style={{ background: "#FAE100" }}
+                >
+                  카카오톡으로 묻기
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ 9. PROCESS ══ */}
         <section className="bg-white py-14 md:py-[66px]">
           <div className={INNER}>
             <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
