@@ -71,10 +71,11 @@ const LD = [
 export default async function ReferencePage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; page?: string }>;
 }) {
-  const { category } = await searchParams;
+  const { category, page } = await searchParams;
   const initialSlug = category ?? REF_CATEGORIES[0].slug;
+  const initialPage = Math.max(1, Number(page) || 1);
 
   return (
     <>
@@ -94,7 +95,7 @@ export default async function ReferencePage({
             >
               <Link
                 href="/services/cafe-distribution"
-                className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[14px] font-black transition-opacity hover:opacity-90 md:text-[15px]"
+                className="mx-auto mb-6 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-[14px] font-black transition-opacity hover:opacity-90 md:text-[15px]"
                 style={{ color: "var(--cd-primary-deep)" }}
               >
                 <img src="/harang-icon.svg" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
@@ -145,7 +146,7 @@ export default async function ReferencePage({
           </p>
         </div>
 
-        <ReferenceClient initialSlug={initialSlug} />
+        <ReferenceClient initialSlug={initialSlug} initialPage={initialPage} />
 
         {/* ══ 하단 CTA ══ */}
         <section

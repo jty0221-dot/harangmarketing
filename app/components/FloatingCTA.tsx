@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, X, ChevronUp, ArrowRight, Clock, Zap, Shield, Handshake } from "lucide-react";
+import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Clock, Zap, Shield, Handshake } from "lucide-react";
 
 function useBusinessHours() {
   const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
@@ -25,15 +25,25 @@ export default function FloatingCTA() {
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  /** 아직 아래로 더 내려갈 여지가 있을 때만 '맨 아래로' 를 노출한다 */
+  const [showScrollBottom, setShowScrollBottom] = useState(false);
   const bizStatus = useBusinessHours();
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(window.scrollY > 300);
-      setShowScrollTop(window.scrollY > 600);
+      const y = window.scrollY;
+      const remaining = document.documentElement.scrollHeight - y - window.innerHeight;
+      setVisible(y > 300);
+      setShowScrollTop(y > 600);
+      setShowScrollBottom(remaining > 600);
     };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   if (!visible) return null;
@@ -48,14 +58,33 @@ export default function FloatingCTA() {
     <>
       {/* Desktop: 우측 플로팅 */}
       <div className="hidden md:flex fixed right-6 bottom-8 z-40 flex-col items-end gap-3">
-        {showScrollTop && (
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-10 h-10 rounded-xl bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-400 hover:text-gray-700 hover:shadow-lg transition-all"
-            aria-label="맨 위로"
-          >
-            <ChevronUp size={18} />
-          </button>
+        {/* 맨 위 / 맨 아래 이동 — 긴 페이지(레퍼런스 등)에서 왕복을 줄여준다 */}
+        {(showScrollTop || showScrollBottom) && (
+          <div className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
+            {showScrollTop && (
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="flex h-10 w-10 items-center justify-center text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-700"
+                aria-label="맨 위로"
+                title="맨 위로"
+              >
+                <ChevronUp size={18} />
+              </button>
+            )}
+            {showScrollTop && showScrollBottom && <div className="h-px bg-gray-200" />}
+            {showScrollBottom && (
+              <button
+                onClick={() =>
+                  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" })
+                }
+                className="flex h-10 w-10 items-center justify-center text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-700"
+                aria-label="맨 아래로"
+                title="맨 아래로"
+              >
+                <ChevronDown size={18} />
+              </button>
+            )}
+          </div>
         )}
 
         {expanded && (
