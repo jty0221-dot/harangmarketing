@@ -4,6 +4,31 @@ import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Handshake
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400">
+      {/* 배포 상품 띠배너 — 모든 페이지 하단에서 상세페이지로 보내는 진입점 */}
+      <Link
+        href="/services/cafe-distribution"
+        className="group block transition-opacity hover:opacity-95"
+        style={{ background: "linear-gradient(90deg,#1655e8,#2f6bf5 55%,#5b8dfa)" }}
+      >
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between md:px-6 md:py-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <span className="rounded-full bg-white px-2.5 py-1 text-[11px] font-black" style={{ color: "#1449c8" }}>
+              신규 출시
+            </span>
+            <p className="text-[15px] font-black text-white md:text-[17px]">
+              최적화 블로그 · 카페 배포
+            </p>
+            <p className="text-[13px] text-blue-100 md:text-[14px]">
+              블로그 탭 + 카페 탭 동시 노출 · 1건당 28,600원부터
+            </p>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-black transition-transform group-hover:translate-x-0.5 md:text-[14px]"
+            style={{ color: "#1449c8" }}>
+            상품 보기 <ArrowRight size={14} />
+          </span>
+        </div>
+      </Link>
+
       {/* Pre-footer CTA strip */}
       <div style={{ background: "var(--h-dark)" }}>
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-10">
@@ -75,6 +100,9 @@ export default function Footer() {
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">서비스</h4>
               <ul className="space-y-2.5 text-sm">
                 {[
+                  // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로
+                  ["최적화 블로그 · 카페 배포", "/services/cafe-distribution", true],
+                  ["카페 배포 레퍼런스", "/services/cafe-distribution/reference"],
                   ["블로그 마케팅", "/services#blog"],
                   ["플레이스 SEO", "/services#place"],
                   ["체험단·리뷰", "/services#review"],
@@ -82,10 +110,21 @@ export default function Footer() {
                   ["맘카페 바이럴", "/services"],
                   ["무료 플레이스 진단", "/free-check"],
                   ["패키지 견적 계산기", "/estimate"],
-                ].map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="hover:text-gray-200 transition-colors text-gray-500">
+                ].map(([label, href, isNew]) => (
+                  <li key={label as string}>
+                    <Link
+                      href={href as string}
+                      className={`inline-flex items-center gap-1.5 transition-colors ${
+                        isNew ? "font-bold text-gray-300 hover:text-white" : "text-gray-500 hover:text-gray-200"
+                      }`}
+                    >
                       {label}
+                      {isNew && (
+                        <span className="rounded px-1.5 py-0.5 text-[9px] font-black leading-none text-white"
+                          style={{ background: "var(--h-navy)" }}>
+                          NEW
+                        </span>
+                      )}
                     </Link>
                   </li>
                 ))}

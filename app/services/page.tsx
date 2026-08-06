@@ -8,7 +8,6 @@ import {
   ChevronDown, Users, BarChart3, MessageSquare, Quote,
   Navigation, Palette, Layers,
 } from "lucide-react";
-import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL } from "../lib/cafe-distribution";
 import AnswerBlock from "../components/AnswerBlock";
@@ -369,17 +368,29 @@ export default function ServicesPage() {
     <>
       <JsonLd data={SERVICES_PAGE_LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
+      {/* cafe-dist 스코프 — 카페 배포 상세페이지와 같은 토큰·서체를 쓴다 */}
+      <main className="cafe-dist pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
-          <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Services</p>
-            <h1 className="text-3xl md:text-4xl font-black text-white mb-5 leading-tight">
-              업종별로 다른 전략,<br /><span className="text-blue-400">결과로 증명합니다</span>
+        <section
+          className="relative overflow-hidden py-14 md:py-20"
+          style={{ background: "linear-gradient(160deg,#111 0%,#16224a 55%,#0b1226 100%)" }}
+        >
+          <div className="pointer-events-none absolute right-1/3 top-0 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
+          <div className="relative mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
+            <p className="mb-4 text-[13px] font-bold tracking-[2px]" style={{ color: "var(--cd-primary-lt3)" }}>
+              SERVICES
+            </p>
+            <h1
+              className="cd-display mb-5 text-[34px] leading-[1.15] text-white md:text-[52px]"
+              style={{ letterSpacing: "-2px" }}
+            >
+              업종별로 다른 전략,
+              <br />
+              <span style={{ color: "var(--cd-primary-lt3)" }}>결과로 증명합니다</span>
             </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-8">
-              4개 핵심 마케팅 채널을 단독 또는 패키지로 운영합니다.<br />
+            <p className="mb-8 max-w-xl text-[16px] leading-relaxed md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
+              핵심 마케팅 채널을 단독 또는 패키지로 운영합니다.
+              <br />
               모든 서비스는 대표가 직접 담당합니다.
             </p>
             <div className="flex flex-wrap gap-2">
@@ -387,7 +398,7 @@ export default function ServicesPage() {
                 const Icon = s.icon;
                 return (
                   <a key={s.id} href={`#${s.id}`}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-semibold hover:bg-white/20 transition-colors">
+                    className="flex min-h-[44px] items-center gap-1.5 rounded-xl border border-blue-400/30 bg-white/5 px-3.5 text-xs font-semibold text-blue-100 transition-colors hover:bg-white/10">
                     <Icon size={12} />
                     {s.title}
                   </a>
@@ -437,15 +448,46 @@ export default function ServicesPage() {
             {SERVICES.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.id} id={s.id}
-                  className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden scroll-mt-20">
-                  {/* Cover photo */}
-                  <PhotoPlaceholder
-                    label={`${s.title} 작업 예시`}
-                    hint="실제 성과 화면·작업물 캡처로 교체 예정"
-                    height="h-44"
-                    className="rounded-none border-0 border-b-2"
-                  />
+                <div
+                  key={s.id}
+                  id={s.id}
+                  className="scroll-mt-20 overflow-hidden rounded-2xl bg-white shadow-sm"
+                  style={
+                    "href" in s && s.href
+                      ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(22,85,232,.14)" }
+                      : { border: "1px solid var(--cd-border)" }
+                  }
+                >
+                  {/* 커버 — 상세페이지가 있는 상품은 실제 노출 캡처를, 나머지는 브랜드 밴드를 쓴다.
+                      캡처는 카페 영역 화면이라 해당 상품에만 붙여야 다른 서비스를 오인시키지 않는다. */}
+                  {"href" in s && s.href ? (
+                    <div className="relative">
+                      <img
+                        src="/cafe-ref/ref-r-01.png"
+                        alt="네이버 카페 영역 상위노출 실제 화면"
+                        width={1000}
+                        height={290}
+                        loading="lazy"
+                        decoding="async"
+                        className="block h-44 w-full object-cover object-top"
+                      />
+                      <span
+                        className="absolute left-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-black text-white"
+                        style={{ background: "var(--cd-primary)" }}
+                      >
+                        실제 노출 화면
+                      </span>
+                    </div>
+                  ) : (
+                    <div
+                      className={`flex h-24 items-center gap-3 bg-gradient-to-br px-6 md:px-8 ${s.color}`}
+                    >
+                      <Icon size={26} className="text-white/90" strokeWidth={1.5} />
+                      <span className="cd-display text-[22px] text-white md:text-[26px]" style={{ letterSpacing: "-1px" }}>
+                        {s.title}
+                      </span>
+                    </div>
+                  )}
                   {/* Card header */}
                   <div className="p-6 md:p-8 border-b border-gray-50">
                     <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
