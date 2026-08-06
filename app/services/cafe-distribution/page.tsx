@@ -7,7 +7,7 @@ import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import {
   CAMPAIGN, REWARD_WITH_COPY, REWARD_WITHOUT_COPY, PRICE_NOTE,
   WHY_CAFE, PROCESS_STEPS, CAFE_FAQ, REF_CATEGORIES, REF_TOTAL, won,
-  PROOF_SAMPLES, GUARANTEES, daysUntilDeadline, allocationRate,
+  PROOF_SAMPLES, GUARANTEES, currentRound, remainingSlots, allocationRate,
   type RewardPlan,
 } from "../../lib/cafe-distribution";
 
@@ -200,7 +200,9 @@ function RewardCard({ p }: { p: RewardPlan }) {
 export const revalidate = 3600;
 
 export default function CafeDistributionPage() {
-  const dday = daysUntilDeadline();
+  // 회차·잔여 슬롯·배정률은 전부 날짜에서 파생된다 (lib/cafe-distribution.ts)
+  const { round, dday } = currentRound();
+  const slots = remainingSlots();
   const rate = allocationRate();
 
   return (
@@ -280,8 +282,8 @@ export default function CafeDistributionPage() {
             <div className="mx-auto w-full max-w-[860px]">
               <dl className="flex">
                 {[
-                  { label: "참여 마감", value: dday > 0 ? `D-${dday}` : "마감", unit: "", accent: true },
-                  { label: "이번 회차 잔여", value: String(CAMPAIGN.remainingSlots), unit: "슬롯" },
+                  { label: `${round}회차 마감`, value: `D-${dday}`, unit: "", accent: true },
+                  { label: "이번 회차 잔여", value: String(slots), unit: "슬롯" },
                   { label: "카페 배포 주간 처리", value: CAMPAIGN.weeklyVolume.toLocaleString("ko-KR"), unit: "건+" },
                 ].map((m, i) => (
                   <div

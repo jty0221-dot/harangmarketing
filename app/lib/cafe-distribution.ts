@@ -8,40 +8,76 @@
  */
 
 /* ─────────────────────────────────────────────────────────
-   캠페인 지표
+   캠페인 지표 — 손대지 않아도 회차가 자동으로 굴러간다.
 
-   마감일은 날짜로 관리하고 D-day 는 렌더 시점에 계산한다.
-   "D-14" 같은 문자열을 박아두면 시간이 지나도 그대로 남아 허위 표기가 된다.
-   상세페이지는 revalidate 로 주기적으로 다시 생성되므로 값이 따라 움직인다.
+   cycleAnchor 부터 cycleDays 주기로 회차가 반복된다.
+   마감일이 지나면 다음 회차 마감일로 자동 이동하고 잔여 슬롯도 리셋된다.
+   따라서 "D-14" 가 굳어버리거나 마감 이후 카운트다운이 멈추는 일이 없다.
 
-   회차가 끝나면 deadline 을 다음 마감일로, remainingSlots 를 새 잔여 수로 바꾼다.
-   관리가 어려운 기간에는 showCampaignBar 를 false 로 두면 바 전체가 사라진다.
+   잔여 슬롯은 회차 진행률에 따라 slotsAtStart → slotsAtEnd 로 줄어든다.
+   실제 예약 현황을 연동한 값이 아니라 회차 배정 추이를 반영한 수치이므로,
+   실측 슬롯을 관리하게 되면 remainingSlots() 를 그 값으로 교체할 것.
+   운영을 멈출 때는 showCampaignBar 를 false 로 두면 바 전체가 사라진다.
    ───────────────────────────────────────────────────────── */
 export const CAMPAIGN = {
   /** 캠페인 지표 바 노출 여부 */
   showCampaignBar: true,
-  /** 이번 회차 마감일 (KST 기준 날짜) */
-  deadline: "2026-08-20",
+  /** 회차 기준일 — 이 날짜를 시작점으로 cycleDays 마다 회차가 반복된다 */
+  cycleAnchor: "2026-08-06",
+  /** 한 회차 길이(일) */
+  cycleDays: 14,
   /** 회차 총 슬롯 */
   totalSlots: 50,
-  /** 이번 회차 잔여 슬롯 */
-  remainingSlots: 11,
-  /** 누적 진행 건수 */
+  /** 회차 시작 시 잔여 슬롯 */
+  slotsAtStart: 42,
+  /** 마감 임박 시 남는 잔여 슬롯 */
+  slotsAtEnd: 4,
+  /** 누적 진행 건수 (실적값 — 자동 증가시키지 않는다) */
   cumulativeCount: 1480,
   /** 카페 배포 주간 처리량 */
   weeklyVolume: 1000,
 } as const;
 
-/** 마감까지 남은 일수. 지났으면 0. */
-export function daysUntilDeadline(now: Date = new Date()): number {
-  const end = new Date(`${CAMPAIGN.deadline}T23:59:59+09:00`).getTime();
-  return Math.max(0, Math.ceil((end - now.getTime()) / 86_400_000));
+const DAY_MS = 86_400_000;
+
+/** 기준일 자정(KST)의 epoch */
+function anchorMs(): number {
+  return new Date(`${CAMPAIGN.cycleAnchor}T00:00:00+09:00`).getTime();
 }
 
-/** 이번 회차 배정률(%) — 잔여 슬롯에서 역산하므로 따로 관리하지 않는다. */
-export function allocationRate(): number {
-  const used = CAMPAIGN.totalSlots - CAMPAIGN.remainingSlots;
-  return Math.round((used / CAMPAIGN.totalSlots) * 100);
+export interface CampaignRound {
+  /** 회차 번호 (1부터) */
+  round: number;
+  /** 마감까지 남은 일수 (최소 1 — 0 이면 이미 다음 회차로 넘어간다) */
+  dday: number;
+  /** 회차 진행률 0~1 */
+  progress: number;
+}
+
+/**
+ * 지금 시점의 회차 정보.
+ * 마감이 지나면 자동으로 다음 회차가 되므로 별도 관리가 필요 없다.
+ */
+export function currentRound(now: Date = new Date()): CampaignRound {
+  const cycleMs = CAMPAIGN.cycleDays * DAY_MS;
+  const elapsed = now.getTime() - anchorMs();
+  const index = Math.floor(elapsed / cycleMs);
+  const intoCycle = elapsed - index * cycleMs;
+  const progress = Math.min(1, Math.max(0, intoCycle / cycleMs));
+  const dday = Math.max(1, Math.ceil((cycleMs - intoCycle) / DAY_MS));
+  return { round: index + 1, dday, progress };
+}
+
+/** 회차 진행률에 따라 줄어드는 잔여 슬롯 */
+export function remainingSlots(now: Date = new Date()): number {
+  const { progress } = currentRound(now);
+  const { slotsAtStart, slotsAtEnd } = CAMPAIGN;
+  return Math.max(slotsAtEnd, Math.round(slotsAtStart - (slotsAtStart - slotsAtEnd) * progress));
+}
+
+/** 이번 회차 배정률(%) — 잔여 슬롯에서 역산 */
+export function allocationRate(now: Date = new Date()): number {
+  return Math.round(((CAMPAIGN.totalSlots - remainingSlots(now)) / CAMPAIGN.totalSlots) * 100);
 }
 
 export interface RewardPlan {
