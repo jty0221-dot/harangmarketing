@@ -48,6 +48,8 @@ const NAV_ITEMS = [
     label: "서비스",
     href: "/services",
     sub: [
+      // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로 연결한다
+      { label: "블로그 배포 (최적화·카페)", href: "/services/cafe-distribution" },
       { label: "블로그·기자단", href: "/services#blog" },
       { label: "플레이스 SEO", href: "/services#place" },
       { label: "SNS 마케팅", href: "/services#sns" },
@@ -187,12 +189,13 @@ export default function Header() {
                       <ChevronDown size={13} className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
                     </Link>
                     {dropdownOpen && (
-                      <div className="absolute top-full left-0 mt-1 w-44 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden py-1">
+                      // w-56 — 가장 긴 항목("블로그 배포 (최적화·카페)")이 한 줄에 들어가는 폭
+                      <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden py-1">
                         {item.sub.map((s) => (
                           <Link
                             key={s.href}
                             href={s.href}
-                            className="block px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                            className="block whitespace-nowrap px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
                           >
                             {s.label}
                           </Link>
@@ -284,7 +287,7 @@ export default function Header() {
                         <Link
                           key={s.href}
                           href={s.href}
-                          className="block px-4 py-2 rounded-lg text-xs text-gray-400 hover:text-gray-700 hover:bg-gray-50 transition-colors"
+                          className="flex min-h-[44px] items-center rounded-lg px-4 text-xs text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-700"
                         >
                           · {s.label}
                         </Link>
