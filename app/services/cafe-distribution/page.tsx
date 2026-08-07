@@ -178,7 +178,12 @@ function RewardCard({ p }: { p: RewardPlan }) {
               </span>
             )}
           </div>
-          <div className="cd-num text-[26px] leading-none md:text-[34px]" style={{ color: "var(--cd-ink-3)" }}>
+          {/* 320px 에서 "1,715,000원" 이 칸을 넘어 두 줄로 깨진다.
+              좁은 화면에서는 자간을 조여 한 줄을 유지한다. */}
+          <div
+            className="cd-num whitespace-nowrap text-[21px] leading-none sm:text-[26px] md:text-[34px]"
+            style={{ color: "var(--cd-ink-3)" }}
+          >
             {won(p.eventPrice)}
           </div>
         </div>
@@ -574,7 +579,7 @@ export default function CafeDistributionPage() {
                       <span className="text-[14px] line-through md:text-[17px]" style={{ color: "var(--cd-muted-3)" }}>
                         {won(p.listPrice)}
                       </span>
-                      <span className="cd-num text-[22px] md:text-[28px]" style={{ color: "var(--cd-ink-3)" }}>
+                      <span className="cd-num whitespace-nowrap text-[20px] sm:text-[22px] md:text-[28px]" style={{ color: "var(--cd-ink-3)" }}>
                         {won(p.eventPrice)}
                       </span>
                     </div>

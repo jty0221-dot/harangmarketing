@@ -126,7 +126,7 @@ export default async function ReferencePage({
                 ].map((t) => (
                   <span
                     key={t}
-                    className="rounded-full bg-white px-4 py-3 text-[14px] font-black md:px-6 md:py-3.5 md:text-[21px]"
+                    className="rounded-full bg-white px-3 py-2.5 text-[12.5px] font-black leading-snug sm:px-4 sm:py-3 sm:text-[14px] md:px-6 md:py-3.5 md:text-[21px]"
                     style={{ color: "var(--cd-primary-deep)" }}
                   >
                     {t}
