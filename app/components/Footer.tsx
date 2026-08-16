@@ -101,6 +101,7 @@ export default function Footer() {
               <ul className="space-y-2.5 text-sm">
                 {[
                   // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로
+                  ["하랑 스튜디오 (사진·영상 프로그램)", "/studio", true],
                   ["최적화 블로그 · 카페 배포", "/services/cafe-distribution", true],
                   ["카페 배포 레퍼런스", "/services/cafe-distribution/reference"],
                   ["블로그 마케팅", "/services#blog"],
@@ -137,6 +138,7 @@ export default function Footer() {
                 {[
                   ["회사소개", "/about"],
                   ["마케팅상품", "/services"],
+                  ["프로그램", "/studio"],
                   ["진행사례", "/cases"],
                   ["FAQ", "/faq"],
                   ["블로그", "/blog"],

@@ -63,6 +63,39 @@ const SERVICES = [
     rec: "블로그 노출은 되는데 검색 유입이 더 필요한 매장",
     result: `9개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,
     href: "/services/cafe-distribution",
+    cover: "/cafe-ref/ref-r-01.png",
+    coverAlt: "네이버 카페 영역 상위노출 실제 화면",
+    coverBadge: "실제 노출 화면",
+  },
+  {
+    // 대행 서비스가 아니라 자사 프로그램. 상세는 /studio 에 따로 있다.
+    id: "studio",
+    icon: Palette,
+    color: "from-slate-700 to-slate-900",
+    tag: "프로그램",
+    title: "하랑 스튜디오 — 사진·영상 정리 프로그램",
+    subtitle: "동영상 GIF 변환 · 사진 세탁 · 워터마크",
+    desc: "대행 일을 하면서 매일 겪는 문제라 직접 만들어 쓰는 윈도우 프로그램입니다. 현장 사진 100장을 1분 안에 정리하고, 영상은 끌어다 놓으면 움짤이 됩니다. 파일을 외부에 올리지 않고 내 컴퓨터 안에서 처리합니다.",
+    timeline: "설치 없음 · 받는 즉시 사용",
+    deliverables: [
+      { label: "무료 체험", value: "100장", note: "기능 제한 없음" },
+      { label: "한 달", value: "4,900원", note: "1년 39,000원" },
+      { label: "대행사 PC 3대", value: "89,000원", note: "1년 기준" },
+    ],
+    features: [
+      "동영상 GIF 변환 · 목표 용량 자동 맞춤",
+      "사진 100장 일괄 보정 (장마다 다른 값)",
+      "영상에서 사진 뽑기 · 장면 전환 감지",
+      "시공 전후 사진 한 장으로 붙이기",
+      "매장명·연락처 워터마크",
+      "영상 용량 줄이기 (카톡·블로그 규격)",
+    ],
+    rec: "현장 사진이 매일 쌓이는 대행사·청소·인테리어·설비",
+    result: "사진 100장 정리 2시간 → 1분 (사무실 노트북 실측)",
+    href: "/studio",
+    cover: "/studio/shot-files.png",
+    coverAlt: "하랑 스튜디오 사진 선택 화면",
+    coverBadge: "프로그램 화면",
   },
   {
     id: "blog",
@@ -257,10 +290,10 @@ const INDUSTRY_LINKS = [
 const SERVICES_LD = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "하랑마케팅 마케팅 서비스",
-  "description": "소상공인·자영업자 전문 마케팅 대행 서비스 목록",
+  "name": "하랑마케팅 마케팅 서비스와 프로그램",
+  "description": "소상공인·자영업자 전문 마케팅 대행 서비스와 자체 제작 사진·영상 정리 프로그램 목록",
   "url": "https://www.harangmarketing.com/services",
-  "numberOfItems": 7,
+  "numberOfItems": 8,
   "itemListElement": [
     {
       "@type": "ListItem", "position": 1,
@@ -342,6 +375,21 @@ const SERVICES_LD = {
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
+      },
+    },
+    {
+      // 대행 서비스가 아니라 자사 소프트웨어라 Service 가 아닌 SoftwareApplication 으로 넣는다.
+      // 상세 마크업은 /studio 페이지에 있고 여기서는 목록 항목으로만 선언한다.
+      "@type": "ListItem", "position": 8,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "하랑 스튜디오",
+        "description": "현장 사진 100장을 1분 안에 정리하고 영상을 GIF로 바꾸는 윈도우 프로그램. 파일을 외부에 올리지 않고 내 컴퓨터에서 처리합니다. 무료 100장 체험 후 한 달 4,900원.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Windows 10, Windows 11",
+        "author": { "@id": ORG_ID },
+        "offers": { "@type": "Offer", "price": 4900, "priceCurrency": "KRW" },
+        "url": "https://www.harangmarketing.com/studio",
       },
     },
   ],
@@ -458,13 +506,13 @@ export default function ServicesPage() {
                       : { border: "1px solid var(--cd-border)" }
                   }
                 >
-                  {/* 커버 — 상세페이지가 있는 상품은 실제 노출 캡처를, 나머지는 브랜드 밴드를 쓴다.
-                      캡처는 카페 영역 화면이라 해당 상품에만 붙여야 다른 서비스를 오인시키지 않는다. */}
-                  {"href" in s && s.href ? (
+                  {/* 커버 — 상품마다 자기 화면을 쓴다. 캡처를 공용으로 돌려 쓰면
+                      다른 서비스의 화면이 붙어 고객을 오인시킨다. 없으면 브랜드 밴드. */}
+                  {"cover" in s && s.cover ? (
                     <div className="relative">
                       <img
-                        src="/cafe-ref/ref-r-01.png"
-                        alt="네이버 카페 영역 상위노출 실제 화면"
+                        src={s.cover}
+                        alt={s.coverAlt}
                         width={1000}
                         height={290}
                         loading="lazy"
@@ -475,7 +523,7 @@ export default function ServicesPage() {
                         className="absolute left-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-black text-white"
                         style={{ background: "var(--cd-primary)" }}
                       >
-                        실제 노출 화면
+                        {s.coverBadge}
                       </span>
                     </div>
                   ) : (

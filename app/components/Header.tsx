@@ -49,6 +49,7 @@ const NAV_ITEMS = [
     href: "/services",
     sub: [
       // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로 연결한다
+      { label: "하랑 스튜디오 — 사진·영상 프로그램", href: "/studio" },
       { label: "최적화 블로그 · 카페 배포", href: "/services/cafe-distribution" },
       { label: "블로그·기자단", href: "/services#blog" },
       { label: "플레이스 SEO", href: "/services#place" },
@@ -58,6 +59,9 @@ const NAV_ITEMS = [
       { label: "진행 과정", href: "/process" },
     ],
   },
+  // 하랑 스튜디오(/studio)는 위 '서비스' 드롭다운 첫 줄에 둔다.
+  // 최상위 항목으로 하나 더 넣으면 내비 폭(947px)이 모자라 스크롤 상태에서
+  // 모든 메뉴 글자가 두 줄로 접힌다. 1280~1600px 전부에서 확인했다.
   { label: "마케팅 인사이트", href: "/blog" },
   { label: "진행사례", href: "/cases" },
   { label: "FAQ", href: "/faq" },
