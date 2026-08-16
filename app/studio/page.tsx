@@ -88,7 +88,8 @@ export default function StudioPage() {
       <JsonLd data={LD} />
       <Header />
 
-      <main>
+      {/* 헤더가 고정이라 본문을 그만큼 내린다. 사이트 공통 값 */}
+      <main className="pt-[104px] md:pt-[108px]">
         {/* ───────────────────────── 첫 화면 ───────────────────────── */}
         <section className="bg-gradient-to-b from-slate-50 to-white pt-10 pb-12 md:pt-16 md:pb-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
