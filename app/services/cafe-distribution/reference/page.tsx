@@ -14,7 +14,7 @@ const URL = `${SITE.base}${PATH}`;
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
   title: "카페 배포 레퍼런스 — 업종별 카페 상위노출 실사 캡처",
-  description: `사진관·헬스·인테리어·반려동물·뷰티·여행·가구 등 9개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처를 공개합니다. 하랑마케팅 카페 배포 실제 진행 결과입니다.`,
+  description: `사진관·헬스·인테리어·반려동물·뷰티·여행·가구 등 ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처를 공개합니다. 하랑마케팅 카페 배포 실제 진행 결과입니다.`,
   keywords: [
     "카페 배포 레퍼런스", "카페 상위노출 사례", "네이버 카페 노출 실적",
     "카페 배포 후기", "카페 마케팅 사례", "키워드 상위노출 캡처",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     title: "카페 배포 레퍼런스 — 업종별 상위노출 실사 캡처",
-    description: `9개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 노출 화면을 그대로 공개합니다.`,
+    description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 노출 화면을 그대로 공개합니다.`,
     url: URL,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 카페 배포 레퍼런스" }],
   },
@@ -36,7 +36,7 @@ const LD = [
     path: PATH,
     type: "CollectionPage",
     name: "카페 배포 레퍼런스 — 하랑마케팅",
-    description: `9개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음.`,
+    description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음.`,
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

@@ -48,7 +48,7 @@ const LD = [
     serviceOutput: {
       "@type": "Thing",
       name: "카페 상위노출 실적",
-      description: `9개 업종 ${REF_TOTAL}개 키워드의 네이버 모바일 통합검색 카페 영역 노출 실사 캡처를 레퍼런스로 공개합니다.`,
+      description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 모바일 통합검색 카페 영역 노출 실사 캡처를 레퍼런스로 공개합니다.`,
     },
     offers: {
       "@type": "AggregateOffer",
@@ -463,6 +463,7 @@ export default function CafeDistributionPage() {
                 ))}
               </div>
 
+              {/* 업종별 대표 캡처 — 각 업종 링크는 레퍼런스 해당 탭으로 바로 보낸다 */}
               <div className="mt-7 flex flex-col gap-3 md:gap-4">
                 {PROOF_SAMPLES.map((s) => (
                   <figure key={s.image} className="overflow-hidden rounded-[14px] bg-white">
@@ -483,19 +484,33 @@ export default function CafeDistributionPage() {
                       >
                         {s.keyword}
                       </span>
-                      <span className="hidden shrink-0 text-[12px] sm:block" style={{ color: "var(--cd-muted)" }}>
+                      <Link
+                        href={`${PATH}/reference?category=${s.slug}`}
+                        className="hidden shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-bold transition-colors hover:opacity-80 sm:inline-flex"
+                        style={{ background: "#fff", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }}
+                      >
                         {s.industry}
-                      </span>
+                        <span style={{ color: "var(--cd-primary)" }}>{s.count}</span>
+                      </Link>
                     </figcaption>
                     <img
                       src={s.image}
-                      alt={`'${s.keyword}' 검색 시 네이버 카페 영역 노출 화면`}
+                      alt={`'${s.keyword}' 검색 시 네이버 카페 영역 노출 화면 (${s.industry})`}
                       width={1000}
                       height={290}
                       loading="lazy"
                       decoding="async"
                       className="block h-auto w-full"
                     />
+                    {/* 모바일에서는 업종 칩을 캡처 아래로 내린다 (헤더가 좁아 잘림) */}
+                    <Link
+                      href={`${PATH}/reference?category=${s.slug}`}
+                      className="flex min-h-[44px] items-center justify-between px-3 text-[13px] font-bold sm:hidden"
+                      style={{ background: "var(--cd-tint)", borderTop: "1px solid var(--cd-border-2)", color: "var(--cd-body-2)" }}
+                    >
+                      <span>{s.industry}</span>
+                      <span style={{ color: "var(--cd-primary)" }}>{s.count}건 보기</span>
+                    </Link>
                   </figure>
                 ))}
               </div>

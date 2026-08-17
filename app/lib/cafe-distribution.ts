@@ -559,18 +559,34 @@ export const REF_CATEGORIES: RefCategory[] = [
 ];
 
 /**
- * 상세페이지 인라인 증거용 대표 캡처.
+ * 상세페이지 인라인 증거용 업종별 대표 캡처.
  *
  * 와디즈형 상세페이지는 "말"보다 "실제 화면"이 설득력을 만든다.
- * 레퍼런스 페이지로 넘어가지 않아도 상세페이지에서 바로 실물을 보게 한다.
- * 업종이 한쪽으로 쏠리지 않게 맛집 2 + 타 업종 2로 구성.
+ * 레퍼런스 페이지로 넘어가지 않아도 상세페이지에서 업종 전체 스펙트럼을 보게 한다.
+ *
+ * 업종을 직접 나열하지 않고 REF_CATEGORIES 에서 뽑는다.
+ * 업종이 추가되거나 키워드 순서가 바뀌어도 자동으로 따라간다.
  */
-export const PROOF_SAMPLES: { keyword: string; image: string; industry: string }[] = [
-  { keyword: "광안리 현지인 맛집", image: "/cafe-ref/ref-r-37.png", industry: "맛집 / 외식" },
-  { keyword: "서귀포 흑돼지 맛집",  image: "/cafe-ref/ref-r-118.png", industry: "맛집 / 외식" },
-  { keyword: "목동필라테스",        image: "/cafe-ref/ref-f-02.png",  industry: "헬스 / PT" },
-  { keyword: "강아지 눈물사료 추천", image: "/cafe-ref/ref-p-04.png",  industry: "반려동물" },
-];
+export interface ProofSample {
+  keyword: string;
+  image: string;
+  industry: string;
+  /** 해당 업종 총 키워드 수 */
+  count: number;
+  /** 레퍼런스 페이지 딥링크용 */
+  slug: string;
+}
+
+/** 업종별 대표 캡처 1장씩 (업종 순서 = REF_CATEGORIES 순서) */
+export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
+  .filter((c) => c.keywords.length > 0)
+  .map((c) => ({
+    keyword: c.keywords[0],
+    image: `${c.imagePrefix}01.png`,
+    industry: c.label,
+    count: c.keywords.length,
+    slug: c.slug,
+  }));
 
 /** 상세페이지 신뢰 보장 항목 */
 export const GUARANTEES = [

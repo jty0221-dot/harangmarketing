@@ -9,7 +9,7 @@ import {
   Navigation, Palette, Layers,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
-import { REF_TOTAL } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -61,7 +61,7 @@ const SERVICES = [
       "수량 분할 진행 협의 가능",
     ],
     rec: "블로그 노출은 되는데 검색 유입이 더 필요한 매장",
-    result: `9개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,
+    result: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,
     href: "/services/cafe-distribution",
     cover: "/cafe-ref/ref-r-01.png",
     coverAlt: "네이버 카페 영역 상위노출 실제 화면",
