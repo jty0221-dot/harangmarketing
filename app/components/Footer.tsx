@@ -195,8 +195,10 @@ export default function Footer() {
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(12,35,81,0.3)" }}>
                     <Mail size={12} className="text-white" />
                   </div>
-                  <div>
-                    <div className="text-gray-300 text-xs group-hover:text-gray-100 transition-colors">harangmarketing@naver.com</div>
+                  {/* min-w-0 이 없으면 이메일 주소가 flex 아이템의 최소 너비를 밀어올려
+                      태블릿 폭(768px)에서 푸터 컬럼 밖으로 삐져나간다 */}
+                  <div className="min-w-0">
+                    <div className="truncate text-gray-300 text-xs group-hover:text-gray-100 transition-colors">harangmarketing@naver.com</div>
                     <div className="text-[10px] text-gray-600">이메일 문의</div>
                   </div>
                 </a>

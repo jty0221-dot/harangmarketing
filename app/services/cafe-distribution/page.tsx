@@ -734,16 +734,19 @@ export default function CafeDistributionPage() {
               그대로 공개합니다. 진행 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다.
             </p>
 
+            {/* 업종이 14개라 정식 라벨을 쓰면 칩이 서너 줄로 늘어진다. 축약 라벨 사용. */}
             <div className="mb-8 flex flex-wrap gap-2">
               {REF_CATEGORIES.map((c) => (
-                <span
+                <Link
                   key={c.slug}
-                  className="rounded-full px-3.5 py-2 text-[13px] font-bold"
+                  href={`${PATH}/reference?category=${c.slug}`}
+                  title={c.label}
+                  className="whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-bold transition-colors hover:border-blue-300"
                   style={{ background: "#fff", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }}
                 >
-                  {c.label}
+                  {c.short}
                   <span className="ml-1.5" style={{ color: "var(--cd-primary)" }}>{c.keywords.length}</span>
-                </span>
+                </Link>
               ))}
             </div>
 

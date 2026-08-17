@@ -172,6 +172,8 @@ export const CAFE_FAQ = [
 export interface RefCategory {
   slug: string;
   label: string;
+  /** 탭 버튼용 축약 라벨 — 업종이 14개라 정식 라벨로는 탭이 3줄로 접힌다 */
+  short: string;
   crumb: string;
   imagePrefix: string;
   keywords: string[];
@@ -186,6 +188,7 @@ export interface RefCategory {
 export const REF_CATEGORIES: RefCategory[] = [
   {
     slug: "restaurant",
+    short: "맛집·카페",
     label: "맛집 / 카페 / 외식",
     crumb: "맛집/카페/외식",
     imagePrefix: "/cafe-ref/ref-r-",
@@ -321,6 +324,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "photo-mobile",
+    short: "사진관·폰",
     label: "사진관 / 휴대폰",
     crumb: "사진관/휴대폰",
     imagePrefix: "/cafe-ref/ref-m-",
@@ -341,6 +345,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "fitness",
+    short: "헬스·PT",
     label: "헬스 / PT / 스포츠",
     crumb: "헬스/PT/스포츠",
     imagePrefix: "/cafe-ref/ref-f-",
@@ -361,6 +366,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "interior",
+    short: "인테리어·청소",
     label: "인테리어 / 이사 / 청소",
     crumb: "인테리어/이사/청소",
     imagePrefix: "/cafe-ref/ref-x-",
@@ -399,6 +405,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "pet",
+    short: "반려동물",
     label: "반려동물",
     crumb: "반려동물",
     imagePrefix: "/cafe-ref/ref-p-",
@@ -430,6 +437,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "beauty",
+    short: "뷰티·미용",
     label: "뷰티 / 케어 / 미용",
     crumb: "뷰티/케어/미용",
     imagePrefix: "/cafe-ref/ref-b-",
@@ -447,6 +455,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "general",
+    short: "일반 키워드",
     label: "일반 키워드",
     crumb: "일반키워드",
     imagePrefix: "/cafe-ref/ref-g-",
@@ -468,6 +477,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "clinic",
+    short: "병의원·장례",
     label: "병의원 / 장례",
     crumb: "병의원/장례",
     imagePrefix: "/cafe-ref/ref-h-",
@@ -479,6 +489,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "travel",
+    short: "여행·숙박",
     label: "여행 / 숙박",
     crumb: "여행/숙박",
     imagePrefix: "/cafe-ref/ref-t-",
@@ -517,6 +528,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "furniture",
+    short: "가구·답례품",
     label: "가구 / 기념품 / 답례품",
     crumb: "가구/기념품/답례품",
     imagePrefix: "/cafe-ref/refs-",
@@ -558,6 +570,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "wedding",
+    short: "웨딩·돌잔치",
     label: "결혼 / 웨딩 / 돌잔치",
     crumb: "결혼/웨딩/돌잔치",
     imagePrefix: "/cafe-ref/ref-w-",
@@ -589,6 +602,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "fortune",
+    short: "점집·사주",
     label: "점집 / 사주 / 타로",
     crumb: "점집/사주",
     imagePrefix: "/cafe-ref/ref-j-",
@@ -628,6 +642,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "car",
+    short: "자동차·정비",
     label: "자동차 / 정비 / 세차",
     crumb: "자동차/정비/세차",
     imagePrefix: "/cafe-ref/ref-c-",
@@ -657,6 +672,7 @@ export const REF_CATEGORIES: RefCategory[] = [
   },
   {
     slug: "edu",
+    short: "교육·레슨",
     label: "여행 / 교육 / 레슨",
     crumb: "여행/교육",
     imagePrefix: "/cafe-ref/ref-e-",

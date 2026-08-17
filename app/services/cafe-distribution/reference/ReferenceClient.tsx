@@ -91,11 +91,13 @@ export default function ReferenceClient({
       <div className="px-3 pb-14 md:px-8 md:pb-20" style={{ background: "var(--cd-dark)" }}>
         <div className="mx-auto w-full max-w-[1080px] overflow-hidden rounded-[20px] bg-white md:rounded-[26px]">
 
-          {/* 업종 탭 — 모바일은 가로 스크롤 칩 */}
-          <div className="sticky top-[64px] z-30 bg-white/95 px-4 py-4 backdrop-blur md:top-[68px] md:px-8"
+          {/* 업종 탭 — 좁은 화면은 가로 스크롤 한 줄.
+              업종이 14개라 md(768px)에서 접으면 3줄(화면의 20%)이 되어 sticky 바가 본문을 잡아먹는다.
+              두 줄에 들어가는 lg(1024px) 부터만 wrap 한다. */}
+          <div className="sticky top-[64px] z-30 bg-white/95 px-4 py-3 backdrop-blur md:top-[68px] md:px-8 md:py-4"
             style={{ borderBottom: "1px solid var(--cd-border-2)" }}>
             <div
-              className="flex gap-2 overflow-x-auto scrollbar-hide md:flex-wrap md:overflow-visible"
+              className="flex gap-2 overflow-x-auto scrollbar-hide lg:flex-wrap lg:overflow-visible"
               role="tablist"
               aria-label="업종 선택"
             >
@@ -105,14 +107,15 @@ export default function ReferenceClient({
                   role="tab"
                   aria-selected={i === active}
                   onClick={() => selectTab(i)}
-                  className="flex min-h-[44px] shrink-0 items-center rounded-full px-4 text-[13px] font-bold transition-colors md:text-[15px]"
+                  className="flex min-h-[44px] shrink-0 items-center whitespace-nowrap rounded-full px-3.5 text-[13px] font-bold transition-colors md:text-[14px]"
                   style={
                     i === active
                       ? { background: "var(--cd-primary)", color: "#fff" }
                       : { background: "var(--cd-tint)", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }
                   }
+                  title={c.label}
                 >
-                  {c.label}
+                  {c.short}
                   <span
                     className="ml-1.5 text-[12px]"
                     style={{ color: i === active ? "rgba(255,255,255,.7)" : "var(--cd-primary)" }}
