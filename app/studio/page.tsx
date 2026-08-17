@@ -7,6 +7,7 @@ import { SITE, ORG_ID, faqLd, breadcrumbLd, webPageLd } from "../lib/seo";
 import {
   STUDIO, PLANS, CHEAPEST, YEARLY, PRICIEST, won,
   FEATURES, MEASURED, VS_ONLINE, FOR_WHOM, STUDIO_FAQ, SPECS,
+  SMARTSCREEN_STEPS,
 } from "../lib/studio";
 import {
   MonitorDown, Check, X, ArrowRight, Clock, ShieldCheck, Info,
@@ -461,6 +462,89 @@ export default function StudioPage() {
                   <div className="mt-1 text-sm font-bold text-gray-900">{s.value}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────────── 윈도우 보안 경고 ─────────────── */}
+        {/* 받으신 분이 처음 부딪히는 벽이라 FAQ 에 묻지 않고 크게 둔다 */}
+        <section id="smartscreen" className="scroll-mt-20 bg-gray-50 py-10 md:py-16">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-600 to-blue-700 shadow-sm ring-1 ring-blue-800/20">
+                <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
+              </div>
+              <div>
+                <h2 className="text-xl font-black text-gray-900 md:text-2xl">
+                  파란 경고창이 뜨면 이렇게 하세요
+                </h2>
+                <p className="text-sm text-gray-500">
+                  처음 실행하실 때 한 번 나옵니다. 두 번만 누르시면 됩니다.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_380px]">
+              <img
+                src="/studio/smartscreen-guide.png"
+                alt="Windows의 PC 보호 경고창에서 추가 정보와 실행을 누르는 순서"
+                width={1400}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                className="block w-full rounded-2xl shadow-sm ring-1 ring-gray-200"
+              />
+
+              <div className="space-y-3">
+                {SMARTSCREEN_STEPS.map((s, i) => (
+                  <div key={s.step} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200">
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-xs font-black text-white">
+                        {i + 1}
+                      </span>
+                      <div>
+                        <div className="text-sm font-black text-gray-900">{s.step}</div>
+                        <p className="mt-1 text-xs leading-relaxed text-gray-500">{s.detail}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200">
+                  <div className="text-xs font-black uppercase tracking-wider text-gray-400">
+                    왜 이게 뜨나요
+                  </div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-gray-600">
+                    윈도우는 코드 서명 인증서가 없는 프로그램이면 일단 이 창을 띄웁니다.
+                    개인이 만든 프로그램은 거의 다 이렇게 나옵니다.
+                    저희도 인증서를 준비하고 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 받은 파일이 맞는지 직접 확인하실 수 있게 지문을 공개한다 */}
+            <div className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="text-sm font-black text-gray-900">
+                  받으신 파일이 맞는지 확인하는 법
+                </span>
+                <span className="text-xs text-gray-400">
+                  버전 {STUDIO.version} · 약 {STUDIO.fileSizeMb}MB
+                </span>
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-gray-600">
+                걱정되시면 파일 지문을 직접 맞춰보실 수 있습니다. 명령 프롬프트에{" "}
+                <code className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[11px] text-gray-800">
+                  certutil -hashfile &quot;파일경로&quot; SHA256
+                </code>{" "}
+                을 입력하시면 나오는 값이 아래와 같아야 합니다.
+              </p>
+              <div className="mt-3 overflow-x-auto">
+                <code className="block whitespace-nowrap rounded-xl bg-gray-900 px-4 py-3 font-mono text-[11px] leading-relaxed text-emerald-300 md:text-xs">
+                  {STUDIO.sha256}
+                </code>
+              </div>
             </div>
           </div>
         </section>
