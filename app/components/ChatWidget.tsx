@@ -13,21 +13,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  MessageSquareText,
   Send,
   X,
   Phone,
   MessageCircle,
   Zap,
   ArrowRight,
-  Sparkles,
+  Newspaper,
+  MonitorDown,
 } from "lucide-react";
 
 const KAKAO_CHAT_URL = "https://pf.kakao.com/_MuUkG/chat";
 const PHONE = "010-7541-9054";
 
-type ActionKey = "kakao" | "phone" | "freeCheck" | "estimate";
+type ActionKey = "kakao" | "phone" | "freeCheck" | "estimate" | "cafeDist" | "studio";
 
 interface BotEntry {
   /** 매칭 키워드 — 하나라도 포함되면 후보, 많이 겹칠수록 우선 */
@@ -79,6 +80,18 @@ const KNOWLEDGE: BotEntry[] = [
     answer:
       "네:) 인스타 계정관리(피드 제작·프로필 세팅·팔로우 소통), 숏폼 영상 제작, 인플루언서 체험단까지 진행하고 있어요. 보통 3개월 단위 패키지로 구성되며, 업종에 따라 구성이 달라집니다. 업체명과 현재 운영 중인 SNS를 알려주시면 맞는 구성으로 안내드릴게요.",
     actions: ["kakao"],
+  },
+  {
+    keywords: ["카페 배포", "카페배포", "카페 침투", "카페침투", "맘카페", "지역카페", "커뮤니티"],
+    answer:
+      "네, 최적화 블로그와 지역 카페 배포를 묶어서 진행하고 있어요. 블로그와 카페에 동시에 노출되면 같은 키워드에서 진입 경로가 늘어나 효과가 좋습니다. 원고 작성 포함/미포함을 고를 수 있고, 진행 후에는 게시 URL 전체를 정리해 보내드려요. 지금은 이벤트 기간이라 기존 상품에 카페 배포 건이 추가로 제공되고 있으니 자세한 구성은 아래에서 확인해보세요:)",
+    actions: ["cafeDist", "kakao"],
+  },
+  {
+    keywords: ["사진 프로그램", "영상 프로그램", "스튜디오", "gif", "움짤", "사진 보정", "사진 편집", "워터마크", "영상 변환", "사진 세탁", "일괄"],
+    answer:
+      "현장 사진 정리가 번거로우시다면 자체 제작 프로그램 '하랑 스튜디오'를 추천드려요. 사진 100장 일괄 보정, 워터마크, 비포·애프터 붙이기, 영상을 움짤(GIF)로 변환까지 한 번에 됩니다. 파일을 서버에 올리지 않고 내 컴퓨터 안에서 처리돼 안전하고, 무료로 100장 체험 후 결정하시면 돼요. 1개월 4,900원부터입니다:)",
+    actions: ["studio", "kakao"],
   },
   {
     keywords: ["처음", "막막", "몰라", "모르겠", "뭐부터", "뭘 해야", "어떻게 시작", "초보"],
@@ -141,6 +154,8 @@ const QUICK_CHIPS: { label: string; query: string }[] = [
   { label: "블로그 디자인", query: "홈페이지형 블로그 디자인 비용이 궁금해요" },
   { label: "블로그 대행", query: "블로그 포스팅 대행 비용이 궁금해요" },
   { label: "인스타·영상", query: "인스타그램 관리나 영상 제작도 하나요?" },
+  { label: "카페 배포", query: "블로그 카페 배포는 어떻게 진행되나요?" },
+  { label: "사진·영상 프로그램", query: "사진 영상 편집 프로그램이 있나요?" },
   { label: "견적 받기", query: "견적을 받아보고 싶어요" },
   { label: "처음이라 막막해요", query: "마케팅을 처음 해봐서 뭐부터 해야 할지 모르겠어요" },
 ];
@@ -214,6 +229,28 @@ function ActionButtons({ actions }: { actions: ActionKey[] }) {
                 3분 견적 계산기
               </Link>
             );
+          case "cafeDist":
+            return (
+              <Link
+                key={a}
+                href="/services/cafe-distribution"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors"
+              >
+                <Newspaper size={12} strokeWidth={2.5} />
+                카페 배포 자세히 보기
+              </Link>
+            );
+          case "studio":
+            return (
+              <Link
+                key={a}
+                href="/studio"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-violet-600 text-white text-xs font-bold hover:bg-violet-700 transition-colors"
+              >
+                <MonitorDown size={12} strokeWidth={2.5} />
+                하랑 스튜디오 보기
+              </Link>
+            );
         }
       })}
     </div>
@@ -255,11 +292,17 @@ export default function ChatWidget() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed z-40 md:right-24 md:bottom-8 right-3 bottom-[104px] w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-600 to-blue-600 shadow-xl flex items-center justify-center text-white hover:shadow-2xl hover:-translate-y-0.5 transition-all"
+          className="fixed z-40 md:right-24 md:bottom-8 right-3 bottom-[104px] w-14 h-14 rounded-2xl shadow-xl overflow-hidden ring-2 ring-white hover:shadow-2xl hover:-translate-y-0.5 transition-all"
           aria-label="상담실장 챗봇 열기"
         >
-          <MessageSquareText size={22} strokeWidth={2.5} />
-          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-green-400 border-2 border-white" />
+          <Image
+            src="/consultant.png"
+            alt="하랑 상담실장"
+            width={56}
+            height={56}
+            className="w-full h-full object-cover"
+          />
+          <span className="absolute top-0.5 right-0.5 w-3 h-3 rounded-full bg-green-400 border-2 border-white" />
         </button>
       )}
 
@@ -268,8 +311,14 @@ export default function ChatWidget() {
         <div className="fixed z-50 md:right-6 md:bottom-8 md:w-[360px] md:h-[540px] md:rounded-2xl inset-x-0 bottom-0 top-16 md:inset-auto md:top-auto bg-white shadow-2xl border border-gray-100 rounded-t-2xl flex flex-col overflow-hidden">
           {/* 헤더 */}
           <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-white">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-blue-600 shadow-sm flex items-center justify-center">
-              <Sparkles size={16} className="text-white" strokeWidth={2.5} />
+            <div className="w-9 h-9 rounded-xl shadow-sm overflow-hidden">
+              <Image
+                src="/consultant.png"
+                alt="하랑 상담실장"
+                width={36}
+                height={36}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-black text-gray-900">하랑 상담실장</p>
