@@ -43,3 +43,6 @@ next-env.d.ts
 # 디자인 핸드오프 원본 (배포 불필요 — 필요한 에셋은 public/cafe-ref 로 복사됨)
 하랑마케팅 카페 배포 업그레이드/
 하랑마케팅 카페 배포 업그레이드.zip
+
+# 카페 레퍼런스 수집 작업 산출물
+scripts/cafe-ref/work/

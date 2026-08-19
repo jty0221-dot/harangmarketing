@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "refs:collect": "python scripts/cafe-ref/collect.py",
+    "refs:apply": "python scripts/cafe-ref/apply.py"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.27.3",
