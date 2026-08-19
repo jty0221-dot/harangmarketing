@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import FloatingCTA from "./components/FloatingCTA";
 import SocialProofToast from "./components/SocialProofToast";
+import ChatWidget from "./components/ChatWidget";
 import JsonLd from "./components/JsonLd";
 import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES } from "./lib/seo";
 
@@ -435,6 +436,7 @@ gtag('config', '${GA_ID}');`,
         {children}
         <FloatingCTA />
         <SocialProofToast />
+        <ChatWidget />
       </body>
     </html>
   );
