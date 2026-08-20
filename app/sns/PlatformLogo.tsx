@@ -1,7 +1,8 @@
 import {
   siInstagram, siYoutube, siThreads, siTiktok,
-  siFacebook, siX, siNaver, siKakaotalk,
+  siFacebook, siX, siNaver, siKakaotalk, siTelegram,
 } from "simple-icons";
+import { ShoppingBag } from "lucide-react";
 import type { PlatformId } from "../lib/sns-store";
 
 /**
@@ -22,7 +23,10 @@ interface Brand {
   plain: string;
 }
 
-const BRANDS: Record<PlatformId, Brand> = {
+/** 쇼핑·플랫폼 그룹은 개별 브랜드 로고가 없어 lucide 장바구니 글리프로 대체한다 */
+const SHOPPING = { bg: "linear-gradient(135deg, #ff7a45, #f5a623)", fg: "#ffffff", plain: "#F5761A" };
+
+const BRANDS: Partial<Record<PlatformId, Brand>> = {
   instagram: {
     path: siInstagram.path,
     bg: "linear-gradient(135deg, #f9ce34 0%, #ee2a7b 48%, #6228d7 100%)",
@@ -34,13 +38,14 @@ const BRANDS: Record<PlatformId, Brand> = {
   tiktok: { path: siTiktok.path, bg: "#111111", fg: "#ffffff", plain: "#111111" },
   facebook: { path: siFacebook.path, bg: "#0866FF", fg: "#ffffff", plain: "#0866FF" },
   x: { path: siX.path, bg: "#111111", fg: "#ffffff", plain: "#111111" },
+  telegram: { path: siTelegram.path, bg: "#229ED9", fg: "#ffffff", plain: "#229ED9" },
   naver: { path: siNaver.path, bg: "#03C75A", fg: "#ffffff", plain: "#03C75A" },
   kakao: { path: siKakaotalk.path, bg: "#FEE500", fg: "#3C1E1E", plain: "#3C1E1E" },
 };
 
 /** 브랜드 포인트 컬러 — 카드 테두리·글자 강조 등에 쓴다 */
 export function brandColor(id: PlatformId): string {
-  return BRANDS[id].plain;
+  return BRANDS[id]?.plain ?? SHOPPING.plain;
 }
 
 /**
@@ -67,13 +72,17 @@ export function PlatformLogo({
         width: size,
         height: size,
         borderRadius: radius ?? Math.max(8, Math.round(size * 0.28)),
-        background: b.bg,
+        background: b?.bg ?? SHOPPING.bg,
       }}
       aria-hidden
     >
-      <svg width={glyph} height={glyph} viewBox="0 0 24 24" role="img">
-        <path d={b.path} fill={b.fg} />
-      </svg>
+      {b ? (
+        <svg width={glyph} height={glyph} viewBox="0 0 24 24" role="img">
+          <path d={b.path} fill={b.fg} />
+        </svg>
+      ) : (
+        <ShoppingBag size={glyph} color={SHOPPING.fg} strokeWidth={2.2} />
+      )}
     </span>
   );
 }
@@ -91,6 +100,7 @@ export function PlatformGlyph({
   className?: string;
 }) {
   const b = BRANDS[id];
+  if (!b) return <ShoppingBag size={size} color={color ?? SHOPPING.plain} strokeWidth={2.2} className={`shrink-0 ${className}`} />;
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" role="img" aria-hidden className={`shrink-0 ${className}`}>
       <path d={b.path} fill={color ?? b.plain} />

@@ -2,7 +2,7 @@
  * SNS 부스트 스토어 — 상품 카탈로그 단일 소스
  *
  * 페이지·주문 API·구조화 데이터가 전부 이 파일을 참조한다.
- * 가격을 바꾸면 화면과 결제 금액 계산이 함께 바뀐다.
+ * 상품 데이터 자체는 sns-catalog.generated.ts 에서 온다 (자동 생성).
  *
  * sid 는 공급 파트너 쪽 서비스 번호다. 파트너 API 주소·키는
  * 환경변수(SMM_API_URL·SMM_API_KEY)에만 두고 코드에 쓰지 않는다.
@@ -13,15 +13,19 @@
  * - 도매가를 코드·주석에 적지 말 것 (공개 저장소).
  */
 
+import { SNS_CATALOG } from "./sns-catalog.generated";
+
 export type PlatformId =
   | "instagram"
   | "youtube"
-  | "threads"
   | "tiktok"
-  | "facebook"
-  | "x"
+  | "threads"
   | "naver"
-  | "kakao";
+  | "x"
+  | "facebook"
+  | "telegram"
+  | "kakao"
+  | "shopping";
 
 export interface SnsPlatform {
   id: PlatformId;
@@ -32,17 +36,37 @@ export interface SnsPlatform {
 export const SNS_PLATFORMS: SnsPlatform[] = [
   { id: "instagram", name: "인스타그램", short: "인스타" },
   { id: "youtube", name: "유튜브", short: "유튜브" },
-  { id: "threads", name: "스레드", short: "스레드" },
   { id: "tiktok", name: "틱톡", short: "틱톡" },
-  { id: "facebook", name: "페이스북", short: "페북" },
-  { id: "x", name: "엑스 (트위터)", short: "엑스" },
+  { id: "threads", name: "스레드", short: "스레드" },
   { id: "naver", name: "네이버", short: "네이버" },
+  { id: "x", name: "엑스 (트위터)", short: "엑스" },
+  { id: "facebook", name: "페이스북", short: "페북" },
+  { id: "telegram", name: "텔레그램", short: "텔레" },
   { id: "kakao", name: "카카오", short: "카카오" },
+  { id: "shopping", name: "쇼핑·플랫폼", short: "쇼핑" },
 ];
+
+/** 상품 그룹 노출 순서 — 카탈로그에서 이 순서로 소제목이 나온다 */
+export const SNS_GROUPS = [
+  "팔로워·구독",
+  "좋아요·반응",
+  "조회수",
+  "댓글",
+  "노출·저장",
+  "상위노출",
+  "리뷰",
+  "확산·바이럴",
+  "계정 관리",
+  "기타",
+] as const;
+
+export type SnsGroup = (typeof SNS_GROUPS)[number];
 
 export interface SnsProduct {
   slug: string;
   platform: PlatformId;
+  /** 상품 그룹 — 카탈로그 소제목 분류 */
+  group: string;
   name: string;
   desc: string;
   /** 수량 단위 표기: 명 · 개 · 회 */
@@ -63,437 +87,12 @@ export interface SnsProduct {
   badge?: "인기" | "추천" | "가성비";
 }
 
-export const SNS_PRODUCTS: SnsProduct[] = [
-  /* ── 인스타그램 ── */
-  {
-    slug: "ig-follower-kr",
-    platform: "instagram",
-    name: "한국인 팔로워",
-    desc: "실제 활동하는 한국인 계정이 팔로우합니다. 자연스러운 속도로 유입됩니다.",
-    unitLabel: "명",
-    unitPrice: 150,
-    min: 50,
-    max: 10000,
-    step: 10,
-    sid: 3,
-    linkLabel: "인스타그램 프로필 링크",
-    linkHint: "https://instagram.com/아이디",
-    badge: "인기",
-  },
-  {
-    slug: "ig-follower-global",
-    platform: "instagram",
-    name: "외국인 팔로워",
-    desc: "해외 실계정 팔로워입니다. 규모를 빠르게 갖출 때 씁니다.",
-    unitLabel: "명",
-    unitPrice: 20,
-    min: 100,
-    max: 50000,
-    step: 50,
-    sid: 615,
-    linkLabel: "인스타그램 프로필 링크",
-    linkHint: "https://instagram.com/아이디",
-    badge: "가성비",
-  },
-  {
-    slug: "ig-like-kr",
-    platform: "instagram",
-    name: "한국인 좋아요",
-    desc: "게시물·릴스에 실제 한국인 계정의 좋아요가 자연 속도로 붙습니다.",
-    unitLabel: "개",
-    unitPrice: 25,
-    min: 30,
-    max: 5000,
-    step: 10,
-    sid: 121,
-    linkLabel: "게시물 링크",
-    linkHint: "https://instagram.com/p/게시물주소",
-    badge: "인기",
-  },
-  {
-    slug: "ig-like-global",
-    platform: "instagram",
-    name: "외국인 좋아요",
-    desc: "해외 계정 좋아요입니다. 게시물 반응 수치를 저렴하게 채웁니다.",
-    unitLabel: "개",
-    unitPrice: 3,
-    min: 100,
-    max: 10000,
-    step: 50,
-    sid: 329,
-    linkLabel: "게시물 링크",
-    linkHint: "https://instagram.com/p/게시물주소",
-  },
-  {
-    slug: "ig-reels-view",
-    platform: "instagram",
-    name: "릴스·동영상 조회수",
-    desc: "한국인 조회수입니다. 릴스 초기 반응 구간에 특히 많이 쓰입니다.",
-    unitLabel: "회",
-    unitPrice: 4,
-    min: 500,
-    max: 100000,
-    step: 100,
-    sid: 673,
-    linkLabel: "릴스·동영상 링크",
-    linkHint: "https://instagram.com/reel/게시물주소",
-    badge: "추천",
-  },
-  {
-    slug: "ig-comment-kr",
-    platform: "instagram",
-    name: "한국인 랜덤 댓글",
-    desc: "게시물 맥락에 맞는 자연스러운 한국어 댓글이 달립니다.",
-    unitLabel: "개",
-    unitPrice: 300,
-    min: 5,
-    max: 300,
-    step: 1,
-    sid: 509,
-    linkLabel: "게시물 링크",
-    linkHint: "https://instagram.com/p/게시물주소",
-  },
-  {
-    slug: "ig-comment-custom",
-    platform: "instagram",
-    name: "한국인 지정 댓글",
-    desc: "원하는 문구 그대로 댓글이 달립니다. 한 줄에 댓글 하나씩 적어주세요.",
-    unitLabel: "개",
-    unitPrice: 400,
-    min: 5,
-    max: 300,
-    step: 1,
-    sid: 139,
-    linkLabel: "게시물 링크",
-    linkHint: "https://instagram.com/p/게시물주소",
-    needsComments: true,
-  },
-  {
-    slug: "ig-reach",
-    platform: "instagram",
-    name: "노출·도달·방문 (인사이트)",
-    desc: "게시물 인사이트의 노출·도달·프로필 방문 수치를 함께 올립니다.",
-    unitLabel: "회",
-    unitPrice: 2,
-    min: 500,
-    max: 100000,
-    step: 100,
-    sid: 11,
-    linkLabel: "게시물 링크",
-    linkHint: "https://instagram.com/p/게시물주소",
-  },
-  {
-    slug: "ig-save",
-    platform: "instagram",
-    name: "한국인 저장",
-    desc: "게시물 저장 수를 올립니다. 저장은 노출 알고리즘의 주요 신호입니다.",
-    unitLabel: "개",
-    unitPrice: 2,
-    min: 100,
-    max: 20000,
-    step: 50,
-    sid: 13,
-    linkLabel: "게시물 링크",
-    linkHint: "https://instagram.com/p/게시물주소",
-  },
-
-  /* ── 유튜브 ── */
-  {
-    slug: "yt-sub-global",
-    platform: "youtube",
-    name: "외국인 구독자",
-    desc: "해외 실계정 구독자입니다. 채널 규모를 갖출 때 씁니다.",
-    unitLabel: "명",
-    unitPrice: 100,
-    min: 100,
-    max: 20000,
-    step: 50,
-    sid: 774,
-    linkLabel: "채널 링크",
-    linkHint: "https://youtube.com/@채널명",
-  },
-  {
-    slug: "yt-sub-kr",
-    platform: "youtube",
-    name: "한국인 구독자",
-    desc: "실제 한국인 계정이 구독합니다. 국내 채널 신뢰도에 유리합니다.",
-    unitLabel: "명",
-    unitPrice: 550,
-    min: 100,
-    max: 5000,
-    step: 10,
-    sid: 155,
-    linkLabel: "채널 링크",
-    linkHint: "https://youtube.com/@채널명",
-    badge: "인기",
-  },
-  {
-    slug: "yt-view-global",
-    platform: "youtube",
-    name: "외국인 조회수",
-    desc: "해외 시청 조회수입니다. 대량 물량에 적합합니다.",
-    unitLabel: "회",
-    unitPrice: 8,
-    min: 500,
-    max: 100000,
-    step: 100,
-    sid: 747,
-    linkLabel: "동영상 링크",
-    linkHint: "https://youtube.com/watch?v=영상주소",
-  },
-  {
-    slug: "yt-view-kr",
-    platform: "youtube",
-    name: "한국인 조회수",
-    desc: "국내 IP 기반 한국인 조회수입니다. 국내 타겟 영상에 권장합니다.",
-    unitLabel: "회",
-    unitPrice: 15,
-    min: 1000,
-    max: 50000,
-    step: 100,
-    sid: 1148,
-    linkLabel: "동영상 링크",
-    linkHint: "https://youtube.com/watch?v=영상주소",
-    badge: "추천",
-  },
-  {
-    slug: "yt-like-kr",
-    platform: "youtube",
-    name: "한국인 좋아요",
-    desc: "동영상·쇼츠에 한국인 계정 좋아요가 붙습니다.",
-    unitLabel: "개",
-    unitPrice: 20,
-    min: 50,
-    max: 5000,
-    step: 10,
-    sid: 156,
-    linkLabel: "동영상 링크",
-    linkHint: "https://youtube.com/watch?v=영상주소",
-  },
-  {
-    slug: "yt-comment-kr",
-    platform: "youtube",
-    name: "한국인 랜덤 댓글",
-    desc: "영상 맥락에 맞는 자연스러운 한국어 댓글이 달립니다.",
-    unitLabel: "개",
-    unitPrice: 350,
-    min: 5,
-    max: 300,
-    step: 1,
-    sid: 157,
-    linkLabel: "동영상 링크",
-    linkHint: "https://youtube.com/watch?v=영상주소",
-  },
-
-  /* ── 스레드 ── */
-  {
-    slug: "th-follower-kr",
-    platform: "threads",
-    name: "한국인 팔로워",
-    desc: "실제 한국인 계정이 팔로우합니다. 스레드 초기 육성에 씁니다.",
-    unitLabel: "명",
-    unitPrice: 180,
-    min: 10,
-    max: 5000,
-    step: 10,
-    sid: 733,
-    linkLabel: "스레드 프로필 링크",
-    linkHint: "https://threads.net/@아이디",
-  },
-  {
-    slug: "th-like-kr",
-    platform: "threads",
-    name: "한국인 좋아요",
-    desc: "게시물에 실제 한국인 계정의 좋아요가 붙습니다.",
-    unitLabel: "개",
-    unitPrice: 35,
-    min: 10,
-    max: 5000,
-    step: 10,
-    sid: 734,
-    linkLabel: "게시물 링크",
-    linkHint: "https://threads.net/@아이디/post/게시물주소",
-  },
-
-  /* ── 틱톡 ── */
-  {
-    slug: "tt-follower",
-    platform: "tiktok",
-    name: "팔로워",
-    desc: "해외 실계정 팔로워입니다. 계정 규모를 빠르게 갖춥니다.",
-    unitLabel: "명",
-    unitPrice: 25,
-    min: 100,
-    max: 50000,
-    step: 50,
-    sid: 1138,
-    linkLabel: "틱톡 프로필 링크",
-    linkHint: "https://tiktok.com/@아이디",
-  },
-  {
-    slug: "tt-view",
-    platform: "tiktok",
-    name: "조회수 (한국인)",
-    desc: "한국인 조회수입니다. 초기 반응 구간에 효과적입니다.",
-    unitLabel: "회",
-    unitPrice: 2,
-    min: 500,
-    max: 100000,
-    step: 100,
-    sid: 124,
-    linkLabel: "영상 링크",
-    linkHint: "https://tiktok.com/@아이디/video/영상주소",
-  },
-
-  /* ── 페이스북 ── */
-  {
-    slug: "fb-like-kr",
-    platform: "facebook",
-    name: "한국인 게시물 좋아요",
-    desc: "게시물에 실제 한국인 계정의 좋아요가 붙습니다.",
-    unitLabel: "개",
-    unitPrice: 60,
-    min: 10,
-    max: 3000,
-    step: 10,
-    sid: 23,
-    linkLabel: "게시물 링크",
-    linkHint: "https://facebook.com/게시물주소",
-  },
-  {
-    slug: "fb-follower-kr",
-    platform: "facebook",
-    name: "한국인 프로필 팔로워",
-    desc: "실제 한국인 계정이 프로필을 팔로우합니다.",
-    unitLabel: "명",
-    unitPrice: 400,
-    min: 10,
-    max: 3000,
-    step: 10,
-    sid: 349,
-    linkLabel: "프로필 링크",
-    linkHint: "https://facebook.com/아이디",
-  },
-
-  /* ── 엑스 ── */
-  {
-    slug: "x-follower",
-    platform: "x",
-    name: "외국인 팔로워",
-    desc: "해외 실계정 팔로워입니다.",
-    unitLabel: "명",
-    unitPrice: 90,
-    min: 50,
-    max: 20000,
-    step: 10,
-    sid: 1146,
-    linkLabel: "프로필 링크",
-    linkHint: "https://x.com/아이디",
-  },
-  {
-    slug: "x-view",
-    platform: "x",
-    name: "조회수 (한국인)",
-    desc: "게시물 조회수를 올립니다.",
-    unitLabel: "회",
-    unitPrice: 1,
-    min: 1000,
-    max: 500000,
-    step: 500,
-    sid: 29,
-    linkLabel: "게시물 링크",
-    linkHint: "https://x.com/아이디/status/게시물주소",
-  },
-
-  /* ── 네이버 ── */
-  {
-    slug: "nv-blog-visit",
-    platform: "naver",
-    name: "블로그 방문자",
-    desc: "실제 한국인 방문 트래픽입니다. 일 방문자 수 관리에 씁니다.",
-    unitLabel: "회",
-    unitPrice: 6,
-    min: 500,
-    max: 100000,
-    step: 100,
-    sid: 1015,
-    linkLabel: "블로그 글 링크",
-    linkHint: "https://blog.naver.com/아이디/글번호",
-  },
-  {
-    slug: "nv-blog-like",
-    platform: "naver",
-    name: "블로그 공감",
-    desc: "실제 한국인 계정의 공감이 붙습니다.",
-    unitLabel: "개",
-    unitPrice: 220,
-    min: 10,
-    max: 1000,
-    step: 5,
-    sid: 1012,
-    linkLabel: "블로그 글 링크",
-    linkHint: "https://blog.naver.com/아이디/글번호",
-  },
-  {
-    slug: "nv-blog-buddy",
-    platform: "naver",
-    name: "블로그 이웃추가",
-    desc: "실제 한국인 계정이 이웃추가합니다.",
-    unitLabel: "명",
-    unitPrice: 400,
-    min: 10,
-    max: 2000,
-    step: 5,
-    sid: 301,
-    linkLabel: "블로그 홈 링크",
-    linkHint: "https://blog.naver.com/아이디",
-  },
-  {
-    slug: "nv-place-save",
-    platform: "naver",
-    name: "플레이스 저장",
-    desc: "네이버 지도·플레이스 저장 수를 올립니다. 플레이스 지표 관리용.",
-    unitLabel: "개",
-    unitPrice: 120,
-    min: 20,
-    max: 10000,
-    step: 10,
-    sid: 1107,
-    linkLabel: "플레이스 링크",
-    linkHint: "https://naver.me/단축주소 또는 플레이스 URL",
-    badge: "추천",
-  },
-  {
-    slug: "nv-place-alarm",
-    platform: "naver",
-    name: "플레이스 알림받기",
-    desc: "플레이스 알림받기(구 단골) 수를 올립니다.",
-    unitLabel: "개",
-    unitPrice: 160,
-    min: 10,
-    max: 5000,
-    step: 10,
-    sid: 700,
-    linkLabel: "플레이스 링크",
-    linkHint: "https://naver.me/단축주소 또는 플레이스 URL",
-  },
-
-  /* ── 카카오 ── */
-  {
-    slug: "kk-channel-add",
-    platform: "kakao",
-    name: "카카오톡 채널 친구추가",
-    desc: "실제 한국인 계정이 채널을 친구추가합니다.",
-    unitLabel: "명",
-    unitPrice: 380,
-    min: 100,
-    max: 100000,
-    step: 50,
-    sid: 244,
-    linkLabel: "카카오톡 채널 링크",
-    linkHint: "https://pf.kakao.com/채널주소",
-  },
-];
+/**
+ * 전체 카탈로그는 scripts/sns/gen-catalog.js 가 생성한다.
+ * 293개 상품의 소비자가·이름·분류가 자동 산출된다 (도매가는 담기지 않는다).
+ * 상품을 추가·수정하거나 마진을 바꾸려면 그 스크립트를 고쳐 다시 생성할 것.
+ */
+export const SNS_PRODUCTS: SnsProduct[] = SNS_CATALOG;
 
 /* ────────────────────────────────────────────────
    조회 헬퍼
@@ -505,6 +104,28 @@ export function getProduct(slug: string): SnsProduct | undefined {
 
 export function productsByPlatform(platform: PlatformId): SnsProduct[] {
   return SNS_PRODUCTS.filter((p) => p.platform === platform);
+}
+
+/** 플랫폼 상품을 그룹 순서대로 묶어 반환 (카탈로그 소제목용) */
+export function groupedByPlatform(platform: PlatformId): { group: string; items: SnsProduct[] }[] {
+  const items = productsByPlatform(platform);
+  const order = SNS_GROUPS as readonly string[];
+  const seen = new Map<string, SnsProduct[]>();
+  for (const p of items) {
+    if (!seen.has(p.group)) seen.set(p.group, []);
+    seen.get(p.group)!.push(p);
+  }
+  return [...seen.keys()]
+    .sort((a, b) => {
+      const ia = order.indexOf(a), ib = order.indexOf(b);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+    })
+    .map((group) => ({ group, items: seen.get(group)! }));
+}
+
+/** 플랫폼에 상품이 하나라도 있는지 (탭 노출 판단) */
+export function platformHasProducts(platform: PlatformId): boolean {
+  return SNS_PRODUCTS.some((p) => p.platform === platform);
 }
 
 export function platformName(id: PlatformId): string {

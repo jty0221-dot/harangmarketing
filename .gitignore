@@ -49,3 +49,7 @@ scripts/cafe-ref/work/
 
 # SNS 부스트 주문 대장 (로컬 개발 폴백 — 고객 연락처 포함, 절대 커밋 금지)
 content/sns-orders.local.json
+
+# SNS 카탈로그 생성기 + 도매 원본 (도매가 포함 — 절대 커밋 금지)
+# 산출물 app/lib/sns-catalog.generated.ts 는 소비자가만 담으므로 커밋한다.
+scripts/sns/

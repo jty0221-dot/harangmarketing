@@ -18,6 +18,8 @@ import YouTubeSectionNew from "./components/YouTubeSection";
 import PhotoPlaceholder from "./components/PhotoPlaceholder";
 import RevealOnScroll from "./components/RevealOnScroll";
 import ClientLogosSection from "./components/ClientLogosSection";
+import { PlatformLogo, brandColor } from "./sns/PlatformLogo";
+import type { PlatformId } from "./lib/sns-store";
 import DifferenceSection from "./components/DifferenceSection";
 import EntryPopup from "./components/EntryPopup";
 import Card3DTilt from "./components/Card3DTilt";
@@ -282,18 +284,16 @@ export default function HomePage() {
               <p className="text-[10px] font-black uppercase tracking-[0.18em] shrink-0" style={{ color: "var(--h-muted)" }}>운영 플랫폼</p>
               <div className="h-px flex-1 hidden sm:block" style={{ background: "var(--h-border)" }} />
               <div className="flex flex-wrap justify-center sm:justify-start items-center gap-3 md:gap-5">
-                {[
-                  { name: "네이버 플레이스", letter: "N" },
-                  { name: "카카오맵", letter: "K" },
-                  { name: "배달의민족", letter: "B" },
-                  { name: "쿠팡이츠", letter: "C" },
-                  { name: "인스타그램", letter: "I" },
-                  { name: "구글 리뷰", letter: "G" },
-                ].map((p) => (
+                {([
+                  { name: "인스타그램", logo: "instagram" },
+                  { name: "유튜브", logo: "youtube" },
+                  { name: "네이버", logo: "naver" },
+                  { name: "카카오", logo: "kakao" },
+                  { name: "틱톡", logo: "tiktok" },
+                  { name: "스레드", logo: "threads" },
+                ] as { name: string; logo: PlatformId }[]).map((p) => (
                   <div key={p.name} className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-black text-white" style={{ background: "var(--h-navy)" }}>
-                      {p.letter}
-                    </div>
+                    <PlatformLogo id={p.logo} size={24} />
                     <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "var(--h-muted)" }}>{p.name}</span>
                   </div>
                 ))}
@@ -323,6 +323,64 @@ export default function HomePage() {
                 패키지 견적 계산기
                 <ArrowRight size={14} />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ SNS 부스트 스토어 배너 ══ */}
+        <section className="py-10 md:py-14" style={{ background: "var(--h-dark)" }}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0F2044] via-[#16224a] to-[#1A3560] ring-1 ring-white/10 px-6 py-8 md:px-10 md:py-10">
+              <div className="dot-grid-navy absolute inset-0 opacity-40" aria-hidden />
+              <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black text-amber-300 ring-1 ring-white/15">
+                    <Star size={12} strokeWidth={2.5} />
+                    NEW · 회원가입 없이 건당 주문
+                  </div>
+                  <h2 className="mt-4 text-2xl md:text-[32px] font-black text-white leading-tight" style={{ letterSpacing: "-0.03em" }}>
+                    SNS 부스트 스토어
+                  </h2>
+                  <p className="mt-2.5 text-sm md:text-[15px] leading-relaxed text-gray-300 max-w-xl">
+                    인스타·유튜브·틱톡·네이버 등 8개 플랫폼의 팔로워·좋아요·조회수를
+                    대행 계약 없이 필요한 만큼만 주문하세요. 비밀번호 없이 링크만으로 진행되고,
+                    주문번호로 진행 상황을 실시간 확인할 수 있습니다.
+                  </p>
+                  <div className="mt-5 flex items-center gap-2.5 flex-wrap">
+                    {(["instagram", "youtube", "tiktok", "threads", "naver", "x", "facebook", "telegram", "kakao"] as PlatformId[]).map((id) => (
+                      <PlatformLogo key={id} id={id} size={32} className="ring-2 ring-white/10" />
+                    ))}
+                  </div>
+                  <div className="mt-6 flex flex-col sm:flex-row gap-2.5">
+                    <Link href="/sns"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 text-gray-900 font-black text-sm transition hover:bg-amber-300 shadow-sm">
+                      스토어 구경하기
+                      <ArrowRight size={15} strokeWidth={2.5} />
+                    </Link>
+                    <Link href="/sns/track"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-black text-sm ring-1 ring-white/20 transition hover:bg-white/20">
+                      주문 조회
+                    </Link>
+                  </div>
+                </div>
+                {/* 가격 미리보기 카드 */}
+                <div className="hidden lg:flex flex-col gap-2.5 w-64">
+                  {[
+                    { logo: "instagram" as PlatformId, name: "한국인 팔로워", price: "150원", unit: "명" },
+                    { logo: "youtube" as PlatformId, name: "한국인 조회수", price: "15원", unit: "회" },
+                    { logo: "naver" as PlatformId, name: "플레이스 저장", price: "100원", unit: "개" },
+                  ].map((r) => (
+                    <div key={r.name} className="flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-lg">
+                      <PlatformLogo id={r.logo} size={36} />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[13px] font-black text-gray-900 truncate">{r.name}</p>
+                        <p className="text-[11px] text-gray-400">1{r.unit}당</p>
+                      </div>
+                      <p className="text-[15px] font-black text-blue-600 tabular-nums shrink-0">{r.price}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -872,10 +930,7 @@ export default function HomePage() {
                   desc: "마케팅 팁·성공 사례·업종별 전략 무료 공개",
                   preview: "최근 글: 네이버 플레이스 3개월 만에 1위 올린 방법",
                   href: "https://blog.naver.com/harangmarketing",
-                  bg: "bg-green-500",
-                  ring: "ring-green-100",
-                  textColor: "text-green-600",
-                  letter: "N",
+                  logo: "naver" as PlatformId,
                 },
                 {
                   label: "카카오톡 채널",
@@ -883,11 +938,7 @@ export default function HomePage() {
                   desc: "지금 바로 무료 상담 연결",
                   preview: "현재 상담 가능 · 24시간 운영",
                   href: "https://pf.kakao.com/_MuUkG/chat",
-                  bg: "bg-yellow-400",
-                  ring: "ring-yellow-100",
-                  textColor: "text-yellow-600",
-                  darkText: true,
-                  letter: "K",
+                  logo: "kakao" as PlatformId,
                 },
                 {
                   label: "인스타그램",
@@ -895,23 +946,20 @@ export default function HomePage() {
                   desc: "진행 현장·성공 사례·최신 소식",
                   preview: "팔로우하면 매주 마케팅 팁 무료 제공",
                   href: "https://www.instagram.com/jty0221/",
-                  bg: "bg-gradient-to-br from-purple-500 to-pink-500",
-                  ring: "ring-purple-100",
-                  textColor: "text-purple-600",
-                  letter: "I",
+                  logo: "instagram" as PlatformId,
                 },
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   className="group flex flex-col bg-white rounded-2xl border border-gray-100 hover:shadow-md transition-all overflow-hidden"
                   style={{ borderColor: "var(--h-border)" }}>
                   <div className="flex items-center gap-4 p-5 pb-3">
-                    <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center font-black text-xl shadow-sm shrink-0 group-hover:scale-105 transition-transform ${s.darkText ? "text-gray-900" : "text-white"}`}>
-                      {s.letter}
+                    <div className="shrink-0 group-hover:scale-105 transition-transform">
+                      <PlatformLogo id={s.logo} size={48} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="font-bold text-gray-900 text-sm">{s.label}</div>
-                        <span className={`text-[10px] font-black px-2 py-0.5 rounded-full bg-gray-50 ${s.textColor}`}>{s.sub}</span>
+                        <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandColor(s.logo) }}>{s.sub}</span>
                       </div>
                       <div className="text-xs text-gray-400">{s.desc}</div>
                     </div>

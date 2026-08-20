@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Handshake } from "lucide-react";
+import { PlatformLogo } from "../sns/PlatformLogo";
+import type { PlatformId } from "../lib/sns-store";
 
 export default function Footer() {
   return (
@@ -75,21 +77,22 @@ export default function Footer() {
                 10년 경력, 직접 담당합니다.
               </p>
               <div className="flex gap-2">
-                {[
-                  { label: "Blog", href: "https://blog.naver.com/harangmarketing", bg: "bg-green-600", letter: "N" },
-                  { label: "Kakao", href: "https://pf.kakao.com/_MuUkG/chat", bg: "bg-yellow-400", letter: "K", dark: true },
-                  { label: "Insta", href: "https://www.instagram.com/jty0221/", bg: "bg-gradient-to-br from-purple-600 to-pink-500", letter: "I" },
-                  { label: "YouTube", href: "https://www.youtube.com/@madaenam", bg: "bg-red-600", letter: "Y" },
-                ].map((s) => (
+                {([
+                  { label: "네이버 블로그", href: "https://blog.naver.com/harangmarketing", logo: "naver" },
+                  { label: "카카오톡 채널", href: "https://pf.kakao.com/_MuUkG/chat", logo: "kakao" },
+                  { label: "인스타그램", href: "https://www.instagram.com/jty0221/", logo: "instagram" },
+                  { label: "유튜브", href: "https://www.youtube.com/@madaenam", logo: "youtube" },
+                ] as { label: string; href: string; logo: PlatformId }[]).map((s) => (
                   <a
                     key={s.label}
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     title={s.label}
-                    className={`w-8 h-8 rounded-lg ${s.bg} flex items-center justify-center font-bold text-xs hover:opacity-80 transition-opacity shadow-sm ${s.dark ? "text-gray-900" : "text-white"}`}
+                    aria-label={s.label}
+                    className="hover:opacity-80 transition-opacity"
                   >
-                    {s.letter}
+                    <PlatformLogo id={s.logo} size={32} />
                   </a>
                 ))}
               </div>

@@ -34,7 +34,7 @@ const MIN_UNIT = Math.min(...SNS_PRODUCTS.map((p) => p.unitPrice));
 export const metadata: Metadata = {
   title: "SNS 부스트 스토어 — 인스타 팔로워·좋아요·조회수 셀프 주문",
   description:
-    `인스타그램·유튜브·틱톡·네이버 등 8개 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문. ` +
+    `인스타그램·유튜브·틱톡·네이버 등 전 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문. ` +
     `1개당 ${won(MIN_UNIT)}원부터, 10년차 마케팅 대행사 하랑마케팅이 직접 운영합니다.`,
   alternates: { canonical: URL },
   openGraph: {
@@ -56,7 +56,7 @@ const LD = [
     areaServed: "KR",
     url: URL,
     description:
-      "인스타그램·유튜브·스레드·틱톡·페이스북·엑스·네이버·카카오 8개 플랫폼의 팔로워·좋아요·조회수·트래픽을 회원가입 없이 건당 주문하는 셀프 마케팅 스토어입니다.",
+      "인스타그램·유튜브·스레드·틱톡·페이스북·엑스·네이버·카카오 전 플랫폼의 팔로워·좋아요·조회수·트래픽을 회원가입 없이 건당 주문하는 셀프 마케팅 스토어입니다.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `${STORE.name} 플랫폼`,
@@ -76,7 +76,7 @@ const LD = [
     path: PATH,
     name: "SNS 부스트 스토어 — 인스타 팔로워·좋아요·조회수 셀프 주문",
     description:
-      `8개 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문하는 하랑마케팅 직영 스토어. ` +
+      `전 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문하는 하랑마케팅 직영 스토어. ` +
       "비밀번호 없이 링크만으로 진행되고, 주문번호로 진행 상황을 실시간 확인할 수 있습니다.",
     type: "CollectionPage",
   }),
@@ -245,7 +245,7 @@ export default function SnsStorePage() {
                 </h1>
 
                 <p className="speakable mt-5 max-w-xl text-[15px] leading-relaxed text-gray-600 md:text-base">
-                  SNS 부스트 스토어는 인스타그램·유튜브·틱톡·네이버 등 8개 플랫폼의
+                  SNS 부스트 스토어는 인스타그램·유튜브·틱톡·네이버 등 전 플랫폼의
                   팔로워·좋아요·조회수·트래픽을 건당 주문하는 하랑마케팅 직영 스토어입니다.
                   계정 비밀번호 없이 공개 링크만으로 진행되고, 주문번호로 진행 상황을
                   실시간 확인할 수 있습니다.
@@ -257,7 +257,7 @@ export default function SnsStorePage() {
                     <PlatformLogo key={pl.id} id={pl.id} size={30} className="ring-2 ring-white" />
                   ))}
                   <span className="ml-1 text-[11.5px] font-bold text-gray-400">
-                    8개 플랫폼 · {SNS_PRODUCTS.length}개 상품
+                    전 플랫폼 · {SNS_PRODUCTS.length}개 상품
                   </span>
                 </div>
 
