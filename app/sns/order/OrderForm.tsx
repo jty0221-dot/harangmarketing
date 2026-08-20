@@ -8,8 +8,9 @@ import {
 } from "lucide-react";
 import {
   SNS_PLATFORMS, SNS_PRODUCTS, getProduct, productsByPlatform,
-  calcTotal, won, STORE,
+  calcTotal, won, STORE, platformName,
 } from "../../lib/sns-store";
+import { PlatformLogo } from "../PlatformLogo";
 
 const KAKAO_CHAT = "https://pf.kakao.com/_MuUkG/chat";
 
@@ -193,7 +194,20 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* 상품 선택 */}
       <div className="bg-white rounded-2xl ring-1 ring-gray-100 shadow-sm p-5 md:p-6">
-        <label className="block text-xs font-black text-gray-700 mb-1.5">상품</label>
+        {/* 선택된 상품 미리보기 */}
+        <div className="mb-4 flex items-center gap-3 rounded-xl bg-gray-50 ring-1 ring-gray-100 p-3.5">
+          <PlatformLogo id={product.platform} size={44} />
+          <div className="min-w-0 flex-1">
+            <p className="text-[11px] font-bold text-gray-400">{platformName(product.platform)}</p>
+            <p className="text-[15px] font-black text-gray-900 truncate">{product.name}</p>
+          </div>
+          <div className="text-right shrink-0">
+            <p className="text-[10px] font-bold text-gray-400">1{product.unitLabel}당</p>
+            <p className="text-[17px] font-black text-blue-600 tabular-nums leading-tight">{won(product.unitPrice)}원</p>
+          </div>
+        </div>
+
+        <label className="block text-xs font-black text-gray-700 mb-1.5">상품 변경</label>
         <select
           value={slug}
           onChange={(e) => changeProduct(e.target.value)}

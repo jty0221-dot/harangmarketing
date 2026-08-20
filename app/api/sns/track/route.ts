@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
     order: {
       no: order.no,
       createdAt: order.createdAt,
+      platformId: order.platform,
       platform: platformName(order.platform as PlatformId),
       productName: order.productName,
       qty: order.qty,

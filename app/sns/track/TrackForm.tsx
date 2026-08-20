@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { Search, Loader2, AlertTriangle, MessageCircle, PackageCheck, Timer, XCircle, CheckCircle2 } from "lucide-react";
-import { won } from "../../lib/sns-store";
+import { won, type PlatformId } from "../../lib/sns-store";
+import { PlatformLogo } from "../PlatformLogo";
 
 const KAKAO_CHAT = "https://pf.kakao.com/_MuUkG/chat";
 
 interface TrackResult {
   no: string;
   createdAt: string;
+  platformId?: PlatformId;
   platform: string;
   productName: string;
   qty: number;
@@ -108,11 +110,14 @@ export default function TrackForm() {
       {result && (
         <div className="bg-white rounded-2xl ring-1 ring-gray-100 shadow-sm p-5 md:p-6">
           <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-[11px] font-black tracking-widest text-gray-400">{result.no}</p>
-              <h2 className="mt-0.5 text-[15px] font-black text-gray-900 truncate">
-                {result.platform} · {result.productName}
-              </h2>
+            <div className="flex items-center gap-3 min-w-0">
+              {result.platformId && <PlatformLogo id={result.platformId} size={40} />}
+              <div className="min-w-0">
+                <p className="text-[11px] font-black tracking-widest text-gray-400">{result.no}</p>
+                <h2 className="mt-0.5 text-[15px] font-black text-gray-900 truncate">
+                  {result.platform} · {result.productName}
+                </h2>
+              </div>
             </div>
             {(() => {
               const s = STATUS_STYLE[result.status];

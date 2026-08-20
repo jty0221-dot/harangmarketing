@@ -189,8 +189,12 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            {/* Desktop nav
+                환경(OS 폰트 렌더링)에 따라 글자 폭이 달라져도 메뉴가 항목 안에서
+                두 줄로 접히지 않도록 전 항목 whitespace-nowrap + 여백 축소.
+                폭이 정 모자라면 항목이 접히는 대신 줄 전체가 유지된다.
+                768~1023px(태블릿)는 nowrap 항목 전체가 들어가지 않아 햄버거로 전환. */}
+            <nav className="hidden lg:flex items-center gap-0.5">
               {NAV_ITEMS.map((item) =>
                 item.sub ? (
                   <div
@@ -203,7 +207,7 @@ export default function Header() {
                   >
                     <Link
                       href={item.href}
-                      className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      className={`flex items-center gap-1 whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                         pathname.startsWith(item.href)
                           ? scrolled || !isHome
                             ? "text-[#0C2351]"
@@ -241,7 +245,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                    className={`relative whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       pathname === item.href
                         ? scrolled || !isHome
                           ? ""
@@ -263,7 +267,7 @@ export default function Header() {
                   번호는 상단 공지·카카오 버튼·푸터에도 있어 2xl 부터만 보인다. */}
               <a
                 href="tel:010-7541-9054"
-                className={`hidden 2xl:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
+                className={`hidden 2xl:flex items-center gap-1.5 whitespace-nowrap px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
               >
                 <Phone size={13} strokeWidth={2} />
                 <span className="font-semibold text-xs">010-7541-9054</span>
@@ -272,14 +276,14 @@ export default function Header() {
                 href="https://pf.kakao.com/_MuUkG/chat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`ml-2 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
+                className={`ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
               >
                 <MessageCircle size={13} strokeWidth={2.5} />
                 <span className="hidden lg:inline">카카오 상담</span>
               </a>
               <Link
                 href="/contact"
-                className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-sm font-bold transition-opacity hover:opacity-90 shadow-sm"
+                className="ml-1 flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-xl text-white text-sm font-bold transition-opacity hover:opacity-90 shadow-sm"
                 style={{ background: "var(--h-navy)" }}
               >
                 무료 진단
@@ -289,7 +293,7 @@ export default function Header() {
             {/* Mobile button */}
             <button
               onClick={() => setOpen(!open)}
-              className={`md:hidden p-2 rounded-lg transition-colors ${
+              className={`lg:hidden p-2 rounded-lg transition-colors ${
                 scrolled || !isHome
                   ? "text-gray-700 hover:bg-gray-100"
                   : "text-white hover:bg-white/10"
@@ -303,7 +307,7 @@ export default function Header() {
 
         {/* Mobile drawer */}
         {open && (
-          <div className="md:hidden bg-white border-t border-gray-100 shadow-xl">
+          <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl">
             <div className="px-4 pt-4 pb-3 border-b border-gray-100">
               <div className="text-xs font-black text-gray-900">하랑마케팅</div>
               <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표 직접 담당</div>

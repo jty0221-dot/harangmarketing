@@ -2,124 +2,139 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Camera, MonitorPlay, AtSign, Music2, ThumbsUp, Hash, Leaf, MessageCircle } from "lucide-react";
+import { ArrowRight, Flame, ThumbsUp, Coins } from "lucide-react";
 import {
   SNS_PLATFORMS, productsByPlatform, won,
   type PlatformId, type SnsProduct,
 } from "../lib/sns-store";
+import { PlatformLogo, brandColor } from "./PlatformLogo";
 
 /**
- * 플랫폼 탭 + 상품 목록 (에디토리얼 행 스타일)
+ * 스토어 카탈로그 — 플랫폼 로고 탭 + 상품 카드 그리드
  *
- * PC 는 표처럼 한 줄에 상품·단가·최소주문·버튼을 놓고,
- * 모바일은 두 줄로 접는다. 가로 스크롤 금지.
- *
- * 이 lucide 버전에는 브랜드 아이콘(Instagram·Youtube 등)이 없다.
- * 중립 아이콘으로 대신한다 — 브랜드 아이콘을 import 하면 빌드가 깨진다.
+ * 커머스 문법(카드 · 큰 가격 · 담기 버튼)을 따르되
+ * 사이트 공통 톤(화이트 카드 · ring-gray · navy/blue)을 유지한다.
+ * 가로 스크롤은 모바일 탭 바 안에서만 허용 (scrollbar-hide 패턴).
  */
 
-const PLATFORM_ICON: Record<PlatformId, typeof Camera> = {
-  instagram: Camera,
-  youtube: MonitorPlay,
-  threads: AtSign,
-  tiktok: Music2,
-  facebook: ThumbsUp,
-  x: Hash,
-  naver: Leaf,
-  kakao: MessageCircle,
-};
-
-const BADGE_STYLE: Record<NonNullable<SnsProduct["badge"]>, string> = {
-  인기: "bg-blue-50 text-blue-700 ring-blue-100",
-  추천: "bg-amber-50 text-amber-700 ring-amber-100",
-  가성비: "bg-emerald-50 text-emerald-700 ring-emerald-100",
+const BADGE_META: Record<
+  NonNullable<SnsProduct["badge"]>,
+  { icon: typeof Flame; cls: string }
+> = {
+  인기: { icon: Flame, cls: "bg-red-50 text-red-600 ring-red-100" },
+  추천: { icon: ThumbsUp, cls: "bg-blue-50 text-blue-700 ring-blue-100" },
+  가성비: { icon: Coins, cls: "bg-emerald-50 text-emerald-700 ring-emerald-100" },
 };
 
 export default function Catalog() {
   const [active, setActive] = useState<PlatformId>("instagram");
   const products = productsByPlatform(active);
+  const activeMeta = SNS_PLATFORMS.find((p) => p.id === active);
 
   return (
     <div>
-      {/* 플랫폼 탭 */}
-      <div className="flex gap-1.5 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap pb-1">
+      {/* 플랫폼 탭 — 로고 타일 */}
+      <div
+        role="tablist"
+        aria-label="플랫폼 선택"
+        className="flex gap-2 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap pb-2"
+      >
         {SNS_PLATFORMS.map((pl) => {
-          const Icon = PLATFORM_ICON[pl.id];
           const isActive = pl.id === active;
+          const count = productsByPlatform(pl.id).length;
           return (
             <button
               key={pl.id}
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActive(pl.id)}
-              className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2.5 text-[13px] font-bold ring-1 transition-colors min-h-[44px] ${
+              className={`group flex items-center gap-2.5 whitespace-nowrap rounded-2xl pl-2 pr-3.5 py-2 ring-1 transition-all min-h-[52px] ${
                 isActive
-                  ? "bg-gray-900 text-white ring-gray-900"
-                  : "bg-white text-gray-600 ring-gray-200 hover:bg-gray-50"
+                  ? "bg-gray-900 ring-gray-900 shadow-md"
+                  : "bg-white ring-gray-200 hover:ring-gray-300 hover:shadow-sm"
               }`}
-              aria-pressed={isActive}
             >
-              <Icon size={14} strokeWidth={2.2} />
-              <span className="md:hidden">{pl.short}</span>
-              <span className="hidden md:inline">{pl.name}</span>
+              <PlatformLogo id={pl.id} size={34} />
+              <span className="text-left leading-tight">
+                <span className={`block text-[13px] font-black ${isActive ? "text-white" : "text-gray-800"}`}>
+                  <span className="md:hidden">{pl.short}</span>
+                  <span className="hidden md:inline">{pl.name}</span>
+                </span>
+                <span className={`block text-[10px] font-bold ${isActive ? "text-gray-400" : "text-gray-400"}`}>
+                  {count}개 상품
+                </span>
+              </span>
             </button>
           );
         })}
       </div>
 
-      {/* 상품 목록 */}
-      <div className="mt-5 rounded-2xl ring-1 ring-gray-100 shadow-sm overflow-hidden bg-white">
-        {/* PC 헤더 행 */}
-        <div className="hidden md:grid grid-cols-[1fr_130px_130px_110px] gap-4 px-6 py-3 bg-gray-50 text-[11px] font-black tracking-wide text-gray-400">
-          <span>상품</span>
-          <span className="text-right">1개당</span>
-          <span className="text-right">최소 주문</span>
-          <span />
-        </div>
+      {/* 상품 카드 그리드 */}
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {products.map((p) => {
+          const badge = p.badge ? BADGE_META[p.badge] : null;
+          return (
+            <Link
+              key={p.slug}
+              href={`/sns/order?p=${p.slug}`}
+              className="group relative flex flex-col rounded-2xl bg-white ring-1 ring-gray-200 shadow-sm card-hover overflow-hidden"
+            >
+              {/* 브랜드색 상단 라인 */}
+              <span
+                className="absolute inset-x-0 top-0 h-1 opacity-80"
+                style={{ background: brandColor(p.platform) }}
+                aria-hidden
+              />
 
-        {products.map((p) => (
-          <div
-            key={p.slug}
-            className="svc-row grid grid-cols-1 md:grid-cols-[1fr_130px_130px_110px] gap-2 md:gap-4 px-4 md:px-6 py-4 md:items-center"
-          >
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-[15px] font-black text-gray-900">{p.name}</span>
-                {p.badge && (
-                  <span className={`rounded-md px-1.5 py-0.5 text-[10px] font-black ring-1 ${BADGE_STYLE[p.badge]}`}>
-                    {p.badge}
-                  </span>
-                )}
+              <div className="p-5 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <PlatformLogo id={p.platform} size={40} />
+                  {badge && (
+                    <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10.5px] font-black ring-1 ${badge.cls}`}>
+                      <badge.icon size={11} strokeWidth={2.5} />
+                      {p.badge}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="mt-3.5 text-[16px] font-black text-gray-900 leading-snug">
+                  {p.name}
+                </h3>
+                <p className="mt-1.5 text-[12.5px] leading-relaxed text-gray-500 line-clamp-2">
+                  {p.desc}
+                </p>
               </div>
-              <p className="mt-0.5 text-[12.5px] leading-relaxed text-gray-500">{p.desc}</p>
-            </div>
 
-            <div className="md:text-right">
-              <span className="text-[15px] font-black text-gray-900 tabular-nums">{won(p.unitPrice)}원</span>
-              <span className="text-[11px] text-gray-400"> /{p.unitLabel}</span>
-            </div>
+              <div className="px-5 pb-5">
+                <div className="flex items-end justify-between border-t border-gray-100 pt-3.5">
+                  <div>
+                    <p className="text-[10.5px] font-bold text-gray-400">1{p.unitLabel}당</p>
+                    <p className="text-[22px] leading-none font-black text-gray-900 tabular-nums">
+                      {won(p.unitPrice)}
+                      <span className="text-[12px] font-black text-gray-500">원</span>
+                    </p>
+                  </div>
+                  <div className="text-right text-[11px] leading-tight text-gray-400 tabular-nums">
+                    최소 {won(p.min)}{p.unitLabel}
+                    <br />
+                    <span className="font-bold text-gray-500">{won(p.min * p.unitPrice)}원부터</span>
+                  </div>
+                </div>
 
-            <div className="md:text-right text-[12.5px] text-gray-500 tabular-nums">
-              {won(p.min)}
-              {p.unitLabel}부터
-              <span className="text-gray-300"> · </span>
-              {won(p.min * p.unitPrice)}원
-            </div>
-
-            <div className="md:text-right mt-1 md:mt-0">
-              <Link
-                href={`/sns/order?p=${p.slug}`}
-                className="inline-flex items-center justify-center gap-1 rounded-xl bg-blue-600 px-4 py-2.5 text-[13px] font-black text-white transition hover:bg-blue-700 min-h-[44px] w-full md:w-auto"
-              >
-                주문
-                <ArrowRight size={13} strokeWidth={2.5} />
-              </Link>
-            </div>
-          </div>
-        ))}
+                <span className="mt-3.5 inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-blue-600 px-4 py-3 text-[13.5px] font-black text-white transition-colors group-hover:bg-blue-700">
+                  주문하기
+                  <ArrowRight size={14} strokeWidth={2.5} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
 
-      <p className="mt-3 text-[11px] text-gray-400">
-        표시 가격 그대로 입금하시면 됩니다. 세금계산서·현금영수증이 필요하시면 카카오톡으로
-        요청해 주세요 (부가세 별도). 플랫폼 수급 상황에 따라 일부 상품은 일시 품절될 수 있습니다.
+      <p className="mt-4 text-[11px] text-gray-400">
+        {activeMeta?.name} 상품 {products.length}개 · 표시 가격 그대로 입금하시면 됩니다.
+        세금계산서·현금영수증이 필요하시면 카카오톡으로 요청해 주세요 (부가세 별도).
+        플랫폼 수급 상황에 따라 일부 상품은 일시 품절될 수 있습니다.
       </p>
     </div>
   );
