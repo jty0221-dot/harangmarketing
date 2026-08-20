@@ -1,19 +1,11 @@
-import YouTubeCard from "./YouTubeCard";
+"use client";
 
-interface YTVideo {
-  videoId: string;
-  title: string;
-  published: string;
-}
+import { useEffect, useState } from "react";
+import YouTubeCard from "./YouTubeCard";
+import { FALLBACK_LATEST, type YTVideo } from "../lib/youtube-rss";
 
 const CHANNEL_URL = "https://www.youtube.com/@madaenam";
 const SUBSCRIBE_URL = "https://www.youtube.com/@madaenam?sub_confirmation=1";
-
-const FALLBACK_LATEST: YTVideo[] = [
-  { videoId: "L0XdKXCN_Zw", title: "문신·반영구 사장님, 이제 당당하게 네이버 마케팅 하세요 | 2026 정책 완전정리", published: "2026-07-18" },
-  { videoId: "q2IcOuqWLjE", title: "출장 서비스업 대표님들! 마케팅 이렇게만 하세요", published: "2026-07-09" },
-  { videoId: "u06CD3BTqyE", title: "2026년 블로그 상위노출 네이버의 충격적인 결정(네이버 메이트, AI 브리핑)", published: "2026-07-01" },
-];
 
 const YT_ICON = (
   <svg viewBox="0 0 24 24" className="fill-current">
@@ -61,7 +53,22 @@ const CURRICULUM = [
 ];
 
 export default function YouTubeSection() {
-  const latest = FALLBACK_LATEST;
+  // 초기엔 최신 fallback 을 보여주고(SSR·즉시 표시), 마운트 후 API 로 실시간 최신을 받아 교체한다.
+  // 채널에 새 영상이 올라오면 별도 배포 없이 최대 1시간 안에 자동 반영된다.
+  const [latest, setLatest] = useState<YTVideo[]>(FALLBACK_LATEST);
+
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/youtube")
+      .then((r) => r.json())
+      .then((d) => {
+        if (alive && Array.isArray(d.videos) && d.videos.length > 0) setLatest(d.videos);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   return (
     <>
