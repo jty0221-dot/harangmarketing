@@ -63,6 +63,9 @@ const NAV_ITEMS = [
   // 하랑 스튜디오(/studio)는 위 '서비스' 드롭다운 첫 줄에 둔다.
   // 최상위 항목으로 하나 더 넣으면 내비 폭(947px)이 모자라 스크롤 상태에서
   // 모든 메뉴 글자가 두 줄로 접힌다. 1280~1600px 전부에서 확인했다.
+  // SNS스토어는 매출 직결 상품이라 예외로 최상위에 둔다 — 공백 없는 짧은 라벨이라
+  // 자기 자신은 안 접히고, 대신 전화번호를 xl → 2xl 노출로 미뤄 폭을 확보했다.
+  { label: "SNS스토어", href: "/sns", accent: true },
   { label: "마케팅 인사이트", href: "/blog" },
   { label: "진행사례", href: "/cases" },
   { label: "FAQ", href: "/faq" },
@@ -238,11 +241,15 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                    className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       pathname === item.href
                         ? scrolled || !isHome
                           ? ""
                           : "bg-white/10 text-white"
+                        : item.accent
+                        ? scrolled || !isHome
+                          ? "font-bold text-amber-700 hover:text-amber-800 hover:bg-amber-50"
+                          : "font-bold text-amber-300 hover:text-amber-200 hover:bg-white/8"
                         : scrolled || !isHome
                         ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                         : "text-gray-300 hover:text-white hover:bg-white/8"
@@ -252,9 +259,11 @@ export default function Header() {
                   </Link>
                 )
               )}
+              {/* SNS스토어 최상위 항목이 들어오며 1280~1535px 폭이 빠듯해졌다.
+                  번호는 상단 공지·카카오 버튼·푸터에도 있어 2xl 부터만 보인다. */}
               <a
                 href="tel:010-7541-9054"
-                className={`hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
+                className={`hidden 2xl:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
               >
                 <Phone size={13} strokeWidth={2} />
                 <span className="font-semibold text-xs">010-7541-9054</span>

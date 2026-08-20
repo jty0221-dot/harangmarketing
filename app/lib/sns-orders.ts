@@ -45,7 +45,9 @@ const ORDERS_PATH = "data/orders.json";
 const LOCAL_FILE = path.join(process.cwd(), "content", "sns-orders.local.json");
 
 function githubConfig(): { repo: string; token: string } | null {
-  const repo = process.env.SNS_ORDERS_REPO;
+  // 레포 이름은 비밀이 아니라 기본값을 둔다 (접근 권한은 어차피 토큰이 결정한다).
+  // 토큰이 없으면 로컬 파일로 폴백 — Vercel 에서는 GITHUB_TOKEN 이 반드시 있어야 한다.
+  const repo = process.env.SNS_ORDERS_REPO ?? "jty0221-del/harang-sns-orders";
   const token = process.env.GITHUB_TOKEN;
   if (!repo || !token) return null;
   return { repo, token };

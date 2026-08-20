@@ -19,6 +19,31 @@ async function isAuthed() {
   return verifySessionToken(store.get(ADMIN_COOKIE_NAME)?.value);
 }
 
+/** 이 금액 아래로 내려가면 잔액 부족 경고를 띄우고 웹훅으로 알린다 */
+const LOW_BALANCE = Number(process.env.SMM_LOW_BALANCE ?? 30000);
+
+/** 파트너 충전 페이지 — 주소는 환경변수에서 파생 (코드에 공급처를 쓰지 않는다) */
+function topupUrl(): string | null {
+  try {
+    return new URL(process.env.SMM_API_URL ?? "").origin + "/addfunds";
+  } catch {
+    return null;
+  }
+}
+
+/** 사장님 알림 — 실패해도 본 작업을 막지 않는다 */
+async function notifyOwner(text: string) {
+  const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
+  if (!webhookUrl) return;
+  try {
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+  } catch {}
+}
+
 export async function GET() {
   if (!(await isAuthed())) {
     return NextResponse.json({ ok: false, error: "인증이 필요합니다" }, { status: 401 });
@@ -31,7 +56,13 @@ export async function GET() {
     } catch {
       // 잔액 조회 실패는 목록 표시를 막지 않는다
     }
-    return NextResponse.json({ ok: true, orders, balance });
+    return NextResponse.json({
+      ok: true,
+      orders,
+      balance,
+      lowBalance: LOW_BALANCE,
+      topupUrl: topupUrl(),
+    });
   } catch (e) {
     return NextResponse.json({ ok: false, error: String(e) }, { status: 500 });
   }
@@ -74,10 +105,30 @@ export async function POST(req: NextRequest) {
           },
           `발주: ${order.no}`
         );
-        return NextResponse.json({ ok: true, order: updated });
+
+        // 발주 후 잔액 점검 — 부족하면 다음 발주가 실패하기 전에 미리 알린다
+        let warning: string | undefined;
+        try {
+          const b = await panelBalance();
+          if (b.balance < LOW_BALANCE) {
+            const left = Math.floor(b.balance).toLocaleString("ko-KR");
+            warning = `파트너 잔액이 ${left}원 남았습니다. 충전해 두세요.`;
+            await notifyOwner(`[SNS 부스트] 잔액 부족 경고\n현재 파트너 잔액 ${left}원 — 다음 발주 전에 충전이 필요합니다.\n충전: ${topupUrl() ?? "파트너 사이트"}`);
+          }
+        } catch {}
+
+        return NextResponse.json({ ok: true, order: updated, warning });
       } catch (e) {
         const msg = e instanceof Error ? e.message : String(e);
+        const noFunds = /fund|balance|money|잔액|충전/i.test(msg);
         await updateOrder(order.no, { lastError: msg }, `발주 실패 기록: ${order.no}`).catch(() => {});
+        if (noFunds) {
+          await notifyOwner(`[SNS 부스트] 발주 실패 — 잔액 부족\n주문 ${order.no} (${order.total.toLocaleString("ko-KR")}원)\n충전 후 어드민에서 다시 발주하세요: ${topupUrl() ?? "파트너 사이트"}`);
+          return NextResponse.json(
+            { ok: false, error: "발주 실패: 파트너 잔액이 부족합니다. 충전 후 다시 발주하세요. 주문은 대기 상태로 유지됩니다." },
+            { status: 502 }
+          );
+        }
         return NextResponse.json({ ok: false, error: `발주 실패: ${msg}` }, { status: 502 });
       }
     }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getProduct, isQtyValid, calcTotal, platformName } from "../../../lib/sns-store";
 import { appendOrder, genOrderNo, type SnsOrder } from "../../../lib/sns-orders";
+import { panelBalance } from "../../../lib/smm-panel";
 
 /**
  * 주문 접수 (공개)
@@ -117,6 +118,13 @@ export async function POST(req: NextRequest) {
   // 사장님 알림 — 상담 신청과 같은 웹훅을 쓴다 (없으면 조용히 생략)
   const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
   if (webhookUrl) {
+    // 파트너 잔액을 함께 보내 충전 타이밍을 놓치지 않게 한다 (조회 실패는 무시)
+    let balanceLine = "";
+    try {
+      const b = await panelBalance();
+      const low = b.balance < Number(process.env.SMM_LOW_BALANCE ?? 30000);
+      balanceLine = `파트너 잔액: ${Math.floor(b.balance).toLocaleString("ko-KR")}원${low ? " — 충전 필요!" : ""}`;
+    } catch {}
     const text = [
       "[SNS 부스트 주문]",
       `주문번호: ${order.no}`,
@@ -124,7 +132,8 @@ export async function POST(req: NextRequest) {
       `수량: ${qty.toLocaleString("ko-KR")}${product.unitLabel} · 금액: ${total.toLocaleString("ko-KR")}원`,
       `링크: ${link}`,
       `연락처: ${contact} · 입금자명: ${depositor}`,
-    ].join("\n");
+      balanceLine,
+    ].filter(Boolean).join("\n");
     try {
       await fetch(webhookUrl, {
         method: "POST",
@@ -140,6 +149,8 @@ export async function POST(req: NextRequest) {
     ok: true,
     no: order.no,
     total,
-    bank: process.env.SNS_BANK || null,
+    // 견적서 하단과 같은 수금 계좌 — 고객에게 보여주는 공개 정보라 기본값을 코드에 둔다.
+    // 계좌를 바꾸면 SNS_BANK 환경변수로 덮어쓸 수 있다.
+    bank: process.env.SNS_BANK || "국민은행 0947-0104-384081 (예금주: 전태영(하랑))",
   });
 }

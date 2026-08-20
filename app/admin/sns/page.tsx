@@ -53,6 +53,8 @@ export default function AdminSnsPage() {
   const router = useRouter();
   const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [balance, setBalance] = useState<{ balance: number; currency: string } | null>(null);
+  const [lowBalance, setLowBalance] = useState(30000);
+  const [topupUrl, setTopupUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string>(""); // 진행 중인 작업 표시: `${op}:${no}`
   const [filter, setFilter] = useState<OrderStatus | "all">("all");
@@ -71,6 +73,8 @@ export default function AdminSnsPage() {
     if (data.ok) {
       setOrders(data.orders);
       setBalance(data.balance);
+      if (data.lowBalance) setLowBalance(data.lowBalance);
+      setTopupUrl(data.topupUrl ?? null);
     } else {
       setMessage(`불러오기 오류: ${data.error}`);
     }
@@ -92,6 +96,7 @@ export default function AdminSnsPage() {
       });
       const data = await res.json();
       if (!data.ok) setMessage(`오류: ${data.error}`);
+      else if (data.warning) setMessage(data.warning);
       else if (op === "refresh") setMessage(`상태 동기화 완료 (${data.updated}건 변경)`);
       await load();
     } catch (e) {
@@ -126,13 +131,42 @@ export default function AdminSnsPage() {
                 입금 확인 → 발주 → 상태 동기화. 발주 버튼을 눌러야 파트너에 주문이 들어갑니다.
               </p>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="inline-flex items-center gap-2 rounded-xl bg-white ring-1 ring-gray-200 px-4 py-2.5">
-                <Wallet size={14} className="text-blue-600" strokeWidth={2.5} />
+            <div className="flex items-center gap-2 flex-wrap">
+              <div
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 ring-1 ${
+                  balance && balance.balance < lowBalance
+                    ? "bg-red-50 ring-red-200"
+                    : "bg-white ring-gray-200"
+                }`}
+              >
+                <Wallet
+                  size={14}
+                  className={balance && balance.balance < lowBalance ? "text-red-600" : "text-blue-600"}
+                  strokeWidth={2.5}
+                />
                 <span className="text-xs font-bold text-gray-500">파트너 잔액</span>
-                <span className="text-sm font-black text-gray-900 tabular-nums">
+                <span
+                  className={`text-sm font-black tabular-nums ${
+                    balance && balance.balance < lowBalance ? "text-red-600" : "text-gray-900"
+                  }`}
+                >
                   {balance ? `${won(Math.floor(balance.balance))}원` : "—"}
                 </span>
+                {topupUrl && (
+                  <a
+                    href={topupUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`ml-1 inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-black transition-colors ${
+                      balance && balance.balance < lowBalance
+                        ? "bg-red-600 text-white hover:bg-red-700"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}
+                  >
+                    충전
+                    <ExternalLink size={10} strokeWidth={2.5} />
+                  </a>
+                )}
               </div>
               <button
                 onClick={() => act("refresh")}
@@ -148,6 +182,13 @@ export default function AdminSnsPage() {
           {message && (
             <p className="mb-4 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-100 rounded-xl px-4 py-2.5">
               {message}
+            </p>
+          )}
+
+          {balance && balance.balance < lowBalance && (
+            <p className="mb-4 text-xs font-bold text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-2.5">
+              파트너 잔액이 {won(lowBalance)}원 아래입니다. 잔액이 부족하면 발주가 실패하니 충전 버튼으로 미리 채워두세요.
+              (부족 상태에서 주문·발주가 생기면 카카오톡 웹훅으로도 알림이 갑니다)
             </p>
           )}
 
