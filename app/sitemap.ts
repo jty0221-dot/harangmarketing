@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/cafe-distribution`,           lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/services/cafe-distribution/reference`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/studio`,                  lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE}/sns`,                     lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/cases`,                   lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${BASE}/contact`,                 lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/free-check`,              lastModified: now, changeFrequency: "monthly", priority: 0.9 },

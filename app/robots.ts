@@ -11,7 +11,8 @@ import { SITE } from "./lib/seo";
  * 차단하면 ChatGPT·Claude·Perplexity·Gemini 답변에서 하랑마케팅이 아예 인용되지 않는다.
  */
 
-const BLOCKED = ["/admin/", "/api/"];
+// /sns/order·track 은 개인 주문용 기능 페이지라 인덱스에서 뺀다 (메타 noindex 와 이중 방어)
+const BLOCKED = ["/admin/", "/api/", "/sns/order", "/sns/track"];
 
 /** 생성형 AI 검색·학습 크롤러 (GEO 핵심) */
 const AI_BOTS = [

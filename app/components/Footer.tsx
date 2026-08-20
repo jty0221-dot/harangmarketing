@@ -101,6 +101,7 @@ export default function Footer() {
               <ul className="space-y-2.5 text-sm">
                 {[
                   // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로
+                  ["SNS 부스트 스토어 (셀프 주문)", "/sns", true],
                   ["하랑 스튜디오 (사진·영상 프로그램)", "/studio", true],
                   ["최적화 블로그 · 카페 배포", "/services/cafe-distribution", true],
                   ["카페 배포 레퍼런스", "/services/cafe-distribution/reference"],

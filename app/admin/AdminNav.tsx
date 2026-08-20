@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, BookOpen, ExternalLink } from "lucide-react";
+import { Home, BookOpen, ExternalLink, ShoppingBag } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -10,6 +10,20 @@ export function AdminHeader() {
           <span className="text-white font-black text-sm">하랑 관리자</span>
         </Link>
         <nav className="flex items-center gap-1">
+          <Link
+            href="/admin"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <BookOpen size={13} />
+            블로그 글
+          </Link>
+          <Link
+            href="/admin/sns"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <ShoppingBag size={13} />
+            SNS 주문
+          </Link>
           <Link
             href="/"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
