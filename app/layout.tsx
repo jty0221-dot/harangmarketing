@@ -10,8 +10,12 @@ import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES } from "./lib/seo";
  * GA4 측정 ID.
  * 브라우저에 그대로 노출되는 공개 식별자라 코드에 두어도 문제없다.
  * 측정 ID를 바꿔야 하면 Vercel 환경변수 NEXT_PUBLIC_GA_ID 로 덮어쓸 수 있다.
+ *
+ * 2026-08-21 교체: 기존 G-EKX3PHCHVZ 는 대표 구글 계정(jty0221)에서 보이지 않는
+ * 다른 계정 소속 속성이라 데이터를 확인할 수 없었다. 대표 계정 안에
+ * '하랑마케팅 홈페이지' 속성을 새로 만들어 그 측정 ID 로 바꿨다.
  */
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-EKX3PHCHVZ";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-L1NX7TPP9Z";
 
 /** Bing Webmaster Tools 소유권 확인 코드 (구글 서치콘솔 Import 로 인증했다면 불필요) */
 const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_VERIFICATION;
