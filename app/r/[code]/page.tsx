@@ -67,11 +67,11 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
   const written = fmtDate(report.publishedAt || report.createdAt);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--h-bg)" }}>
+    <div className="min-h-screen" style={{ background: "var(--w-bg-alt)" }}>
       {/* ── 표지 ── 문서처럼 보이도록 상단을 하나의 띠로 잡는다 */}
       <header
         className="print:bg-white"
-        style={{ background: "linear-gradient(160deg,#0F2044 0%,#1A3560 55%,#20406e 100%)" }}
+        style={{ background: "linear-gradient(155deg, var(--w-blue-20) 0%, var(--w-blue-30) 55%, var(--w-blue-40) 100%)" }}
       >
         <div className="mx-auto w-full max-w-3xl px-5 py-7 md:px-8 md:py-10">
           <div className="flex items-center justify-between gap-3">
@@ -84,10 +84,10 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
             </span>
           </div>
 
-          <p className="mt-6 text-[13px] font-bold text-amber-300">{report.clientName} 대표님</p>
+          <p className="w-label2 mt-6 font-bold" style={{ color: "var(--w-blue-90)" }}>{report.clientName} 대표님</p>
           <h1
-            className="mt-1 text-[26px] font-black leading-[1.25] text-white md:text-[32px]"
-            style={{ letterSpacing: "-0.035em" }}
+            className="w-display3 mt-1 text-white"
+            style={{ fontSize: "clamp(24px, 6vw, var(--w-display3))" }}
           >
             {report.title}
           </h1>
@@ -116,8 +116,8 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
         {report.summary && (
           <div className="-mt-5 rounded-2xl bg-white p-5 shadow-[0_4px_20px_rgba(15,32,68,0.10)] md:-mt-6 md:p-6">
             <p
-              className="text-[16px] font-bold leading-[1.6] md:text-[17px]"
-              style={{ color: "var(--h-navy)" }}
+              className="w-headline1 font-bold"
+              style={{ color: "var(--w-label-strong)" }}
             >
               {report.summary}
             </p>
@@ -132,24 +132,24 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
               {report.metrics.map((m, i) => {
                 const trend = trendOf(m);
                 const tone =
-                  trend === "up" ? "#1A5DC8" : trend === "down" ? "#b45309" : "var(--h-navy)";
+                  trend === "up" ? "var(--w-primary)" : trend === "down" ? "var(--w-cautionary)" : "var(--w-label-strong)";
                 return (
                   <div
                     key={i}
-                    className="rounded-2xl border bg-white p-4 md:p-5"
-                    style={{ borderColor: "var(--h-border)" }}
+                    className="rounded-2xl border p-4 md:p-5"
+                    style={{ borderColor: "var(--w-line-strong)", background: "var(--w-bg-elevated)" }}
                   >
-                    <p className="text-[12px] font-bold tracking-tight text-gray-500">{m.label}</p>
+                    <p className="w-caption1 font-bold" style={{ color: "var(--w-label-alt)" }}>{m.label}</p>
                     <div className="mt-2.5 flex items-baseline gap-2">
                       {m.before && (
                         <>
-                          <span className="text-[15px] font-semibold text-gray-400">{m.before}</span>
+                          <span className="w-label1 font-semibold" style={{ color: "var(--w-label-assistive)" }}>{m.before}</span>
                           <ArrowRight size={13} className="shrink-0 text-gray-300" strokeWidth={2.5} />
                         </>
                       )}
                       <span
-                        className="text-[24px] font-black leading-none md:text-[26px]"
-                        style={{ color: tone, letterSpacing: "-0.03em" }}
+                        className="font-black leading-none"
+                        style={{ color: tone, fontSize: "var(--w-heading1)", letterSpacing: "var(--w-tracking)" }}
                       >
                         {m.after || m.before}
                       </span>
@@ -168,8 +168,8 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
         {report.body && (
           <section className="mt-8">
             <div
-              className="report-body rounded-2xl border bg-white p-5 md:p-7"
-              style={{ borderColor: "var(--h-border)" }}
+              className="report-body rounded-2xl border p-5 md:p-7"
+              style={{ borderColor: "var(--w-line-strong)", background: "var(--w-bg-elevated)" }}
               dangerouslySetInnerHTML={{ __html: report.body }}
             />
           </section>
@@ -192,17 +192,17 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
 
         {/* ── 마무리 ── */}
         <section
-          className="mt-8 rounded-2xl border bg-white p-5 md:p-6 print:hidden"
-          style={{ borderColor: "var(--h-border)" }}
+          className="mt-8 rounded-2xl border p-5 md:p-6 print:hidden"
+          style={{ borderColor: "var(--w-line-strong)", background: "var(--w-bg-elevated)" }}
         >
-          <p className="text-[13px] leading-relaxed text-gray-500">
+          <p className="w-label2" style={{ color: "var(--w-label-alt)" }}>
             궁금하신 점이나 수정이 필요한 부분은 편하게 알려주세요. 바로 반영하겠습니다.
           </p>
           <div className="mt-3.5 flex flex-wrap gap-2">
             <a
               href="tel:01090543788"
               className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[13px] font-bold text-white transition-opacity hover:opacity-90"
-              style={{ background: "var(--h-navy)" }}
+              style={{ background: "var(--w-primary)" }}
             >
               <Phone size={14} strokeWidth={2.5} />
               010-9054-3788
@@ -220,7 +220,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           </div>
         </section>
 
-        <p className="mt-7 text-center text-[11px] leading-relaxed text-gray-400">
+        <p className="w-caption2 mt-7 text-center" style={{ color: "var(--w-label-assistive)" }}>
           하랑마케팅 · 전태영 · {written} 작성
           <br />이 페이지는 {report.clientName} 대표님께만 전달된 링크입니다.
         </p>
@@ -232,10 +232,10 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <h2
-      className="flex items-center gap-2 text-[14px] font-black tracking-tight"
-      style={{ color: "var(--h-navy)" }}
+      className="w-label1 flex items-center gap-2 font-black"
+      style={{ color: "var(--w-label-strong)" }}
     >
-      <span className="inline-block h-3.5 w-1 rounded-full" style={{ background: "var(--h-amber)" }} />
+      <span className="inline-block h-3.5 w-1 rounded-full" style={{ background: "var(--w-primary)" }} />
       {children}
     </h2>
   );
