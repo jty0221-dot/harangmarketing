@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/hero-bg.mp4",
+        source: "/hero-v4.mp4",
         headers: [
           { key: "Accept-Ranges", value: "bytes" },
           { key: "Content-Type", value: "video/mp4" },

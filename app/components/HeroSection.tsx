@@ -132,7 +132,7 @@ export default function HeroSection({
             animation: "haZoom 34s ease-in-out infinite alternate",
           }}
         >
-          <source src="/hero-bg.mp4" type="video/mp4" />
+          <source src="/hero-v4.mp4" type="video/mp4" />
         </video>
 
         {/* ── 우하단 블러 코너 ── */}
@@ -145,10 +145,10 @@ export default function HeroSection({
             height: "clamp(115px,20%,245px)",
             pointerEvents: "none",
             zIndex: 3,
-            backdropFilter: "blur(37px) brightness(0.66)",
-            WebkitBackdropFilter: "blur(37px) brightness(0.66)",
+            backdropFilter: "blur(37px) brightness(0.78)",
+            WebkitBackdropFilter: "blur(37px) brightness(0.78)",
             background:
-              "radial-gradient(118% 118% at 100% 100%, rgba(0,21,54,0.98) 0%, rgba(0,21,54,0.9) 32%, rgba(0,21,54,0.42) 58%, rgba(0,21,54,0) 80%)",
+              "radial-gradient(118% 118% at 100% 100%, rgba(0,21,54,0.92) 0%, rgba(0,21,54,0.78) 32%, rgba(0,21,54,0.3) 58%, rgba(0,21,54,0) 80%)",
             WebkitMaskImage:
               "radial-gradient(150% 150% at 100% 100%, #000 45%, transparent 100%)",
             maskImage:
@@ -163,7 +163,7 @@ export default function HeroSection({
             inset: 0,
             pointerEvents: "none",
             background:
-              "radial-gradient(125% 120% at 52% 40%, rgba(0,21,54,0) 44%, rgba(0,21,54,0.55) 100%)",
+              "radial-gradient(125% 120% at 52% 40%, rgba(0,21,54,0) 46%, rgba(0,21,54,0.4) 100%)",
           }}
         />
         <div
@@ -172,7 +172,7 @@ export default function HeroSection({
             inset: 0,
             pointerEvents: "none",
             background:
-              "linear-gradient(94deg, rgba(0,25,64,0.92) 0%, rgba(0,25,64,0.58) 32%, rgba(0,25,64,0.1) 60%, rgba(0,25,64,0) 76%)",
+              "linear-gradient(94deg, rgba(0,25,64,0.86) 0%, rgba(0,25,64,0.46) 32%, rgba(0,25,64,0.06) 60%, rgba(0,25,64,0) 76%)",
           }}
         />
         <div
@@ -181,7 +181,7 @@ export default function HeroSection({
             inset: 0,
             pointerEvents: "none",
             background:
-              "linear-gradient(0deg, rgba(0,21,54,0.9) 0%, rgba(0,21,54,0.28) 36%, rgba(0,21,54,0) 56%)",
+              "linear-gradient(0deg, rgba(0,21,54,0.76) 0%, rgba(0,21,54,0.18) 36%, rgba(0,21,54,0) 56%)",
           }}
         />
 
