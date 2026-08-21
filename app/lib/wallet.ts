@@ -36,7 +36,7 @@ export async function creditMember(
 export async function debitMember(
   memberId: number,
   amount: number,
-  kind: "order",
+  kind: "order" | "admin_adjust",
   ref?: string,
   memo?: string
 ): Promise<number> {

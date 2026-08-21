@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   Link2, Phone, User, Send, CheckCircle2, Copy, Search,
-  MessageCircle, AlertTriangle, Loader2, Minus, Plus,
+  MessageCircle, AlertTriangle, Loader2, Minus, Plus, Wallet,
 } from "lucide-react";
 import {
   SNS_PLATFORMS, SNS_PRODUCTS, getProduct, productsByPlatform,
@@ -18,6 +18,15 @@ interface DoneInfo {
   no: string;
   total: number;
   bank: string | null;
+  /** 회원 예치금으로 결제된 주문 — 입금 안내 대신 잔액을 보여준다 */
+  paidByBalance?: boolean;
+  balanceAfter?: number;
+  notice?: string;
+}
+
+interface Me {
+  name: string;
+  balance: number;
 }
 
 export default function OrderForm({ initialSlug }: { initialSlug: string | null }) {
@@ -38,6 +47,20 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
   const [error, setError] = useState("");
   const [done, setDone] = useState<DoneInfo | null>(null);
   const [copied, setCopied] = useState(false);
+  const [me, setMe] = useState<Me | null>(null); // 로그인 회원이면 예치금으로 결제한다
+
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/sns/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (alive && d?.ok) setMe({ name: d.member.name, balance: d.member.balance });
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const commentLines = useMemo(
     () => comments.split("\n").map((l) => l.trim()).filter(Boolean),
@@ -89,11 +112,21 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
           website,
         }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({ ok: false, error: `서버 오류 (${res.status})` }));
       if (!data.ok) {
         setError(data.error ?? "접수 중 문제가 생겼습니다.");
       } else {
-        setDone({ no: data.no, total: data.total, bank: data.bank ?? null });
+        setDone({
+          no: data.no,
+          total: data.total,
+          bank: data.bank ?? null,
+          paidByBalance: data.paidByBalance,
+          balanceAfter: data.balanceAfter,
+          notice: data.notice,
+        });
+        if (data.paidByBalance && typeof data.balanceAfter === "number") {
+          setMe((m) => (m ? { ...m, balance: data.balanceAfter } : m));
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch {
@@ -121,7 +154,9 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-sm flex items-center justify-center ring-1 ring-emerald-700/20">
             <CheckCircle2 size={16} className="text-white" strokeWidth={2.5} />
           </div>
-          <h2 className="text-lg font-black text-gray-900">주문이 접수되었습니다</h2>
+          <h2 className="text-lg font-black text-gray-900">
+            {done.paidByBalance ? "결제 완료 · 주문이 시작되었습니다" : "주문이 접수되었습니다"}
+          </h2>
         </div>
 
         <div className="mt-5 rounded-2xl bg-gray-50 ring-1 ring-gray-100 p-5 text-center">
@@ -138,10 +173,23 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
           </div>
           {copied && <p className="mt-1 text-[11px] font-bold text-emerald-600">복사되었습니다</p>}
           <p className="mt-2 text-sm text-gray-600">
-            입금하실 금액 <strong className="font-black text-gray-900">{won(done.total)}원</strong>
+            {done.paidByBalance ? "결제 금액" : "입금하실 금액"}{" "}
+            <strong className="font-black text-gray-900">{won(done.total)}원</strong>
           </p>
         </div>
 
+        {done.paidByBalance ? (
+          <div className="mt-4 rounded-2xl ring-1 p-5 text-[13px] leading-relaxed bg-emerald-50/60 ring-emerald-100 text-gray-700">
+            <p className="font-black text-gray-900">예치금에서 결제되었습니다</p>
+            <p className="mt-1">
+              남은 잔액{" "}
+              <strong className="text-[15px] font-black text-emerald-700 tabular-nums">
+                {won(done.balanceAfter ?? 0)}원
+              </strong>
+            </p>
+            <p className="mt-2">{done.notice ?? STORE.startNote}</p>
+          </div>
+        ) : (
         <div className="mt-4 rounded-2xl ring-1 p-5 text-[13px] leading-relaxed bg-blue-50/60 ring-blue-100 text-gray-700">
           {done.bank ? (
             <>
@@ -162,17 +210,28 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
             </>
           )}
         </div>
+        )}
 
         <div className="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a
-            href={KAKAO_CHAT}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-gray-900 transition hover:bg-amber-300"
-          >
-            <MessageCircle size={15} strokeWidth={2.2} />
-            카카오톡 채널 열기
-          </a>
+          {done.paidByBalance ? (
+            <Link
+              href="/sns/me"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gray-900 px-5 py-3 text-sm font-black text-white transition hover:bg-gray-800"
+            >
+              <Wallet size={15} strokeWidth={2.2} />
+              마이페이지에서 진행 보기
+            </Link>
+          ) : (
+            <a
+              href={KAKAO_CHAT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-gray-900 transition hover:bg-amber-300"
+            >
+              <MessageCircle size={15} strokeWidth={2.2} />
+              카카오톡 채널 열기
+            </a>
+          )}
           <Link
             href="/sns/track"
             className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-black text-gray-700 ring-1 ring-gray-200 transition hover:bg-gray-50"
@@ -183,7 +242,9 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
         </div>
 
         <p className="mt-4 text-[11px] text-gray-400">
-          주문번호와 연락처만 있으면 언제든 진행 상황을 조회할 수 있습니다. 이 화면을 캡처해 두셔도 좋습니다.
+          {done.paidByBalance
+            ? "마이페이지에서 주문 진행률과 잔액을 언제든 확인할 수 있습니다."
+            : "주문번호와 연락처만 있으면 언제든 진행 상황을 조회할 수 있습니다. 이 화면을 캡처해 두셔도 좋습니다."}
         </p>
       </div>
     );
@@ -192,6 +253,46 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
   /* ───────────── 주문 폼 ───────────── */
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* 회원 예치금 안내 — 로그인 상태면 잔액에서 즉시 결제된다 */}
+      {me ? (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-gray-900 px-5 py-4 text-white shadow-sm">
+          <div className="flex items-center gap-2.5">
+            <Wallet size={16} strokeWidth={2.5} className="text-emerald-300" />
+            <div>
+              <p className="text-[11px] font-bold text-gray-400">{me.name}님 예치금 잔액</p>
+              <p className="text-[19px] font-black tabular-nums leading-tight">{won(me.balance)}원</p>
+            </div>
+          </div>
+          <Link
+            href="/sns/charge"
+            className="rounded-xl bg-white/10 px-3.5 py-2 text-[12px] font-black text-white ring-1 ring-white/20 transition hover:bg-white/20"
+          >
+            충전하기
+          </Link>
+        </div>
+      ) : (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-blue-50 px-5 py-4 ring-1 ring-blue-100">
+          <p className="text-[12.5px] leading-relaxed text-gray-700">
+            <strong className="font-black text-gray-900">회원으로 주문하면</strong> 예치금 잔액에서 바로 결제되고
+            입금 확인 없이 즉시 시작됩니다.
+          </p>
+          <div className="flex gap-2">
+            <Link
+              href="/sns/login"
+              className="rounded-xl bg-white px-3.5 py-2 text-[12px] font-black text-gray-700 ring-1 ring-gray-200 transition hover:bg-gray-50"
+            >
+              로그인
+            </Link>
+            <Link
+              href="/sns/signup"
+              className="rounded-xl bg-blue-600 px-3.5 py-2 text-[12px] font-black text-white transition hover:bg-blue-700"
+            >
+              회원가입
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* 상품 선택 */}
       <div className="bg-white rounded-2xl ring-1 ring-gray-100 shadow-sm p-5 md:p-6">
         {/* 선택된 상품 미리보기 */}
@@ -318,6 +419,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
           </p>
         </div>
 
+        {!me && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="flex items-center gap-1.5 text-xs font-black text-gray-700 mb-1.5">
@@ -347,6 +449,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
             />
           </div>
         </div>
+        )}
 
         {/* 봇 트랩 — 사람에게는 보이지 않는다 */}
         <input
@@ -396,16 +499,33 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
           </div>
         )}
 
+        {/* 회원 — 잔액이 모자라면 결제 전에 알려주고 충전으로 보낸다 */}
+        {me && qtyValid && me.balance < total && (
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl bg-amber-50 ring-1 ring-amber-100 px-4 py-3">
+            <p className="text-[12.5px] font-bold text-amber-800">
+              잔액이 {won(total - me.balance)}원 부족합니다 (보유 {won(me.balance)}원)
+            </p>
+            <Link
+              href="/sns/charge"
+              className="rounded-lg bg-amber-500 px-3 py-1.5 text-[12px] font-black text-white transition hover:bg-amber-600"
+            >
+              충전하기
+            </Link>
+          </div>
+        )}
+
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || (!!me && me.balance < total)}
           className="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-4 text-[15px] font-black text-white shadow-sm transition hover:bg-blue-700 disabled:opacity-50"
         >
           {submitting ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} strokeWidth={2.2} />}
-          {submitting ? "접수 중..." : "주문 접수하기"}
+          {submitting ? (me ? "결제 중..." : "접수 중...") : me ? "잔액으로 결제하고 주문" : "주문 접수하기"}
         </button>
         <p className="mt-2.5 text-center text-[11px] text-gray-400">
-          접수 후 입금 안내가 나옵니다. 입금 전에는 비용이 발생하지 않습니다.
+          {me
+            ? "예치금에서 즉시 결제되고 바로 시작됩니다. 시작 전에는 전액 환불됩니다."
+            : "접수 후 입금 안내가 나옵니다. 입금 전에는 비용이 발생하지 않습니다."}
         </p>
       </div>
     </form>

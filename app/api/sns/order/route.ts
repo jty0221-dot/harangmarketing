@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getProduct, isQtyValid, calcTotal, platformName } from "../../../lib/sns-store";
 import { appendOrder, genOrderNo, type SnsOrder } from "../../../lib/sns-orders";
-import { panelBalance } from "../../../lib/smm-panel";
+import { panelBalance, panelAddOrder } from "../../../lib/smm-panel";
+import { verifyMemberToken, MEMBER_COOKIE_NAME } from "../../../lib/member-auth";
+import {
+  createMemberOrder,
+  markDispatched,
+  markDispatchFailed,
+  InsufficientBalance,
+} from "../../../lib/member-orders";
 
 /**
  * 주문 접수 (공개)
  *
- * 여기서는 대장 기록과 알림만 한다.
- * 공급 파트너 발주는 어드민이 입금을 확인한 뒤 /api/admin/sns 에서 실행한다.
- * (접수 즉시 발주하면 미입금 주문이 파트너 잔액을 소진한다)
+ * 비회원: 대장 기록과 알림만 한다. 공급 파트너 발주는 어드민이 입금을 확인한 뒤
+ *         /api/admin/sns 에서 실행한다 (미입금 주문이 파트너 잔액을 소진하지 않도록).
+ * 회원:   예치금에서 즉시 결제되므로 입금 확인이 필요 없다.
+ *         결제 성공 직후 파트너로 자동 발주한다.
  */
 
 function isHttpUrl(s: string): boolean {
@@ -24,6 +32,19 @@ function tooMany(ip: string): boolean {
   list.push(now);
   recent.set(ip, list);
   return list.length > 5;
+}
+
+/** 사장님 알림 — 실패해도 주문을 막지 않는다 */
+async function notifyOwner(text: string) {
+  const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
+  if (!webhookUrl) return;
+  try {
+    await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+  } catch {}
 }
 
 export async function POST(req: NextRequest) {
@@ -80,6 +101,76 @@ export async function POST(req: NextRequest) {
   if (!isHttpUrl(link) || link.length > 500) {
     return NextResponse.json({ ok: false, error: "링크는 http(s):// 로 시작하는 주소여야 합니다" }, { status: 400 });
   }
+
+  /* ── 회원 잔액 결제 — 로그인 상태면 예치금에서 즉시 결제하고 바로 발주한다 ── */
+  const memberId = verifyMemberToken(req.cookies.get(MEMBER_COOKIE_NAME)?.value);
+  if (memberId) {
+    let created: { no: string; total: number; balanceAfter: number };
+    try {
+      created = await createMemberOrder({ memberId, product, qty, link, comments });
+    } catch (e) {
+      if (e instanceof InsufficientBalance) {
+        return NextResponse.json(
+          {
+            ok: false,
+            error: "예치금 잔액이 부족합니다. 충전 후 다시 주문해 주세요.",
+            needCharge: true,
+            required: calcTotal(product, qty),
+          },
+          { status: 402 }
+        );
+      }
+      console.error("회원 주문 생성 실패:", e);
+      return NextResponse.json(
+        { ok: false, error: "주문 처리 중 문제가 생겼습니다. 잠시 후 다시 시도해 주세요." },
+        { status: 500 }
+      );
+    }
+
+    // 결제는 이미 끝났다. 발주가 실패해도 주문은 남기고(pending) 어드민이 재시도한다.
+    let dispatched = false;
+    let notice: string | undefined;
+    try {
+      const panelOrderId = await panelAddOrder({ sid: product.sid, link, quantity: qty, comments });
+      await markDispatched(created.no, panelOrderId);
+      dispatched = true;
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      await markDispatchFailed(created.no, msg).catch(() => {});
+      notice = "결제는 완료됐어요. 진행 준비 중이며 곧 시작됩니다.";
+      await notifyOwner(
+        [
+          "[SNS 부스트] 회원 주문 발주 실패 — 확인 필요",
+          `주문 ${created.no} · ${product.name} ${qty.toLocaleString("ko-KR")} · ${created.total.toLocaleString("ko-KR")}원 (결제 완료)`,
+          `사유: ${msg}`,
+          "어드민에서 재발주하세요.",
+        ].join("\n")
+      );
+    }
+
+    if (dispatched) {
+      await notifyOwner(
+        [
+          "[SNS 부스트] 회원 주문 (잔액 결제)",
+          `주문번호: ${created.no}`,
+          `상품: ${platformName(product.platform)} · ${product.name}`,
+          `수량: ${qty.toLocaleString("ko-KR")}${product.unitLabel} · 결제 ${created.total.toLocaleString("ko-KR")}원`,
+          `링크: ${link}`,
+          `회원 잔액: ${created.balanceAfter.toLocaleString("ko-KR")}원`,
+        ].join("\n")
+      );
+    }
+
+    return NextResponse.json({
+      ok: true,
+      no: created.no,
+      total: created.total,
+      paidByBalance: true,
+      balanceAfter: created.balanceAfter,
+      notice,
+    });
+  }
+
   if (contact.length < 5 || contact.length > 60) {
     return NextResponse.json({ ok: false, error: "연락처(전화번호 또는 카카오톡 ID)를 입력해 주세요" }, { status: 400 });
   }

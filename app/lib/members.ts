@@ -82,6 +82,28 @@ export async function createMember(
   return mapMember(rows[0]);
 }
 
+export interface MemberSummary extends Member {
+  orderCount: number;
+  chargedTotal: number;
+}
+
+/** 어드민: 전체 회원 + 주문 건수·누적 충전액 */
+export async function getAllMembers(): Promise<MemberSummary[]> {
+  const rows = (await getSql()`
+    select m.*,
+           (select count(*) from orders o where o.member_id = m.id) as order_count,
+           coalesce((select sum(l.amount) from ledger l
+                      where l.member_id = m.id and l.kind = 'charge'), 0) as charged_total
+      from members m
+     order by m.created_at desc
+  `) as Row[];
+  return rows.map((r) => ({
+    ...mapMember(r),
+    orderCount: Number(r.order_count),
+    chargedTotal: Number(r.charged_total),
+  }));
+}
+
 /** 최근 원장(충전·주문·환불 내역) */
 export interface LedgerEntry {
   id: number;

@@ -141,12 +141,26 @@ GET  /api/sns/orders           내 주문 목록
 
 ## 8. 구현 단계 (내 작업 — PG 없이도 대부분 선행 가능)
 
-- [ ] P1. DB 연결 + 스키마 마이그레이션 + 회원가입/로그인/세션
-- [ ] P2. 마이페이지 + 잔액/원장 표시 + **어드민 수동충전**(입금 확인 시 잔액 지급)
-      → 이 시점에 이미 "회원 예치금으로 주문"이 수동입금 기준으로 작동한다
-- [ ] P3. 잔액 주문 흐름(원자적 차감 + 자동 발주)
-- [ ] P4. 포트원 연동(가상계좌 발급 + 웹훅 자동충전) — 대표 PG 승인 후 키 연결
-- [ ] P5. 어드민 회원·충전·거래 관리, 알림, 정산 리포트
+- [x] P1. DB 연결 + 스키마 마이그레이션 + 회원가입/로그인/세션
+      `/sns/signup` `/sns/login` `/sns/me` · `/api/sns/auth/*` `/api/sns/me`
+- [x] P2. 충전 신청 + 계좌 안내 + **어드민 수동승인**(입금 확인 시 잔액 지급)
+      `/sns/charge` · `/admin/sns/charges` · `app/lib/wallet.ts`(원자적 증감) `app/lib/charges.ts`
+- [x] P3. 잔액 주문 흐름(원자적 차감 + 자동 발주)
+      `app/lib/member-orders.ts` · `/api/sns/order` 회원 분기 · 주문폼 잔액 UI · `/api/sns/orders`
+      결제와 주문 생성이 한 트랜잭션. 발주 실패해도 결제는 보존되고 pending 으로 남아 어드민이 재발주.
+- [x] P5. 어드민 회원·주문 관리
+      `/admin/sns/members` (회원 잔액 조회·수동 지급/차감 · 회원 주문 재발주·상태동기화·취소환불)
+      `/api/admin/sns/members` `/api/admin/sns/orders`
+- [~] P4. 포트원 연동 — **서버 측 완료, 키 대기**
+      완료: `app/lib/portone.ts`(결제 재조회·웹훅 서명검증) ·
+            `/api/sns/charge/webhook`(입금 → 금액검증 → 멱등 자동충전 → 카톡 알림) ·
+            `approveChargeByPayment()`
+      남은 것(PG 승인 후):
+        1) Vercel 환경변수 `PORTONE_API_SECRET`, `PORTONE_WEBHOOK_SECRET` 입력
+        2) 포트원 콘솔에 웹훅 주소 등록:
+           `https://www.harangmarketing.com/api/sns/charge/webhook`
+        3) `/sns/charge` 에 가상계좌 발급 버튼 연결 — 승인된 채널(KG이니시스 등)에 맞춰
+           `paymentIdForCharge(chargeId)` 를 paymentId 로 써서 발급. 채널 확정 후 작업.
+      키가 없으면 웹훅은 조용히 무시하고, 기존 수동승인(P2) 흐름이 그대로 동작한다.
 
-즉 P4(포트원)만 대표의 PG 승인을 기다리고, **P1~P3(회원·잔액·주문)는 지금 바로** 만든다.
-승인 나면 P4 키만 꽂으면 "입금 즉시 자동충전"이 켜진다.
+즉 **P1·P2·P3·P5 는 지금 라이브**. P4 는 대표의 PG 심사 승인만 기다린다.

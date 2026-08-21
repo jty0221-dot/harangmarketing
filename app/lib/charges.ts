@@ -98,6 +98,42 @@ export async function approveCharge(
   });
 }
 
+/**
+ * 포트원 입금 확인 자동 승인 — 웹훅에서 호출한다.
+ * 금액이 신청액과 다르면 반영하지 않고 "mismatch" 를 돌려준다(사람이 확인할 상황).
+ * 멱등: 이미 처리된 건이면 null (웹훅은 여러 번 올 수 있다).
+ */
+export async function approveChargeByPayment(
+  chargeId: number,
+  pgTxId: string,
+  paidAmount: number
+): Promise<{ memberId: number; amount: number; balanceAfter: number } | null | "mismatch"> {
+  const check = (await getSql()`select amount from charges where id = ${chargeId}`) as Row[];
+  if (!check[0]) return null;
+  if (Number(check[0].amount) !== paidAmount) return "mismatch";
+
+  return withTransaction(async (c) => {
+    const ch = await c.query(
+      `update charges set status='paid', paid_at=now(), pg_tx_id=$2, pg_provider='portone'
+        where id=$1 and status='pending' returning member_id, amount`,
+      [chargeId, pgTxId]
+    );
+    if (ch.rowCount === 0) return null; // 이미 처리됨
+    const memberId = Number(ch.rows[0].member_id);
+    const amount = Number(ch.rows[0].amount);
+    const upd = await c.query("update members set balance = balance + $1 where id=$2 returning balance", [
+      amount,
+      memberId,
+    ]);
+    const balanceAfter = Number(upd.rows[0].balance);
+    await c.query(
+      "insert into ledger (member_id, kind, amount, balance_after, ref, memo) values ($1,'charge',$2,$3,$4,'가상계좌 입금 자동충전')",
+      [memberId, amount, balanceAfter, `충전#${chargeId}`]
+    );
+    return { memberId, amount, balanceAfter };
+  });
+}
+
 /** 어드민: 충전 신청 반려 (입금 없음 등) */
 export async function rejectCharge(chargeId: number): Promise<boolean> {
   const rows = (await getSql()`
