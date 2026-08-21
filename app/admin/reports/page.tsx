@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   FileText, Plus, Save, Trash2, Copy, ExternalLink, Eye, Loader2,
-  TrendingUp, X, Check, PencilLine,
+  TrendingUp, X, Check, PencilLine, RotateCcw,
 } from "lucide-react";
 import { AdminHeader, AdminFooter } from "../AdminNav";
 import RichTextEditor from "../RichTextEditor";
@@ -35,6 +35,39 @@ interface Report {
 type Form = Omit<Report, "viewCount" | "createdAt" | "publishedAt" | "lastViewedAt">;
 
 const SITE = "https://www.harangmarketing.com";
+
+/**
+ * 본문 기본 틀 — 새 보고서를 열면 이 내용이 들어가 있다.
+ *
+ * client-report 스킬의 4블록 구조(진행사항 · 남은작업 · 드리는 말씀 · 요청사항)를 그대로 따른다.
+ * 다만 카톡이 아니라 웹 페이지라 꺾쇠 대신 제목 태그를 쓴다.
+ * 문장은 대표님 말투 그대로 — 빈 칸을 채우기보다 고쳐 쓰는 쪽이 빠르라고 실제 문장으로 넣어둔다.
+ */
+const BODY_TEMPLATE = `<p>안녕하세요 대표님! 이번 기간 진행한 내용 정리해서 알려드립니다.</p>
+<h2>진행사항</h2>
+<ul>
+<li>플레이스 SEO 최적화 — 상세설명·찾아오는길·대표키워드 반영 완료</li>
+<li>블로그 포스팅 0건 발행 (키워드: )</li>
+<li>블로그 배포 0건 진행</li>
+<li>플레이스 광고 세팅·최적화 진행 중</li>
+</ul>
+<h2>남은 작업</h2>
+<ul>
+<li>체험단 모집 = 신청 0명 받았고 이번 주 예약 잡고 있습니다</li>
+<li>영수증 리뷰 작업 = 사진이 아직 충분하지 않아 진행하지 않았습니다. 같은 종류 사진만 계속 올라가면 네이버도, 손님들도 이상하게 볼꺼라서요</li>
+</ul>
+<h2>드리는 말씀</h2>
+<p>업체 몇가지 확인해보니 눈에 띄는 게 있어서 적어둡니다.</p>
+<ol>
+<li><strong>(항목명)</strong>
+<ul>
+<li>문제 — </li>
+<li>해결책 — </li>
+<li>왜 그래야 하는지 — </li>
+</ul>
+</li>
+</ol>
+<p>광고비는 저희에게 주는 게 아니라 네이버에 돈을 주고 최상단에 노출하는 겁니다. 소진이 가까워지면 미리 말씀드리겠습니다.</p>`;
 
 const EMPTY: Form = {
   code: "",
@@ -78,6 +111,11 @@ export default function AdminReportsPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [copied, setCopied] = useState("");
+  /**
+   * 에디터는 마운트할 때의 값만 읽고 이후 value 변경은 반영하지 않는다.
+   * 그래서 본문을 밖에서 갈아끼울 때(새 보고서·다른 보고서 수정·기본 틀 넣기) 이 키를 올려 다시 마운트시킨다.
+   */
+  const [editorKey, setEditorKey] = useState(0);
 
   /** 목록 새로고침. 첫 줄이 await 라서 effect 안에서 불러도 동기 setState 가 일어나지 않는다. */
   const load = useCallback(async () => {
@@ -99,10 +137,19 @@ export default function AdminReportsPage() {
   }, [load]);
 
   const startNew = () => {
-    setForm({ ...EMPTY, period: thisWeekLabel() });
+    setForm({ ...EMPTY, period: thisWeekLabel(), body: BODY_TEMPLATE });
+    setEditorKey((k) => k + 1);
     setEditing(true);
     setMessage("");
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  /** 본문을 기본 틀로 되돌린다. 쓰던 내용이 있으면 먼저 물어본다. */
+  const insertTemplate = () => {
+    const hasText = form.body.replace(/<[^>]*>/g, "").trim().length > 0;
+    if (hasText && !confirm("지금 본문을 지우고 기본 틀로 바꿀까요?")) return;
+    setForm((f) => ({ ...f, body: BODY_TEMPLATE }));
+    setEditorKey((k) => k + 1);
   };
 
   const startEdit = (r: Report) => {
@@ -118,6 +165,7 @@ export default function AdminReportsPage() {
       requests: r.requests,
       status: r.status,
     });
+    setEditorKey((k) => k + 1);
     setEditing(true);
     setMessage("");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -382,11 +430,29 @@ export default function AdminReportsPage() {
 
             {/* 본문 */}
             <div className="mt-5">
-              <label className="text-[13px] font-bold text-gray-700">본문</label>
-              <p className="mt-0.5 mb-2 text-[12px] text-gray-400">
-                진행사항 · 남은 작업 · 드리는 말씀 순으로. 사진도 넣을 수 있습니다.
-              </p>
-              <RichTextEditor value={form.body} onChange={(html) => setForm({ ...form, body: html })} />
+              <div className="flex items-end justify-between gap-2">
+                <div>
+                  <label className="text-[13px] font-bold text-gray-700">본문</label>
+                  <p className="mt-0.5 text-[12px] text-gray-400">
+                    진행사항 · 남은 작업 · 드리는 말씀 순으로. 사진도 넣을 수 있습니다.
+                  </p>
+                </div>
+                <button
+                  onClick={insertTemplate}
+                  className="mb-0.5 inline-flex shrink-0 items-center gap-1 rounded-lg border border-gray-200 px-2.5 py-1.5 text-[12px] font-bold text-gray-600 hover:bg-gray-50"
+                  title="본문을 기본 틀로 되돌립니다"
+                >
+                  <RotateCcw size={13} strokeWidth={2.5} />
+                  기본 틀
+                </button>
+              </div>
+              <div className="mt-2">
+                <RichTextEditor
+                  key={editorKey}
+                  value={form.body}
+                  onChange={(html) => setForm({ ...form, body: html })}
+                />
+              </div>
             </div>
 
             <Field label="대표님께 요청드릴 것" hint="맨 아래 노란 박스로 강조됩니다. 없으면 비워두세요" className="mt-5">
