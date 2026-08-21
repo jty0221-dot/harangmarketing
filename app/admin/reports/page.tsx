@@ -389,6 +389,11 @@ export default function AdminReportsPage() {
                   순위·리뷰 수처럼 숫자로 보여줄 게 있으면 추가하세요. 없으면 비워둬도 됩니다.
                 </p>
               ) : (
+                <p className="mt-2 text-[12px] text-gray-400">
+                  이전·현재가 둘 다 비어 있는 줄은 저장할 때 빠집니다. 한쪽만 채워도 됩니다.
+                </p>
+              )}
+              {form.metrics.length > 0 && (
                 <div className="mt-2 space-y-2">
                   {form.metrics.map((m, i) => (
                     <div key={i} className="grid grid-cols-[1fr_auto] gap-2 items-start">

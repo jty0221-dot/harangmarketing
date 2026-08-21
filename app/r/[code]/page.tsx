@@ -23,7 +23,9 @@ import { getPublishedReport } from "../../lib/reports";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "진행 보고서 — 하랑마케팅",
+  // 루트 레이아웃이 "%s | 하랑마케팅" 로 감싼다. 여기에 상호를 또 넣으면 중복된다.
+  // 업체명은 넣지 않는다 — 링크를 받은 사람의 브라우저 기록·탭에 남기지 않기 위해서다.
+  title: "진행 보고서",
   robots: { index: false, follow: false, nocache: true },
 };
 

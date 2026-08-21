@@ -152,7 +152,12 @@ function mapReport(r: Row): Report {
   };
 }
 
-/** 지표 배열을 신뢰할 수 있는 형태로 정리 — 빈 줄 제거, 문자열 강제, 개수 제한 */
+/**
+ * 지표 배열 정리 — 문자열 강제, 개수 제한, 쓸모없는 줄 제거.
+ *
+ * 값(이전·현재)이 하나도 없는 줄은 버린다. 화면에 '- → -' 로 찍혀서
+ * 아무 정보도 주지 못하고 보고서만 허술해 보이기 때문이다(라벨만 적고 값을 안 채운 경우).
+ */
 export function cleanMetrics(input: unknown): ReportMetric[] {
   if (!Array.isArray(input)) return [];
   return input
@@ -160,7 +165,7 @@ export function cleanMetrics(input: unknown): ReportMetric[] {
       const o = (m || {}) as Record<string, unknown>;
       return { label: str(o.label).trim(), before: str(o.before).trim(), after: str(o.after).trim() };
     })
-    .filter((m) => m.label || m.before || m.after)
+    .filter((m) => m.before || m.after)
     .slice(0, 12);
 }
 
