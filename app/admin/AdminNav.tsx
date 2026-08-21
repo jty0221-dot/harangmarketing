@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, BookOpen, ExternalLink, ShoppingBag } from "lucide-react";
+import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -23,6 +23,13 @@ export function AdminHeader() {
           >
             <ShoppingBag size={13} />
             SNS 주문
+          </Link>
+          <Link
+            href="/admin/sns/charges"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <Wallet size={13} />
+            충전 관리
           </Link>
           <Link
             href="/"
