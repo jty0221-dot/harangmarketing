@@ -39,10 +39,14 @@
 23단계(`--w-cn-0` ~ `--w-cn-100`)가 들어 있다. 주요 값:
 
 ```
-100 #FFFFFF   98 #F4F4F5   96 #EAEBEC   90 #DBDCDF   80 #C2C4C8
-70 #AEB0B6    60 #989BA2   50 #878A93   40 #70737C   30 #5A5C63
-20 #37383C    17 #333438   10 #212225    0 #000000
+100 #FFFFFF   99 #F7F7F8   98 #F4F4F5   97 #EAEBEC   96 #E1E2E4
+ 95 #DBDCDF   90 #C2C4C8   80 #AEB0B6   70 #989BA2   60 #878A93
+ 50 #70737C   40 #5A5C63   30 #46474C   25 #37383C   23 #333438
+ 22 #2E2F33   20 #292A2D   17 #212225   15 #1B1C1E   10 #171719
+  7 #141415    5 #0F0F10    0 #000000
 ```
+
+(전체 23단계와 나머지 13개 패밀리는 `docs/wds-colors.json` 에 있다)
 
 ### 상태색
 
@@ -144,8 +148,17 @@ Tab · Modal · Tooltip · Divider · GNB
 둘 다 `:root` 에 선언하므로 **`/sns/*` 에서는 나중에 로드되는 `theme.css` 값이 이긴다.**
 `/r/*` 등 나머지 화면은 `globals.css` 값을 쓴다. 값이 대부분 같아서 지금은 문제가 없다.
 
-- `--w-primary` `#0066FF` · `--w-bg` `#FFFFFF` · `--w-line` `#EAEBEC` → 양쪽 동일
-- `--w-bg-alt` 만 달랐다(`#F4F4F5` vs `#F7F7F8`) → **`#F7F7F8` 로 맞췄다**
+| 토큰 | globals.css (내 쪽) | sns/theme.css | 상태 |
+|---|---|---|---|
+| `--w-primary` | `#0066FF` | `#0066FF` | 같음 |
+| `--w-bg` | `#FFFFFF` | `#FFFFFF` | 같음 |
+| `--w-line-strong` | `#C2C4C8` | (`--w-border-strong`) `#C2C4C8` | 같음 |
+| `--w-bg-alt` | `#F4F4F5` → **`#F7F7F8`** | `#F7F7F8` | 맞춤 |
+| `--w-line` | `#E1E2E4` (cn-96) | `#EAEBEC` (cn-97) | **다름 — 이름은 같은데 뜻이 다르다** |
+
+`--w-line` 은 그쪽에서 '가장 옅은 선', 내 쪽에서 '기본 구분선'으로 쓰고 있어 값이 한 단 다르다.
+`/sns/*` 에서는 theme.css 가 이기고 나머지 화면은 globals.css 가 쓰이므로 **지금 깨지는 곳은 없다.**
+합칠 때 뜻을 먼저 정하고 값을 맞춰야 한다.
 
 **정리할 때**: `theme.css` 의 헥사값을 `globals.css` 의 램프 변수(`var(--w-cn-99)` 등)를 쓰도록 바꾸면
 정의가 한 곳으로 모인다. `theme.css` 에만 있는 것(shadow·radius·`w-card`·`w-btn` 같은 컴포넌트 클래스)은
