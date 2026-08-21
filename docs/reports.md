@@ -78,3 +78,46 @@
 - 세금계산서 시스템(`E:\하랑\세금계산서`)에서 발행·입금 결과를 보고서로 자동 등록
   → `REPORTS_API_TOKEN` 을 만들고 `POST /api/admin/reports` 에 `Authorization: Bearer <토큰>` 으로 호출
 - 팝빌 알림톡 API 연동 시, 보고서 저장 → 알림톡 발송까지 한 번에
+
+---
+
+## "보고서 써줘" 로 자동 등록하기 (2026-08-21 추가)
+
+관리자 화면에 로그인해서 붙여넣지 않아도 된다. Claude 에게 말하면 끝난다.
+
+```
+대표님: 소금정원 강화점 이번 주 보고서 써줘
+Claude: (client-report 스킬로 본문 작성) → scripts/report.js 로 등록 → r/xxxxxxxxxxxx 전달
+```
+
+### 준비 (1회) — 토큰 넣기
+
+`scripts/report.js` 는 관리자 로그인 대신 **토큰**으로 API 를 쓴다.
+같은 값이 Vercel 과 로컬 양쪽에 있어야 한다.
+
+1. Vercel → harangmarketing → Settings → Environment Variables → Add
+   - Key: `REPORTS_API_TOKEN`
+   - Value: 로컬 `.env.local` 의 `REPORTS_API_TOKEN` 값과 **똑같이**
+   - Environments: Production (Preview 도 같이 체크해두면 편하다)
+2. 저장 후 **재배포** — Vercel 은 환경변수를 추가해도 다시 배포해야 런타임에 반영된다.
+   Deployments → 최신 항목 → Redeploy
+
+토큰을 설정하지 않으면 API 는 관리자 로그인 쿠키만 받는다(= 자동 등록 불가, 화면 입력은 그대로 동작).
+
+### 쓰는 법
+
+```bash
+cd E:/하랑/harang
+node scripts/report.js <보고서.json>          # 공개 상태로 등록
+node scripts/report.js <보고서.json> --draft  # 임시저장 (확인용)
+node scripts/report.js --list                 # 최근 보고서 목록·조회수
+```
+
+JSON 모양과 필드는 `scripts/report.js` 상단 주석에 있다.
+`code` 를 넣으면 그 보고서를 **수정**한다 — 이미 보낸 링크를 살린 채 내용만 바꿀 때 쓴다.
+
+### 왜 토큰 방식인가
+
+- 관리자 비밀번호를 스크립트나 대화에 넣지 않기 위해서다. 토큰은 이 용도로만 쓰이고 언제든 바꿀 수 있다.
+- 토큰이 새면 보고서 등록만 가능하다. 회원·주문·정산 쪽은 건드리지 못한다.
+- 바꾸고 싶으면 Vercel 과 `.env.local` 양쪽 값을 새로 맞추면 된다.

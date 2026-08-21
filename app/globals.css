@@ -637,3 +637,17 @@ body { overflow-x: hidden; }
 .report-body th { background: var(--h-surface); font-weight: 800; color: var(--h-navy); }
 
 .report-body iframe { max-width: 100%; border-radius: 12px; }
+
+/* 진행 보고서 인쇄 — 사장님이 PDF 로 저장하거나 직원에게 보여줄 때 */
+@media print {
+  .report-body { font-size: 11pt; }
+  .report-body h1,
+  .report-body h2,
+  .report-body h3 { break-after: avoid; }
+  .report-body li,
+  .report-body blockquote,
+  .report-body img,
+  .report-body table { break-inside: avoid; }
+  /* 화면용 그림자·둥근 모서리는 인쇄에서 잉크만 먹는다 */
+  .report-body { border: 0 !important; padding: 0 !important; }
+}

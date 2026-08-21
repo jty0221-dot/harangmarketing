@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import {
-  CalendarDays,
-  TrendingUp,
   ArrowRight,
+  ArrowUpRight,
   ClipboardCheck,
   MessageCircle,
   Phone,
-  FileText,
 } from "lucide-react";
-import { getPublishedReport } from "../../lib/reports";
+import { getPublishedReport, type ReportMetric } from "../../lib/reports";
+import PrintButton from "./PrintButton";
 
 /**
  * 클라이언트 진행 보고서 — 카카오 알림톡 버튼이 여는 페이지
  *
- * · 로그인 없이 코드로 연다. 코드가 곧 열쇠라서 검색엔진에는 절대 노출하지 않는다(noindex, nofollow).
- * · 대부분 카톡에서 휴대폰으로 열기 때문에 모바일 우선으로 짠다.
- * · 매 요청마다 DB 를 읽어야 하므로 캐시하지 않는다.
+ * 성격
+ *   웹페이지라기보다 '문서'다. 사장님이 열어서 읽고, 필요하면 저장하거나 인쇄한다.
+ *   그래서 마케팅 요소를 전부 걷어내고(SiteChrome 에서 /r/ 제외) 표지 → 지표 → 본문 → 요청 순으로만 쌓는다.
+ *
+ * 규칙
+ *   · 코드가 곧 열쇠라서 검색엔진에는 절대 노출하지 않는다(noindex, nofollow).
+ *   · 대부분 카톡에서 휴대폰으로 연다. 모바일 우선.
+ *   · 매 요청마다 DB 를 읽으므로 캐시하지 않는다.
  */
 
 export const dynamic = "force-dynamic";
@@ -29,12 +32,31 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
 
+const WD = ["일", "월", "화", "수", "목", "금", "토"];
+
 function fmtDate(iso: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  const wd = ["일", "월", "화", "수", "목", "금", "토"][d.getDay()];
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")} (${wd})`;
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} (${WD[d.getDay()]})`;
+}
+
+/**
+ * 숫자가 좋아졌는지 판단해 색을 정한다.
+ * 순위는 작아지는 게 좋고(3위 < 7위), 방문자·리뷰는 커지는 게 좋다. 라벨로 구분한다.
+ */
+function trendOf(m: ReportMetric): "up" | "down" | "flat" {
+  const num = (v: string) => {
+    const n = Number(String(v).replace(/[^0-9.-]/g, ""));
+    return Number.isFinite(n) ? n : null;
+  };
+  const a = num(m.before);
+  const b = num(m.after);
+  if (a === null || b === null || a === b) return "flat";
+  const lowerIsBetter = /순위|위$|랭킹|rank/i.test(m.label);
+  const improved = lowerIsBetter ? b < a : b > a;
+  return improved ? "up" : "down";
 }
 
 export default async function ReportPage({ params }: { params: Promise<{ code: string }> }) {
@@ -42,118 +64,145 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
   const report = await getPublishedReport(code);
   if (!report) notFound();
 
-  const hasMetrics = report.metrics.length > 0;
+  const written = fmtDate(report.publishedAt || report.createdAt);
 
   return (
     <div className="min-h-screen" style={{ background: "var(--h-bg)" }}>
-      {/* 상단 — 마케팅 네비게이션 없이 발신 주체만 밝힌다 */}
-      <header className="bg-white border-b" style={{ borderColor: "var(--h-border)" }}>
-        <div className="max-w-3xl mx-auto px-4 md:px-6 py-3.5 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/harang-icon.svg" alt="" className="w-6 h-6" />
-            <span className="text-[15px] font-black" style={{ color: "var(--h-navy)" }}>
-              하랑마케팅
+      {/* ── 표지 ── 문서처럼 보이도록 상단을 하나의 띠로 잡는다 */}
+      <header
+        className="print:bg-white"
+        style={{ background: "linear-gradient(160deg,#0F2044 0%,#1A3560 55%,#20406e 100%)" }}
+      >
+        <div className="mx-auto w-full max-w-3xl px-5 py-7 md:px-8 md:py-10">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <img src="/harang-icon.svg" alt="" className="h-5 w-5 brightness-0 invert" />
+              <span className="text-[13px] font-black tracking-tight text-white">하랑마케팅</span>
+            </div>
+            <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-bold text-white/70 ring-1 ring-white/15">
+              진행 보고서
             </span>
-          </Link>
-          <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500">
-            진행 보고서
-          </span>
+          </div>
+
+          <p className="mt-6 text-[13px] font-bold text-amber-300">{report.clientName} 대표님</p>
+          <h1
+            className="mt-1 text-[26px] font-black leading-[1.25] text-white md:text-[32px]"
+            style={{ letterSpacing: "-0.035em" }}
+          >
+            {report.title}
+          </h1>
+
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1.5 border-t border-white/15 pt-4 text-[12px] text-white/60">
+            {report.period && (
+              <span>
+                <span className="text-white/40">보고 기간</span>{" "}
+                <span className="font-semibold text-white/85">{report.period}</span>
+              </span>
+            )}
+            <span>
+              <span className="text-white/40">작성</span>{" "}
+              <span className="font-semibold text-white/85">{written}</span>
+            </span>
+            <span>
+              <span className="text-white/40">담당</span>{" "}
+              <span className="font-semibold text-white/85">전태영</span>
+            </span>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 md:px-6 py-6 md:py-10">
-        {/* 제목 */}
-        <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-sm flex items-center justify-center shrink-0">
-            <FileText size={16} className="text-white" strokeWidth={2.5} />
-          </div>
-          <div className="min-w-0">
-            <p className="text-[13px] font-bold text-blue-600">{report.clientName} 대표님</p>
-            <h1
-              className="mt-0.5 text-xl md:text-2xl font-black leading-snug"
-              style={{ color: "var(--h-navy)", letterSpacing: "-0.03em" }}
-            >
-              {report.title}
-            </h1>
-            {report.period && (
-              <p className="mt-1.5 inline-flex items-center gap-1.5 text-[13px] text-gray-500">
-                <CalendarDays size={13} strokeWidth={2.5} />
-                {report.period}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* 한 줄 요약 */}
+      <main className="mx-auto w-full max-w-3xl px-5 pb-12 md:px-8">
+        {/* ── 한 줄 요약 ── 표지와 본문 사이에 걸치게 올려 시선을 먼저 잡는다 */}
         {report.summary && (
-          <div
-            className="mt-5 rounded-2xl p-4 md:p-5 bg-white shadow-sm border-l-4"
-            style={{ borderColor: "var(--h-amber)" }}
-          >
-            <p className="text-[15px] md:text-base font-bold leading-relaxed" style={{ color: "var(--h-navy)" }}>
+          <div className="-mt-5 rounded-2xl bg-white p-5 shadow-[0_4px_20px_rgba(15,32,68,0.10)] md:-mt-6 md:p-6">
+            <p
+              className="text-[16px] font-bold leading-[1.6] md:text-[17px]"
+              style={{ color: "var(--h-navy)" }}
+            >
               {report.summary}
             </p>
           </div>
         )}
 
-        {/* 지표 변화 */}
-        {hasMetrics && (
-          <section className="mt-6">
-            <h2 className="flex items-center gap-2 text-[15px] font-black" style={{ color: "var(--h-navy)" }}>
-              <TrendingUp size={16} className="text-blue-600" strokeWidth={2.5} />
-              지표 변화
-            </h2>
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {report.metrics.map((m, i) => (
-                <div key={i} className="rounded-2xl bg-white p-4 shadow-sm">
-                  <p className="text-[13px] font-bold text-gray-500">{m.label}</p>
-                  <div className="mt-2 flex items-center gap-2 flex-wrap">
-                    <span className="text-[15px] font-bold text-gray-400 line-through decoration-gray-300">
-                      {m.before || "-"}
-                    </span>
-                    <ArrowRight size={14} className="text-gray-300 shrink-0" strokeWidth={2.5} />
-                    <span className="text-lg font-black text-blue-600">{m.after || "-"}</span>
+        {/* ── 지표 ── */}
+        {report.metrics.length > 0 && (
+          <section className="mt-8">
+            <SectionTitle>지표 변화</SectionTitle>
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {report.metrics.map((m, i) => {
+                const trend = trendOf(m);
+                const tone =
+                  trend === "up" ? "#1A5DC8" : trend === "down" ? "#b45309" : "var(--h-navy)";
+                return (
+                  <div
+                    key={i}
+                    className="rounded-2xl border bg-white p-4 md:p-5"
+                    style={{ borderColor: "var(--h-border)" }}
+                  >
+                    <p className="text-[12px] font-bold tracking-tight text-gray-500">{m.label}</p>
+                    <div className="mt-2.5 flex items-baseline gap-2">
+                      {m.before && (
+                        <>
+                          <span className="text-[15px] font-semibold text-gray-400">{m.before}</span>
+                          <ArrowRight size={13} className="shrink-0 text-gray-300" strokeWidth={2.5} />
+                        </>
+                      )}
+                      <span
+                        className="text-[24px] font-black leading-none md:text-[26px]"
+                        style={{ color: tone, letterSpacing: "-0.03em" }}
+                      >
+                        {m.after || m.before}
+                      </span>
+                      {trend === "up" && (
+                        <ArrowUpRight size={16} className="shrink-0 text-blue-600" strokeWidth={3} />
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
         )}
 
-        {/* 본문 */}
+        {/* ── 본문 ── */}
         {report.body && (
-          <section className="mt-6">
+          <section className="mt-8">
             <div
-              className="report-body rounded-2xl bg-white p-4 md:p-6 shadow-sm"
+              className="report-body rounded-2xl border bg-white p-5 md:p-7"
+              style={{ borderColor: "var(--h-border)" }}
               dangerouslySetInnerHTML={{ __html: report.body }}
             />
           </section>
         )}
 
-        {/* 요청사항 */}
+        {/* ── 요청사항 ── */}
         {report.requests && (
           <section className="mt-6">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 md:p-5">
-              <h2 className="flex items-center gap-2 text-[15px] font-black text-amber-900">
-                <ClipboardCheck size={16} strokeWidth={2.5} />
+            <div className="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 md:p-6">
+              <h2 className="flex items-center gap-2 text-[14px] font-black text-amber-900">
+                <ClipboardCheck size={15} strokeWidth={2.5} />
                 대표님께 요청드릴 것
               </h2>
-              <p className="mt-2 text-[14px] md:text-[15px] leading-relaxed text-amber-900 whitespace-pre-line">
+              <p className="mt-2.5 whitespace-pre-line text-[14px] leading-[1.75] text-amber-950 md:text-[15px]">
                 {report.requests}
               </p>
             </div>
           </section>
         )}
 
-        {/* 문의 */}
-        <section className="mt-8 rounded-2xl bg-white p-4 md:p-5 shadow-sm">
-          <p className="text-[13px] text-gray-500">
-            궁금하신 점이나 수정이 필요한 부분은 편하게 알려주세요.
+        {/* ── 마무리 ── */}
+        <section
+          className="mt-8 rounded-2xl border bg-white p-5 md:p-6 print:hidden"
+          style={{ borderColor: "var(--h-border)" }}
+        >
+          <p className="text-[13px] leading-relaxed text-gray-500">
+            궁금하신 점이나 수정이 필요한 부분은 편하게 알려주세요. 바로 반영하겠습니다.
           </p>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3.5 flex flex-wrap gap-2">
             <a
               href="tel:01090543788"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-gray-900 px-4 py-2.5 text-[13px] font-bold text-white transition-colors hover:bg-gray-800"
+              className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-[13px] font-bold text-white transition-opacity hover:opacity-90"
+              style={{ background: "var(--h-navy)" }}
             >
               <Phone size={14} strokeWidth={2.5} />
               010-9054-3788
@@ -167,14 +216,27 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
               <MessageCircle size={14} strokeWidth={2.5} />
               카카오톡 문의
             </a>
+            <PrintButton />
           </div>
         </section>
 
-        <p className="mt-6 text-center text-[11px] text-gray-400">
-          하랑마케팅 · 전태영 · {fmtDate(report.publishedAt || report.createdAt)} 작성
+        <p className="mt-7 text-center text-[11px] leading-relaxed text-gray-400">
+          하랑마케팅 · 전태영 · {written} 작성
           <br />이 페이지는 {report.clientName} 대표님께만 전달된 링크입니다.
         </p>
       </main>
     </div>
+  );
+}
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2
+      className="flex items-center gap-2 text-[14px] font-black tracking-tight"
+      style={{ color: "var(--h-navy)" }}
+    >
+      <span className="inline-block h-3.5 w-1 rounded-full" style={{ background: "var(--h-amber)" }} />
+      {children}
+    </h2>
   );
 }
