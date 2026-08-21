@@ -14,12 +14,16 @@
 | `app/admin/reports/page.tsx` | 관리자 작성 화면 |
 | `app/globals.css` 의 `.report-body` | 본문 HTML 스타일 |
 
-## 켜기 (1회)
+## 켜기
 
-### 1) 테이블 만들기
+### 1) 테이블 — 할 일 없음
 
-Neon 콘솔(또는 Vercel → Storage → Neon → Open in Neon) 의 SQL Editor 에
-`scripts/db/reports-schema.sql` 내용을 붙여넣고 실행한다. 반복 실행해도 안전하다.
+`reports` 테이블은 **첫 사용 시 앱이 스스로 만든다** (`create table if not exists`).
+2026-08-21 배포 후 실제로 생성된 것을 확인했다.
+
+`scripts/db/reports-schema.sql` 은 같은 내용의 원본 정의다.
+**나중에 컬럼을 바꿀 때는** 이 파일을 고치고 Neon SQL Editor 에서 직접 반영해야 한다
+— `if not exists` 는 이미 있는 테이블의 구조를 바꾸지 않는다.
 
 ### 2) 환경변수
 
@@ -29,7 +33,20 @@ Neon 콘솔(또는 Vercel → Storage → Neon → Open in Neon) 의 SQL Editor 
   설정하지 않으면 관리자 로그인 쿠키로만 API 를 쓸 수 있다(더 안전).
 
 로컬에서 화면을 띄워보려면 `.env.local` 에 `DATABASE_URL` 을 추가해야 한다.
-지금 `.env.local` 에는 없어서 로컬에서는 `/r/...` 이 열리지 않는다.
+지금 `.env.local` 에는 없어서 로컬에서는 `/r/...` 이 열리지 않는다(운영에서는 정상 동작).
+
+## 배포 확인 (2026-08-21 금)
+
+커밋 `1659803` 배포 후 운영에서 실측한 결과:
+
+| 확인 | 결과 |
+|---|---|
+| `/r/zzzz` (형식 틀린 코드) | 404 — DB 조회 전에 차단 |
+| `/r/abcdefghjkmn` (형식 맞고 없는 보고서) | 404 — DB 연결·테이블 자동생성 정상 |
+| 같은 요청 반복 | 1.03s → 0.53s — 테이블이 이미 있어 DDL 재실행 없음 |
+| `/admin/reports` | 307 → `/admin/login` (미들웨어 보호) |
+| `/api/admin/reports` (인증 없이) | 401 |
+| sitemap · rss · llms.txt · robots.txt | `/r/` 노출 0건 |
 
 ## 쓰는 순서
 
