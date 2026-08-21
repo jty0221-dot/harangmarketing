@@ -122,17 +122,18 @@ function str(v: unknown): string {
 }
 
 function mapReport(r: Row): Report {
-  let metrics: ReportMetric[] = [];
-  const raw = r.metrics;
-  if (Array.isArray(raw)) metrics = raw as ReportMetric[];
-  else if (typeof raw === "string") {
+  let raw = r.metrics;
+  if (typeof raw === "string") {
     try {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) metrics = parsed as ReportMetric[];
+      raw = JSON.parse(raw);
     } catch {
-      metrics = [];
+      raw = [];
     }
   }
+  // 읽을 때도 같은 규칙으로 거른다.
+  // 저장 규칙을 바꾸기 전에 들어간 줄(값 없이 라벨만 있는 것)이 DB 에 남아 있어도
+  // 화면에 '- → -' 로 나오지 않게 하려는 것이다. 다시 저장하지 않아도 고쳐진다.
+  const metrics = cleanMetrics(raw);
   return {
     code: String(r.code),
     clientId: r.client_id == null ? null : String(r.client_id),
