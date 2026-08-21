@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock, Gift, TrendingUp, Shield, Calculator } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock, Gift, TrendingUp, Shield } from "lucide-react";
 
 const ANN_KEY = "harang_ann_v1";
 
@@ -32,14 +32,6 @@ const ANN_MESSAGES = [
     ctaLabel: "자세히 보기",
     ctaHref: "/about",
   },
-  {
-    badge: "신규",
-    badgeColor: "text-blue-400",
-    dot: "bg-blue-400",
-    text: <>3분 만에 내 업종 맞춤 패키지 확인 · <span className="text-white font-black">견적 계산기 무료 오픈</span></>,
-    ctaLabel: "계산기",
-    ctaHref: "/estimate",
-  },
 ];
 
 const NAV_ITEMS = [
@@ -56,7 +48,6 @@ const NAV_ITEMS = [
       { label: "플레이스 SEO", href: "/services#place" },
       { label: "SNS 마케팅", href: "/services#sns" },
       { label: "체험단·리뷰", href: "/services#review" },
-      { label: "패키지 견적 계산기", href: "/estimate" },
       { label: "진행 과정", href: "/process" },
     ],
   },

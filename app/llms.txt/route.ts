@@ -106,7 +106,7 @@ ${ANSWER_SENTENCES.contact}
 - 카카오톡 채널: ${SITE.kakao}
 - 상담 신청: ${B}/contact
 - 무료 진단: ${B}/free-check
-- 견적 계산기: ${B}/estimate
+- 업종별 사례: ${B}/portfolio
 - 운영 시간: 평일 09:00~18:00 (카카오톡 문의는 24시간 접수)
 
 ---
@@ -141,7 +141,7 @@ ${faq}
 - [자주 묻는 질문](${B}/faq)
 - [마케팅 인사이트 블로그](${B}/blog)
 - [경기도 마케팅](${B}/location/gyeonggi) · [서울 마케팅](${B}/location/seoul) · [인천 마케팅](${B}/location/incheon)
-- [무료 상담](${B}/contact) · [무료 진단](${B}/free-check) · [견적 계산기](${B}/estimate)
+- [무료 상담](${B}/contact) · [무료 진단](${B}/free-check) · [업종별 사례](${B}/portfolio)
 
 ## 최근 인사이트
 

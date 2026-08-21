@@ -28,7 +28,7 @@ import {
 const KAKAO_CHAT_URL = "https://pf.kakao.com/_MuUkG/chat";
 const PHONE = "010-7541-9054";
 
-type ActionKey = "kakao" | "phone" | "freeCheck" | "estimate" | "cafeDist" | "studio";
+type ActionKey = "kakao" | "phone" | "freeCheck" | "cafeDist" | "studio";
 
 interface BotEntry {
   /** 매칭 키워드 — 하나라도 포함되면 후보, 많이 겹칠수록 우선 */
@@ -55,7 +55,7 @@ const KNOWLEDGE: BotEntry[] = [
     keywords: ["포스팅", "블로그 글", "블로그글", "원고", "글 작성", "글작성", "대행", "기재", "발행"],
     answer:
       "블로그 포스팅은 1건당 4만원이며, 보통 월 5~10건(20~40만원)으로 진행하십니다. 업종과 지역, 키워드에 맞춰 원고 방향을 잡아드리고, 게시 후에는 링크를 모두 공유드려요. 파워컨텐츠 등 광고 세팅은 별도이며 광고비는 네이버에 직접 결제됩니다.",
-    actions: ["kakao", "estimate"],
+    actions: ["kakao", "freeCheck"],
   },
   {
     keywords: ["플레이스", "상위노출", "순위", "지도", "스마트플레이스", "네이버 지도", "노출"],
@@ -66,8 +66,8 @@ const KNOWLEDGE: BotEntry[] = [
   {
     keywords: ["견적", "비용", "가격", "얼마", "요금", "금액", "단가", "예산"],
     answer:
-      "견적은 원하시는 서비스와 지역, 경쟁 강도에 따라 달라져요. 1) 지역+상호명 2) 관심 있는 서비스 3) 월 마케팅 예산(만원 단위)을 카카오톡으로 남겨주시면 견적서를 정리해 보내드립니다. 예산 안에서 우선순위를 잡아 단계별로 제안드리는 방식이라 부담 갖지 않으셔도 돼요:) 급하시면 '3분 견적 계산기'로 먼저 가늠해보셔도 좋아요.",
-    actions: ["estimate", "kakao"],
+      "견적은 원하시는 서비스와 지역, 경쟁 강도에 따라 달라져요. 1) 지역+상호명 2) 관심 있는 서비스 3) 월 마케팅 예산(만원 단위)을 카카오톡으로 남겨주시면 견적서를 정리해 보내드립니다. 예산 안에서 우선순위를 잡아 단계별로 제안드리는 방식이라 부담 갖지 않으셔도 돼요:)",
+    actions: ["freeCheck", "kakao"],
   },
   {
     keywords: ["전화", "통화", "연락", "콜", "상담원", "직원", "사람"],
@@ -97,7 +97,7 @@ const KNOWLEDGE: BotEntry[] = [
     keywords: ["노출 관리", "관리대행", "관리도", "제작만", "관리 비용", "관리비"],
     answer:
       "네, 제작만이 아니라 노출 관리(관리대행)까지 저희가 직접 합니다. 본업이 마케팅 대행이고 블로그 디자인 제작은 그중 한 부분이에요. 관리는 블로그 포스팅 1건 4만원, 보통 월 5~10건(20~40만원)으로 진행하며, 발행 후 게시 링크를 전부 보내드려 어떤 글이 어떻게 올라갔는지 직접 확인하실 수 있습니다:)",
-    actions: ["kakao", "estimate"],
+    actions: ["kakao", "freeCheck"],
   },
   {
     keywords: ["위젯", "위젯명", "버튼명", "링크가 뭔", "무슨 뜻"],
@@ -139,7 +139,7 @@ const KNOWLEDGE: BotEntry[] = [
     keywords: ["보험", "설계사", "금융", "재무"],
     answer:
       "네, 보험설계사·금융 전문가 블로그도 진행합니다. 보험은 광고 심의가 있는 업종이라 특정 상품 비교나 수익 단정 표현은 피하고 정보성 중심으로 원고를 잡고, 방문자 수보다 '보험 점검', '지역명+보험상담'처럼 계약으로 이어지는 키워드 위주로 씁니다. 시작은 홈페이지형 블로그(고급형 20만원) + 월 5건 관리(20만원) 구성을 많이 선택하세요:)",
-    actions: ["kakao", "estimate"],
+    actions: ["kakao", "freeCheck"],
   },
   {
     keywords: ["처음", "막막", "몰라", "모르겠", "뭐부터", "뭘 해야", "어떻게 시작", "초보"],
@@ -264,17 +264,6 @@ function ActionButtons({ actions }: { actions: ActionKey[] }) {
               >
                 무료 플레이스 진단
                 <ArrowRight size={12} />
-              </Link>
-            );
-          case "estimate":
-            return (
-              <Link
-                key={a}
-                href="/estimate"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gray-100 text-gray-700 text-xs font-bold hover:bg-gray-200 transition-colors"
-              >
-                <Zap size={12} strokeWidth={2.5} />
-                3분 견적 계산기
               </Link>
             );
           case "cafeDist":

@@ -44,7 +44,6 @@ const PROCESS_STEPS = [
 function ContactPageInner() {
   const searchParams = useSearchParams();
   const checklistCount = Number(searchParams.get("checklist") ?? 0);
-  const estimatePlan = searchParams.get("estimate") ?? "";
 
   const [step, setStep] = useState<"industry" | "form" | "done">("industry");
   const [selectedIndustry, setSelectedIndustry] = useState("");
@@ -53,13 +52,11 @@ function ContactPageInner() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (estimatePlan && form.message === "") {
-      setForm((prev) => ({ ...prev, message: `견적 계산기에서 추천받은 "${estimatePlan}"에 대해 상담을 원합니다.` }));
-    } else if (checklistCount > 0 && form.message === "") {
+    if (checklistCount > 0 && form.message === "") {
       setForm((prev) => ({ ...prev, message: `홈페이지 자가진단에서 ${checklistCount}가지 문제를 확인했습니다.` }));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checklistCount, estimatePlan]);
+  }, [checklistCount]);
 
   const toggleGoal = (g: string) => {
     setSelectedGoals((prev) => prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]);
@@ -114,13 +111,7 @@ function ContactPageInner() {
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            {estimatePlan && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30 mb-5">
-                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-blue-200 text-sm font-bold">견적 계산기 추천: <span className="text-white">{estimatePlan}</span>으로 상담 신청하셨습니다.</span>
-              </div>
-            )}
-            {!estimatePlan && checklistCount >= 3 && (
+            {checklistCount >= 3 && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30 mb-5">
                 <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
                 <span className="text-blue-200 text-sm font-bold">자가진단에서 {checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.</span>

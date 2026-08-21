@@ -453,8 +453,8 @@ const CasesPage: FC = () => {
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-yellow-400 text-gray-900 font-black hover:bg-yellow-300 transition-colors">
                 <MessageCircle size={15} /> 카카오 바로 상담
               </a>
-              <Link href="/estimate" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-bold hover:bg-white/15 transition-colors">
-                견적 계산기 <ArrowRight size={15} />
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-bold hover:bg-white/15 transition-colors">
+                상담 신청 <ArrowRight size={15} />
               </Link>
             </div>
             <p className="text-center text-[11px] text-gray-600 mt-4">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>

@@ -8,7 +8,7 @@ import {
   Search, BookOpen, Megaphone, AtSign, ChevronRight,
   ShieldCheck, Clock, Handshake, Quote,
   Coffee, Scissors, GraduationCap, Stethoscope,
-  UtensilsCrossed, ShoppingBag, Calculator,
+  UtensilsCrossed, ShoppingBag,
 } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -305,22 +305,22 @@ export default function HomePage() {
         {/* ══ 차별화 비교표 ══ */}
         <DifferenceSection />
 
-        {/* ══ 견적 계산기 배너 ══ */}
+        {/* ══ 무료 진단 배너 ══ */}
         <section className="py-8 border-b" style={{ background: "var(--h-bg)", borderColor: "var(--h-border)" }}>
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>신규 · 3분 완성</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>상담 0원 · 24시간 내 연락</p>
                 <p className="text-base md:text-lg font-black" style={{ color: "var(--h-dark)" }}>
-                  내 업종·예산에 맞는 마케팅 패키지가 궁금하신가요?
+                  우리 매장엔 뭐가 필요한지 궁금하신가요?
                 </p>
-                <p className="text-sm" style={{ color: "var(--h-muted)" }}>업종을 선택하면 예상 ROI와 추천 패키지를 즉시 계산해드립니다</p>
+                <p className="text-sm" style={{ color: "var(--h-muted)" }}>업종·상권·경쟁 상황마다 필요한 게 달라, 매장을 직접 보고 맞춤으로 제안드립니다</p>
               </div>
-              <Link href="/estimate"
+              <Link href="/contact"
                 className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-white font-black text-sm transition-opacity hover:opacity-90 shadow-sm"
-                style={{ background: "var(--h-navy)" }}>
-                <Calculator size={15} />
-                패키지 견적 계산기
+                style={{ background: "var(--h-blue)" }}>
+                <MessageCircle size={15} />
+                무료 진단 신청
                 <ArrowRight size={14} />
               </Link>
             </div>

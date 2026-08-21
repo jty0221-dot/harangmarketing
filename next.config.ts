@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/**": ["./content/**/*"],
   },
+  /* 견적 계산기 폐지 — 업체마다 금액이 달라 계산기 방식이 맞지 않는다.
+     기존 링크·검색 유입은 상담 페이지로 넘긴다. */
+  async redirects() {
+    return [{ source: "/estimate", destination: "/contact", permanent: true }];
+  },
   async headers() {
     return [
       {

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Clock, Zap, Shield, Handshake } from "lucide-react";
+import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Clock, Shield, Handshake } from "lucide-react";
 
 function useBusinessHours() {
   const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
@@ -153,14 +153,6 @@ export default function FloatingCTA() {
               >
                 무료 플레이스 진단
                 <ArrowRight size={13} />
-              </Link>
-              <Link
-                href="/estimate"
-                onClick={() => setExpanded(false)}
-                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gray-100 text-gray-600 font-semibold text-xs hover:bg-gray-200 transition-colors"
-              >
-                <Zap size={11} strokeWidth={2.5} />
-                3분 견적 계산기
               </Link>
             </div>
           </div>

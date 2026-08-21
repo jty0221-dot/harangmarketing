@@ -114,7 +114,6 @@ export default function Footer() {
                   ["인스타그램", "/services#sns"],
                   ["맘카페 바이럴", "/services"],
                   ["무료 플레이스 진단", "/free-check"],
-                  ["패키지 견적 계산기", "/estimate"],
                 ].map(([label, href, isNew]) => (
                   <li key={label as string}>
                     <Link
@@ -147,7 +146,6 @@ export default function Footer() {
                   ["FAQ", "/faq"],
                   ["블로그", "/blog"],
                   ["진행과정", "/process"],
-                  ["견적 계산기", "/estimate"],
                   ["상담신청", "/contact"],
                 ].map(([label, href]) => (
                   <li key={label}>

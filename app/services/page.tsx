@@ -1180,17 +1180,17 @@ export default function ServicesPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
               <div className="flex-1">
-                <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-2">3분 완성 · 무료</p>
+                <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-2">상담 0원 · 24시간 내 연락</p>
                 <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1">
-                  내 업종·예산에 맞는 패키지가 뭔지 모르겠다면?
+                  우리 매장엔 뭐가 필요한지 모르겠다면?
                 </h3>
                 <p className="text-sm text-gray-500">
-                  업종·예산·목표를 선택하면 최적 마케팅 조합과 예상 ROI를 즉시 계산해드립니다.
+                  업종·상권·경쟁 상황마다 필요한 게 다릅니다. 매장을 보고 맞춤으로 제안드립니다.
                 </p>
               </div>
-              <Link href="/estimate"
+              <Link href="/contact"
                 className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-sm">
-                패키지 견적 계산기 <ArrowRight size={14} />
+                무료 진단 신청 <ArrowRight size={14} />
               </Link>
             </div>
           </div>
