@@ -220,7 +220,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
               <optgroup key={pl.id} label={pl.name}>
                 {list.map((p) => (
                   <option key={p.slug} value={p.slug}>
-                    {pl.name} · {p.name} — {won(p.unitPrice)}원/{p.unitLabel}
+                    {p.name} — {won(p.unitPrice)}원/{p.unitLabel}
                   </option>
                 ))}
               </optgroup>

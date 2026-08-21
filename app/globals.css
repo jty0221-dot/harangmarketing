@@ -42,6 +42,13 @@ body {
     'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*
+    한글 줄바꿈: keep-all 로 어절(띄어쓰기) 단위로만 끊는다.
+    이게 없으면 좁은 화면에서 한글이 음절 단위로 끊겨("자연스럽게 키/웁니다") 어색하다.
+    긴 영어 단어·URL 은 overflow-wrap 으로 강제로 끊어 넘침을 막는다.
+  */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* Prevent iOS zoom on input focus */
@@ -66,7 +73,9 @@ details summary::-webkit-details-marker { display: none; }
 }
 
 /* Prevent orphan words in headings */
-h1, h2, h3 { text-wrap: balance; }
+h1, h2, h3, h4 { text-wrap: balance; }
+/* 본문 단락: 마지막 줄에 한 단어만 남는 것(고아 단어) 방지 (지원 브라우저에서만) */
+p { text-wrap: pretty; }
 
 /* Prevent horizontal overflow */
 body { overflow-x: hidden; }
@@ -297,6 +306,15 @@ body { overflow-x: hidden; }
   .hero-anim-1, .hero-anim-2, .hero-anim-3,
   .hero-anim-4, .hero-anim-5, .hero-float-card { animation: none; opacity: 1; }
   .hero-blob-1, .hero-blob-2, .hero-blob-3 { animation: none; }
+}
+/*
+  모바일에서는 좌우 슬라이드 등장(translateX)이 화면 가장자리 요소를 32px 밀어내
+  가로 넘침을 만든다(body overflow-x:hidden 으로 가려지지만 감지엔 잡힘).
+  좁은 화면에선 좌우 이동을 세로 페이드로 대체해 넘침을 원천 차단한다.
+*/
+@media (max-width: 767px) {
+  .reveal-left, .reveal-right { transform: translateY(24px); }
+  .reveal-left.revealed, .reveal-right.revealed { transform: translateY(0); }
 }
 
 /* ═══════════════════════════════════════
