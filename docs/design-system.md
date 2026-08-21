@@ -136,33 +136,17 @@ Tab · Modal · Tooltip · Divider · GNB
 `C:\Users\pc\Downloads\Wanted Design System (Community).fig`
 추출한 색상 전체(192개): `C:\Users\pc\AppData\Local\Temp\fig\wds-colors.json` (임시 폴더라 지워질 수 있음)
 
-## 7. 주의 — `--w-*` 정의가 두 군데 있다
+## 7. 파일 나눔 — 색은 한 곳, 컴포넌트는 다른 곳
 
-같은 날 두 갈래 작업이 각각 WDS 를 도입했다. **이름이 겹치는데 파일이 다르다.**
+처음엔 두 갈래 작업이 각각 토큰을 만들어 이름이 겹쳤으나 **정리됐다.**
 
-| 파일 | 로드 범위 | 방식 |
+| 파일 | 역할 | 로드 |
 |---|---|---|
-| `app/globals.css` | **전역** (`:root`) | 색 램프(`--w-cn-*`·`--w-blue-*`) + 시맨틱 + `.w-*` 타이포 유틸 |
-| `app/wds.css` | `/sns/*`, `/preview/*` 만 (각 layout 에서 import) | 헥사 직접 + shadow·radius + 컴포넌트 클래스 |
+| `app/globals.css` | **정본.** 색 램프(`--w-cn-*`·`--w-blue-*` 등 .fig 실측값) · 시맨틱 · 타이포 · shadow · radius | 전역 |
+| `app/wds.css` | 그 위에 얹는 **컴포넌트 클래스만** (카드·버튼·입력·칩). 색을 다시 정의하지 않는다 | `/sns/*`, `/preview/*` |
 
-`app/wds.css` 는 전역이 아니므로 **보고서(`/r/*`)를 비롯한 나머지 화면은 `globals.css` 를 쓴다.**
-`/sns` 에서는 나중에 로드되는 `wds.css` 가 이긴다. 겹치는 값은 아래처럼 맞춰뒀다.
-
-| 토큰 | globals.css | wds.css | 상태 |
-|---|---|---|---|
-| `--w-primary` | `#0066FF` | `#0066FF` | 같음 |
-| `--w-bg` | `#FFFFFF` | `#FFFFFF` | 같음 |
-| `--w-bg-alt` | `#F7F7F8` | `#F7F7F8` | 맞춤 |
-| `--w-line` | `#EAEBEC` | `#EAEBEC` | 맞춤 |
-| `--w-line-strong` | `#C2C4C8` | (`--w-border-strong`) `#C2C4C8` | 같음 |
-| `--w-shadow-*`·`--w-radius-*` | wds.css 와 동일 값 | | 맞춤 |
-
-이름 체계는 다르다 — 이쪽은 `--w-label*`·`--w-line*`(WDS 원본 이름),
-저쪽은 `--w-text*`·`--w-border*`. **새 토큰을 만들 때는 양쪽을 함께 본다.**
-
-**언제 합치나**: 한 세션에서 `/sns` 와 나머지를 같이 볼 때.
-`wds.css` 의 헥사를 `globals.css` 램프 변수로 바꾸고 전역으로 올리면 정의가 한 곳이 된다.
-급하지 않다 — 지금 깨지는 화면은 없다.
+**새 색이 필요하면 `globals.css` 에 추가한다.** `wds.css` 에서 색을 다시 선언하면
+두 벌이 갈라져 회색 톤이 어긋난다.
 
 ## 8. 보고서 화면이 참고 사례다
 
