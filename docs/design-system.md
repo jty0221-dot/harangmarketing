@@ -140,26 +140,36 @@ Tab · Modal · Tooltip · Divider · GNB
 
 같은 날 두 갈래 작업이 각각 WDS 를 도입했다. **이름이 겹치는데 파일이 다르다.**
 
-| 파일 | 범위 | 방식 |
+| 파일 | 로드 범위 | 방식 |
 |---|---|---|
-| `app/globals.css` | 전역 `:root` | 색 램프(`--w-cn-*`, `--w-blue-*`) + 시맨틱 + 타이포 유틸 |
-| `app/sns/theme.css` | `/sns/*` (layout 에서 로드) | 헥사값 직접 + shadow·radius·컴포넌트 클래스 |
+| `app/globals.css` | **전역** (`:root`) | 색 램프(`--w-cn-*`·`--w-blue-*`) + 시맨틱 + `.w-*` 타이포 유틸 |
+| `app/wds.css` | `/sns/*`, `/preview/*` 만 (각 layout 에서 import) | 헥사 직접 + shadow·radius + 컴포넌트 클래스 |
 
-둘 다 `:root` 에 선언하므로 **`/sns/*` 에서는 나중에 로드되는 `theme.css` 값이 이긴다.**
-`/r/*` 등 나머지 화면은 `globals.css` 값을 쓴다. 값이 대부분 같아서 지금은 문제가 없다.
+`app/wds.css` 는 전역이 아니므로 **보고서(`/r/*`)를 비롯한 나머지 화면은 `globals.css` 를 쓴다.**
+`/sns` 에서는 나중에 로드되는 `wds.css` 가 이긴다. 겹치는 값은 아래처럼 맞춰뒀다.
 
-| 토큰 | globals.css (내 쪽) | sns/theme.css | 상태 |
+| 토큰 | globals.css | wds.css | 상태 |
 |---|---|---|---|
 | `--w-primary` | `#0066FF` | `#0066FF` | 같음 |
 | `--w-bg` | `#FFFFFF` | `#FFFFFF` | 같음 |
+| `--w-bg-alt` | `#F7F7F8` | `#F7F7F8` | 맞춤 |
+| `--w-line` | `#EAEBEC` | `#EAEBEC` | 맞춤 |
 | `--w-line-strong` | `#C2C4C8` | (`--w-border-strong`) `#C2C4C8` | 같음 |
-| `--w-bg-alt` | `#F4F4F5` → **`#F7F7F8`** | `#F7F7F8` | 맞춤 |
-| `--w-line` | `#E1E2E4` (cn-96) | `#EAEBEC` (cn-97) | **다름 — 이름은 같은데 뜻이 다르다** |
+| `--w-shadow-*`·`--w-radius-*` | wds.css 와 동일 값 | | 맞춤 |
 
-`--w-line` 은 그쪽에서 '가장 옅은 선', 내 쪽에서 '기본 구분선'으로 쓰고 있어 값이 한 단 다르다.
-`/sns/*` 에서는 theme.css 가 이기고 나머지 화면은 globals.css 가 쓰이므로 **지금 깨지는 곳은 없다.**
-합칠 때 뜻을 먼저 정하고 값을 맞춰야 한다.
+이름 체계는 다르다 — 이쪽은 `--w-label*`·`--w-line*`(WDS 원본 이름),
+저쪽은 `--w-text*`·`--w-border*`. **새 토큰을 만들 때는 양쪽을 함께 본다.**
 
-**정리할 때**: `theme.css` 의 헥사값을 `globals.css` 의 램프 변수(`var(--w-cn-99)` 등)를 쓰도록 바꾸면
-정의가 한 곳으로 모인다. `theme.css` 에만 있는 것(shadow·radius·`w-card`·`w-btn` 같은 컴포넌트 클래스)은
-전역으로 올릴 가치가 있다. 급하지는 않다.
+**언제 합치나**: 한 세션에서 `/sns` 와 나머지를 같이 볼 때.
+`wds.css` 의 헥사를 `globals.css` 램프 변수로 바꾸고 전역으로 올리면 정의가 한 곳이 된다.
+급하지 않다 — 지금 깨지는 화면은 없다.
+
+## 8. 보고서 화면이 참고 사례다
+
+`/r/[code]` (`app/r/[code]/page.tsx`) 가 WDS 를 처음부터 끝까지 적용한 화면이다.
+새 화면을 짤 때 이 파일을 보고 따라가면 된다.
+
+- 색·크기를 Tailwind 클래스(`text-gray-400`)로 쓰지 않고 전부 토큰·유틸로
+- 섹션에 `01 02 03` 번호를 붙여 웹페이지가 아니라 문서로 읽히게
+- 지표는 좋아지면 `--w-primary`, 나빠지면 `--w-cautionary` (방향은 라벨로 판단)
+- 표지는 `--w-blue-20~40` 그라디언트, 요약 카드를 표지에 걸치게 올려 결론부터 보이게

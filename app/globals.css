@@ -711,6 +711,7 @@ body { overflow-x: hidden; }
   --w-red-50: #FF4242;
   --w-red-90: #FED5D5;
   --w-red-30: #B20C0C;
+  --w-orange-99: #FFFCF7;
   --w-orange-50: #FF9200;
   --w-orange-90: #FEE6C6;
   --w-orange-30: #9C5800;
@@ -731,7 +732,7 @@ body { overflow-x: hidden; }
   --w-label-assistive: var(--w-cn-70);  /* 더 약한 보조 */
   --w-label-disable: var(--w-cn-80);
 
-  --w-line: var(--w-cn-96);             /* 옅은 구분선 */
+  --w-line: var(--w-cn-97);             /* 옅은 구분선. app/wds.css 의 #EAEBEC 과 같은 값 */
   --w-line-strong: var(--w-cn-90);      /* 카드 테두리 */
 
   --w-fill: var(--w-cn-97);             /* 옅은 채움 — 태그·비활성 버튼 */
@@ -765,6 +766,15 @@ body { overflow-x: hidden; }
 
   /* 자간 — .fig 전반에 -1.309% 가 쓰인다(한글은 음수 자간이 필수) */
   --w-tracking: -0.01309em;
+
+  /* 높낮이·모서리 — app/wds.css 와 같은 값으로 맞춘다 */
+  --w-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --w-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --w-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --w-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --w-radius-sm: 8px;
+  --w-radius:    12px;
+  --w-radius-lg: 16px;
 }
 
 /* WDS 타이포 유틸 — 크기·행간·자간을 한 벌로 묶는다. 낱개로 쓰지 말 것 */
