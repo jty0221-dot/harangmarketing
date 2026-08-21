@@ -255,38 +255,39 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* 회원 예치금 안내 — 로그인 상태면 잔액에서 즉시 결제된다 */}
       {me ? (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-gray-900 px-5 py-4 text-white shadow-sm">
+        <div
+          className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] px-5 py-4"
+          style={{ background: "var(--w-primary-weaker)", border: "1px solid var(--w-primary-border)" }}
+        >
           <div className="flex items-center gap-2.5">
-            <Wallet size={16} strokeWidth={2.5} className="text-emerald-300" />
+            <Wallet size={16} strokeWidth={2.5} style={{ color: "var(--w-primary)" }} />
             <div>
-              <p className="text-[11px] font-bold text-gray-400">{me.name}님 예치금 잔액</p>
-              <p className="text-[19px] font-black tabular-nums leading-tight">{won(me.balance)}원</p>
+              <p className="w-caption-1" style={{ color: "var(--w-text-muted)" }}>
+                {me.name}님 예치금 잔액
+              </p>
+              <p className="w-title-2 w-num" style={{ color: "var(--w-text)" }}>
+                {won(me.balance)}원
+              </p>
             </div>
           </div>
-          <Link
-            href="/sns/charge"
-            className="rounded-xl bg-white/10 px-3.5 py-2 text-[12px] font-black text-white ring-1 ring-white/20 transition hover:bg-white/20"
-          >
+          <Link href="/sns/charge" className="w-btn w-btn-secondary w-btn-sm">
             충전하기
           </Link>
         </div>
       ) : (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-blue-50 px-5 py-4 ring-1 ring-blue-100">
-          <p className="text-[12.5px] leading-relaxed text-gray-700">
-            <strong className="font-black text-gray-900">회원으로 주문하면</strong> 예치금 잔액에서 바로 결제되고
+        <div
+          className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] px-5 py-4"
+          style={{ background: "var(--w-primary-weaker)", border: "1px solid var(--w-primary-border)" }}
+        >
+          <p className="w-label-1" style={{ color: "var(--w-text-sub)" }}>
+            <strong style={{ color: "var(--w-text)" }}>회원으로 주문하면</strong> 예치금 잔액에서 바로 결제되고
             입금 확인 없이 즉시 시작됩니다.
           </p>
           <div className="flex gap-2">
-            <Link
-              href="/sns/login"
-              className="rounded-xl bg-white px-3.5 py-2 text-[12px] font-black text-gray-700 ring-1 ring-gray-200 transition hover:bg-gray-50"
-            >
+            <Link href="/sns/login" className="w-btn w-btn-secondary w-btn-sm">
               로그인
             </Link>
-            <Link
-              href="/sns/signup"
-              className="rounded-xl bg-blue-600 px-3.5 py-2 text-[12px] font-black text-white transition hover:bg-blue-700"
-            >
+            <Link href="/sns/signup" className="w-btn w-btn-primary w-btn-sm">
               회원가입
             </Link>
           </div>
@@ -501,13 +502,17 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
 
         {/* 회원 — 잔액이 모자라면 결제 전에 알려주고 충전으로 보낸다 */}
         {me && qtyValid && me.balance < total && (
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl bg-amber-50 ring-1 ring-amber-100 px-4 py-3">
-            <p className="text-[12.5px] font-bold text-amber-800">
+          <div
+            className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-[12px] px-4 py-3"
+            style={{ background: "var(--w-warning-weak)" }}
+          >
+            <p className="w-label-1 w-num font-bold" style={{ color: "var(--w-warning-dark)" }}>
               잔액이 {won(total - me.balance)}원 부족합니다 (보유 {won(me.balance)}원)
             </p>
             <Link
               href="/sns/charge"
-              className="rounded-lg bg-amber-500 px-3 py-1.5 text-[12px] font-black text-white transition hover:bg-amber-600"
+              className="w-btn w-btn-sm"
+              style={{ background: "var(--w-warning-dark)", color: "#fff" }}
             >
               충전하기
             </Link>
