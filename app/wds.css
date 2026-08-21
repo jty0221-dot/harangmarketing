@@ -1,0 +1,160 @@
+/**
+ * SNS 스토어 디자인 토큰 — 원티드 디자인 시스템(Wanted Design System) 참고
+ *
+ * 색상 값과 스타일 이름은 원티드가 공개한 디자인 시스템 파일에서 추출한 실제 토큰이다.
+ * 타이포 크기는 같은 파일의 스케일 이름(Display/Heading/Title/Body/Label/Caption)에
+ * 맞춰 정리했다. 사이트 본체(--h-*)와 섞이지 않도록 --w-* 네임스페이스를 쓴다.
+ *
+ * 적용 범위: /sns/* (스토어·회원·충전·주문)
+ */
+
+:root {
+  /* Primary — Wanted Blue */
+  --w-primary:        #0066FF;
+  --w-primary-hover:  #005EEB;
+  --w-primary-active: #0054D1;
+  --w-primary-weak:   #EAF2FE;
+  --w-primary-weaker: #F7FBFF;
+  --w-primary-border: #C9DEFE;
+
+  /* Neutral — cool gray */
+  --w-bg:            #FFFFFF;
+  --w-bg-alt:        #F7F7F8;
+  --w-bg-sunken:     #F4F4F5;
+  --w-border:        #E1E2E4;
+  --w-border-strong: #C2C4C8;
+  --w-line:          #EAEBEC;
+
+  /* Text */
+  --w-text:          #171719;
+  --w-text-sub:      #46474C;
+  --w-text-muted:    #70737C;
+  --w-text-assist:   #989BA2;
+  --w-text-disabled: #AEB0B6;
+  --w-text-inverse:  #FFFFFF;
+
+  /* Semantic */
+  --w-danger:      #FF4242;
+  --w-danger-dark: #E52222;
+  --w-danger-weak: #FEECEC;
+  --w-success:      #00BF40;
+  --w-success-dark: #009632;
+  --w-success-weak: #D9FFE6;
+  --w-warning:      #FF9200;
+  --w-warning-dark: #D47800;
+  --w-warning-weak: #FEF4E6;
+
+  /* Elevation */
+  --w-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --w-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --w-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --w-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
+
+  /* Radius */
+  --w-radius-sm: 8px;
+  --w-radius:    12px;
+  --w-radius-lg: 16px;
+}
+
+/* ── 타이포 스케일 ───────────────────────────── */
+.w-display-2 { font-size: 36px; line-height: 48px; font-weight: 700; letter-spacing: -0.02em; }
+.w-heading-1 { font-size: 28px; line-height: 38px; font-weight: 700; letter-spacing: -0.02em; }
+.w-heading-2 { font-size: 24px; line-height: 34px; font-weight: 700; letter-spacing: -0.02em; }
+.w-title-1   { font-size: 22px; line-height: 30px; font-weight: 700; letter-spacing: -0.01em; }
+.w-title-2   { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -0.01em; }
+.w-title-3   { font-size: 18px; line-height: 26px; font-weight: 600; letter-spacing: -0.01em; }
+.w-body-1    { font-size: 16px; line-height: 24px; font-weight: 400; }
+.w-body-2    { font-size: 15px; line-height: 22px; font-weight: 400; }
+.w-label-1   { font-size: 14px; line-height: 20px; font-weight: 500; }
+.w-label-2   { font-size: 13px; line-height: 18px; font-weight: 500; }
+.w-caption-1 { font-size: 12px; line-height: 16px; font-weight: 400; }
+
+/* ── 컴포넌트 ────────────────────────────────── */
+.w-card {
+  background: var(--w-bg);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  box-shadow: var(--w-shadow-xs);
+}
+
+.w-field-label {
+  display: block;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--w-text-sub);
+  margin-bottom: 6px;
+}
+
+.w-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  font-size: 16px; /* iOS 자동 확대 방지 */
+  color: var(--w-text);
+  background: var(--w-bg);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.w-input::placeholder { color: var(--w-text-disabled); }
+.w-input:hover:not(:focus) { border-color: var(--w-border-strong); }
+.w-input:focus {
+  outline: none;
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+}
+.w-input-error { border-color: var(--w-danger); }
+
+.w-help { font-size: 12px; line-height: 16px; color: var(--w-text-muted); margin-top: 6px; }
+.w-error-text { font-size: 13px; line-height: 18px; color: var(--w-danger-dark); font-weight: 500; }
+
+.w-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 52px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--w-radius);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+.w-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.w-btn-primary { background: var(--w-primary); color: var(--w-text-inverse); }
+.w-btn-primary:hover:not(:disabled) { background: var(--w-primary-hover); }
+.w-btn-primary:active:not(:disabled) { background: var(--w-primary-active); }
+
+.w-btn-secondary {
+  background: var(--w-bg);
+  color: var(--w-text-sub);
+  border: 1px solid var(--w-border);
+}
+.w-btn-secondary:hover:not(:disabled) { background: var(--w-bg-alt); border-color: var(--w-border-strong); }
+
+.w-btn-ghost { background: transparent; color: var(--w-text-muted); }
+.w-btn-ghost:hover:not(:disabled) { background: var(--w-bg-alt); color: var(--w-text); }
+
+.w-btn-sm { height: 40px; padding: 0 14px; font-size: 13px; border-radius: var(--w-radius-sm); }
+
+.w-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+}
+.w-chip-blue    { background: var(--w-primary-weak);  color: var(--w-primary-active); }
+.w-chip-green   { background: var(--w-success-weak);  color: var(--w-success-dark); }
+.w-chip-amber   { background: var(--w-warning-weak);  color: var(--w-warning-dark); }
+.w-chip-red     { background: var(--w-danger-weak);   color: var(--w-danger-dark); }
+.w-chip-neutral { background: var(--w-bg-sunken);     color: var(--w-text-muted); }
+
+/* 숫자는 자릿수가 흔들리지 않게 */
+.w-num { font-variant-numeric: tabular-nums; }
