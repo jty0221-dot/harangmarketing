@@ -131,3 +131,22 @@ Tab · Modal · Tooltip · Divider · GNB
 
 `C:\Users\pc\Downloads\Wanted Design System (Community).fig`
 추출한 색상 전체(192개): `C:\Users\pc\AppData\Local\Temp\fig\wds-colors.json` (임시 폴더라 지워질 수 있음)
+
+## 7. 주의 — `--w-*` 정의가 두 군데 있다
+
+같은 날 두 갈래 작업이 각각 WDS 를 도입했다. **이름이 겹치는데 파일이 다르다.**
+
+| 파일 | 범위 | 방식 |
+|---|---|---|
+| `app/globals.css` | 전역 `:root` | 색 램프(`--w-cn-*`, `--w-blue-*`) + 시맨틱 + 타이포 유틸 |
+| `app/sns/theme.css` | `/sns/*` (layout 에서 로드) | 헥사값 직접 + shadow·radius·컴포넌트 클래스 |
+
+둘 다 `:root` 에 선언하므로 **`/sns/*` 에서는 나중에 로드되는 `theme.css` 값이 이긴다.**
+`/r/*` 등 나머지 화면은 `globals.css` 값을 쓴다. 값이 대부분 같아서 지금은 문제가 없다.
+
+- `--w-primary` `#0066FF` · `--w-bg` `#FFFFFF` · `--w-line` `#EAEBEC` → 양쪽 동일
+- `--w-bg-alt` 만 달랐다(`#F4F4F5` vs `#F7F7F8`) → **`#F7F7F8` 로 맞췄다**
+
+**정리할 때**: `theme.css` 의 헥사값을 `globals.css` 의 램프 변수(`var(--w-cn-99)` 등)를 쓰도록 바꾸면
+정의가 한 곳으로 모인다. `theme.css` 에만 있는 것(shadow·radius·`w-card`·`w-btn` 같은 컴포넌트 클래스)은
+전역으로 올릴 가치가 있다. 급하지는 않다.

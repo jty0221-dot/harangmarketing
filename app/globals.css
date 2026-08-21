@@ -721,7 +721,7 @@ body { overflow-x: hidden; }
      이름은 WDS 체계(Label/Line/Fill/Background/Primary/Status)를 따르고,
      어느 단계를 쓸지는 우리가 정했다. 화면에서는 아래 이름만 쓴다 — 숫자 단계를 직접 부르지 않는다. */
   --w-bg: var(--w-cn-100);              /* 기본 배경 */
-  --w-bg-alt: var(--w-cn-98);           /* 한 단 낮은 배경 — 페이지 바탕 */
+  --w-bg-alt: var(--w-cn-99);           /* 한 단 낮은 배경 — 페이지 바탕. app/sns/theme.css 의 #F7F7F8 과 같은 값으로 맞춤 */
   --w-bg-elevated: var(--w-cn-100);     /* 카드·모달 */
 
   --w-label: var(--w-cn-17);            /* 본문 글자 */
