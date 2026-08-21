@@ -173,3 +173,33 @@ Tab · Modal · Tooltip · Divider · GNB
 - 섹션에 `01 02 03` 번호를 붙여 웹페이지가 아니라 문서로 읽히게
 - 지표는 좋아지면 `--w-primary`, 나빠지면 `--w-cautionary` (방향은 라벨로 판단)
 - 표지는 `--w-blue-20~40` 그라디언트, 요약 카드를 표지에 걸치게 올려 결론부터 보이게
+
+---
+
+## 파일 역할 — 색은 한 곳에서만 정의한다
+
+| 파일 | 역할 |
+|---|---|
+| `app/globals.css` | **정본.** 색 13패밀리·쿨그레이 23단계·타이포 실측 px·그림자·모서리. 사이트 전역에 로드된다. |
+| `app/wds.css` | **컴포넌트 계층만.** `.w-card` `.w-btn` `.w-input` `.w-chip` `.w-field-label` 과 하이픈 표기 타이포 별칭(`.w-title-1` 등). 색을 다시 정의하지 않고 globals 토큰에 연결한다. |
+| `app/sns/theme.css` | `app/wds.css` 를 import 만 한다. |
+
+한때 두 파일이 같은 색을 각자 정의해 값이 갈라질 뻔했다(`--w-bg-alt` 등).
+**새 색이 필요하면 `globals.css` 에 추가하고, `wds.css` 에서는 별칭만 만든다.**
+
+`wds.css` 가 쓰는 별칭 → globals 매핑:
+
+```
+--w-text          → --w-label-strong      --w-border         → --w-cn-96
+--w-text-sub      → --w-label-neutral     --w-border-strong  → --w-line-strong
+--w-text-muted    → --w-label-alt         --w-bg-sunken      → --w-cn-98
+--w-text-assist   → --w-label-assistive   --w-primary-weak   → --w-blue-95
+--w-text-disabled → --w-label-disable     --w-primary-weaker → --w-blue-99
+--w-danger        → --w-negative          --w-primary-border → --w-blue-90
+--w-success       → --w-positive          --w-warning        → --w-cautionary
+```
+
+## 적용 현황
+
+- `--w-*` 적용 완료: 진행 보고서(`/r/[code]`), SNS 회원·충전·주문(`/sns/login·signup·me·charge·order`), 디자인 미리보기(`/preview/wds`)
+- 미리보기 주소: `/preview/wds` — 팔레트·타이포·컴포넌트·섹션 예시를 한 화면에서 확인 (noindex)

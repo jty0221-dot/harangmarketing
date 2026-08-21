@@ -1,73 +1,57 @@
 /**
- * SNS 스토어 디자인 토큰 — 원티드 디자인 시스템(Wanted Design System) 참고
+ * WDS 컴포넌트 계층 — 카드·버튼·입력·칩
  *
- * 색상 값과 스타일 이름은 원티드가 공개한 디자인 시스템 파일에서 추출한 실제 토큰이다.
- * 타이포 크기는 같은 파일의 스케일 이름(Display/Heading/Title/Body/Label/Caption)에
- * 맞춰 정리했다. 사이트 본체(--h-*)와 섞이지 않도록 --w-* 네임스페이스를 쓴다.
+ * 색·타이포·그림자·모서리의 **정본은 app/globals.css** 다(.fig 실측값·23단계 쿨그레이).
+ * 이 파일은 그 위에 얹는 컴포넌트만 담는다. 색을 여기서 다시 정의하지 않는다.
+ * 두 벌이 갈라지면 회색 톤이 미묘하게 어긋나므로, 새 색이 필요하면 globals.css 에 추가한다.
  *
- * 적용 범위: /sns/* (스토어·회원·충전·주문)
+ * 쓰는 곳: /sns/*, /preview/*
  */
 
 :root {
-  /* Primary — Wanted Blue */
-  --w-primary:        #0066FF;
-  --w-primary-hover:  #005EEB;
-  --w-primary-active: #0054D1;
-  --w-primary-weak:   #EAF2FE;
-  --w-primary-weaker: #F7FBFF;
-  --w-primary-border: #C9DEFE;
+  /* 별칭 — 이 계층이 쓰는 이름을 globals 의 시맨틱 토큰에 연결한다.
+     (globals 에 이미 있는 --w-bg, --w-bg-alt, --w-line, --w-primary, 그림자, 모서리는 다시 정의하지 않는다) */
+  --w-text:          var(--w-label-strong);
+  --w-text-sub:      var(--w-label-neutral);
+  --w-text-muted:    var(--w-label-alt);
+  --w-text-assist:   var(--w-label-assistive);
+  --w-text-disabled: var(--w-label-disable);
+  --w-text-inverse:  var(--w-cn-100);
 
-  /* Neutral — cool gray */
-  --w-bg:            #FFFFFF;
-  --w-bg-alt:        #F7F7F8;
-  --w-bg-sunken:     #F4F4F5;
-  --w-border:        #E1E2E4;
-  --w-border-strong: #C2C4C8;
-  --w-line:          #EAEBEC;
+  --w-bg-sunken:     var(--w-cn-98);
+  --w-border:        var(--w-cn-96);
+  --w-border-strong: var(--w-line-strong);
 
-  /* Text */
-  --w-text:          #171719;
-  --w-text-sub:      #46474C;
-  --w-text-muted:    #70737C;
-  --w-text-assist:   #989BA2;
-  --w-text-disabled: #AEB0B6;
-  --w-text-inverse:  #FFFFFF;
+  --w-primary-hover:  var(--w-primary-strong);
+  --w-primary-active: var(--w-primary-heavy);
+  --w-primary-weak:   var(--w-blue-95);
+  --w-primary-weaker: var(--w-blue-99);
+  --w-primary-border: var(--w-blue-90);
 
-  /* Semantic */
-  --w-danger:      #FF4242;
-  --w-danger-dark: #E52222;
-  --w-danger-weak: #FEECEC;
-  --w-success:      #00BF40;
-  --w-success-dark: #009632;
-  --w-success-weak: #D9FFE6;
-  --w-warning:      #FF9200;
-  --w-warning-dark: #D47800;
-  --w-warning-weak: #FEF4E6;
-
-  /* Elevation */
-  --w-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --w-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
-  --w-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --w-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
-
-  /* Radius */
-  --w-radius-sm: 8px;
-  --w-radius:    12px;
-  --w-radius-lg: 16px;
+  --w-danger:       var(--w-negative);
+  --w-danger-dark:  var(--w-red-30);
+  --w-danger-weak:  var(--w-red-90);
+  --w-success:      var(--w-positive);
+  --w-success-dark: var(--w-green-30);
+  --w-success-weak: var(--w-green-90);
+  --w-warning:      var(--w-cautionary);
+  --w-warning-dark: var(--w-orange-30);
+  --w-warning-weak: var(--w-orange-90);
 }
 
-/* ── 타이포 스케일 ───────────────────────────── */
-.w-display-2 { font-size: 36px; line-height: 48px; font-weight: 700; letter-spacing: -0.02em; }
-.w-heading-1 { font-size: 28px; line-height: 38px; font-weight: 700; letter-spacing: -0.02em; }
-.w-heading-2 { font-size: 24px; line-height: 34px; font-weight: 700; letter-spacing: -0.02em; }
-.w-title-1   { font-size: 22px; line-height: 30px; font-weight: 700; letter-spacing: -0.01em; }
-.w-title-2   { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -0.01em; }
-.w-title-3   { font-size: 18px; line-height: 26px; font-weight: 600; letter-spacing: -0.01em; }
-.w-body-1    { font-size: 16px; line-height: 24px; font-weight: 400; }
-.w-body-2    { font-size: 15px; line-height: 22px; font-weight: 400; }
-.w-label-1   { font-size: 14px; line-height: 20px; font-weight: 500; }
-.w-label-2   { font-size: 13px; line-height: 18px; font-weight: 500; }
-.w-caption-1 { font-size: 12px; line-height: 16px; font-weight: 400; }
+/* ── 타이포 별칭 ──
+   globals 의 실측 스케일을 그대로 쓰되, 하이픈 표기(w-title-1 …)로도 부를 수 있게 한다. */
+.w-display-2 { font-size: var(--w-display2);  line-height: 1.25; letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-heading-1 { font-size: var(--w-display3);  line-height: 1.3;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-heading-2 { font-size: var(--w-heading1);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-title-1   { font-size: var(--w-heading1);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-title-2   { font-size: var(--w-heading2);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-title-3   { font-size: var(--w-headline1); line-height: 1.45; letter-spacing: var(--w-tracking); font-weight: 600; }
+.w-body-1    { font-size: var(--w-body1);     line-height: 1.65; letter-spacing: var(--w-tracking); }
+.w-body-2    { font-size: var(--w-body2);     line-height: 1.65; letter-spacing: var(--w-tracking); }
+.w-label-1   { font-size: var(--w-label1);    line-height: 1.5;  letter-spacing: var(--w-tracking); font-weight: 500; }
+.w-label-2   { font-size: var(--w-label2);    line-height: 1.5;  letter-spacing: var(--w-tracking); font-weight: 500; }
+.w-caption-1 { font-size: var(--w-caption1);  line-height: 1.4;  letter-spacing: var(--w-tracking); }
 
 /* ── 컴포넌트 ────────────────────────────────── */
 .w-card {
@@ -79,8 +63,9 @@
 
 .w-field-label {
   display: block;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: var(--w-label2);
+  line-height: 1.5;
+  letter-spacing: var(--w-tracking);
   font-weight: 600;
   color: var(--w-text-sub);
   margin-bottom: 6px;
@@ -90,7 +75,8 @@
   width: 100%;
   height: 52px;
   padding: 0 16px;
-  font-size: 16px; /* iOS 자동 확대 방지 */
+  font-size: 16px; /* iOS 자동 확대 방지 — 16px 미만으로 내리지 말 것 */
+  letter-spacing: var(--w-tracking);
   color: var(--w-text);
   background: var(--w-bg);
   border: 1px solid var(--w-border);
@@ -106,8 +92,18 @@
 }
 .w-input-error { border-color: var(--w-danger); }
 
-.w-help { font-size: 12px; line-height: 16px; color: var(--w-text-muted); margin-top: 6px; }
-.w-error-text { font-size: 13px; line-height: 18px; color: var(--w-danger-dark); font-weight: 500; }
+.w-help {
+  font-size: var(--w-caption1);
+  line-height: 1.4;
+  color: var(--w-text-muted);
+  margin-top: 6px;
+}
+.w-error-text {
+  font-size: var(--w-label2);
+  line-height: 1.5;
+  color: var(--w-danger-dark);
+  font-weight: 500;
+}
 
 .w-btn {
   display: inline-flex;
@@ -118,6 +114,7 @@
   padding: 0 20px;
   font-size: 15px;
   font-weight: 700;
+  letter-spacing: var(--w-tracking);
   border-radius: var(--w-radius);
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   cursor: pointer;
@@ -146,15 +143,15 @@
   gap: 4px;
   padding: 3px 8px;
   border-radius: 6px;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: var(--w-caption1);
+  line-height: 1.4;
   font-weight: 700;
 }
 .w-chip-blue    { background: var(--w-primary-weak);  color: var(--w-primary-active); }
 .w-chip-green   { background: var(--w-success-weak);  color: var(--w-success-dark); }
 .w-chip-amber   { background: var(--w-warning-weak);  color: var(--w-warning-dark); }
 .w-chip-red     { background: var(--w-danger-weak);   color: var(--w-danger-dark); }
-.w-chip-neutral { background: var(--w-bg-sunken);     color: var(--w-text-muted); }
+.w-chip-neutral { background: var(--w-fill);          color: var(--w-text-muted); }
 
 /* 숫자는 자릿수가 흔들리지 않게 */
 .w-num { font-variant-numeric: tabular-nums; }
