@@ -11,6 +11,7 @@
     "refs:apply": "python scripts/cafe-ref/apply.py"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@tiptap/extension-image": "^3.27.3",
     "@tiptap/extension-link": "^3.27.3",
     "@tiptap/extension-placeholder": "^3.27.3",
