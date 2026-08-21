@@ -140,12 +140,13 @@ export default function Header() {
             </div>
             <div className="hidden sm:block w-px h-3 bg-white/10" />
             <div className="flex items-center gap-2 text-xs min-w-0">
-              <span className="text-gray-400 truncate">{msg.text}</span>
+              <span className="text-gray-300 truncate">{msg.text}</span>
             </div>
             <Link
               href={msg.ctaHref}
-              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-white font-black text-[11px] transition-opacity hover:opacity-90"
-              style={{ background: "var(--h-navy)" }}
+              /* 공지 바가 거의 검정이라 짙은 남색 버튼은 묻힌다 — 시그니처 블루로 띄운다 */
+              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-white font-black text-[11px] transition-colors"
+              style={{ background: "var(--w-blue-50)" }}
             >
               <Clock size={10} strokeWidth={2.5} />
               {msg.ctaLabel}
@@ -179,7 +180,16 @@ export default function Header() {
                     scrolled || !isHome ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  하랑<span style={{ color: "var(--h-navy)" }}>마케팅</span>
+                  {/* '마케팅'은 배경에 따라 색을 바꾼다.
+                      흰 헤더에선 짙은 블루, 히어로 영상 위에선 밝은 블루라야 읽힌다. */}
+                  하랑
+                  <span
+                    style={{
+                      color: scrolled || !isHome ? "var(--w-blue-40)" : "var(--w-blue-70)",
+                    }}
+                  >
+                    마케팅
+                  </span>
                 </span>
                 {(scrolled || !isHome) && (
                   <div className="text-[10px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
