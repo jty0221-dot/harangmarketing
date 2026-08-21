@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, UserPlus } from "lucide-react";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
+
+const BENEFITS = [
+  "입금 확인을 기다리지 않고 주문 즉시 진행",
+  "충전·사용 내역과 잔액을 한 화면에서 확인",
+  "주문 진행률과 잔여 수량 실시간 조회",
+];
 
 export default function SnsSignupPage() {
   const [name, setName] = useState("");
@@ -35,69 +41,121 @@ export default function SnsSignupPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-6">
-          <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 items-center justify-center shadow-sm ring-1 ring-blue-900/10 mb-3">
-            <UserPlus size={20} className="text-white" strokeWidth={2.5} />
-          </div>
-          <h1 className="text-xl font-black text-slate-900">SNS 부스트 회원가입</h1>
-          <p className="text-xs text-slate-400 mt-1">가입하고 충전하면 잔액으로 바로 주문돼요</p>
+    <main
+      className="flex min-h-screen items-center justify-center px-5 py-16"
+      style={{ background: "var(--w-bg-alt)" }}
+    >
+      <div className="w-full max-w-[400px]">
+        <div className="mb-8">
+          <p className="w-label-2" style={{ color: "var(--w-primary)" }}>
+            SNS 부스트 스토어
+          </p>
+          <h1 className="w-heading-2 mt-1.5" style={{ color: "var(--w-text)" }}>
+            회원가입
+          </h1>
+          <p className="w-body-2 mt-2" style={{ color: "var(--w-text-muted)" }}>
+            가입하고 예치금을 충전하면 주문이 훨씬 빨라집니다.
+          </p>
         </div>
 
-        <form onSubmit={submit} className="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-slate-100 space-y-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">이름</label>
+        <ul
+          className="mb-5 rounded-[12px] px-5 py-4"
+          style={{ background: "var(--w-primary-weaker)", border: "1px solid var(--w-primary-border)" }}
+        >
+          {BENEFITS.map((b) => (
+            <li key={b} className="flex items-start gap-2 py-1">
+              <Check size={15} strokeWidth={3} className="mt-0.5 shrink-0" style={{ color: "var(--w-primary)" }} />
+              <span className="w-label-1" style={{ color: "var(--w-text-sub)" }}>
+                {b}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <form onSubmit={submit} className="w-card p-7">
+          <div className="mb-5">
+            <label className="w-field-label" htmlFor="name">
+              이름
+            </label>
             <input
+              id="name"
               type="text"
               required
               autoFocus
+              autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="홍길동"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-base focus:border-blue-400 focus:outline-none transition-colors"
+              className="w-input"
             />
           </div>
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">휴대폰 번호</label>
+
+          <div className="mb-5">
+            <label className="w-field-label" htmlFor="phone">
+              휴대폰 번호
+            </label>
             <input
+              id="phone"
               type="tel"
               inputMode="numeric"
               required
+              autoComplete="username"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="01012345678"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-base focus:border-blue-400 focus:outline-none transition-colors"
+              className="w-input w-num"
             />
-            <p className="mt-1 text-[11px] text-slate-400">로그인 아이디로 쓰여요. 하이픈 없이 입력해도 됩니다.</p>
+            <p className="w-help">로그인 아이디로 쓰입니다. 하이픈은 넣지 않아도 돼요.</p>
           </div>
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">비밀번호</label>
+
+          <div className="mb-5">
+            <label className="w-field-label" htmlFor="password">
+              비밀번호
+            </label>
             <input
+              id="password"
               type="password"
               required
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="6자 이상"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-base focus:border-blue-400 focus:outline-none transition-colors"
+              className="w-input"
             />
           </div>
 
-          {error && <p className="text-xs text-red-600 font-medium">{error}</p>}
+          {error && <p className="w-error-text mb-4">{error}</p>}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-sm transition-colors"
-          >
-            {loading ? "가입 중..." : "회원가입"}
-            {!loading && <ArrowRight size={15} strokeWidth={2.5} />}
+          <button type="submit" disabled={loading} className="w-btn w-btn-primary w-full">
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                가입 중
+              </>
+            ) : (
+              <>
+                가입하고 시작하기
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </>
+            )}
           </button>
+
+          <p className="w-caption-1 mt-4 text-center" style={{ color: "var(--w-text-assist)" }}>
+            가입하면{" "}
+            <Link href="/terms" target="_blank" className="underline">
+              이용약관
+            </Link>
+            {" · "}
+            <Link href="/privacy" target="_blank" className="underline">
+              개인정보처리방침
+            </Link>
+            에 동의하는 것으로 봅니다.
+          </p>
         </form>
 
-        <p className="text-center text-xs text-slate-400 mt-4">
-          이미 회원이세요?{" "}
-          <Link href="/sns/login" className="font-bold text-blue-600 hover:underline">
+        <p className="w-label-1 mt-6 text-center" style={{ color: "var(--w-text-muted)" }}>
+          이미 회원이신가요?{" "}
+          <Link href="/sns/login" className="font-bold hover:underline" style={{ color: "var(--w-primary)" }}>
             로그인
           </Link>
         </p>

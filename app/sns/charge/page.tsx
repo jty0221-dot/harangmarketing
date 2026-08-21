@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Check, Loader2, Landmark } from "lucide-react";
+import { ArrowLeft, Check, Copy, Landmark, Loader2 } from "lucide-react";
 
 const PRESETS = [10000, 30000, 50000, 100000, 300000, 500000];
 const won = (n: number) => n.toLocaleString("ko-KR");
@@ -15,11 +15,11 @@ interface Charge {
   paidAt: string | null;
 }
 
-const STATUS: Record<string, { label: string; cls: string }> = {
-  pending: { label: "입금 대기", cls: "bg-amber-50 text-amber-700 ring-amber-200" },
-  paid: { label: "충전 완료", cls: "bg-emerald-50 text-emerald-700 ring-emerald-200" },
-  failed: { label: "취소됨", cls: "bg-slate-100 text-slate-500 ring-slate-200" },
-  expired: { label: "만료", cls: "bg-slate-100 text-slate-500 ring-slate-200" },
+const STATUS: Record<string, { label: string; chip: string }> = {
+  pending: { label: "입금 대기", chip: "w-chip-amber" },
+  paid: { label: "충전 완료", chip: "w-chip-green" },
+  failed: { label: "취소됨", chip: "w-chip-neutral" },
+  expired: { label: "만료", chip: "w-chip-neutral" },
 };
 
 export default function SnsChargePage() {
@@ -31,6 +31,7 @@ export default function SnsChargePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [ready, setReady] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const load = useCallback(async () => {
     const res = await fetch("/api/sns/charge");
@@ -54,7 +55,7 @@ export default function SnsChargePage() {
 
   const submit = async () => {
     if (!amount || amount < 5000) {
-      setError("최소 5,000원부터 충전할 수 있어요");
+      setError("최소 5,000원부터 충전할 수 있어요.");
       return;
     }
     setLoading(true);
@@ -64,7 +65,7 @@ export default function SnsChargePage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount }),
     });
-    const data = await res.json().catch(() => ({ ok: false, error: "신청 실패" }));
+    const data = await res.json().catch(() => ({ ok: false, error: "신청에 실패했습니다" }));
     if (data.ok) {
       setSubmitted(amount);
       setBank(data.bank ?? bank);
@@ -76,121 +77,207 @@ export default function SnsChargePage() {
     setLoading(false);
   };
 
+  const copyBank = async () => {
+    try {
+      await navigator.clipboard.writeText(bank);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // 클립보드 미지원 브라우저는 무시
+    }
+  };
+
   if (!ready) {
     return (
-      <main className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <Loader2 className="animate-spin text-slate-300" size={28} />
+      <main className="flex min-h-screen items-center justify-center" style={{ background: "var(--w-bg-alt)" }}>
+        <Loader2 className="animate-spin" size={26} style={{ color: "var(--w-text-disabled)" }} />
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 md:py-12">
-      <div className="max-w-lg mx-auto space-y-5">
-        <Link href="/sns/me" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors">
-          <ArrowLeft size={14} strokeWidth={2.5} /> 마이페이지
+    <main className="min-h-screen px-5 py-10 md:py-14" style={{ background: "var(--w-bg-alt)" }}>
+      <div className="mx-auto w-full max-w-[560px]">
+        <Link
+          href="/sns/me"
+          className="w-label-2 mb-5 inline-flex items-center gap-1.5 hover:underline"
+          style={{ color: "var(--w-text-muted)" }}
+        >
+          <ArrowLeft size={14} strokeWidth={2.5} />
+          마이페이지
         </Link>
 
-        <div>
-          <h1 className="text-xl font-black text-slate-900">예치금 충전</h1>
-          <p className="text-xs text-slate-400 mt-1">
-            금액을 고르고 신청한 뒤 안내 계좌로 입금하시면, 확인 후 잔액이 채워져요.
+        <div className="mb-6">
+          <h1 className="w-heading-2" style={{ color: "var(--w-text)" }}>
+            예치금 충전
+          </h1>
+          <p className="w-body-2 mt-2" style={{ color: "var(--w-text-muted)" }}>
+            금액을 고르고 신청한 뒤 안내 계좌로 입금하시면, 확인 후 잔액에 반영됩니다.
           </p>
         </div>
 
         {submitted ? (
-          <div className="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 p-6 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-600">
-              <Check size={18} strokeWidth={2.5} />
-              <span className="font-black">충전 신청 완료</span>
+          <section className="w-card p-7">
+            <div className="flex items-center gap-2">
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-full"
+                style={{ background: "var(--w-success-weak)" }}
+              >
+                <Check size={16} strokeWidth={3} style={{ color: "var(--w-success-dark)" }} />
+              </span>
+              <h2 className="w-title-3" style={{ color: "var(--w-text)" }}>
+                충전 신청이 접수되었습니다
+              </h2>
             </div>
-            <p className="text-sm text-slate-600">
-              아래 계좌로 <strong className="text-slate-900">{won(submitted)}원</strong>을 입금해 주세요. 입금이 확인되면 잔액에 반영됩니다.
-            </p>
-            <div className="rounded-xl bg-slate-900 text-white p-4">
-              <div className="flex items-center gap-2 text-slate-300 text-xs font-bold mb-1">
-                <Landmark size={13} strokeWidth={2.5} /> 입금 계좌
-              </div>
-              <p className="text-sm font-black">{bank}</p>
-            </div>
-            <p className="text-[11px] text-slate-400">
-              입금자명이 가입하신 이름과 다르면 확인이 늦어질 수 있어요.
-            </p>
-            <button
-              onClick={() => setSubmitted(null)}
-              className="w-full py-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-sm hover:bg-slate-200 transition-colors"
+
+            <div
+              className="mt-5 rounded-[12px] px-5 py-4"
+              style={{ background: "var(--w-bg-sunken)" }}
             >
+              <p className="w-label-2" style={{ color: "var(--w-text-muted)" }}>
+                입금하실 금액
+              </p>
+              <p className="w-heading-1 w-num mt-0.5" style={{ color: "var(--w-text)" }}>
+                {won(submitted)}원
+              </p>
+            </div>
+
+            <div
+              className="mt-3 rounded-[12px] px-5 py-4"
+              style={{ background: "var(--w-primary-weaker)", border: "1px solid var(--w-primary-border)" }}
+            >
+              <p className="w-label-2 flex items-center gap-1.5" style={{ color: "var(--w-primary-active)" }}>
+                <Landmark size={13} strokeWidth={2.5} />
+                입금 계좌
+              </p>
+              <p className="w-body-1 mt-1 font-bold" style={{ color: "var(--w-text)" }}>
+                {bank}
+              </p>
+              <button onClick={copyBank} className="w-btn w-btn-secondary w-btn-sm mt-3">
+                <Copy size={13} strokeWidth={2.5} />
+                {copied ? "복사됨" : "계좌 복사"}
+              </button>
+            </div>
+
+            <p className="w-help">입금자명이 가입하신 이름과 다르면 확인이 늦어질 수 있어요.</p>
+
+            <button onClick={() => setSubmitted(null)} className="w-btn w-btn-secondary mt-5 w-full">
               다른 금액 더 충전하기
             </button>
-          </div>
+          </section>
         ) : (
-          <div className="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 p-6 space-y-4">
+          <section className="w-card p-7">
+            <p className="w-field-label">충전 금액</p>
             <div className="grid grid-cols-3 gap-2">
-              {PRESETS.map((p) => (
-                <button
-                  key={p}
-                  onClick={() => {
-                    setPreset(p);
-                    setCustom("");
-                  }}
-                  className={`py-3 rounded-xl text-sm font-black ring-1 transition-colors ${
-                    !custom && preset === p
-                      ? "bg-blue-600 text-white ring-blue-600"
-                      : "bg-white text-slate-700 ring-slate-200 hover:bg-slate-50"
-                  }`}
-                >
-                  {won(p)}
-                </button>
-              ))}
+              {PRESETS.map((p) => {
+                const active = !custom && preset === p;
+                return (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => {
+                      setPreset(p);
+                      setCustom("");
+                    }}
+                    className="w-num h-[52px] rounded-[12px] text-[15px] font-bold transition-colors"
+                    style={
+                      active
+                        ? {
+                            background: "var(--w-primary-weak)",
+                            color: "var(--w-primary-active)",
+                            border: "1px solid var(--w-primary)",
+                          }
+                        : {
+                            background: "var(--w-bg)",
+                            color: "var(--w-text-sub)",
+                            border: "1px solid var(--w-border)",
+                          }
+                    }
+                  >
+                    {won(p)}
+                  </button>
+                );
+              })}
             </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">직접 입력</label>
+
+            <div className="mt-5">
+              <label className="w-field-label" htmlFor="custom">
+                직접 입력
+              </label>
               <div className="relative">
                 <input
+                  id="custom"
                   inputMode="numeric"
                   value={custom}
                   onChange={(e) => setCustom(e.target.value)}
                   placeholder="예: 70000"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-base focus:border-blue-400 focus:outline-none pr-10 transition-colors"
+                  className="w-input w-num pr-10"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400 font-bold">원</span>
+                <span
+                  className="w-body-2 absolute right-4 top-1/2 -translate-y-1/2 font-bold"
+                  style={{ color: "var(--w-text-assist)" }}
+                >
+                  원
+                </span>
               </div>
             </div>
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
-              <span className="text-xs font-bold text-slate-500">충전 금액</span>
-              <span className="text-lg font-black text-slate-900 tabular-nums">{won(amount || 0)}원</span>
-            </div>
-            {error && <p className="text-xs text-red-600 font-medium">{error}</p>}
-            <button
-              onClick={submit}
-              disabled={loading}
-              className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-sm transition-colors"
+
+            <div
+              className="mt-5 flex items-center justify-between rounded-[12px] px-5 py-4"
+              style={{ background: "var(--w-bg-sunken)" }}
             >
-              {loading ? "신청 중..." : "충전 신청하기"}
+              <span className="w-label-1" style={{ color: "var(--w-text-muted)" }}>
+                충전 금액
+              </span>
+              <span className="w-title-2 w-num" style={{ color: "var(--w-text)" }}>
+                {won(amount || 0)}원
+              </span>
+            </div>
+
+            {error && <p className="w-error-text mt-3">{error}</p>}
+
+            <button onClick={submit} disabled={loading} className="w-btn w-btn-primary mt-5 w-full">
+              {loading ? (
+                <>
+                  <Loader2 size={16} className="animate-spin" />
+                  신청 중
+                </>
+              ) : (
+                "충전 신청하기"
+              )}
             </button>
-          </div>
+            <p className="w-help text-center">신청 후 안내되는 계좌로 입금하시면 됩니다.</p>
+          </section>
         )}
 
         {charges.length > 0 && (
-          <div className="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 overflow-hidden">
-            <div className="px-5 py-4 border-b border-slate-100">
-              <h2 className="text-sm font-black text-slate-800">충전 신청 내역</h2>
-            </div>
-            <ul className="divide-y divide-slate-50">
-              {charges.map((c) => {
-                const s = STATUS[c.status] ?? { label: c.status, cls: "bg-slate-100 text-slate-500 ring-slate-200" };
+          <section className="w-card mt-4 overflow-hidden">
+            <p className="w-label-1 px-6 py-4 font-bold" style={{ color: "var(--w-text)", borderBottom: "1px solid var(--w-line)" }}>
+              충전 신청 내역
+            </p>
+            <ul>
+              {charges.map((c, i) => {
+                const s = STATUS[c.status] ?? { label: c.status, chip: "w-chip-neutral" };
                 return (
-                  <li key={c.id} className="flex items-center justify-between px-5 py-3.5">
+                  <li
+                    key={c.id}
+                    className="flex items-center justify-between px-6 py-4"
+                    style={i > 0 ? { borderTop: "1px solid var(--w-line)" } : undefined}
+                  >
                     <div>
-                      <p className="text-sm font-bold text-slate-800 tabular-nums">{won(c.amount)}원</p>
-                      <p className="text-[11px] text-slate-400">{new Date(c.createdAt).toLocaleString("ko-KR")}</p>
+                      <p className="w-label-1 w-num font-bold" style={{ color: "var(--w-text)" }}>
+                        {won(c.amount)}원
+                      </p>
+                      <p className="w-caption-1" style={{ color: "var(--w-text-assist)" }}>
+                        {new Date(c.createdAt).toLocaleString("ko-KR")}
+                      </p>
                     </div>
-                    <span className={`rounded-full px-2.5 py-1 text-[11px] font-black ring-1 ${s.cls}`}>{s.label}</span>
+                    <span className={`w-chip ${s.chip}`}>{s.label}</span>
                   </li>
                 );
               })}
             </ul>
-          </div>
+          </section>
         )}
       </div>
     </main>

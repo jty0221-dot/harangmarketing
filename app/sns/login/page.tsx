@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, LogIn } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 
 export default function SnsLoginPage() {
   const [phone, setPhone] = useState("");
@@ -34,57 +34,83 @@ export default function SnsLoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-6">
-          <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-950 items-center justify-center shadow-sm ring-1 ring-slate-900/10 mb-3">
-            <LogIn size={20} className="text-white" strokeWidth={2.5} />
-          </div>
-          <h1 className="text-xl font-black text-slate-900">SNS 부스트 로그인</h1>
-          <p className="text-xs text-slate-400 mt-1">충전한 잔액으로 바로 주문하세요</p>
+    <main
+      className="flex min-h-screen items-center justify-center px-5 py-16"
+      style={{ background: "var(--w-bg-alt)" }}
+    >
+      <div className="w-full max-w-[400px]">
+        <div className="mb-8">
+          <p className="w-label-2" style={{ color: "var(--w-primary)" }}>
+            SNS 부스트 스토어
+          </p>
+          <h1 className="w-heading-2 mt-1.5" style={{ color: "var(--w-text)" }}>
+            로그인
+          </h1>
+          <p className="w-body-2 mt-2" style={{ color: "var(--w-text-muted)" }}>
+            충전한 예치금으로 입금 확인 없이 바로 주문할 수 있어요.
+          </p>
         </div>
 
-        <form onSubmit={submit} className="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-slate-100 space-y-4">
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">휴대폰 번호</label>
+        <form onSubmit={submit} className="w-card p-7">
+          <div className="mb-5">
+            <label className="w-field-label" htmlFor="phone">
+              휴대폰 번호
+            </label>
             <input
+              id="phone"
               type="tel"
               inputMode="numeric"
               required
               autoFocus
+              autoComplete="username"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="01012345678"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-base focus:border-blue-400 focus:outline-none transition-colors"
+              className={`w-input w-num${error ? " w-input-error" : ""}`}
             />
           </div>
-          <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">비밀번호</label>
+
+          <div className="mb-5">
+            <label className="w-field-label" htmlFor="password">
+              비밀번호
+            </label>
             <input
+              id="password"
               type="password"
               required
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-base focus:border-blue-400 focus:outline-none transition-colors"
+              className={`w-input${error ? " w-input-error" : ""}`}
             />
           </div>
 
-          {error && <p className="text-xs text-red-600 font-medium">{error}</p>}
+          {error && <p className="w-error-text mb-4">{error}</p>}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-sm transition-colors"
-          >
-            {loading ? "확인 중..." : "로그인"}
-            {!loading && <ArrowRight size={15} strokeWidth={2.5} />}
+          <button type="submit" disabled={loading} className="w-btn w-btn-primary w-full">
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                확인 중
+              </>
+            ) : (
+              <>
+                로그인
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </>
+            )}
           </button>
         </form>
 
-        <p className="text-center text-xs text-slate-400 mt-4">
-          아직 회원이 아니세요?{" "}
-          <Link href="/sns/signup" className="font-bold text-blue-600 hover:underline">
+        <p className="w-label-1 mt-6 text-center" style={{ color: "var(--w-text-muted)" }}>
+          아직 회원이 아니신가요?{" "}
+          <Link href="/sns/signup" className="font-bold hover:underline" style={{ color: "var(--w-primary)" }}>
             회원가입
+          </Link>
+        </p>
+        <p className="w-caption-1 mt-3 text-center">
+          <Link href="/sns" className="hover:underline" style={{ color: "var(--w-text-assist)" }}>
+            스토어 둘러보기
           </Link>
         </p>
       </div>
