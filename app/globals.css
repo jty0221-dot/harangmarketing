@@ -575,3 +575,65 @@ body { overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .cd-fillbar, .cd-pulse-cta { animation: none; }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   진행 보고서 본문 (/r/[code])
+   에디터가 만든 HTML 을 그대로 렌더하므로, 태그별 기본 스타일을 여기서 준다.
+   (@tailwindcss/typography 플러그인은 이 프로젝트에 설치돼 있지 않다 — prose 클래스는 동작하지 않는다)
+   ───────────────────────────────────────────────────────────── */
+.report-body { color: #2b2f36; font-size: 15px; line-height: 1.75; }
+.report-body > :first-child { margin-top: 0; }
+.report-body > :last-child { margin-bottom: 0; }
+
+.report-body h1,
+.report-body h2,
+.report-body h3 {
+  color: var(--h-navy);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  margin: 1.6em 0 0.6em;
+}
+.report-body h1 { font-size: 1.25rem; }
+.report-body h2 { font-size: 1.1rem; }
+.report-body h3 { font-size: 1rem; }
+
+.report-body p { margin: 0.8em 0; }
+.report-body strong { font-weight: 800; color: var(--h-navy); }
+.report-body em { font-style: normal; background: linear-gradient(transparent 60%, #fde68a 60%); }
+
+.report-body ul,
+.report-body ol { margin: 0.8em 0; padding-left: 1.25em; }
+.report-body ul { list-style: disc; }
+.report-body ol { list-style: decimal; }
+.report-body li { margin: 0.35em 0; }
+.report-body li::marker { color: var(--h-blue); }
+
+.report-body a { color: var(--h-blue); font-weight: 700; text-decoration: underline; word-break: break-all; }
+
+.report-body blockquote {
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  background: #f6f8fb;
+  border-left: 3px solid var(--h-blue);
+  border-radius: 0 12px 12px 0;
+  color: #4b5563;
+}
+
+.report-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1em 0;
+  display: block;
+}
+
+.report-body hr { margin: 1.6em 0; border: 0; border-top: 1px solid var(--h-border); }
+
+/* 표는 좁은 화면에서 가로 스크롤 — 페이지 전체가 밀리면 안 된다 */
+.report-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 14px; }
+.report-body th,
+.report-body td { border: 1px solid var(--h-border); padding: 8px 10px; text-align: left; }
+.report-body th { background: var(--h-surface); font-weight: 800; color: var(--h-navy); }
+
+.report-body iframe { max-width: 100%; border-radius: 12px; }

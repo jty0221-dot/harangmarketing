@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet } from "lucide-react";
+import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -30,6 +30,20 @@ export function AdminHeader() {
           >
             <Wallet size={13} />
             충전 관리
+          </Link>
+          <Link
+            href="/admin/sns/members"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <Users size={13} />
+            회원·잔액
+          </Link>
+          <Link
+            href="/admin/reports"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <FileText size={13} />
+            진행 보고서
           </Link>
           <Link
             href="/"
