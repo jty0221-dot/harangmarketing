@@ -65,7 +65,7 @@ const REGIONS = [
   { name: "수원", cases: "네일샵 예약 마감 · 3개월", color: "bg-purple-50 border-purple-100 text-purple-700" },
   { name: "부천", cases: "음식점 배달 매출 +113% · 4개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "화성·동탄", cases: "학원 수강생 +55% · 3개월", color: "bg-green-50 border-green-100 text-green-700" },
-  { name: "안양·평촌", cases: "한의원 초진 +200% · 5개월", color: "bg-amber-50 border-amber-100 text-amber-700" },
+  { name: "안양·평촌", cases: "한의원 초진 +200% · 5개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "용인·수지", cases: "카페 체인 3곳 동시 운영", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "파주·김포", cases: "음식점 플레이스 1위 · 2개월", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
 ];

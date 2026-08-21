@@ -39,7 +39,7 @@ interface OrderRow {
 
 /** 회원 주문 기준 상태 표기 — pending 은 '결제 완료·발주 대기' */
 const STATUS: Record<string, { label: string; cls: string }> = {
-  pending: { label: "발주 대기", cls: "bg-amber-50 text-amber-700 ring-amber-200" },
+  pending: { label: "발주 대기", cls: "bg-blue-50 text-blue-700 ring-blue-200" },
   processing: { label: "진행 중", cls: "bg-blue-50 text-blue-700 ring-blue-200" },
   partial: { label: "부분 완료", cls: "bg-indigo-50 text-indigo-700 ring-indigo-200" },
   completed: { label: "완료", cls: "bg-emerald-50 text-emerald-700 ring-emerald-200" },
@@ -162,7 +162,7 @@ export default function AdminMembersPage() {
                 }`}
               >
                 {label}
-                {key === "orders" && pendingCount > 0 && <span className="ml-1 text-amber-500">{pendingCount}</span>}
+                {key === "orders" && pendingCount > 0 && <span className="ml-1 text-blue-600">{pendingCount}</span>}
               </button>
             ))}
           </div>

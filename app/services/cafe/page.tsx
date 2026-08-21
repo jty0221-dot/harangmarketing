@@ -35,7 +35,7 @@ const SERVICES = [
   },
   {
     icon: Star,
-    color: "from-amber-500 to-orange-600",
+    color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
     desc: "음료·디저트 체험단 운영 · 포토리뷰 확보",
   },
@@ -67,15 +67,15 @@ export default function CafeLandingPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-amber-950 via-orange-950 to-gray-950 py-16 md:py-24">
+        <section className="bg-gradient-to-br from-blue-950 via-orange-950 to-gray-950 py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-600/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Coffee size={12} strokeWidth={2.5} />
               카페 · 디저트 전문
             </div>
             <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
               카페 마케팅,<br />
-              <span className="text-amber-400">이렇게 하면 됩니다</span>
+              <span className="text-blue-400">이렇게 하면 됩니다</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
               네이버 플레이스 상위 노출부터 포토리뷰 확보까지.<br />
@@ -84,7 +84,7 @@ export default function CafeLandingPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-gray-950 font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-400 text-gray-950 font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
               >
                 무료 상담 신청 <ArrowRight size={15} />
               </Link>
@@ -121,7 +121,7 @@ export default function CafeLandingPage() {
             <div className="space-y-3">
               {CHECKLIST.map((item, i) => (
                 <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                  <CheckCircle2 size={18} className="text-amber-500 flex-shrink-0" strokeWidth={2.5} />
+                  <CheckCircle2 size={18} className="text-blue-600 flex-shrink-0" strokeWidth={2.5} />
                   <span className="text-gray-800 text-sm font-medium">{item}</span>
                 </div>
               ))}
@@ -143,9 +143,9 @@ export default function CafeLandingPage() {
                   <div className="flex items-center justify-center gap-3 mb-2">
                     <span className="text-lg font-bold text-gray-400 line-through">{r.before}</span>
                     <ArrowRight size={14} className="text-gray-400" />
-                    <span className="text-2xl font-black text-amber-600">{r.after}</span>
+                    <span className="text-2xl font-black text-blue-700">{r.after}</span>
                   </div>
-                  <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full border border-amber-100">
+                  <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full border border-blue-100">
                     <Clock size={10} /> {r.period}
                   </span>
                 </div>
@@ -175,7 +175,7 @@ export default function CafeLandingPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-14 md:py-20 bg-gradient-to-br from-amber-500 to-orange-600">
+        <section className="py-14 md:py-20 bg-gradient-to-br from-blue-600 to-orange-600">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
               <TrendingUp size={22} className="text-white" strokeWidth={2.5} />
@@ -183,13 +183,13 @@ export default function CafeLandingPage() {
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
               내 카페도 가능한지 먼저 확인하세요
             </h2>
-            <p className="text-amber-100 text-sm mb-7">
+            <p className="text-blue-100 text-sm mb-7">
               무료 진단 후 가능성이 없으면 솔직히 말씀드립니다.<br />
               부담 없이 연락 주세요.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-amber-700 font-bold px-7 py-3.5 rounded-xl hover:bg-amber-50 transition-colors text-sm"
+              className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm"
             >
               카페 마케팅 무료 상담 <ArrowRight size={15} />
             </Link>

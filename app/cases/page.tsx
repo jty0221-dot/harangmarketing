@@ -432,7 +432,7 @@ const CasesPage: FC = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
               {[
-                { ind: "카페·베이커리", result: "방문객 +167%", time: "3개월", color: "from-amber-500 to-orange-500" },
+                { ind: "카페·베이커리", result: "방문객 +167%", time: "3개월", color: "from-blue-600 to-orange-500" },
                 { ind: "음식점·배달", result: "매출 +113%", time: "4개월", color: "from-green-500 to-emerald-600" },
                 { ind: "미용·네일", result: "예약 완전 마감", time: "3개월", color: "from-pink-500 to-rose-600" },
                 { ind: "의원·한의원", result: "신규예약 +300%", time: "6개월", color: "from-blue-500 to-blue-700" },

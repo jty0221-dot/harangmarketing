@@ -43,7 +43,7 @@ const CURRICULUM = [
   },
   {
     step: "필독",
-    stepColor: "bg-amber-500",
+    stepColor: "bg-blue-600",
     videoId: "YA2mETS3y0w",
     title: "마케팅 대행사에 300만 원 입금 전, 제발 이 영상 보세요 (2026 최신 사기수법)",
     desc: "\"월 5만 원에 상위노출 보장\" 그 말 믿고 입금하는 순간 돈은 사라집니다. 사기꾼들의 3가지 수법 폭로.",

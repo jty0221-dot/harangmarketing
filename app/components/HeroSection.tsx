@@ -108,7 +108,7 @@ export default function HeroSection({
           width: "100%",
           minHeight: "100dvh",
           overflow: "hidden",
-          background: "#0A1B3D",
+          background: "#001536",
           fontFamily: "'Pretendard','Apple SD Gothic Neo',sans-serif",
           WebkitFontSmoothing: "antialiased",
         }}
@@ -148,7 +148,7 @@ export default function HeroSection({
             backdropFilter: "blur(37px) brightness(0.66)",
             WebkitBackdropFilter: "blur(37px) brightness(0.66)",
             background:
-              "radial-gradient(118% 118% at 100% 100%, rgba(9,17,42,0.98) 0%, rgba(9,17,42,0.9) 32%, rgba(9,17,42,0.42) 58%, rgba(9,17,42,0) 80%)",
+              "radial-gradient(118% 118% at 100% 100%, rgba(0,21,54,0.98) 0%, rgba(0,21,54,0.9) 32%, rgba(0,21,54,0.42) 58%, rgba(0,21,54,0) 80%)",
             WebkitMaskImage:
               "radial-gradient(150% 150% at 100% 100%, #000 45%, transparent 100%)",
             maskImage:
@@ -163,7 +163,7 @@ export default function HeroSection({
             inset: 0,
             pointerEvents: "none",
             background:
-              "radial-gradient(125% 120% at 52% 40%, rgba(6,15,35,0) 44%, rgba(6,14,33,0.55) 100%)",
+              "radial-gradient(125% 120% at 52% 40%, rgba(0,21,54,0) 44%, rgba(0,21,54,0.55) 100%)",
           }}
         />
         <div
@@ -172,7 +172,7 @@ export default function HeroSection({
             inset: 0,
             pointerEvents: "none",
             background:
-              "linear-gradient(94deg, rgba(8,20,55,0.92) 0%, rgba(8,20,55,0.58) 32%, rgba(8,20,55,0.1) 60%, rgba(8,20,55,0) 76%)",
+              "linear-gradient(94deg, rgba(0,25,64,0.92) 0%, rgba(0,25,64,0.58) 32%, rgba(0,25,64,0.1) 60%, rgba(0,25,64,0) 76%)",
           }}
         />
         <div
@@ -181,7 +181,7 @@ export default function HeroSection({
             inset: 0,
             pointerEvents: "none",
             background:
-              "linear-gradient(0deg, rgba(7,17,46,0.9) 0%, rgba(7,17,46,0.28) 36%, rgba(7,17,46,0) 56%)",
+              "linear-gradient(0deg, rgba(0,21,54,0.9) 0%, rgba(0,21,54,0.28) 36%, rgba(0,21,54,0) 56%)",
           }}
         />
 
@@ -324,7 +324,7 @@ export default function HeroSection({
                   alignItems: "center",
                   gap: 9,
                   background: "#fff",
-                  color: "#0A1B3D",
+                  color: "#001536",
                   fontWeight: 700,
                   fontSize: "clamp(13px,1.15vw,18px)",
                   padding: "15px 28px",

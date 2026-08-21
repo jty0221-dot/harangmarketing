@@ -245,7 +245,7 @@ export default function AboutPage() {
                   <div className="text-[11px] text-gray-400 mt-1">해병대 장교 출신 · 마케팅 경력 10년+ · 7년차 대표</div>
                   <div className="flex gap-0.5 justify-center mt-2">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={11} className="text-amber-400 fill-amber-400" />
+                      <Star key={i} size={11} className="text-blue-400 fill-blue-400" />
                     ))}
                   </div>
                 </div>
@@ -672,7 +672,7 @@ export default function AboutPage() {
                   },
                   {
                     name: "Harang Dark",
-                    hex: "#1A1A2E",
+                    hex: "#001536",
                     rgb: "RGB 26, 26, 46",
                     cmyk: "CMYK 43, 43, 0, 82",
                     desc: "권위, 전문성, 신중함, 무게감",

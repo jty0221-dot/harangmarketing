@@ -89,9 +89,9 @@ const STEPS = [
     icon: TrendingUp,
     title: "실행 및 콘텐츠 제작",
     duration: "1개월~",
-    accent: "text-amber-400",
-    border: "border-amber-500/30",
-    bg: "bg-amber-500/8",
+    accent: "text-blue-400",
+    border: "border-blue-600/30",
+    bg: "bg-blue-600/8",
     desc: "블로그·플레이스·SNS 채널별 콘텐츠를 제작·배포하고, 리뷰·체험단 캠페인을 가동합니다.",
     details: [
       "주 2회 이상 콘텐츠 업로드",

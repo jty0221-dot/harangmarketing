@@ -279,7 +279,7 @@ const FAQS = [
 ];
 
 const INDUSTRY_LINKS = [
-  { name: "카페·베이커리", href: "/services/cafe", color: "from-amber-500 to-orange-500", desc: "플레이스 1위 · 포토리뷰 · 인스타" },
+  { name: "카페·베이커리", href: "/services/cafe", color: "from-blue-600 to-orange-500", desc: "플레이스 1위 · 포토리뷰 · 인스타" },
   { name: "병원·의원", href: "/services/clinic", color: "from-blue-500 to-blue-700", desc: "블로그 신뢰 · 체험단 · 예약 증대" },
   { name: "뷰티·네일", href: "/services/beauty", color: "from-pink-500 to-rose-600", desc: "릴스 · 비포애프터 · 예약 마감" },
   { name: "음식점·식당", href: "/services/restaurant", color: "from-orange-500 to-red-500", desc: "배달 매출 · 플레이스 · 리뷰" },

@@ -36,7 +36,7 @@ const SERVICES = [
   },
   {
     icon: Star,
-    color: "from-amber-500 to-orange-600",
+    color: "from-blue-600 to-orange-600",
     title: "리뷰 관리",
     desc: "긍정 리뷰 확보 · 부정 리뷰 대응 전략",
   },

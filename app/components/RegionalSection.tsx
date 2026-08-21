@@ -52,8 +52,8 @@ const REGIONS = [
     cities: "온라인 쇼핑몰 · SNS 전문",
     desc: "지역 무관 블로그 SEO · 인스타 · 체험단",
     cases: 95,
-    color: "border-amber-200 bg-amber-50",
-    tagColor: "bg-amber-600 text-white",
+    color: "border-blue-200 bg-blue-50",
+    tagColor: "bg-blue-700 text-white",
     tag: "온라인 전용",
   },
 ];

@@ -61,7 +61,7 @@ const REGIONS = [
   { name: "마포·홍대", cases: "음식점 배달 매출 +113% · 4개월", color: "bg-purple-50 border-purple-100 text-purple-700" },
   { name: "성수·뚝섬", cases: "카페 SNS 팔로워 0→2천명 · 3개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "목동·신정", cases: "학원 수강생 +60% · 3개월", color: "bg-green-50 border-green-100 text-green-700" },
-  { name: "종로·인사동", cases: "음식점 외국인 관광객 유입 +40%", color: "bg-amber-50 border-amber-100 text-amber-700" },
+  { name: "종로·인사동", cases: "음식점 외국인 관광객 유입 +40%", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "노원·도봉", cases: "네일샵 예약 2주 치 마감 · 2개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "송파·잠실", cases: "한의원 초진 +180% · 6개월", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
 ];
@@ -165,7 +165,7 @@ export default function SeoulPage() {
                 },
                 {
                   icon: Star,
-                  color: "from-amber-500 to-orange-600",
+                  color: "from-blue-600 to-orange-600",
                   title: "리뷰 질 관리",
                   desc: "서울 소비자는 리뷰 내용을 꼼꼼히 봅니다. 단순 별점이 아닌 신뢰도 높은 텍스트 리뷰 확보 전략이 필요합니다.",
                 },

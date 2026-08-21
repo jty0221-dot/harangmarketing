@@ -364,7 +364,7 @@ export default function StudioPage() {
         <section id="price" className="scroll-mt-20 bg-gray-50 py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-2 flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-sm ring-1 ring-orange-700/20">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-orange-600 shadow-sm ring-1 ring-orange-700/20">
                 <Star size={16} className="text-white" strokeWidth={2.5} />
               </div>
               <h2 className="text-xl font-black text-gray-900 md:text-2xl">가격</h2>
@@ -429,9 +429,9 @@ export default function StudioPage() {
         {/* ───────────────────────── 솔직하게 ───────────────────────── */}
         <section className="bg-white py-10 md:py-14">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="rounded-2xl bg-amber-50 p-5 ring-1 ring-amber-200 md:p-6">
+            <div className="rounded-2xl bg-blue-50 p-5 ring-1 ring-blue-200 md:p-6">
               <div className="flex items-start gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 shadow-sm ring-1 ring-amber-800/20">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 shadow-sm ring-1 ring-blue-800/20">
                   <Info size={16} className="text-white" strokeWidth={2.5} />
                 </div>
                 <div>

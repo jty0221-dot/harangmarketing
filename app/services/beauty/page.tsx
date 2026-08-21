@@ -41,7 +41,7 @@ const SERVICES = [
   },
   {
     icon: Star,
-    color: "from-amber-500 to-orange-600",
+    color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
     desc: "뷰티 체험단 모집 · 포토리뷰 확보 전략",
   },

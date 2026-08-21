@@ -330,11 +330,11 @@ export default function HomePage() {
         {/* ══ SNS 부스트 스토어 배너 ══ */}
         <section className="py-10 md:py-14" style={{ background: "var(--h-dark)" }}>
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0F2044] via-[#16224a] to-[#1A3560] ring-1 ring-white/10 px-6 py-8 md:px-10 md:py-10">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#002966] via-[#16224a] to-[#003E9C] ring-1 ring-white/10 px-6 py-8 md:px-10 md:py-10">
               <div className="dot-grid-navy absolute inset-0 opacity-40" aria-hidden />
               <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black text-amber-300 ring-1 ring-white/15">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black text-blue-300 ring-1 ring-white/15">
                     <Star size={12} strokeWidth={2.5} />
                     NEW · 회원가입 없이 건당 주문
                   </div>
@@ -353,7 +353,7 @@ export default function HomePage() {
                   </div>
                   <div className="mt-6 flex flex-col sm:flex-row gap-2.5">
                     <Link href="/sns"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 text-gray-900 font-black text-sm transition hover:bg-amber-300 shadow-sm">
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-400 text-gray-900 font-black text-sm transition hover:bg-blue-300 shadow-sm">
                       스토어 구경하기
                       <ArrowRight size={15} strokeWidth={2.5} />
                     </Link>
@@ -1448,7 +1448,7 @@ export default function HomePage() {
                   <div>
                     <div className="flex gap-0.5 mb-2">
                       {Array.from({ length: 5 }).map((_, j) => (
-                        <Star key={j} size={12} className="fill-amber-400 text-amber-400" />
+                        <Star key={j} size={12} className="fill-blue-400 text-blue-400" />
                       ))}
                     </div>
                     <div className="text-sm font-black" style={{ color: "var(--h-dark)" }}>{t.name}</div>

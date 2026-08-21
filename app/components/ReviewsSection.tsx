@@ -10,9 +10,9 @@ export default function ReviewsSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center gap-3 justify-center mb-4">
-            <div className="w-6 h-[2px] bg-amber-500" />
-            <span className="text-[11px] font-black uppercase tracking-[0.22em] text-amber-500">실제 고객 후기</span>
-            <div className="w-6 h-[2px] bg-amber-500" />
+            <div className="w-6 h-[2px] bg-blue-600" />
+            <span className="text-[11px] font-black uppercase tracking-[0.22em] text-blue-600">실제 고객 후기</span>
+            <div className="w-6 h-[2px] bg-blue-600" />
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3" style={{ letterSpacing: "-0.03em" }}>
             직접 경험한 대표님들이<br className="sm:hidden" /> 말씀하십니다

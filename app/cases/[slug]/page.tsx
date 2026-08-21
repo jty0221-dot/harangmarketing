@@ -262,7 +262,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                   <p className="text-white text-sm leading-relaxed italic mb-3">"{c.quote}"</p>
                   <div className="flex items-center gap-2">
                     <div className="flex">
-                      {[1,2,3,4,5].map(i => <Star key={i} size={12} className="text-amber-400 fill-amber-400" />)}
+                      {[1,2,3,4,5].map(i => <Star key={i} size={12} className="text-blue-400 fill-blue-400" />)}
                     </div>
                     <span className="text-gray-500 text-xs">{c.location} {c.category} 사장님</span>
                   </div>

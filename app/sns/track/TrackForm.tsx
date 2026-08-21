@@ -22,7 +22,7 @@ interface TrackResult {
 }
 
 const STATUS_STYLE: Record<TrackResult["status"], { chip: string; icon: typeof Timer }> = {
-  pending: { chip: "bg-amber-50 text-amber-700 ring-amber-200", icon: Timer },
+  pending: { chip: "bg-blue-50 text-blue-700 ring-blue-200", icon: Timer },
   processing: { chip: "bg-blue-50 text-blue-700 ring-blue-200", icon: Loader2 },
   partial: { chip: "bg-indigo-50 text-indigo-700 ring-indigo-200", icon: PackageCheck },
   completed: { chip: "bg-emerald-50 text-emerald-700 ring-emerald-200", icon: CheckCircle2 },

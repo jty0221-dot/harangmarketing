@@ -38,9 +38,9 @@ export default function DifferenceSection() {
         <RevealOnScroll>
           <div className="text-center mb-12">
             <div className="flex items-center gap-3 justify-center mb-4">
-              <div className="w-6 h-[2px] bg-amber-500" />
-              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-amber-500">하랑이 다른 이유</span>
-              <div className="w-6 h-[2px] bg-amber-500" />
+              <div className="w-6 h-[2px] bg-blue-600" />
+              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-blue-600">하랑이 다른 이유</span>
+              <div className="w-6 h-[2px] bg-blue-600" />
             </div>
             <h2
               className="text-2xl md:text-3xl font-black mb-3"
@@ -105,9 +105,9 @@ export default function DifferenceSection() {
         {/* Bottom CTA */}
         <RevealOnScroll>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-50 border border-amber-100">
-              <AlertCircle size={14} className="text-amber-600" strokeWidth={2} />
-              <p className="text-xs text-amber-700 font-semibold">
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-50 border border-blue-100">
+              <AlertCircle size={14} className="text-blue-700" strokeWidth={2} />
+              <p className="text-xs text-blue-700 font-semibold">
                 이 약속을 지키지 못하면 결제 금액의 10배를 보상해드립니다
               </p>
             </div>

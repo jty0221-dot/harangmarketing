@@ -399,7 +399,7 @@ export default function SnsStorePage() {
                 href={KAKAO}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-black text-gray-900 shadow-sm transition hover:bg-amber-300"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-400 px-6 py-3.5 text-sm font-black text-gray-900 shadow-sm transition hover:bg-blue-300"
               >
                 <MessageCircle size={16} strokeWidth={2.2} />
                 카카오톡으로 물어보기

@@ -107,7 +107,7 @@ export default function RestaurantPage() {
                   {[
                     { icon: ShoppingCart, color: "from-orange-500 to-red-500", title: "배달 플랫폼 최적화", desc: "배민·쿠팡이츠 메뉴 사진 품질 개선, 리뷰 관리, 상위 노출 전략. 주문당 마진이 높은 메뉴 중심으로 재구성합니다." },
                     { icon: TrendingUp, color: "from-blue-500 to-indigo-600", title: "네이버 플레이스 SEO", desc: "지역 키워드 '맛집', '배달' 등 롱테일 키워드 공략. 리뷰 수·답글률·사진 수를 알고리즘 기준에 맞춰 최적화합니다." },
-                    { icon: Star, color: "from-amber-500 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아닌 지속적인 콘텐츠 누적으로 검색 노출을 늘립니다." },
+                    { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아닌 지속적인 콘텐츠 누적으로 검색 노출을 늘립니다." },
                   ].map(s => (
                     <div key={s.title} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                       <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0 shadow-sm`}>

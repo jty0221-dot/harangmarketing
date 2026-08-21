@@ -321,7 +321,7 @@ export default function AdminReportsPage() {
                   </div>
                 </div>
                 {form.status === "draft" && (
-                  <p className="mt-2.5 text-[12px] font-semibold text-amber-700">
+                  <p className="mt-2.5 text-[12px] font-semibold text-blue-700">
                     아직 임시저장 상태입니다. 공개해야 사장님이 열 수 있습니다.
                   </p>
                 )}

@@ -226,7 +226,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
               href={KAKAO_CHAT}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-gray-900 transition hover:bg-amber-300"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-400 px-5 py-3 text-sm font-black text-gray-900 transition hover:bg-blue-300"
             >
               <MessageCircle size={15} strokeWidth={2.2} />
               카카오톡 채널 열기

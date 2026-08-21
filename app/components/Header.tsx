@@ -12,7 +12,7 @@ const ANN_MESSAGES = [
     badge: "이달 한정",
     badgeColor: "text-red-400",
     dot: "bg-red-400",
-    text: <>신규 계약 3팀에게 <span className="text-white font-black">경쟁사 분석 리포트 무료 제공</span> · <span className="text-amber-400 font-bold">잔여 2자리</span></>,
+    text: <>신규 계약 3팀에게 <span className="text-white font-black">경쟁사 분석 리포트 무료 제공</span> · <span className="text-blue-400 font-bold">잔여 2자리</span></>,
     ctaLabel: "무료 신청",
     ctaHref: "/contact",
   },
@@ -252,8 +252,8 @@ export default function Header() {
                           : "bg-white/10 text-white"
                         : item.accent
                         ? scrolled || !isHome
-                          ? "font-bold text-amber-700 hover:text-amber-800 hover:bg-amber-50"
-                          : "font-bold text-amber-300 hover:text-amber-200 hover:bg-white/8"
+                          ? "font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-50"
+                          : "font-bold text-blue-300 hover:text-blue-200 hover:bg-white/8"
                         : scrolled || !isHome
                         ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                         : "text-gray-300 hover:text-white hover:bg-white/8"

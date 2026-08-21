@@ -33,7 +33,7 @@ interface AdminOrder {
 }
 
 const STATUS_CHIP: Record<OrderStatus, string> = {
-  pending: "bg-amber-50 text-amber-700 ring-amber-200",
+  pending: "bg-blue-50 text-blue-700 ring-blue-200",
   processing: "bg-blue-50 text-blue-700 ring-blue-200",
   partial: "bg-indigo-50 text-indigo-700 ring-indigo-200",
   completed: "bg-emerald-50 text-emerald-700 ring-emerald-200",
@@ -205,7 +205,7 @@ export default function AdminSnsPage() {
               >
                 {f.label}
                 {f.key === "pending" && pendingCount > 0 && (
-                  <span className="ml-1 text-amber-500">{pendingCount}</span>
+                  <span className="ml-1 text-blue-600">{pendingCount}</span>
                 )}
               </button>
             ))}
@@ -252,7 +252,7 @@ export default function AdminSnsPage() {
                       </div>
                       <div className="shrink-0 flex items-center gap-1.5">
                         {o.status === "pending" && (
-                          <span className="hidden md:inline text-[11px] font-black text-amber-600">입금 확인 필요</span>
+                          <span className="hidden md:inline text-[11px] font-black text-blue-700">입금 확인 필요</span>
                         )}
                       </div>
                     </button>

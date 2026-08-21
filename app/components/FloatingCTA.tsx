@@ -50,7 +50,7 @@ export default function FloatingCTA() {
 
   const statusConfig = {
     open: { dot: "bg-green-400", text: "지금 상담 가능", sub: "24시간 · 주말 포함 소통 가능" },
-    closing: { dot: "bg-amber-400", text: "야간 상담 가능", sub: "늦은 시간도 카카오로 문의 주세요" },
+    closing: { dot: "bg-blue-400", text: "야간 상담 가능", sub: "늦은 시간도 카카오로 문의 주세요" },
     closed: { dot: "bg-gray-400", text: "새벽 시간대", sub: "문의 접수 후 오전 7시 이후 연락" },
   }[bizStatus];
 
@@ -98,7 +98,7 @@ export default function FloatingCTA() {
                 </button>
               </div>
               <div className="flex items-center gap-1.5 mb-1">
-                <Handshake size={10} className="text-amber-400" strokeWidth={2.5} />
+                <Handshake size={10} className="text-blue-400" strokeWidth={2.5} />
                 <span className="text-[10px] text-gray-400">재계약률 95% · 500+ 프로젝트</span>
               </div>
               {/* Business hours status */}

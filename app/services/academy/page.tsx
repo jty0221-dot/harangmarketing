@@ -108,7 +108,7 @@ export default function AcademyPage() {
               {[
                 { icon: TrendingUp, color: "from-green-500 to-emerald-600", title: "학부모 검색 키워드 공략", desc: "'지역명+학원', '지역명+과외' 등 학부모가 실제로 검색하는 키워드를 네이버 플레이스와 블로그에 집중 배치합니다." },
                 { icon: Users, color: "from-blue-500 to-blue-700", title: "맘카페·지역 커뮤니티 입소문", desc: "지역 맘카페와 학부모 커뮤니티에서 자연스럽게 회자되도록 합니다. 강요하지 않고 자연스럽게." },
-                { icon: Star, color: "from-amber-500 to-orange-500", title: "성과 리뷰·수강 후기 관리", desc: "수강생 학부모 후기를 전략적으로 쌓습니다. 긍정적 후기가 신뢰를 만들고 신규 문의로 이어집니다." },
+                { icon: Star, color: "from-blue-600 to-orange-500", title: "성과 리뷰·수강 후기 관리", desc: "수강생 학부모 후기를 전략적으로 쌓습니다. 긍정적 후기가 신뢰를 만들고 신규 문의로 이어집니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
                   <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-4 shadow-sm`}>

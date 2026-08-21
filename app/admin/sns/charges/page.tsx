@@ -107,7 +107,7 @@ export default function AdminChargesPage() {
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="font-black text-gray-900 text-lg tabular-nums">{won(c.amount)}원</span>
-                      <span className="rounded-full px-2 py-0.5 text-[10px] font-black ring-1 bg-amber-50 text-amber-700 ring-amber-200">
+                      <span className="rounded-full px-2 py-0.5 text-[10px] font-black ring-1 bg-blue-50 text-blue-700 ring-blue-200">
                         입금 대기
                       </span>
                     </div>

@@ -377,7 +377,7 @@ function ContactPageInner() {
                       </a>
                     </div>
                     <div className="flex justify-center items-center gap-1.5">
-                      <Handshake size={13} className="text-amber-400" strokeWidth={2.5} />
+                      <Handshake size={13} className="text-blue-400" strokeWidth={2.5} />
                       <p className="text-xs text-gray-400">재계약률 95% · 500+ 프로젝트</p>
                     </div>
                   </div>
@@ -446,7 +446,7 @@ function ContactPageInner() {
                   <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 실제 성과</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "카페·베이커리", location: "경기 고양", result: "+167%", label: "방문객", color: "text-amber-600 bg-amber-50 border-amber-100" },
+                      { ind: "카페·베이커리", location: "경기 고양", result: "+167%", label: "방문객", color: "text-blue-700 bg-blue-50 border-blue-100" },
                       { ind: "음식점·배달", location: "서울 성수", result: "+113%", label: "매출", color: "text-green-600 bg-green-50 border-green-100" },
                       { ind: "미용·뷰티", location: "인천 부평", result: "완전 마감", label: "예약", color: "text-pink-600 bg-pink-50 border-pink-100" },
                       { ind: "의원·한의원", location: "경기 분당", result: "+300%", label: "신규예약", color: "text-blue-600 bg-blue-50 border-blue-100" },
@@ -488,7 +488,7 @@ function ContactPageInner() {
                 <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
                   <div className="flex gap-0.5 mb-2">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={12} className="text-amber-400 fill-amber-400" />
+                      <Star key={i} size={12} className="text-blue-400 fill-blue-400" />
                     ))}
                   </div>
                   <p className="text-xs text-gray-500 italic leading-relaxed mb-2">"이전 대행사에서 6개월 해도 변화가 없었는데, 여기서 한 달 만에 순위가 올라오기 시작했어요."</p>
