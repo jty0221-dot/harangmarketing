@@ -44,7 +44,11 @@ function fmtDate(iso: string | null): string {
 
 /**
  * 숫자가 좋아졌는지 판단한다.
- * 순위는 작아지는 게 좋고(3위 < 7위), 방문자·리뷰는 커지는 게 좋다. 라벨로 방향을 구분한다.
+ *
+ * 대부분은 커지는 게 좋지만(방문자·리뷰·클릭), 두 부류는 작아지는 게 좋다.
+ *   · 순위 — 3위가 7위보다 낫다
+ *   · 값 — 클릭당 단가 423원이 733원보다 낫다. 광고비·이탈·노쇼도 같다
+ * 라벨에서 이 둘을 걸러낸다. 못 걸러내면 좋아진 걸 주황으로 표시해 대표님이 오해하신다.
  */
 function trendOf(m: ReportMetric): "up" | "down" | "flat" {
   const num = (v: string) => {
@@ -54,7 +58,7 @@ function trendOf(m: ReportMetric): "up" | "down" | "flat" {
   const a = num(m.before);
   const b = num(m.after);
   if (a === null || b === null || a === b) return "flat";
-  const lowerIsBetter = /순위|위$|랭킹|rank/i.test(m.label);
+  const lowerIsBetter = /순위|위$|랭킹|rank|단가|비용|광고비|cpc|cpa|이탈|취소|노쇼|반품/i.test(m.label);
   return (lowerIsBetter ? b < a : b > a) ? "up" : "down";
 }
 
