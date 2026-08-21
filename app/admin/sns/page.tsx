@@ -233,11 +233,11 @@ export default function AdminSnsPage() {
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="font-black text-gray-900 text-sm tabular-nums">{o.no}</span>
-                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-black ring-1 ${STATUS_CHIP[o.status]}`}>
+                          <span className={`rounded-full px-2 py-0.5 text-[11px] font-black ring-1 ${STATUS_CHIP[o.status]}`}>
                             {ORDER_STATUS_LABEL[o.status]}
                           </span>
                           {o.lastError && (
-                            <span className="rounded-full px-2 py-0.5 text-[10px] font-black ring-1 bg-red-50 text-red-600 ring-red-200">
+                            <span className="rounded-full px-2 py-0.5 text-[11px] font-black ring-1 bg-red-50 text-red-600 ring-red-200">
                               발주 오류
                             </span>
                           )}

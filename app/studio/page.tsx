@@ -184,14 +184,14 @@ export default function StudioPage() {
                   <div className="text-sm font-bold text-white">{m.job}</div>
                   <div className="mt-3 flex items-center gap-3">
                     <div className="flex-1">
-                      <div className="text-[10px] font-black uppercase tracking-wider text-gray-500">
+                      <div className="text-[11px] font-black uppercase tracking-wider text-gray-500">
                         손으로
                       </div>
                       <div className="mt-0.5 text-sm text-gray-400 line-through">{m.manual}</div>
                     </div>
                     <ArrowRight size={16} className="shrink-0 text-blue-400" strokeWidth={2.2} />
                     <div className="flex-1">
-                      <div className="text-[10px] font-black uppercase tracking-wider text-blue-400">
+                      <div className="text-[11px] font-black uppercase tracking-wider text-blue-400">
                         프로그램
                       </div>
                       <div className="mt-0.5 text-base font-black text-white">{m.withApp}</div>
@@ -226,7 +226,7 @@ export default function StudioPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     {/* 홀수 번째는 사진을 오른쪽에 두어 눈이 지그재그로 흐르게 한다 */}
                     <div className={`p-5 md:p-7 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                      <span className="inline-block rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-black text-blue-700">
+                      <span className="inline-block rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-black text-blue-700">
                         {f.tag}
                       </span>
                       <h3 className="mt-3 text-lg font-black text-gray-900 md:text-xl">{f.title}</h3>
@@ -269,7 +269,7 @@ export default function StudioPage() {
                   className="block w-full"
                 />
                 <div className="p-5 md:p-7">
-                  <span className="inline-block rounded-full bg-white px-2.5 py-1 text-[10px] font-black text-gray-500 ring-1 ring-gray-200">
+                  <span className="inline-block rounded-full bg-white px-2.5 py-1 text-[11px] font-black text-gray-500 ring-1 ring-gray-200">
                     결과물 예시
                   </span>
                   <h3 className="mt-3 text-lg font-black text-gray-900">
@@ -383,7 +383,7 @@ export default function StudioPage() {
                   }`}
                 >
                   {p.best && (
-                    <span className="absolute -top-2.5 left-5 rounded-full bg-blue-600 px-2.5 py-0.5 text-[10px] font-black text-white">
+                    <span className="absolute -top-2.5 left-5 rounded-full bg-blue-600 px-2.5 py-0.5 text-[11px] font-black text-white">
                       추천
                     </span>
                   )}

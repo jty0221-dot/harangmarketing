@@ -959,7 +959,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.sections.map((section, i) => (
                 <section key={i}>
                   <h2 className="text-lg md:text-xl font-black text-gray-900 mb-4 flex items-start gap-2">
-                    <span className="shrink-0 w-6 h-6 rounded-lg bg-blue-600 flex items-center justify-center text-white text-[10px] font-black mt-0.5">
+                    <span className="shrink-0 w-6 h-6 rounded-lg bg-blue-600 flex items-center justify-center text-white text-[11px] font-black mt-0.5">
                       {i + 1}
                     </span>
                     {section.heading}
@@ -1038,7 +1038,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       <BookOpen size={13} className="text-white" strokeWidth={2.5} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full border mb-1 ${p.tagColor}`}>{p.tag}</span>
+                      <span className={`inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border mb-1 ${p.tagColor}`}>{p.tag}</span>
                       <p className="text-sm font-black text-gray-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">{p.title}</p>
                       <p className="text-[11px] text-blue-500 font-semibold mt-1">{p.result}</p>
                     </div>

@@ -154,7 +154,7 @@ export default function Catalog() {
                       <span className="md:hidden">{pl.short}</span>
                       <span className="hidden md:inline">{pl.name}</span>
                     </span>
-                    <span className="block text-[10px] font-bold text-gray-400">{count}개</span>
+                    <span className="block text-[11px] font-bold text-gray-400">{count}개</span>
                   </span>
                 </button>
               );

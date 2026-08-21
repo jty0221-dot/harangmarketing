@@ -61,7 +61,7 @@ export default function PhotoPlaceholder({
             {hint}
           </p>
         )}
-        <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${dark ? "bg-white/10 text-white/40" : "bg-blue-50 text-blue-400 border border-blue-100"}`}>
+        <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${dark ? "bg-white/10 text-white/40" : "bg-blue-50 text-blue-400 border border-blue-100"}`}>
           사진 교체 예정
         </span>
       </div>

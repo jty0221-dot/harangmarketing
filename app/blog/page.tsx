@@ -265,7 +265,7 @@ export default async function BlogPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-colors shadow-sm"
               >
-                <span className="w-5 h-5 rounded bg-green-600 text-white text-[10px] font-black flex items-center justify-center">N</span>
+                <span className="w-5 h-5 rounded bg-green-600 text-white text-[11px] font-black flex items-center justify-center">N</span>
                 네이버 블로그에서 더 보기
                 <ExternalLink size={13} />
               </a>

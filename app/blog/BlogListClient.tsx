@@ -74,12 +74,12 @@ function NaverPostCard({ post }: { post: NaverPost }) {
       )}
       <div className="p-4 flex flex-col gap-2 flex-1">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full bg-green-50 text-green-700 border border-green-100">
-            <span className="w-3 h-3 rounded bg-green-600 text-white text-[7px] font-black flex items-center justify-center leading-none">N</span>
+          <span className="inline-flex items-center gap-1 text-[11px] font-black px-2 py-0.5 rounded-full bg-green-50 text-green-700 border border-green-100">
+            <span className="w-3 h-3 rounded bg-green-600 text-white text-[11px] font-black flex items-center justify-center leading-none">N</span>
             네이버 블로그
           </span>
           {post.category && (
-            <span className="text-[10px] text-gray-400">{post.category}</span>
+            <span className="text-[11px] text-gray-400">{post.category}</span>
           )}
         </div>
         <h3 className="font-black text-gray-900 text-sm leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
@@ -194,7 +194,7 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
                 </span>
                 <span className="whitespace-nowrap">{tab.label}</span>
                 {countMap[tab.key] > 0 && (
-                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${
+                  <span className={`text-[11px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${
                     isActive ? "bg-blue-100 text-blue-600" : "bg-gray-200 text-gray-500"
                   }`}>
                     {countMap[tab.key]}

@@ -47,7 +47,7 @@ export default function YouTubeCard({ videoId, title, desc, badge }: YouTubeCard
             </div>
           </div>
           {badge && (
-            <span className="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+            <span className="absolute top-3 left-3 bg-blue-600 text-white text-[11px] font-black px-2 py-0.5 rounded-full">
               {badge}
             </span>
           )}

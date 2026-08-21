@@ -154,22 +154,22 @@ function PhoneMockup() {
             <div className="flex flex-1 items-center justify-between text-center">
               <div>
                 <p className="text-[14px] font-black text-gray-900 tabular-nums">214</p>
-                <p className="text-[10px] text-gray-400">게시물</p>
+                <p className="text-[11px] text-gray-400">게시물</p>
               </div>
               <div>
                 <p className="text-[14px] font-black text-blue-600 tabular-nums">12,480</p>
-                <p className="text-[10px] text-gray-400">팔로워</p>
+                <p className="text-[11px] text-gray-400">팔로워</p>
               </div>
               <div>
                 <p className="text-[14px] font-black text-gray-900 tabular-nums">87</p>
-                <p className="text-[10px] text-gray-400">팔로잉</p>
+                <p className="text-[11px] text-gray-400">팔로잉</p>
               </div>
             </div>
           </div>
 
           {/* 성장 배지 + 버튼 */}
           <div className="px-4 pb-3 pt-1">
-            <div className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-black text-emerald-600 ring-1 ring-emerald-100">
+            <div className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-black text-emerald-600 ring-1 ring-emerald-100">
               <TrendingUp size={10} strokeWidth={3} />
               팔로워 +1,240 이번 주
             </div>
@@ -209,7 +209,7 @@ function PhoneMockup() {
 
       {/* 플로팅 주문 카드 */}
       <div className="absolute -left-12 -bottom-5 hidden sm:block rounded-2xl bg-white px-4 py-3 ring-1 ring-gray-100 shadow-xl shadow-blue-900/10">
-        <p className="text-[10px] font-bold text-gray-400">주문 예시</p>
+        <p className="text-[11px] font-bold text-gray-400">주문 예시</p>
         <p className="mt-0.5 text-[12.5px] font-black text-gray-900">한국인 팔로워 100명</p>
         <p className="text-[13px] font-black text-blue-600 tabular-nums">15,000원</p>
       </div>

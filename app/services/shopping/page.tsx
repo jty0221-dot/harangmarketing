@@ -46,7 +46,7 @@ export default function ShoppingPage() {
               {RESULTS.map(r => (
                 <div key={r.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
                   <div className="text-xl font-black text-purple-400 mb-0.5">{r.value}</div>
-                  <div className="text-[10px] text-gray-400 leading-tight">{r.sub}</div>
+                  <div className="text-[11px] text-gray-400 leading-tight">{r.sub}</div>
                 </div>
               ))}
             </div>

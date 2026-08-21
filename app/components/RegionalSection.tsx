@@ -97,7 +97,7 @@ export default function RegionalSection() {
                 >
                   <Icon size={14} strokeWidth={2} className="mb-1.5" style={{ color: "var(--h-blue)" }} />
                   <span className="text-base font-black" style={{ color: "var(--h-dark)" }}>{val}</span>
-                  <span className="text-[10px] mt-0.5" style={{ color: "var(--h-muted)" }}>{sub}</span>
+                  <span className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>{sub}</span>
                 </div>
               ))}
             </div>
@@ -109,7 +109,7 @@ export default function RegionalSection() {
           {REGIONS.map((r, i) => (
             <RevealOnScroll key={r.name} delay={i * 50}>
               <div className={`rounded-2xl border p-4 h-full flex flex-col gap-2 ${r.color}`}>
-                <span className={`self-start text-[10px] font-black px-2 py-0.5 rounded-full ${r.tagColor}`}>
+                <span className={`self-start text-[11px] font-black px-2 py-0.5 rounded-full ${r.tagColor}`}>
                   {r.tag}
                 </span>
                 <p className="font-black text-sm text-gray-900 leading-snug">{r.name}</p>
@@ -117,7 +117,7 @@ export default function RegionalSection() {
                 <p className="text-[11px] text-gray-500 leading-snug flex-1">{r.desc}</p>
                 <div className="flex items-center gap-1 mt-1">
                   <MapPin size={10} className="text-gray-400" />
-                  <span className="text-[10px] text-gray-400 font-semibold">케이스 {r.cases}+건</span>
+                  <span className="text-[11px] text-gray-400 font-semibold">케이스 {r.cases}+건</span>
                 </div>
               </div>
             </RevealOnScroll>

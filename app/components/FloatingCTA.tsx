@@ -99,26 +99,26 @@ export default function FloatingCTA() {
               </div>
               <div className="flex items-center gap-1.5 mb-1">
                 <Handshake size={10} className="text-blue-400" strokeWidth={2.5} />
-                <span className="text-[10px] text-gray-400">재계약률 95% · 500+ 프로젝트</span>
+                <span className="text-[11px] text-gray-400">재계약률 95% · 500+ 프로젝트</span>
               </div>
               {/* Business hours status */}
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className={`w-2 h-2 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
                 <span className="text-[11px] font-bold text-gray-700">{statusConfig.text}</span>
               </div>
-              <p className="text-[10px] text-gray-400 ml-3.5">{statusConfig.sub}</p>
+              <p className="text-[11px] text-gray-400 ml-3.5">{statusConfig.sub}</p>
             </div>
 
             {/* Trust badge */}
             <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2 mb-2 flex items-center gap-2">
               <Shield size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
-              <p className="text-[10px] font-bold text-blue-700">고의 누락 시 결제금액 10배 보상 정책 운용 중</p>
+              <p className="text-[11px] font-bold text-blue-700">고의 누락 시 결제금액 10배 보상 정책 운용 중</p>
             </div>
             {/* Urgency */}
             <div className="bg-red-50 border border-red-100 rounded-xl px-3 py-2 mb-3 flex items-center gap-2">
               <Clock size={11} className="text-red-500 shrink-0" strokeWidth={2.5} />
               <div>
-                <p className="text-[10px] font-black text-red-600">이번 달 신규 상담 잔여 2자리</p>
+                <p className="text-[11px] font-black text-red-600">이번 달 신규 상담 잔여 2자리</p>
                 <div className="flex gap-1 mt-0.5">
                   {[1, 2, 3].map((n) => (
                     <div key={n} className={`w-4 h-1.5 rounded-full ${n <= 1 ? "bg-red-300" : n <= 2 ? "bg-red-400" : "bg-red-500"}`} />
@@ -137,7 +137,7 @@ export default function FloatingCTA() {
               >
                 <MessageCircle size={14} strokeWidth={2.5} />
                 <span className="flex-1">카카오톡 바로 상담</span>
-                <span className="text-[10px] text-gray-600">10분 내</span>
+                <span className="text-[11px] text-gray-600">10분 내</span>
               </a>
               <a
                 href="tel:010-7541-9054"
@@ -170,7 +170,7 @@ export default function FloatingCTA() {
           {expanded ? <X size={20} /> : <MessageCircle size={22} />}
           {!expanded && (
             <>
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 border-2 border-white text-white text-[8px] font-black flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 border-2 border-white text-white text-[11px] font-black flex items-center justify-center">
                 2
               </span>
               {bizStatus === "open" && (
@@ -187,7 +187,7 @@ export default function FloatingCTA() {
           bizStatus === "open" ? "bg-green-50 border-green-100" : "bg-red-50 border-red-100"
         }`}>
           <span className={`w-1.5 h-1.5 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
-          <p className={`text-[10px] font-black ${bizStatus === "open" ? "text-green-700" : "text-red-500"}`}>
+          <p className={`text-[11px] font-black ${bizStatus === "open" ? "text-green-700" : "text-red-500"}`}>
             {bizStatus === "open" ? "지금 상담 가능 · 평균 10분 내 응답" : "이번 달 신규 상담 잔여 2자리 — 선착순 마감"}
           </p>
         </div>

@@ -544,7 +544,7 @@ export default function ServicesPage() {
                       </div>
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className={`px-2 py-0.5 rounded-full bg-gradient-to-r ${s.color} text-white text-[10px] font-black`}>
+                          <span className={`px-2 py-0.5 rounded-full bg-gradient-to-r ${s.color} text-white text-[11px] font-black`}>
                             {s.tag}
                           </span>
                           <span className="text-[11px] text-gray-400 flex items-center gap-1">
@@ -645,17 +645,17 @@ export default function ServicesPage() {
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
                   <div className={`bg-gradient-to-br ${ind.color} px-4 py-3`}>
                     <div className="font-black text-white text-sm">{ind.industry}</div>
-                    <div className="text-white/70 text-[10px] mt-0.5">{ind.result}</div>
+                    <div className="text-white/70 text-[11px] mt-0.5">{ind.result}</div>
                   </div>
                   <div className="p-4">
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">우선 추천</div>
+                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">우선 추천</div>
                     <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-black mb-3">
                       {ind.firstRec}
                     </div>
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">추가 옵션</div>
+                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">추가 옵션</div>
                     <div className="flex gap-1 flex-wrap">
                       {ind.recs.map((r) => (
-                        <span key={r} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[10px] font-medium">{r}</span>
+                        <span key={r} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-medium">{r}</span>
                       ))}
                     </div>
                   </div>
@@ -721,7 +721,7 @@ export default function ServicesPage() {
                       <div className="text-xs font-bold text-gray-900">{t.name}</div>
                       <div className="text-[11px] text-gray-400">{t.location}</div>
                     </div>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-semibold">{t.service}</span>
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-semibold">{t.service}</span>
                   </div>
                 </div>
               ))}
@@ -780,7 +780,7 @@ export default function ServicesPage() {
                   <div className={`bg-gradient-to-br ${p.color} p-5`}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-white/70 text-[11px] font-black uppercase tracking-wider">{p.badge === "인기" ? "가장 많이 선택" : p.badge ?? "기본"}</span>
-                      {p.badge === "인기" && <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black">HOT</span>}
+                      {p.badge === "인기" && <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-black">HOT</span>}
                     </div>
                     <h3 className="font-black text-white text-xl mb-0.5">{p.name}</h3>
                     <div className="text-white/90 font-black text-lg">{p.price}</div>
@@ -789,7 +789,7 @@ export default function ServicesPage() {
                     <p className="text-xs text-gray-400 mb-3">{p.desc}</p>
                     <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2.5 mb-4">
                       <p className="text-[11px] text-blue-700 font-black">{p.roi}</p>
-                      <p className="text-[10px] text-blue-500 mt-0.5">3개월 평균 실측치 기준</p>
+                      <p className="text-[11px] text-blue-500 mt-0.5">3개월 평균 실측치 기준</p>
                     </div>
                     <ul className="space-y-2 mb-5">
                       {p.includes.map((item) => (
@@ -802,7 +802,7 @@ export default function ServicesPage() {
                     <Link href="/contact" className={`block text-center py-3 rounded-xl text-sm font-black transition-colors ${p.badge === "인기" ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" : "bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200"}`}>
                       이 패키지로 상담하기
                     </Link>
-                    <p className="text-[10px] text-gray-400 text-center mt-2">업종·규모에 따라 조정됩니다</p>
+                    <p className="text-[11px] text-gray-400 text-center mt-2">업종·규모에 따라 조정됩니다</p>
                   </div>
                 </div>
               ))}
@@ -864,7 +864,7 @@ export default function ServicesPage() {
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
                     <div className="text-xs font-bold text-gray-300">{s.label}</div>
-                    <div className="text-[10px] text-gray-500 mt-0.5">{s.sub}</div>
+                    <div className="text-[11px] text-gray-500 mt-0.5">{s.sub}</div>
                   </div>
                 ))}
               </div>
@@ -883,12 +883,12 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-2">
                 <a href="https://blog.naver.com/harangmarketing" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-green-50 border border-green-100 text-green-700 text-xs font-bold hover:bg-green-100 transition-colors">
-                  <span className="w-5 h-5 rounded bg-green-600 text-white text-[10px] font-black flex items-center justify-center">N</span>
+                  <span className="w-5 h-5 rounded bg-green-600 text-white text-[11px] font-black flex items-center justify-center">N</span>
                   네이버 블로그
                 </a>
                 <a href="https://www.instagram.com/jty0221/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-50 border border-purple-100 text-purple-700 text-xs font-bold hover:bg-purple-100 transition-colors">
-                  <span className="w-5 h-5 rounded bg-purple-600 text-white text-[10px] font-black flex items-center justify-center">I</span>
+                  <span className="w-5 h-5 rounded bg-purple-600 text-white text-[11px] font-black flex items-center justify-center">I</span>
                   인스타그램
                 </a>
               </div>
@@ -973,7 +973,7 @@ export default function ServicesPage() {
                 >
                   <div className={`bg-gradient-to-br ${pkg.color} px-6 py-6`}>
                     {pkg.highlight && (
-                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[10px] font-black mb-3 uppercase tracking-wider">
+                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[11px] font-black mb-3 uppercase tracking-wider">
                         가장 많이 선택
                       </div>
                     )}

@@ -304,7 +304,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
             <p className="text-[15px] font-black text-gray-900 truncate">{product.name}</p>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-[10px] font-bold text-gray-400">1{product.unitLabel}당</p>
+            <p className="text-[11px] font-bold text-gray-400">1{product.unitLabel}당</p>
             <p className="text-[17px] font-black text-blue-600 tabular-nums leading-tight">{won(product.unitPrice)}원</p>
           </div>
         </div>

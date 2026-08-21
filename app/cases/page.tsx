@@ -302,7 +302,7 @@ const CasesPage: FC = () => {
                         </div>
                         <div className="text-right shrink-0">
                           <div className="text-2xl font-black text-white">{c.metric}</div>
-                          <div className="text-[10px] text-white/70">{c.metricLabel}</div>
+                          <div className="text-[11px] text-white/70">{c.metricLabel}</div>
                         </div>
                       </div>
                     </div>
@@ -311,19 +311,19 @@ const CasesPage: FC = () => {
                       {/* Before / After */}
                       <div className="grid grid-cols-2 gap-2.5 mb-4">
                         <div className="bg-red-50 border border-red-100 rounded-xl p-3">
-                          <p className="text-[10px] font-black text-red-400 uppercase tracking-wider mb-2">Before</p>
+                          <p className="text-[11px] font-black text-red-400 uppercase tracking-wider mb-2">Before</p>
                           {Object.entries(c.before).map(([k, v]) => (
                             <div key={k} className="text-xs text-gray-500 leading-relaxed">
-                              <span className="text-gray-400 block text-[10px]">{k}</span>
+                              <span className="text-gray-400 block text-[11px]">{k}</span>
                               <span className="font-medium text-gray-700">{v}</span>
                             </div>
                           ))}
                         </div>
                         <div className="bg-blue-50 border border-blue-100 rounded-xl p-3">
-                          <p className="text-[10px] font-black text-blue-600 uppercase tracking-wider mb-2">After</p>
+                          <p className="text-[11px] font-black text-blue-600 uppercase tracking-wider mb-2">After</p>
                           {Object.entries(c.after).map(([k, v]) => (
                             <div key={k} className="text-xs leading-relaxed">
-                              <span className="text-gray-400 block text-[10px]">{k}</span>
+                              <span className="text-gray-400 block text-[11px]">{k}</span>
                               <span className="font-black text-blue-700">{v}</span>
                             </div>
                           ))}
@@ -340,7 +340,7 @@ const CasesPage: FC = () => {
                         </div>
                         <div className="flex flex-wrap gap-1 justify-end">
                           {c.services.map((s) => (
-                            <span key={s} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[10px] font-medium">{s}</span>
+                            <span key={s} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-medium">{s}</span>
                           ))}
                         </div>
                       </div>
@@ -440,7 +440,7 @@ const CasesPage: FC = () => {
                 <div key={r.ind} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
                   <div className={`text-lg font-black bg-gradient-to-br ${r.color} bg-clip-text text-transparent mb-0.5`}>{r.result}</div>
                   <div className="text-xs text-gray-400 font-medium">{r.ind}</div>
-                  <div className="text-[10px] text-gray-600 mt-1">{r.time}</div>
+                  <div className="text-[11px] text-gray-600 mt-1">{r.time}</div>
                 </div>
               ))}
             </div>

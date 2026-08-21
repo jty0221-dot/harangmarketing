@@ -1,113 +1,134 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { X, MessageCircle, Phone, FileText } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { X, TrendingUp, MessageCircle } from "lucide-react";
 
-type ToastType = "kakao" | "call" | "form";
+/**
+ * 우하단 알림 — **실제 데이터만** 띄운다.
+ *
+ * 예전에는 '경기 고양 카페 사장님 방금 문의' 같은 문구 10개를 코드에 박아두고
+ * 돌려썼다. 실제 문의가 아니어서 방문자에게 사실이 아닌 걸 보여주는 셈이었다.
+ * 지금은 /api/social-proof 가 주는 것만 쓴다:
+ *   - 실제 상담 신청(업종·경과 시간만, 이름·연락처는 서버에서 아예 내보내지 않는다)
+ *   - 실제 진행 사례(블로그에서 수집한 119건)
+ * 받아온 게 없으면 아무것도 띄우지 않는다.
+ */
 
-interface ToastItem {
-  id: number;
-  type: ToastType;
-  location: string;
-  business: string;
-  action: string;
-  ago: string;
+interface ProofItem {
+  kind: "inquiry" | "case";
+  text: string;
+  sub: string;
+  href?: string;
 }
 
-const POOL: Omit<ToastItem, "id">[] = [
-  { type: "kakao", location: "경기 고양", business: "카페 사장님", action: "카카오 채널 문의", ago: "방금 전" },
-  { type: "form", location: "서울 마포", business: "음식점 대표님", action: "무료 진단 신청", ago: "3분 전" },
-  { type: "call", location: "경기 수원", business: "네일샵 원장님", action: "전화 상담 신청", ago: "8분 전" },
-  { type: "kakao", location: "서울 강남", business: "피부과 원장님", action: "카카오 채널 문의", ago: "12분 전" },
-  { type: "form", location: "인천 연수", business: "학원 원장님", action: "무료 진단 신청", ago: "19분 전" },
-  { type: "call", location: "경기 고양", business: "베이커리 사장님", action: "전화 상담 신청", ago: "방금 전" },
-  { type: "kakao", location: "서울 은평", business: "헤어샵 원장님", action: "카카오 채널 문의", ago: "5분 전" },
-  { type: "form", location: "경기 성남", business: "쇼핑몰 대표님", action: "무료 진단 신청", ago: "21분 전" },
-  { type: "call", location: "서울 노원", business: "한의원 원장님", action: "전화 상담 신청", ago: "34분 전" },
-  { type: "kakao", location: "부산 해운대", business: "카페 사장님", action: "카카오 채널 문의", ago: "2분 전" },
-];
-
-const ICON_MAP: Record<ToastType, typeof MessageCircle> = {
-  kakao: MessageCircle,
-  call: Phone,
-  form: FileText,
-};
-
-const COLOR_MAP: Record<ToastType, { bg: string; icon: string; dot: string }> = {
-  kakao: { bg: "bg-yellow-400", icon: "text-gray-900", dot: "bg-yellow-400" },
-  call: { bg: "bg-blue-600", icon: "text-white", dot: "bg-blue-500" },
-  form: { bg: "bg-green-500", icon: "text-white", dot: "bg-green-500" },
-};
-
-let counter = 0;
+const DISMISS_KEY = "harang_proof_dismissed";
 
 export default function SocialProofToast() {
-  const [toasts, setToasts] = useState<ToastItem[]>([]);
-  const [poolIdx, setPoolIdx] = useState(0);
-  const [dismissed, setDismissed] = useState<number[]>([]);
-
-  const showNext = useCallback(() => {
-    const item = POOL[poolIdx % POOL.length];
-    const id = ++counter;
-    setToasts((prev) => [...prev.slice(-1), { ...item, id }]);
-    setPoolIdx((p) => (p + 1) % POOL.length);
-
-    // auto-remove after 5s
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 5000);
-  }, [poolIdx]);
+  const [items, setItems] = useState<ProofItem[]>([]);
+  const [idx, setIdx] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(true); // SSR 깜빡임 방지
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    // first toast after 8s, then every 18s
-    const first = setTimeout(showNext, 8000);
-    const interval = setInterval(showNext, 18000);
-    return () => {
-      clearTimeout(first);
-      clearInterval(interval);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (sessionStorage.getItem(DISMISS_KEY)) return;
+    setDismissed(false);
+    fetch("/api/social-proof")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d?.ok && Array.isArray(d.items) && d.items.length) setItems(d.items);
+      })
+      .catch(() => {});
   }, []);
 
-  const visible = toasts.filter((t) => !dismissed.includes(t.id));
-  if (visible.length === 0) return null;
+  // 하나 보여주고 쉬고, 다음 것으로
+  useEffect(() => {
+    if (dismissed || items.length === 0) return;
+    const show = () => {
+      setVisible(true);
+      timer.current = setTimeout(() => {
+        setVisible(false);
+        timer.current = setTimeout(() => {
+          setIdx((p) => (p + 1) % items.length);
+          show();
+        }, 6000);
+      }, 6000);
+    };
+    const first = setTimeout(show, 9000);
+    return () => {
+      clearTimeout(first);
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, [items, dismissed]);
+
+  const dismiss = () => {
+    sessionStorage.setItem(DISMISS_KEY, "1");
+    setDismissed(true);
+    setVisible(false);
+  };
+
+  if (dismissed || items.length === 0) return null;
+
+  const item = items[idx];
+  const Icon = item.kind === "case" ? TrendingUp : MessageCircle;
+
+  const body = (
+    <div
+      className="flex items-start gap-3 rounded-[14px] px-4 py-3"
+      style={{
+        background: "var(--w-bg)",
+        border: "1px solid var(--w-line-strong)",
+        boxShadow: "var(--w-shadow-md)",
+      }}
+    >
+      <span
+        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+        style={{ background: "var(--w-blue-95)" }}
+      >
+        <Icon size={14} strokeWidth={2.5} style={{ color: "var(--w-primary)" }} />
+      </span>
+      <div className="min-w-0 pr-4">
+        <p className="w-label-2 font-bold leading-snug" style={{ color: "var(--w-label-strong)" }}>
+          {item.text}
+        </p>
+        <p className="w-caption-1 mt-0.5" style={{ color: "var(--w-label-assistive)" }}>
+          {item.sub}
+        </p>
+      </div>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dismiss();
+        }}
+        aria-label="알림 닫기"
+        className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-md transition-colors hover:bg-[var(--w-fill)]"
+      >
+        <X size={12} style={{ color: "var(--w-label-assistive)" }} />
+      </button>
+    </div>
+  );
 
   return (
-    <div className="fixed bottom-28 left-3 md:bottom-10 md:left-5 z-30 flex flex-col gap-2 max-w-[260px] md:max-w-[290px] pointer-events-none">
-      {visible.map((toast) => {
-        const Icon = ICON_MAP[toast.type];
-        const color = COLOR_MAP[toast.type];
-        return (
-          <div
-            key={toast.id}
-            className="pointer-events-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-3 flex items-start gap-2.5 animate-slide-up"
-          >
-            {/* Icon */}
-            <div className={`w-9 h-9 rounded-xl ${color.bg} flex items-center justify-center shrink-0 shadow-sm`}>
-              <Icon size={15} className={color.icon} strokeWidth={2.5} />
-            </div>
-
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className={`w-1.5 h-1.5 rounded-full ${color.dot} shrink-0`} />
-                <p className="text-[10px] text-gray-400 truncate">{toast.location} · {toast.ago}</p>
-              </div>
-              <p className="text-xs font-bold text-gray-800 leading-tight truncate">{toast.business}</p>
-              <p className="text-[11px] text-gray-500">{toast.action}했습니다</p>
-            </div>
-
-            {/* Close */}
-            <button
-              onClick={() => setDismissed((prev) => [...prev, toast.id])}
-              className="shrink-0 p-0.5 rounded text-gray-300 hover:text-gray-500 transition-colors mt-0.5"
-              aria-label="닫기"
-            >
-              <X size={11} />
-            </button>
-          </div>
-        );
-      })}
+    <div
+      className="fixed bottom-4 left-4 z-[9997] hidden w-[330px] sm:block"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(10px)",
+        transition: "opacity .35s ease, transform .35s ease",
+        pointerEvents: visible ? "auto" : "none",
+      }}
+    >
+      <div className="relative">
+        {item.href ? (
+          <Link href={item.href} className="block">
+            {body}
+          </Link>
+        ) : (
+          body
+        )}
+      </div>
     </div>
   );
 }

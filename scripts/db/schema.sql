@@ -65,3 +65,19 @@ create table if not exists orders (
   last_error     text
 );
 create index if not exists orders_member_idx on orders(member_id, created_at desc);
+
+-- 상담 신청 — 예전엔 카톡 웹훅만 쏘고 저장하지 않아, 알림을 놓치면 문의가 사라졌다.
+create table if not exists inquiries (
+  id         bigserial primary key,
+  name       text not null,
+  phone      text not null,
+  industry   text,
+  region     text,           -- 공개 알림에 쓰는 지역(시·구까지만)
+  budget     text,
+  goals      text,
+  message    text,
+  source     text,           -- 어느 화면에서 왔는지
+  status     text not null default 'new',  -- new|contacted|contracted|closed
+  created_at timestamptz not null default now()
+);
+create index if not exists inquiries_created_idx on inquiries(created_at desc);

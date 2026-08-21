@@ -142,8 +142,8 @@ export default function FreeCheckPage() {
                 {CASES.map((c) => (
                   <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
                     <div className="flex items-center gap-1.5 mb-1.5">
-                      <span className="text-[10px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
-                      <span className="text-[10px] text-gray-500">{c.loc}</span>
+                      <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
+                      <span className="text-[11px] text-gray-500">{c.loc}</span>
                     </div>
                     <p className="font-black text-white text-sm">{c.result}</p>
                     <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>

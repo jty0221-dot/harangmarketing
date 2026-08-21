@@ -281,7 +281,7 @@ export default function HomePage() {
         <section className="py-7 bg-white border-b" style={{ borderColor: "var(--h-border)" }}>
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
-              <p className="text-[10px] font-black uppercase tracking-[0.18em] shrink-0" style={{ color: "var(--h-muted)" }}>운영 플랫폼</p>
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] shrink-0" style={{ color: "var(--h-muted)" }}>운영 플랫폼</p>
               <div className="h-px flex-1 hidden sm:block" style={{ background: "var(--h-border)" }} />
               <div className="flex flex-wrap justify-center sm:justify-start items-center gap-3 md:gap-5">
                 {([
@@ -310,7 +310,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>상담 0원 · 24시간 내 연락</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>상담 0원 · 24시간 내 연락</p>
                 <p className="text-base md:text-lg font-black" style={{ color: "var(--h-dark)" }}>
                   우리 매장엔 뭐가 필요한지 궁금하신가요?
                 </p>
@@ -394,7 +394,7 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-[2px]" style={{ background: "var(--h-navy)" }} />
-                    <p className="text-[10px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>실제 성과 데이터</p>
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>실제 성과 데이터</p>
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                     내 업종에도<br />효과가 있을까요?
@@ -429,7 +429,7 @@ export default function HomePage() {
                       </div>
                       <div className="text-right shrink-0">
                         <div className="text-lg font-black leading-none tabular-nums" style={{ color: "var(--h-amber)" }}>{ind.result}</div>
-                        <div className="text-[10px] mt-0.5" style={{ color: "var(--h-muted)" }}>{ind.resultLabel}</div>
+                        <div className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>{ind.resultLabel}</div>
                       </div>
                     </div>
 
@@ -437,12 +437,12 @@ export default function HomePage() {
                       {/* before / after */}
                       <div className="flex items-center gap-2 mb-4 rounded-xl p-3" style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)" }}>
                         <div className="flex-1 text-center">
-                          <div className="text-[10px] font-bold text-red-500 mb-1">BEFORE</div>
+                          <div className="text-[11px] font-bold text-red-500 mb-1">BEFORE</div>
                           <div className="text-xs font-semibold" style={{ color: "var(--h-muted)" }}>{ind.before}</div>
                         </div>
                         <ChevronRight size={14} strokeWidth={1.5} style={{ color: "var(--h-border)" }} className="shrink-0" />
                         <div className="flex-1 text-center">
-                          <div className="text-[10px] font-bold mb-1" style={{ color: "var(--h-blue)" }}>AFTER</div>
+                          <div className="text-[11px] font-bold mb-1" style={{ color: "var(--h-blue)" }}>AFTER</div>
                           <div className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{ind.after}</div>
                         </div>
                       </div>
@@ -548,7 +548,7 @@ export default function HomePage() {
                     <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
                       {/* content */}
                       <div className="flex-1 min-w-0">
-                        <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "var(--h-muted)" }}>고객 고민</p>
+                        <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: "var(--h-muted)" }}>고객 고민</p>
                         <h3 className="font-black text-base md:text-lg leading-snug mb-2" style={{ color: "var(--h-dark)" }}>"{item.q}"</h3>
                         <p className="text-sm leading-relaxed pl-3" style={{ borderLeft: "2px solid var(--h-amber)", color: "#4B5563" }}>{item.a}</p>
                       </div>
@@ -556,7 +556,7 @@ export default function HomePage() {
                       <div className="shrink-0">
                         <div className="inline-flex flex-col items-center gap-0.5 px-5 py-4 rounded-2xl min-w-[100px] text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
                           <span className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>{item.result}</span>
-                          <span className="text-[10px] font-medium" style={{ color: "var(--h-muted)" }}>{item.period}</span>
+                          <span className="text-[11px] font-medium" style={{ color: "var(--h-muted)" }}>{item.period}</span>
                         </div>
                       </div>
                     </div>
@@ -609,7 +609,7 @@ export default function HomePage() {
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
                       <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
-                      <div className="text-[10px] text-gray-400">{b.sub}</div>
+                      <div className="text-[11px] text-gray-400">{b.sub}</div>
                     </div>
                   ))}
                 </div>
@@ -639,7 +639,7 @@ export default function HomePage() {
                   ].map(s => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
                       <div className="text-base font-black text-gray-900">{s.val}</div>
-                      <div className="text-[10px] text-gray-400 mt-0.5">{s.label}</div>
+                      <div className="text-[11px] text-gray-400 mt-0.5">{s.label}</div>
                     </div>
                   ))}
                 </div>
@@ -801,7 +801,7 @@ export default function HomePage() {
                     {/* Step label — desktop only */}
                     <div className="hidden md:flex items-center self-center">
                       {i === 0 && (
-                        <span className="text-[10px] font-black px-2.5 py-1 rounded-full"
+                        <span className="text-[11px] font-black px-2.5 py-1 rounded-full"
                           style={{ background: "var(--h-amber)", color: "white" }}>무료</span>
                       )}
                     </div>
@@ -882,7 +882,7 @@ export default function HomePage() {
                         <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
                           <PostIcon size={16} className="text-white" strokeWidth={2} />
                         </div>
-                        <span className="text-[10px] text-white/70 font-semibold">{post.views} 조회</span>
+                        <span className="text-[11px] text-white/70 font-semibold">{post.views} 조회</span>
                       </div>
                       <span className="text-[11px] font-black text-white/90 uppercase tracking-wider">{post.tag}</span>
                     </div>
@@ -959,7 +959,7 @@ export default function HomePage() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="font-bold text-gray-900 text-sm">{s.label}</div>
-                        <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandColor(s.logo) }}>{s.sub}</span>
+                        <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandColor(s.logo) }}>{s.sub}</span>
                       </div>
                       <div className="text-xs text-gray-400">{s.desc}</div>
                     </div>
@@ -1013,7 +1013,7 @@ export default function HomePage() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="font-black text-sm md:text-base" style={{ color: "var(--h-dark)" }}>{service.title}</h3>
                         {service.popular && (
-                          <span className="text-[9px] font-black px-1.5 py-0.5 rounded" style={{ background: "var(--h-amber)", color: "white" }}>인기</span>
+                          <span className="text-[11px] font-black px-1.5 py-0.5 rounded" style={{ background: "var(--h-amber)", color: "white" }}>인기</span>
                         )}
                       </div>
                       <p className="text-xs md:text-sm mt-0.5 line-clamp-1 hidden sm:block" style={{ color: "var(--h-muted)" }}>{service.desc}</p>
@@ -1081,7 +1081,7 @@ export default function HomePage() {
                 <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-black text-gray-900 text-base">경쟁 매장과 비교해보세요</h3>
-                    <span className="text-[10px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>실제 사례 기반</span>
+                    <span className="text-[11px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>실제 사례 기반</span>
                   </div>
                   <div className="space-y-3">
                     {[
@@ -1101,7 +1101,7 @@ export default function HomePage() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-5 grid grid-cols-2 gap-2 text-[10px] text-center">
+                  <div className="mt-5 grid grid-cols-2 gap-2 text-[11px] text-center">
                     <div className="text-red-500 font-bold">내 매장 (예시)</div>
                     <div className="text-green-600 font-bold">경쟁 매장 (예시)</div>
                   </div>
@@ -1139,7 +1139,7 @@ export default function HomePage() {
                   <div key={item.label}>
                     <div className="text-xl md:text-2xl font-black" style={{ color: "var(--h-navy)" }}>{item.value}</div>
                     <div className="text-xs font-bold text-gray-700 mt-0.5">{item.label}</div>
-                    <div className="text-[10px] text-gray-400">{item.note}</div>
+                    <div className="text-[11px] text-gray-400">{item.note}</div>
                   </div>
                 ))}
               </div>
@@ -1160,7 +1160,7 @@ export default function HomePage() {
                       <div className="inline-flex px-3 py-1.5 rounded-full text-white text-xs font-black" style={{ background: "var(--h-navy)" }}>
                         {pkg.name}
                       </div>
-                      <span className="text-[10px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{pkg.roi}</span>
+                      <span className="text-[11px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{pkg.roi}</span>
                     </div>
                     <div className="text-lg font-black text-gray-900 mb-0.5">{pkg.priceHint}</div>
                     <p className="text-xs text-gray-400 mb-5">{pkg.desc}</p>
@@ -1255,7 +1255,7 @@ export default function HomePage() {
                         <CheckCircle2 size={11} className="text-white" strokeWidth={3} />
                       </div>
                       <div>
-                        <div className="text-[10px] font-black mb-0.5" style={{ color: "var(--h-navy)" }}>하랑마케팅</div>
+                        <div className="text-[11px] font-black mb-0.5" style={{ color: "var(--h-navy)" }}>하랑마케팅</div>
                         <span className="text-gray-800 text-xs leading-relaxed font-medium">{item.harang}</span>
                       </div>
                     </div>
@@ -1264,7 +1264,7 @@ export default function HomePage() {
                         <X size={10} className="text-red-400" strokeWidth={3} />
                       </div>
                       <div>
-                        <div className="text-[10px] font-black text-gray-400 mb-0.5">일반 대행사</div>
+                        <div className="text-[11px] font-black text-gray-400 mb-0.5">일반 대행사</div>
                         <span className="text-gray-400 text-xs leading-relaxed">{item.general}</span>
                       </div>
                     </div>
@@ -1352,7 +1352,7 @@ export default function HomePage() {
                         </div>
                         <div className="text-white font-black text-base leading-tight">{c.industry}</div>
                         <div className="text-white/70 text-[11px] mt-0.5">{c.location}</div>
-                        <div className="mt-3 inline-flex items-center gap-1 bg-white/15 border border-white/20 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                        <div className="mt-3 inline-flex items-center gap-1 bg-white/15 border border-white/20 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
                           {c.service}
                         </div>
                       </div>
@@ -1360,19 +1360,19 @@ export default function HomePage() {
                     <div className="p-4">
                       <div className="grid grid-cols-2 gap-2 mb-3">
                         <div className="bg-red-50 border border-red-100 rounded-xl p-2.5 text-center">
-                          <div className="text-[9px] font-black text-red-400 mb-0.5 uppercase">Before</div>
-                          <div className="text-[10px] text-gray-400 mb-1 leading-tight">{c.before.label}</div>
+                          <div className="text-[11px] font-black text-red-400 mb-0.5 uppercase">Before</div>
+                          <div className="text-[11px] text-gray-400 mb-1 leading-tight">{c.before.label}</div>
                           <div className="text-sm font-black text-red-500">{c.before.value}</div>
                         </div>
                         <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
-                          <div className="text-[9px] font-black mb-0.5 uppercase" style={{ color: "var(--h-navy)" }}>After</div>
-                          <div className="text-[10px] text-gray-400 mb-1 leading-tight">{c.after.label}</div>
+                          <div className="text-[11px] font-black mb-0.5 uppercase" style={{ color: "var(--h-navy)" }}>After</div>
+                          <div className="text-[11px] text-gray-400 mb-1 leading-tight">{c.after.label}</div>
                           <div className="text-sm font-black" style={{ color: "var(--h-navy)" }}>{c.after.value}</div>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] text-gray-400">{c.period}</span>
-                        <span className="text-[10px] font-black px-2 py-0.5 rounded-full" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{c.highlight}</span>
+                        <span className="text-[11px] text-gray-400">{c.period}</span>
+                        <span className="text-[11px] font-black px-2 py-0.5 rounded-full" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{c.highlight}</span>
                       </div>
                     </div>
                   </div>

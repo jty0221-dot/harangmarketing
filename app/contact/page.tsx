@@ -153,7 +153,7 @@ function ContactPageInner() {
                   </div>
                   <div className="hidden sm:block">
                     <div className="text-xs font-bold text-gray-700">{s.title}</div>
-                    <div className="text-[10px] text-gray-400">{s.desc}</div>
+                    <div className="text-[11px] text-gray-400">{s.desc}</div>
                   </div>
                   {i < PROCESS_STEPS.length - 1 && <ChevronRight size={12} className="text-gray-200 hidden md:block" />}
                 </div>
@@ -200,13 +200,13 @@ function ContactPageInner() {
                       <div className="rounded-xl border border-blue-100 overflow-hidden mb-6">
                         <div className={`bg-gradient-to-r ${selectedInd.color} px-4 py-3 flex items-center justify-between`}>
                           <div>
-                            <p className="text-[10px] font-black text-white/70 uppercase tracking-wider">유사 사례 실적</p>
+                            <p className="text-[11px] font-black text-white/70 uppercase tracking-wider">유사 사례 실적</p>
                             <p className="text-white font-black text-base">{selectedInd.result}</p>
                           </div>
-                          <p className="text-white/70 text-[10px] text-right">{selectedInd.case}</p>
+                          <p className="text-white/70 text-[11px] text-right">{selectedInd.case}</p>
                         </div>
                         <div className="bg-blue-50 px-4 py-3">
-                          <p className="text-[10px] font-black text-blue-600 uppercase tracking-wider mb-2">추천 서비스</p>
+                          <p className="text-[11px] font-black text-blue-600 uppercase tracking-wider mb-2">추천 서비스</p>
                           <div className="flex flex-wrap gap-1.5">
                             {selectedInd.rec.map((r) => (
                               <span key={r} className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-xs font-semibold">{r}</span>
@@ -350,7 +350,7 @@ function ContactPageInner() {
                       <ol className="space-y-1.5">
                         {["대표가 신청 내용 확인 후 연락드립니다", "20~30분 무료 전략 상담 진행", "업종·경쟁사 분석 리포트 전달", "맞춤 서비스 제안 (비용 0원)"].map((s, i) => (
                           <li key={i} className="flex items-center gap-2.5 text-xs text-gray-600">
-                            <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[9px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
+                            <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
                             {s}
                           </li>
                         ))}
@@ -445,7 +445,7 @@ function ContactPageInner() {
                       <div key={r.ind} className="flex items-center gap-2">
                         <div className="flex-1 min-w-0">
                           <div className="text-xs font-bold text-gray-800 truncate">{r.ind}</div>
-                          <div className="text-[10px] text-gray-400">{r.location}</div>
+                          <div className="text-[11px] text-gray-400">{r.location}</div>
                         </div>
                         <div className={`shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black ${r.color}`}>
                           {r.label} {r.result}

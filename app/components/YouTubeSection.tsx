@@ -103,7 +103,7 @@ export default function YouTubeSection() {
             {latest.map((v, i) => (
               <div key={v.videoId} className="relative">
                 {i === 0 && (
-                  <span className="absolute -top-2.5 left-3 z-10 bg-red-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full">
+                  <span className="absolute -top-2.5 left-3 z-10 bg-red-600 text-white text-[11px] font-black px-2.5 py-0.5 rounded-full">
                     최신
                   </span>
                 )}
@@ -218,7 +218,7 @@ function CurriculumCard({
       className="group flex gap-4 md:gap-5 p-4 md:p-5 rounded-2xl bg-white border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all"
     >
       <div className="shrink-0 flex flex-col items-center gap-2 pt-0.5">
-        <span className={`${stepColor} text-white text-[10px] font-black px-2.5 py-1 rounded-lg whitespace-nowrap`}>
+        <span className={`${stepColor} text-white text-[11px] font-black px-2.5 py-1 rounded-lg whitespace-nowrap`}>
           {step}
         </span>
         <div className="w-px flex-1 bg-gray-100 min-h-[20px]" />
@@ -242,8 +242,8 @@ function CurriculumCard({
 
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2 mb-1.5">
-          <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{badge}</span>
-          <span className="text-[10px] text-gray-400">{duration}</span>
+          <span className="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{badge}</span>
+          <span className="text-[11px] text-gray-400">{duration}</span>
         </div>
         <h3 className="text-sm md:text-base font-black leading-snug mb-1.5 line-clamp-2" style={{ color: "var(--h-dark)" }}>
           {title}

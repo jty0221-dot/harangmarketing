@@ -228,7 +228,7 @@ export default function ProcessPage() {
                     <div className={`flex-1 ${step.bg} border ${step.border} rounded-2xl p-5 mb-0`}>
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <div>
-                          <span className={`text-[10px] font-black ${step.accent} uppercase tracking-widest`}>Step {step.number}</span>
+                          <span className={`text-[11px] font-black ${step.accent} uppercase tracking-widest`}>Step {step.number}</span>
                           <h3 className="text-base md:text-lg font-black text-white leading-tight">{step.title}</h3>
                         </div>
                         <span className={`shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border ${step.border} ${step.accent} text-[11px] font-bold bg-white/5`}>

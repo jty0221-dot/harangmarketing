@@ -124,7 +124,7 @@ export default function Footer() {
                     >
                       {label}
                       {isNew && (
-                        <span className="rounded px-1.5 py-0.5 text-[9px] font-black leading-none text-white"
+                        <span className="rounded px-1.5 py-0.5 text-[11px] font-black leading-none text-white"
                           style={{ background: "var(--h-navy)" }}>
                           NEW
                         </span>
@@ -179,7 +179,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-white text-sm font-bold group-hover:text-blue-300 transition-colors">010-7541-9054</div>
-                    <div className="text-[10px] text-gray-600">전화 상담</div>
+                    <div className="text-[11px] text-gray-600">전화 상담</div>
                   </div>
                 </a>
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
@@ -189,7 +189,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-yellow-300 text-sm font-bold">카카오톡 상담</div>
-                    <div className="text-[10px] text-gray-600">빠른 답변</div>
+                    <div className="text-[11px] text-gray-600">빠른 답변</div>
                   </div>
                 </a>
                 <a href="mailto:harangmarketing@naver.com"
@@ -201,7 +201,7 @@ export default function Footer() {
                       태블릿 폭(768px)에서 푸터 컬럼 밖으로 삐져나간다 */}
                   <div className="min-w-0">
                     <div className="truncate text-gray-300 text-xs group-hover:text-gray-100 transition-colors">harangmarketing@naver.com</div>
-                    <div className="text-[10px] text-gray-600">이메일 문의</div>
+                    <div className="text-[11px] text-gray-600">이메일 문의</div>
                   </div>
                 </a>
               </div>

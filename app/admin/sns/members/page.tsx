@@ -187,7 +187,7 @@ export default function AdminMembersPage() {
                         <span className="font-black text-gray-900 text-sm">{m.name}</span>
                         <span className="text-xs text-gray-400 tabular-nums">{m.phone}</span>
                         {m.status !== "active" && (
-                          <span className="rounded-full px-2 py-0.5 text-[10px] font-black ring-1 bg-red-50 text-red-600 ring-red-200">
+                          <span className="rounded-full px-2 py-0.5 text-[11px] font-black ring-1 bg-red-50 text-red-600 ring-red-200">
                             {m.status}
                           </span>
                         )}
@@ -199,7 +199,7 @@ export default function AdminMembersPage() {
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       <div className="text-right mr-1">
-                        <p className="text-[10px] font-bold text-gray-400">잔액</p>
+                        <p className="text-[11px] font-bold text-gray-400">잔액</p>
                         <p className="text-lg font-black text-gray-900 tabular-nums leading-tight">{won(m.balance)}원</p>
                       </div>
                       <button
@@ -252,11 +252,11 @@ export default function AdminMembersPage() {
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
                               <span className="font-black text-gray-900 text-sm tabular-nums">{o.no}</span>
-                              <span className={`rounded-full px-2 py-0.5 text-[10px] font-black ring-1 ${s.cls}`}>
+                              <span className={`rounded-full px-2 py-0.5 text-[11px] font-black ring-1 ${s.cls}`}>
                                 {s.label}
                               </span>
                               {o.lastError && (
-                                <span className="rounded-full px-2 py-0.5 text-[10px] font-black ring-1 bg-red-50 text-red-600 ring-red-200">
+                                <span className="rounded-full px-2 py-0.5 text-[11px] font-black ring-1 bg-red-50 text-red-600 ring-red-200">
                                   발주 오류
                                 </span>
                               )}

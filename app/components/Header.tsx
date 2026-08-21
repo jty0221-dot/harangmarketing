@@ -183,7 +183,7 @@ export default function Header() {
                   </span>
                 </span>
                 {(scrolled || !isHome) && (
-                  <div className="text-[10px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
+                  <div className="text-[11px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
                     10년 경력 · 대표 직접 담당
                   </div>
                 )}
@@ -366,7 +366,7 @@ export default function Header() {
                   <Phone size={13} strokeWidth={2.5} />전화 상담
                 </a>
               </div>
-              <p className="text-center text-[10px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+              <p className="text-center text-[11px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
             </div>
           </div>
         )}

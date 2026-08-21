@@ -2,14 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import FloatingCTA from "./FloatingCTA";
+import SocialProofToast from "./SocialProofToast";
 import ChatWidget from "./ChatWidget";
 
 /**
  * 화면에 떠 있는 요소들(하단 CTA 바 · 상담 챗봇)을 한곳에서 관리한다.
  *
- * SocialProofToast(‘방금 OO 사장님이 문의했습니다’)는 렌더하지 않는다.
- * 코드에 박아둔 가짜 목록을 순환 재생하는 것이라 실제 문의가 아니었다.
- * 실제 데이터로 바꾸기 전까지는 띄우지 않는다. 컴포넌트 파일은 남겨둔다.
+ * SocialProofToast 는 /api/social-proof 가 주는 **실제 데이터**만 띄운다
+ * (실제 상담 신청 + 실제 진행 사례). 예전의 가짜 목록은 걷어냈다.
  *
  * 왜 조건이 필요한가
  *   이 셋은 "아직 우리 고객이 아닌 사람"을 상담으로 데려오는 장치다.
@@ -28,6 +28,7 @@ export default function SiteChrome() {
   return (
     <>
       <FloatingCTA />
+      <SocialProofToast />
       <ChatWidget />
     </>
   );

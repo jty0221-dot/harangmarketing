@@ -315,7 +315,7 @@ export default function AboutPage() {
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="text-2xl font-black text-gray-100 hidden sm:block">{p.num}</span>
                           <h3 className="font-black text-gray-900 text-base">{p.title}</h3>
-                          <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black">{p.badge}</span>
+                          <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-black">{p.badge}</span>
                         </div>
                         <p className="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
                       </div>
@@ -520,7 +520,7 @@ export default function AboutPage() {
                   ].map((item, i) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
                       <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
-                        <span className="text-[10px] font-black text-blue-600">{item.year.slice(2)}</span>
+                        <span className="text-[11px] font-black text-blue-600">{item.year.slice(2)}</span>
                       </div>
                       <div className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-4">
                         <div className="text-[11px] font-bold text-blue-600 mb-1">{item.year}</div>

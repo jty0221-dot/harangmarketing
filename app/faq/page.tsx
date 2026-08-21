@@ -293,7 +293,7 @@ export default function FAQPage() {
                     {cat.questions.map((faq, i) => (
                       <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors shadow-sm">
                         <summary className="flex items-start gap-3 p-5 cursor-pointer list-none select-none hover:bg-blue-50/30 transition-colors">
-                          <div className={`w-5 h-5 rounded-lg bg-gradient-to-br ${cat.color} text-white text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5`}>
+                          <div className={`w-5 h-5 rounded-lg bg-gradient-to-br ${cat.color} text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5`}>
                             Q
                           </div>
                           <h3 className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</h3>
