@@ -16,18 +16,25 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res
+        .json()
+        .catch(() => ({ ok: false, error: `서버 응답 오류 (${res.status})` }));
 
-    if (data.ok) {
-      router.push("/admin");
-      router.refresh();
-    } else {
+      if (data.ok) {
+        // 전체 페이지 이동 — 쿠키가 확실히 전송돼 미들웨어를 통과한다
+        window.location.href = "/admin";
+        return;
+      }
       setError(data.error ?? "로그인에 실패했습니다");
+      setLoading(false);
+    } catch {
+      setError("네트워크 오류로 로그인하지 못했습니다. 잠시 후 다시 시도해 주세요.");
       setLoading(false);
     }
   };
