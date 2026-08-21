@@ -229,7 +229,7 @@ export default function AdminReportsPage() {
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 md:px-6 py-6 md:py-8">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-sm flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center">
               <FileText size={16} className="text-white" strokeWidth={2.5} />
             </div>
             <div>

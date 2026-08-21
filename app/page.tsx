@@ -1540,7 +1540,7 @@ export default function HomePage() {
         {/* ══ 무료 가이드 리드 마그넷 ══ */}
         <section className="py-8 md:py-12 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 md:p-10 relative overflow-hidden">
+            <div className="bg-blue-600 rounded-3xl p-6 md:p-10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
               <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">

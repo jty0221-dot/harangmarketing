@@ -874,7 +874,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 dangerouslySetInnerHTML={{ __html: dynamicPost.body }}
               />
               <div className="mt-12 bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center shrink-0 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 shadow-sm">
                   <span className="text-white font-black text-xl">전</span>
                 </div>
                 <div>
@@ -959,7 +959,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.sections.map((section, i) => (
                 <section key={i}>
                   <h2 className="text-lg md:text-xl font-black text-gray-900 mb-4 flex items-start gap-2">
-                    <span className="shrink-0 w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-[10px] font-black mt-0.5">
+                    <span className="shrink-0 w-6 h-6 rounded-lg bg-blue-600 flex items-center justify-center text-white text-[10px] font-black mt-0.5">
                       {i + 1}
                     </span>
                     {section.heading}
@@ -981,7 +981,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Author box */}
             <div className="mt-12 bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center shrink-0 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 shadow-sm">
                 <span className="text-white font-black text-xl">전</span>
               </div>
               <div>
@@ -1034,7 +1034,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 .map(([s, p]) => (
                   <Link key={s} href={`/blog/${s}`}
                     className="flex items-start gap-3 bg-white border border-gray-100 rounded-xl p-4 hover:border-blue-200 hover:shadow-sm transition-all group">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-sm">
+                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0 shadow-sm">
                       <BookOpen size={13} className="text-white" strokeWidth={2.5} />
                     </div>
                     <div className="flex-1 min-w-0">

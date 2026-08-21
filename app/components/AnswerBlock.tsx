@@ -33,7 +33,7 @@ export default function AnswerBlock({
           style={{ border: "1px solid var(--h-border)" }}
         >
           <div className="flex items-start gap-3 mb-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-700/20">
+            <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-700/20">
               <Sparkles size={16} className="text-white" strokeWidth={2.5} />
             </div>
             <div className="min-w-0">

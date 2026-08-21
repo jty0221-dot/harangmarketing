@@ -157,7 +157,7 @@ export default function FreeCheckPage() {
           <div className="lg:sticky lg:top-6">
             {sent ? (
               <div className="bg-white rounded-2xl p-8 text-center shadow-2xl">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
                 </div>
                 <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>

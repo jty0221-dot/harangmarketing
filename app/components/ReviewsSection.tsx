@@ -24,7 +24,7 @@ export default function ReviewsSection() {
         <div className="max-w-2xl mx-auto">
           <div className="rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-10 md:p-14 flex flex-col items-center text-center gap-5">
 
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-200">
+            <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
               <MessageCircle size={28} className="text-white" strokeWidth={2} />
             </div>
 

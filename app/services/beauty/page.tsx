@@ -67,7 +67,7 @@ export default function BeautyLandingPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-pink-950 via-rose-950 to-gray-950 py-16 md:py-24">
+        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-pink-500/20 border border-pink-500/30 text-pink-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Scissors size={12} strokeWidth={2.5} />
@@ -175,7 +175,7 @@ export default function BeautyLandingPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-14 md:py-20 bg-gradient-to-br from-pink-500 to-rose-600">
+        <section className="py-14 md:py-20 bg-pink-600">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
               <TrendingUp size={22} className="text-white" strokeWidth={2.5} />

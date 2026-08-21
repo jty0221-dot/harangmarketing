@@ -321,7 +321,7 @@ export default function SnsStorePage() {
               {STEPS.map((s, i) => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 ring-1 ring-gray-100 shadow-sm card-hover">
                   <div className="flex items-center justify-between">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 shadow-sm flex items-center justify-center ring-1 ring-blue-800/20">
+                    <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center ring-1 ring-blue-800/20">
                       <s.icon size={16} className="text-white" strokeWidth={2.5} />
                     </div>
                     <span className="text-3xl font-black text-gray-100 select-none">{i + 1}</span>
@@ -347,7 +347,7 @@ export default function SnsStorePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {TRUST.map((t) => (
                 <div key={t.title} className="rounded-2xl p-6 ring-1 ring-gray-100 shadow-sm card-navy-accent bg-white">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-700 to-slate-900 shadow-sm flex items-center justify-center ring-1 ring-slate-900/20">
+                  <div className="w-9 h-9 rounded-xl bg-slate-700 shadow-sm flex items-center justify-center ring-1 ring-slate-900/20">
                     <t.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="mt-4 text-[15px] font-black text-gray-900">{t.title}</h3>

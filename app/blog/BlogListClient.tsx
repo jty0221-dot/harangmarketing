@@ -68,7 +68,7 @@ function NaverPostCard({ post }: { post: NaverPost }) {
           loading="lazy"
         />
       ) : (
-        <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+        <div className="w-full h-40 bg-blue-600 flex items-center justify-center">
           <BookOpen size={32} className="text-blue-200" />
         </div>
       )}
@@ -162,7 +162,7 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
       {/* ── 마케팅 꿀팁 배너 ── */}
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-1">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm">
+          <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shadow-sm">
             <Lightbulb size={14} className="text-white" strokeWidth={2.5} />
           </div>
           <span className="text-xs font-black text-blue-600 uppercase tracking-widest">마케팅 인사이트</span>
@@ -230,7 +230,7 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
                   href={`/blog/${post.slug}`}
                   className="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
                     <FileText size={13} className="text-white" strokeWidth={2.5} />
                   </div>
                   <div className="flex-1 min-w-0">

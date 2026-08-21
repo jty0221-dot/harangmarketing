@@ -316,7 +316,7 @@ export default function FAQPage() {
         {/* Still have questions CTA */}
         <section className="py-14 md:py-20 bg-white border-t border-gray-100">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center mx-auto mb-5 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center mx-auto mb-5 shadow-lg">
               <HelpCircle size={24} className="text-white" strokeWidth={2} />
             </div>
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">

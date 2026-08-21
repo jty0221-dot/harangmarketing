@@ -13,7 +13,7 @@ export default function GlossarySection() {
     <section className="py-10 md:py-16" style={{ background: "var(--h-surface)" }} aria-labelledby="glossary-heading">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-700/20">
+          <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-700/20">
             <BookMarked size={16} className="text-white" strokeWidth={2.5} />
           </div>
           <h2

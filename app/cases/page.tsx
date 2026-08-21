@@ -412,7 +412,7 @@ const CasesPage: FC = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-gray-950 to-blue-950 relative overflow-hidden">
+        <section className="py-16 md:py-20 bg-gray-950 relative overflow-hidden">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           <div className="absolute -top-24 -right-24 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">

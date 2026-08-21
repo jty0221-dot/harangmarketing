@@ -335,7 +335,7 @@ function ContactPageInner() {
                 {/* Done */}
                 {step === "done" && (
                   <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center mx-auto mb-5 shadow-md">
+                    <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center mx-auto mb-5 shadow-md">
                       <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
                     </div>
                     <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
@@ -394,7 +394,7 @@ function ContactPageInner() {
                     </a>
                     <a href="tel:010-7541-9054"
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm shrink-0">
+                      <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm shrink-0">
                         <Phone size={16} className="text-white" strokeWidth={2.5} />
                       </div>
                       <div className="flex-1">
@@ -405,7 +405,7 @@ function ContactPageInner() {
                     </a>
                     <a href="mailto:harangmarketing@naver.com"
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center shadow-sm shrink-0">
+                      <div className="w-9 h-9 rounded-xl bg-gray-600 flex items-center justify-center shadow-sm shrink-0">
                         <Mail size={16} className="text-white" strokeWidth={2.5} />
                       </div>
                       <div className="flex-1">
@@ -420,7 +420,7 @@ function ContactPageInner() {
                 {/* Address */}
                 <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                   <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-500 to-slate-700 flex items-center justify-center shadow-sm shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-slate-600 flex items-center justify-center shadow-sm shrink-0">
                       <MapPin size={15} className="text-white" strokeWidth={2.5} />
                     </div>
                     <div>
@@ -456,7 +456,7 @@ function ContactPageInner() {
                 </div>
 
                 {/* What you get */}
-                <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-5">
+                <div className="bg-blue-600 rounded-2xl p-5">
                   <h4 className="font-bold text-white text-sm mb-3">무료 진단에서 받는 것</h4>
                   <ul className="space-y-2">
                     {["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "예상 성과 및 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"].map((item) => (

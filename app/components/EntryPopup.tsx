@@ -2,108 +2,90 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { X, Clock, Users } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 
+/**
+ * 진입 안내 카드
+ *
+ * 예전에는 화면 전체를 덮는 모달에 빨간 '마감 임박' 배지를 깜빡였다.
+ * 재촉하는 인상이 강해 브랜드에 맞지 않아, 화면을 막지 않는 조용한 카드로 바꿨다.
+ *   - 배경을 어둡게 덮지 않는다(읽던 내용을 계속 볼 수 있다)
+ *   - 데스크톱은 우하단, 모바일은 하단에 붙는다
+ *   - 사실만 담는다: 대표가 직접 담당해서 월 상담 수가 한정된다는 것
+ */
 export default function EntryPopup() {
   const [open, setOpen] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
-    // 세션당 1회만 표시
-    const key = "harang_popup_dismissed";
-    if (sessionStorage.getItem(key)) return;
-
-    const timer = setTimeout(() => setOpen(true), 4000);
+    if (sessionStorage.getItem("harang_popup_dismissed")) return;
+    const timer = setTimeout(() => setOpen(true), 6000);
     return () => clearTimeout(timer);
   }, []);
 
   const dismiss = () => {
     sessionStorage.setItem("harang_popup_dismissed", "1");
-    setOpen(false);
-    setDismissed(true);
+    setClosing(true);
+    setTimeout(() => setOpen(false), 180);
   };
 
-  if (!open || dismissed) return null;
+  if (!open) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center px-4 pb-4 sm:pb-0"
-      style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)" }}
-      onClick={(e) => { if (e.target === e.currentTarget) dismiss(); }}
+      className="fixed z-[9998] left-4 right-4 bottom-4 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[340px]"
+      style={{
+        animation: closing
+          ? "haCardOut 0.18s ease both"
+          : "haCardIn 0.32s cubic-bezier(0.22,1,0.36,1) both",
+      }}
     >
+      <style>{`
+        @keyframes haCardIn  { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform:none } }
+        @keyframes haCardOut { from { opacity:1 } to { opacity:0; transform: translateY(8px) } }
+      `}</style>
+
       <div
-        className="relative w-full max-w-sm bg-white rounded-2xl overflow-hidden shadow-2xl"
-        style={{ animation: "popupSlideUp 0.35s cubic-bezier(0.22,1,0.36,1) both" }}
+        className="relative overflow-hidden rounded-[16px]"
+        style={{
+          background: "var(--w-bg)",
+          border: "1px solid var(--w-line-strong)",
+          boxShadow: "var(--w-shadow-lg)",
+        }}
       >
-        <style>{`
-          @keyframes popupSlideUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
-        `}</style>
-
-        {/* Top gradient bar */}
-        <div className="h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-700" />
-
-        {/* Close */}
         <button
           onClick={dismiss}
-          className="absolute top-3 right-3 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+          aria-label="닫기"
+          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-lg transition-colors hover:bg-[var(--w-fill)]"
         >
-          <X size={13} className="text-gray-500" />
+          <X size={14} style={{ color: "var(--w-label-assistive)" }} />
         </button>
 
-        <div className="p-6">
-          {/* Urgency badge */}
-          <div className="flex items-center gap-2 mb-4">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-50 border border-red-100">
-              <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[10px] font-black text-red-600 uppercase tracking-wider">이번 달 마감 임박</span>
-            </div>
-          </div>
-
-          <h3 className="text-lg font-black text-gray-900 mb-2 leading-snug" style={{ letterSpacing: "-0.02em" }}>
-            이번 달 신규 상담<br />잔여 2자리입니다
-          </h3>
-
-          <p className="text-sm text-gray-500 mb-5 leading-relaxed">
-            대표가 직접 챙기다 보니 한 달에 받을 수 있는 신규 상담이 한정되어 있어요.
-            지금 신청하시면 무료 경쟁사 분석 리포트도 함께 드립니다.
+        <div className="p-5">
+          <p className="w-label-2 font-bold" style={{ color: "var(--w-primary)" }}>
+            상담 0원 · 24시간 내 연락
+          </p>
+          <p className="w-title-3 mt-1.5" style={{ color: "var(--w-label-strong)" }}>
+            매장을 보고 맞춤으로 제안드립니다
+          </p>
+          <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-alt)" }}>
+            대표가 직접 담당해서 한 달에 받는 신규 상담이 많지 않습니다.
+            지금 신청하시면 경쟁사 분석 리포트도 함께 드립니다.
           </p>
 
-          {/* Stats row */}
-          <div className="flex items-center gap-3 mb-5">
-            <div className="flex-1 rounded-xl p-3 text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
-              <div className="flex items-center justify-center gap-1 mb-0.5">
-                <Clock size={11} className="text-blue-500" />
-                <span className="text-[10px] text-gray-500">평균 응답</span>
-              </div>
-              <p className="text-sm font-black text-gray-900">10분 이내</p>
-            </div>
-            <div className="flex-1 rounded-xl p-3 text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
-              <div className="flex items-center justify-center gap-1 mb-0.5">
-                <Users size={11} className="text-blue-500" />
-                <span className="text-[10px] text-gray-500">이번 달 신청</span>
-              </div>
-              <p className="text-sm font-black text-gray-900">12명 완료</p>
-            </div>
+          <div className="mt-4 flex items-center gap-2">
+            <Link
+              href="/free-check"
+              onClick={dismiss}
+              className="w-btn w-btn-primary w-btn-sm flex-1"
+            >
+              무료 진단 신청
+              <ArrowRight size={13} strokeWidth={2.5} />
+            </Link>
+            <button onClick={dismiss} className="w-btn w-btn-ghost w-btn-sm">
+              나중에
+            </button>
           </div>
-
-          {/* CTA */}
-          <Link
-            href="/free-check"
-            onClick={dismiss}
-            className="block w-full text-center py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-sm shadow-blue-600/20"
-          >
-            무료 진단 지금 신청하기
-          </Link>
-
-          <button
-            onClick={dismiss}
-            className="block w-full text-center mt-2.5 text-xs text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            오늘은 괜찮습니다
-          </button>
         </div>
       </div>
     </div>

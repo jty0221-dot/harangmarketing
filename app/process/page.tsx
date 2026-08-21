@@ -219,7 +219,7 @@ export default function ProcessPage() {
                   <div key={step.number} className="relative flex gap-5 md:gap-6">
                     {/* Step icon */}
                     <div className="shrink-0 flex flex-col items-center z-10">
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border ${step.border} flex items-center justify-center shadow-lg`}>
+                      <div className={`w-14 h-14 rounded-2xl bg-gray-800 border ${step.border} flex items-center justify-center shadow-lg`}>
                         <step.icon size={18} className={step.accent} strokeWidth={2} />
                       </div>
                     </div>

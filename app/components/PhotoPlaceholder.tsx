@@ -23,7 +23,7 @@ export default function PhotoPlaceholder({
         ${width} ${height} ${className}
         relative flex flex-col items-center justify-center gap-2
         rounded-2xl overflow-hidden
-        ${dark ? "bg-white/5" : "bg-gradient-to-br from-gray-100 to-gray-50"}
+        ${dark ? "bg-white/5" : "bg-gray-600"}
       `}
     >
       {/* shimmer sweep */}

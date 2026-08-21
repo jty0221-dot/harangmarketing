@@ -176,7 +176,7 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-14 md:py-20 bg-gradient-to-br from-blue-600 to-indigo-700">
+        <section className="py-14 md:py-20 bg-blue-600">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
               <TrendingUp size={22} className="text-white" strokeWidth={2.5} />

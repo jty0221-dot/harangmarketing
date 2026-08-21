@@ -60,7 +60,7 @@ export default function TermsPage() {
           </Link>
 
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm">
               <FileText size={18} className="text-white" strokeWidth={2} />
             </div>
             <div>

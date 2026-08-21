@@ -207,7 +207,7 @@ export default function StudioPage() {
         <section className="bg-white py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-8 flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 shadow-sm ring-1 ring-blue-800/20">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 shadow-sm ring-1 ring-blue-800/20">
                 <MonitorDown size={16} className="text-white" strokeWidth={2.5} />
               </div>
               <div>
@@ -341,7 +341,7 @@ export default function StudioPage() {
         <section className="bg-white py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 shadow-sm ring-1 ring-emerald-800/20">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 shadow-sm ring-1 ring-emerald-800/20">
                 <Users size={16} className="text-white" strokeWidth={2.5} />
               </div>
               <h2 className="text-xl font-black text-gray-900 md:text-2xl">
@@ -364,7 +364,7 @@ export default function StudioPage() {
         <section id="price" className="scroll-mt-20 bg-gray-50 py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-2 flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-orange-600 shadow-sm ring-1 ring-orange-700/20">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 shadow-sm ring-1 ring-orange-700/20">
                 <Star size={16} className="text-white" strokeWidth={2.5} />
               </div>
               <h2 className="text-xl font-black text-gray-900 md:text-2xl">가격</h2>
@@ -431,7 +431,7 @@ export default function StudioPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="rounded-2xl bg-blue-50 p-5 ring-1 ring-blue-200 md:p-6">
               <div className="flex items-start gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 shadow-sm ring-1 ring-blue-800/20">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 shadow-sm ring-1 ring-blue-800/20">
                   <Info size={16} className="text-white" strokeWidth={2.5} />
                 </div>
                 <div>
@@ -471,7 +471,7 @@ export default function StudioPage() {
         <section id="smartscreen" className="scroll-mt-20 bg-gray-50 py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-600 to-blue-700 shadow-sm ring-1 ring-blue-800/20">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-600 shadow-sm ring-1 ring-blue-800/20">
                 <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
               </div>
               <div>
@@ -557,7 +557,7 @@ export default function StudioPage() {
         />
 
         {/* ───────────────────────── 맺음 ───────────────────────── */}
-        <section className="bg-gradient-to-br from-blue-600 to-indigo-700 py-12 md:py-16">
+        <section className="bg-blue-600 py-12 md:py-16">
           <div className="max-w-3xl mx-auto px-4 text-center md:px-6">
             <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">
               먼저 {STUDIO.trialCount}장 써보시고 결정하세요

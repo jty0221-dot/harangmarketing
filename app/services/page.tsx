@@ -853,7 +853,7 @@ export default function ServicesPage() {
               ))}
             </div>
             {/* 신뢰 수치 */}
-            <div className="bg-gradient-to-br from-gray-950 to-blue-950 rounded-2xl p-6 md:p-8">
+            <div className="bg-gray-950 rounded-2xl p-6 md:p-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 {[
                   { val: "95%", label: "재계약률", sub: "10년 유지" },
@@ -888,7 +888,7 @@ export default function ServicesPage() {
                 </a>
                 <a href="https://www.instagram.com/jty0221/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-50 border border-purple-100 text-purple-700 text-xs font-bold hover:bg-purple-100 transition-colors">
-                  <span className="w-5 h-5 rounded bg-gradient-to-br from-purple-500 to-pink-500 text-white text-[10px] font-black flex items-center justify-center">I</span>
+                  <span className="w-5 h-5 rounded bg-purple-600 text-white text-[10px] font-black flex items-center justify-center">I</span>
                   인스타그램
                 </a>
               </div>

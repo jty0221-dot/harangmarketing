@@ -52,7 +52,7 @@ export default function RefundPage() {
           </Link>
 
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm">
               <RefreshCw size={18} className="text-white" strokeWidth={2} />
             </div>
             <div>

@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
       <AdminHeader />
       <main className="min-h-[calc(100vh-53px)] bg-gray-950 flex items-center justify-center px-4">
       <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white rounded-2xl p-8 shadow-xl">
-        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-sm mb-5">
+        <div className="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm mb-5">
           <Lock size={18} className="text-white" strokeWidth={2.5} />
         </div>
         <h1 className="text-lg font-black text-gray-900 mb-1">하랑마케팅 관리자</h1>

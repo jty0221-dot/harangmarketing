@@ -264,7 +264,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="mt-7 p-5 rounded-2xl bg-blue-50 border border-blue-100">
-                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center mb-3 shadow-sm">
+                  <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center mb-3 shadow-sm">
                     <Quote size={12} className="text-white" />
                   </div>
                   <p className="text-sm text-blue-800 leading-relaxed font-medium italic">

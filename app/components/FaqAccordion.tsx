@@ -27,7 +27,7 @@ export default function FaqAccordion({
     <section className="py-10 md:py-16 bg-white" aria-labelledby="faq-heading">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-800/20">
+          <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-800/20">
             <HelpCircle size={16} className="text-white" strokeWidth={2.5} />
           </div>
           <h2

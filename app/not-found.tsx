@@ -23,7 +23,7 @@ export default function NotFound() {
                 404
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl shadow-blue-200">
+                <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center shadow-xl shadow-blue-200">
                   <Search size={28} className="text-white" strokeWidth={2} />
                 </div>
               </div>

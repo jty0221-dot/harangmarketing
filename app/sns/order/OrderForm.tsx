@@ -151,7 +151,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
     return (
       <div className="bg-white rounded-2xl ring-1 ring-gray-100 shadow-sm p-6 md:p-8">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-sm flex items-center justify-center ring-1 ring-emerald-700/20">
+          <div className="w-9 h-9 rounded-xl bg-emerald-600 shadow-sm flex items-center justify-center ring-1 ring-emerald-700/20">
             <CheckCircle2 size={16} className="text-white" strokeWidth={2.5} />
           </div>
           <h2 className="text-lg font-black text-gray-900">
