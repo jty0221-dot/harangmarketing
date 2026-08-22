@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MapPin, TrendingUp, Star, Clock, Users, ShieldCheck } from "lucide-react";
+import { SITE } from "../../lib/seo";
 
 const BASE = "https://www.harangmarketing.com";
 
@@ -15,7 +16,7 @@ const GYEONGGI_LD = {
   "url": `${BASE}/location/gyeonggi`,
   "logo": `${BASE}/favicon.svg`,
   "image": `${BASE}/og-image.png`,
-  "telephone": "010-0000-0000",
+  "telephone": SITE.phone,
   "description": "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 네이버 플레이스 상위노출, 리뷰 확보, SNS 운영까지.",
   "areaServed": [
     { "@type": "State", "name": "경기도" },
