@@ -24,7 +24,7 @@ const LOCATION_LD = {
   name: "지역별 마케팅 서비스 — 하랑마케팅",
   url: `${BASE}/location`,
   description:
-    "하랑마케팅이 지원하는 지역별 소상공인 마케팅 안내. 경기·서울·인천 전 지역, 본사는 경기 고양 일산입니다.",
+    "하랑마케팅이 지원하는 지역별 소상공인 마케팅 안내. 경기·서울·인천 전 지역을 담당합니다.",
   isPartOf: { "@id": `${BASE}/#website` },
   breadcrumb: {
     "@type": "BreadcrumbList",
@@ -43,7 +43,7 @@ const LOCATION_LD = {
 export const metadata: Metadata = {
   title: "지역별 마케팅 서비스 — 경기·서울·인천 소상공인 마케팅 대행사",
   description:
-    "하랑마케팅은 경기 고양 일산에 본사를 두고 경기·서울·인천 전 지역 소상공인을 지원합니다. 지역별 상권 특성에 맞춘 플레이스 SEO·블로그·체험단 전략을 확인하세요.",
+    "하랑마케팅은 경기·서울·인천 전 지역 소상공인을 지원합니다. 지역별 상권 특성에 맞춘 플레이스 SEO·블로그·체험단 전략을 확인하세요.",
   keywords: [
     "지역별 마케팅 대행사", "경기 마케팅 대행사", "서울 마케팅 대행사", "인천 마케팅 대행사",
     "고양 마케팅 대행사", "일산 마케팅 대행사", "파주 마케팅", "김포 마케팅", "부천 마케팅",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/location` },
   openGraph: {
     title: "지역별 마케팅 서비스 — 하랑마케팅",
-    description: "경기·서울·인천 전 지역 소상공인 마케팅. 본사는 경기 고양 일산.",
+    description: "경기·서울·인천 전 지역 소상공인 마케팅.",
     url: `${BASE}/location`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 지역별 서비스" }],
   },
@@ -62,8 +62,8 @@ const AREAS = [
   {
     href: "/location/gyeonggi",
     name: "경기도",
-    head: "본사가 있는 지역",
-    body: "고양·일산·파주·김포·부천·수원·성남까지. 본사가 일산이라 방문 상담이 가장 빠릅니다.",
+    head: "가장 많이 맡은 지역",
+    body: "고양·일산·파주·김포·부천·수원·성남까지. 경기 북서부는 방문 상담이 가장 빠릅니다.",
     spots: "고양·일산 · 파주 · 김포 · 부천 · 수원 · 성남",
     icon: Building2,
   },
@@ -111,7 +111,7 @@ export default function LocationHubPage() {
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
               같은 업종이라도 일산에서 찾는 말과 강남에서 찾는 말이 다릅니다.
-              지역 상권을 먼저 보고 키워드를 잡습니다. 본사는 경기 고양 일산이고, 방문 상담도 가능합니다.
+              지역 상권을 먼저 보고 키워드를 잡습니다. 경기 북서부는 방문 상담도 가능합니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
@@ -132,9 +132,9 @@ export default function LocationHubPage() {
 
         <AnswerBlock
           question="하랑마케팅은 어느 지역까지 담당하나요?"
-          answer="하랑마케팅은 경기도 고양시 일산에 본사를 두고 경기·서울·인천 전 지역 소상공인을 지원합니다. 고양·일산·파주·김포·부천 등 경기 북서부는 방문 상담이 가능하고, 그 외 지역은 비대면 상담으로 진행합니다. 지역마다 검색 패턴이 달라 상권을 먼저 분석한 뒤 키워드를 정하며, 상담 비용은 0원입니다. 전국 어디든 온라인 마케팅 자체는 동일하게 진행할 수 있습니다."
+          answer="하랑마케팅은 경기·서울·인천 전 지역 소상공인을 지원합니다. 고양·일산·파주·김포·부천 등 경기 북서부는 방문 상담이 가능하고, 그 외 지역은 비대면 상담으로 진행합니다. 지역마다 검색 패턴이 달라 상권을 먼저 분석한 뒤 키워드를 정하며, 상담 비용은 0원입니다. 전국 어디든 온라인 마케팅 자체는 동일하게 진행할 수 있습니다."
           facts={[
-            { label: "본사", value: "경기 고양 일산" },
+            { label: "설립", value: "2020년 4월" },
             { label: "방문 상담", value: "경기 북서부" },
             { label: "지원 지역", value: "경기·서울·인천" },
             { label: "상담 비용", value: "0원" },

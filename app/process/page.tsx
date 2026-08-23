@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { howToLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, howToLd, webPageLd, breadcrumbLd } from "../lib/seo";
 import {
   Phone, MessageCircle, ArrowRight, CheckCircle2, Clock,
   Search, FileText, TrendingUp, BarChart3, Handshake,
@@ -36,7 +36,7 @@ const STEPS = [
     details: [
       "카카오톡 채널 / 전화 / 홈페이지 폼 중 편한 방법으로",
       "현재 운영 중인 플랫폼·업종·고민 간단히 공유",
-      "1영업일 내 대표가 직접 연락드립니다",
+      "1영업일 내 전담 팀장이 직접 연락드립니다",
     ],
   },
   {
@@ -77,7 +77,7 @@ const STEPS = [
     accent: "text-green-400",
     border: "border-green-500/30",
     bg: "bg-green-500/8",
-    desc: "계약 후 즉시 킥오프 미팅에서 세부 실행 계획을 확정합니다. 대표가 직접 담당합니다.",
+    desc: "계약 후 즉시 킥오프 미팅에서 세부 실행 계획을 확정합니다. 전담 팀장이 직접 관리합니다.",
     details: [
       "표준 계약서 작성 (전자서명 가능)",
       "계정 권한·소재·자료 인수인계",
@@ -118,7 +118,7 @@ const STEPS = [
 
 const TRUST_POINTS = [
   { icon: ShieldCheck, label: "고의 누락 시 결제금액 10배 보상" },
-  { icon: Star, label: "재계약률 95%" },
+  { icon: Star, label: `재계약률 ${SITE.stats.renewalRate}` },
   { icon: Clock, label: "24시간 소통 가능" },
 ];
 
@@ -264,7 +264,7 @@ export default function ProcessPage() {
                 { q: "계약 기간은 얼마인가요?", a: "기본 3개월 단위이며, 성과에 따라 월 단위 연장도 가능합니다. 장기 계약 강요는 없습니다." },
                 { q: "중간에 서비스를 변경할 수 있나요?", a: "가능합니다. 월 리포트 협의 시 서비스 항목을 추가·변경·교체할 수 있습니다." },
                 { q: "결과가 나오는 데 얼마나 걸리나요?", a: "업종과 경쟁 강도에 따라 다르나 보통 1개월 차부터 순위 변화가 시작되고, 3개월 차에 가시적 성과가 납니다." },
-                { q: "담당자가 자주 바뀌지 않나요?", a: "대표가 직접 전략을 수립하고 담당합니다. 신입 직원에게 맡기지 않으며, 10년+ 경력의 대표가 계약 기간 내내 1:1로 담당합니다." },
+                { q: "담당자가 자주 바뀌지 않나요?", a: "전담 팀장이 직접 전략을 수립하고 담당합니다. 신입 직원에게 맡기지 않으며, 10년+ 경력의 전담 팀장이 계약 기간 내내 1:1로 담당합니다." },
                 { q: "작업 내용을 어떻게 확인할 수 있나요?", a: "매월 말 플랫폼별 순위·리뷰 수·방문자 수 등 수치가 담긴 상세 리포트를 제공합니다. 언제든지 카카오톡으로 진행 상황을 문의하실 수 있습니다." },
               ].map((faq, i) => (
                 <details key={i} className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden">

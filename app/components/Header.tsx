@@ -3,24 +3,25 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock, Gift, TrendingUp, Shield } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock } from "lucide-react";
 
+import { SITE } from "../lib/seo";
 const ANN_KEY = "harang_ann_v1";
 
 const ANN_MESSAGES = [
   {
-    badge: "이달 한정",
-    badgeColor: "text-red-400",
-    dot: "bg-red-400",
-    text: <>신규 계약 3팀에게 <span className="text-white font-black">경쟁사 분석 리포트 무료 제공</span> · <span className="text-blue-400 font-bold">잔여 2자리</span></>,
+    badge: "무료 제공",
+    badgeColor: "text-blue-400",
+    dot: "bg-blue-400",
+    text: <>상담 신청하시면 <span className="text-white font-black">경쟁사 분석 리포트</span>를 드립니다 · <span className="text-blue-300 font-bold">계약 전 확인 가능</span></>,
     ctaLabel: "무료 신청",
     ctaHref: "/contact",
   },
   {
-    badge: "실시간",
+    badge: "성과",
     badgeColor: "text-green-400",
     dot: "bg-green-400",
-    text: <>이번 달 <span className="text-white font-black">12팀</span>이 무료 진단 신청 완료 · <span className="text-blue-300 font-bold">재계약률 95%</span></>,
+    text: <>누적 <span className="text-white font-black">{SITE.stats.projects}</span> 프로젝트 · <span className="text-blue-300 font-bold">재계약률 {SITE.stats.renewalRate}</span></>,
     ctaLabel: "진단 신청",
     ctaHref: "/contact",
   },
@@ -28,7 +29,7 @@ const ANN_MESSAGES = [
     badge: "신뢰",
     badgeColor: "text-blue-400",
     dot: "bg-blue-400",
-    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 대표 직접 담당 · <span className="text-blue-300 font-bold">상담 0원</span></>,
+    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 전담 팀장 직접 관리 · <span className="text-blue-300 font-bold">상담 0원</span></>,
     ctaLabel: "자세히 보기",
     ctaHref: "/about",
   },
@@ -184,7 +185,7 @@ export default function Header() {
                 </span>
                 {(scrolled || !isHome) && (
                   <div className="text-[11px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
-                    10년 경력 · 대표 직접 담당
+                    10년 경력 · 전담 팀장 직접 관리
                   </div>
                 )}
               </div>
@@ -311,7 +312,7 @@ export default function Header() {
           <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl">
             <div className="px-4 pt-4 pb-3 border-b border-gray-100">
               <div className="text-xs font-black text-gray-900">하랑마케팅</div>
-              <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표 직접 담당</div>
+              <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 전담 팀장 직접 관리</div>
             </div>
             <div className="px-4 py-3 space-y-0.5">
               {NAV_ITEMS.map((item) => (

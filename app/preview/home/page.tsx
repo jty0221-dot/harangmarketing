@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   ArrowRight, Check, Phone, Star, TrendingUp, Users, ShieldCheck, Quote,
 } from "lucide-react";
+import { SITE } from "../../lib/seo";
 
 /**
  * 홈페이지 리디자인 A/B 비교 (비공개 · 검색 제외)
@@ -18,13 +19,13 @@ import {
 
 const STATS = [
   [Users, "누적 클라이언트", "500+"],
-  [TrendingUp, "재계약률", "95%"],
+  [TrendingUp, "재계약률", SITE.stats.renewalRate],
   [ShieldCheck, "직접 관리", "10년+"],
   [Star, "평균 만족도", "4.9"],
 ] as const;
 
 const SERVICES = [
-  ["블로그 마케팅", "검색 상위 노출까지 책임지는 원고·발행 대행", "월 4만원/편~", ["계약 강요 없음", "대표가 직접 검수"]],
+  ["블로그 마케팅", "검색 상위 노출까지 책임지는 원고·발행 대행", "월 4만원/편~", ["계약 강요 없음", "전담 팀장이 직접 검수"]],
   ["플레이스 SEO", "지도 노출·리뷰·저장까지 한 번에 관리", "맞춤 견적", ["순위 리포트 제공", "24시간 내 연락"]],
   ["SNS 부스트", "팔로워·조회수를 원하는 만큼 셀프 주문", "건당 300원~", ["회원 예치금 결제", "즉시 시작"]],
 ] as const;

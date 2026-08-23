@@ -35,9 +35,7 @@ export default function CafeLayout({ children }: { children: React.ReactNode }) 
             "url": "https://www.harangmarketing.com/services/cafe",
             "offers": {
               "@type": "Offer",
-              "price": "300000",
-              "priceCurrency": "KRW",
-              "description": "카페 마케팅 스타터 패키지 — 플레이스 SEO + 블로그 관리",
+              "description": "카페 마케팅 스타터 패키지 — 플레이스 SEO + 블로그 관리. 상권·진행 범위에 따라 견적 산정.",
             },
           }),
         }}

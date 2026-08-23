@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   ArrowRight, Check, Star, TrendingUp, Users, Phone, Search, Sparkles, ShieldCheck,
 } from "lucide-react";
+import { SITE } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "디자인 미리보기 — 하랑마케팅",
@@ -196,13 +197,13 @@ export default function WdsPreviewPage() {
                 style={{ background: "rgba(255,255,255,0.14)", color: "#fff" }}
               >
                 <Sparkles size={12} strokeWidth={2.5} />
-                재계약률 95% · 500+ 프로젝트
+                재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트
               </span>
               <h3 className="w-display-2 mt-4 max-w-[560px]" style={{ color: "#fff" }}>
                 사장님 매장, 검색되게 만들어 드립니다
               </h3>
               <p className="w-body-1 mt-3 max-w-[520px]" style={{ color: "rgba(255,255,255,0.72)" }}>
-                블로그·플레이스·리뷰까지 10년 경력 대표가 직접 담당합니다.
+                블로그·플레이스·리뷰까지 10년 경력 전담 팀장이 직접 관리합니다.
                 상담 비용 없이 지금 진단부터 받아보세요.
               </p>
               <div className="mt-7 flex flex-wrap gap-2">
@@ -222,7 +223,7 @@ export default function WdsPreviewPage() {
           {/* 지표 */}
           <div className="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
-              [TrendingUp, "재계약률", "95%"],
+              [TrendingUp, "재계약률", SITE.stats.renewalRate],
               [Users, "누적 프로젝트", "500+"],
               [Star, "평균 만족도", "4.9"],
               [ShieldCheck, "대표 경력", "10년+"],

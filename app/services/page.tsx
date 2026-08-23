@@ -6,13 +6,13 @@ import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare, Quote,
-  Navigation, Palette, Layers,
+  Navigation, Palette, Layers, Calculator,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
-import { ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "마케팅 서비스 — 하랑마케팅 | 플레이스 SEO · 블로그 · 체험단 · SNS",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.harangmarketing.com/services" },
   openGraph: {
     title: "하랑마케팅 서비스 — 소상공인 맞춤 마케팅",
-    description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 월 30만원부터 시작, 상담 무료.",
+    description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 견적은 진단 후 산정, 상담 무료.",
     url: "https://www.harangmarketing.com/services",
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
@@ -254,7 +254,7 @@ const FAQS = [
   },
   {
     q: "결과가 안 나오면 어떻게 되나요?",
-    a: "매월 성과 리포트를 함께 검토하며, 목표 미달 시 전략을 즉시 조정합니다. 95% 재계약률이 그 이유입니다. 단, 초기 기대치는 현실적으로 맞춰드립니다.",
+    a: `매월 성과 리포트를 함께 검토하며, 목표 미달 시 전략을 즉시 조정합니다. ${SITE.stats.renewalRate} 재계약률이 그 이유입니다. 단, 초기 기대치는 현실적으로 맞춰드립니다.`,
   },
   {
     q: "여러 서비스를 함께 하면 할인되나요?",
@@ -266,7 +266,7 @@ const FAQS = [
   },
   {
     q: "직접 담당자가 매번 바뀌지 않나요?",
-    a: "대표가 모든 프로젝트에 직접 참여합니다. 계약부터 운영까지 담당자가 바뀌지 않는 것이 하랑의 원칙입니다.",
+    a: "전담 팀장이 모든 프로젝트에 직접 참여합니다. 계약부터 운영까지 담당자가 바뀌지 않는 것이 하랑의 원칙입니다.",
   },
   {
     q: "작은 매장도 효과가 있나요?",
@@ -285,6 +285,106 @@ const INDUSTRY_LINKS = [
   { name: "음식점·식당", href: "/services/restaurant", color: "from-orange-500 to-red-500", desc: "배달 매출 · 플레이스 · 리뷰" },
   { name: "학원·교육", href: "/services/academy", color: "from-green-500 to-emerald-600", desc: "맘카페 · 수강생 증대 · 블로그" },
   { name: "쇼핑몰·소매점", href: "/services/shopping", color: "from-purple-500 to-purple-700", desc: "스마트스토어 · 인스타 · 오프라인" },
+];
+
+/* ────────────────────────────────────────────────────────────
+   가격 산출 근거 — 아래 숫자는 전부 실제로 나간 견적서에서 가져온다.
+   단가를 바꾸면 CALC_EXAMPLES 의 합계·PRICE_BANDS 의 평균도 같이 맞춘다.
+   원본: E:/하랑/{미미샵|영삼이네우정소갈비|이지클린}/build_quote_hwp.py
+         E:/하랑/업무관리자/.../references/clients.md (월 정액 계약 5건)
+   ──────────────────────────────────────────────────────────── */
+
+const UNIT_PRICES: { item: string; unit: string; price: string }[] = [
+  { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
+  { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "3만원" },
+  { item: "블로그 관리대행 (2,000자)", unit: "1편", price: "4만원" },
+  { item: "최적화 블로그 배포", unit: "1건", price: "3만원" },
+  { item: "카페 배포", unit: "1건", price: "3만원" },
+  { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
+  { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "20만원" },
+  { item: "네이버 광고 세팅·운영대행", unit: "월", price: "15만원" },
+  { item: "키워드 설계 · 리뷰 동선 · 순위 모니터링", unit: "월", price: "계약 시 포함" },
+];
+
+const CALC_EXAMPLES: {
+  title: string;
+  sub: string;
+  lines: { label: string; calc: string; amount: string }[];
+  total: string;
+  note: string;
+}[] = [
+  {
+    title: "플레이스만 잡으면 되는 경우",
+    sub: "대표키워드가 이미 3위라 순위를 밀어올리기만 하면 됐던 고깃집",
+    lines: [
+      { label: "플레이스 SEO 최적화", calc: "15만원 × 1회", amount: "150,000" },
+      { label: "대표키워드 상위노출 관리", calc: "3만원 × 5개", amount: "150,000" },
+      { label: "리뷰 동선 · 소식/쿠폰 · 순위 모니터링", calc: "계약 포함", amount: "0" },
+    ],
+    total: "300,000",
+    note: "부가세 포함 330,000원",
+  },
+  {
+    title: "글을 퍼뜨리기만 하면 되는 경우",
+    sub: "플레이스를 쓸 수 없어 검색 유입만 만들면 됐던 해외 매장",
+    lines: [
+      { label: "최적화 블로그 배포", calc: "3만원 × 3건", amount: "90,000" },
+      { label: "카페 배포", calc: "3만원 × 7건", amount: "210,000" },
+      { label: "키워드 설계 · 촬영 가이드", calc: "계약 포함", amount: "0" },
+    ],
+    total: "300,000",
+    note: "부가세 포함 330,000원",
+  },
+  {
+    title: "바닥부터 만들어야 하는 경우",
+    sub: "리뷰 0건 · 가격표 13개 중 10개가 공란이던 청소업체",
+    lines: [
+      { label: "플레이스 SEO 최적화", calc: "10만원 × 1회", amount: "100,000" },
+      { label: "홈페이지형 블로그 디자인", calc: "20만원 × 1회", amount: "200,000" },
+      { label: "블로그 관리대행", calc: "4만원 × 10편", amount: "400,000" },
+      { label: "파워컨텐츠 원고 설계·검수", calc: "5만원 × 1편", amount: "50,000" },
+      { label: "네이버 광고 세팅·운영대행", calc: "계약 포함", amount: "0" },
+    ],
+    total: "750,000",
+    note: "1회성 세팅비가 빠지는 2개월차부터 월 450,000원 (부가세 포함 495,000원)",
+  },
+];
+
+const PRICE_BANDS: { scope: string; detail: string; range: string; avg: string; n: string }[] = [
+  { scope: "한 채널 집중", detail: "플레이스만 · 또는 배포만", range: "월 30만원", avg: "30만원", n: "2건" },
+  { scope: "두세 채널 묶음", detail: "플레이스 + 블로그 + 광고", range: "월 45~77만원", avg: "61만원", n: "2건" },
+  { scope: "전 채널 통합", detail: "배포 + 파워컨텐츠 + SEO + 광고 + SNS", range: "월 120~220만원", avg: "167만원", n: "5건" },
+];
+
+const INDUSTRY_PRICE_DIFF: { industry: string; behavior: string; channel: string; volume: string }[] = [
+  { industry: "음식점 · 뷔페", behavior: "지금 근처에서 먹을 곳을 찾는다", channel: "플레이스 SEO · 블로그/카페 배포", volume: "경쟁 상권은 배포 월 30건까지" },
+  { industry: "카페 · 베이커리", behavior: "사진을 보고 갈 곳을 정한다", channel: "플레이스 · 인스타 · 광고", volume: "인스타 발행 월 8~20건" },
+  { industry: "청소 · 시공", behavior: "문제가 생겼을 때 검색한다", channel: "블로그 · 파워링크", volume: "블로그 월 10~15편" },
+  { industry: "뷰티 · 가발", behavior: "오래 비교하고 후기부터 본다", channel: "블로그 · 인스타 릴스", volume: "블로그 10편 + 릴스/피드 주 2회" },
+  { industry: "레저 · 숙박", behavior: "주말과 시즌에 몰린다", channel: "파워링크 · 플레이스", volume: "성수기에 광고 예산 집중" },
+];
+
+const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
+  {
+    title: "출발점이 다릅니다",
+    body: "리뷰가 0건이고 가격표가 비어 있으면 세팅부터 해야 합니다. 실제로 첫 달 75만원이던 견적이 세팅이 끝난 2개월차에 45만원으로 내려갔습니다. 이미 갖춰진 매장은 이 비용이 아예 붙지 않습니다.",
+  },
+  {
+    title: "지금 순위가 다릅니다",
+    body: "이미 3위인 매장을 1~2위로 밀어올리는 일과, 노출이 아예 없는 매장을 처음 올리는 일은 들어가는 물량이 다릅니다. 앞의 경우는 플레이스 단독 월 30만원으로 끝났습니다.",
+  },
+  {
+    title: "상권 경쟁 밀도가 다릅니다",
+    body: "같은 고깃집이어도 대형 매장이 몰려 있는 수도권 상권과 지방 동네 상권은 필요한 배포 건수가 다릅니다. 경쟁이 촘촘할수록 같은 순위를 유지하는 데 드는 콘텐츠 양이 늘어납니다.",
+  },
+  {
+    title: "채널 수와 물량이 다릅니다",
+    body: "단가가 채널별 · 건별로 붙습니다. 블로그는 편당 4만원이라 월 4편과 월 15편은 44만원 차이가 납니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
+  },
+  {
+    title: "심의와 계절이 다릅니다",
+    body: "의료 · 법률처럼 심의를 통과해야 하는 업종은 원고 설계와 검수 대응에 공수가 더 붙습니다. 에어컨 청소처럼 3~6월에 검색이 몰리는 업종은 비수기에 기반을 깔아둬야 성수기에 노출을 받습니다.",
+  },
 ];
 
 const SERVICES_LD = {
@@ -315,7 +415,6 @@ const SERVICES_LD = {
         "description": "네이버 블로그 상위 노출 최적화. 키워드 SEO, 콘텐츠 제작, 블로그 배포 대행. 평균 3개월 내 지역 키워드 상위 10위 진입.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#blog",
       },
     },
@@ -327,7 +426,6 @@ const SERVICES_LD = {
         "description": "네이버 지도·플레이스 상위 노출 최적화. 리뷰 관리, 키워드 세팅, 사진 최적화. 평균 4주 내 Top 5 진입.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#place",
       },
     },
@@ -339,7 +437,6 @@ const SERVICES_LD = {
         "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행. 네이버 플레이스·블로그·배달앱 리뷰 확보.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#review",
       },
     },
@@ -351,7 +448,6 @@ const SERVICES_LD = {
         "description": "인스타그램 콘텐츠 기획, 릴스 제작, 팔로워 증가, DM 자동화. 카페·미용·네일 업종에 특화.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
         "url": "https://www.harangmarketing.com/services#sns",
       },
     },
@@ -363,7 +459,6 @@ const SERVICES_LD = {
         "description": "카카오맵 플레이스 등록 및 상위 노출 최적화, 트렌드 랭킹 진입 전략. 2개월 만에 Top 3 진입 사례.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
       },
     },
     {
@@ -374,7 +469,6 @@ const SERVICES_LD = {
         "description": "지역 맘카페 커뮤니티 바이럴 마케팅. 학원·카페·음식점·네일 업종에 특화. 일반 블로그 대비 전환율 2~3배.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceRange": "월 30만원~", "priceCurrency": "KRW" },
       },
     },
     {
@@ -439,7 +533,7 @@ export default function ServicesPage() {
             <p className="mb-8 max-w-xl text-[16px] leading-relaxed md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
               핵심 마케팅 채널을 단독 또는 패키지로 운영합니다.
               <br />
-              모든 서비스는 대표가 직접 담당합니다.
+              모든 서비스는 전담 팀장이 직접 관리합니다.
             </p>
             <div className="flex flex-wrap gap-2">
               {SERVICES.map((s) => {
@@ -461,9 +555,9 @@ export default function ServicesPage() {
           question="하랑마케팅은 어떤 서비스를 얼마에 제공하나요?"
           answer={`${ANSWER_SENTENCES.whatWeDo} ${ANSWER_SENTENCES.price}`}
           facts={[
-            { label: "핵심 서비스", value: "6종" },
-            { label: "특화 업종", value: "6개" },
-            { label: "시작 비용", value: "월 30만원~" },
+            { label: "기준 단가", value: "블로그 4만원/편" },
+            { label: "한 채널", value: "월 30만원" },
+            { label: "전 채널 통합", value: "월 120~220만원" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -475,7 +569,7 @@ export default function ServicesPage() {
               {[
                 { icon: Users, val: "500+", label: "완료 프로젝트", color: "text-blue-600" },
                 { icon: TrendingUp, val: "300%", label: "최대 매출 상승", color: "text-blue-600" },
-                { icon: Star, val: "95%", label: "재계약률", color: "text-blue-700" },
+                { icon: Star, val: SITE.stats.renewalRate, label: "재계약률", color: "text-blue-700" },
                 { icon: Clock, val: "10년+", label: "전문 경력", color: "text-indigo-600" },
               ].map(({ icon: Icon, val, label, color }) => (
                 <div key={label} className="flex items-center gap-3">
@@ -681,10 +775,10 @@ export default function ServicesPage() {
               {[
                 {
                   name: "카페 사장님",
-                  location: "경기 고양",
+                  location: "경기 포천",
                   service: "플레이스 SEO",
                   color: "from-blue-500 to-blue-700",
-                  text: "3주 만에 '고양 카페 추천' 1위가 됐어요. 주말 웨이팅이 생겼고 하루 매출이 2배 됐습니다.",
+                  text: "3주 만에 '지역 카페 추천' 1위가 됐어요. 주말 웨이팅이 생겼고 하루 매출이 2배 됐습니다.",
                   metric: "매출 +210%",
                 },
                 {
@@ -729,83 +823,197 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Package comparison */}
-        <section className="py-14 md:py-20 bg-white">
+        {/* ══ 가격 산출 근거 ══ */}
+        <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-20">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">패키지 비교</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">예산에 맞는 플랜 선택</h2>
-              <p className="text-gray-400 text-sm">단독 서비스보다 패키지가 효율적입니다 — 2개 이상 묶으면 할인 적용</p>
-            </div>
-
-            {/* 이달 혜택 배너 */}
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-              <div className="flex items-center gap-2 shrink-0">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                <span className="text-xs font-black text-blue-700 uppercase tracking-wider">이달 한정</span>
-              </div>
-              <p className="text-sm text-blue-800 font-medium">
-                이번 달 신규 계약 3팀에게 <span className="font-black">경쟁사 분석 리포트 무료 제공</span> — 내 업종 상위 매장 전략을 한눈에 확인하세요.
+            <div className="text-center mb-10 md:mb-12">
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">가격 산출 근거</p>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">가격을 먼저 정해두고 일을 맞추지 않습니다</h2>
+              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
+                항목별 단가를 정해두고 매장에 필요한 항목만 더해 견적을 냅니다.
+                아래 단가는 실제로 나간 견적서에 쓰인 금액 그대로이고, 계산 과정도 그대로 공개합니다.
               </p>
-              <Link href="/contact" className="shrink-0 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors">
-                혜택 받기
-              </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start">
-              {[
-                {
-                  name: "스타터", price: "월 30~50만원대", badge: null,
-                  color: "from-blue-500 to-blue-700",
-                  desc: "마케팅을 처음 시작하는 매장",
-                  roi: "월 30만 투자 → 평균 +60만 매출",
-                  includes: ["블로그 포스팅 4건", "플레이스 기본 최적화", "월 리포트 1회"],
-                },
-                {
-                  name: "그로스", price: "월 70~120만원대", badge: "인기",
-                  color: "from-blue-600 to-indigo-700",
-                  desc: "본격적으로 매출을 올리고 싶은 매장",
-                  roi: "월 70만 투자 → 평균 +180만 매출",
-                  includes: ["블로그 포스팅 8건", "플레이스 주간 관리", "체험단 월 15명", "인스타 월 8건"],
-                },
-                {
-                  name: "풀패키지", price: "월 150~250만원대", badge: "최고 효율",
-                  color: "from-blue-700 to-indigo-800",
-                  desc: "전방위 마케팅으로 빠른 성장을 원하는 매장",
-                  roi: "월 150만 투자 → 평균 +400만+ 매출",
-                  includes: ["전 서비스 풀운영", "체험단 월 30명", "맘카페 바이럴 포함", "전담 전략 미팅"],
-                },
-              ].map((p) => (
-                <div key={p.name} className={`rounded-2xl overflow-hidden border ${p.badge === "인기" ? "border-blue-300 shadow-xl shadow-blue-100/50 scale-[1.02]" : "border-gray-100 shadow-sm"}`}>
-                  <div className={`bg-gradient-to-br ${p.color} p-5`}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-white/70 text-[11px] font-black uppercase tracking-wider">{p.badge === "인기" ? "가장 많이 선택" : p.badge ?? "기본"}</span>
-                      {p.badge === "인기" && <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-black">HOT</span>}
-                    </div>
-                    <h3 className="font-black text-white text-xl mb-0.5">{p.name}</h3>
-                    <div className="text-white/90 font-black text-lg">{p.price}</div>
-                  </div>
-                  <div className="bg-white p-5">
-                    <p className="text-xs text-gray-400 mb-3">{p.desc}</p>
-                    <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2.5 mb-4">
-                      <p className="text-[11px] text-blue-700 font-black">{p.roi}</p>
-                      <p className="text-[11px] text-blue-500 mt-0.5">3개월 평균 실측치 기준</p>
-                    </div>
-                    <ul className="space-y-2 mb-5">
-                      {p.includes.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-xs text-gray-600">
-                          <CheckCircle2 size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link href="/contact" className={`block text-center py-3 rounded-xl text-sm font-black transition-colors ${p.badge === "인기" ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" : "bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200"}`}>
-                      이 패키지로 상담하기
-                    </Link>
-                    <p className="text-[11px] text-gray-400 text-center mt-2">업종·규모에 따라 조정됩니다</p>
-                  </div>
+            {/* 1) 항목별 단가 */}
+            <div className="mb-12 md:mb-14">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                  <Calculator size={15} className="text-white" strokeWidth={2.5} />
                 </div>
-              ))}
+                <h3 className="text-base md:text-lg font-black text-gray-900">1) 항목별 단가</h3>
+              </div>
+              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                <table className="w-full min-w-[520px] text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="text-left font-black text-gray-700 px-4 py-3">항목</th>
+                      <th className="text-left font-black text-gray-700 px-4 py-3 whitespace-nowrap">단위</th>
+                      <th className="text-right font-black text-gray-700 px-4 py-3 whitespace-nowrap">단가</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {UNIT_PRICES.map((u) => (
+                      <tr key={u.item} className="border-b border-gray-100 last:border-0 bg-white">
+                        <td className="px-4 py-3 text-gray-800 font-bold">{u.item}</td>
+                        <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{u.unit}</td>
+                        <td className="px-4 py-3 text-right font-black text-gray-900 tabular-nums whitespace-nowrap">{u.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
+                모든 금액은 부가세 별도입니다. 네이버·인스타 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
+              </p>
+            </div>
+
+            {/* 2) 산출 예시 */}
+            <div className="mb-12 md:mb-14">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                  <Package size={15} className="text-white" strokeWidth={2.5} />
+                </div>
+                <h3 className="text-base md:text-lg font-black text-gray-900">2) 실제 견적 3건이 어떻게 나왔는가</h3>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5 items-start">
+                {CALC_EXAMPLES.map((c) => (
+                  <div key={c.title} className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden">
+                    <div className="px-5 py-4 border-b border-gray-100 bg-gray-50">
+                      <h4 className="font-black text-gray-900 text-sm mb-1">{c.title}</h4>
+                      <p className="text-xs text-gray-500 leading-relaxed">{c.sub}</p>
+                    </div>
+                    <div className="px-5 py-4">
+                      <ul className="space-y-2.5 mb-3">
+                        {c.lines.map((l) => (
+                          <li key={l.label} className="flex items-start justify-between gap-3 text-xs">
+                            <span className="text-gray-700 leading-snug">{l.label}</span>
+                            <span className="text-gray-400 tabular-nums whitespace-nowrap shrink-0">{l.calc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex items-center justify-between border-t border-gray-200 pt-3">
+                        <span className="text-xs font-black text-gray-500">월 합계</span>
+                        <span className="text-lg font-black text-blue-600 tabular-nums">{c.total}원</span>
+                      </div>
+                      <p className="text-[11px] text-gray-400 mt-2 leading-relaxed">{c.note}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3) 실제 계약 평균 */}
+            <div className="mb-12 md:mb-14">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                  <BarChart3 size={15} className="text-white" strokeWidth={2.5} />
+                </div>
+                <h3 className="text-base md:text-lg font-black text-gray-900">3) 그래서 평균은 얼마인가</h3>
+              </div>
+              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                <table className="w-full min-w-[560px] text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="text-left font-black text-gray-700 px-4 py-3 whitespace-nowrap">구성</th>
+                      <th className="text-left font-black text-gray-700 px-4 py-3">묶는 채널</th>
+                      <th className="text-right font-black text-gray-700 px-4 py-3 whitespace-nowrap">실제 범위</th>
+                      <th className="text-right font-black text-blue-700 px-4 py-3 whitespace-nowrap">평균</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {PRICE_BANDS.map((b) => (
+                      <tr key={b.scope} className="border-b border-gray-100 last:border-0 bg-white">
+                        <td className="px-4 py-3">
+                          <span className="font-black text-gray-900 block">{b.scope}</span>
+                          <span className="text-[11px] text-gray-400">계약 {b.n} 기준</span>
+                        </td>
+                        <td className="px-4 py-3 text-gray-600">{b.detail}</td>
+                        <td className="px-4 py-3 text-right text-gray-700 tabular-nums whitespace-nowrap">{b.range}</td>
+                        <td className="px-4 py-3 text-right font-black text-blue-600 tabular-nums whitespace-nowrap">{b.avg}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
+                현재 운영 중인 월 정액 계약과 최근 발행한 견적서에서 뽑은 숫자입니다. 부가세 별도이며 광고 집행비는 포함하지 않았습니다.
+              </p>
+            </div>
+
+            {/* 4) 업종별 차이 */}
+            <div className="mb-12 md:mb-14">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                  <Layers size={15} className="text-white" strokeWidth={2.5} />
+                </div>
+                <h3 className="text-base md:text-lg font-black text-gray-900">4) 업종마다 구성이 달라지는 지점</h3>
+              </div>
+              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                <table className="w-full min-w-[640px] text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="text-left font-black text-gray-700 px-4 py-3 whitespace-nowrap">업종</th>
+                      <th className="text-left font-black text-gray-700 px-4 py-3">고객이 검색하는 방식</th>
+                      <th className="text-left font-black text-gray-700 px-4 py-3">주력 채널</th>
+                      <th className="text-left font-black text-gray-700 px-4 py-3">월 물량</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {INDUSTRY_PRICE_DIFF.map((r) => (
+                      <tr key={r.industry} className="border-b border-gray-100 last:border-0 bg-white">
+                        <td className="px-4 py-3 font-black text-gray-900 whitespace-nowrap">{r.industry}</td>
+                        <td className="px-4 py-3 text-gray-600">{r.behavior}</td>
+                        <td className="px-4 py-3 text-gray-600">{r.channel}</td>
+                        <td className="px-4 py-3 text-gray-600">{r.volume}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
+                같은 예산이어도 업종에 따라 쓰는 곳이 달라집니다. 음식점은 배포 건수로, 청소업은 블로그 편수로, 카페는 사진과 인스타로 갑니다.
+              </p>
+            </div>
+
+            {/* 5) 왜 다를 수밖에 없는가 */}
+            <div>
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                  <TrendingUp size={15} className="text-white" strokeWidth={2.5} />
+                </div>
+                <h3 className="text-base md:text-lg font-black text-gray-900">5) 가격이 다를 수밖에 없는 이유</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                {WHY_PRICE_DIFFERS.map((w, i) => (
+                  <div
+                    key={w.title}
+                    className={`rounded-2xl border border-gray-200 bg-white shadow-sm p-4 md:p-5 ${i === WHY_PRICE_DIFFERS.length - 1 ? "md:col-span-2" : ""}`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="w-5 h-5 rounded-md bg-blue-50 text-blue-700 text-[11px] font-black flex items-center justify-center shrink-0 tabular-nums">
+                        {i + 1}
+                      </span>
+                      <h4 className="font-black text-gray-900 text-sm">{w.title}</h4>
+                    </div>
+                    <p className="text-xs md:text-[13px] text-gray-600 leading-relaxed">{w.body}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
+                <p className="text-sm text-blue-900 leading-relaxed flex-1">
+                  그래서 홈페이지에 정찰제 금액을 걸어두지 않습니다. 현황을 먼저 보고 필요한 항목만 골라 견적을 냅니다.
+                  진단과 견적은 0원이고, 견적을 받고 안 하셔도 됩니다.
+                </p>
+                <Link
+                  href="/contact"
+                  className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-black transition-colors"
+                >
+                  내 매장 견적 받기
+                  <ArrowRight size={15} strokeWidth={2.5} />
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -819,7 +1027,7 @@ export default function ServicesPage() {
                 결과에 책임지는 대행사입니다
               </h2>
               <p className="text-gray-500 text-sm max-w-xl mx-auto">
-                95% 재계약률은 단순 숫자가 아닙니다. 결과가 없으면 전략을 바꾸고, 실패하면 솔직히 말하는 것이 하랑의 방식입니다.
+                {SITE.stats.renewalRate} 재계약률은 단순 숫자가 아닙니다. 결과가 없으면 전략을 바꾸고, 실패하면 솔직히 말하는 것이 하랑의 방식입니다.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -856,10 +1064,10 @@ export default function ServicesPage() {
             <div className="bg-gray-950 rounded-2xl p-6 md:p-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 {[
-                  { val: "95%", label: "재계약률", sub: "10년 유지" },
-                  { val: "95%", label: "재계약률", sub: "500+ 클라이언트" },
+                  { val: SITE.stats.renewalRate, label: "재계약률", sub: "10년 유지" },
+                  { val: "500+", label: "완료 프로젝트", sub: "2020년~현재" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24h", label: "연락 보장", sub: "대표 직접 응대" },
+                  { val: "24h", label: "연락 보장", sub: "전담 팀장 직접 응대" },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
@@ -931,58 +1139,53 @@ export default function ServicesPage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">예산별 패키지</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">예산에 맞는 조합을 골라보세요</h2>
-              <p className="text-gray-500 text-sm">정확한 금액은 무료 상담에서 업종·지역·목표 기반으로 안내드립니다.</p>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">실제로 이런 조합으로 계약합니다</h2>
+              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">위 단가를 더하면 아래 세 가지 형태가 나옵니다. 부가세 별도이고 광고 집행비는 실비로 따로 나갑니다.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
                 {
-                  tier: "STARTER",
-                  price: "30~50만원",
-                  period: "/ 월",
-                  desc: "소규모 매장 · 처음 시작하는 분",
-                  color: "from-blue-500 to-blue-700",
+                  tier: "한 채널 집중",
+                  price: "월 30만원",
+                  period: "부가세 별도",
+                  desc: "이미 순위가 어느 정도 나오거나, 한 곳만 확실히 잡으면 되는 매장",
                   highlight: false,
-                  services: ["네이버 플레이스 SEO", "블로그 월 4편", "월 성과 리포트"],
-                  result: "플레이스 Top 10 진입 목표",
+                  services: ["플레이스 SEO 최적화 1회", "대표키워드 5개 상위노출 관리", "리뷰 유도 동선 설계", "순위 모니터링 · 경쟁업체 분석", "월 성과 리포트"],
+                  result: "3위권 키워드를 1~2위로",
                 },
                 {
-                  tier: "GROWTH",
-                  price: "70~120만원",
-                  period: "/ 월",
-                  desc: "매출 성장이 급한 매장 · 인기",
-                  color: "from-blue-600 to-indigo-700",
+                  tier: "두세 채널 묶음",
+                  price: "월 45~77만원",
+                  period: "평균 61만원 · 부가세 별도",
+                  desc: "검색 유입부터 만들어야 하는 매장 · 가장 많이 선택하는 구성",
                   highlight: true,
-                  services: ["네이버 플레이스 SEO", "블로그 월 8편", "체험단 or SNS 운영", "리뷰 관리", "월 성과 리포트"],
-                  result: "플레이스 Top 3 + 방문객 +100% 목표",
+                  services: ["플레이스 SEO 최적화", "블로그 관리대행 월 10~15편", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"],
+                  result: "검색 유입 만들고 문의 전환 붙이기",
                 },
                 {
-                  tier: "FULL",
-                  price: "150~250만원",
-                  period: "/ 월",
-                  desc: "경쟁 업종 · 빠른 1등 목표",
-                  color: "from-blue-700 to-indigo-800",
+                  tier: "전 채널 통합",
+                  price: "월 120~220만원",
+                  period: "평균 167만원 · 부가세 별도",
+                  desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
                   highlight: false,
-                  services: ["전 채널 통합 운영", "블로그 월 12편+", "SNS + 체험단", "맘카페 바이럴", "광고 운영 (매체비 별도)", "주간 성과 리포트"],
-                  result: "업종 1위 + 매출 극대화 목표",
+                  services: ["블로그 · 카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO · 트래픽 · 길찾기", "인스타 피드 · 릴스 월 8~20건", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
+                  result: "지역 키워드 전 구간 점유",
                 },
               ].map((pkg) => (
                 <div
                   key={pkg.tier}
                   className={`rounded-2xl overflow-hidden border ${pkg.highlight ? "border-blue-200 shadow-xl shadow-blue-100/50 scale-[1.02]" : "border-gray-100 shadow-sm"} transition-all`}
                 >
-                  <div className={`bg-gradient-to-br ${pkg.color} px-6 py-6`}>
+                  <div className={`px-6 py-6 ${pkg.highlight ? "bg-blue-600" : "bg-gray-900"}`}>
                     {pkg.highlight && (
-                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[11px] font-black mb-3 uppercase tracking-wider">
+                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[11px] font-black mb-3">
                         가장 많이 선택
                       </div>
                     )}
-                    <div className="text-[11px] font-black text-white/60 uppercase tracking-widest mb-1">{pkg.tier}</div>
-                    <div className="flex items-end gap-1 mb-1">
-                      <span className="text-2xl font-black text-white">{pkg.price}</span>
-                      <span className="text-white/60 text-xs mb-1">{pkg.period}</span>
-                    </div>
-                    <p className="text-white/70 text-xs">{pkg.desc}</p>
+                    <div className="text-[11px] font-black text-white/60 tracking-widest mb-1">{pkg.tier}</div>
+                    <div className="text-2xl font-black text-white tabular-nums mb-0.5">{pkg.price}</div>
+                    <div className="text-white/60 text-[11px] mb-1.5">{pkg.period}</div>
+                    <p className="text-white/70 text-xs leading-relaxed">{pkg.desc}</p>
                   </div>
                   <div className="bg-white p-6">
                     <ul className="space-y-2 mb-5">
@@ -1010,7 +1213,9 @@ export default function ServicesPage() {
                 </div>
               ))}
             </div>
-            <p className="text-center text-[11px] text-gray-400 mt-6">* 업종·목표·경쟁 강도에 따라 금액이 달라질 수 있습니다. 광고 집행비(네이버·인스타 등)는 별도입니다.</p>
+            <p className="text-center text-[11px] text-gray-400 mt-6 leading-relaxed">
+              * 위 금액은 실제 계약·견적 9건에서 뽑은 범위입니다. 같은 구성이어도 출발점·상권 경쟁도에 따라 달라지므로 진단 후 항목별로 다시 계산합니다.
+            </p>
           </div>
         </section>
 
@@ -1041,7 +1246,7 @@ export default function ServicesPage() {
                 {
                   label: "담당자",
                   other: "신입·인턴 가능, 자주 교체",
-                  harang: "대표 직접 담당 · 500+ 경험",
+                  harang: "전담 팀장 직접 관리 · 500+ 경험",
                   highlight: true,
                 },
                 {
@@ -1071,7 +1276,7 @@ export default function ServicesPage() {
                 {
                   label: "재계약률",
                   other: "업계 평균 65%",
-                  harang: "95% (10년 유지)",
+                  harang: `${SITE.stats.renewalRate} (10년 유지)`,
                   highlight: false,
                 },
               ].map((row, i) => (
@@ -1154,7 +1359,7 @@ export default function ServicesPage() {
                 { label: "상담 비용", value: "0원" },
                 { label: "계약 강요", value: "없음" },
                 { label: "응답 시간", value: "24h 이내" },
-                { label: "재계약률", value: "95%" },
+                { label: "재계약률", value: SITE.stats.renewalRate },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/8 border border-white/12 text-xs">
                   <CheckCircle2 size={11} className="text-blue-400" strokeWidth={2.5} />

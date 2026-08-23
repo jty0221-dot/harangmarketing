@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Handshake
 import { PlatformLogo } from "../sns/PlatformLogo";
 import type { PlatformId } from "../lib/sns-store";
 
+import { SITE } from "../lib/seo";
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400">
@@ -38,7 +39,7 @@ export default function Footer() {
             <div>
               <div className="flex items-center gap-1.5 mb-2">
                 <Handshake size={13} className="text-yellow-300" strokeWidth={2.5} />
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>재계약률 95% · 500+ 프로젝트</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
               </div>
               <h3 className="text-lg md:text-xl font-black text-white mb-1">
                 지금 바로 무료 전략 진단을 받아보세요
@@ -231,10 +232,10 @@ export default function Footer() {
         </div>
         <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-700">
           {[
-            ["재계약률 95%", "10년간 유지"],
+            [`재계약률 ${SITE.stats.renewalRate}`, "10년간 유지"],
             ["상담 비용 0원", "계약 강요 없음"],
-            ["500+ 프로젝트", "대표 경력 10년+"],
-            ["24시간 내 연락", "대표 직접 응답"],
+            ["500+ 프로젝트", "실무 경력 10년+"],
+            ["24시간 내 연락", "전담 팀장 직접 응답"],
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">
               <span className="font-black" style={{ color: "var(--h-blue-light)" }}>{val}</span>

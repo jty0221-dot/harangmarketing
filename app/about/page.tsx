@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
-    title: "하랑마케팅 — 대표 직접 담당, 결과 없으면 솔직히 말씀드립니다",
+    title: "하랑마케팅 — 전담 팀장 직접 관리, 결과 없으면 솔직히 말씀드립니다",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: `${BASE}/about`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
@@ -120,7 +120,7 @@ const PROMISES = [
     color: "from-blue-600 to-blue-900",
     title: "실패 경험에서 나오는 진정성",
     desc: "하랑 대표는 카페 창업을 직접 했다가 실패한 경험이 있습니다. 마케팅이 단순한 비용이 아니라 생존을 위한 투자임을 누구보다 잘 압니다. 대표님의 돈을 제 돈처럼 무겁게 생각합니다.",
-    badge: "대표 직접 담당",
+    badge: "전담 팀장 직접 관리",
   },
 ];
 
@@ -182,7 +182,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-3 gap-4 max-w-md">
               {[
                 { val: "500+", label: "클라이언트" },
-                { val: "95%", label: "재계약률" },
+                { val: SITE.stats.renewalRate, label: "재계약률" },
                 { val: "10년+", label: "경력" },
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
@@ -201,7 +201,7 @@ export default function AboutPage() {
           facts={[
             { label: "대표", value: "전태영" },
             { label: "설립", value: "2020.04" },
-            { label: "본사", value: "경기 고양 일산" },
+            { label: "담당 지역", value: "경기·서울·인천" },
             { label: "클라이언트", value: "500곳+" },
           ]}
         />
@@ -410,7 +410,7 @@ export default function AboutPage() {
               {[
                 { value: "10년+", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
                 { value: "500+", label: "함께한 매장", sub: "전국 소상공인" },
-                { value: "95%", label: "재계약률", sub: "성과로 증명" },
+                { value: SITE.stats.renewalRate, label: "재계약률", sub: "성과로 증명" },
                 { value: "0원", label: "상담 비용", sub: "계약 강요 없음" },
               ].map((s) => (
                 <div key={s.label} className="bg-white rounded-2xl p-4 md:p-5 text-center border border-gray-100 shadow-sm">
@@ -442,7 +442,7 @@ export default function AboutPage() {
                   <div className="py-3 px-4 rounded-t-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
                 </div>
                 {[
-                  { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "대표 직접 담당 (처음부터 끝까지)" },
+                  { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "전담 팀장 직접 관리 (처음부터 끝까지)" },
                   { item: "상담 비용", general: "유료 또는 계약 압박", harang: "완전 무료 · 계약 강요 없음" },
                   { item: "성과 보고", general: "복잡한 지표 · 실제 매출 연결 안 됨", harang: "매월 매출 연결 지표 리포트" },
                   { item: "작업 투명성", general: "어디에 썼는지 알기 어려움", harang: "매체사 전달 내역 100% 공유" },
@@ -466,7 +466,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mt-1">
                   <div />
                   <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-400 font-semibold">업계 평균</div>
-                  <div className="rounded-b-2xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 px-4 text-center text-xs text-white font-black">재계약률 95%</div>
+                  <div className="rounded-b-2xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 px-4 text-center text-xs text-white font-black">재계약률 {SITE.stats.renewalRate}</div>
                 </div>
               </div>
             </div>
@@ -516,7 +516,7 @@ export default function AboutPage() {
                     { year: "2020", event: "하랑마케팅 공식 설립 (4월 15일)", note: "'제대로 된 대행사를 만들자' — 소상공인 전문 마케팅 대행 시작" },
                     { year: "2022", event: "누적 클라이언트 100곳 돌파", note: "카페·음식점 중심 → 병원·뷰티·학원으로 업종 확장" },
                     { year: "2024", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
-                    { year: "2026", event: "누적 클라이언트 500곳+, 재계약률 95%", note: "7년차 — 대표 직접 담당 원칙 유지 중" },
+                    { year: "2026", event: `누적 클라이언트 500곳+, 재계약률 ${SITE.stats.renewalRate}`, note: "7년차 — 전담 팀장 직접 관리 원칙 유지 중" },
                   ].map((item, i) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
                       <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
@@ -535,7 +535,7 @@ export default function AboutPage() {
 
             <div className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center">
               <p className="text-sm font-black text-gray-900 mb-1">더 궁금한 것이 있으신가요?</p>
-              <p className="text-xs text-gray-500 mb-4">24시간 이내 대표가 직접 답변드립니다</p>
+              <p className="text-xs text-gray-500 mb-4">24시간 이내 전담 팀장이 직접 답변드립니다</p>
               <div className="flex flex-col sm:flex-row gap-2 justify-center">
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-sm transition-colors">

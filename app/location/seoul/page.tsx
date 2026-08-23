@@ -5,6 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users, Star, Building2 } from "lucide-react";
 
+import { SITE } from "../../lib/seo";
 const BASE = "https://www.harangmarketing.com";
 
 const SEOUL_LD = {
@@ -15,7 +16,7 @@ const SEOUL_LD = {
   "url": `${BASE}/location/seoul`,
   "logo": `${BASE}/favicon.svg`,
   "image": `${BASE}/og-image.png`,
-  "description": "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 대표 직접 담당. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문.",
+  "description": "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 전담 팀장 직접 관리. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문.",
   "areaServed": [
     { "@type": "City", "name": "서울특별시" },
     { "@type": "AdministrativeArea", "name": "강남구" },
@@ -40,7 +41,7 @@ const SEOUL_LD = {
 
 export const metadata: Metadata = {
   title: "서울 소상공인 마케팅 대행사 — 하랑마케팅 | 네이버 플레이스·블로그·SNS",
-  description: "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 대표 직접 담당. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문. 무료 상담.",
+  description: "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 전담 팀장 직접 관리. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문. 무료 상담.",
   keywords: [
     "서울 마케팅 대행사", "서울 소상공인 마케팅", "서울 플레이스 SEO",
     "강남 마케팅", "강서 마케팅", "마포 마케팅", "성수 마케팅", "홍대 마케팅",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/location/seoul` },
   openGraph: {
     title: "서울 소상공인 마케팅 대행사 — 하랑마케팅",
-    description: "서울 강남·강서·마포·성수·홍대 지역 실제 성과 보유. 10년 경력 대표 직접 담당.",
+    description: "서울 강남·강서·마포·성수·홍대 지역 실제 성과 보유. 10년 경력 전담 팀장 직접 관리.",
     url: `${BASE}/location/seoul`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "서울 마케팅 대행사 하랑마케팅" }],
   },
@@ -90,7 +91,7 @@ export default function SeoulPage() {
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {[
                 { val: "150+", label: "서울 클라이언트" },
-                { val: "95%", label: "재계약률" },
+                { val: SITE.stats.renewalRate, label: "재계약률" },
                 { val: "10년+", label: "경력" },
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
@@ -115,11 +116,11 @@ export default function SeoulPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="서울 소상공인 마케팅 대행사, 어디에 맡겨야 하나요?"
-          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열해 플레이스 상위 노출까지 보통 1~2개월이 걸리며, 하랑마케팅이 진행한 서울 강서 피부과는 6개월간 신규 예약 +300%, 서울 마포 음식점은 4개월간 배달 매출 +113%를 달성했습니다. 본사는 경기 고양 일산이며 서울 전 지역 방문 상담과 비대면 상담 모두 가능합니다. 상담 비용은 0원입니다."
+          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열해 플레이스 상위 노출까지 보통 1~2개월이 걸리며, 하랑마케팅이 진행한 서울 강서 피부과는 6개월간 신규 예약 +300%, 서울 마포 음식점은 4개월간 배달 매출 +113%를 달성했습니다. 서울 전 지역 방문 상담과 비대면 상담 모두 가능합니다. 상담 비용은 0원입니다."
           facts={[
             { label: "서울 대표 성과", value: "신규예약 +300%" },
             { label: "상위 노출 기간", value: "1~2개월" },
-            { label: "시작 비용", value: "월 30만원~" },
+            { label: "최소 계약", value: "3개월" },
             { label: "상담 비용", value: "0원" },
           ]}
         />

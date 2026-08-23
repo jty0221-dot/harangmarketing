@@ -8,6 +8,7 @@ import {
   MapPin, BarChart3, AlertCircle, Handshake,
 } from "lucide-react";
 
+import { SITE } from "../lib/seo";
 const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
@@ -17,8 +18,8 @@ const CHECKS = [
 ];
 
 const CASES = [
-  { category: "카페", loc: "경기 고양", result: "플레이스 1위", period: "3개월", metric: "+167% 방문객" },
-  { category: "네일샵", loc: "경기 파주", result: "예약 마감", period: "6주", metric: "예약 100% 마감" },
+  { category: "카페", loc: "경기 포천", result: "플레이스 1위", period: "3개월", metric: "+167% 방문객" },
+  { category: "네일샵", loc: "경기 부천", result: "예약 마감", period: "6주", metric: "예약 100% 마감" },
   { category: "음식점", loc: "서울 마포", result: "매출 2배", period: "4개월", metric: "+113% 매출" },
 ];
 
@@ -175,7 +176,7 @@ export default function FreeCheckPage() {
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-5">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Handshake size={12} className="text-yellow-300" strokeWidth={2.5} />
-                    <span className="text-blue-200 text-[11px]">재계약률 95% · 500+ 프로젝트</span>
+                    <span className="text-blue-200 text-[11px]">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
                   </div>
                   <h2 className="text-white font-black text-lg leading-tight">무료 플레이스 진단 신청</h2>
                   <p className="text-blue-200 text-xs mt-1">비용 0원 · 계약 강요 없음 · 1영업일 내 결과</p>
@@ -278,7 +279,7 @@ export default function FreeCheckPage() {
                 <div className="border-t border-gray-100 px-6 py-3 bg-gray-50 flex items-center justify-center gap-4">
                   <span className="flex items-center gap-1 text-[11px] text-gray-500">
                     <MapPin size={10} className="text-blue-500" strokeWidth={2.5} />
-                    경기 고양시
+                    경기·서울·인천
                   </span>
                   <span className="text-[11px] text-gray-400">10년 경력</span>
                   <span className="text-[11px] text-gray-400">500+ 프로젝트</span>

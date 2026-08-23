@@ -12,7 +12,7 @@ import { getNaverBlogPosts } from "../lib/naver-blog";
 
 export const metadata: Metadata = {
   title: "마케팅 블로그 — 하랑마케팅 | 소상공인 실전 마케팅 노하우",
-  description: "10년 경력 대표가 직접 쓰는 소상공인 마케팅 노하우. 네이버 플레이스 SEO, 블로그 마케팅, 리뷰 관리, 맘카페 바이럴 등 실제 성과 기반 인사이트.",
+  description: "10년 경력 실무진이 직접 쓰는 소상공인 마케팅 노하우. 네이버 플레이스 SEO, 블로그 마케팅, 리뷰 관리, 맘카페 바이럴 등 실제 성과 기반 인사이트.",
   keywords: ["소상공인 마케팅 블로그", "플레이스 SEO 방법", "카페 마케팅 노하우", "마케팅 대행사 블로그", "하랑마케팅 블로그"],
   openGraph: {
     title: "하랑마케팅 블로그 — 소상공인 실전 마케팅 인사이트",
@@ -186,7 +186,7 @@ const _SAMPLE_POSTS = [
     title: "학원 수강생 55% 늘린 마케팅 — 맘카페부터 블로그까지",
     preview: "학원 마케팅은 학부모를 설득하는 일입니다. 학부모가 가는 채널(맘카페, 네이버 플레이스, 블로그)에 집중하면 수강생이 늘어납니다. 3개월 실전 과정을 공개합니다.",
     readTime: "8분",
-    result: "경기 고양 영어학원 수강생 +55% · 3개월",
+    result: "수도권 영어학원 수강생 +55% · 3개월",
     href: "/blog/academy-marketing-guide",
     internal: true,
   },
@@ -209,7 +209,7 @@ export default async function BlogPage() {
               마케팅 인사이트,<br /><span className="text-blue-400">무료로 공유합니다</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
-              10년 경력 대표가 직접 쓰는 소상공인 마케팅 노하우.
+              10년 경력 실무진이 직접 쓰는 소상공인 마케팅 노하우.
               이론이 아닌 실제 성과로 검증된 방법만 담습니다.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -238,7 +238,7 @@ export default async function BlogPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               {[
-                { icon: BookOpen, text: "대표 직접 집필" },
+                { icon: BookOpen, text: "실무진 직접 집필" },
                 { icon: TrendingUp, text: "실제 성과 기반" },
                 { icon: Star, text: "500+ 프로젝트 경험" },
                 { icon: MapPin, text: "소상공인 전문" },
@@ -279,7 +279,7 @@ export default async function BlogPage() {
             <div className="flex-1 text-center md:text-left">
               <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>
               <h3 className="text-white font-black text-lg md:text-xl mb-1">매주 소상공인 마케팅 인사이트를 카카오로 받아보세요</h3>
-              <p className="text-blue-100 text-sm">매주 1회 · 10년 경력 대표 직접 작성 · 비용 없음</p>
+              <p className="text-blue-100 text-sm">매주 1회 · 10년 경력 실무진 직접 작성 · 비용 없음</p>
             </div>
             <a
               href="https://pf.kakao.com/_MuUkG/chat"

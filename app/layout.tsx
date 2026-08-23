@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | 하랑마케팅",
   },
   description:
-    "10년 경력 대표 직접 담당. 네이버 플레이스·블로그·체험단·인스타그램으로 매출 상승. 상담 무료, 재계약률 95%.",
+    `10년 경력 담당자가 처음부터 끝까지. 네이버 플레이스·블로그·체험단·인스타그램으로 매출 상승. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
   keywords: [
     "마케팅대행사", "소상공인마케팅", "자영업자마케팅",
     "네이버플레이스", "플레이스SEO", "플레이스상위노출",
@@ -38,10 +38,10 @@ export const metadata: Metadata = {
     "카카오맵마케팅", "지역마케팅", "소상공인광고",
     "네이버플레이스순위올리기", "플레이스마케팅", "소상공인블로그",
     "서울마케팅대행사", "경기마케팅대행사", "전국마케팅대행사",
-    "소상공인플레이스", "대표직접담당마케팅", "재계약률95",
+    "소상공인플레이스", "담당자직접관리마케팅", "재계약률97",
     "카페플레이스상위노출", "음식점플레이스", "학원블로그마케팅",
   ],
-  authors: [{ name: "하랑마케팅 대표 전태영", url: "https://www.harangmarketing.com/about" }],
+  authors: [{ name: "하랑마케팅", url: "https://www.harangmarketing.com/about" }],
   creator: "하랑마케팅",
   publisher: "하랑마케팅",
   alternates: {
@@ -60,21 +60,21 @@ export const metadata: Metadata = {
     siteName: "하랑마케팅",
     title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
-      "플레이스·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 상담 무료, 재계약률 95%, 경기·서울·인천 전 지역.",
+      `플레이스·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 상담 무료, 재계약률 ${SITE.stats.renewalRate}, 경기·서울·인천 전 지역.`,
     images: [
       {
         url: "https://www.harangmarketing.com/og-image.png",
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 95% · 10년 경력",
+        alt: `하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 ${SITE.stats.renewalRate} · 10년 경력`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
-    description: "10년 경력 대표 직접 담당 · 플레이스 SEO · 블로그 · 체험단 · 인스타그램 · 재계약률 95%",
+    description: `10년 경력 · 플레이스 SEO · 블로그 · 체험단 · 인스타그램 · 재계약률 ${SITE.stats.renewalRate}`,
     images: ["/og-image.png"],
   },
   icons: {
@@ -304,7 +304,6 @@ gtag('config', '${GA_ID}');`,
               email: SITE.email,
               parentOrganization: { "@id": ORG_ID },
               description: ANSWER_SENTENCES.whatWeDo,
-              priceRange: SITE.priceRange,
               currenciesAccepted: "KRW",
               paymentAccepted: "계좌이체, 신용카드",
               address: {
@@ -341,8 +340,6 @@ gtag('config', '${GA_ID}');`,
                 itemListElement: [
                   {
                     "@type": "Offer",
-                    priceCurrency: "KRW",
-                    price: SITE.priceFrom,
                     itemOffered: {
                       "@type": "Service",
                       name: "네이버 플레이스 SEO",
@@ -352,8 +349,6 @@ gtag('config', '${GA_ID}');`,
                   },
                   {
                     "@type": "Offer",
-                    priceCurrency: "KRW",
-                    price: SITE.priceFrom,
                     itemOffered: {
                       "@type": "Service",
                       name: "블로그 마케팅",
@@ -363,8 +358,6 @@ gtag('config', '${GA_ID}');`,
                   },
                   {
                     "@type": "Offer",
-                    priceCurrency: "KRW",
-                    price: SITE.priceFrom,
                     itemOffered: {
                       "@type": "Service",
                       name: "체험단 모집 대행",
@@ -373,8 +366,6 @@ gtag('config', '${GA_ID}');`,
                   },
                   {
                     "@type": "Offer",
-                    priceCurrency: "KRW",
-                    price: SITE.priceFrom,
                     itemOffered: {
                       "@type": "Service",
                       name: "인스타그램 마케팅",
@@ -383,8 +374,6 @@ gtag('config', '${GA_ID}');`,
                   },
                   {
                     "@type": "Offer",
-                    priceCurrency: "KRW",
-                    price: SITE.priceFrom,
                     itemOffered: {
                       "@type": "Service",
                       name: "카카오맵 마케팅",
@@ -393,8 +382,6 @@ gtag('config', '${GA_ID}');`,
                   },
                   {
                     "@type": "Offer",
-                    priceCurrency: "KRW",
-                    price: SITE.priceFrom,
                     itemOffered: {
                       "@type": "Service",
                       name: "맘카페 바이럴 마케팅",

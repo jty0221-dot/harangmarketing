@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ArrowRight, MessageCircle, Home, Search, Phone } from "lucide-react";
 
+import { SITE } from "./lib/seo";
 export const metadata: Metadata = {
   title: "페이지를 찾을 수 없습니다 — 하랑마케팅",
   description: "요청하신 페이지가 존재하지 않습니다. 하랑마케팅 홈으로 돌아가세요.",
@@ -89,7 +90,7 @@ export default function NotFound() {
               </span>
               <span>상담 비용 0원</span>
               <span>24시간 내 연락</span>
-              <span>재계약률 95%</span>
+              <span>재계약률 {SITE.stats.renewalRate}</span>
             </div>
           </div>
         </div>

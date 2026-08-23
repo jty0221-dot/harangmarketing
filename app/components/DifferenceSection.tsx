@@ -6,7 +6,7 @@ import RevealOnScroll from "./RevealOnScroll";
 const COMPARISONS = [
   {
     pain: "계약 후 담당자가 바뀌어 처음부터 다시 설명",
-    harang: "대표가 계약부터 종료까지 직접 1:1 담당",
+    harang: "전담 팀장이 계약부터 종료까지 직접 1:1 관리",
     detail: "10년간 담당자 교체 0회. 처음 상담한 사람이 끝까지 책임집니다.",
   },
   {
@@ -26,7 +26,7 @@ const COMPARISONS = [
   },
   {
     pain: "실제론 프리랜서에 재하청, 관리 공백 발생",
-    harang: "외주 없음 · 모든 작업 대표가 직접 진행",
+    harang: "외주 없음 · 모든 작업 전담 팀장이 직접 진행",
     detail: "대행사가 또 대행사에 맡기는 구조는 품질도, 책임도 모호해집니다. 하랑은 절대 하지 않습니다.",
   },
 ];

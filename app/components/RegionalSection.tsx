@@ -1,6 +1,7 @@
 import { MapPin, TrendingUp, Users, Star, Globe } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
 
+import { SITE } from "../lib/seo";
 const REGIONS = [
   {
     name: "수도권",
@@ -62,7 +63,7 @@ const STATS = [
   { icon: Globe, val: "전국", sub: "서비스 지역" },
   { icon: Users, val: "500+", sub: "누적 클라이언트" },
   { icon: TrendingUp, val: "10년+", sub: "마케팅 현장 경력" },
-  { icon: Star, val: "95%", sub: "재계약률" },
+  { icon: Star, val: SITE.stats.renewalRate, sub: "재계약률" },
 ];
 
 export default function RegionalSection() {
@@ -80,7 +81,7 @@ export default function RegionalSection() {
                 className="text-2xl md:text-3xl font-black leading-tight"
                 style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}
               >
-                전국 어디서나,<br className="md:hidden" /> 대표가 직접 담당합니다
+                전국 어디서나,<br className="md:hidden" /> 전담 팀장이 직접 관리합니다
               </h2>
               <p className="text-sm mt-3 leading-relaxed" style={{ color: "var(--h-muted)" }}>
                 대부분의 마케팅은 비대면으로 진행되기 때문에 지역 제한이 없습니다.<br />

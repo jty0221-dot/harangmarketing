@@ -42,7 +42,7 @@ export async function GET() {
   <channel>
     <title>하랑마케팅 — 소상공인 마케팅 인사이트</title>
     <link>${BASE}/blog</link>
-    <description>10년 경력 대표가 직접 쓰는 네이버 플레이스·블로그·SNS 마케팅 실전 노하우</description>
+    <description>10년 경력 실무진이 직접 쓰는 네이버 플레이스·블로그·SNS 마케팅 실전 노하우</description>
     <language>ko</language>
     <lastBuildDate>${lastBuild}</lastBuildDate>
     <atom:link href="${BASE}/rss.xml" rel="self" type="application/rss+xml"/>

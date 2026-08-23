@@ -62,7 +62,7 @@ const INDUSTRIES = [
     before: "일 방문 28명",
     after: "일 방문 75명",
     duration: "3개월",
-    location: "경기 고양",
+    location: "경기 포천",
   },
   {
     icon: UtensilsCrossed,
@@ -76,7 +76,7 @@ const INDUSTRIES = [
     before: "월 매출 480만",
     after: "월 매출 1,022만",
     duration: "4개월",
-    location: "경기 고양",
+    location: "경기 부천",
   },
   {
     icon: Scissors,
@@ -90,7 +90,7 @@ const INDUSTRIES = [
     before: "예약 가동률 40%",
     after: "예약 100% 마감",
     duration: "2개월",
-    location: "경기 파주",
+    location: "경기 부천",
   },
   {
     icon: Stethoscope,
@@ -104,7 +104,7 @@ const INDUSTRIES = [
     before: "월 신규 12건",
     after: "월 신규 33건",
     duration: "4개월",
-    location: "경기 안양",
+    location: "수도권",
   },
   {
     icon: GraduationCap,
@@ -118,7 +118,7 @@ const INDUSTRIES = [
     before: "수강생 62명",
     after: "수강생 96명",
     duration: "3개월",
-    location: "경기 고양",
+    location: "수도권",
   },
   {
     icon: ShoppingBag,
@@ -153,7 +153,7 @@ const COMPARE_ITEMS = [
   { category: "전략 설계", harang: "업종별 맞춤형 전략 (카페·병원·쇼핑몰 특화)", general: "일괄 패키지, 템플릿 기반" },
   { category: "분석 방식", harang: "데이터 기반, 매출 직접 연동 추적", general: "노출·클릭 수 위주, 감각 운영" },
   { category: "보고 체계", harang: "월 2회 상세 리포트 + 주간 최적화", general: "월 1회 간단 보고, 설정 후 방치" },
-  { category: "담당자", harang: "10년 경력 대표가 1:1 전담", general: "신입 담당자 수시 교체" },
+  { category: "담당자", harang: "10년 경력 전담 팀장이 1:1 관리", general: "신입 담당자 수시 교체" },
   { category: "성과 기준", harang: "실제 방문객·예약·매출 기준", general: "노출 수·팔로워 수 등 허수 지표" },
   { category: "소통 방식", harang: "카카오·전화 24시간 응대, 직접 연락", general: "이메일·업무시스템, 응답 지연 빈번" },
 ];
@@ -167,30 +167,27 @@ const PROCESS_STEPS = [
 
 const PACKAGES = [
   {
-    name: "스타터",
-    priceHint: "월 30~50만원대",
-    desc: "처음 시작하는 분들을 위한 기본 패키지",
-    roi: "투자 대비 평균 1.8배 효과",
-    features: ["플레이스 SEO 최적화", "블로그 관리 (주 2회)", "월 리포트 1회"],
-    color: "from-blue-500 to-blue-600",
+    name: "한 채널 집중",
+    priceHint: "월 30만원",
+    desc: "한 곳만 확실히 잡으면 되는 매장",
+    roi: "3위권 키워드를 1~2위로",
+    features: ["플레이스 SEO 최적화 1회", "대표키워드 5개 관리", "리뷰 유도 동선 설계", "월 리포트 1회"],
     popular: false,
   },
   {
-    name: "그로스",
-    priceHint: "월 70~100만원대",
-    desc: "빠른 성장이 필요한 매장을 위한 핵심 패키지",
-    roi: "투자 대비 평균 2.4배 효과",
-    features: ["플레이스 SEO + 순위상승", "블로그 배포 (월 4건)", "체험단 모집 대행", "리뷰 마케팅", "월 리포트 2회"],
-    color: "from-blue-600 to-indigo-600",
+    name: "두세 채널 묶음",
+    priceHint: "월 45~77만원",
+    desc: "검색 유입부터 만들어야 하는 매장",
+    roi: "검색 유입 만들고 문의로 전환",
+    features: ["플레이스 SEO 최적화", "블로그 관리대행 월 10~15편", "파워컨텐츠 원고 설계·검수", "네이버 광고 운영대행", "월 리포트 2회"],
     popular: true,
   },
   {
-    name: "풀패키지",
-    priceHint: "월 150만원~",
-    desc: "멀티채널 통합 운영이 필요한 업체",
-    roi: "투자 대비 평균 3.1배 효과",
-    features: ["그로스 전체 포함", "인스타그램 마케팅", "맘카페 바이럴", "카카오맵 마케팅", "주간 최적화 리포트"],
-    color: "from-blue-700 to-indigo-800",
+    name: "전 채널 통합",
+    priceHint: "월 120~220만원",
+    desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
+    roi: "지역 키워드 전 구간 점유",
+    features: ["블로그·카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
     popular: false,
   },
 ];
@@ -198,9 +195,32 @@ const PACKAGES = [
 
 const TRUST_ITEMS = [
   { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
-  { icon: Handshake, title: "95% 재계약률", desc: "성과로 증명. 고객이 먼저 다시 찾는 대행사", color: "from-blue-500 to-blue-700" },
+  { icon: Handshake, title: `${SITE.stats.renewalRate} 재계약률`, desc: "성과로 증명. 고객이 먼저 다시 찾는 대행사", color: "from-blue-500 to-blue-700" },
   { icon: Clock, title: "24시간 내 응답", desc: "문의 후 24시간 이내 연락, 평일 항상 대응", color: "from-blue-600 to-indigo-700" },
   { icon: TrendingUp, title: "매출 중심 관리", desc: "노출 수가 아닌 실제 매출 증대를 목표로 운영", color: "from-blue-700 to-indigo-800" },
+];
+
+/**
+ * 신뢰 마퀴 문구 — 끝기지 않게 흘려야 해서 렌더링에서 두 번 펜다.
+ * 예전엔 같은 배열을 두 벌 적어 두었는데, 한쪽만 고치면 흘러가다 문구가 바뀜다.
+ * 근거 없는 수치와 재촉 문구는 넣지 않는다 (WDS — 재촉형 UI 금지).
+ */
+const TICKER = [
+  "플레이스 Top 5 진입 · 평균 6주 만에",
+  `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
+  "월 신규 예약 +175% · 수도권 한의원",
+  "전담 팀장 직접 관리 · 상담 비용 0원",
+  "방문객 +167% · 경기 포천 카페",
+  "배달 매출 +113% · 경기 부천 음식점",
+  "수강생 +55% · 수도권 학원",
+  "예약 완전 마감 · 경기 부천 네일샵",
+  "상담 비용 0원 · 계약 강요 없음",
+  "10년+ 경력 · 업종별 맞춤 전략",
+  "24시간 내 연락 보장",
+  "블로그 지역 키워드 4주 만에 상위권",
+  "카카오맵 리뷰 0 → 78개 · 2개월",
+  "매출 월평균 +89% · 3개월 계약 기준",
+  "플레이스 지역 음식점 1위 달성",
 ];
 
 
@@ -222,58 +242,20 @@ export default function HomePage() {
           facts={[
             { label: "설립", value: "2020년" },
             { label: "누적 프로젝트", value: "500건+" },
-            { label: "재계약률", value: "95%" },
-            { label: "시작 비용", value: "월 30만원~" },
+            { label: "재계약률", value: SITE.stats.renewalRate },
+            { label: "상담·진단", value: "0원" },
           ]}
         />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
         <div className="py-3 overflow-hidden" style={{ background: "var(--h-navy)" }}>
           <div className="flex animate-marquee whitespace-nowrap">
-            {([
-              { text: "플레이스 Top 5 진입 · 평균 6주 만에", dot: "bg-white/60" },
-              { text: "재계약률 95% · 500+ 프로젝트", dot: "bg-blue-200" },
-              { text: "월 신규 예약 +175% · 경기 안양 한의원", dot: "bg-white/60" },
-              { text: "대표 직접 담당 · 상담 비용 0원", dot: "bg-blue-200" },
-              { text: "방문객 +167% · 경기 고양 카페", dot: "bg-white/60" },
-              { text: "배달 매출 +113% · 경기 고양 음식점", dot: "bg-blue-200" },
-              { text: "수강생 +55% · 경기 고양 학원", dot: "bg-white/60" },
-              { text: "예약 완전 마감 · 경기 파주 네일샵", dot: "bg-blue-200" },
-              { text: "상담 비용 0원 · 계약 강요 없음", dot: "bg-white/60" },
-              { text: "10년+ 경력 · 업종별 맞춤 전략", dot: "bg-blue-200" },
-              { text: "24시간 내 연락 보장", dot: "bg-white/60" },
-              { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
-              { text: "투자 대비 1.8배 효과 · 3개월 실측치", dot: "bg-white/60" },
-              { text: "블로그 지역 키워드 4주 만에 상위권", dot: "bg-blue-200" },
-              { text: "카카오맵 리뷰 0 → 78개 · 2개월", dot: "bg-white/60" },
-              { text: "매출 월평균 +89% · 3개월 계약 기준", dot: "bg-blue-200" },
-              { text: "플레이스 지역 음식점 1위 달성", dot: "bg-white/60" },
-            ] as { text: string; dot: string }[])
-              .concat(([
-                { text: "플레이스 Top 5 진입 · 평균 6주 만에", dot: "bg-white/60" },
-                { text: "재계약률 95% · 500+ 프로젝트", dot: "bg-blue-200" },
-                { text: "월 신규 예약 +175% · 경기 안양 한의원", dot: "bg-white/60" },
-                { text: "대표 직접 담당 · 상담 비용 0원", dot: "bg-blue-200" },
-                { text: "방문객 +167% · 경기 고양 카페", dot: "bg-white/60" },
-                { text: "배달 매출 +113% · 경기 고양 음식점", dot: "bg-blue-200" },
-                { text: "수강생 +55% · 경기 고양 학원", dot: "bg-white/60" },
-                { text: "예약 완전 마감 · 경기 파주 네일샵", dot: "bg-blue-200" },
-                { text: "상담 비용 0원 · 계약 강요 없음", dot: "bg-white/60" },
-                { text: "10년+ 경력 · 업종별 맞춤 전략", dot: "bg-blue-200" },
-                { text: "24시간 내 연락 보장", dot: "bg-white/60" },
-                { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
-                { text: "투자 대비 1.8배 효과 · 3개월 실측치", dot: "bg-white/60" },
-                { text: "블로그 지역 키워드 4주 만에 상위권", dot: "bg-blue-200" },
-                { text: "카카오맵 리뷰 0 → 78개 · 2개월", dot: "bg-white/60" },
-                { text: "매출 월평균 +89% · 3개월 계약 기준", dot: "bg-blue-200" },
-                { text: "플레이스 지역 음식점 1위 달성", dot: "bg-white/60" },
-              ] as { text: string; dot: string }[]))
-              .map((item, i) => (
-                <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
-                  <span className={`w-1.5 h-1.5 rounded-full ${item.dot} shrink-0`} />
-                  {item.text}
-                </span>
-              ))}
+            {[...TICKER, ...TICKER].map((text, i) => (
+              <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
+                <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${i % 2 ? "bg-blue-200" : "bg-white/60"}`} />
+                {text}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -301,6 +283,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ══ 함께한 브랜드 로고 슬라이더 ══ */}
+        <ClientLogosSection />
 
         {/* ══ 차별화 비교표 ══ */}
         <DifferenceSection />
@@ -509,8 +494,8 @@ export default function HomePage() {
                 },
                 {
                   q: "보고서를 봐도 뭔지 모르겠어요",
-                  a: "복잡한 마케팅 용어 없이 방문객 수·예약 수·매출 변화를 숫자로만 보고드립니다. 대표가 직접 카카오톡으로 설명합니다.",
-                  result: "재계약률 95%",
+                  a: "복잡한 마케팅 용어 없이 방문객 수·예약 수·매출 변화를 숫자로만 보고드립니다. 전담 팀장이 직접 카카오톡으로 설명합니다.",
+                  result: `재계약률 ${SITE.stats.renewalRate}`,
                   period: "6개월 이상 계약 기준",
                   icon: BarChart3,
                   iconColor: "from-blue-600 to-blue-800",
@@ -520,7 +505,7 @@ export default function HomePage() {
                 },
                 {
                   q: "담당자가 계속 바뀌어서 지쳐요",
-                  a: "하랑은 계약부터 종료까지 대표가 직접 담당합니다. 10년 현장 경험을 가진 전문가가 처음부터 끝까지 함께합니다.",
+                  a: "하랑은 계약부터 종료까지 전담 팀장이 직접 관리합니다. 10년 현장 경험을 가진 전문가가 처음부터 끝까지 함께합니다.",
                   result: "담당자 교체 0회",
                   period: "10년 전 계약부터 현재까지",
                   icon: Handshake,
@@ -568,9 +553,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══ 파트너 로고 슬라이더 ══ */}
-        <ClientLogosSection />
-
         {/* ══ 대표 소개 ══ */}
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
@@ -605,7 +587,7 @@ export default function HomePage() {
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
                     { label: "결과 미달 시 조정", sub: "성과 보장" },
-                    { label: "외주 없음", sub: "대표 직접 전담" },
+                    { label: "외주 없음", sub: "전담 팀장 직접 관리" },
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
                       <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
@@ -618,7 +600,7 @@ export default function HomePage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gray-950 hover:bg-gray-800 text-white font-bold text-sm transition-colors"
                 >
-                  대표와 직접 상담하기 <ArrowRight size={14} />
+                  전담 팀장과 상담하기 <ArrowRight size={14} />
                 </Link>
               </div></RevealOnScroll>
 
@@ -634,7 +616,7 @@ export default function HomePage() {
                 <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                   {[
                     { val: "10년+", label: "마케팅 경력" },
-                    { val: "95%", label: "재계약률" },
+                    { val: SITE.stats.renewalRate, label: "재계약률" },
                     { val: "500+", label: "완료 프로젝트" },
                   ].map(s => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
@@ -661,15 +643,15 @@ export default function HomePage() {
             {/* Editorial large stats — divided columns */}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
-                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2020년~현재" },
-                { to: 95, suffix: "%", label: "재계약률", sub: "6개월 이상 계약 기준" },
-                { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당 전담" },
-                { to: 89, suffix: "%", label: "평균 매출 상승", sub: "3개월 계약 실측치" },
+                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "2020년~현재" },
+                { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "6개월 이상 계약 기준" },
+                { to: 10, suffix: "년+", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
+                { to: 89, suffix: "%", decimals: 0, label: "평균 매출 상승", sub: "3개월 계약 실측치" },
               ].map((item, i) => (
                 <RevealOnScroll key={item.label} delay={i * 70}>
                   <div className="px-5 md:px-8 py-6 md:py-8" style={{ borderRight: "1px solid var(--h-border)" }}>
                     <div className="editorial-num tabular-nums mb-1" style={{ color: "var(--h-dark)" }}>
-                      <AnimatedCounter to={item.to} suffix={item.suffix} duration={1600} />
+                      <AnimatedCounter to={item.to} suffix={item.suffix} decimals={item.decimals} duration={1600} />
                     </div>
                     <div className="text-sm font-bold text-gray-700 mb-0.5">{item.label}</div>
                     <div className="text-[11px]" style={{ color: "var(--h-muted)" }}>{item.sub}</div>
@@ -722,7 +704,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0" style={{ border: "1px solid var(--h-border)", borderRadius: "16px", overflow: "hidden" }}>
               {[
                 { icon: ShieldCheck, num: "01", title: "무결과 시 비용 조정", desc: "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 눈속임 없이." },
-                { icon: Handshake, num: "02", title: "대표 직접 담당", desc: "외주·인턴 없이 대표가 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다." },
+                { icon: Handshake, num: "02", title: "전담 팀장 직접 관리", desc: "외주·인턴 없이 전담 팀장이 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다." },
                 { icon: Clock, num: "03", title: "24시간 내 연락", desc: "상담 신청 후 24시간 이내에 반드시 연락드립니다. 응답이 늦으면 먼저 연락드립니다." },
               ].map((item, idx) => {
                 const Icon = item.icon;
@@ -767,10 +749,10 @@ export default function HomePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end mb-8">
               <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
-                신청 후 4단계,<br />전부 대표가 직접 합니다
+                신청 후 4단계,<br />전부 전담 팀장이 직접 합니다
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: "var(--h-muted)" }}>
-                상담부터 성과 보고까지<br />외주 없이 대표가 직접 담당
+                상담부터 성과 보고까지<br />외주 없이 전담 팀장이 직접 관리
               </p>
             </div>
             </RevealOnScroll>
@@ -1121,29 +1103,31 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
               <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>패키지</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">대략적인 가격대가 궁금하신가요?</h2>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">실제로 이런 금액대에서 계약합니다</h2>
               <p className="text-gray-500 text-base max-w-xl mx-auto">
-                아래는 예시 패키지이며, 실제 견적은 업종·목표·상황에 따라 달라집니다.<br />
-                상담 후 최적 조합을 제안해드립니다.
+                정찰제가 아니라 항목별 단가를 더해서 냅니다.<br />
+                아래는 실제 계약·견적에서 나온 구간이고, 계산 과정은 서비스 안내에 그대로 공개합니다.
               </p>
             </div>
 
-            {/* ROI 계산 힌트 */}
+            {/* 가격 산출 근거 요약 */}
             <div className="rounded-2xl p-5 md:p-6 mb-8" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
-                  { label: "월 마케팅 비용", value: "50만원", note: "그로스 패키지 기준" },
-                  { label: "평균 매출 증가", value: "+120만원", note: "3개월 평균 실측치" },
-                  { label: "투자 대비 수익", value: "2.4배", note: "ROI 기준" },
+                  { label: "기준 단가", value: "블로그 4만원", note: "1편 · 2,000자 기준" },
+                  { label: "가장 많은 계약 구간", value: "월 61만원", note: "두세 채널 묶음 평균" },
+                  { label: "상담 · 현황 진단", value: "0원", note: "견적 받고 안 하셔도 됩니다" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <div className="text-xl md:text-2xl font-black" style={{ color: "var(--h-navy)" }}>{item.value}</div>
+                    <div className="text-xl md:text-2xl font-black tabular-nums" style={{ color: "var(--h-navy)" }}>{item.value}</div>
                     <div className="text-xs font-bold text-gray-700 mt-0.5">{item.label}</div>
                     <div className="text-[11px] text-gray-400">{item.note}</div>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400 text-center mt-4">* 실제 수치는 업종·지역·시작 상태에 따라 다릅니다. 무료 상담에서 업종별 예상 ROI를 안내해드립니다.</p>
+              <p className="text-xs text-gray-400 text-center mt-4">
+                * 실제로 나간 견적서와 지금 운영 중인 계약에서 뽑은 숫자입니다. 부가세 별도이고 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 stagger-children">
@@ -1182,8 +1166,11 @@ export default function HomePage() {
               ))}
             </div>
 
-            <p className="text-center text-xs text-gray-400 mt-6">
-              * 가격은 서비스 구성·업종·목표에 따라 달라집니다. 정확한 견적은 무료 상담 후 안내드립니다.
+            <p className="text-center text-xs text-gray-400 mt-6 leading-relaxed">
+              * 같은 구성이어도 출발점 · 현재 순위 · 상권 경쟁도에 따라 금액이 달라집니다.{" "}
+              <Link href="/services#pricing" className="font-bold underline underline-offset-2" style={{ color: "var(--h-navy)" }}>
+                항목별 단가와 계산 과정 보기
+              </Link>
             </p>
           </div>
         </section>
@@ -1296,7 +1283,7 @@ export default function HomePage() {
               {[
                 {
                   industry: "카페",
-                  location: "경기 고양",
+                  location: "경기 포천",
                   service: "플레이스 SEO + 블로그",
                   before: { label: "플레이스 순위", value: "12위" },
                   after: { label: "플레이스 순위", value: "2위" },
@@ -1323,13 +1310,13 @@ export default function HomePage() {
                   before: { label: "리뷰 개수", value: "12개" },
                   after: { label: "리뷰 개수", value: "86개" },
                   period: "4개월",
-                  highlight: "예약 문의 4배",
+                  highlight: "리뷰 7배",
                   color: "from-blue-700 to-blue-900",
                   icon: UtensilsCrossed,
                 },
                 {
                   industry: "한의원",
-                  location: "경기 안양",
+                  location: "수도권",
                   service: "블로그 + 플레이스 SEO",
                   before: { label: "초진 예약", value: "월 15건" },
                   after: { label: "초진 예약", value: "월 45건" },
@@ -1410,7 +1397,7 @@ export default function HomePage() {
               <div className="flex items-center gap-8 shrink-0">
                 {[
                   { val: "10년+", label: "대표 경력" },
-                  { val: "95%", label: "재계약률" },
+                  { val: SITE.stats.renewalRate, label: "재계약률" },
                   { val: "500+", label: "누적 고객사" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
@@ -1427,17 +1414,17 @@ export default function HomePage() {
           {/* Editorial testimonials — full width stacked */}
           {[
             {
-              name: "카페 사장님", location: "경기 고양", service: "플레이스 SEO",
+              name: "카페 사장님", location: "경기 포천", service: "플레이스 SEO",
               metric: "+167%", metricLabel: "방문객 · 3개월",
               text: "3개월 만에 주요 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
             },
             {
               name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅",
               metric: "+300%", metricLabel: "신규 예약 · 6개월",
-              text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 대표님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
+              text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 전담 팀장님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
             },
             {
-              name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴",
+              name: "학원 원장님", location: "수도권", service: "맘카페 바이럴",
               metric: "+55%", metricLabel: "수강생 · 2개월",
               text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
             },
@@ -1626,8 +1613,8 @@ export default function HomePage() {
               {[
                 { icon: ShieldCheck, text: "상담 비용 0원" },
                 { icon: Handshake, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 대표 직접 연락" },
-                { icon: Star, text: "재계약률 95%" },
+                { icon: Clock, text: "24시간 내 전담 팀장 직접 연락" },
+                { icon: Star, text: `재계약률 ${SITE.stats.renewalRate}` },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs text-gray-600">
                   <Icon size={12} className="text-blue-500" strokeWidth={2} />

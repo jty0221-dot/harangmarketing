@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Clock, Shield, Handshake } from "lucide-react";
+import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Shield, Handshake } from "lucide-react";
 
+import { SITE } from "../lib/seo";
 function useBusinessHours() {
   const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
   useEffect(() => {
@@ -99,7 +100,7 @@ export default function FloatingCTA() {
               </div>
               <div className="flex items-center gap-1.5 mb-1">
                 <Handshake size={10} className="text-blue-400" strokeWidth={2.5} />
-                <span className="text-[11px] text-gray-400">재계약률 95% · 500+ 프로젝트</span>
+                <span className="text-[11px] text-gray-400">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
               </div>
               {/* Business hours status */}
               <div className="flex items-center gap-1.5 mt-1.5">
@@ -113,18 +114,6 @@ export default function FloatingCTA() {
             <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2 mb-2 flex items-center gap-2">
               <Shield size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
               <p className="text-[11px] font-bold text-blue-700">고의 누락 시 결제금액 10배 보상 정책 운용 중</p>
-            </div>
-            {/* Urgency */}
-            <div className="bg-red-50 border border-red-100 rounded-xl px-3 py-2 mb-3 flex items-center gap-2">
-              <Clock size={11} className="text-red-500 shrink-0" strokeWidth={2.5} />
-              <div>
-                <p className="text-[11px] font-black text-red-600">이번 달 신규 상담 잔여 2자리</p>
-                <div className="flex gap-1 mt-0.5">
-                  {[1, 2, 3].map((n) => (
-                    <div key={n} className={`w-4 h-1.5 rounded-full ${n <= 1 ? "bg-red-300" : n <= 2 ? "bg-red-400" : "bg-red-500"}`} />
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Buttons */}
@@ -184,11 +173,11 @@ export default function FloatingCTA() {
       {/* Mobile: 하단 고정 바 */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 shadow-2xl">
         <div className={`px-3 py-1.5 border-b text-center flex items-center justify-center gap-2 ${
-          bizStatus === "open" ? "bg-green-50 border-green-100" : "bg-red-50 border-red-100"
+          bizStatus === "open" ? "bg-green-50 border-green-100" : "bg-gray-50 border-gray-100"
         }`}>
           <span className={`w-1.5 h-1.5 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
-          <p className={`text-[11px] font-black ${bizStatus === "open" ? "text-green-700" : "text-red-500"}`}>
-            {bizStatus === "open" ? "지금 상담 가능 · 평균 10분 내 응답" : "이번 달 신규 상담 잔여 2자리 — 선착순 마감"}
+          <p className={`text-[11px] font-black ${bizStatus === "open" ? "text-green-700" : "text-gray-600"}`}>
+            {statusConfig.text} · {statusConfig.sub}
           </p>
         </div>
         <div className="px-3 py-2.5 flex gap-2">

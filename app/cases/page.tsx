@@ -10,19 +10,19 @@ import AnimatedCounter from "../components/AnimatedCounter";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
 
 const ALL_CASES = [
   {
     category: "카페",
-    location: "경기 일산",
-    title: "플레이스 '일산 카페' 키워드 1위 달성",
+    location: "경기 포천",
+    title: "플레이스 '지역+카페' 키워드 1위 달성",
     period: "3개월",
     services: ["플레이스 SEO", "블로그 배포", "리뷰 마케팅"],
     before: { "플레이스 순위": "15위 밖", "리뷰 수": "8개", "하루 방문객": "평균 30명" },
     after: { "플레이스 순위": "1위 달성", "리뷰 수": "120개+", "하루 방문객": "평균 80명" },
     metric: "+167%", metricLabel: "방문객 증가",
-    story: "개업 6개월차였지만 근처 카페에 치여 검색에서 전혀 보이지 않았어요. 하랑과 함께 3개월 만에 '일산 카페' 1위가 됐고, 주말엔 대기줄이 생겼습니다.",
+    story: "개업 6개월차였지만 근처 카페에 치여 검색에서 전혀 보이지 않았어요. 하랑과 함께 3개월 만에 지역 카페 키워드 1위가 됐고, 주말엔 대기줄이 생겼습니다.",
     color: "from-blue-500 to-blue-700",
   },
   {
@@ -75,7 +75,7 @@ const ALL_CASES = [
   },
   {
     category: "학원·교육",
-    location: "경기 고양",
+    location: "수도권",
     title: "맘카페 입소문으로 수강생 55% 증가",
     period: "3개월",
     services: ["맘카페 바이럴", "홈페이지형 블로그 제작", "블로그 관리"],
@@ -99,12 +99,12 @@ const ALL_CASES = [
   },
   {
     category: "한의원·한방",
-    location: "경기 안양",
+    location: "수도권",
     title: "플레이스 신뢰도 강화로 초진 예약 3배 증가",
     period: "4개월",
     services: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"],
     before: { "플레이스 리뷰": "12개", "블로그 노출": "거의 없음", "초진 예약": "월 15건" },
-    after: { "플레이스 리뷰": "89개", "블로그 월 방문": "750명+", "'안양 한의원' 검색": "Top 3" },
+    after: { "플레이스 리뷰": "89개", "블로그 월 방문": "750명+", "'지역+한의원' 검색": "Top 3" },
     metric: "+200%", metricLabel: "초진 예약 증가",
     story: "한의원은 신뢰가 전부인데 온라인이 너무 취약했어요. 원장님 전문성을 블로그에 담고 리뷰를 쌓았더니 4개월 만에 초진 예약이 3배가 됐습니다.",
     color: "from-blue-600 to-indigo-700",
@@ -176,14 +176,14 @@ const CasesPage: FC = () => {
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "대표 경력 10년+ 누적", color: "text-blue-600" },
-                { to: 95, suffix: "%", label: "재계약률", sub: "업계 최고 수준", color: "text-blue-600" },
-                { to: 6, suffix: "개+", label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
-                { to: 300, suffix: "%", label: "최대 매출 상승", sub: "실제 달성 수치", color: "text-blue-700" },
+                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 누적", color: "text-blue-600" },
+                { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "업계 최고 수준", color: "text-blue-600" },
+                { to: 6, suffix: "개+", decimals: 0, label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
+                { to: 300, suffix: "%", decimals: 0, label: "최대 매출 상승", sub: "실제 달성 수치", color: "text-blue-700" },
               ].map((s) => (
                 <div key={s.label} className="text-center py-2">
                   <div className={`text-2xl md:text-3xl font-black ${s.color} mb-0.5`}>
-                    <AnimatedCounter to={s.to} suffix={s.suffix} duration={1400} />
+                    <AnimatedCounter to={s.to} suffix={s.suffix} decimals={s.decimals} duration={1400} />
                   </div>
                   <div className="text-xs md:text-sm font-bold text-gray-700 mb-0.5">{s.label}</div>
                   <div className="text-[11px] text-gray-400">{s.sub}</div>
@@ -196,10 +196,10 @@ const CasesPage: FC = () => {
         {/* AEO — 성과 질의 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer="하랑마케팅의 대표 성과는 경기 고양 카페 3개월 만에 '일산 카페' 플레이스 1위 및 방문객 +167%(일 28명→75명), 서울 강서 피부과 6개월간 신규 예약 +300%(월 12건→33건), 서울 마포 음식점 4개월간 배달 매출 +113%(월 480만원→1,022만원), 경기 파주 네일샵 6주 만에 예약 가동률 40%→100% 마감입니다. 모든 수치는 실제 진행한 프로젝트의 전후 실측값이며 업종·지역 경쟁 강도에 따라 달라질 수 있습니다."
+          answer="하랑마케팅의 대표 성과는 경기 포천 카페 3개월 만에 지역 카페 키워드 플레이스 1위 및 방문객 +167%(일 30명→80명), 서울 강서 피부과 6개월간 신규 예약 +300%(월 20건→80건), 서울 마포 음식점 4개월간 배달 매출 +113%(월 150만원→320만원), 경기 수원 네일샵 3개월 만에 2주 치 예약 마감입니다. 모든 수치는 실제 진행한 프로젝트의 전후 실측값이며 업종·지역 경쟁 강도에 따라 달라질 수 있습니다."
           facts={[
             { label: "완료 프로젝트", value: "500건+" },
-            { label: "재계약률", value: "95%" },
+            { label: "재계약률", value: SITE.stats.renewalRate },
             { label: "최대 매출 상승", value: "+300%" },
             { label: "최대 방문객 증가", value: "+167%" },
           ]}
@@ -419,7 +419,7 @@ const CasesPage: FC = () => {
             <div className="text-center mb-10">
               <div className="flex items-center justify-center gap-1.5 mb-4">
                 <Handshake size={15} className="text-yellow-300" strokeWidth={2.5} />
-                <span className="text-gray-400 text-xs">재계약률 95% · 500+ 프로젝트</span>
+                <span className="text-gray-400 text-xs">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-snug">
                 다음 성공 사례의 주인공이 되세요

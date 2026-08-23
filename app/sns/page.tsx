@@ -98,7 +98,7 @@ const TRUST: { icon: typeof Zap; title: string; desc: string }[] = [
   {
     icon: BadgeCheck,
     title: "10년차 대행사 직영",
-    desc: "재계약률 95%의 하랑마케팅이 실제 고객사 캠페인에 쓰는 프로그램을 같은 라인으로 공급합니다. 판매만 하는 업체와 출발점이 다릅니다.",
+    desc: `재계약률 ${SITE.stats.renewalRate}의 하랑마케팅이 실제 고객사 캠페인에 쓰는 프로그램을 같은 라인으로 공급합니다. 판매만 하는 업체와 출발점이 다릅니다.`,
   },
   {
     icon: Scale,
@@ -392,7 +392,7 @@ export default function SnsStorePage() {
             </h2>
             <p className="mt-3 text-sm text-gray-300 max-w-xl mx-auto">
               계정 링크만 보내주세요. 지금 상태에서 어떤 수치부터 채우는 게 자연스러운지
-              대표가 직접 봐드립니다. 상담은 무료입니다.
+              전담 팀장이 직접 봐드립니다. 상담은 무료입니다.
             </p>
             <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-2.5">
               <a

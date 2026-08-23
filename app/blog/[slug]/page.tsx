@@ -93,7 +93,7 @@ const POSTS: Record<string, {
         heading: "블로그 글쓰기 5단계 공식",
         body: "키워드를 정했다면 이제 글을 써야 합니다. 검색 상위에 오르는 블로그 글의 구조는 단순합니다.",
         tips: [
-          "제목: [지역명+키워드] 형태로 제목에 키워드 포함 (예: '일산 분위기좋은카페 추천 TOP5')",
+          "제목: [지역명+키워드] 형태로 제목에 키워드 포함 (예: '부천 분위기좋은카페 추천 TOP5')",
           "서론: 이 글을 읽으면 무엇을 알 수 있는지 2~3줄로 요약",
           "본문: 카페 소개, 메뉴 사진 + 가격, 분위기·인테리어 설명",
           "꿀팁: 주차, 영업시간, 웨이팅 정보 등 실용 정보 포함",
@@ -330,8 +330,8 @@ const POSTS: Record<string, {
         ],
       },
       {
-        heading: "실제 결과 — 고양 학원 3개월 사례",
-        body: "경기 고양의 초등학생 대상 영어 학원은 수강생 확보에 어려움을 겪고 있었습니다. 플레이스 SEO는 이미 진행 중이었지만 신규 유입이 정체되었습니다. 하랑마케팅은 고양 맘카페 3곳에 3주에 걸쳐 총 9건의 자연스러운 후기 게시물을 배포했습니다.",
+        heading: "실제 결과 — 수도권 학원 3개월 사례",
+        body: "수도권의 초등학생 대상 영어 학원은 수강생 확보에 어려움을 겪고 있었습니다. 플레이스 SEO는 이미 진행 중이었지만 신규 유입이 정체되었습니다. 하랑마케팅은 지역 맘카페 3곳에 3주에 걸쳐 총 9건의 자연스러운 후기 게시물을 배포했습니다.",
         tips: [
           "1주차: '선생님 추천 받아요' 형태의 질문글 + 답변 댓글로 자연 삽입",
           "2주차: '아이가 다니는데 영어 실력이...' 형태 후기글 게시",
@@ -633,8 +633,8 @@ const POSTS: Record<string, {
         body: "블로그 글을 열심히 써도 유입이 없다면 '아무도 검색하지 않는 키워드'나 '경쟁이 너무 높은 키워드'를 고른 것입니다. 키워드 선정이 곧 SEO 전략의 80%입니다.",
         tips: [
           "대형 키워드 (예: '카페') — 검색량 많지만 경쟁이 극도로 높아 진입 불가",
-          "중형 키워드 (예: '일산 카페') — 현실적 목표, 3~6개월 소요",
-          "롱테일 키워드 (예: '일산 분위기 좋은 카페 데이트') — 경쟁 낮고 전환율 높음",
+          "중형 키워드 (예: '부천 카페') — 현실적 목표, 3~6개월 소요",
+          "롱테일 키워드 (예: '부천 분위기 좋은 카페 데이트') — 경쟁 낮고 전환율 높음",
         ],
       },
       {
@@ -706,7 +706,7 @@ const POSTS: Record<string, {
     tag: "업종별 전략",
     tagColor: "bg-indigo-50 text-indigo-700",
     readTime: "8분",
-    result: "경기 고양 영어학원 — 수강생 40 → 62명 · 3개월",
+    result: "수도권 영어학원 — 수강생 40 → 62명 · 3개월",
     summary: "학원 마케팅은 학부모를 설득하는 일입니다. 학부모가 가는 채널(맘카페, 네이버 플레이스, 블로그)에 집중하면 수강생이 늘어납니다. 3개월 실전 과정을 공개합니다.",
     sections: [
       {
@@ -758,7 +758,7 @@ export async function generateMetadata(
       title: `${dynamicPost.title} — 하랑마케팅 블로그`,
       description: dynamicPost.excerpt,
       keywords: ["소상공인 마케팅", "하랑마케팅", "마케팅 노하우", dynamicPost.title],
-      authors: [{ name: "하랑마케팅 대표 전태영" }],
+      authors: [{ name: "하랑마케팅" }],
       alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
       openGraph: {
         title: dynamicPost.title,
@@ -766,7 +766,7 @@ export async function generateMetadata(
         url: `https://www.harangmarketing.com/blog/${slug}`,
         type: "article",
         publishedTime: dynamicPost.date,
-        authors: ["하랑마케팅 전태영"],
+        authors: ["하랑마케팅"],
         tags: ["소상공인 마케팅", "네이버 플레이스", "블로그 마케팅"],
         images: [{ url: "/og-image.png", width: 1200, height: 630, alt: dynamicPost.title }],
       },
@@ -779,7 +779,7 @@ export async function generateMetadata(
     title: `${post.title} — 하랑마케팅 블로그`,
     description: post.summary,
     keywords: ["소상공인 마케팅", "하랑마케팅", post.tag, "마케팅 노하우", post.title],
-    authors: [{ name: "하랑마케팅 대표 전태영" }],
+    authors: [{ name: "하랑마케팅" }],
     alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
     openGraph: {
       title: post.title,
@@ -787,7 +787,7 @@ export async function generateMetadata(
       url: `https://www.harangmarketing.com/blog/${slug}`,
       type: "article",
       publishedTime: meta?.date,
-      authors: ["하랑마케팅 전태영"],
+      authors: ["하랑마케팅"],
       tags: ["소상공인 마케팅", post.tag, "네이버 마케팅"],
       images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
     },
@@ -806,10 +806,9 @@ function blogPostingLd(slug: string, title: string, excerpt: string, tag: string
     "datePublished": date ?? "2024-11-01",
     "dateModified": date ?? "2024-11-01",
     "author": {
-      "@type": "Person",
-      "name": "전태영",
+      "@type": "Organization",
+      "name": "하랑마케팅",
       "url": `${BASE}/about`,
-      "jobTitle": "하랑마케팅 대표",
     },
     "publisher": {
       "@type": "Organization",
@@ -875,12 +874,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               />
               <div className="mt-12 bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 shadow-sm">
-                  <span className="text-white font-black text-xl">전</span>
+                  <span className="text-white font-black text-xl">하</span>
                 </div>
                 <div>
-                  <p className="font-black text-gray-900 text-sm mb-0.5">전태영 · 하랑마케팅 대표</p>
+                  <p className="font-black text-gray-900 text-sm mb-0.5">하랑마케팅 콘텐츠팀</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    2014년 마케팅 경력을 시작해 2020년 하랑마케팅을 설립했습니다. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
+                    2014년부터 현장에서 쌓은 마케팅 경험과 500+ 프로젝트 데이터를 업종별로 정리해 공유합니다.
                   </p>
                 </div>
               </div>
@@ -982,12 +981,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Author box */}
             <div className="mt-12 bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 shadow-sm">
-                <span className="text-white font-black text-xl">전</span>
+                <span className="text-white font-black text-xl">하</span>
               </div>
               <div>
-                <p className="font-black text-gray-900 text-sm mb-0.5">전태영 · 하랑마케팅 대표</p>
+                <p className="font-black text-gray-900 text-sm mb-0.5">하랑마케팅 콘텐츠팀</p>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  2014년 마케팅 경력을 시작해 2020년 하랑마케팅을 설립했습니다. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
+                  2014년부터 현장에서 쌓은 마케팅 경험과 500+ 프로젝트 데이터를 업종별로 정리해 공유합니다.
                 </p>
               </div>
             </div>

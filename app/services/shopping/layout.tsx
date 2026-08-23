@@ -29,7 +29,7 @@ export default function ShoppingLayout({ children }: { children: React.ReactNode
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
             "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "온라인 쇼핑몰 전문 마케팅. 실측 성과: 월 매출 230만원→377만원(+64%, 4개월)." },
-            "offers": { "@type": "Offer", "price": "300000", "priceCurrency": "KRW", "description": "월 30만원부터 시작. 상담·진단 0원." },
+            "offers": { "@type": "Offer", "description": "쇼핑몰 전문 마케팅. 상품군·진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "온라인 쇼핑몰 전문 블로그 SEO, 체험단, 콘텐츠 마케팅 대행",
             "areaServed": "대한민국",
             "url": "https://www.harangmarketing.com/services/shopping",

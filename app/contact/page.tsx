@@ -12,12 +12,13 @@ import {
 } from "lucide-react";
 import { GA_EVENTS } from "../components/Analytics";
 
+import { SITE } from "../lib/seo";
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 고양 카페 · 3개월", color: "from-blue-500 to-blue-700" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 포천 카페 · 3개월", color: "from-blue-500 to-blue-700" },
   { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "+113% 배달 매출", case: "서울 마포 음식점 · 4개월", color: "from-blue-600 to-indigo-700" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "예약 완전 마감", case: "수원 네일샵 · 3개월", color: "from-blue-500 to-blue-700" },
   { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "+300% 신규 예약", case: "경기 분당 피부과 · 6개월", color: "from-blue-600 to-blue-800" },
-  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "+55% 수강생", case: "경기 고양 학원 · 3개월", color: "from-blue-700 to-indigo-800" },
+  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "+55% 수강생", case: "수도권 학원 · 3개월", color: "from-blue-700 to-indigo-800" },
   { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "+64% 월 매출", case: "전국 온라인 쇼핑몰 · 5개월", color: "from-blue-500 to-indigo-600" },
   { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
 ];
@@ -123,13 +124,13 @@ function ContactPageInner() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
               업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.<br />
-              <span className="text-blue-300 font-semibold">실패를 경험한 대표가 직접 대표님의 매장을 분석합니다.</span>
+              <span className="text-blue-300 font-semibold">실패를 경험한 전담 팀장이 직접 대표님의 매장을 분석합니다.</span>
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
               {[
                 { icon: CheckCircle2, text: "상담 비용 0원" },
                 { icon: CheckCircle2, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 대표 직접 연락" },
+                { icon: Clock, text: "24시간 내 전담 팀장 직접 연락" },
                 { icon: CheckCircle2, text: "고의 누락 시 10배 보상" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-gray-300">
@@ -262,7 +263,7 @@ function ContactPageInner() {
                     </div>
 
                     <h2 className="text-lg font-black text-gray-900 mb-1">어디로 연락드릴까요?</h2>
-                    <p className="text-xs text-gray-400 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
+                    <p className="text-xs text-gray-400 mb-6">전담 팀장이 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -327,7 +328,7 @@ function ContactPageInner() {
                         )}
                       </button>
 
-                      <p className="text-xs text-gray-400 text-center">상담 비용 없음 · 계약 강요 없음 · 대표 직접 연락</p>
+                      <p className="text-xs text-gray-400 text-center">상담 비용 없음 · 계약 강요 없음 · 전담 팀장 직접 연락</p>
                     </form>
                   </div>
                 )}
@@ -341,14 +342,14 @@ function ContactPageInner() {
                     <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4">
                       <span className="font-black text-gray-800">{form.name || "사장님"}</span>, 소중한 신청 감사합니다.<br />
-                      대표가 직접 <span className="font-semibold text-blue-600">24시간 이내</span>에 연락드립니다.
+                      전담 팀장이 직접 <span className="font-semibold text-blue-600">24시간 이내</span>에 연락드립니다.
                     </p>
 
                     {/* 다음 단계 안내 */}
                     <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
                       <p className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">앞으로의 과정</p>
                       <ol className="space-y-1.5">
-                        {["대표가 신청 내용 확인 후 연락드립니다", "20~30분 무료 전략 상담 진행", "업종·경쟁사 분석 리포트 전달", "맞춤 서비스 제안 (비용 0원)"].map((s, i) => (
+                        {["전담 팀장이 신청 내용 확인 후 연락드립니다", "20~30분 무료 전략 상담 진행", "업종·경쟁사 분석 리포트 전달", "맞춤 서비스 제안 (비용 0원)"].map((s, i) => (
                           <li key={i} className="flex items-center gap-2.5 text-xs text-gray-600">
                             <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
                             {s}
@@ -369,7 +370,7 @@ function ContactPageInner() {
                     </div>
                     <div className="flex justify-center items-center gap-1.5">
                       <Handshake size={13} className="text-blue-400" strokeWidth={2.5} />
-                      <p className="text-xs text-gray-400">재계약률 95% · 500+ 프로젝트</p>
+                      <p className="text-xs text-gray-400">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</p>
                     </div>
                   </div>
                 )}
@@ -437,7 +438,7 @@ function ContactPageInner() {
                   <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 실제 성과</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "카페·베이커리", location: "경기 고양", result: "+167%", label: "방문객", color: "text-blue-700 bg-blue-50 border-blue-100" },
+                      { ind: "카페·베이커리", location: "경기 포천", result: "+167%", label: "방문객", color: "text-blue-700 bg-blue-50 border-blue-100" },
                       { ind: "음식점·배달", location: "서울 성수", result: "+113%", label: "매출", color: "text-green-600 bg-green-50 border-green-100" },
                       { ind: "미용·뷰티", location: "인천 부평", result: "완전 마감", label: "예약", color: "text-pink-600 bg-pink-50 border-pink-100" },
                       { ind: "의원·한의원", location: "경기 분당", result: "+300%", label: "신규예약", color: "text-blue-600 bg-blue-50 border-blue-100" },

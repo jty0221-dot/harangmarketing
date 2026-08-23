@@ -123,7 +123,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           >
             {report.period && <Meta label="보고 기간" value={report.period} />}
             <Meta label="작성일" value={written} />
-            <Meta label="담당" value="전태영" />
+            <Meta label="담당" value="하랑마케팅" />
           </dl>
         </div>
       </header>
@@ -238,7 +238,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           className="w-caption2 mt-8 text-center"
           style={{ color: "var(--w-label-assistive)", lineHeight: 1.7 }}
         >
-          하랑마케팅 · 전태영 · {written} 작성
+          하랑마케팅 · {written} 작성
           <br />이 페이지는 {report.clientName} 대표님께만 전달된 링크입니다.
         </p>
       </main>

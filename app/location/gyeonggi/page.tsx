@@ -61,11 +61,12 @@ export const metadata: Metadata = {
 };
 
 const REGIONS = [
-  { name: "고양·일산", cases: "카페 '일산 카페' 키워드 1위 · 3개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
+  { name: "포천·의정부", cases: "베이커리카페 방문객 +167% · 3개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "성남·분당", cases: "피부과 신규 예약 +300% · 6개월", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
   { name: "수원", cases: "네일샵 예약 마감 · 3개월", color: "bg-purple-50 border-purple-100 text-purple-700" },
   { name: "부천", cases: "음식점 배달 매출 +113% · 4개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "화성·동탄", cases: "학원 수강생 +55% · 3개월", color: "bg-green-50 border-green-100 text-green-700" },
+  { name: "고양·일산", cases: "요식업 플레이스 상위 노출 · 3개월", color: "bg-slate-50 border-slate-100 text-slate-700" },
   { name: "안양·평촌", cases: "한의원 초진 +200% · 5개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "용인·수지", cases: "카페 체인 3곳 동시 운영", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "파주·김포", cases: "음식점 플레이스 1위 · 2개월", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
@@ -74,7 +75,7 @@ const REGIONS = [
 const RESULTS = [
   { label: "경기 지역 완료 프로젝트", value: "180+", sub: "10년 누적" },
   { label: "플레이스 Top 3 달성율", value: "87%", sub: "3개월 기준" },
-  { label: "재계약률", value: "95%", sub: "경기 클라이언트" },
+  { label: "재계약률", value: SITE.stats.renewalRate, sub: "경기 클라이언트" },
 ];
 
 export default function GyeonggiPage() {
@@ -115,9 +116,9 @@ export default function GyeonggiPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="경기도 마케팅 대행사를 찾고 있습니다"
-          answer="하랑마케팅은 경기도 고양시 일산동구에 본사를 둔 경기도 소상공인 전문 마케팅 대행사입니다. 고양·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴 전환율이 일반 블로그의 2~3배입니다. 실제 성과로 경기 고양 카페 방문객 +167%(3개월), 경기 파주 네일샵 예약 100% 마감(6주), 경기 고양 학원 수강생 +55%(3개월), 경기 안양 한의원 초진 예약 +175%(4개월)를 달성했습니다. 전화 010-7541-9054로 무료 상담이 가능합니다."
+          answer="하랑마케팅은 경기도 소상공인을 전문으로 하는 마케팅 대행사입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴 전환율이 일반 블로그의 2~3배입니다. 실제 성과로 경기 포천 베이커리카페 방문객 +167%(3개월), 경기 부천 네일샵 예약 100% 마감(6주), 수도권 학원 수강생 +55%(3개월), 수도권 한의원 초진 예약 +175%(4개월)를 달성했습니다. 전화 010-7541-9054로 무료 상담이 가능합니다."
           facts={[
-            { label: "본사", value: "경기 고양 일산" },
+            { label: "담당 지역", value: "경기 전 지역" },
             { label: "카페 방문객", value: "+167%" },
             { label: "학원 수강생", value: "+55%" },
             { label: "상담 비용", value: "0원" },

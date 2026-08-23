@@ -29,7 +29,7 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
             "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "음식점·배달 전문 마케팅. 실측 성과: 서울 마포 음식점 월 배달 매출 480만원→1,022만원(+113%, 4개월)." },
-            "offers": { "@type": "Offer", "price": "300000", "priceCurrency": "KRW", "description": "월 30만원부터 시작. 상담·진단 0원." },
+            "offers": { "@type": "Offer", "description": "음식점·배달 전문 마케팅. 배달·홀 비중과 진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "음식점·배달 전문 배달앱 리뷰, 맘카페 바이럴, 블로그 맛집 마케팅 대행",
             "areaServed": ["서울", "경기도", "인천"],
             "url": "https://www.harangmarketing.com/services/restaurant",
