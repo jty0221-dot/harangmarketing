@@ -53,3 +53,7 @@ content/sns-orders.local.json
 # SNS 카탈로그 생성기 + 도매 원본 (도매가 포함 — 절대 커밋 금지)
 # 산출물 app/lib/sns-catalog.generated.ts 는 소비자가만 담으므로 커밋한다.
 scripts/sns/
+
+# python 빌드 찌꺼기 (스크립트 실행하면 자동 생성된다)
+__pycache__/
+*.pyc
