@@ -6,7 +6,7 @@ import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare, Quote,
-  Navigation, Palette, Layers, Calculator,
+  Navigation, Palette, Layers, Calculator, ListChecks,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
@@ -289,15 +289,14 @@ const INDUSTRY_LINKS = [
 
 /* ────────────────────────────────────────────────────────────
    가격 산출 근거 — 아래 숫자는 전부 실제로 나간 견적서에서 가져온다.
-   단가를 바꾸면 CALC_EXAMPLES 의 합계·PRICE_BANDS 의 평균도 같이 맞춘다.
+   단가를 바꾸면 CALC_EXAMPLES 의 합계도 같이 맞춘다. 월 금액 구간은 만들지 않는다 — HOW_WE_COMPOSE 참조.
    원본: E:/하랑/{미미샵|영삼이네우정소갈비|이지클린}/build_quote_hwp.py
-         E:/하랑/업무관리자/.../references/clients.md (월 정액 계약 5건)
    ──────────────────────────────────────────────────────────── */
 
 const UNIT_PRICES: { item: string; unit: string; price: string }[] = [
   { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
   { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "3만원" },
-  { item: "블로그 관리대행 (2,000자)", unit: "1편", price: "4만원" },
+  { item: "블로그 관리대행", unit: "1편", price: "4만원" },
   { item: "최적화 블로그 배포", unit: "1건", price: "3만원" },
   { item: "카페 배포", unit: "1건", price: "3만원" },
   { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
@@ -350,10 +349,32 @@ const CALC_EXAMPLES: {
   },
 ];
 
-const PRICE_BANDS: { scope: string; detail: string; range: string; avg: string; n: string }[] = [
-  { scope: "한 채널 집중", detail: "플레이스만 · 또는 배포만", range: "월 30만원", avg: "30만원", n: "2건" },
-  { scope: "두세 채널 묶음", detail: "플레이스 + 블로그 + 광고", range: "월 45~77만원", avg: "61만원", n: "2건" },
-  { scope: "전 채널 통합", detail: "배포 + 파워컨텐츠 + SEO + 광고 + SNS", range: "월 120~220만원", avg: "167만원", n: "5건" },
+/**
+ * 월 금액을 구간으로 묶어 걸어두지 않는다 (대표 지시 2026-08-23).
+ * 업체마다 출발점과 물량이 달라 '월 얼마' 를 먼저 정해두면 매장을 그 금액에 맞추게 된다.
+ * 대신 금액이 나오기까지의 순서를 공개한다 — 항목이 정해지면 금액은 계산의 결과다.
+ */
+const HOW_WE_COMPOSE: { step: string; title: string; body: string }[] = [
+  {
+    step: "현황 진단",
+    title: "지금 비어 있는 칸부터 찾습니다",
+    body: "리뷰 수 · 가격표 · 사진 · 현재 순위 · 경쟁 매장을 먼저 확인합니다. 이미 갖춰져 있는 항목에는 비용을 붙이지 않습니다.",
+  },
+  {
+    step: "항목 선별",
+    title: "꼭 필요한 것만 남깁니다",
+    body: "채널을 전부 돌리는 게 정답이 아닙니다. 그 업종의 손님이 실제로 지나는 검색 경로에 있는 항목만 남기고 나머지는 물립니다.",
+  },
+  {
+    step: "물량 조정",
+    title: "양은 상권 경쟁도에 맞춥니다",
+    body: "같은 블로그여도 경쟁이 촘촘한 상권은 편수가 올라가고 여유 있는 상권은 내려갑니다. 예산이 정해져 있으면 항목보다 물량을 먼저 조정합니다.",
+  },
+  {
+    step: "견적 산출",
+    title: "고른 항목만 더합니다",
+    body: "정해둔 패키지 금액에 매장을 끼워 맞추지 않습니다. 항목과 물량이 정해지면 금액은 그 계산의 결과로 나옵니다.",
+  },
 ];
 
 const INDUSTRY_PRICE_DIFF: { industry: string; behavior: string; channel: string; volume: string }[] = [
@@ -371,7 +392,7 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   },
   {
     title: "지금 순위가 다릅니다",
-    body: "이미 3위인 매장을 1~2위로 밀어올리는 일과, 노출이 아예 없는 매장을 처음 올리는 일은 들어가는 물량이 다릅니다. 앞의 경우는 플레이스 단독 월 30만원으로 끝났습니다.",
+    body: "이미 3위인 매장을 1~2위로 밀어올리는 일과, 노출이 아예 없는 매장을 처음 올리는 일은 들어가는 물량이 다릅니다. 앞의 경우는 플레이스 항목만 붙이고 끝났고, 뒤의 경우는 콘텐츠 물량이 함께 들어갑니다.",
   },
   {
     title: "상권 경쟁 밀도가 다릅니다",
@@ -555,9 +576,9 @@ export default function ServicesPage() {
           question="하랑마케팅은 어떤 서비스를 얼마에 제공하나요?"
           answer={`${ANSWER_SENTENCES.whatWeDo} ${ANSWER_SENTENCES.price}`}
           facts={[
+            { label: "견적 방식", value: "항목 조합형" },
             { label: "기준 단가", value: "블로그 4만원/편" },
-            { label: "한 채널", value: "월 30만원" },
-            { label: "전 채널 통합", value: "월 120~220만원" },
+            { label: "구성", value: "업체별 맞춤" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -903,44 +924,32 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            {/* 3) 실제 계약 평균 */}
+            {/* 3) 조합 방식 — 월 금액 구간표를 걷어낸 자리 */}
             <div className="mb-12 md:mb-14">
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-                  <BarChart3 size={15} className="text-white" strokeWidth={2.5} />
+                  <ListChecks size={15} className="text-white" strokeWidth={2.5} />
                 </div>
-                <h3 className="text-base md:text-lg font-black text-gray-900">3) 그래서 평균은 얼마인가</h3>
+                <h3 className="text-base md:text-lg font-black text-gray-900">3) 필요한 것만 골라서 조합합니다</h3>
               </div>
-              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-                <table className="w-full min-w-[560px] text-sm">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-200">
-                      <th className="text-left font-black text-gray-700 px-4 py-3 whitespace-nowrap">구성</th>
-                      <th className="text-left font-black text-gray-700 px-4 py-3">묶는 채널</th>
-                      <th className="text-right font-black text-gray-700 px-4 py-3 whitespace-nowrap">실제 범위</th>
-                      <th className="text-right font-black text-blue-700 px-4 py-3 whitespace-nowrap">평균</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {PRICE_BANDS.map((b) => (
-                      <tr key={b.scope} className="border-b border-gray-100 last:border-0 bg-white">
-                        <td className="px-4 py-3">
-                          <span className="font-black text-gray-900 block">{b.scope}</span>
-                          <span className="text-[11px] text-gray-400">계약 {b.n} 기준</span>
-                        </td>
-                        <td className="px-4 py-3 text-gray-600">{b.detail}</td>
-                        <td className="px-4 py-3 text-right text-gray-700 tabular-nums whitespace-nowrap">{b.range}</td>
-                        <td className="px-4 py-3 text-right font-black text-blue-600 tabular-nums whitespace-nowrap">{b.avg}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                {HOW_WE_COMPOSE.map((c, i) => (
+                  <div key={c.step} className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4 md:p-5">
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <span className="w-5 h-5 rounded-md bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0 tabular-nums">
+                        {i + 1}
+                      </span>
+                      <span className="text-[11px] font-black text-blue-700 tracking-wide">{c.step}</span>
+                    </div>
+                    <h4 className="font-black text-gray-900 text-sm mb-1.5 leading-snug">{c.title}</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">{c.body}</p>
+                  </div>
+                ))}
               </div>
               <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
-                현재 운영 중인 월 정액 계약과 최근 발행한 견적서에서 뽑은 숫자입니다. 부가세 별도이며 광고 집행비는 포함하지 않았습니다.
+                그래서 '월 얼마짜리 패키지' 를 미리 만들어두지 않습니다. 같은 예산이어도 매장 상황에 따라 들어가는 항목이 달라지기 때문입니다.
               </p>
             </div>
-
             {/* 4) 업종별 차이 */}
             <div className="mb-12 md:mb-14">
               <div className="flex items-center gap-2.5 mb-4">
@@ -1134,41 +1143,37 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* 예산별 패키지 */}
+        {/* 구성 예시 — 금액을 걸지 않는다 (대표 지시 2026-08-23) */}
         <section className="py-14 md:py-20 bg-white border-t border-gray-100">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">예산별 패키지</p>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">구성 예시</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">실제로 이런 조합으로 계약합니다</h2>
-              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">위 단가를 더하면 아래 세 가지 형태가 나옵니다. 부가세 별도이고 광고 집행비는 실비로 따로 나갑니다.</p>
+              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
+                세 가지 중 하나를 고르는 게 아니라, 여기서 필요 없는 항목은 빼고 부족한 항목은 더해 매장에 맞게 다시 짜드립니다.
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
                 {
                   tier: "한 채널 집중",
-                  price: "월 30만원",
-                  period: "부가세 별도",
                   desc: "이미 순위가 어느 정도 나오거나, 한 곳만 확실히 잡으면 되는 매장",
                   highlight: false,
-                  services: ["플레이스 SEO 최적화 1회", "대표키워드 5개 상위노출 관리", "리뷰 유도 동선 설계", "순위 모니터링 · 경쟁업체 분석", "월 성과 리포트"],
+                  services: ["플레이스 SEO 최적화 1회", "대표키워드 상위노출 관리", "리뷰 유도 동선 설계", "순위 모니터링 · 경쟁업체 분석", "월 성과 리포트"],
                   result: "3위권 키워드를 1~2위로",
                 },
                 {
                   tier: "두세 채널 묶음",
-                  price: "월 45~77만원",
-                  period: "평균 61만원 · 부가세 별도",
                   desc: "검색 유입부터 만들어야 하는 매장 · 가장 많이 선택하는 구성",
                   highlight: true,
-                  services: ["플레이스 SEO 최적화", "블로그 관리대행 월 10~15편", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"],
+                  services: ["플레이스 SEO 최적화", "블로그 관리대행", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"],
                   result: "검색 유입 만들고 문의 전환 붙이기",
                 },
                 {
                   tier: "전 채널 통합",
-                  price: "월 120~220만원",
-                  period: "평균 167만원 · 부가세 별도",
                   desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
                   highlight: false,
-                  services: ["블로그 · 카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO · 트래픽 · 길찾기", "인스타 피드 · 릴스 월 8~20건", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
+                  services: ["블로그 · 카페 배포", "파워컨텐츠 원고", "플레이스 SEO · 트래픽 · 길찾기", "인스타 피드 · 릴스", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
                   result: "지역 키워드 전 구간 점유",
                 },
               ].map((pkg) => (
@@ -1182,9 +1187,7 @@ export default function ServicesPage() {
                         가장 많이 선택
                       </div>
                     )}
-                    <div className="text-[11px] font-black text-white/60 tracking-widest mb-1">{pkg.tier}</div>
-                    <div className="text-2xl font-black text-white tabular-nums mb-0.5">{pkg.price}</div>
-                    <div className="text-white/60 text-[11px] mb-1.5">{pkg.period}</div>
+                    <div className="text-xl font-black text-white mb-2">{pkg.tier}</div>
                     <p className="text-white/70 text-xs leading-relaxed">{pkg.desc}</p>
                   </div>
                   <div className="bg-white p-6">
@@ -1207,18 +1210,17 @@ export default function ServicesPage() {
                       href="/contact"
                       className={`flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl text-sm font-black transition-colors ${pkg.highlight ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
                     >
-                      이 패키지로 상담 신청
+                      이 구성으로 상담 신청
                     </Link>
                   </div>
                 </div>
               ))}
             </div>
             <p className="text-center text-[11px] text-gray-400 mt-6 leading-relaxed">
-              * 위 금액은 실제 계약·견적 9건에서 뽑은 범위입니다. 같은 구성이어도 출발점·상권 경쟁도에 따라 달라지므로 진단 후 항목별로 다시 계산합니다.
+              * 실제 계약·견적 9건에서 뽑은 구성입니다. 항목마다 물량은 매장마다 다르게 잡으므로 진단 후에 항목별로 다시 계산합니다.
             </p>
           </div>
         </section>
-
         {/* 비교표 */}
         <section className="py-14 md:py-20 bg-gray-50 border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">

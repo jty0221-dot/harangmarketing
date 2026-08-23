@@ -168,7 +168,6 @@ const PROCESS_STEPS = [
 const PACKAGES = [
   {
     name: "한 채널 집중",
-    priceHint: "월 30만원",
     desc: "한 곳만 확실히 잡으면 되는 매장",
     roi: "3위권 키워드를 1~2위로",
     features: ["플레이스 SEO 최적화 1회", "대표키워드 5개 관리", "리뷰 유도 동선 설계", "월 리포트 1회"],
@@ -176,7 +175,6 @@ const PACKAGES = [
   },
   {
     name: "두세 채널 묶음",
-    priceHint: "월 45~77만원",
     desc: "검색 유입부터 만들어야 하는 매장",
     roi: "검색 유입 만들고 문의로 전환",
     features: ["플레이스 SEO 최적화", "블로그 관리대행 월 10~15편", "파워컨텐츠 원고 설계·검수", "네이버 광고 운영대행", "월 리포트 2회"],
@@ -184,7 +182,6 @@ const PACKAGES = [
   },
   {
     name: "전 채널 통합",
-    priceHint: "월 120~220만원",
     desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
     roi: "지역 키워드 전 구간 점유",
     features: ["블로그·카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
@@ -1102,11 +1099,11 @@ export default function HomePage() {
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>패키지</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">실제로 이런 금액대에서 계약합니다</h2>
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>구성</p>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">매장에 필요한 것만 골라 조합합니다</h2>
               <p className="text-gray-500 text-base max-w-xl mx-auto">
-                정찰제가 아니라 항목별 단가를 더해서 냅니다.<br />
-                아래는 실제 계약·견적에서 나온 구간이고, 계산 과정은 서비스 안내에 그대로 공개합니다.
+                정해둔 패키지 금액에 매장을 맞추지 않습니다.<br />
+                아래는 실제로 나간 구성이고, 여기서 필요 없는 항목은 빼고 부족한 항목은 더해 다시 짜드립니다.
               </p>
             </div>
 
@@ -1114,8 +1111,8 @@ export default function HomePage() {
             <div className="rounded-2xl p-5 md:p-6 mb-8" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
-                  { label: "기준 단가", value: "블로그 4만원", note: "1편 · 2,000자 기준" },
-                  { label: "가장 많은 계약 구간", value: "월 61만원", note: "두세 채널 묶음 평균" },
+                  { label: "견적 방식", value: "항목 조합", note: "정찰제 패키지 없습니다" },
+                  { label: "기준 단가", value: "블로그 4만원", note: "1편 기준 · 부가세 별도" },
                   { label: "상담 · 현황 진단", value: "0원", note: "견적 받고 안 하셔도 됩니다" },
                 ].map((item) => (
                   <div key={item.label}>
@@ -1126,7 +1123,7 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-xs text-gray-400 text-center mt-4">
-                * 실제로 나간 견적서와 지금 운영 중인 계약에서 뽑은 숫자입니다. 부가세 별도이고 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
+                * 단가는 실제로 나간 견적서에 쓴 금액 그대로입니다. 부가세 별도이고 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
               </p>
             </div>
 
@@ -1146,8 +1143,7 @@ export default function HomePage() {
                       </div>
                       <span className="text-[11px] font-black px-2 py-1 rounded-lg" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{pkg.roi}</span>
                     </div>
-                    <div className="text-lg font-black text-gray-900 mb-0.5">{pkg.priceHint}</div>
-                    <p className="text-xs text-gray-400 mb-5">{pkg.desc}</p>
+                    <p className="text-sm text-gray-500 mb-5 leading-relaxed">{pkg.desc}</p>
                     <ul className="space-y-2.5 mb-6">
                       {pkg.features.map((f) => (
                         <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
@@ -1159,7 +1155,7 @@ export default function HomePage() {
                     <Link href="/contact"
                       className={`block text-center py-3 rounded-xl font-bold text-sm transition-opacity hover:opacity-90 ${pkg.popular ? "text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
                       style={pkg.popular ? { background: "var(--h-navy)" } : {}}>
-                      이 패키지 문의하기
+                      이 구성으로 문의하기
                     </Link>
                   </div>
                 </div>
@@ -1167,7 +1163,7 @@ export default function HomePage() {
             </div>
 
             <p className="text-center text-xs text-gray-400 mt-6 leading-relaxed">
-              * 같은 구성이어도 출발점 · 현재 순위 · 상권 경쟁도에 따라 금액이 달라집니다.{" "}
+              * 같은 구성이어도 출발점 · 현재 순위 · 상권 경쟁도에 따라 붙는 항목과 물량이 달라집니다.{" "}
               <Link href="/services#pricing" className="font-bold underline underline-offset-2" style={{ color: "var(--h-navy)" }}>
                 항목별 단가와 계산 과정 보기
               </Link>
