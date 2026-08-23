@@ -152,7 +152,7 @@ const FAQS = [
   },
   {
     q: "계약 기간은 어떻게 되나요?",
-    a: "단기 진행도 가능하지만, 마케팅도 다이어트처럼 꾸준한 관리가 핵심입니다. 업체 상황에 맞는 가장 합리적인 기간과 예산을 제안드립니다.",
+    a: "월 단위 계약이 기본이라 1개월부터 가능하고 중도 해지 위약금도 없습니다. 다만 마케팅도 다이어트처럼 꾸준한 관리가 핵심이라, 3개월 이상 쌓아야 결과가 보이는 업종이면 미리 말씀드립니다.",
   },
 ];
 
@@ -446,9 +446,9 @@ export default function AboutPage() {
                   { item: "상담 비용", general: "유료 또는 계약 압박", harang: "완전 무료 · 계약 강요 없음" },
                   { item: "성과 보고", general: "복잡한 지표 · 실제 매출 연결 안 됨", harang: "매월 매출 연결 지표 리포트" },
                   { item: "작업 투명성", general: "어디에 썼는지 알기 어려움", harang: "매체사 전달 내역 100% 공유" },
-                  { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정" },
+                  { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정 · 중도 해지 위약금 없음" },
                   { item: "보상 정책", general: "없음", harang: "고의 누락 시 결제금액 10배 보상" },
-                  { item: "최소 계약", general: "6개월~1년", harang: "3개월부터 시작 가능" },
+                  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 1개월부터 가능" },
                 ].map((row, i) => (
                   <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] gap-0 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"}`}>
                     <div className="py-4 px-4 text-sm font-bold text-gray-700 flex items-center border-b border-gray-100">{row.item}</div>
