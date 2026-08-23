@@ -168,6 +168,10 @@ const CasesPage: FC = () => {
             <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
               숫자만 보여주지 않습니다. 함께 만들어온 성장의 이야기를 직접 읽어보세요.
             </p>
+            <p className="text-sm text-gray-400 leading-relaxed max-w-xl mt-4">
+              아래는 지역까지 공개 동의를 받은 사례입니다. 수도권 전역에 여러 업종을 맡고 있고,
+              대행·대대행으로 관리 중인 매장은 이보다 많습니다.
+            </p>
           </div>
         </section>
 

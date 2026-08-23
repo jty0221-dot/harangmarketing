@@ -42,7 +42,7 @@ export default function NotFound() {
               {[
                 { label: "서비스 소개", href: "/services", sub: "블로그·플레이스·SNS" },
                 { label: "진행 사례", href: "/cases", sub: "업종별 성과 확인" },
-                { label: "업종별 사례", href: "/portfolio", sub: "실제 진행 119건" },
+                { label: "업종별 사례", href: "/portfolio", sub: "공개 사례 119건" },
                 { label: "상담 신청", href: "/contact", sub: "무료 · 0원" },
               ].map((link) => (
                 <Link

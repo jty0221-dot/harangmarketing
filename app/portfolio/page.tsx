@@ -29,7 +29,8 @@ export default function PortfolioPage() {
               업종별 마케팅 사례
             </h1>
             <p className="w-body-1 mt-3 max-w-[640px]" style={{ color: "var(--w-label-alt)" }}>
-              직접 진행한 <strong style={{ color: "var(--w-primary)" }}>{total}건</strong>의 사례입니다.
+              블로그에 공개한 사례 <strong style={{ color: "var(--w-primary)" }}>{total}건</strong>입니다.
+              공개 동의를 받은 곳만 올리기 때문에, 대행·대대행으로 관리 중인 매장은 이보다 많습니다.
               업종을 고르면 우리 매장과 비슷한 곳이 어떻게 달라졌는지 바로 확인하실 수 있습니다.
             </p>
           </div>

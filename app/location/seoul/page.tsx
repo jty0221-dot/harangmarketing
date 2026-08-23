@@ -50,21 +50,21 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/location/seoul` },
   openGraph: {
     title: "서울 소상공인 마케팅 대행사 — 하랑마케팅",
-    description: "서울 강남·강서·마포·성수·홍대 지역 실제 성과 보유. 10년 경력 전담 팀장 직접 관리.",
+    description: "서울 강남·강서·마포·성수·홍대 등 전 지역 담당. 10년 경력 전담 팀장 직접 관리.",
     url: `${BASE}/location/seoul`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "서울 마케팅 대행사 하랑마케팅" }],
   },
 };
 
 const REGIONS = [
-  { name: "강남·서초", cases: "피부과 신규 예약 +220% · 5개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
-  { name: "강서·양천", cases: "카페 플레이스 1위 · 4개월", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
-  { name: "마포·홍대", cases: "음식점 배달 매출 +113% · 4개월", color: "bg-purple-50 border-purple-100 text-purple-700" },
-  { name: "성수·뚝섬", cases: "카페 SNS 팔로워 0→2천명 · 3개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
-  { name: "목동·신정", cases: "학원 수강생 +60% · 3개월", color: "bg-green-50 border-green-100 text-green-700" },
-  { name: "종로·인사동", cases: "음식점 외국인 관광객 유입 +40%", color: "bg-blue-50 border-blue-100 text-blue-700" },
-  { name: "노원·도봉", cases: "네일샵 예약 2주 치 마감 · 2개월", color: "bg-blue-50 border-blue-100 text-blue-700" },
-  { name: "송파·잠실", cases: "한의원 초진 +180% · 6개월", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
+  { name: "강남·서초", focus: "병의원·피부과 밀집 · 브랜드 검색 경쟁이 가장 세다", color: "bg-blue-50 border-blue-100 text-blue-700" },
+  { name: "강서·양천", focus: "마곡 업무지구 · 직장인 점심·퇴근 검색 비중이 높다", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
+  { name: "마포·홍대", focus: "유동인구 상권 · 방문과 배달 검색이 함께 움직인다", color: "bg-purple-50 border-purple-100 text-purple-700" },
+  { name: "성수·뚝섬", focus: "카페·편집숍 밀집 · 인스타에서 넘어오는 유입이 크다", color: "bg-blue-50 border-blue-100 text-blue-700" },
+  { name: "목동·신정", focus: "학원가 · 학부모 커뮤니티 영향력이 특히 강하다", color: "bg-green-50 border-green-100 text-green-700" },
+  { name: "종로·인사동", focus: "관광 상권 · 지도 노출과 외국어 검색을 함께 본다", color: "bg-blue-50 border-blue-100 text-blue-700" },
+  { name: "노원·도봉", focus: "주거 밀집 · 재방문과 리뷰 관리가 순위를 좌우한다", color: "bg-blue-50 border-blue-100 text-blue-700" },
+  { name: "송파·잠실", focus: "대형 주거 상권 · 병의원·한방 경쟁 밀도가 높다", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
 ];
 
 export default function SeoulPage() {
@@ -85,12 +85,12 @@ export default function SeoulPage() {
               <span className="text-blue-400">마케팅 대행사</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              강남·강서·마포·성수·홍대·목동 등 서울 전 지역에서 실제 성과를 만들어왔습니다.
+              강남·강서·마포·성수·홍대·목동 등 서울 전 지역을 맡고 있습니다.
               서울 상권의 치열한 경쟁 구도를 정확히 이해하고 있습니다.
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {[
-                { val: "150+", label: "서울 클라이언트" },
+                { val: "월 단위", label: "계약 기간" },
                 { val: SITE.stats.renewalRate, label: "재계약률" },
                 { val: "10년+", label: "경력" },
               ].map(s => (
@@ -116,11 +116,11 @@ export default function SeoulPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="서울 소상공인 마케팅 대행사, 어디에 맡겨야 하나요?"
-          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열해 플레이스 상위 노출까지 보통 1~2개월이 걸리며, 하랑마케팅이 진행한 서울 강서 피부과는 6개월간 신규 예약 +300%, 서울 마포 음식점은 4개월간 배달 매출 +113%를 달성했습니다. 서울 전 지역 방문 상담과 비대면 상담 모두 가능합니다. 상담 비용은 0원입니다."
+          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열해 플레이스 상위 노출까지 보통 1~2개월이 걸립니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 서울 전 지역 방문 상담과 비대면 상담 모두 가능하며 상담 비용은 0원입니다."
           facts={[
-            { label: "서울 대표 성과", value: "신규예약 +300%" },
+            { label: "계약 기간", value: "월 단위 · 1개월부터" },
             { label: "상위 노출 기간", value: "1~2개월" },
-            { label: "최소 계약", value: "3개월" },
+            { label: "중도 해지", value: "위약금 없음" },
             { label: "상담 비용", value: "0원" },
           ]}
         />
@@ -128,8 +128,8 @@ export default function SeoulPage() {
 
         <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">서울 지역별 실제 성과</h2>
-            <p className="text-gray-500 text-sm text-center mb-10">서울은 경쟁이 치열합니다 — 그만큼 전략이 정교해야 합니다</p>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">서울 상권별 특성</h2>
+            <p className="text-gray-500 text-sm text-center mb-10">같은 서울이어도 고객이 찾아오는 경로가 다릅니다 — 상권에 맞춰 채널을 나눕니다</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {REGIONS.map(r => (
                 <div key={r.name} className={`rounded-2xl border p-5 ${r.color}`}>
@@ -137,7 +137,7 @@ export default function SeoulPage() {
                     <MapPin size={14} strokeWidth={2.5} />
                     <span className="font-black text-sm">{r.name}</span>
                   </div>
-                  <p className="text-xs opacity-80">{r.cases}</p>
+                  <p className="text-xs opacity-80 leading-relaxed">{r.focus}</p>
                 </div>
               ))}
             </div>
