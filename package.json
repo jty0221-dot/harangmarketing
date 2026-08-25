@@ -9,7 +9,9 @@
     "lint": "eslint",
     "refs:collect": "python scripts/cafe-ref/collect.py",
     "refs:apply": "python scripts/cafe-ref/apply.py",
-    "refs:verify": "python scripts/cafe-ref/apply.py --verify"
+    "refs:verify": "python scripts/cafe-ref/apply.py --verify",
+    "hooks:install": "node scripts/install-hooks.js",
+    "prepare": "node scripts/install-hooks.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

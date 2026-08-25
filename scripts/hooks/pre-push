@@ -1,0 +1,26 @@
+#!/bin/sh
+# push = 배포다. 배포 화면이 깨질 상태면 여기서 끊는다.
+#
+# apply.py 는 캡처(public/cafe-ref)와 데이터(cafe-distribution.ts)를 같이 고치는데,
+# 데이터만 커밋되면 로컬에는 파일이 남아 있어 npm run build 도 눈으로 보는 확인도
+# 전부 통과한다. 배포 화면에서만 빈 칸이 된다.
+# 08/22 배치는 277장, 08/25 배치는 245장이 그렇게 샜다.
+#
+# 급하면 git push --no-verify 로 건너뛸 수 있다. 다만 건너뛴 만큼 화면이 깨진다.
+
+if ! command -v python >/dev/null 2>&1; then
+  echo "pre-push: python 이 없어 레퍼런스 검증을 건너뜁니다."
+  exit 0
+fi
+
+if python scripts/cafe-ref/apply.py --verify; then
+  exit 0
+fi
+
+echo
+echo "──────────────────────────────────────────────"
+echo " push 를 막았습니다 — 이대로 배포하면 화면이 깨집니다."
+echo " 위에 적힌 git add 를 실행해 캡처까지 커밋한 뒤 다시 push 하세요."
+echo " 정말 그냥 보내려면: git push --no-verify"
+echo "──────────────────────────────────────────────"
+exit 1

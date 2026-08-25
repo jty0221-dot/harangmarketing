@@ -34,6 +34,16 @@ git commit
 npm run refs:verify   # 0 이 나와야 배포해도 된다
 ```
 
+### push 를 하면 자동으로 검사한다
+
+`npm install` 을 한 번 돌리면 `core.hooksPath` 가 `scripts/hooks` 로 붙는다
+(`scripts/install-hooks.js` · `npm run hooks:install` 로 따로 돌려도 된다).
+그 뒤로는 `git push` 할 때마다 `scripts/hooks/pre-push` 가 위 검증을 돌리고,
+커밋 안 된 캡처가 있으면 push 자체를 막는다.
+
+훅을 repo 안에 두는 이유는 `.git/hooks` 가 clone 을 따라오지 않기 때문이다.
+급하면 `git push --no-verify` 로 건너뛸 수 있지만, 건너뛴 만큼 화면이 깨진다.
+
 ### 4단계에서 `public/cafe-ref` 를 빼먹지 말 것
 
 `apply.py` 는 **캡처(`public/cafe-ref/*.png`)** 와 **데이터(`cafe-distribution.ts`)**
