@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
         .catch(() => ({ ok: false, error: `서버 응답 오류 (${res.status})` }));
 
       if (data.ok) {
-        // 전체 페이지 이동 — 쿠키가 확실히 전송돼 미들웨어를 통과한다
+        // 전체 페이지 이동 — 쿠키가 확실히 전송돼 proxy 를 통과한다
         window.location.href = "/admin";
         return;
       }

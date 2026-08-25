@@ -44,7 +44,7 @@
 | `/r/zzzz` (형식 틀린 코드) | 404 — DB 조회 전에 차단 |
 | `/r/abcdefghjkmn` (형식 맞고 없는 보고서) | 404 — DB 연결·테이블 자동생성 정상 |
 | 같은 요청 반복 | 1.03s → 0.53s — 테이블이 이미 있어 DDL 재실행 없음 |
-| `/admin/reports` | 307 → `/admin/login` (미들웨어 보호) |
+| `/admin/reports` | 307 → `/admin/login` (proxy 보호) |
 | `/api/admin/reports` (인증 없이) | 401 |
 | sitemap · rss · llms.txt · robots.txt | `/r/` 노출 0건 |
 
