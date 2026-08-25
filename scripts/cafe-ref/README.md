@@ -27,9 +27,27 @@ npm run refs:collect -- --full  # 전체 다시 훑기
 npm run refs:apply -- --dry-run   # 어디로 갈지 미리보기
 npm run refs:apply                # 실제 반영
 
-# 4) 확인 후 커밋
+# 4) 빌드 확인 → 캡처까지 커밋 → 커밋 후 재검증
 npm run build
+git add public/cafe-ref app/lib/cafe-distribution.ts scripts/cafe-ref/classify.py
+git commit
+npm run refs:verify   # 0 이 나와야 배포해도 된다
 ```
+
+### 4단계에서 `public/cafe-ref` 를 빼먹지 말 것
+
+`apply.py` 는 **캡처(`public/cafe-ref/*.png`)** 와 **데이터(`cafe-distribution.ts`)**
+두 곳을 같이 고친다. 둘 중 데이터만 커밋되면 로컬에는 파일이 남아 있어서
+`npm run build` 도 통과하고 눈으로 봐도 멀쩡하다. **배포 화면에서만 빈 칸이 된다.**
+
+2026-08-22 배치가 정확히 이렇게 새서 캡처 277장이 사흘 동안 깨진 채로 나가 있었다.
+그래서 `refs:verify` 는 '파일이 있나' 가 아니라 **'커밋됐나'** 를 묻는다.
+
+```bash
+npm run refs:verify
+```
+
+커밋이 빠졌으면 접두어별 범위와 붙여넣을 `git add` 명령을 찍고 **종료코드 1** 로 끝난다.
 
 ## 자동으로 처리되는 것
 

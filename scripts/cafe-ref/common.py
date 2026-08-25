@@ -10,6 +10,7 @@ import os
 import re
 import json
 import time
+import subprocess
 import urllib.request
 
 from PIL import Image
@@ -176,6 +177,36 @@ def append_keywords(src, blocks, additions):
                  for j in range(0, len(items), 4)]
         out = out[:a] + inner + "\n" + "\n".join(lines) + "\n    " + out[b:]
     return out
+
+
+# ── git 추적 상태 ────────────────────────────────────────────────────
+def _git(*args):
+    """repo 안에서 git 을 돌려 stdout 을 돌려준다. 실패하면 None."""
+    try:
+        r = subprocess.run(
+            ("git", "-C", REPO, "-c", "core.quotepath=false") + args,
+            capture_output=True, text=True, encoding="utf-8",
+        )
+    except (OSError, ValueError):
+        return None
+    return r.stdout if r.returncode == 0 else None
+
+
+def git_state():
+    """public/cafe-ref 캡처의 git 상태를 (커밋됨, 스테이징됨) 집합으로 돌려준다.
+
+    '디스크에 있다' 와 '배포된다' 는 다르다. Vercel 은 커밋된 것만 받으므로
+    파일이 로컬에 있어도 커밋이 빠지면 배포 화면에서만 빈 칸이 된다.
+    2026-08-22 배치가 정확히 그렇게 새서 사흘 동안 277칸이 깨져 있었다.
+
+    git 을 쓸 수 없으면 (None, None).
+    """
+    tree = _git("ls-tree", "-r", "--name-only", "HEAD", "public/cafe-ref")
+    index = _git("ls-files", "public/cafe-ref")
+    if tree is None or index is None:
+        return None, None
+    names = lambda s: {os.path.basename(x) for x in s.splitlines() if x.strip()}
+    return names(tree), names(index)
 
 
 def load_ledger():
