@@ -2,10 +2,22 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Check, Copy, Landmark, Loader2 } from "lucide-react";
+import { ArrowLeft, Check, Copy, CreditCard, Landmark, Loader2 } from "lucide-react";
 
 const PRESETS = [10000, 30000, 50000, 100000, 300000, 500000];
 const won = (n: number) => n.toLocaleString("ko-KR");
+
+/**
+ * 포트원 결제창 설정 — 상점 아이디와 채널 키는 공개값이라 브라우저에 내려도 된다.
+ * (돈을 움직이는 열쇠는 서버의 PORTONE_API_SECRET 이고 그건 절대 내려가지 않는다)
+ *
+ * 두 값이 비어 있으면 카드 결제 자리를 아예 그리지 않고 예전처럼 무통장입금만 받는다.
+ * PG 심사 중에는 테스트 채널 키를 넣어 두면 결제창이 테스트모드로 뜬다.
+ */
+const STORE_ID = process.env.NEXT_PUBLIC_PORTONE_STORE_ID ?? "";
+const CHANNEL_KEY = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY ?? "";
+const CARD_READY = Boolean(STORE_ID && CHANNEL_KEY);
+const TEST_MODE = process.env.NEXT_PUBLIC_PORTONE_TEST === "1";
 
 interface Charge {
   id: number;
@@ -32,6 +44,8 @@ export default function SnsChargePage() {
   const [error, setError] = useState("");
   const [ready, setReady] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [method, setMethod] = useState<"card" | "bank">(CARD_READY ? "card" : "bank");
+  const [done, setDone] = useState("");
 
   const load = useCallback(async () => {
     const res = await fetch("/api/sns/charge");
@@ -77,6 +91,73 @@ export default function SnsChargePage() {
     setLoading(false);
   };
 
+  /**
+   * 카드 결제 — 충전 건을 먼저 만들고(paymentId 의 뿌리가 된다) 포트원 결제창을 띄운다.
+   *
+   * 결제창이 성공을 돌려줘도 그것만으로 잔액을 올리지 않는다. 서버가 포트원 API 에
+   * 다시 물어서 PAID 와 금액이 맞을 때만 반영한다 — 브라우저 응답은 위조될 수 있다.
+   */
+  const payWithCard = async () => {
+    if (!amount || amount < 5000) {
+      setError("최소 5,000원부터 충전할 수 있어요.");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/sns/charge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount }),
+      });
+      const data = await res.json().catch(() => ({ ok: false }));
+      if (!data.ok || !data.charge?.id) {
+        setError(data.error ?? "충전 신청에 실패했습니다");
+        setLoading(false);
+        return;
+      }
+
+      const PortOne = await import("@portone/browser-sdk/v2");
+      const paid = await PortOne.default.requestPayment({
+        storeId: STORE_ID,
+        channelKey: CHANNEL_KEY,
+        paymentId: `harang-charge-${data.charge.id}`,
+        orderName: `SNS 부스트 예치금 ${won(amount)}원`,
+        totalAmount: amount,
+        currency: "KRW",
+        payMethod: "CARD",
+        redirectUrl: `${window.location.origin}/sns/charge`,
+      });
+
+      // 사용자가 창을 닫았거나 카드사에서 막힌 경우 — 신청 건은 입금 대기로 남는다
+      if (paid?.code) {
+        setError(paid.message ?? "결제가 완료되지 않았습니다");
+        setLoading(false);
+        load();
+        return;
+      }
+
+      const check = await fetch("/api/sns/charge/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paymentId: `harang-charge-${data.charge.id}` }),
+      });
+      const result = await check.json().catch(() => ({ ok: false }));
+      if (result.ok && result.status === "paid") {
+        setDone(`${won(amount)}원이 충전되었습니다`);
+        setCustom("");
+      } else if (result.ok) {
+        setDone("결제가 접수되었습니다. 확인되는 대로 잔액에 반영됩니다");
+      } else {
+        setError(result.error ?? "결제 확인에 실패했습니다");
+      }
+      load();
+    } catch {
+      setError("결제창을 열지 못했습니다. 잠시 후 다시 시도해 주세요");
+    }
+    setLoading(false);
+  };
+
   const copyBank = async () => {
     try {
       await navigator.clipboard.writeText(bank);
@@ -112,11 +193,35 @@ export default function SnsChargePage() {
             예치금 충전
           </h1>
           <p className="w-body-2 mt-2" style={{ color: "var(--w-text-muted)" }}>
-            금액을 고르고 신청한 뒤 안내 계좌로 입금하시면, 확인 후 잔액에 반영됩니다.
+            {CARD_READY
+              ? "금액을 고르고 카드로 바로 결제하거나, 계좌로 입금하실 수 있습니다."
+              : "금액을 고르고 신청한 뒤 안내 계좌로 입금하시면, 확인 후 잔액에 반영됩니다."}
           </p>
         </div>
 
-        {submitted ? (
+        {done ? (
+          <section className="w-card p-7">
+            <div className="flex items-center gap-2">
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-full"
+                style={{ background: "var(--w-success-weak)" }}
+              >
+                <Check size={16} strokeWidth={3} style={{ color: "var(--w-success-dark)" }} />
+              </span>
+              <h2 className="w-title-3" style={{ color: "var(--w-text)" }}>
+                {done}
+              </h2>
+            </div>
+            <div className="mt-5 flex gap-2">
+              <Link href="/sns/me" className="w-btn w-btn-primary flex-1">
+                마이페이지로
+              </Link>
+              <button onClick={() => setDone("")} className="w-btn w-btn-secondary flex-1">
+                더 충전하기
+              </button>
+            </div>
+          </section>
+        ) : submitted ? (
           <section className="w-card p-7">
             <div className="flex items-center gap-2">
               <span
@@ -234,19 +339,83 @@ export default function SnsChargePage() {
               </span>
             </div>
 
+            {CARD_READY && (
+              <div className="mt-5">
+                <p className="w-field-label">결제 방법</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {([
+                    { key: "card" as const, label: "카드 결제", icon: CreditCard, help: "바로 충전됩니다" },
+                    { key: "bank" as const, label: "무통장 입금", icon: Landmark, help: "확인 후 반영됩니다" },
+                  ]).map((m) => {
+                    const active = method === m.key;
+                    const Icon = m.icon;
+                    return (
+                      <button
+                        key={m.key}
+                        type="button"
+                        onClick={() => {
+                          setMethod(m.key);
+                          setError("");
+                        }}
+                        className="flex flex-col items-start gap-1 rounded-[12px] px-4 py-3 text-left transition-colors"
+                        style={
+                          active
+                            ? {
+                                background: "var(--w-primary-weak)",
+                                border: "1px solid var(--w-primary)",
+                              }
+                            : { background: "var(--w-bg)", border: "1px solid var(--w-border)" }
+                        }
+                      >
+                        <span
+                          className="w-label-1 flex items-center gap-1.5 font-bold"
+                          style={{ color: active ? "var(--w-primary-active)" : "var(--w-text-sub)" }}
+                        >
+                          <Icon size={14} strokeWidth={2.5} />
+                          {m.label}
+                        </span>
+                        <span className="w-caption-1" style={{ color: "var(--w-text-assist)" }}>
+                          {m.help}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             {error && <p className="w-error-text mt-3">{error}</p>}
 
-            <button onClick={submit} disabled={loading} className="w-btn w-btn-primary mt-5 w-full">
+            <button
+              onClick={method === "card" ? payWithCard : submit}
+              disabled={loading}
+              className="w-btn w-btn-primary mt-5 w-full"
+            >
               {loading ? (
                 <>
                   <Loader2 size={16} className="animate-spin" />
-                  신청 중
+                  {method === "card" ? "결제창 여는 중" : "신청 중"}
                 </>
+              ) : method === "card" ? (
+                `${won(amount || 0)}원 결제하기`
               ) : (
                 "충전 신청하기"
               )}
             </button>
-            <p className="w-help text-center">신청 후 안내되는 계좌로 입금하시면 됩니다.</p>
+            <p className="w-help text-center">
+              {method === "card"
+                ? "카드 결제는 승인 즉시 잔액에 반영됩니다."
+                : "신청 후 안내되는 계좌로 입금하시면 됩니다."}
+            </p>
+
+            {TEST_MODE && (
+              <p
+                className="w-caption-1 mt-4 rounded-[10px] px-4 py-3 text-center"
+                style={{ background: "var(--w-bg-sunken)", color: "var(--w-text-assist)" }}
+              >
+                지금은 결제 심사용 테스트모드입니다. 실제로 돈이 빠져나가지 않습니다.
+              </p>
+            )}
           </section>
         )}
 
