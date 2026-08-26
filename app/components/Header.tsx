@@ -44,6 +44,7 @@ const NAV_ITEMS = [
       // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로 연결한다
       { label: "하랑 스튜디오 — 사진·영상 프로그램", href: "/studio" },
       { label: "최적화 블로그 · 카페 배포", href: "/services/cafe-distribution" },
+      { label: "스마트스토어 상세페이지 제작", href: "/services/detail-page" },
       { label: "SNS 부스트 스토어 — 셀프 주문", href: "/sns" },
       { label: "블로그·기자단", href: "/services#blog" },
       { label: "플레이스 SEO", href: "/services#place" },
