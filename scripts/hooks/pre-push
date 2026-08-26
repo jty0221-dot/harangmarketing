@@ -1,7 +1,8 @@
 #!/bin/sh
 # push = 배포다. 배포 화면이 깨질 상태면 여기서 끊는다.
 #
-# apply.py 는 캡처(public/cafe-ref)와 데이터(cafe-distribution.ts)를 같이 고치는데,
+# 카페 배포(public/cafe-ref)와 상세페이지 레퍼런스(public/detail-ref) 둘 다 본다.
+# 캡처와 데이터를 같이 고치는데,
 # 데이터만 커밋되면 로컬에는 파일이 남아 있어 npm run build 도 눈으로 보는 확인도
 # 전부 통과한다. 배포 화면에서만 빈 칸이 된다.
 # 08/22 배치는 277장, 08/25 배치는 245장이 그렇게 샜다.
@@ -13,7 +14,12 @@ if ! command -v python >/dev/null 2>&1; then
   exit 0
 fi
 
-if python scripts/cafe-ref/apply.py --verify; then
+ok=0
+python scripts/cafe-ref/apply.py --verify || ok=1
+echo
+python scripts/detail-ref/verify.py || ok=1
+
+if [ "$ok" = "0" ]; then
   exit 0
 fi
 

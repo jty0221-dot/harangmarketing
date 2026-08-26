@@ -10,6 +10,7 @@
     "refs:collect": "python scripts/cafe-ref/collect.py",
     "refs:apply": "python scripts/cafe-ref/apply.py",
     "refs:verify": "python scripts/cafe-ref/apply.py --verify",
+    "refs:verify:detail": "python scripts/detail-ref/verify.py",
     "hooks:install": "node scripts/install-hooks.js",
     "prepare": "node scripts/install-hooks.js"
   },

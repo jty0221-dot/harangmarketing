@@ -5,6 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import JsonLd from "../../components/JsonLd";
 import { SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem } from "../../lib/seo";
 import { getDetailPageCases, INDUSTRY_LABEL } from "../../lib/detail-page-cases";
+import { REF_TOTAL, REF_CATEGORIES } from "../../lib/detail-page-reference";
 import {
   ArrowRight, Check, Layers, ShieldCheck, Ban, FileText, Camera,
   Image as ImageIcon, Film, ClipboardList, Info,
@@ -20,8 +21,10 @@ import {
  * 네 층이다. 1층 공정(9단) · 2층 게이트 · 3층 원칙 · 4층 사례.
  * 4층이 비어도 나머지 세 층으로 페이지가 성립한다.
  *
- * 단가는 연우디자인스튜디오 등급표와 같은 숫자를 쓴다 (대표 지시 2026-08-27 · D-0078).
- * 연우 정본에 부가세 기준이 적혀 있지 않으므로 이 화면에도 부가세 문구를 쓰지 않는다 (C-42).
+ * 단가는 우리 4등급안이다 (기획형 150,000 · 제작형 350,000 · 제작+영상형 550,000 · 앵커 1,500,000).
+ * 연우디자인스튜디오 등급표는 블로그 홈페이지형 디자인 상품의 것이라 여기 쓰지 않는다
+ * (2026-08-27 (목) 대표 지시로 원복 · D-0078). 연우 값이 들어가는 자리는 앵커 안의 스토어 스킨 원가 한 줄뿐이다.
+ * 부가세 기준은 아직 확정 전이라 이 화면에 부가세 문구를 쓰지 않는다 (C-42).
  *
  * 디자인 기준은 WDS 다 (harang/CLAUDE.md).
  * 아이콘 박스는 단색 배경 + 흰 아이콘으로 한다 — 그라데이션 금지.
@@ -46,36 +49,36 @@ const SECTIONS = [
   { code: "S8", name: "CS·반품", role: "분쟁을 미리 막는다", note: "교환·환불 기준 명시" },
 ];
 
-/* 등급 (연우 등급표와 같은 숫자 · 2026-08-27 확정) */
+/* 등급 · 4등급 단가안 (2026-08-27 (목) 대표 지시로 원복 — 연우 등급표는 블로그 홈페이지형 상품이라 여기 쓰지 않는다) */
 const PLANS = [
   {
-    key: "standard",
-    name: "STANDARD",
-    price: "200,000원",
-    amount: 200000,
+    key: "planning",
+    name: "기획형",
+    price: "150,000원",
+    amount: 150000,
     lead: "3영업일",
     summary: "기획만 받고 제작은 직접 하십니다",
     forWhom: "디자이너나 편집자가 이미 있는 경우",
     includes: [
       "9단 섹션 구성표",
       "섹션별 카피 (문구)",
-      "이미지 생성 프롬프트 패키지",
-      "촬영 기획안 (필요할 때)",
+      "3블록 이미지 생성 프롬프트 패키지",
+      "촬영 기획안",
     ],
     excludes: ["상세 이미지 제작은 들어가지 않습니다"],
     recommended: false,
   },
   {
-    key: "deluxe",
-    name: "DELUXE",
-    price: "200,000원",
-    amount: 200000,
+    key: "production",
+    name: "제작형",
+    price: "350,000원",
+    amount: 350000,
     lead: "7영업일",
     summary: "기획부터 상세 이미지 완성까지",
     forWhom: "만들 사람이 없는 경우, 대부분 여기입니다",
     includes: [
-      "STANDARD 전부",
-      "9단 상세 이미지 제작",
+      "기획형 전부",
+      "9단 상세페이지 이미지 제작",
       "모바일 가독성 판 (글자 크기·여백 재조정)",
       "슬라이스 파일 납품",
     ],
@@ -83,27 +86,44 @@ const PLANS = [
     recommended: true,
   },
   {
-    key: "premium",
-    name: "PREMIUM",
-    price: "300,000원",
-    amount: 300000,
+    key: "video",
+    name: "제작+영상형",
+    price: "550,000원",
+    amount: 550000,
     lead: "10영업일",
-    summary: "섹션 수 제한 없이, 대표이미지까지",
-    forWhom: "할 말이 많은 상품 · 브랜드 첫 상품",
+    summary: "상세 이미지에 움직이는 첫 화면까지",
+    forWhom: "사진부터 없는 경우 · 촬영 기획부터 같이 갑니다",
     includes: [
-      "DELUXE 전부",
-      "섹션 수 제한 없음",
-      "대표이미지(썸네일) 세트",
+      "제작형 전부",
+      "S0 첫 화면 훅 GIF",
+      "숏폼 1편 (15초 내외)",
+      "START·END 프레임 기반 제작",
     ],
     excludes: [],
     recommended: false,
   },
 ];
 
+/* 앵커 — 실제로 파는 상품이다. 팔 생각 없는 가짜 등급은 표시광고법 위반이라 세우지 않는다 */
+const PACKAGE = {
+  key: "brand",
+  name: "브랜드 패키지",
+  price: "1,500,000원",
+  amount: 1500000,
+  lead: "20영업일",
+  summary: "상품 하나가 아니라 스토어 하나를 세웁니다",
+  includes: [
+    "상품 3종 상세페이지",
+    "스마트스토어 스킨 디자인",
+    "블로그·카페 배포 원고 3편",
+  ],
+};
+
 const EXTRAS = [
-  { name: "원본 파일 (레이어)", price: "50,000원", note: "직접 고쳐 쓰실 수 있게 편집 가능한 파일로 드립니다" },
-  { name: "소폭 수정 (무상 3회 초과분)", price: "회당 10,000원", note: "문구·색·배치처럼 구성이 바뀌지 않는 수정" },
-  { name: "숏폼 영상", price: "별도 견적", note: "등급에 넣지 않습니다. 상품마다 필요한 컷 수가 달라 미리 값을 못 정합니다" },
+  { name: "텍스트·문구 수정", price: "2회 포함 / 초과 회당 30,000원", note: "카피와 문구를 고치는 수정입니다" },
+  { name: "이미지 재생성", price: "컷당 3회 포함 / 초과 컷당 20,000원", note: "같은 자리의 이미지를 다시 뽑는 경우입니다" },
+  { name: "구성 순서 변경", price: "1회 포함 / 이후 기획 재작업 80,000원", note: "순서가 바뀌면 카피와 이미지가 전부 다시 갑니다" },
+  { name: "촬영 원본 교체", price: "1회 포함 / 이후 재제작 견적 별도", note: "사진이 바뀌면 그 자리부터 다시 만듭니다" },
 ];
 
 /* 2층 · 순서를 강제하는 게이트 두 개 */
@@ -156,11 +176,11 @@ const STEPS = [
 const FAQS: FaqItem[] = [
   {
     q: "상세페이지 제작 비용은 얼마인가요?",
-    a: "하랑마케팅 상세페이지는 세 등급입니다. 기획만 받는 STANDARD 200,000원, 기획과 이미지 제작을 함께 하는 DELUXE 200,000원, 섹션 수 제한 없이 대표이미지까지 만드는 PREMIUM 300,000원입니다. 편집 가능한 원본 파일은 50,000원 별도이고 무상 수정은 3회까지 포함됩니다. 상담과 견적은 0원입니다.",
+    a: "하랑마케팅 상세페이지는 세 등급입니다. 기획만 받는 기획형 150,000원, 기획과 이미지 제작을 함께 하는 제작형 350,000원, 여기에 첫 화면 훅 GIF 와 숏폼 1편이 붙는 제작+영상형 550,000원입니다. 상품 3종에 스토어 스킨과 배포 원고까지 묶는 브랜드 패키지는 1,500,000원입니다. 상담과 견적은 0원입니다.",
   },
   {
-    q: "STANDARD 와 DELUXE 가 왜 같은 값인가요?",
-    a: "STANDARD 에는 이미지 제작이 들어가지 않기 때문입니다. 디자이너나 편집자가 이미 있는 사장님은 기획만 받으시면 되고 그 경우 STANDARD 가 맞습니다. 만들 사람이 없다면 같은 값에 제작까지 들어가는 DELUXE 를 권해 드립니다. 저희는 상담에서 DELUXE 를 기본으로 안내합니다.",
+    q: "어느 등급을 골라야 하나요?",
+    a: "질문 하나로 갈립니다. 사진도 있고 만들 사람도 있다면 기획형입니다. 사진은 있는데 만들 사람이 없다면 제작형이고 대부분 여기입니다. 사진부터 없다면 제작+영상형으로 촬영 기획부터 같이 갑니다. 저희는 상담에서 제작형을 기본으로 안내드립니다.",
   },
   {
     q: "제품 사진이 아직 없는데 시작할 수 있나요?",
@@ -168,7 +188,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: "수정은 몇 번까지 되나요?",
-    a: "무상 수정은 3회까지입니다. 문구·색·배치처럼 구성이 바뀌지 않는 소폭 수정은 3회를 넘기면 회당 10,000원입니다. 다만 섹션 순서를 바꾸거나 촬영 원본을 교체하는 것은 수정이 아니라 재제작이라 별도 견적으로 안내드립니다. 구성이 바뀌면 카피와 이미지가 전부 다시 가기 때문입니다.",
+    a: "수정은 종류마다 횟수가 다릅니다. 문구 수정은 2회까지 포함이고 넘으면 회당 30,000원, 이미지 재생성은 컷당 3회까지 포함이고 넘으면 컷당 20,000원입니다. 구성 순서 변경은 1회까지 포함이고 이후에는 기획 재작업 80,000원, 촬영 원본 교체는 1회까지 포함이고 이후에는 재제작 견적을 따로 드립니다. 순서와 사진이 바뀌면 카피와 이미지가 전부 다시 가기 때문입니다. 무제한 수정은 약속드리지 않습니다.",
   },
   {
     q: "AI 로 만든 이미지를 쓰나요?",
@@ -198,10 +218,10 @@ const LD = [
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "KRW",
-      lowPrice: 200000,
-      highPrice: 300000,
-      offerCount: PLANS.length,
-      offers: PLANS.map((p) => ({
+      lowPrice: 150000,
+      highPrice: 1500000,
+      offerCount: PLANS.length + 1,
+      offers: [...PLANS, PACKAGE].map((p) => ({
         "@type": "Offer",
         name: p.name,
         price: p.amount,
@@ -214,7 +234,7 @@ const LD = [
   webPageLd({
     path: PATH,
     name: "하랑마케팅 스마트스토어 상세페이지 제작",
-    description: "이미지를 파는 게 아니라 순서를 팝니다. 9단 구성 · 게이트 2개 · 공정 전체 공개. 200,000원부터.",
+    description: "이미지를 파는 게 아니라 순서를 팝니다. 9단 구성 · 게이트 2개 · 공정 전체 공개. 150,000원부터.",
   }),
   howToLd({
     path: PATH,
@@ -285,11 +305,11 @@ export default function DetailPageServicePage() {
         {/* AEO 한 줄 정답 */}
         <AnswerBlock
           question="스마트스토어 상세페이지 제작은 비용이 얼마이고 무엇부터 하나요?"
-          answer="하랑마케팅 상세페이지 제작은 세 등급입니다. 기획만 받는 STANDARD 200,000원, 기획과 이미지 제작을 함께 하는 DELUXE 200,000원, 섹션 수 제한 없이 대표이미지까지 만드는 PREMIUM 300,000원이며 무상 수정은 3회까지 포함됩니다. 제작은 이미지부터가 아니라 구성 기획부터 시작합니다. 어떤 불안을 몇 번째 화면에서 지울지 정한 다음 9단 구성표와 카피를 만들고 그 다음에 이미지를 만듭니다. 제품 사진이 아직 없어도 촬영 기획안부터 진행할 수 있습니다. 상담과 견적은 0원입니다."
+          answer="하랑마케팅 상세페이지 제작은 세 등급입니다. 기획만 받는 기획형 150,000원, 기획과 이미지 제작을 함께 하는 제작형 350,000원, 첫 화면 훅 GIF 와 숏폼 1편까지 붙는 제작+영상형 550,000원입니다. 제작은 이미지부터가 아니라 구성 기획부터 시작합니다. 어떤 불안을 몇 번째 화면에서 지울지 정한 다음 9단 구성표와 카피를 만들고 그 다음에 이미지를 만듭니다. 제품 사진이 아직 없어도 촬영 기획안부터 진행할 수 있습니다. 상담과 견적은 0원입니다."
           facts={[
-            { label: "기획", value: "200,000원" },
-            { label: "기획+제작", value: "200,000원" },
-            { label: "무상 수정", value: "3회" },
+            { label: "기획형", value: "150,000원" },
+            { label: "제작형", value: "350,000원" },
+            { label: "제작+영상형", value: "550,000원" },
             { label: "상담·견적", value: "0원" },
           ]}
         />
@@ -378,7 +398,7 @@ export default function DetailPageServicePage() {
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
               <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">등급과 금액</h2>
-              <p className="text-gray-500 text-sm">상담에서는 DELUXE 를 기본으로 안내드립니다.</p>
+              <p className="text-gray-500 text-sm">상담에서는 제작형을 기본으로 안내드립니다.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 items-start">
@@ -436,6 +456,40 @@ export default function DetailPageServicePage() {
               ))}
             </div>
 
+
+            {/* 앵커 — 상품 하나가 아니라 스토어 하나 */}
+            <div className="mt-4 rounded-2xl border border-gray-900 bg-gray-900 p-5 md:p-6 shadow-sm">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10">
+                      <Layers size={14} className="text-white" strokeWidth={2.5} />
+                    </span>
+                    <h3 className="font-black text-white text-base">{PACKAGE.name}</h3>
+                  </div>
+                  <p className="text-[13px] text-gray-400 mb-3">{PACKAGE.summary}</p>
+                  <ul className="flex flex-wrap gap-x-4 gap-y-1.5">
+                    {PACKAGE.includes.map((it) => (
+                      <li key={it} className="flex items-center gap-1.5">
+                        <Check size={13} className="text-blue-400 shrink-0" strokeWidth={3} />
+                        <span className="text-xs md:text-[13px] text-gray-200">{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="shrink-0 md:text-right">
+                  <div className="text-2xl font-black text-white">{PACKAGE.price}</div>
+                  <p className="text-xs text-gray-400 mb-3">{PACKAGE.lead}</p>
+                  <Link
+                    href={`${CTA_HREF}&plan=${PACKAGE.key}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-gray-100 px-4 py-2.5 text-sm font-bold text-gray-900 transition-colors"
+                  >
+                    이 구성으로 문의
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             {/* 등급 밖 항목 */}
             <div className="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
               <div className="px-5 py-4 border-b border-gray-100">
@@ -459,10 +513,10 @@ export default function DetailPageServicePage() {
             <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-white border border-gray-200 p-4">
               <Info size={15} className="text-gray-400 mt-0.5 shrink-0" />
               <div className="text-xs md:text-[13px] text-gray-500 leading-relaxed">
-                <p className="mb-1">표기 금액은 상품 1개 기준입니다. 등급 사이 금액은 따로 만들지 않습니다.</p>
+                <p className="mb-1">표기 금액은 상품 1개 기준입니다. 등급 사이 금액과 장당 단가는 따로 만들지 않습니다.</p>
                 <p>
-                  무상 수정 3회는 모든 등급에 포함됩니다. 다만 섹션 순서를 바꾸거나 촬영 원본을 교체하는 것은
-                  수정이 아니라 재제작이라 별도로 안내드립니다.
+                  수정 횟수는 위 표대로입니다. 섹션 순서를 바꾸거나 촬영 원본을 교체하는 것은 수정이 아니라
+                  재제작이라 따로 안내드립니다. 무제한 수정은 약속드리지 않습니다.
                 </p>
               </div>
             </div>
@@ -506,7 +560,8 @@ export default function DetailPageServicePage() {
                 <h3 className="font-black text-gray-900 text-sm mb-2">지금 공개할 수 있는 사례가 없습니다</h3>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed mb-4">
                   진행한 건은 있지만 상호와 이미지를 공개하려면 사장님의 서면 동의가 필요합니다.
-                  동의를 받은 건부터 여기에 하나씩 올립니다. 채워 넣으려고 남의 작업물을 가져다 놓지 않습니다.
+                  동의를 받은 건부터 여기에 하나씩 올립니다. 이 자리에 파트너 작업물을 섞어 채우지 않습니다.
+                  파트너가 만든 것은 파트너 것이라고 밝혀 아래에 따로 모아 뒀습니다.
                 </p>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed">
                   대신 위에 공정을 전부 적어 두었습니다.{" "}
@@ -559,6 +614,25 @@ export default function DetailPageServicePage() {
                 ))}
               </div>
             )}
+
+            <Link
+              href="/services/detail-page/reference"
+              className="mt-4 flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-colors hover:border-blue-300 md:p-6"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 shadow-sm">
+                <Layers size={16} className="text-white" strokeWidth={2.5} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-black text-gray-900">
+                  파트너 작업물 {REF_TOTAL}건을 종류별로 열어 뒀습니다
+                </span>
+                <span className="mt-1 block text-xs leading-relaxed text-gray-500 md:text-[13px]">
+                  디자인 파트너 연우디자인스튜디오가 만든 상세페이지입니다. 생활·수납·차량·뷰티·반려동물 등
+                  {" "}{REF_CATEGORIES.length}가지 종류로 나눠 처음부터 끝까지 펼쳐 볼 수 있습니다.
+                </span>
+              </span>
+              <ArrowRight size={16} className="shrink-0 text-gray-400" />
+            </Link>
           </div>
         </section>
 
