@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, howToLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, howToLd, webPageLd, breadcrumbLd, faqLd } from "../lib/seo";
 import {
   Phone, MessageCircle, ArrowRight, CheckCircle2, Clock,
   Search, FileText, TrendingUp, BarChart3, Handshake,
@@ -117,6 +117,16 @@ const TRUST_POINTS = [
   { icon: Clock, label: "24시간 소통 가능" },
 ];
 
+const FAQS = [
+  { q: "상담 후 꼭 계약해야 하나요?", a: "아닙니다. 무료 분석과 제안까지는 완전 무료이며 의무가 없습니다. 제안이 마음에 드실 때만 계약하시면 됩니다." },
+  { q: "계약 기간은 얼마인가요?", a: "월 단위가 기본이라 1개월부터 가능하고 중도 해지 위약금이 없습니다. 3개월 이상 쌓아야 결과가 보이는 업종이면 진단 단계에서 미리 말씀드립니다." },
+  { q: "월 얼마부터 시작할 수 있나요?", a: "미리 정해둔 월 금액이 없습니다. 항목별 단가를 정해두고 매장에 꼭 필요한 항목만 골라 더하기 때문에 업체마다 금액이 다릅니다. 진단 후 항목과 물량이 그대로 보이는 견적서를 드리고, 안 쓰는 항목은 빼고 계산합니다." },
+  { q: "중간에 서비스를 변경할 수 있나요?", a: "가능합니다. 월 리포트 협의 시 서비스 항목을 추가·변경·교체할 수 있습니다." },
+  { q: "결과가 나오는 데 얼마나 걸리나요?", a: "업종과 상권 경쟁도에 따라 달라서 하나로 말씀드리기 어렵습니다. 대신 계약 전 진단에서 이 상권이 어느 정도 걸리는 자리인지 먼저 말씀드리고, 매월 리포트에 실제 순위가 몇 위에서 몇 위로 움직였는지 숫자로 적어 드립니다. 몇 개월 안에 몇 위를 만들어 드리겠다고 미리 약속하지는 않습니다." },
+  { q: "담당자가 자주 바뀌지 않나요?", a: "전담 팀장이 직접 전략을 수립하고 담당합니다. 신입 직원에게 맡기지 않으며, 10년+ 경력의 전담 팀장이 계약 기간 내내 1:1로 담당합니다." },
+  { q: "작업 내용을 어떻게 확인할 수 있나요?", a: "매월 말 플랫폼별 순위·리뷰 수·방문자 수 등 수치가 담긴 상세 리포트를 제공합니다. 언제든지 카카오톡으로 진행 상황을 문의하실 수 있습니다." },
+];
+
 /* ─── AEO 구조화 데이터 ───────────────────────────
    HowTo 는 "마케팅 대행 어떻게 진행돼?" 같은 절차형 질의에서
    AI 답변 엔진이 단계별로 그대로 인용하는 스키마다.
@@ -142,6 +152,7 @@ const PROCESS_LD = [
     { name: "홈", path: "/" },
     { name: "진행 과정", path: "/process" },
   ]),
+  faqLd(FAQS, `${SITE.base}/process`),
 ];
 
 export default function ProcessPage() {
@@ -206,10 +217,13 @@ export default function ProcessPage() {
           ]}
         />
 
-        {/* Timeline — 라이트.
+        {/* Timeline — 라이트. 배경은 위 AnswerBlock 과 같은 --h-surface 다.
+            흰 배경에 흰 카드를 올리면 카드를 카드로 만드는 게 3% 선과 5% 그림자뿐이라
+            밝은 모니터에서 흰 판 하나로 뭉갠다. AnswerBlock 이 이미 같은 조합
+            (--h-surface 위 흰 카드)으로 전 페이지에 나가 있어 그대로 쓴다.
             연결선은 단색 1px 이다. 예전 그라데이션 선은 다크 배경에서 '빛나는 선' 으로
             보이려던 장치라 라이트로 내리면 근거가 사라진다. */}
-        <section className="py-14 md:py-20 bg-white">
+        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div>
               {STEPS.map((step, i) => {
@@ -224,7 +238,7 @@ export default function ProcessPage() {
                         바깥여백으로 둬야 칸 안의 선이 끊기지 않는다 — 행 안쪽여백은
                         칸 높이 밖이라 선이 다음 아이콘에 16px 못 미친다. */}
                     <div className="shrink-0 flex flex-col items-center">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center shadow-sm">
+                      <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
                         <step.icon size={16} style={{ color: "var(--h-blue)" }} strokeWidth={2.5} />
                       </div>
                       {!isLast && <div className="w-px flex-1 mt-2 bg-gray-200" />}
@@ -265,21 +279,13 @@ export default function ProcessPage() {
         </section>
 
         {/* FAQ — 라이트 */}
-        <section className="py-14 md:py-20 bg-gray-50">
+        <section className="py-14 md:py-20 bg-white">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">자주 묻는 질문</h2>
             <p className="text-gray-500 text-sm text-center mb-10">진행 과정에서 가장 많이 물어보시는 것들</p>
             <div className="space-y-3">
-              {[
-                { q: "상담 후 꼭 계약해야 하나요?", a: "아닙니다. 무료 분석과 제안까지는 완전 무료이며 의무가 없습니다. 제안이 마음에 드실 때만 계약하시면 됩니다." },
-                { q: "계약 기간은 얼마인가요?", a: "월 단위가 기본이라 1개월부터 가능하고 중도 해지 위약금이 없습니다. 3개월 이상 쌓아야 결과가 보이는 업종이면 진단 단계에서 미리 말씀드립니다." },
-                { q: "월 얼마부터 시작할 수 있나요?", a: "미리 정해둔 월 금액이 없습니다. 항목별 단가를 정해두고 매장에 꼭 필요한 항목만 골라 더하기 때문에 업체마다 금액이 다릅니다. 진단 후 항목과 물량이 그대로 보이는 견적서를 드리고, 안 쓰는 항목은 빼고 계산합니다." },
-                { q: "중간에 서비스를 변경할 수 있나요?", a: "가능합니다. 월 리포트 협의 시 서비스 항목을 추가·변경·교체할 수 있습니다." },
-                { q: "결과가 나오는 데 얼마나 걸리나요?", a: "업종과 상권 경쟁도에 따라 달라서 하나로 말씀드리기 어렵습니다. 대신 계약 전 진단에서 이 상권이 어느 정도 걸리는 자리인지 먼저 말씀드리고, 매월 리포트에 실제 순위가 몇 위에서 몇 위로 움직였는지 숫자로 적어 드립니다. 몇 개월 안에 몇 위를 만들어 드리겠다고 미리 약속하지는 않습니다." },
-                { q: "담당자가 자주 바뀌지 않나요?", a: "전담 팀장이 직접 전략을 수립하고 담당합니다. 신입 직원에게 맡기지 않으며, 10년+ 경력의 전담 팀장이 계약 기간 내내 1:1로 담당합니다." },
-                { q: "작업 내용을 어떻게 확인할 수 있나요?", a: "매월 말 플랫폼별 순위·리뷰 수·방문자 수 등 수치가 담긴 상세 리포트를 제공합니다. 언제든지 카카오톡으로 진행 상황을 문의하실 수 있습니다." },
-              ].map((faq, i) => (
-                <details key={i} className="group bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+              {FAQS.map((faq, i) => (
+                <details key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
                   <summary className="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
                     <span className="font-bold text-gray-900 text-sm">{faq.q}</span>
                     <svg className="shrink-0 w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
