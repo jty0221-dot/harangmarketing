@@ -460,7 +460,7 @@ function ContactPageInner() {
                 <div className="bg-blue-600 rounded-2xl p-5">
                   <h4 className="font-bold text-white text-sm mb-3">무료 진단에서 받는 것</h4>
                   <ul className="space-y-2">
-                    {["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "예상 성과 및 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"].map((item) => (
+                    {["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "현실적인 목표 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-xs text-blue-100">
                         <CheckCircle2 size={12} className="text-blue-300 shrink-0" strokeWidth={2.5} />
                         {item}

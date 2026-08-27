@@ -7,7 +7,7 @@ import { ArrowRight, UtensilsCrossed, TrendingUp, Star, ShoppingCart, CheckCircl
 
 export const metadata: Metadata = {
   title: "음식점·식당 마케팅 대행사 — 하랑마케팅 | 배달·플레이스 매출 증대 전문",
-  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 배달의민족·쿠팡이츠 상위 노출, 네이버 플레이스 SEO, 블로그 체험단 전문. 실제 성과 보장.",
+  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 배달의민족·쿠팡이츠 상위 노출, 네이버 플레이스 SEO, 블로그 체험단 전문. 상권 진단부터 0원으로 시작합니다.",
   keywords: ["음식점 마케팅", "식당 마케팅 대행사", "배달 매출 증대", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {
     title: "음식점·식당 마케팅 대행사 — 하랑마케팅",

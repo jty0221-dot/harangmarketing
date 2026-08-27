@@ -30,7 +30,7 @@ const FREE_CHECK_LD = [
     url: `${SITE.base}/free-check`,
     inLanguage: "ko-KR",
     description:
-      "매장명과 업종만 알려주시면 플레이스 현재 순위, 리뷰 수·평점, 콘텐츠 포화도, 경쟁사 3곳 비교, 3개월 성과 예측을 정리해 1영업일 내 무료로 보내드립니다.",
+      "매장명과 업종만 알려주시면 플레이스 현재 순위, 리뷰 수·평점, 콘텐츠 포화도, 경쟁사 3곳 비교, 업종·상권 기준 현실적인 목표 기간을 정리해 1영업일 내 무료로 보내드립니다.",
     areaServed: { "@type": "Country", name: "대한민국" },
     offers: {
       "@type": "Offer",

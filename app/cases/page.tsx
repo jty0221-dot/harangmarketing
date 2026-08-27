@@ -357,7 +357,7 @@ const CasesPage: FC = () => {
                       <div>
                         <p className="text-blue-200 text-xs font-semibold mb-1">위 사례들이 내 업종과 비슷하다면</p>
                         <h3 className="text-white font-black text-base md:text-lg mb-1">내 매장은 얼마나 성장할 수 있을까요?</h3>
-                        <p className="text-blue-100 text-xs">무료 상담에서 업종·경쟁사 분석 후 예상 성과를 안내해드립니다</p>
+                        <p className="text-blue-100 text-xs">무료 상담에서 업종·경쟁사를 분석해 지금 어디가 비어 있는지 알려드립니다</p>
                       </div>
                       <div className="flex flex-col sm:flex-row gap-2 shrink-0">
                         <Link href="/contact"
@@ -388,7 +388,7 @@ const CasesPage: FC = () => {
             <div className="mt-10 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
               <div className="bg-gray-900 px-6 py-5">
                 <h3 className="font-black text-white text-lg mb-1">내 업종은 어떤 결과가 나올까요?</h3>
-                <p className="text-gray-400 text-sm">업종별 예상 성과와 추천 서비스를 무료로 안내해드립니다</p>
+                <p className="text-gray-400 text-sm">업종별 상권 난이도와 추천 서비스를 무료로 안내해드립니다</p>
               </div>
               <div className="p-6">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5">

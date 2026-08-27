@@ -14,7 +14,7 @@ const CHECKS = [
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
   { icon: BarChart3, label: "콘텐츠 포화도", desc: "블로그·SNS 노출 공백 확인" },
   { icon: Users, label: "경쟁사 3곳 비교", desc: "상위 노출 경쟁사 전략 분석" },
-  { icon: TrendingUp, label: "3개월 성과 예측", desc: "업종·예산별 달성 가능 수치" },
+  { icon: TrendingUp, label: "목표 기간 산정", desc: "이 상권이 어느 정도 걸리는 자리인지" },
 ];
 
 const CASES = [
@@ -125,7 +125,7 @@ export default function FreeCheckPage() {
                   "플레이스 키워드별 현재 순위 PDF 리포트",
                   "경쟁 상위 3곳과 내 매장 비교 분석표",
                   "리뷰·콘텐츠 부족분 및 우선순위 정리",
-                  "3개월 후 예상 성과 수치 (업종별)",
+                  "업종·상권 기준 현실적인 목표 기간",
                   "업종 맞춤 마케팅 전략 요약 1페이지",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
@@ -162,7 +162,7 @@ export default function FreeCheckPage() {
                   <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
                 </div>
                 <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>
-                <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />1영업일 내 연락드립니다.</p>
+                <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />24시간 내 연락드립니다.</p>
                 <Link
                   href="/"
                   className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"
@@ -238,7 +238,7 @@ export default function FreeCheckPage() {
                   <div className="flex flex-col gap-1.5 py-1">
                     {[
                       { icon: Shield, text: "개인정보는 상담 목적으로만 사용됩니다" },
-                      { icon: Clock, text: "1영업일 내 연락 보장" },
+                      { icon: Clock, text: "24시간 내 연락 보장" },
                       { icon: AlertCircle, text: "계약·비용 강요 일절 없음" },
                     ].map(({ icon: Icon, text }) => (
                       <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-400">
