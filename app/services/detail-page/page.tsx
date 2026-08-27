@@ -14,12 +14,15 @@ import {
 /**
  * 스마트스토어 상세페이지 제작 — 서비스 상세 페이지
  *
- * 목록형이 아니라 공정 공개형이다. 우리 납품 사례가 아직 적어서 '이만큼 했습니다' 로는
- * 페이지가 서지 않는다. 대신 '어떻게 만드는지' 를 전부 공개한다 — 고객이 사려는 것은
- * 완성 이미지가 아니라 저 사람이 내 상품을 어떻게 다룰까이기 때문이다 (D-0077).
+ * 처음에는 납품 사례가 적어서 공정 공개형으로만 세웠는데(D-0077), 레퍼런스 38건을
+ * 전량 수집해 두고도 이 페이지에서는 맨 아래 글자 링크 한 줄로만 걸어 놨었다.
+ * 상세페이지를 맡길지 고민하는 사람이 제일 먼저 찾는 건 공정이 아니라 '만든 게 어떻게
+ * 생겼나' 다 — 그걸 찾다가 못 찾으면 그냥 나간다 (2026-08-28 (금) 대표 지시).
+ * 그래서 히어로 바로 밑에 실물 썸네일 밴드를 세웠다.
  *
- * 네 층이다. 1층 공정(9단) · 2층 게이트 · 3층 원칙 · 4층 사례.
- * 4층이 비어도 나머지 세 층으로 페이지가 성립한다.
+ * 다섯 층이다. 0층 레퍼런스 · 1층 공정(9단) · 2층 게이트 · 3층 원칙 · 4층 사례.
+ * 0층과 4층은 다른 것을 답한다 — 0층은 '무엇을 만들었나'(상호 없이 실물),
+ * 4층은 '누구 것을 만들었나'(상호 공개 동의를 받은 건). 4층이 비어도 페이지는 선다.
  *
  * 단가는 우리 4등급안이다 (기획형 150,000 · 제작형 350,000 · 제작+영상형 550,000 · 앵커 1,500,000).
  * 블로그 홈페이지형 디자인 상품(STANDARD·DELUXE·PREMIUM) 등급표는 다른 상품의 것이라 여기 쓰지 않는다
@@ -37,6 +40,18 @@ const CTA_HREF = "/contact?service=detail-page";
 const KAKAO_HREF = "https://pf.kakao.com/_MuUkG/chat";
 
 /* 1층 · 공정 9단 (본부장 상세페이지_제작시스템.md 제2장과 같은 값) */
+/**
+ * 히어로 밑 밴드에 거는 미리보기 12장.
+ * 종류마다 첫 건을 먼저 뽑고 남는 자리를 두 번째 건으로 채운다 —
+ * 앞에서부터 12장을 자르면 생활·리빙만 나와서 '이 사람은 생활용품만 하는구나' 로 읽힌다.
+ */
+const SHOWCASE = REF_CATEGORIES
+  .flatMap((c) => c.works.slice(0, 2).map((w, i) => ({ ...w, cat: c.slug, catShort: c.short, rank: i })))
+  .sort((a, b) => a.rank - b.rank)
+  .slice(0, 12);
+
+const REF_HREF = "/services/detail-page/reference";
+
 const SECTIONS = [
   { code: "S0", name: "인트로 훅", role: "3초 안에 멈추게 한다", note: "실물 컷을 모션으로" },
   { code: "S1", name: "메인카피", role: "약속을 한 문장으로 말한다", note: "카피 일체형 디자인" },
@@ -298,7 +313,93 @@ export default function DetailPageServicePage() {
               >
                 카카오톡으로 문의
               </a>
+              <Link
+                href={REF_HREF}
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-colors"
+              >
+                제작 사례 {REF_TOTAL}건 보기 <ArrowRight size={15} />
+              </Link>
             </div>
+          </div>
+        </section>
+
+        {/* 0층 · 레퍼런스 (만든 것부터 보여준다) */}
+        <section className="py-14 md:py-20 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-6">
+              <div className="min-w-0">
+                <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 shadow-sm">
+                  <Layers size={16} className="text-white" strokeWidth={2.5} />
+                </span>
+                <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2 leading-tight">
+                  만든 상세페이지 {REF_TOTAL}건을 그대로 열어 뒀습니다
+                </h2>
+                <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed max-w-xl">
+                  앞부분만 잘라 붙인 미리보기가 아니라 처음부터 끝까지 다 있습니다.
+                  {REF_CATEGORIES.length}가지 종류로 나눠 뒀으니 내 상품과 가까운 것부터 보시면 됩니다.
+                </p>
+              </div>
+              <Link
+                href={REF_HREF}
+                className="hidden md:inline-flex min-h-[44px] shrink-0 items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-500 transition-colors"
+              >
+                전체 보기 <ArrowRight size={14} strokeWidth={2.5} />
+              </Link>
+            </div>
+
+            {/* 종류별 바로가기 */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              {REF_CATEGORIES.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`${REF_HREF}?category=${c.slug}`}
+                  className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:border-blue-300 hover:text-blue-600"
+                >
+                  {c.short}
+                  <span className="tabular-nums font-semibold text-gray-400">{c.works.length}</span>
+                </Link>
+              ))}
+            </div>
+
+            {/* 실물 썸네일 */}
+            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+              {SHOWCASE.map((w) => (
+                <li key={w.slug}>
+                  <Link
+                    href={`${REF_HREF}?category=${w.cat}`}
+                    className="group block overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-colors hover:border-blue-300"
+                  >
+                    <span className="relative block aspect-[3/4] overflow-hidden bg-gray-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`/detail-ref/${w.slug}.jpg`}
+                        alt={`${w.title} 상세페이지 상단 화면`}
+                        width={w.tw}
+                        height={w.th}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-top"
+                      />
+                    </span>
+                    <span className="block px-3 py-2.5">
+                      <span className="mb-0.5 block text-[11px] font-bold text-blue-600">{w.catShort}</span>
+                      <span className="block text-xs font-bold leading-snug text-gray-900 line-clamp-2">{w.title}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href={REF_HREF}
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-gray-900 px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-gray-800"
+            >
+              {REF_TOTAL}건 전부 펼쳐 보기 <ArrowRight size={15} strokeWidth={2.5} />
+            </Link>
+
+            <p className="mt-3 text-center text-[11px] text-gray-400">
+              상호 노출 동의를 받기 전이라 제품 종류만 적습니다. 상호·브랜드는 쓰지 않습니다.
+            </p>
           </div>
         </section>
 
@@ -559,7 +660,7 @@ export default function DetailPageServicePage() {
                 </div>
                 <h3 className="font-black text-gray-900 text-sm mb-2">상호를 밝힌 사례는 아직 없습니다</h3>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed mb-4">
-                  만든 상세페이지는 아래 레퍼런스에 {REF_TOTAL}건을 그대로 펼쳐 뒀습니다.
+                  만든 상세페이지는 맨 위에 {REF_TOTAL}건을 종류별로 펼쳐 뒀습니다.
                   다만 상호와 브랜드명까지 적으려면 사장님의 서면 동의가 필요해서, 이 자리에는
                   동의를 받은 건부터 하나씩 올립니다. 동의 없이 상호를 적거나 성과를 지어내지 않습니다.
                 </p>
