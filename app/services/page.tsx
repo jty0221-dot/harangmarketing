@@ -654,7 +654,7 @@ export default function ServicesPage() {
                   {/* Card header */}
                   <div className="p-6 md:p-8 border-b border-gray-50">
                     <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center shadow-sm shrink-0`}>
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm shrink-0" style={{ background: "var(--w-primary)" }}>
                         <Icon size={22} className="text-white" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1">
@@ -1061,7 +1061,7 @@ export default function ServicesPage() {
                 },
               ].map((item) => (
                 <div key={item.icon} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white text-xs font-black mb-4 shadow-sm`}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-black mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     {item.icon}
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{item.title}</h3>
@@ -1417,7 +1417,7 @@ export default function ServicesPage() {
               {INDUSTRY_LINKS.map(ind => (
                 <Link key={ind.name} href={ind.href}
                   className="group flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 hover:bg-white hover:shadow-md transition-all">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${ind.color} flex items-center justify-center shrink-0 shadow-sm`}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <ArrowRight size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <div className="min-w-0">

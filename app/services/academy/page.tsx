@@ -111,7 +111,7 @@ export default function AcademyPage() {
                 { icon: Star, color: "from-blue-600 to-orange-500", title: "성과 리뷰·수강 후기 관리", desc: "수강생 학부모 후기를 전략적으로 쌓습니다. 긍정적 후기가 신뢰를 만들고 신규 문의로 이어집니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-4 shadow-sm`}>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>

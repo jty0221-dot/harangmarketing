@@ -110,7 +110,7 @@ export default function RestaurantPage() {
                     { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아닌 지속적인 콘텐츠 누적으로 검색 노출을 늘립니다." },
                   ].map(s => (
                     <div key={s.title} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                      <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0 shadow-sm`}>
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
                         <s.icon size={16} className="text-white" strokeWidth={2.5} />
                       </div>
                       <div>

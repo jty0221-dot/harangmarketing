@@ -289,7 +289,7 @@ export default function FAQPage() {
                 <div key={cat.id} id={cat.id} className="scroll-mt-24">
                   {/* Category header */}
                   <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-sm`}>
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm" style={{ background: "var(--w-primary)" }}>
                       <Icon size={16} className="text-white" strokeWidth={2} />
                     </div>
                     <h2 className="text-lg font-black text-gray-900">{cat.label}</h2>
@@ -301,7 +301,7 @@ export default function FAQPage() {
                     {cat.questions.map((faq, i) => (
                       <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors shadow-sm">
                         <summary className="flex items-start gap-3 p-5 cursor-pointer list-none select-none hover:bg-blue-50/30 transition-colors">
-                          <div className={`w-5 h-5 rounded-lg bg-gradient-to-br ${cat.color} text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5`}>
+                          <div className="w-5 h-5 rounded-lg text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--w-primary)" }}>
                             Q
                           </div>
                           <h3 className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</h3>

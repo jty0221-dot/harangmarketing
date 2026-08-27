@@ -111,7 +111,7 @@ export default function ShoppingPage() {
                 { icon: Star, color: "from-blue-600 to-orange-500", title: "오프라인 집객 마케팅", desc: "네이버 플레이스·카카오맵 최적화로 '근처 검색' 유입을 늘립니다. 오프라인 방문 고객이 온라인 구매로도 이어집니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-4 shadow-sm`}>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>

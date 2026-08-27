@@ -161,7 +161,7 @@ export default function CafeLandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {SERVICES.map((s, i) => (
                 <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} shadow-sm flex items-center justify-center flex-shrink-0`}>
+                  <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <div>
