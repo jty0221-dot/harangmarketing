@@ -436,7 +436,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
       {/* ── 1단계 · 플랫폼 ── */}
       <section className="w-card p-5 md:p-6">
         <StepHead n={1} title="어느 채널을 키우시나요?" picked={platformName(platform)} />
-        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 md:gap-2.5">
+        <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2 md:gap-2.5">
           {platforms.map((pl) => {
             const on = pl.id === platform;
             const count = productsByPlatform(pl.id).length;
@@ -689,7 +689,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
                         key={n}
                         type="button"
                         onClick={() => setQtyClamped(n)}
-                        className="w-num rounded-[8px] px-2.5 py-1.5 w-caption-1 font-bold transition-colors"
+                        className="w-num inline-flex items-center justify-center rounded-[8px] px-3 py-1.5 min-h-11 md:min-h-0 w-caption-1 font-bold transition-colors"
                         style={{
                           background: qty === n ? "var(--w-primary-weak)" : "var(--w-fill)",
                           color: qty === n ? "var(--w-primary-active)" : "var(--w-text-muted)",
@@ -773,7 +773,9 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
                 type="checkbox"
                 checked={agree}
                 onChange={(e) => setAgree(e.target.checked)}
-                className="mt-0.5"
+                /* 13px 기본 체크박스는 손가락으로 짚기 어렵다.
+                   라벨 전체가 클릭 영역이라 탭 자체는 넘치지만 눈에도 보여야 누른다. */
+                className="mt-px w-5 h-5 shrink-0 accent-[color:var(--w-primary)]"
               />
               <span>
                 주문 유의사항에 동의합니다 — 작업 시작 전 전액 환불, 시작 후 미진행 수량 환불.

@@ -2,7 +2,6 @@ import {
   siInstagram, siYoutube, siThreads, siTiktok,
   siFacebook, siX, siNaver, siKakaotalk, siTelegram,
 } from "simple-icons";
-import { ShoppingBag } from "lucide-react";
 import type { PlatformId } from "../lib/sns-store";
 
 /**
@@ -23,8 +22,29 @@ interface Brand {
   plain: string;
 }
 
-/** 쇼핑·플랫폼 그룹은 개별 브랜드 로고가 없어 lucide 장바구니 글리프로 대체한다 */
-const SHOPPING = { bg: "linear-gradient(135deg, #ff7a45, #f5a623)", fg: "#ffffff", plain: "#F5761A" };
+/**
+ * 국내 커머스 브랜드는 simple-icons 에 글리프가 없다.
+ * 상표를 흉내 내지 않고, 브랜드 색 타일 위에 짧은 워드마크를 얹어 구분한다.
+ * mark 가 두 줄이면 위아래로 쌓는다 (38px 타일에서 한 줄로는 안 읽힌다).
+ */
+interface WordMark {
+  mark: string[];
+  bg: string;
+  fg: string;
+  plain: string;
+}
+
+const WORDMARKS: Partial<Record<PlatformId, WordMark>> = {
+  coupang: { mark: ["쿠팡"], bg: "#C81E2D", fg: "#ffffff", plain: "#C81E2D" },
+  musinsa: { mark: ["무신사"], bg: "#111111", fg: "#ffffff", plain: "#111111" },
+  oliveyoung: { mark: ["올리브", "영"], bg: "#A0CE3B", fg: "#ffffff", plain: "#79A227" },
+  ohou: { mark: ["오늘의", "집"], bg: "#35C5F0", fg: "#ffffff", plain: "#1B9FC9" },
+  baemin: { mark: ["배민"], bg: "#2AC1BC", fg: "#ffffff", plain: "#1C9A96" },
+  daangn: { mark: ["당근"], bg: "#FF6F0F", fg: "#ffffff", plain: "#E85F00" },
+};
+
+/** 워드마크가 없는 플랫폼이 들어왔을 때의 최후 기본값 */
+const NEUTRAL: WordMark = { mark: ["SNS"], bg: "#8B95A1", fg: "#ffffff", plain: "#8B95A1" };
 
 const BRANDS: Partial<Record<PlatformId, Brand>> = {
   instagram: {
@@ -45,7 +65,20 @@ const BRANDS: Partial<Record<PlatformId, Brand>> = {
 
 /** 브랜드 포인트 컬러 — 카드 테두리·글자 강조 등에 쓴다 */
 export function brandColor(id: PlatformId): string {
-  return BRANDS[id]?.plain ?? SHOPPING.plain;
+  return BRANDS[id]?.plain ?? WORDMARKS[id]?.plain ?? NEUTRAL.plain;
+}
+
+/** 작은 타일에서는 워드마크가 뭉개진다 — 28px 미만이면 첫 글자만 남긴다 */
+function wordMarkLines(w: WordMark, size: number): string[] {
+  if (size < 28) return [w.mark.join("").slice(0, 1)];
+  return w.mark;
+}
+
+function markFontSize(w: WordMark, size: number): number {
+  if (size < 28) return Math.round(size * 0.5);
+  const longest = Math.max(...w.mark.map((m) => m.length));
+  const ratio = longest >= 3 ? 0.29 : longest === 2 ? 0.4 : 0.5;
+  return Math.max(8, Math.round(size * ratio));
 }
 
 /**
@@ -64,15 +97,16 @@ export function PlatformLogo({
   className?: string;
 }) {
   const b = BRANDS[id];
+  const w = b ? null : WORDMARKS[id] ?? NEUTRAL;
   const glyph = Math.round(size * 0.54);
   return (
     <span
-      className={`inline-flex items-center justify-center shrink-0 shadow-sm ${className}`}
+      className={`inline-flex flex-col items-center justify-center shrink-0 shadow-sm leading-none ${className}`}
       style={{
         width: size,
         height: size,
         borderRadius: radius ?? Math.max(8, Math.round(size * 0.28)),
-        background: b?.bg ?? SHOPPING.bg,
+        background: b?.bg ?? w!.bg,
       }}
       aria-hidden
     >
@@ -81,7 +115,20 @@ export function PlatformLogo({
           <path d={b.path} fill={b.fg} />
         </svg>
       ) : (
-        <ShoppingBag size={glyph} color={SHOPPING.fg} strokeWidth={2.2} />
+        wordMarkLines(w!, size).map((line, i) => (
+          <span
+            key={i}
+            style={{
+              color: w!.fg,
+              fontSize: markFontSize(w!, size),
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              lineHeight: 1.12,
+            }}
+          >
+            {line}
+          </span>
+        ))
       )}
     </span>
   );
@@ -100,7 +147,18 @@ export function PlatformGlyph({
   className?: string;
 }) {
   const b = BRANDS[id];
-  if (!b) return <ShoppingBag size={size} color={color ?? SHOPPING.plain} strokeWidth={2.2} className={`shrink-0 ${className}`} />;
+  if (!b) {
+    const w = WORDMARKS[id] ?? NEUTRAL;
+    return (
+      <span
+        className={`inline-flex items-center justify-center shrink-0 leading-none ${className}`}
+        style={{ width: size, height: size, color: color ?? w.plain, fontSize: Math.round(size * 0.8), fontWeight: 800 }}
+        aria-hidden
+      >
+        {w.mark.join("").slice(0, 1)}
+      </span>
+    );
+  }
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" role="img" aria-hidden className={`shrink-0 ${className}`}>
       <path d={b.path} fill={color ?? b.plain} />
