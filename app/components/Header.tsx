@@ -126,7 +126,7 @@ export default function Header() {
       {/* Announcement Bar */}
       {!annClosed && (
         <div className="relative bg-gray-950 border-b border-white/5">
-          <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-center gap-2 md:gap-4">
+          <div className="max-w-6xl mx-auto pl-4 pr-11 md:pr-12 py-2 md:py-2.5 flex items-center justify-center gap-2 md:gap-4">
             <div className="hidden sm:flex items-center gap-1.5 shrink-0">
               <span className={`w-1.5 h-1.5 rounded-full ${msg.dot} animate-pulse`} />
               <span className={`${msg.badgeColor} font-black text-[11px] uppercase tracking-wider`}>{msg.badge}</span>
@@ -138,7 +138,7 @@ export default function Header() {
             <Link
               href={msg.ctaHref}
               /* 공지 바가 거의 검정이라 짙은 남색 버튼은 묻힌다 — 시그니처 블루로 띄운다 */
-              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-white font-black text-[11px] transition-colors"
+              className="shrink-0 inline-flex items-center gap-1 px-3 py-2 rounded-lg text-white font-black text-[11px] transition-colors"
               style={{ background: "var(--w-blue-50)" }}
             >
               <Clock size={10} strokeWidth={2.5} />
@@ -146,12 +146,17 @@ export default function Header() {
               <ArrowRight size={10} strokeWidth={2.5} />
             </Link>
           </div>
+          {/* 공지 바는 41px 높이인데 터치 타겟 기준은 44px 이다.
+              absolute 라 버튼을 키워도 바가 두꺼지지 않는다 · 누르는 면만 44x44 로 넓히고
+              보이는 칩은 28px 로 남겨 둔다 (2026-08-27 (목) 수정). */}
           <button
             onClick={closeAnn}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded hover:bg-white/10 transition-colors text-gray-600 hover:text-gray-300"
-            aria-label="닫기"
+            className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 text-gray-600 hover:text-gray-300 transition-colors"
+            aria-label="공지 닫기"
           >
-            <X size={12} />
+            <span className="flex items-center justify-center w-7 h-7 rounded-lg hover:bg-white/10 transition-colors">
+              <X size={14} strokeWidth={2.5} />
+            </span>
           </button>
         </div>
       )}
@@ -165,7 +170,7 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[68px]">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+            <Link href="/" className="flex items-center gap-2.5 shrink-0 group min-h-11">
               <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
               <div>
                 <span
@@ -296,7 +301,7 @@ export default function Header() {
             {/* Mobile button */}
             <button
               onClick={() => setOpen(!open)}
-              className={`lg:hidden p-2 rounded-lg transition-colors ${
+              className={`lg:hidden inline-flex items-center justify-center min-w-11 min-h-11 rounded-lg transition-colors ${
                 scrolled || !isHome
                   ? "text-gray-700 hover:bg-gray-100"
                   : "text-white hover:bg-white/10"

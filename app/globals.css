@@ -310,11 +310,13 @@ body { overflow-x: hidden; }
   .hero-blob-1, .hero-blob-2, .hero-blob-3 { animation: none; }
 }
 /*
-  모바일에서는 좌우 슬라이드 등장(translateX)이 화면 가장자리 요소를 32px 밀어내
-  가로 넘침을 만든다(body overflow-x:hidden 으로 가려지지만 감지엔 잡힘).
-  좁은 화면에선 좌우 이동을 세로 페이드로 대체해 넘침을 원천 차단한다.
+  좌우 슬라이드 등장(translateX)은 화면 가장자리 요소를 32px 밀어내 가로 넘침을 만든다.
+  기준선은 컨테이너 좌우 여백이다 -- lg 부터는 px-8(32px) 이라 32px 를 밀어도 화면 안에서 끝나는데,
+  md 구간은 px-6(24px) 뿐이라 8px 가 밖으로 나간다(768px 실측 scrollWidth 770 > 762).
+  767px 까지만 막아 두었더니 768~1023px 가 그대로 뚫려 있었다 (2026-08-27 (목) 수정).
+  1023px 이하에서는 좌우 이동을 세로 페이드로 대체해 넘침을 원천 차단한다.
 */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .reveal-left, .reveal-right { transform: translateY(24px); }
   .reveal-left.revealed, .reveal-right.revealed { transform: translateY(0); }
 }
@@ -418,10 +420,24 @@ body { overflow-x: hidden; }
 
 /* Oversized editorial number */
 .editorial-num {
-  font-size: clamp(52px, 7vw, 88px);
+  /* 4단 칼럼 폭에 맞춘 크기다. 7vw/88px 로 두면 '97.4%' 가 칸을 넘어
+     옆 숫자와 붙고, '10년+' 은 한글 뒤 줄바꿈 지점에서 '+' 만 떨어진다
+     (2026-08-27 (목) 수정). 숫자는 절대 줄바꿈하지 않는다. */
+  font-size: clamp(36px, 4.8vw, 62px);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.04;
   letter-spacing: -0.04em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 단위(+ · % · 년+)는 숫자보다 작게 조판한다.
+   숫자와 같은 크기로 두면 칸의 3분의 1을 단위가 먹는다.
+   .editorial-num 안에서만 적용되므로 다른 카운터에는 영향이 없다. */
+.editorial-num .counter-suffix {
+  font-size: 0.46em;
+  letter-spacing: -0.01em;
+  margin-left: 0.05em;
 }
 
 /* Ghost step number (decorative) */

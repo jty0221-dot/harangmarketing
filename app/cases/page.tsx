@@ -220,12 +220,12 @@ const CasesPage: FC = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="업종, 지역, 서비스로 검색..."
-                className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition-colors"
+                className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white text-base md:text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition-colors"
               />
               {query && (
                 <button
                   onClick={() => setQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-11 text-gray-400 hover:text-gray-700 transition-colors"
                 >
                   <X size={13} />
                 </button>
@@ -239,7 +239,7 @@ const CasesPage: FC = () => {
                 <button
                   key={cat}
                   onClick={() => setActive(cat)}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all shrink-0 ${
+                  className={`inline-flex items-center px-4 py-2 min-h-11 md:min-h-0 rounded-xl text-sm font-bold whitespace-nowrap transition-all shrink-0 ${
                     active === cat
                       ? "bg-blue-600 text-white shadow-sm"
                       : "bg-white text-gray-500 border border-gray-200 hover:border-blue-200 hover:text-blue-600"
@@ -275,7 +275,7 @@ const CasesPage: FC = () => {
                 <p className="text-sm text-gray-400 mb-4">다른 키워드나 카테고리를 선택해보세요</p>
                 <button
                   onClick={() => { setQuery(""); setActive("전체"); }}
-                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors"
+                  className="inline-flex items-center px-4 py-2 min-h-11 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors"
                 >
                   전체 사례 보기
                 </button>

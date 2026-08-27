@@ -36,7 +36,7 @@ export default async function SnsOrderPage({
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
           <Link
             href="/sns"
-            className="inline-flex items-center gap-1.5 w-label-2 font-bold transition-colors"
+            className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 w-label-2 font-bold transition-colors"
             style={{ color: "var(--w-text-muted)" }}
           >
             <ArrowLeft size={14} strokeWidth={2.5} />

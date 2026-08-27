@@ -637,7 +637,10 @@ export default function HomePage() {
               </div>
             </RevealOnScroll>
 
-            {/* Editorial large stats — divided columns */}
+            {/* Editorial large stats — divided columns
+                구분선은 그리드 아이템(RevealOnScroll)에 건다. 안쪽 div 에 걸면
+                칸 높이가 달라질 때 선이 행 높이를 못 채우고 짧게 끊긴다.
+                모바일 2x2 에서는 3·4번째 칸에 가로선을 넣어 행을 나눈다. */}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
                 { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "2020년~현재" },
@@ -645,13 +648,17 @@ export default function HomePage() {
                 { to: 10, suffix: "년+", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
                 { to: 89, suffix: "%", decimals: 0, label: "평균 매출 상승", sub: "3개월 계약 실측치" },
               ].map((item, i) => (
-                <RevealOnScroll key={item.label} delay={i * 70}>
-                  <div className="px-5 md:px-8 py-6 md:py-8" style={{ borderRight: "1px solid var(--h-border)" }}>
-                    <div className="editorial-num tabular-nums mb-1" style={{ color: "var(--h-dark)" }}>
+                <RevealOnScroll
+                  key={item.label}
+                  delay={i * 70}
+                  className={`min-w-0 border-r border-[color:var(--h-border)]${i >= 2 ? " border-t md:border-t-0" : ""}`}
+                >
+                  <div className="px-4 md:px-5 lg:px-8 py-6 md:py-8">
+                    <div className="editorial-num mb-1.5" style={{ color: "var(--h-dark)" }}>
                       <AnimatedCounter to={item.to} suffix={item.suffix} decimals={item.decimals} duration={1600} />
                     </div>
                     <div className="text-sm font-bold text-gray-700 mb-0.5">{item.label}</div>
-                    <div className="text-[11px]" style={{ color: "var(--h-muted)" }}>{item.sub}</div>
+                    <div className="text-[11px] leading-snug" style={{ color: "var(--h-muted)" }}>{item.sub}</div>
                   </div>
                 </RevealOnScroll>
               ))}
@@ -816,7 +823,7 @@ export default function HomePage() {
                 <p className="text-sm" style={{ color: "var(--h-muted)" }}>실전에서 검증된 소상공인 마케팅 전략을 공개합니다</p>
               </div>
               <Link href="/blog"
-                className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-white text-sm font-bold transition-colors shadow-sm hover:opacity-90"
+                className="shrink-0 inline-flex items-center gap-1.5 px-4 py-3 md:py-2.5 rounded-xl text-white text-sm font-bold transition-colors shadow-sm hover:opacity-90"
                 style={{ background: "var(--h-dark)" }}>
                 인사이트 전체보기 <ArrowRight size={13} />
               </Link>
@@ -1164,7 +1171,7 @@ export default function HomePage() {
 
             <p className="text-center text-xs text-gray-400 mt-6 leading-relaxed">
               * 같은 구성이어도 출발점 · 현재 순위 · 상권 경쟁도에 따라 붙는 항목과 물량이 달라집니다.{" "}
-              <Link href="/services#pricing" className="font-bold underline underline-offset-2" style={{ color: "var(--h-navy)" }}>
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 md:min-h-0 font-bold underline underline-offset-2" style={{ color: "var(--h-navy)" }}>
                 항목별 단가와 계산 과정 보기
               </Link>
             </p>
@@ -1271,7 +1278,7 @@ export default function HomePage() {
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">실제 매장, 실제 수치입니다</h2>
                 <p className="text-gray-400 text-sm">과장 없는 실제 클라이언트의 before·after 데이터</p>
               </div>
-              <Link href="/cases" className="inline-flex items-center gap-1.5 font-bold text-sm hover:underline shrink-0" style={{ color: "var(--h-navy)" }}>
+              <Link href="/cases" className="inline-flex items-center gap-1.5 font-bold text-sm hover:underline shrink-0 min-h-11 md:min-h-0" style={{ color: "var(--h-navy)" }}>
                 전체 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
@@ -1364,7 +1371,7 @@ export default function HomePage() {
             </div>
             <div className="text-center mt-6">
               <Link href="/cases"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-gray-600 font-bold text-sm transition-colors hover:opacity-80" style={{ borderColor: "var(--h-border)" }}>
+                className="inline-flex items-center gap-2 px-5 py-3 md:py-2.5 rounded-xl border text-gray-600 font-bold text-sm transition-colors hover:opacity-80" style={{ borderColor: "var(--h-border)" }}>
                 더 많은 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
@@ -1500,7 +1507,7 @@ export default function HomePage() {
                   { name: "전국", href: "/contact" },
                 ].map(r => (
                   <Link key={r.name} href={r.href}
-                    className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-bold hover:bg-white/10 hover:text-white transition-colors">
+                    className="inline-flex items-center px-3 py-1.5 min-h-11 md:min-h-0 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-bold hover:bg-white/10 hover:text-white transition-colors">
                     {r.name}
                   </Link>
                 ))}

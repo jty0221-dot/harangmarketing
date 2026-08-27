@@ -239,7 +239,7 @@ export default function FAQPage() {
                 const Icon = cat.icon;
                 return (
                   <a key={cat.id} href={`#${cat.id}`}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-semibold hover:bg-white/20 transition-colors">
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-11 md:min-h-0 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-semibold hover:bg-white/20 transition-colors">
                     <Icon size={11} />
                     {cat.label}
                   </a>

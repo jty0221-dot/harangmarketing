@@ -110,7 +110,7 @@ export default function AdminPage() {
               required
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-blue-400 focus:outline-none transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base md:text-sm focus:border-blue-400 focus:outline-none transition-colors"
               placeholder="예: 광고비 절반으로 줄이는 3가지 방법"
             />
           </div>
@@ -120,7 +120,7 @@ export default function AdminPage() {
             <input
               value={form.excerpt}
               onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-blue-400 focus:outline-none transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base md:text-sm focus:border-blue-400 focus:outline-none transition-colors"
               placeholder="한 줄 요약"
             />
           </div>

@@ -185,8 +185,10 @@ export default function AboutPage() {
                 { val: SITE.stats.renewalRate, label: "재계약률" },
                 { val: "10년+", label: "경력" },
               ].map(s => (
-                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
-                  <div className="text-2xl font-black text-white mb-0.5">{s.val}</div>
+                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 text-center">
+                  {/* 375px 3칸에서 칸 안쪽이 71px 뿐이라 '97.4%' 의 % 가 둘째 줄로 떨어졌다.
+                      숫자는 줄바꿈하지 않는다 (2026-08-27 (목) 수정) */}
+                  <div className="text-xl sm:text-2xl font-black text-white mb-0.5 whitespace-nowrap tabular-nums">{s.val}</div>
                   <div className="text-xs text-gray-500">{s.label}</div>
                 </div>
               ))}

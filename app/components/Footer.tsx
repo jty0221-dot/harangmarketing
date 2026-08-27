@@ -50,12 +50,12 @@ export default function Footer() {
             </div>
             <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
               <Link href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white font-bold text-sm hover:bg-gray-100 transition-colors shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 md:py-2.5 rounded-xl bg-white font-bold text-sm hover:bg-gray-100 transition-colors shadow-sm"
                 style={{ color: "var(--h-navy)" }}>
                 무료 진단 신청 <ArrowRight size={14} />
               </Link>
               <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 md:py-2.5 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
                 <MessageCircle size={14} />카카오 상담
               </a>
             </div>
@@ -69,7 +69,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10">
             {/* Brand */}
             <div className="md:col-span-1">
-              <Link href="/" className="flex items-center gap-2.5 mb-4 w-fit">
+              <Link href="/" className="flex items-center gap-2.5 mb-4 w-fit min-h-11">
                 <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
                 <span className="font-black text-white text-[17px]">하랑마케팅</span>
               </Link>
@@ -77,7 +77,7 @@ export default function Footer() {
                 상생을 기반으로 한 마케팅.<br />
                 10년 경력, 직접 담당합니다.
               </p>
-              <div className="flex gap-2">
+              <div className="flex gap-1 md:gap-2">
                 {([
                   { label: "네이버 블로그", href: "https://blog.naver.com/harangmarketing", logo: "naver" },
                   { label: "카카오톡 채널", href: "https://pf.kakao.com/_MuUkG/chat", logo: "kakao" },
@@ -91,7 +91,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     title={s.label}
                     aria-label={s.label}
-                    className="hover:opacity-80 transition-opacity"
+                    className="inline-flex items-center justify-center min-h-11 min-w-11 md:min-h-0 md:min-w-0 hover:opacity-80 transition-opacity"
                   >
                     <PlatformLogo id={s.logo} size={32} />
                   </a>
@@ -102,7 +102,7 @@ export default function Footer() {
             {/* Links */}
             <div>
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">서비스</h4>
-              <ul className="space-y-2.5 text-sm">
+              <ul className="space-y-0.5 md:space-y-2.5 text-sm">
                 {[
                   // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로
                   ["SNS 부스트 스토어 (셀프 주문)", "/sns", true],
@@ -119,7 +119,7 @@ export default function Footer() {
                   <li key={label as string}>
                     <Link
                       href={href as string}
-                      className={`inline-flex items-center gap-1.5 transition-colors ${
+                      className={`inline-flex items-center gap-1.5 min-h-11 md:min-h-0 transition-colors ${
                         isNew ? "font-bold text-gray-300 hover:text-white" : "text-gray-500 hover:text-gray-200"
                       }`}
                     >
@@ -138,7 +138,7 @@ export default function Footer() {
 
             <div>
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">바로가기</h4>
-              <ul className="space-y-2.5 text-sm">
+              <ul className="space-y-0.5 md:space-y-2.5 text-sm">
                 {[
                   ["회사소개", "/about"],
                   ["마케팅상품", "/services"],
@@ -150,7 +150,7 @@ export default function Footer() {
                   ["상담신청", "/contact"],
                 ].map(([label, href]) => (
                   <li key={label}>
-                    <Link href={href} className="hover:text-gray-200 transition-colors text-gray-500">
+                    <Link href={href} className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-200 transition-colors text-gray-500">
                       {label}
                     </Link>
                   </li>
@@ -160,7 +160,7 @@ export default function Footer() {
                     href="https://blog.naver.com/harangmarketing"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-gray-200 transition-colors text-gray-500"
+                    className="flex items-center gap-1 min-h-11 md:min-h-0 hover:text-gray-200 transition-colors text-gray-500"
                   >
                     네이버 블로그
                     <ExternalLink size={11} />
@@ -225,9 +225,9 @@ export default function Footer() {
             <p>개인정보보호책임자: 전태영</p>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-600">
-            <Link href="/terms" className="hover:text-gray-400 transition-colors">이용약관</Link>
-            <Link href="/privacy" className="hover:text-gray-400 transition-colors font-semibold text-gray-500">개인정보처리방침</Link>
-            <Link href="/refund" className="hover:text-gray-400 transition-colors">환불/취소 정책</Link>
+            <Link href="/terms" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors">이용약관</Link>
+            <Link href="/privacy" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors font-semibold text-gray-500">개인정보처리방침</Link>
+            <Link href="/refund" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors">환불/취소 정책</Link>
           </div>
         </div>
         <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-700">

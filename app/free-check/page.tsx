@@ -50,13 +50,13 @@ export default function FreeCheckPage() {
     <main className="min-h-screen bg-gray-950">
       {/* Top bar */}
       <div className="bg-gray-950 border-b border-white/5 py-3 px-4 flex items-center justify-between max-w-5xl mx-auto">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 min-h-11">
           <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-7 h-7" />
           <span className="text-white font-black text-[15px]">하랑<span className="text-blue-400">마케팅</span></span>
         </Link>
         <a
           href="tel:010-7541-9054"
-          className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 min-h-11 text-xs text-gray-400 hover:text-white transition-colors"
         >
           <Phone size={12} strokeWidth={2.5} />
           010-7541-9054
@@ -191,7 +191,7 @@ export default function FreeCheckPage() {
                       onChange={(e) => setName(e.target.value)}
                       placeholder="홍길동"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
                   </div>
                   <div>
@@ -202,7 +202,7 @@ export default function FreeCheckPage() {
                       onChange={(e) => setBusiness(e.target.value)}
                       placeholder="예: 하랑카페 / 카페"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
                   </div>
                   <div>
@@ -227,7 +227,7 @@ export default function FreeCheckPage() {
                         onChange={(e) => setRank(e.target.value)}
                         placeholder="예: 15"
                         min="1"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-400">위</span>
                     </div>

@@ -1311,7 +1311,7 @@ export default function ServicesPage() {
                 <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-3">자주 묻는 질문</h2>
                 <p className="text-sm text-gray-400 leading-relaxed mb-4">상담 전에 가장 많이 물어보시는 내용을 정리했습니다.</p>
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-yellow-400 text-gray-900 text-xs font-bold hover:bg-yellow-300 transition-colors">
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-11 md:min-h-0 rounded-xl bg-yellow-400 text-gray-900 text-xs font-bold hover:bg-yellow-300 transition-colors">
                   <MessageSquare size={12} />더 물어보기
                 </a>
               </div>
@@ -1333,7 +1333,7 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="text-center mt-6">
-              <Link href="/faq" className="inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm hover:underline">
+              <Link href="/faq" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-blue-600 font-semibold text-sm hover:underline">
                 비용·계약·효과 등 전체 FAQ 보기 <ArrowRight size={13} />
               </Link>
             </div>

@@ -94,7 +94,7 @@ export default function ClientLogosSection() {
           </div>
           <Link
             href="/cases"
-            className="inline-flex items-center gap-1.5 text-sm font-bold shrink-0 py-2.5 md:py-0"
+            className="inline-flex items-center gap-1.5 text-sm font-bold shrink-0 py-3 md:py-0"
             style={{ color: "var(--h-blue)" }}
           >
             성과 사례 보기
