@@ -5,7 +5,7 @@ import { X, ChevronLeft, ChevronRight, ImageOff, Maximize2, Info } from "lucide-
 import { REF_TABS, type RefWork } from "../../../lib/detail-page-reference";
 
 /**
- * 상세페이지 레퍼런스 뷰어 (연우디자인스튜디오 파트너 작업물)
+ * 상세페이지 레퍼런스 뷰어 — 하랑마케팅 상세페이지 작업물
  *
  * 카페 배포 레퍼런스와 같은 뼈대다 — 종류 탭 + 목록 + 딥링크.
  * 다른 점은 상세페이지가 세로로 길다는 것 하나다. 카페 캡처는 가로 한 장이라
@@ -16,8 +16,9 @@ import { REF_TABS, type RefWork } from "../../../lib/detail-page-reference";
  * globals.css 에 통합하지 말라고 적혀 있다. 여기는 /services/detail-page 본편과
  * 같은 계열(gray + blue-600)로 맞춘다.
  *
- * 클라이언트 상호·브랜드는 화면에 쓰지 않는다 — 연우 허락은 받았지만
- * 해당 클라이언트 동의는 아직 받지 못했다 (D-0078).
+ * 클라이언트 상호·브랜드는 화면에 쓰지 않는다 — 각 판매자의 노출 동의를
+ * 아직 받지 못했기 때문이다 (C-42). 파트너·외주 표기는 넣지 않는다
+ * (2026-08-27 (목) 대표 지시).
  */
 
 export default function ReferenceClient({ initialSlug }: { initialSlug: string }) {
@@ -165,26 +166,26 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-bold text-white md:text-base">{shown.title}</p>
               <p className="truncate text-[11px] text-gray-400 md:text-xs">
-                {tab.label} · {shown.when} · 디자인 파트너 연우디자인스튜디오
+                {tab.label} · {shown.when} · 하랑마케팅
               </p>
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); move(-1); }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 text-white transition-colors hover:bg-white/10"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/15 text-white transition-colors hover:bg-white/10"
               aria-label="이전 작업물"
             >
               <ChevronLeft size={18} strokeWidth={2.5} />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); move(1); }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 text-white transition-colors hover:bg-white/10"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/15 text-white transition-colors hover:bg-white/10"
               aria-label="다음 작업물"
             >
               <ChevronRight size={18} strokeWidth={2.5} />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); setOpen(-1); }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white transition-colors hover:bg-white/20"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white transition-colors hover:bg-white/20"
               aria-label="닫기"
             >
               <X size={18} strokeWidth={2.5} />
@@ -192,19 +193,34 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
           </div>
 
           <div className="px-3 py-5 md:px-6 md:py-8" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={"/detail-ref/full/" + shown.slug + ".jpg"}
-              alt={shown.title + " 상세페이지 전체"}
-              width={shown.fw}
-              height={shown.fh}
-              className="mx-auto block h-auto w-full max-w-[760px] rounded-xl bg-white"
-            />
-            {shown.clipped && (
-              <p className="mx-auto mt-4 flex max-w-[760px] items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs leading-relaxed text-gray-400">
-                <Info size={14} className="mt-0.5 shrink-0" strokeWidth={2} />
-                원본이 길어 앞부분만 실었습니다. 전체 분량은 상담 때 보여드립니다.
-              </p>
-            )}
+            {/* 원본이 세로로 길어 12000px 단위로 나눠 저장한다 (사파리 디코딩 상한).
+                여백 없이 쌓아 화면에서는 한 장으로 보인다 — 내용을 자른 게 아니다. */}
+            <div className="mx-auto w-full max-w-[760px] overflow-hidden rounded-xl bg-white">
+              {(shown.parts.length ? shown.parts : [shown.fh]).map((h, i) => (
+                <img
+                  key={i}
+                  src={
+                    "/detail-ref/full/" +
+                    shown.slug +
+                    (shown.parts.length ? "-" + (i + 1) : "") +
+                    ".jpg"
+                  }
+                  alt={
+                    shown.parts.length
+                      ? shown.title + " 상세페이지 " + (i + 1) + "/" + shown.parts.length
+                      : shown.title + " 상세페이지 전체"
+                  }
+                  width={shown.fw}
+                  height={h}
+                  loading={i === 0 ? undefined : "lazy"}
+                  className="block h-auto w-full"
+                />
+              ))}
+            </div>
+            <p className="mx-auto mt-4 flex max-w-[760px] items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs leading-relaxed text-gray-400">
+              <Info size={14} className="mt-0.5 shrink-0" strokeWidth={2} />
+              원본 {shown.cuts}컷 · 세로 {shown.fh.toLocaleString()}px 전체입니다. 중간을 잘라내거나 요약한 구간이 없습니다.
+            </p>
           </div>
         </div>
       )}

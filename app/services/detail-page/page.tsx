@@ -22,8 +22,8 @@ import {
  * 4층이 비어도 나머지 세 층으로 페이지가 성립한다.
  *
  * 단가는 우리 4등급안이다 (기획형 150,000 · 제작형 350,000 · 제작+영상형 550,000 · 앵커 1,500,000).
- * 연우디자인스튜디오 등급표는 블로그 홈페이지형 디자인 상품의 것이라 여기 쓰지 않는다
- * (2026-08-27 (목) 대표 지시로 원복 · D-0078). 연우 값이 들어가는 자리는 앵커 안의 스토어 스킨 원가 한 줄뿐이다.
+ * 블로그 홈페이지형 디자인 상품(STANDARD·DELUXE·PREMIUM) 등급표는 다른 상품의 것이라 여기 쓰지 않는다
+ * (2026-08-27 (목) 대표 지시로 원복 · D-0078). 그 값이 들어가는 자리는 앵커 안의 스토어 스킨 원가 한 줄뿐이다.
  * 부가세 기준은 아직 확정 전이라 이 화면에 부가세 문구를 쓰지 않는다 (C-42).
  *
  * 디자인 기준은 WDS 다 (harang/CLAUDE.md).
@@ -49,7 +49,7 @@ const SECTIONS = [
   { code: "S8", name: "CS·반품", role: "분쟁을 미리 막는다", note: "교환·환불 기준 명시" },
 ];
 
-/* 등급 · 4등급 단가안 (2026-08-27 (목) 대표 지시로 원복 — 연우 등급표는 블로그 홈페이지형 상품이라 여기 쓰지 않는다) */
+/* 등급 · 4등급 단가안 (2026-08-27 (목) 대표 지시로 원복 — 블로그 홈페이지형 디자인 등급표는 다른 상품이라 여기 쓰지 않는다) */
 const PLANS = [
   {
     key: "planning",
@@ -557,11 +557,11 @@ export default function DetailPageServicePage() {
                 <div className="w-9 h-9 rounded-xl bg-gray-900 flex items-center justify-center mb-4 shadow-sm">
                   <ImageIcon size={16} className="text-white" strokeWidth={2.5} />
                 </div>
-                <h3 className="font-black text-gray-900 text-sm mb-2">지금 공개할 수 있는 사례가 없습니다</h3>
+                <h3 className="font-black text-gray-900 text-sm mb-2">상호를 밝힌 사례는 아직 없습니다</h3>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed mb-4">
-                  진행한 건은 있지만 상호와 이미지를 공개하려면 사장님의 서면 동의가 필요합니다.
-                  동의를 받은 건부터 여기에 하나씩 올립니다. 이 자리에 파트너 작업물을 섞어 채우지 않습니다.
-                  파트너가 만든 것은 파트너 것이라고 밝혀 아래에 따로 모아 뒀습니다.
+                  만든 상세페이지는 아래 레퍼런스에 {REF_TOTAL}건을 그대로 펼쳐 뒀습니다.
+                  다만 상호와 브랜드명까지 적으려면 사장님의 서면 동의가 필요해서, 이 자리에는
+                  동의를 받은 건부터 하나씩 올립니다. 동의 없이 상호를 적거나 성과를 지어내지 않습니다.
                 </p>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed">
                   대신 위에 공정을 전부 적어 두었습니다.{" "}
@@ -603,10 +603,9 @@ export default function DetailPageServicePage() {
                           </div>
                         )}
                       </dl>
-                      {(c.partner || c.aiNote) && (
-                        <div className="mt-3 pt-3 border-t border-gray-100 space-y-1">
-                          {c.partner && <p className="text-[11px] text-gray-400">디자인 파트너 · {c.partner}</p>}
-                          {c.aiNote && <p className="text-[11px] text-gray-400">{c.aiNote}</p>}
+                      {c.aiNote && (
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <p className="text-[11px] text-gray-400">{c.aiNote}</p>
                         </div>
                       )}
                     </div>
@@ -624,10 +623,10 @@ export default function DetailPageServicePage() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-black text-gray-900">
-                  파트너 작업물 {REF_TOTAL}건을 종류별로 열어 뒀습니다
+                  제작한 상세페이지 {REF_TOTAL}건을 종류별로 열어 뒀습니다
                 </span>
                 <span className="mt-1 block text-xs leading-relaxed text-gray-500 md:text-[13px]">
-                  디자인 파트너 연우디자인스튜디오가 만든 상세페이지입니다. 생활·수납·차량·뷰티·반려동물 등
+                  하랑마케팅이 만든 상세페이지입니다. 생활·수납·차량·뷰티·반려동물 등
                   {" "}{REF_CATEGORIES.length}가지 종류로 나눠 처음부터 끝까지 펼쳐 볼 수 있습니다.
                 </span>
               </span>

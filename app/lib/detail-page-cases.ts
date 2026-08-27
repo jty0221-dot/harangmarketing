@@ -11,8 +11,8 @@ import path from "path";
  * 1) consent 가 false 면 화면에 올리지 않는다. 클라이언트 상호 노출은 서면 동의를 받은 것만이다.
  * 2) result 는 실측이 없으면 빈 문자열로 둔다. 화면에서도 성과 영역 자체를 그리지 않는다.
  *    '—' 나 '측정 중' 을 대신 넣지 않는다 — 그건 숫자가 있는 것처럼 보이게 한다.
- * 3) partner 가 있으면 제작 주체를 화면에 밝힌다. 파트너 작업물을 우리 실적처럼 보이게 하면
- *    표시광고법 문제가 된다 (D-0078).
+ * 3) 상세페이지는 하랑마케팅이 제작·공급한다. 화면에 파트너·외주 표기를 넣지 않는다
+ *    (2026-08-27 (목) 대표 지시 — 제작 협의 종료).
  */
 
 export interface DetailPageCase {
@@ -38,8 +38,6 @@ export interface DetailPageCase {
   aiUsed: boolean;
   /** AI 컷을 썼다면 출발 원본 파일명을 포함해 적는다 (C-41) */
   aiNote: string;
-  /** 디자인 파트너 상호. 없으면 빈 문자열 */
-  partner: string;
   /** 대표 이미지 경로. 없으면 null */
   thumb: string | null;
   /** 상세 이미지 경로들 */

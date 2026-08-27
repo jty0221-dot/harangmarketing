@@ -25,15 +25,22 @@ PUBLIC = os.path.join(ROOT, "public", "detail-ref")
 REL = "public/detail-ref"
 
 
-def slugs():
-    """데이터가 가리키는 slug 를 문서 순서대로 돌려준다.
+def works():
+    """데이터가 가리키는 (slug, 분할장수) 를 문서 순서대로 돌려준다.
 
     REF_TABS 의 '전체' 탭은 slug 가 all 이고 이미지가 없으므로 제외한다 —
     작업물 행만 title 을 같이 갖는다는 점으로 가른다.
+
+    parts 가 빈 배열이면 full/<slug>.jpg 한 장, 아니면 full/<slug>-N.jpg 여러 장이다.
+    이 장수를 안 세면 -3 만 빠져도 화면 중간이 통째로 비는데 로컬에서는 안 보인다.
     """
     with open(DATA, encoding="utf-8") as f:
         src = f.read()
-    return re.findall(r'\{ slug: "([a-z0-9-]+)",\s+title:', src)
+    out = []
+    for m in re.finditer(r'\{ slug: "([a-z0-9-]+)",\s+title:.*?parts: \[([^\]]*)\]', src, re.S):
+        raw = m.group(2).strip()
+        out.append((m.group(1), len([x for x in raw.split(",") if x.strip()]) if raw else 0))
+    return out
 
 
 def git_tree():
@@ -51,15 +58,19 @@ def git_tree():
 
 
 def main():
-    want = slugs()
+    want = works()
     if not want:
         print("데이터에서 작업물을 한 건도 읽지 못했습니다 — 파일 형식이 바뀐 것 같습니다.")
         return 1
 
     need = []          # (slug, 상대경로) 있어야 하는 이미지
-    for s in want:
+    for s, nparts in want:
         need.append((s, REL + "/" + s + ".jpg"))
-        need.append((s, REL + "/full/" + s + ".jpg"))
+        if nparts:
+            for i in range(1, nparts + 1):
+                need.append((s, REL + "/full/%s-%d.jpg" % (s, i)))
+        else:
+            need.append((s, REL + "/full/" + s + ".jpg"))
 
     missing = [p for _, p in need if not os.path.exists(os.path.join(ROOT, p))]
 

@@ -1119,7 +1119,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
                   { label: "견적 방식", value: "항목 조합", note: "정찰제 패키지 없습니다" },
-                  { label: "기준 단가", value: "블로그 4만원", note: "1편 기준 · 부가세 별도" },
+                  { label: "기준 단가", value: "블로그 4만원", note: "1편 기준 · 업종별 조정 · 부가세 별도" },
                   { label: "상담 · 현황 진단", value: "0원", note: "견적 받고 안 하셔도 됩니다" },
                 ].map((item) => (
                   <div key={item.label}>

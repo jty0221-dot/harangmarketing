@@ -5,8 +5,10 @@ import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import ReferenceClient from "./ReferenceClient";
 import { SITE, ORG_ID, breadcrumbLd, webPageLd } from "../../../lib/seo";
-import { REF_TABS, REF_CATEGORIES, REF_TOTAL } from "../../../lib/detail-page-reference";
-import { ArrowRight, MessageCircle, Handshake, ShieldCheck, Layers } from "lucide-react";
+import {
+  REF_TABS, REF_CATEGORIES, REF_TOTAL, REF_ALL, REF_CUTS, REF_GENRE,
+} from "../../../lib/detail-page-reference";
+import { ArrowRight, MessageCircle, ShieldCheck, Layers } from "lucide-react";
 
 /**
  * 상세페이지 레퍼런스 — 종류별 실물 상세페이지 모음
@@ -15,10 +17,11 @@ import { ArrowRight, MessageCircle, Handshake, ShieldCheck, Layers } from "lucid
  * 여기는 '만든 게 이렇게 생겼다' 를 종류별로 보여주는 목록이다.
  * 최적화 블로그 · 카페 배포 레퍼런스와 같은 자리에 같은 형태로 세운다 (대표 지시 2026-08-27).
  *
- * 이 페이지에 실린 작업물은 전부 디자인 파트너 연우디자인스튜디오 의 것이다.
- * 우리 실적처럼 보이게 하면 표시광고법 문제가 되므로 파트너 표기를 뺄 수 없다 (D-0078).
- * 연우 활용 허락은 받았고, 각 상품 클라이언트의 상호 노출 동의는 아직 받지 못했다.
- * 그래서 화면에는 제품 종류만 적고 상호·브랜드는 쓰지 않는다 (C-42).
+ * 여기 실린 작업물은 하랑마케팅이 제작·공급하는 상세페이지다.
+ * 제작 협의가 끝나 파트너·외주 표기는 화면에 넣지 않는다 (2026-08-27 (목) 대표 지시).
+ * 다만 각 상품 판매자의 상호 노출 동의는 아직 받지 못했으므로
+ * 화면에는 제품 종류만 적고 상호·브랜드는 쓰지 않는다 (C-42).
+ * 성과 수치도 실측 근거가 있는 건만 적는다 — 없으면 비워 둔다.
  */
 
 const PATH = "/services/detail-page/reference";
@@ -27,7 +30,7 @@ const URL = `${SITE.base}${PATH}`;
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
   title: "상세페이지 레퍼런스 — 종류별 스마트스토어 상세페이지 실물",
-  description: `생활·리빙, 수납·가구, 차량, 뷰티·헬스, 반려동물, 유아, 패션, 식품 등 ${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물을 그대로 공개합니다. 디자인 파트너 연우디자인스튜디오 작업물입니다.`,
+  description: `생활·리빙, 수납·가구, 차량, 뷰티·헬스, 반려동물, 유아, 패션, 식품 등 ${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물을 그대로 공개합니다. 기획·카피·이미지까지 하랑마케팅이 만든 상세페이지입니다.`,
   keywords: [
     "상세페이지 레퍼런스", "스마트스토어 상세페이지 사례", "상세페이지 포트폴리오",
     "상세페이지 디자인 예시", "제품 상세페이지 제작 사례", "상세페이지 종류별",
@@ -47,7 +50,7 @@ const LD = [
     path: PATH,
     type: "CollectionPage",
     name: "상세페이지 레퍼런스 — 하랑마케팅",
-    description: `${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물 모음. 디자인 파트너 연우디자인스튜디오 작업물.`,
+    description: `${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물 모음. 하랑마케팅이 만든 상세페이지.`,
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },
@@ -55,25 +58,37 @@ const LD = [
     { name: "스마트스토어 상세페이지 제작", path: "/services/detail-page" },
     { name: "레퍼런스", path: PATH },
   ]),
+  /**
+   * 작업물 38건을 평탄한 ItemList 로 낸다.
+   * 예전에는 종류별 ItemList 를 중첩했는데 이름만 있고 이미지가 없어
+   * 이미지 검색에 한 장도 잡히지 않았다. 포트폴리오는 그림이 걸려야 문의가 온다.
+   * 각 건에 썸네일 절대 URL · 만든 시기 · 종류를 같이 준다 (확인된 값만).
+   */
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${URL}#works`,
     name: "종류별 상세페이지 레퍼런스",
     numberOfItems: REF_TOTAL,
-    publisher: { "@id": ORG_ID },
-    itemListElement: REF_CATEGORIES.map((c, i) => ({
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    itemListElement: REF_ALL.map((w, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
-        "@type": "ItemList",
-        name: c.label,
-        numberOfItems: c.works.length,
-        itemListElement: c.works.map((w, j) => ({
-          "@type": "ListItem",
-          position: j + 1,
-          name: w.title,
-        })),
+        "@type": "CreativeWork",
+        "@id": `${URL}#${w.slug}`,
+        name: `${w.title} 상세페이지`,
+        genre: REF_GENRE[w.slug],
+        dateCreated: w.when,
+        creator: { "@id": ORG_ID },
+        inLanguage: "ko",
+        image: {
+          "@type": "ImageObject",
+          contentUrl: `${SITE.base}/detail-ref/${w.slug}.jpg`,
+          width: w.tw,
+          height: w.th,
+          caption: `${w.title} 스마트스토어 상세페이지 상단 화면`,
+        },
       },
     })),
   },
@@ -117,14 +132,14 @@ export default async function DetailPageReferencePage({
             </h1>
             <p className="mb-8 max-w-2xl text-base leading-relaxed text-gray-400 md:text-lg">
               상세페이지는 첫 화면만 봐서는 판단이 안 됩니다. 어디서 불안을 지우고 어디서 결제로
-              넘기는지는 끝까지 내려봐야 보입니다. 그래서 잘라 놓지 않고 {REF_TOTAL}건 전부를
-              통째로 열어 뒀습니다.
+              넘기는지는 끝까지 내려봐야 보입니다. 그래서 {REF_TOTAL}건 전부를 원본 {REF_CUTS}컷
+              그대로, 중간을 요약하거나 뒷부분을 잘라내지 않고 열어 뒀습니다.
             </p>
             <dl className="grid grid-cols-3 gap-3 md:max-w-lg">
               {[
                 { k: "공개 건수", v: `${REF_TOTAL}건` },
-                { k: "종류", v: `${REF_CATEGORIES.length}가지` },
-                { k: "상담·견적", v: "0원" },
+                { k: "원본 컷", v: `${REF_CUTS}컷` },
+                { k: "잘라낸 구간", v: "0" },
               ].map((s) => (
                 <div key={s.k} className="rounded-xl border border-white/10 px-3 py-3 md:px-4">
                   <dt className="text-[11px] text-gray-500 md:text-xs">{s.k}</dt>
@@ -135,21 +150,20 @@ export default async function DetailPageReferencePage({
           </div>
         </section>
 
-        {/* 출처 · 표기 — 파트너 작업물이라는 사실을 목록보다 먼저 밝힌다 */}
+        {/* 표기 원칙 — 상호를 왜 안 적는지, 성과를 왜 비워 두는지 목록보다 먼저 밝힌다 */}
         <section className="border-b border-gray-200 bg-white py-6 md:py-8">
           <div className="mx-auto max-w-4xl px-4 md:px-6 lg:px-8">
             <div className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 md:flex-row md:items-start md:gap-5 md:p-6">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 shadow-sm">
-                <Handshake size={16} className="text-white" strokeWidth={2.5} />
+                <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
               </div>
               <div className="min-w-0">
                 <p className="text-sm font-black text-gray-900 md:text-base">
-                  디자인 파트너 · 연우디자인스튜디오 작업물입니다
+                  표기 원칙 — 상호는 적지 않고, 없는 성과는 만들지 않습니다
                 </p>
                 <p className="mt-2 text-[13px] leading-relaxed text-gray-600 md:text-sm">
-                  하랑마케팅이 직접 만든 사례가 아니라, 파트너사가 만든 상세페이지를 게재 허락을 받아
-                  싣습니다. 하랑마케팅은 이 파트너와 함께 상세페이지를 제작합니다.
                   제품 상호와 브랜드명은 각 판매자의 노출 동의를 받기 전이라 적지 않고, 제품 종류만 적었습니다.
+                  성과 수치도 실측 근거가 있는 건만 적고, 없으면 비워 둡니다. 화면에 적힌 숫자는 전부 확인된 것입니다.
                 </p>
               </div>
             </div>

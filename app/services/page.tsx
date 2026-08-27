@@ -6,10 +6,11 @@ import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare, Quote,
-  Navigation, Palette, Layers, Calculator, ListChecks,
+  Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
+import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS } from "../lib/detail-page-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -66,6 +67,37 @@ const SERVICES = [
     cover: "/cafe-ref/ref-r-01.png",
     coverAlt: "네이버 카페 영역 상위노출 실제 화면",
     coverBadge: "실제 노출 화면",
+  },
+  {
+    // 팔고 있는데 이 목록에 없어서 /services 에서 상세페이지로 가는 길이 없었다.
+    // 단가·일정은 /services/detail-page 의 PLANS 가 정본이고 여기는 요약만 적는다 (C-22).
+    id: "detail-page",
+    icon: LayoutTemplate,
+    color: "from-blue-600 to-blue-800",
+    tag: "상세페이지",
+    title: "스마트스토어 상세페이지 제작",
+    subtitle: "기획 · 카피 · 이미지까지 9단 구성",
+    desc: "상품은 좋은데 안 팔리는 이유는 대부분 순서입니다. 어디서 멈추게 하고 어디서 불안을 지우고 어디서 결제로 넘길지를 먼저 짜고, 그 순서대로 이미지를 만듭니다.",
+    timeline: "기획형 3영업일 · 제작형 7영업일",
+    deliverables: [
+      { label: "기획형", value: "150,000원", note: "구성표·카피·프롬프트" },
+      { label: "제작형", value: "350,000원", note: "상세 이미지까지 · 가장 많이 하십니다" },
+      { label: "제작+영상형", value: "550,000원", note: "첫 화면 GIF·숏폼 포함" },
+    ],
+    features: [
+      "9단 섹션 구성표 — 무엇을 몇 번째에 보여줄지 먼저 정합니다",
+      "섹션별 카피 작성 (확정 안 된 값은 비워 두고 여쭙습니다)",
+      "9단 상세 이미지 제작 · 모바일 가독성 판 별도 조정",
+      "슬라이스 파일 납품 — 받아서 바로 올리시면 됩니다",
+      "문구 수정 2회 · 이미지 재생성 컷당 3회 포함",
+      "식품은 표시사항(원재료·용량·소비기한·보관·제조원) 확인 후 등록",
+    ],
+    rec: "상품은 올렸는데 들어와서 그냥 나가는 스토어",
+    result: `실물 상세페이지 ${DP_TOTAL}건 · 원본 ${DP_CUTS}컷 전체 공개 (잘라낸 구간 없음)`,
+    href: "/services/detail-page",
+    cover: "/detail-ref/mood-light-frame.jpg",
+    coverAlt: "무드등 액자 스마트스토어 상세페이지 상단 화면",
+    coverBadge: "실제 납품 화면",
   },
   {
     // 대행 서비스가 아니라 자사 프로그램. 상세는 /studio 에 따로 있다.
@@ -293,10 +325,10 @@ const INDUSTRY_LINKS = [
    원본: E:/하랑/{미미샵|영삼이네우정소갈비|이지클린}/build_quote_hwp.py
    ──────────────────────────────────────────────────────────── */
 
-const UNIT_PRICES: { item: string; unit: string; price: string }[] = [
+const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[] = [
   { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
   { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "3만원" },
-  { item: "블로그 관리대행", unit: "1편", price: "4만원" },
+  { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
   { item: "최적화 블로그 배포", unit: "1건", price: "3만원" },
   { item: "카페 배포", unit: "1건", price: "3만원" },
   { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
@@ -340,7 +372,7 @@ const CALC_EXAMPLES: {
     lines: [
       { label: "플레이스 SEO 최적화", calc: "10만원 × 1회", amount: "100,000" },
       { label: "홈페이지형 블로그 디자인", calc: "20만원 × 1회", amount: "200,000" },
-      { label: "블로그 관리대행", calc: "4만원 × 10편", amount: "400,000" },
+      { label: "블로그 관리대행", calc: "기준 4만원 × 10편", amount: "400,000" },
       { label: "파워컨텐츠 원고 설계·검수", calc: "5만원 × 1편", amount: "50,000" },
       { label: "네이버 광고 세팅·운영대행", calc: "계약 포함", amount: "0" },
     ],
@@ -400,7 +432,7 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   },
   {
     title: "채널 수와 물량이 다릅니다",
-    body: "단가가 채널별 · 건별로 붙습니다. 블로그는 편당 4만원이라 월 4편과 월 15편은 44만원 차이가 납니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
+    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 4만원으로 잡아도 월 4편과 월 15편은 44만원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다 — 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
   },
   {
     title: "심의와 계절이 다릅니다",
@@ -577,7 +609,7 @@ export default function ServicesPage() {
           answer={`${ANSWER_SENTENCES.whatWeDo} ${ANSWER_SENTENCES.price}`}
           facts={[
             { label: "견적 방식", value: "항목 조합형" },
-            { label: "기준 단가", value: "블로그 4만원/편" },
+            { label: "기준 단가", value: "블로그 4만원/편 기준 · 업종별 조정" },
             { label: "구성", value: "업체별 맞춤" },
             { label: "상담·진단", value: "0원" },
           ]}
@@ -876,7 +908,12 @@ export default function ServicesPage() {
                   <tbody>
                     {UNIT_PRICES.map((u) => (
                       <tr key={u.item} className="border-b border-gray-100 last:border-0 bg-white">
-                        <td className="px-4 py-3 text-gray-800 font-bold">{u.item}</td>
+                        <td className="px-4 py-3 text-gray-800 font-bold">
+                          {u.item}
+                          {u.note && (
+                            <span className="block mt-1 text-[11px] font-normal leading-relaxed text-gray-500">{u.note}</span>
+                          )}
+                        </td>
                         <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{u.unit}</td>
                         <td className="px-4 py-3 text-right font-black text-gray-900 tabular-nums whitespace-nowrap">{u.price}</td>
                       </tr>
