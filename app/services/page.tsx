@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
-import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS } from "../lib/detail-page-reference";
+import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -38,6 +38,22 @@ export const metadata: Metadata = {
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
+
+/**
+ * 상세페이지 카드 커버 — 한 장이 아니라 여러 장을 세워 넣는다.
+ *
+ * 상세페이지는 세로로 긴 물건(560x747)인데 카드 커버는 가로로 넓다(960x176).
+ * 한 장을 폭에 맞추면 높이가 1229px 로 늘어나 위쪽 14% 만 남고,
+ * 상세페이지의 위쪽 14% 는 배경 여백이라 화면에는 빈 띠만 보인다.
+ * 칸을 좁게 나누면 같은 높이에서 잘리는 비율이 준다 — 5칸이면 한 장당 90% 가 보인다.
+ *
+ * 고르는 기준은 종류마다 첫 건이다. 앞에서부터 자르면 생활·리빙만 나와서
+ * 생활용품만 하는 곳으로 읽힌다.
+ */
+const DP_COVERS = DP_CATEGORIES.slice(0, 5).map((c) => ({
+  src: `/detail-ref/${c.works[0].slug}.jpg`,
+  alt: `${c.works[0].title} 상세페이지 실제 납품 화면`,
+}));
 
 const SERVICES = [
   {
@@ -95,8 +111,7 @@ const SERVICES = [
     rec: "상품은 올렸는데 들어와서 그냥 나가는 스토어",
     result: `실물 상세페이지 ${DP_TOTAL}건 · 원본 ${DP_CUTS}컷 전체 공개 (잘라낸 구간 없음)`,
     href: "/services/detail-page",
-    cover: "/detail-ref/mood-light-frame.jpg",
-    coverAlt: "무드등 액자 스마트스토어 상세페이지 상단 화면",
+    covers: DP_COVERS,
     coverBadge: "실제 납품 화면",
   },
   {
@@ -654,8 +669,36 @@ export default function ServicesPage() {
                   }
                 >
                   {/* 커버 — 상품마다 자기 화면을 쓴다. 캡처를 공용으로 돌려 쓰면
-                      다른 서비스의 화면이 붙어 고객을 오인시킨다. 없으면 브랜드 밴드. */}
-                  {"cover" in s && s.cover ? (
+                      다른 서비스의 화면이 붙어 고객을 오인시킨다. 없으면 브랜드 밴드.
+                      세로로 긴 화면(상세페이지)은 한 장을 눕히면 여백만 남아서 여러 칸으로 세워 넣는다. */}
+                  {"covers" in s && s.covers ? (
+                    <div className="relative h-48 md:h-60 bg-gray-100 p-3">
+                      {/* 칸 수와 보여줄 장수를 같이 움직인다. 칸만 줄이면 나머지가 아랫줄로
+                          흘러 한 장이 납작해진다 — 좁은 화면에서는 아예 장수를 줄인다. */}
+                      <div className="grid h-full grid-cols-2 grid-rows-1 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        {s.covers.map((c, i) => (
+                          <img
+                            key={c.src}
+                            src={c.src}
+                            alt={c.alt}
+                            width={560}
+                            height={747}
+                            loading="lazy"
+                            decoding="async"
+                            className={`h-full w-full rounded-lg border border-gray-200 bg-white object-cover object-top ${
+                              i === 2 ? "hidden sm:block" : i === 3 ? "hidden md:block" : i >= 4 ? "hidden lg:block" : "block"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <span
+                        className="absolute left-5 top-5 rounded-full px-3 py-1.5 text-[11px] font-black text-white"
+                        style={{ background: "var(--cd-primary)" }}
+                      >
+                        {s.coverBadge}
+                      </span>
+                    </div>
+                  ) : "cover" in s && s.cover ? (
                     <div className="relative">
                       <img
                         src={s.cover}
