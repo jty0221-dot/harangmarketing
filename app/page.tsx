@@ -57,12 +57,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["플레이스 상위 3위 진입", "포토리뷰 전략", "인스타 비주얼"],
-    result: "+167%",
-    resultLabel: "월 방문객",
-    before: "일 방문 28명",
-    after: "일 방문 75명",
-    duration: "3개월",
-    location: "경기 포천",
+    result: "56위 → 1위",
+    resultLabel: "지역 카페 키워드",
+    before: "56위",
+    after: "1위",
+    duration: "32일 계측",
+    location: "플레이스 순위",
   },
   {
     icon: UtensilsCrossed,
@@ -71,12 +71,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["배달앱 리뷰 전략", "맘카페 바이럴", "블로그 맛집 등록"],
-    result: "+113%",
-    resultLabel: "월 배달 매출",
-    before: "월 매출 480만",
-    after: "월 매출 1,022만",
-    duration: "4개월",
-    location: "경기 부천",
+    result: "13위 → 1위",
+    resultLabel: "지역 맛집 키워드",
+    before: "13위",
+    after: "1위",
+    duration: "32일 계측",
+    location: "플레이스 순위",
   },
   {
     icon: Scissors,
@@ -85,12 +85,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["인스타 포트폴리오", "체험단 모집", "예약 전환 최적화"],
-    result: "예약 완전 마감",
-    resultLabel: "진행 6주 후",
-    before: "예약 가동률 40%",
-    after: "예약 100% 마감",
-    duration: "2개월",
-    location: "경기 부천",
+    result: "계측 중",
+    resultLabel: "플레이스 순위",
+    before: "진단 전",
+    after: "목표 설정",
+    duration: "월 리포트",
+    location: "전 지역",
   },
   {
     icon: Stethoscope,
@@ -99,12 +99,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["블로그 신뢰도 강화", "체험단 후기", "플레이스 SEO"],
-    result: "+175%",
-    resultLabel: "월 신규 예약",
-    before: "월 신규 12건",
-    after: "월 신규 33건",
-    duration: "4개월",
-    location: "수도권",
+    result: "5위 → 1위",
+    resultLabel: "지역 치과 키워드",
+    before: "5위",
+    after: "1위",
+    duration: "32일 계측",
+    location: "플레이스 순위",
   },
   {
     icon: GraduationCap,
@@ -113,12 +113,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["맘카페 입소문", "홈페이지형 블로그", "블로그 지역 키워드"],
-    result: "+55%",
-    resultLabel: "수강생",
-    before: "수강생 62명",
-    after: "수강생 96명",
-    duration: "3개월",
-    location: "수도권",
+    result: "계측 중",
+    resultLabel: "플레이스 순위",
+    before: "진단 전",
+    after: "목표 설정",
+    duration: "월 리포트",
+    location: "전 지역",
   },
   {
     icon: ShoppingBag,
@@ -127,12 +127,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["블로그 SEO 최적화", "체험단 후기 확보", "콘텐츠 마케팅"],
-    result: "+64%",
-    resultLabel: "월 매출",
-    before: "월 매출 230만",
-    after: "월 매출 377만",
-    duration: "4개월",
-    location: "전국 온라인",
+    result: "계측 중",
+    resultLabel: "플레이스 순위",
+    before: "진단 전",
+    after: "목표 설정",
+    duration: "월 리포트",
+    location: "전 지역",
   },
 ];
 
@@ -203,14 +203,14 @@ const TRUST_ITEMS = [
  * 근거 없는 수치와 재촉 문구는 넣지 않는다 (WDS — 재촉형 UI 금지).
  */
 const TICKER = [
-  "플레이스 Top 5 진입 · 평균 6주 만에",
+  "지역 카페 키워드 56위 → 1위 · 32일 계측",
   `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
-  "월 신규 예약 +175% · 수도권 한의원",
+  "지역 치과 키워드 5위 → 1위 · 32일 계측",
   "전담 팀장 직접 관리 · 상담 비용 0원",
-  "방문객 +167% · 경기 포천 카페",
-  "배달 매출 +113% · 경기 부천 음식점",
-  "수강생 +55% · 수도권 학원",
-  "예약 완전 마감 · 경기 부천 네일샵",
+  "지역 맛집 키워드 13위 → 1위 · 32일 계측",
+  "지역 꽃집 키워드 8위 → 1위 · 32일 계측",
+  "업종별 맞춤 설계 · 묶음 강요 없음",
+  "매일 순위 계측 · 월 리포트 제공",
   "상담 비용 0원 · 계약 강요 없음",
   "10년+ 경력 · 업종별 맞춤 전략",
   "24시간 내 연락",
@@ -1286,45 +1286,45 @@ export default function HomePage() {
               {[
                 {
                   industry: "카페",
-                  location: "경기 포천",
+                  location: "지역 카페 키워드",
                   service: "플레이스 SEO + 블로그",
-                  before: { label: "플레이스 순위", value: "12위" },
-                  after: { label: "플레이스 순위", value: "2위" },
-                  period: "6주",
-                  highlight: "월 매출 +47%",
+                  before: { label: "플레이스 순위", value: "56위" },
+                  after: { label: "플레이스 순위", value: "1위" },
+                  period: "32일 계측",
+                  highlight: "플레이스 1위 달성",
                   color: "from-blue-500 to-blue-700",
                   icon: Coffee,
                 },
                 {
-                  industry: "미용실",
-                  location: "서울 강서",
+                  industry: "꽃집",
+                  location: "지역 꽃집 키워드",
                   service: "블로그 + 체험단",
-                  before: { label: "월 신규 고객", value: "8명" },
-                  after: { label: "월 신규 고객", value: "31명" },
-                  period: "3개월",
-                  highlight: "신규 유입 3.9배",
+                  before: { label: "플레이스 순위", value: "8위" },
+                  after: { label: "플레이스 순위", value: "1위" },
+                  period: "32일 계측",
+                  highlight: "플레이스 1위 달성",
                   color: "from-blue-600 to-indigo-700",
                   icon: Scissors,
                 },
                 {
                   industry: "음식점",
-                  location: "인천 부평",
+                  location: "지역 맛집 키워드",
                   service: "플레이스 SEO + 리뷰",
-                  before: { label: "리뷰 개수", value: "12개" },
-                  after: { label: "리뷰 개수", value: "86개" },
-                  period: "4개월",
-                  highlight: "리뷰 7배",
+                  before: { label: "플레이스 순위", value: "13위" },
+                  after: { label: "플레이스 순위", value: "1위" },
+                  period: "32일 계측",
+                  highlight: "플레이스 1위 달성",
                   color: "from-blue-700 to-blue-900",
                   icon: UtensilsCrossed,
                 },
                 {
-                  industry: "한의원",
-                  location: "수도권",
+                  industry: "치과",
+                  location: "지역 치과 키워드",
                   service: "블로그 + 플레이스 SEO",
-                  before: { label: "초진 예약", value: "월 15건" },
-                  after: { label: "초진 예약", value: "월 45건" },
-                  period: "4개월",
-                  highlight: "초진 예약 +200%",
+                  before: { label: "플레이스 순위", value: "5위" },
+                  after: { label: "플레이스 순위", value: "1위" },
+                  period: "32일 계측",
+                  highlight: "플레이스 1위 달성",
                   color: "from-blue-600 to-indigo-700",
                   icon: Stethoscope,
                 },
@@ -1414,62 +1414,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Editorial testimonials — full width stacked */}
-          {[
-            {
-              name: "카페 사장님", location: "경기 포천", service: "플레이스 SEO",
-              metric: "+167%", metricLabel: "방문객 · 3개월",
-              text: "3개월 만에 주요 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
-            },
-            {
-              name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅",
-              metric: "+300%", metricLabel: "신규 예약 · 6개월",
-              text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 전담 팀장님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
-            },
-            {
-              name: "학원 원장님", location: "수도권", service: "맘카페 바이럴",
-              metric: "+55%", metricLabel: "수강생 · 2개월",
-              text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
-            },
-          ].map((t) => (
-            <div key={t.name} className="border-t" style={{ borderColor: "var(--h-border)" }}>
-              <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-14">
-                <div className="grid grid-cols-1 md:grid-cols-[160px_1fr_120px] gap-6 md:gap-10 items-start">
-                  <div>
-                    <div className="flex gap-0.5 mb-2">
-                      {Array.from({ length: 5 }).map((_, j) => (
-                        <Star key={j} size={12} className="fill-blue-400 text-blue-400" />
-                      ))}
-                    </div>
-                    <div className="text-sm font-black" style={{ color: "var(--h-dark)" }}>{t.name}</div>
-                    <div className="text-xs mt-0.5" style={{ color: "var(--h-muted)" }}>{t.location}</div>
-                    <div
-                      className="text-[11px] font-bold mt-2 px-2 py-1 rounded-lg inline-block"
-                      style={{ background: "var(--h-border)", color: "#4B5563" }}
-                    >
-                      {t.service}
-                    </div>
-                  </div>
-                  <p
-                    className="font-black leading-snug"
-                    style={{
-                      fontSize: "clamp(18px, 2.5vw, 28px)",
-                      letterSpacing: "-0.02em",
-                      color: "var(--h-dark)",
-                    }}
-                  >
-                    &ldquo;{t.text}&rdquo;
-                  </p>
-                  <div className="md:text-right">
-                    <div className="text-3xl md:text-4xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>
-                      {t.metric}
-                    </div>
-                    <div className="text-xs mt-1" style={{ color: "var(--h-muted)" }}>{t.metricLabel}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
 
           <div className="border-t" style={{ borderColor: "var(--h-border)" }}>
             <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-8 text-center">

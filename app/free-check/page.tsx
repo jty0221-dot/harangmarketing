@@ -18,9 +18,9 @@ const CHECKS = [
 ];
 
 const CASES = [
-  { category: "카페", loc: "경기 포천", result: "플레이스 1위", period: "3개월", metric: "+167% 방문객" },
-  { category: "네일샵", loc: "경기 부천", result: "예약 마감", period: "6주", metric: "예약 100% 마감" },
-  { category: "음식점", loc: "서울 마포", result: "매출 2배", period: "4개월", metric: "+113% 매출" },
+  { category: "카페", loc: "지역 카페 키워드", result: "플레이스 1위", period: "32일 계측", metric: "56위 → 1위" },
+  { category: "치과", loc: "지역 치과 키워드", result: "플레이스 1위", period: "32일 계측", metric: "5위 → 1위" },
+  { category: "음식점", loc: "지역 맛집 키워드", result: "플레이스 1위", period: "32일 계측", metric: "13위 → 1위" },
 ];
 
 const STEPS = [

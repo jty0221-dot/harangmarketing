@@ -14,12 +14,12 @@ import { GA_EVENTS } from "../components/Analytics";
 
 import { SITE } from "../lib/seo";
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 포천 카페 · 3개월", color: "from-blue-500 to-blue-700" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "+113% 배달 매출", case: "서울 마포 음식점 · 4개월", color: "from-blue-600 to-indigo-700" },
-  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "예약 완전 마감", case: "수원 네일샵 · 3개월", color: "from-blue-500 to-blue-700" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "+300% 신규 예약", case: "경기 분당 피부과 · 6개월", color: "from-blue-600 to-blue-800" },
-  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "+55% 수강생", case: "수도권 학원 · 3개월", color: "from-blue-700 to-indigo-800" },
-  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "+64% 월 매출", case: "전국 온라인 쇼핑몰 · 5개월", color: "from-blue-500 to-indigo-600" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "56위 → 1위", case: "지역 카페 키워드 · 32일 계측", color: "from-blue-500 to-blue-700" },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "13위 → 1위", case: "지역 맛집 키워드 · 32일 계측", color: "from-blue-600 to-indigo-700" },
+  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "5위 → 1위", case: "지역 치과 키워드 · 32일 계측", color: "from-blue-600 to-blue-800" },
+  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정", color: "from-blue-700 to-indigo-800" },
+  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-indigo-600" },
   { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
 ];
 
@@ -435,13 +435,13 @@ function ContactPageInner() {
 
                 {/* Industry results mini */}
                 <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 실제 성과</h4>
+                  <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "카페·베이커리", location: "경기 포천", result: "+167%", label: "방문객", color: "text-blue-700 bg-blue-50 border-blue-100" },
-                      { ind: "음식점·배달", location: "서울 성수", result: "+113%", label: "매출", color: "text-green-600 bg-green-50 border-green-100" },
-                      { ind: "미용·뷰티", location: "인천 부평", result: "완전 마감", label: "예약", color: "text-pink-600 bg-pink-50 border-pink-100" },
-                      { ind: "의원·한의원", location: "경기 분당", result: "+300%", label: "신규예약", color: "text-blue-600 bg-blue-50 border-blue-100" },
+                      { ind: "카페·베이커리", location: "지역 카페 키워드", result: "56위 → 1위", label: "32일 계측", color: "text-blue-700 bg-blue-50 border-blue-100" },
+                      { ind: "음식점·배달", location: "지역 맛집 키워드", result: "13위 → 1위", label: "32일 계측", color: "text-green-600 bg-green-50 border-green-100" },
+                      { ind: "꽃집·화훼", location: "지역 꽃집 키워드", result: "8위 → 1위", label: "32일 계측", color: "text-pink-600 bg-pink-50 border-pink-100" },
+                      { ind: "의원·치과", location: "지역 치과 키워드", result: "5위 → 1위", label: "32일 계측", color: "text-blue-600 bg-blue-50 border-blue-100" },
                     ].map((r) => (
                       <div key={r.ind} className="flex items-center gap-2">
                         <div className="flex-1 min-w-0">

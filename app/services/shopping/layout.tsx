@@ -28,7 +28,7 @@ export default function ShoppingLayout({ children }: { children: React.ReactNode
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "온라인 쇼핑몰 전문 마케팅. 실측 성과: 월 매출 230만원→377만원(+64%, 4개월)." },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "온라인 쇼핑몰 전문 마케팅. 계측 기록: 네이버 플레이스 지역 카페 키워드 56위→1위(32일), 지역 맛집 키워드 13위→1위(32일), 지역 치과 키워드 5위→1위(32일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
             "offers": { "@type": "Offer", "description": "쇼핑몰 전문 마케팅. 상품군·진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "온라인 쇼핑몰 전문 블로그 SEO, 체험단, 콘텐츠 마케팅 대행",
             "areaServed": "대한민국",

@@ -28,7 +28,7 @@ export default function ClinicLayout({ children }: { children: React.ReactNode }
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "마케팅 실측 성과", "description": "의원·한의원·피부과 전문 마케팅. 실측 성과: 서울 강서 피부과 신규 예약 월 12건→33건(+300%, 6개월), 수도권 한의원 초진 예약 월 15건→45건(4개월)." },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "의원·한의원·피부과 전문 마케팅. 계측 기록: 네이버 플레이스 지역 카페 키워드 56위→1위(32일), 지역 맛집 키워드 13위→1위(32일), 지역 치과 키워드 5위→1위(32일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
             "offers": { "@type": "Offer", "description": "의원·한의원 전문 마케팅. 진료 과목·진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "의원·한의원·피부과 전문 네이버 블로그 마케팅, 체험단, 플레이스 SEO 대행",
             "areaServed": ["서울", "경기도", "인천"],

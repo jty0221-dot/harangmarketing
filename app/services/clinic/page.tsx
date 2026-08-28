@@ -22,9 +22,9 @@ export const metadata: Metadata = {
 };
 
 const RESULTS = [
-  { label: "플레이스 순위", before: "15위", after: "2위", period: "3개월" },
-  { label: "신환(초진) 예약", before: "월 28명", after: "월 84명", period: "6개월" },
-  { label: "블로그 유입", before: "월 320명", after: "월 1,200명", period: "4개월" },
+  { label: "지역 카페 키워드", before: "56위", after: "1위", period: "32일" },
+  { label: "지역 맛집 키워드", before: "13위", after: "1위", period: "32일" },
+  { label: "지역 치과 키워드", before: "5위", after: "1위", period: "32일" },
 ];
 
 const SERVICES = [
@@ -102,11 +102,11 @@ export default function ClinicLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="병원·의원 마케팅은 무엇이 중요한가요?"
-          answer="의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장의 전문성을 담은 블로그 콘텐츠와 실제 환자 후기 확보가 가장 중요합니다. 하랑마케팅이 진행한 서울 강서 피부과는 6개월간 인스타그램 신규 예약이 월 12건에서 33건으로 300% 증가했고, 수도권 한의원은 4개월간 플레이스 리뷰 12개에서 89개, 초진 예약 월 15건에서 45건으로 늘었습니다. 의료광고법을 준수한 콘텐츠만 제작하며, 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
+          answer="의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장의 전문성을 담은 블로그 콘텐츠와 실제 환자 후기 확보가 가장 중요합니다. 하랑마케팅이 진행한 치과는 지역 치과 키워드에서 5위가 1위가 됐습니다(32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료광고법을 준수한 콘텐츠만 제작하며, 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
           facts={[
-            { label: "신규 예약", value: "+300%" },
-            { label: "초진 예약", value: "15→45건" },
-            { label: "플레이스 리뷰", value: "12→89개" },
+            { label: "지역 치과 키워드", value: "5위 → 1위" },
+            { label: "계측 기간", value: "32일" },
+            { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -134,8 +134,8 @@ export default function ClinicLandingPage() {
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <div className="text-center mb-10">
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">실제 의원 성과</h2>
-              <p className="text-gray-500 text-sm">경기 분당 피부과 · 하랑마케팅 6개월 운영</p>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">하랑마케팅 순위 계측 기록</h2>
+              <p className="text-gray-500 text-sm">네이버 플레이스 순위 · 업종별 32일 계측</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {RESULTS.map((r, i) => (

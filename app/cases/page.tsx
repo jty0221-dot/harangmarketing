@@ -200,12 +200,12 @@ const CasesPage: FC = () => {
         {/* AEO — 성과 질의 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer="하랑마케팅의 대표 성과는 경기 포천 카페 3개월 만에 지역 카페 키워드 플레이스 1위 및 방문객 +167%(일 30명→80명), 서울 강서 피부과 6개월간 신규 예약 +300%(월 20건→80건), 서울 마포 음식점 4개월간 배달 매출 +113%(월 150만원→320만원), 경기 수원 네일샵 3개월 만에 2주 치 예약 마감입니다. 모든 수치는 실제 진행한 프로젝트의 전후 실측값이며 업종·지역 경쟁 강도에 따라 달라질 수 있습니다."
+          answer="하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. 지역 카페 키워드 56위에서 1위(32일 계측), 지역 맛집 키워드 13위에서 1위(32일 계측), 지역 치과 키워드 5위에서 1위(32일 계측), 지역 꽃집 키워드 8위에서 1위(32일 계측). 순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다."
           facts={[
             { label: "완료 프로젝트", value: "500건+" },
             { label: "재계약률", value: SITE.stats.renewalRate },
-            { label: "최대 매출 상승", value: "+300%" },
-            { label: "최대 방문객 증가", value: "+167%" },
+            { label: "최대 순위 상승", value: "56위 → 1위" },
+            { label: "계측 기간", value: "32일" },
           ]}
         />
 
@@ -387,18 +387,18 @@ const CasesPage: FC = () => {
             {/* My industry CTA */}
             <div className="mt-10 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
               <div className="bg-gray-900 px-6 py-5">
-                <h3 className="font-black text-white text-lg mb-1">내 업종은 어떤 결과가 나올까요?</h3>
+                <h3 className="font-black text-white text-lg mb-1">내 업종은 무엇부터 해야 할까요?</h3>
                 <p className="text-gray-400 text-sm">업종별 상권 난이도와 추천 서비스를 무료로 안내해드립니다</p>
               </div>
               <div className="p-6">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5">
                   {[
-                    { name: "카페·베이커리", result: "방문객 +167%" },
-                    { name: "음식점·배달", result: "매출 +113%" },
-                    { name: "미용·뷰티", result: "예약 마감" },
-                    { name: "의원·한의원", result: "신규예약 +300%" },
-                    { name: "학원·교육", result: "수강생 +55%" },
-                    { name: "온라인 쇼핑몰", result: "매출 +64%" },
+                    { name: "카페·베이커리", result: "플레이스 SEO" },
+                    { name: "음식점·배달", result: "리뷰 마케팅" },
+                    { name: "미용·뷰티", result: "인스타그램" },
+                    { name: "의원·한의원", result: "블로그 마케팅" },
+                    { name: "학원·교육", result: "맘카페 바이럴" },
+                    { name: "온라인 쇼핑몰", result: "블로그 SEO" },
                   ].map((ind) => (
                     <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`}
                       className="flex flex-col p-3 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-all group">
@@ -436,10 +436,10 @@ const CasesPage: FC = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
               {[
-                { ind: "카페·베이커리", result: "방문객 +167%", time: "3개월", color: "from-blue-600 to-orange-500" },
-                { ind: "음식점·배달", result: "매출 +113%", time: "4개월", color: "from-green-500 to-emerald-600" },
-                { ind: "미용·네일", result: "예약 완전 마감", time: "3개월", color: "from-pink-500 to-rose-600" },
-                { ind: "의원·한의원", result: "신규예약 +300%", time: "6개월", color: "from-blue-500 to-blue-700" },
+                { ind: "카페·베이커리", result: "56위 → 1위", time: "32일 계측", color: "from-blue-600 to-orange-500" },
+                { ind: "음식점·배달", result: "13위 → 1위", time: "32일 계측", color: "from-green-500 to-emerald-600" },
+                { ind: "꽃집·화훼", result: "8위 → 1위", time: "32일 계측", color: "from-pink-500 to-rose-600" },
+                { ind: "의원·치과", result: "5위 → 1위", time: "32일 계측", color: "from-blue-500 to-blue-700" },
               ].map((r) => (
                 <div key={r.ind} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
                   <div className={`text-lg font-black bg-gradient-to-br ${r.color} bg-clip-text text-transparent mb-0.5`}>{r.result}</div>

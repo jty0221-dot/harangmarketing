@@ -823,14 +823,14 @@ export default function ServicesPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "+167% 방문객 · 3개월", color: "from-blue-500 to-blue-700" },
-                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "+113% 배달 매출 · 4개월", color: "from-blue-600 to-indigo-700" },
-                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "예약 2주 완전 마감", color: "from-blue-500 to-blue-700" },
-                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "+300% 신규예약 · 6개월", color: "from-blue-600 to-blue-800" },
-                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "+55% 수강생 · 3개월", color: "from-blue-700 to-indigo-800" },
-                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "+64% 매출 · 5개월", color: "from-blue-500 to-indigo-600" },
-                { industry: "한의원·한방", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 마케팅"], result: "+200% 초진 예약 · 4개월", color: "from-blue-600 to-indigo-700" },
-                { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], result: "오픈 첫날부터 노출", color: "from-blue-700 to-blue-900" },
+                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "56위 → 1위 · 32일 계측", color: "from-blue-500 to-blue-700" },
+                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "13위 → 1위 · 32일 계측", color: "from-blue-600 to-indigo-700" },
+                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "인스타그램 중심 설계", color: "from-blue-500 to-blue-700" },
+                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "5위 → 1위 · 32일 계측", color: "from-blue-600 to-blue-800" },
+                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "맘카페 바이럴 중심", color: "from-blue-700 to-indigo-800" },
+                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "블로그 SEO 중심", color: "from-blue-500 to-indigo-600" },
+                { industry: "한의원·한방", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 마케팅"], result: "블로그 마케팅 중심", color: "from-blue-600 to-indigo-700" },
+                { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], result: "오픈 전 플레이스 세팅", color: "from-blue-700 to-blue-900" },
               ].map((ind) => (
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
                   <div className={`bg-gradient-to-br ${ind.color} px-4 py-3`}>
@@ -860,64 +860,6 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ══ 고객 후기 ══ */}
-        <section className="py-14 md:py-18 bg-white border-y border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">고객 후기</p>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900">실제 사장님들의 이야기</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                {
-                  name: "카페 사장님",
-                  location: "경기 포천",
-                  service: "플레이스 SEO",
-                  color: "from-blue-500 to-blue-700",
-                  text: "3주 만에 '지역 카페 추천' 1위가 됐어요. 주말 웨이팅이 생겼고 하루 매출이 2배 됐습니다.",
-                  metric: "매출 +210%",
-                },
-                {
-                  name: "미용실 원장님",
-                  location: "서울 마포",
-                  service: "체험단·리뷰",
-                  color: "from-blue-600 to-indigo-700",
-                  text: "예약이 항상 2주 이상 밀려요. 인스타 포트폴리오도 같이 해주셔서 신규 고객 비율이 확 늘었어요.",
-                  metric: "예약 100% 마감",
-                },
-                {
-                  name: "한식당 대표님",
-                  location: "인천 부평",
-                  service: "블로그 마케팅",
-                  color: "from-blue-500 to-blue-700",
-                  text: "블로그 글 올리고 2달 후부터 네이버 검색 상단에 뜨기 시작했고 점심 손님이 40% 늘었어요.",
-                  metric: "방문객 +140%",
-                },
-              ].map((t) => (
-                <div key={t.name} className="bg-gray-50 rounded-2xl p-5 border border-gray-100 flex flex-col">
-                  <div className="flex gap-0.5 mb-3">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={12} className="text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <Quote size={16} className="text-blue-200 mb-2" />
-                  <p className="text-sm text-gray-700 leading-relaxed flex-1 mb-4">{t.text}</p>
-                  <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r ${t.color} text-white text-xs font-black mb-4 w-fit`}>
-                    <TrendingUp size={11} />
-                    {t.metric}
-                  </div>
-                  <div className="border-t border-gray-100 pt-3 flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-bold text-gray-900">{t.name}</div>
-                      <div className="text-[11px] text-gray-400">{t.location}</div>
-                    </div>
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-semibold">{t.service}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ══ 가격 산출 근거 ══ */}
         <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-20">

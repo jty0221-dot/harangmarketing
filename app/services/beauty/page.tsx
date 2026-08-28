@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 };
 
 const RESULTS = [
-  { label: "플레이스 순위", before: "18위", after: "4위", period: "2개월" },
-  { label: "월 신규 예약", before: "45건", after: "130건", period: "3개월" },
-  { label: "인스타 팔로워", before: "280명", after: "1,100명", period: "5개월" },
+  { label: "지역 카페 키워드", before: "56위", after: "1위", period: "32일" },
+  { label: "지역 맛집 키워드", before: "13위", after: "1위", period: "32일" },
+  { label: "지역 치과 키워드", before: "5위", after: "1위", period: "32일" },
 ];
 
 const SERVICES = [
@@ -101,11 +101,11 @@ export default function BeautyLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="미용실·네일샵 마케팅은 어떤 채널이 가장 효과적인가요?"
-          answer="미용·네일·뷰티 업종은 인스타그램 릴스와 비포애프터 포트폴리오가 가장 효과적입니다. 시술 결과를 눈으로 확인해야 예약으로 이어지는 업종이기 때문입니다. 하랑마케팅이 진행한 경기 부천 네일샵은 6주 만에 예약 가동률이 40%에서 100% 마감으로 바뀌었고, 릴스 1개로 팔로워 300명이던 매장이 2주 만에 예약을 마감한 사례도 있습니다. 뷰티 마케팅 비용은 시술 구성과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="미용·네일·뷰티 업종은 인스타그램 릴스와 비포애프터 포트폴리오가 가장 효과적입니다. 시술 결과를 눈으로 확인해야 예약으로 이어지는 업종이기 때문입니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 뷰티 마케팅 비용은 시술 구성과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
-            { label: "예약 가동률", value: "40%→100%" },
-            { label: "진행 기간", value: "6주" },
             { label: "주력 채널", value: "인스타 릴스" },
+            { label: "보조 채널", value: "비포애프터 포트폴리오" },
+            { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -133,8 +133,8 @@ export default function BeautyLandingPage() {
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <div className="text-center mb-10">
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">실제 뷰티샵 성과</h2>
-              <p className="text-gray-500 text-sm">경기 수원 헤어샵 · 하랑마케팅 5개월 운영</p>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">하랑마케팅 순위 계측 기록</h2>
+              <p className="text-gray-500 text-sm">네이버 플레이스 순위 · 업종별 32일 계측</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {RESULTS.map((r, i) => (
