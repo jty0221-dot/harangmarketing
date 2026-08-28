@@ -213,7 +213,7 @@ const TICKER = [
   "예약 완전 마감 · 경기 부천 네일샵",
   "상담 비용 0원 · 계약 강요 없음",
   "10년+ 경력 · 업종별 맞춤 전략",
-  "24시간 내 연락 보장",
+  "24시간 내 연락",
   "블로그 지역 키워드 4주 만에 상위권",
   "카카오맵 리뷰 0 → 78개 · 2개월",
   "매출 월평균 +89% · 3개월 계약 기준",
@@ -583,7 +583,7 @@ export default function HomePage() {
                     { label: "카페 창업 실패", sub: "현장 공감" },
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
-                    { label: "결과 미달 시 조정", sub: "성과 보장" },
+                    { label: "결과 미달 시 조정", sub: "다음 달 비용" },
                     { label: "외주 없음", sub: "전담 팀장 직접 관리" },
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
@@ -684,7 +684,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══ 결과 보장 약속 ══ */}
+        {/* ══ 하랑의 약속 ══ */}
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             {/* Section header — editorial style */}

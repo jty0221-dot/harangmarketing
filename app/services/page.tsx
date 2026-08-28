@@ -250,7 +250,7 @@ const SERVICES = [
     desc: "국내 최다 사용 지도 앱 카카오맵에서 매장을 발견하는 고객을 잡습니다. 매장 관리 등록부터 트렌드 랭킹 상위 노출까지.",
     timeline: "등록·최적화 1~2주 · 상위 노출 1개월",
     deliverables: [
-      { label: "매장 관리 등록", value: "대행 처리", note: "빠른 처리 보장" },
+      { label: "매장 관리 등록", value: "대행 처리", note: "등록·최적화 1~2주" },
       { label: "카카오맵 리뷰", value: "실유저 기반", note: "100% 실사용자" },
       { label: "트렌드 랭킹", value: "상위 노출", note: "카카오맵 알고리즘 최적화" },
     ],
@@ -1107,7 +1107,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ══ 성과 보장 약속 ══ */}
+        {/* ══ 하랑의 약속 ══ */}
         <section className="py-14 md:py-20 bg-gray-50 border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
@@ -1156,7 +1156,7 @@ export default function ServicesPage() {
                   { val: SITE.stats.renewalRate, label: "재계약률", sub: "10년 유지" },
                   { val: "500+", label: "완료 프로젝트", sub: "2020년~현재" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24h", label: "연락 보장", sub: "전담 팀장 직접 응대" },
+                  { val: "24h", label: "이내 연락", sub: "전담 팀장 직접 응대" },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>

@@ -45,7 +45,7 @@ export default function Footer() {
                 지금 바로 무료 전략 진단을 받아보세요
               </h3>
               <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-                상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락 보장
+                상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">

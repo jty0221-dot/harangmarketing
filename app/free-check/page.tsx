@@ -238,7 +238,7 @@ export default function FreeCheckPage() {
                   <div className="flex flex-col gap-1.5 py-1">
                     {[
                       { icon: Shield, text: "개인정보는 상담 목적으로만 사용됩니다" },
-                      { icon: Clock, text: "24시간 내 연락 보장" },
+                      { icon: Clock, text: "24시간 내 연락" },
                       { icon: AlertCircle, text: "계약·비용 강요 일절 없음" },
                     ].map(({ icon: Icon, text }) => (
                       <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-400">
