@@ -213,12 +213,12 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <a
-              href="tel:01090543788"
+              href="tel:01075419054"
               className="w-label1 inline-flex items-center gap-1.5 px-4 py-3 font-bold text-white transition-opacity hover:opacity-90"
               style={{ background: "var(--w-primary)", borderRadius: "var(--w-radius)" }}
             >
               <Phone size={15} strokeWidth={2.5} />
-              010-9054-3788
+              010-7541-9054
             </a>
             <a
               href="https://pf.kakao.com/_MuUkG/chat"
