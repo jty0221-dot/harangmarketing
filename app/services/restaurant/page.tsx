@@ -27,7 +27,7 @@ const CHECKLIST = [
 ];
 
 const RESULTS = [
-  { label: "지역 카페 키워드", value: "56위 → 1위", sub: "32일 계측" },
+  { label: "지역 카페 키워드", value: "19위 → 1위", sub: "20일 계측" },
   { label: "지역 맛집 키워드", value: "13위 → 1위", sub: "32일 계측" },
   { label: "지역 치과 키워드", value: "5위 → 1위", sub: "32일 계측" },
 ];

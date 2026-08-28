@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 const RESULTS = [
-  { label: "지역 카페 키워드", before: "56위", after: "1위", period: "32일" },
+  { label: "지역 카페 키워드", before: "19위", after: "1위", period: "20일" },
   { label: "지역 맛집 키워드", before: "13위", after: "1위", period: "32일" },
   { label: "지역 치과 키워드", before: "5위", after: "1위", period: "32일" },
 ];

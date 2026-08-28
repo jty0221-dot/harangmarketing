@@ -18,7 +18,7 @@ const CHECKS = [
 ];
 
 const CASES = [
-  { category: "카페", loc: "지역 카페 키워드", result: "플레이스 1위", period: "32일 계측", metric: "56위 → 1위" },
+  { category: "카페", loc: "지역 카페 키워드", result: "플레이스 1위", period: "20일 계측", metric: "19위 → 1위" },
   { category: "치과", loc: "지역 치과 키워드", result: "플레이스 1위", period: "32일 계측", metric: "5위 → 1위" },
   { category: "음식점", loc: "지역 맛집 키워드", result: "플레이스 1위", period: "32일 계측", metric: "13위 → 1위" },
 ];

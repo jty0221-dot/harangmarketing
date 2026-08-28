@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
-  ChevronDown, Users, BarChart3, MessageSquare, Quote,
+  ChevronDown, Users, BarChart3, MessageSquare,
   Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
@@ -823,7 +823,7 @@ export default function ServicesPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "56위 → 1위 · 32일 계측", color: "from-blue-500 to-blue-700" },
+                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "19위 → 1위 · 20일 계측", color: "from-blue-500 to-blue-700" },
                 { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "13위 → 1위 · 32일 계측", color: "from-blue-600 to-indigo-700" },
                 { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "인스타그램 중심 설계", color: "from-blue-500 to-blue-700" },
                 { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "5위 → 1위 · 32일 계측", color: "from-blue-600 to-blue-800" },

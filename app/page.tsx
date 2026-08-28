@@ -6,7 +6,7 @@ import {
   ArrowRight, CheckCircle2, X, Phone, MessageCircle,
   TrendingUp, Users, Star, BarChart3, FileText, MapPin,
   Search, BookOpen, Megaphone, AtSign, ChevronRight,
-  ShieldCheck, Clock, Handshake, Quote,
+  ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
   UtensilsCrossed, ShoppingBag,
 } from "lucide-react";
@@ -57,11 +57,11 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["플레이스 상위 3위 진입", "포토리뷰 전략", "인스타 비주얼"],
-    result: "56위 → 1위",
+    result: "19위 → 1위",
     resultLabel: "지역 카페 키워드",
-    before: "56위",
+    before: "19위",
     after: "1위",
-    duration: "32일 계측",
+    duration: "20일 계측",
     location: "플레이스 순위",
   },
   {
@@ -142,7 +142,7 @@ const SERVICES = [
   { icon: AtSign, title: "인스타그램 마케팅", desc: "콘텐츠 기획부터 릴스·광고 운영까지 인스타그램 채널 성장을 전담합니다.", color: "from-blue-600 to-indigo-700", popular: true },
   { icon: FileText, title: "블로그 배포(기자단)", desc: "전문 작가가 매장 맞춤 글을 작성하고 20개 이상의 채널에 동시에 올립니다.", color: "from-blue-500 to-blue-700" },
   { icon: BookOpen, title: "홈페이지형 블로그 제작", desc: "네이버 블로그를 전문 홈페이지처럼 꾸며 신뢰도와 검색 노출을 높입니다.", color: "from-blue-600 to-blue-800" },
-  { icon: MapPin, title: "카카오맵 마케팅", desc: "카카오맵 플레이스를 최적화해 지역 검색 상위 노출과 방문객을 늘립니다.", color: "from-blue-500 to-blue-700" },
+  { icon: MapPin, title: "카카오맵 마케팅", desc: "카카오맵 플레이스 정보·사진·리뷰를 정리해 지역 검색 노출을 관리합니다.", color: "from-blue-500 to-blue-700" },
   { icon: Users, title: "체험단 모집 대행", desc: "실제 방문 후기를 남길 체험단을 모집해 믿을 수 있는 리뷰를 만들어드립니다.", color: "from-blue-600 to-indigo-700" },
   { icon: TrendingUp, title: "플레이스 순위상승", desc: "방문자·저장·리뷰 등 여러 항목을 함께 관리해 플레이스 순위를 올려드립니다.", color: "from-blue-600 to-blue-800" },
   { icon: BarChart3, title: "블로그 관리 대행", desc: "꾸준한 글쓰기와 검색 최적화로 블로그 노출을 높이고 방문자를 유지합니다.", color: "from-blue-500 to-blue-700" },
@@ -151,10 +151,10 @@ const SERVICES = [
 
 const COMPARE_ITEMS = [
   { category: "전략 설계", harang: "업종별 맞춤형 전략 (카페·병원·쇼핑몰 특화)", general: "일괄 패키지, 템플릿 기반" },
-  { category: "분석 방식", harang: "데이터 기반, 매출 직접 연동 추적", general: "노출·클릭 수 위주, 감각 운영" },
+  { category: "분석 방식", harang: "플레이스 순위 매일 스냅샷 계측", general: "노출·클릭 수 위주, 감각 운영" },
   { category: "보고 체계", harang: "월 2회 상세 리포트 + 주간 최적화", general: "월 1회 간단 보고, 설정 후 방치" },
   { category: "담당자", harang: "10년 경력 전담 팀장이 1:1 관리", general: "신입 담당자 수시 교체" },
-  { category: "성과 기준", harang: "실제 방문객·예약·매출 기준", general: "노출 수·팔로워 수 등 허수 지표" },
+  { category: "성과 기준", harang: "계측 가능한 순위·리뷰 수치 기준", general: "노출 수·팔로워 수 등 허수 지표" },
   { category: "소통 방식", harang: "카카오·전화 24시간 응대, 직접 연락", general: "이메일·업무시스템, 응답 지연 빈번" },
 ];
 
@@ -203,7 +203,7 @@ const TRUST_ITEMS = [
  * 근거 없는 수치와 재촉 문구는 넣지 않는다 (WDS — 재촉형 UI 금지).
  */
 const TICKER = [
-  "지역 카페 키워드 56위 → 1위 · 32일 계측",
+  "지역 카페 키워드 19위 → 1위 · 20일 계측",
   `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
   "지역 치과 키워드 5위 → 1위 · 32일 계측",
   "전담 팀장 직접 관리 · 상담 비용 0원",
@@ -214,10 +214,10 @@ const TICKER = [
   "상담 비용 0원 · 계약 강요 없음",
   "10년+ 경력 · 업종별 맞춤 전략",
   "24시간 내 연락",
-  "블로그 지역 키워드 4주 만에 상위권",
-  "카카오맵 리뷰 0 → 78개 · 2개월",
-  "매출 월평균 +89% · 3개월 계약 기준",
-  "플레이스 지역 음식점 1위 달성",
+  "플레이스 1위 키워드 7건 · 2026-08 기준",
+  "네이버 플레이스 스냅샷 매일 저장",
+  "성과 확약 없음 · 계측값만 보고",
+  "최대 상승폭 지역 맛집 키워드 56위 → 1위",
 ];
 
 
@@ -480,9 +480,9 @@ export default function HomePage() {
               {[
                 {
                   q: "광고비는 쓰는데 매출이 안 늘어요",
-                  a: "업종 특성을 무시한 일괄 마케팅이 원인입니다. 하랑은 카페·병원·학원 등 업종별 실데이터 기반 맞춤 전략만 설계합니다. 같은 비용으로 효과가 다릅니다.",
-                  result: "매출 평균 +89%",
-                  period: "3개월 계약 실측치",
+                  a: "업종 특성을 무시한 일괄 마케팅이 원인입니다. 하랑은 카페·병원·학원 등 업종별 맞춤 전략만 설계합니다. 다만 매출은 저희가 계측할 수 있는 값이 아니라 수치로 약속드리지 않습니다.",
+                  result: "플레이스 순위로 계측",
+                  period: "매일 스냅샷 · 월 리포트",
                   icon: TrendingUp,
                   iconColor: "from-blue-500 to-blue-700",
                   cardBorder: "border-blue-100",
@@ -491,7 +491,7 @@ export default function HomePage() {
                 },
                 {
                   q: "보고서를 봐도 뭔지 모르겠어요",
-                  a: "복잡한 마케팅 용어 없이 방문객 수·예약 수·매출 변화를 숫자로만 보고드립니다. 전담 팀장이 직접 카카오톡으로 설명합니다.",
+                  a: "복잡한 마케팅 용어 없이 플레이스 순위·리뷰 변화를 숫자로만 보고드립니다. 전담 팀장이 직접 카카오톡으로 설명합니다.",
                   result: `재계약률 ${SITE.stats.renewalRate}`,
                   period: "6개월 이상 계약 기준",
                   icon: BarChart3,
@@ -513,7 +513,7 @@ export default function HomePage() {
                 },
                 {
                   q: "마케팅이 효과 있는지 도통 모르겠어요",
-                  a: "플레이스 순위·방문자·리뷰 증감을 매월 2회 수치로 정리해 공유합니다. '감'이 아닌 숫자로 성과를 확인하실 수 있습니다.",
+                  a: "플레이스 순위·리뷰 증감을 매월 2회 수치로 정리해 공유합니다. '감'이 아닌 숫자로 성과를 확인하실 수 있습니다.",
                   result: "월 2회 성과 리포트",
                   period: "전 클라이언트 공통 적용",
                   icon: BarChart3,
@@ -1288,9 +1288,9 @@ export default function HomePage() {
                   industry: "카페",
                   location: "지역 카페 키워드",
                   service: "플레이스 SEO + 블로그",
-                  before: { label: "플레이스 순위", value: "56위" },
+                  before: { label: "플레이스 순위", value: "19위" },
                   after: { label: "플레이스 순위", value: "1위" },
-                  period: "32일 계측",
+                  period: "20일 계측",
                   highlight: "플레이스 1위 달성",
                   color: "from-blue-500 to-blue-700",
                   icon: Coffee,

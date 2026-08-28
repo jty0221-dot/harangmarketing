@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   keywords: ["마케팅 성공사례", "소상공인 마케팅 사례", "플레이스 SEO 사례", "카페 마케팅 사례", "음식점 마케팅 성과", "하랑마케팅 포트폴리오"],
   openGraph: {
     title: "하랑마케팅 사례 — 업종별 플레이스 순위 상승 기록",
-    description: "지역 카페 키워드 56위 → 1위, 지역 맛집 키워드 13위 → 1위 — 하랑마케팅이 직접 계측한 업종별 순위 기록입니다.",
+    description: "지역 맛집 키워드 56위 → 1위, 지역 카페 키워드 19위 → 1위 — 하랑마케팅이 직접 계측한 업종별 순위 기록입니다.",
     url: "https://www.harangmarketing.com/cases",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 성공 사례" }],
   },

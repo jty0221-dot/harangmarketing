@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
   Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2,
-  Clock, Star, ArrowRight, ChevronRight,
+  Clock, ArrowRight, ChevronRight,
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle,
   Handshake,
 } from "lucide-react";
@@ -14,7 +14,7 @@ import { GA_EVENTS } from "../components/Analytics";
 
 import { SITE } from "../lib/seo";
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "56위 → 1위", case: "지역 카페 키워드 · 32일 계측", color: "from-blue-500 to-blue-700" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "19위 → 1위", case: "지역 카페 키워드 · 20일 계측", color: "from-blue-500 to-blue-700" },
   { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "13위 → 1위", case: "지역 맛집 키워드 · 32일 계측", color: "from-blue-600 to-indigo-700" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
   { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "5위 → 1위", case: "지역 치과 키워드 · 32일 계측", color: "from-blue-600 to-blue-800" },
@@ -438,7 +438,7 @@ function ContactPageInner() {
                   <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "카페·베이커리", location: "지역 카페 키워드", result: "56위 → 1위", label: "32일 계측", color: "text-blue-700 bg-blue-50 border-blue-100" },
+                      { ind: "카페·베이커리", location: "지역 카페 키워드", result: "19위 → 1위", label: "20일 계측", color: "text-blue-700 bg-blue-50 border-blue-100" },
                       { ind: "음식점·배달", location: "지역 맛집 키워드", result: "13위 → 1위", label: "32일 계측", color: "text-green-600 bg-green-50 border-green-100" },
                       { ind: "꽃집·화훼", location: "지역 꽃집 키워드", result: "8위 → 1위", label: "32일 계측", color: "text-pink-600 bg-pink-50 border-pink-100" },
                       { ind: "의원·치과", location: "지역 치과 키워드", result: "5위 → 1위", label: "32일 계측", color: "text-blue-600 bg-blue-50 border-blue-100" },
@@ -467,25 +467,8 @@ function ContactPageInner() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-4 pt-4 border-t border-blue-500/50">
-                    <div className="flex gap-0.5 mb-1">
-                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={11} className="text-yellow-300 fill-yellow-300" />)}
-                    </div>
-                    <p className="text-xs text-blue-200 italic">"상담만 받았는데도 뭘 해야 할지 명확해졌어요"</p>
-                    <p className="text-[11px] text-blue-300 mt-1">— 경기 카페 사장님</p>
-                  </div>
                 </div>
 
-                {/* Social proof mini */}
-                <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
-                  <div className="flex gap-0.5 mb-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={12} className="text-blue-400 fill-blue-400" />
-                    ))}
-                  </div>
-                  <p className="text-xs text-gray-500 italic leading-relaxed mb-2">"이전 대행사에서 6개월 해도 변화가 없었는데, 여기서 한 달 만에 순위가 올라오기 시작했어요."</p>
-                  <p className="text-[11px] text-gray-400 font-medium">— 수원 네일샵 원장님</p>
-                </div>
               </div>
             </div>
           </div>
