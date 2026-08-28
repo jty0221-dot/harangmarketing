@@ -2,6 +2,7 @@ import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
+import { SUMMARY, SNAPSHOT_DATE } from "../lib/rank-records";
 
 /**
  * /llms.txt — 생성형 엔진 최적화(GEO) 전용 엔드포인트
@@ -138,11 +139,18 @@ ${ANSWER_SENTENCES.timeline}
 - 재계약률: ${SITE.stats.renewalRate}
 
 대표 사례
+- 음식점 — 지역 맛집 키워드 72위 → 2위 (32일 계측)
+- 청소 — 지역 상가청소 키워드 67위 → 4위 (17일 계측)
 - 카페 — 지역 카페 키워드 19위 → 1위 (20일 계측)
-- 음식점 — 지역 맛집 키워드 13위 → 1위 (32일 계측)
-- 치과 — 지역 치과 키워드 5위 → 1위 (32일 계측)
+- 피부과 — 지역 피부과 키워드 10위 → 2위 (32일 계측)
 - 꽃집 — 지역 꽃집 키워드 8위 → 1위 (32일 계측)
-- 가장 큰 상승폭 — 지역 맛집 키워드 56위 → 1위 (32일 계측)
+- 치과 — 지역 치과 키워드 5위 → 1위 (32일 계측)
+- 1페이지에 진입한 기록 가운데 가장 큰 상승폭 — 지역 맛집 키워드 72위 → 2위 (32일 계측)
+
+계측 현황 (${SNAPSHOT_DATE} 스냅샷 기준)
+- 계측 매장 ${SUMMARY.stores}곳 · 계측 키워드 ${SUMMARY.keywords}개
+- 네이버 플레이스 1페이지(1~5위)를 지키는 키워드 ${SUMMARY.page1Keywords}개 (매장 ${SUMMARY.page1Stores}곳)
+- 그중 ${SUMMARY.heldAllSnapshots}개 키워드는 누적 스냅샷 ${SUMMARY.snapshots}회 동안 한 번도 1페이지를 벗어나지 않았다.
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
 ## 서비스 지역

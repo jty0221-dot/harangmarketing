@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
+import RankRecords from "../../components/RankRecords";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Scissors, Users, MessageSquare, BarChart3, Clock, Camera,
+  Scissors, Users, MessageSquare, BarChart3, Camera,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -19,12 +20,6 @@ export const metadata: Metadata = {
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
-
-const RESULTS = [
-  { label: "지역 카페 키워드", before: "19위", after: "1위", period: "20일" },
-  { label: "지역 맛집 키워드", before: "13위", after: "1위", period: "32일" },
-  { label: "지역 치과 키워드", before: "5위", after: "1위", period: "32일" },
-];
 
 const SERVICES = [
   {
@@ -129,30 +124,8 @@ export default function BeautyLandingPage() {
           </div>
         </section>
 
-        {/* 실제 성과 */}
-        <section className="py-12 md:py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-10">
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">하랑마케팅 순위 계측 기록</h2>
-              <p className="text-gray-500 text-sm">네이버 플레이스 순위 · 업종별 32일 계측</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {RESULTS.map((r, i) => (
-                <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-center">
-                  <p className="text-xs text-gray-500 mb-3 font-medium">{r.label}</p>
-                  <div className="flex items-center justify-center gap-3 mb-2">
-                    <span className="text-lg font-bold text-gray-400 line-through">{r.before}</span>
-                    <ArrowRight size={14} className="text-gray-400" />
-                    <span className="text-2xl font-black text-pink-600">{r.after}</span>
-                  </div>
-                  <span className="inline-flex items-center gap-1 bg-pink-50 text-pink-700 text-xs font-bold px-2.5 py-1 rounded-full border border-pink-100">
-                    <Clock size={10} /> {r.period}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* 순위 계측 — 뷰티 업종은 공개할 기록이 없다. 남의 업종 숫자를 빌려오지 않는다 */}
+        <RankRecords industries={[]} industryLabel="미용·네일·뷰티" />
 
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">

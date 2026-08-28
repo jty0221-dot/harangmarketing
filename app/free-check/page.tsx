@@ -17,10 +17,11 @@ const CHECKS = [
   { icon: TrendingUp, label: "목표 기간 산정", desc: "이 상권이 어느 정도 걸리는 자리인지" },
 ];
 
+/* 숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
 const CASES = [
+  { category: "음식점", loc: "지역 맛집 키워드", result: "플레이스 1페이지", period: "32일 계측", metric: "72위 → 2위" },
+  { category: "청소", loc: "지역 상가청소 키워드", result: "플레이스 1페이지", period: "17일 계측", metric: "67위 → 4위" },
   { category: "카페", loc: "지역 카페 키워드", result: "플레이스 1위", period: "20일 계측", metric: "19위 → 1위" },
-  { category: "치과", loc: "지역 치과 키워드", result: "플레이스 1위", period: "32일 계측", metric: "5위 → 1위" },
-  { category: "음식점", loc: "지역 맛집 키워드", result: "플레이스 1위", period: "32일 계측", metric: "13위 → 1위" },
 ];
 
 const STEPS = [

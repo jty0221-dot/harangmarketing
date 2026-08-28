@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
+import RankRecords from "../../components/RankRecords";
+import { SUMMARY } from "../../lib/rank-records";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2, Search, MessageSquare } from "lucide-react";
 
@@ -17,10 +19,13 @@ export const metadata: Metadata = {
   },
 };
 
+/* 온라인 쇼핑몰 업종은 공개할 순위 기록이 없다.
+   히어로에 다른 업종 기록을 걸어 두었던 것을 전사 계측 현황으로 바꾼다.
+   숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
 const RESULTS = [
-  { label: "지역 카페 키워드", value: "19위 → 1위", sub: "20일 계측" },
-  { label: "지역 맛집 키워드", value: "13위 → 1위", sub: "32일 계측" },
-  { label: "지역 치과 키워드", value: "5위 → 1위", sub: "32일 계측" },
+  { label: "계측 매장", value: `${SUMMARY.stores}곳`, sub: "계측 중인 매장" },
+  { label: "계측 키워드", value: `${SUMMARY.keywords}개`, sub: "플레이스 계측 키워드" },
+  { label: "1페이지 유지", value: `${SUMMARY.page1Keywords}개`, sub: "1페이지 유지 키워드" },
 ];
 
 export default function ShoppingPage() {
@@ -75,6 +80,9 @@ export default function ShoppingPage() {
           ]}
         />
 
+
+        {/* 순위 계측 — 이 업종은 공개할 기록이 없다. 남의 업종 숫자를 빌려오지 않는다 */}
+        <RankRecords industries={[]} industryLabel="온라인 쇼핑몰" />
 
         {/* 체크리스트 */}
         <section className="py-12 md:py-16 bg-gray-50">

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
+import RankRecords from "../../components/RankRecords";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Coffee, Users, MessageSquare, BarChart3, Clock,
+  Coffee, Users, MessageSquare, BarChart3,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -19,12 +20,6 @@ export const metadata: Metadata = {
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
-
-const RESULTS = [
-  { label: "지역 카페 키워드", before: "19위", after: "1위", period: "20일" },
-  { label: "지역 맛집 키워드", before: "13위", after: "1위", period: "32일" },
-  { label: "지역 치과 키워드", before: "5위", after: "1위", period: "32일" },
-];
 
 const SERVICES = [
   {
@@ -101,9 +96,10 @@ export default function CafeLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="카페 마케팅은 어떻게 해야 효과가 있나요?"
-          answer="카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. 하랑마케팅이 진행한 카페는 지역 카페 키워드에서 19위가 1위가 됐고(20일 계측), 같은 매장이 지역 맛집 키워드에서는 56위가 1위가 됐습니다(32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. 하랑마케팅이 진행한 카페는 지역 카페 키워드에서 19위가 1위가 됐고(20일 계측), 같은 매장이 지역 맛집 키워드에서는 56위가 1위가 됐습니다(32일 계측). 다른 카페는 지역 디저트카페 키워드에서 3위가 1위가 됐습니다(9일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
             { label: "지역 카페 키워드", value: "19위 → 1위" },
+            { label: "지역 디저트카페 키워드", value: "3위 → 1위" },
             { label: "계측 기간", value: "32일" },
             { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
@@ -129,30 +125,8 @@ export default function CafeLandingPage() {
           </div>
         </section>
 
-        {/* 실제 성과 */}
-        <section className="py-12 md:py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-10">
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">하랑마케팅 순위 계측 기록</h2>
-              <p className="text-gray-500 text-sm">네이버 플레이스 순위 · 업종별 32일 계측</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {RESULTS.map((r, i) => (
-                <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-center">
-                  <p className="text-xs text-gray-500 mb-3 font-medium">{r.label}</p>
-                  <div className="flex items-center justify-center gap-3 mb-2">
-                    <span className="text-lg font-bold text-gray-400 line-through">{r.before}</span>
-                    <ArrowRight size={14} className="text-gray-400" />
-                    <span className="text-2xl font-black text-blue-700">{r.after}</span>
-                  </div>
-                  <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full border border-blue-100">
-                    <Clock size={10} /> {r.period}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
+        <RankRecords industries={["카페"]} industryLabel="카페·베이커리" />
 
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">

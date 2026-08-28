@@ -28,7 +28,7 @@ export default function CafeLayout({ children }: { children: React.ReactNode }) 
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "카페·베이커리 전문 마케팅. 계측 기록: 네이버 플레이스 지역 카페 키워드 19위→1위(20일), 지역 맛집 키워드 13위→1위(32일), 지역 치과 키워드 5위→1위(32일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "카페·베이커리 전문 마케팅. 계측 기록: 네이버 플레이스 지역 카페 키워드 19위→1위(20일), 지역 디저트카페 키워드 3위→1위(9일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
             "description": "카페·베이커리 전문 네이버 플레이스 SEO, 포토리뷰 전략, 인스타그램 마케팅 대행 서비스",
             "areaServed": ["서울", "경기도", "인천"],
             "serviceType": "마케팅 대행",

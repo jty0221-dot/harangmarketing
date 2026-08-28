@@ -11,6 +11,7 @@ import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
 import { SITE, itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SUMMARY, SNAPSHOT_DATE, fmt, BIGGEST_GAIN } from "../lib/rank-records";
 
 const ALL_CASES = [
   {
@@ -200,12 +201,12 @@ const CasesPage: FC = () => {
         {/* AEO — 성과 질의 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer="하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. 지역 맛집 키워드 56위에서 1위(32일 계측)와 13위에서 1위(32일 계측), 지역 카페 키워드 19위에서 1위(20일 계측), 지역 치과 키워드 5위에서 1위(32일 계측), 지역 꽃집 키워드 8위에서 1위(32일 계측). 순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다."
+          answer={`하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. 지역 맛집 키워드 72위에서 2위(32일 계측)와 56위에서 1위(32일 계측), 지역 상가청소 키워드 67위에서 4위(17일 계측), 지역 카페 키워드 19위에서 1위(20일 계측), 지역 치과 키워드 5위에서 1위(32일 계측), 지역 꽃집 키워드 8위에서 1위(32일 계측). ${SNAPSHOT_DATE} 기준 ${SUMMARY.keywords}개 계측 키워드 가운데 ${SUMMARY.page1Keywords}개가 네이버 플레이스 1페이지(1~5위)를 지키고 있습니다. 순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
           facts={[
             { label: "완료 프로젝트", value: "500건+" },
             { label: "재계약률", value: SITE.stats.renewalRate },
-            { label: "최대 순위 상승", value: "56위 → 1위" },
-            { label: "계측 기간", value: "32일" },
+            { label: "1페이지 최대 상승", value: fmt(BIGGEST_GAIN) },
+            { label: "1페이지 유지 키워드", value: `${SUMMARY.page1Keywords}개` },
           ]}
         />
 
@@ -434,15 +435,17 @@ const CasesPage: FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
               {[
-                { ind: "카페·베이커리", result: "19위 → 1위", time: "20일 계측", color: "from-blue-600 to-orange-500" },
-                { ind: "음식점·배달", result: "13위 → 1위", time: "32일 계측", color: "from-green-500 to-emerald-600" },
-                { ind: "꽃집·화훼", result: "8위 → 1위", time: "32일 계측", color: "from-pink-500 to-rose-600" },
-                { ind: "의원·치과", result: "5위 → 1위", time: "32일 계측", color: "from-blue-500 to-blue-700" },
+                { ind: "음식점·배달", result: "72위 → 2위", time: "32일 계측" },
+                { ind: "청소·시설관리", result: "67위 → 4위", time: "17일 계측" },
+                { ind: "카페·베이커리", result: "19위 → 1위", time: "20일 계측" },
+                { ind: "피부과", result: "10위 → 2위", time: "32일 계측" },
+                { ind: "꽃집·화훼", result: "8위 → 1위", time: "32일 계측" },
+                { ind: "치과", result: "5위 → 1위", time: "32일 계측" },
               ].map((r) => (
                 <div key={r.ind} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-                  <div className={`text-lg font-black bg-gradient-to-br ${r.color} bg-clip-text text-transparent mb-0.5`}>{r.result}</div>
+                  <div className="text-lg font-black text-white tabular-nums mb-0.5">{r.result}</div>
                   <div className="text-xs text-gray-400 font-medium">{r.ind}</div>
                   <div className="text-[11px] text-gray-600 mt-1">{r.time}</div>
                 </div>

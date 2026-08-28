@@ -28,7 +28,7 @@ export default function AcademyLayout({ children }: { children: React.ReactNode 
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "학원·교육 전문 마케팅. 계측 기록: 네이버 플레이스 지역 카페 키워드 19위→1위(20일), 지역 맛집 키워드 13위→1위(32일), 지역 치과 키워드 5위→1위(32일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "학원·교육 전문 마케팅. 이 업종은 공개할 플레이스 순위 기록이 아직 없어 다른 업종의 기록을 표시하지 않는다. 네이버 플레이스 순위는 매일 스냅샷으로 저장하며 계측값이 쌓이면 그대로 공개한다. 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
             "offers": { "@type": "Offer", "description": "학원·교육 전문 마케팅. 과목·진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "학원·교육기관 전문 맘카페 바이럴, 블로그 SEO, 지역 키워드 마케팅 대행",
             "areaServed": ["서울", "경기도", "인천"],

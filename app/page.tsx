@@ -8,7 +8,7 @@ import {
   Search, BookOpen, Megaphone, AtSign, ChevronRight,
   ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
-  UtensilsCrossed, ShoppingBag,
+  UtensilsCrossed, ShoppingBag, Sparkles,
 } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -31,6 +31,8 @@ import {
   SITE, CORE_FAQ, ANSWER_SENTENCES,
   faqLd, webPageLd, breadcrumbLd, definitionsLd,
 } from "./lib/seo";
+import type { LucideIcon } from "lucide-react";
+import { SUMMARY, SNAPSHOT_DATE, fmt, BIGGEST_GAIN } from "./lib/rank-records";
 
 /* ─── AEO/GEO 구조화 데이터 (홈) ───────────────────
    FAQPage·DefinedTermSet 는 아래 화면에 실제로 렌더링되는
@@ -49,7 +51,24 @@ const HOME_LD = [
 
 /* ─── Data ─────────────────────────────────────── */
 
-const INDUSTRIES = [
+type Industry = {
+  icon: LucideIcon;
+  name: string;
+  color: string;
+  bgLight: string;
+  borderLight: string;
+  points: string[];
+  result: string;
+  resultLabel: string;
+  before: string;
+  after: string;
+  duration: string;
+  location: string;
+  /** 같은 업종에서 계측된 두 번째 기록 — 없는 업종에는 붙이지 않는다 */
+  extra?: string;
+};
+
+const INDUSTRIES: Industry[] = [
   {
     icon: Coffee,
     name: "카페·베이커리",
@@ -62,6 +81,7 @@ const INDUSTRIES = [
     before: "19위",
     after: "1위",
     duration: "20일 계측",
+    extra: "지역 디저트카페 키워드 3위 → 1위 · 9일 계측",
     location: "플레이스 순위",
   },
   {
@@ -71,11 +91,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["배달앱 리뷰 전략", "맘카페 바이럴", "블로그 맛집 등록"],
-    result: "13위 → 1위",
+    result: "72위 → 2위",
     resultLabel: "지역 맛집 키워드",
-    before: "13위",
-    after: "1위",
+    before: "72위",
+    after: "2위",
     duration: "32일 계측",
+    extra: "지역 역세권 맛집 키워드 13위 → 1위 · 32일 계측",
     location: "플레이스 순위",
   },
   {
@@ -104,6 +125,7 @@ const INDUSTRIES = [
     before: "5위",
     after: "1위",
     duration: "32일 계측",
+    extra: "지역 피부과 키워드 10위 → 2위 · 32일 계측",
     location: "플레이스 순위",
   },
   {
@@ -207,17 +229,20 @@ const TICKER = [
   `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
   "지역 치과 키워드 5위 → 1위 · 32일 계측",
   "전담 팀장 직접 관리 · 상담 비용 0원",
-  "지역 맛집 키워드 13위 → 1위 · 32일 계측",
+  "지역 맛집 키워드 72위 → 2위 · 32일 계측",
+  "지역 상가청소 키워드 67위 → 4위 · 17일 계측",
   "지역 꽃집 키워드 8위 → 1위 · 32일 계측",
   "업종별 맞춤 설계 · 묶음 강요 없음",
+  "지역 피부과 키워드 10위 → 2위 · 32일 계측",
   "매일 순위 계측 · 월 리포트 제공",
   "상담 비용 0원 · 계약 강요 없음",
+  "지역 정기청소 키워드 36위 → 4위 · 17일 계측",
   "10년+ 경력 · 업종별 맞춤 전략",
   "24시간 내 연락",
-  "플레이스 1위 키워드 7건 · 2026-08 기준",
+  `플레이스 1페이지 유지 ${SUMMARY.page1Keywords}개 키워드 · ${SNAPSHOT_DATE} 기준`,
   "네이버 플레이스 스냅샷 매일 저장",
   "성과 확약 없음 · 계측값만 보고",
-  "최대 상승폭 지역 맛집 키워드 56위 → 1위",
+  `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
 ];
 
 
@@ -428,6 +453,14 @@ export default function HomePage() {
                           <div className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{ind.after}</div>
                         </div>
                       </div>
+
+                      {/* 같은 업종 추가 계측 기록 */}
+                      {ind.extra && (
+                        <div className="mb-4 rounded-lg px-3 py-2 text-[11px] leading-relaxed"
+                          style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)", color: "var(--h-muted)" }}>
+                          같은 업종 추가 계측 · <span className="font-bold tabular-nums" style={{ color: "var(--h-dark)" }}>{ind.extra}</span>
+                        </div>
+                      )}
 
                       {/* strategy points */}
                       <ul className="space-y-1.5 mb-4">
@@ -1285,6 +1318,28 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {[
                 {
+                  industry: "음식점",
+                  location: "지역 맛집 키워드",
+                  service: "플레이스 SEO + 리뷰",
+                  before: { label: "플레이스 순위", value: "72위" },
+                  after: { label: "플레이스 순위", value: "2위" },
+                  period: "32일 계측",
+                  highlight: "플레이스 1페이지 진입",
+                  color: "from-blue-700 to-blue-900",
+                  icon: UtensilsCrossed,
+                },
+                {
+                  industry: "청소",
+                  location: "지역 상가청소 키워드",
+                  service: "플레이스 SEO + 블로그",
+                  before: { label: "플레이스 순위", value: "67위" },
+                  after: { label: "플레이스 순위", value: "4위" },
+                  period: "17일 계측",
+                  highlight: "플레이스 1페이지 진입",
+                  color: "from-blue-600 to-blue-800",
+                  icon: Sparkles,
+                },
+                {
                   industry: "카페",
                   location: "지역 카페 키워드",
                   service: "플레이스 SEO + 블로그",
@@ -1294,28 +1349,6 @@ export default function HomePage() {
                   highlight: "플레이스 1위 달성",
                   color: "from-blue-500 to-blue-700",
                   icon: Coffee,
-                },
-                {
-                  industry: "꽃집",
-                  location: "지역 꽃집 키워드",
-                  service: "블로그 + 체험단",
-                  before: { label: "플레이스 순위", value: "8위" },
-                  after: { label: "플레이스 순위", value: "1위" },
-                  period: "32일 계측",
-                  highlight: "플레이스 1위 달성",
-                  color: "from-blue-600 to-indigo-700",
-                  icon: Scissors,
-                },
-                {
-                  industry: "음식점",
-                  location: "지역 맛집 키워드",
-                  service: "플레이스 SEO + 리뷰",
-                  before: { label: "플레이스 순위", value: "13위" },
-                  after: { label: "플레이스 순위", value: "1위" },
-                  period: "32일 계측",
-                  highlight: "플레이스 1위 달성",
-                  color: "from-blue-700 to-blue-900",
-                  icon: UtensilsCrossed,
                 },
                 {
                   industry: "치과",

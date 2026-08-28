@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
+import RankRecords from "../../components/RankRecords";
+import { byIndustry } from "../../lib/rank-records";
 import Link from "next/link";
 import { ArrowRight, UtensilsCrossed, TrendingUp, Star, ShoppingCart, CheckCircle2 } from "lucide-react";
 
@@ -26,11 +28,13 @@ const CHECKLIST = [
   "주변 경쟁 식당보다 검색 순위가 항상 낮다",
 ];
 
-const RESULTS = [
-  { label: "지역 카페 키워드", value: "19위 → 1위", sub: "20일 계측" },
-  { label: "지역 맛집 키워드", value: "13위 → 1위", sub: "32일 계측" },
-  { label: "지역 치과 키워드", value: "5위 → 1위", sub: "32일 계측" },
-];
+/* 카페·치과 기록이 음식점 페이지 히어로에 걸려 있던 것을 음식점 기록으로 바꾼다.
+   숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
+const RESULTS = byIndustry("음식점").slice(0, 3).map((r) => ({
+  label: `${r.keyword}-${r.from}`,
+  value: `${r.to}위`,
+  sub: `${r.from}위에서 · ${r.days}일`,
+}));
 
 export default function RestaurantPage() {
   return (
@@ -75,15 +79,17 @@ export default function RestaurantPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="음식점·배달 마케팅은 무엇부터 해야 하나요?"
-          answer="음식점·배달 마케팅은 배달앱 리뷰 관리, 네이버 플레이스 맛집 키워드 노출, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 배달 매출은 리뷰 평점과 리뷰 수에 직접 연동되기 때문입니다. 하랑마케팅이 진행한 음식점은 지역 맛집 키워드에서 13위가 1위가 됐습니다(32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 배달·홀 비중과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="음식점·배달 마케팅은 배달앱 리뷰 관리, 네이버 플레이스 맛집 키워드 노출, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 배달 매출은 리뷰 평점과 리뷰 수에 직접 연동되기 때문입니다. 하랑마케팅이 진행한 음식점은 지역 맛집 키워드에서 72위가 2위가 됐고(32일 계측), 다른 매장은 같은 유형 키워드에서 56위가 1위, 지역 역세권 맛집 키워드에서 13위가 1위가 됐습니다(각 32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 배달·홀 비중과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
-            { label: "지역 맛집 키워드", value: "13위 → 1위" },
+            { label: "지역 맛집 키워드", value: "72위 → 2위" },
             { label: "계측 기간", value: "32일" },
             { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
 
+        {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
+        <RankRecords industries={["음식점"]} industryLabel="음식점·배달" />
 
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
