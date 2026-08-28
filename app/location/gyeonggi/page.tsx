@@ -116,7 +116,7 @@ export default function GyeonggiPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="경기도 마케팅 대행사를 찾고 있습니다"
-          answer="하랑마케팅은 경기도 소상공인을 전문으로 하는 마케팅 대행사입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴 전환율이 일반 블로그의 2~3배입니다. 실제 사례로 경기 포천의 베이커리카페는 3개월 만에 하루 방문객이 28명에서 75명으로 늘었습니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 전화 010-7541-9054로 무료 상담이 가능합니다."
+          answer="하랑마케팅은 경기도 소상공인을 전문으로 하는 마케팅 대행사입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴을 함께 씁니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유하며, 지역 맛집 키워드에서 56위가 1위가 된 32일 계측 기록이 있습니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 전화 010-7541-9054로 무료 상담이 가능합니다."
           facts={[
             { label: "담당 지역", value: "경기 전 지역" },
             { label: "포천 카페 사례", value: "일 28→75명 · 3개월" },
@@ -191,7 +191,7 @@ export default function GyeonggiPage() {
                 },
               ].map((s) => (
                 <div key={s.title} className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-4 shadow-sm`}>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>

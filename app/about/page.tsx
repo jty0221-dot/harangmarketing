@@ -86,7 +86,7 @@ const PROMISES = [
     num: "01",
     icon: Shield,
     color: "from-blue-500 to-blue-700",
-    title: "투명하게 작업합니다 — 속이면 10배 보상",
+    title: "투명하게 작업합니다",
     desc: "말로만 '믿어달라' 하지 않습니다. 약속한 작업을 100% 진행하고 결과를 투명하게 공유합니다. 고의로 빠뜨리거나 속인 사실이 확인되면 결제 금액의 10배를 보상해드립니다.",
     badge: "10배 보상 정책",
   },
@@ -185,8 +185,10 @@ export default function AboutPage() {
                 { val: SITE.stats.renewalRate, label: "재계약률" },
                 { val: "10년+", label: "경력" },
               ].map(s => (
-                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
-                  <div className="text-2xl font-black text-white mb-0.5">{s.val}</div>
+                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 text-center">
+                  {/* 375px 3칸에서 칸 안쪽이 71px 뿐이라 '97.4%' 의 % 가 둘째 줄로 떨어졌다.
+                      숫자는 줄바꿈하지 않는다 (2026-08-27 (목) 수정) */}
+                  <div className="text-xl sm:text-2xl font-black text-white mb-0.5 whitespace-nowrap tabular-nums">{s.val}</div>
                   <div className="text-xs text-gray-500">{s.label}</div>
                 </div>
               ))}
@@ -306,7 +308,7 @@ export default function AboutPage() {
                   <div key={p.num} className="bg-white rounded-2xl p-6 md:p-7 border border-gray-100 shadow-sm hover:shadow-md transition-all">
                     <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                       <div className="flex items-center gap-3 sm:shrink-0">
-                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${p.color} flex items-center justify-center shadow-sm`}>
+                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: "var(--w-primary)" }}>
                           <Icon size={20} className="text-white" strokeWidth={2} />
                         </div>
                         <span className="text-2xl font-black text-gray-100 sm:hidden">{p.num}</span>
@@ -341,7 +343,7 @@ export default function AboutPage() {
                 return (
                   <div key={s.title} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:bg-white hover:shadow-md transition-all">
                     <div className="p-5">
-                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-3 shadow-sm`}>
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 shadow-sm" style={{ background: "var(--w-primary)" }}>
                         <Icon size={17} className="text-white" strokeWidth={2} />
                       </div>
                       <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>

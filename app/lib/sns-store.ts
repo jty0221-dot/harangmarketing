@@ -25,7 +25,13 @@ export type PlatformId =
   | "facebook"
   | "telegram"
   | "kakao"
-  | "shopping";
+  // 커머스는 브랜드마다 서비스가 다르다 — 한 덩어리로 묶지 않는다
+  | "coupang"
+  | "musinsa"
+  | "oliveyoung"
+  | "ohou"
+  | "baemin"
+  | "daangn";
 
 export interface SnsPlatform {
   id: PlatformId;
@@ -43,7 +49,12 @@ export const SNS_PLATFORMS: SnsPlatform[] = [
   { id: "facebook", name: "페이스북", short: "페북" },
   { id: "telegram", name: "텔레그램", short: "텔레" },
   { id: "kakao", name: "카카오", short: "카카오" },
-  { id: "shopping", name: "쇼핑·플랫폼", short: "쇼핑" },
+  { id: "coupang", name: "쿠팡", short: "쿠팡" },
+  { id: "musinsa", name: "무신사", short: "무신사" },
+  { id: "oliveyoung", name: "올리브영", short: "올영" },
+  { id: "ohou", name: "오늘의집", short: "오늘의집" },
+  { id: "baemin", name: "배달의민족", short: "배민" },
+  { id: "daangn", name: "당근", short: "당근" },
 ];
 
 /** 상품 그룹 노출 순서 — 카탈로그에서 이 순서로 소제목이 나온다 */

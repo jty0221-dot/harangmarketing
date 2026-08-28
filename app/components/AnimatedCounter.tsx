@@ -64,7 +64,8 @@ export default function AnimatedCounter({ to, duration = 1800, suffix = "", pref
           transition: flipped ? "transform 0.7s cubic-bezier(0.2,0.8,0.2,1)" : "none",
         }}
       >
-        {prefix}{decimals > 0 ? value.toFixed(decimals) : Math.floor(value)}{suffix}
+        {prefix}{decimals > 0 ? value.toFixed(decimals) : Math.floor(value)}
+        {suffix ? <span className="counter-suffix">{suffix}</span> : null}
       </span>
     </span>
   );

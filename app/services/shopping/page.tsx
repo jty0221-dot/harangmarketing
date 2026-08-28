@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 };
 
 const RESULTS = [
-  { label: "스마트스토어 매출", value: "+156%", sub: "3개월 · 의류 쇼핑몰" },
-  { label: "인스타 팔로워", value: "0→3천", sub: "4개월 · 잡화점" },
-  { label: "오프라인 방문", value: "+89%", sub: "2개월 · 액세서리 샵" },
+  { label: "지역 카페 키워드", value: "19위 → 1위", sub: "20일 계측" },
+  { label: "지역 맛집 키워드", value: "13위 → 1위", sub: "32일 계측" },
+  { label: "지역 치과 키워드", value: "5위 → 1위", sub: "32일 계측" },
 ];
 
 export default function ShoppingPage() {
@@ -66,11 +66,11 @@ export default function ShoppingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="온라인 쇼핑몰 마케팅은 무엇부터 시작해야 하나요?"
-          answer="온라인 쇼핑몰은 오프라인 매장과 달리 지역 키워드가 없으므로 상품 키워드 블로그 SEO와 체험단 후기 확보가 출발점입니다. 검색으로 유입된 고객이 후기를 보고 구매를 결정하기 때문입니다. 하랑마케팅이 진행한 온라인 쇼핑몰은 4개월 만에 월 매출이 230만원에서 377만원으로 64% 증가했습니다. 쇼핑몰 마케팅은 전국 어디서나 비대면으로 진행되며, 비용은 상품군과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
+          answer="온라인 쇼핑몰은 오프라인 매장과 달리 지역 키워드가 없으므로 상품 키워드 블로그 SEO와 체험단 후기 확보가 출발점입니다. 검색으로 유입된 고객이 후기를 보고 구매를 결정하기 때문입니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 쇼핑몰 마케팅은 전국 어디서나 비대면으로 진행되며, 비용은 상품군과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
           facts={[
-            { label: "월 매출", value: "230→377만" },
-            { label: "증가율", value: "+64%" },
-            { label: "진행 기간", value: "4개월" },
+            { label: "주력 채널", value: "상품 키워드 블로그 SEO" },
+            { label: "보조 채널", value: "체험단 후기" },
+            { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -111,7 +111,7 @@ export default function ShoppingPage() {
                 { icon: Star, color: "from-blue-600 to-orange-500", title: "오프라인 집객 마케팅", desc: "네이버 플레이스·카카오맵 최적화로 '근처 검색' 유입을 늘립니다. 오프라인 방문 고객이 온라인 구매로도 이어집니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-4 shadow-sm`}>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>

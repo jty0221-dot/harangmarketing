@@ -14,13 +14,13 @@ const CHECKS = [
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
   { icon: BarChart3, label: "콘텐츠 포화도", desc: "블로그·SNS 노출 공백 확인" },
   { icon: Users, label: "경쟁사 3곳 비교", desc: "상위 노출 경쟁사 전략 분석" },
-  { icon: TrendingUp, label: "3개월 성과 예측", desc: "업종·예산별 달성 가능 수치" },
+  { icon: TrendingUp, label: "목표 기간 산정", desc: "이 상권이 어느 정도 걸리는 자리인지" },
 ];
 
 const CASES = [
-  { category: "카페", loc: "경기 포천", result: "플레이스 1위", period: "3개월", metric: "+167% 방문객" },
-  { category: "네일샵", loc: "경기 부천", result: "예약 마감", period: "6주", metric: "예약 100% 마감" },
-  { category: "음식점", loc: "서울 마포", result: "매출 2배", period: "4개월", metric: "+113% 매출" },
+  { category: "카페", loc: "지역 카페 키워드", result: "플레이스 1위", period: "20일 계측", metric: "19위 → 1위" },
+  { category: "치과", loc: "지역 치과 키워드", result: "플레이스 1위", period: "32일 계측", metric: "5위 → 1위" },
+  { category: "음식점", loc: "지역 맛집 키워드", result: "플레이스 1위", period: "32일 계측", metric: "13위 → 1위" },
 ];
 
 const STEPS = [
@@ -50,13 +50,13 @@ export default function FreeCheckPage() {
     <main className="min-h-screen bg-gray-950">
       {/* Top bar */}
       <div className="bg-gray-950 border-b border-white/5 py-3 px-4 flex items-center justify-between max-w-5xl mx-auto">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 min-h-11">
           <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-7 h-7" />
           <span className="text-white font-black text-[15px]">하랑<span className="text-blue-400">마케팅</span></span>
         </Link>
         <a
           href="tel:010-7541-9054"
-          className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 min-h-11 text-xs text-gray-400 hover:text-white transition-colors"
         >
           <Phone size={12} strokeWidth={2.5} />
           010-7541-9054
@@ -125,7 +125,7 @@ export default function FreeCheckPage() {
                   "플레이스 키워드별 현재 순위 PDF 리포트",
                   "경쟁 상위 3곳과 내 매장 비교 분석표",
                   "리뷰·콘텐츠 부족분 및 우선순위 정리",
-                  "3개월 후 예상 성과 수치 (업종별)",
+                  "업종·상권 기준 현실적인 목표 기간",
                   "업종 맞춤 마케팅 전략 요약 1페이지",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
@@ -162,7 +162,7 @@ export default function FreeCheckPage() {
                   <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
                 </div>
                 <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>
-                <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />1영업일 내 연락드립니다.</p>
+                <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />24시간 내 연락드립니다.</p>
                 <Link
                   href="/"
                   className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"
@@ -191,7 +191,7 @@ export default function FreeCheckPage() {
                       onChange={(e) => setName(e.target.value)}
                       placeholder="홍길동"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
                   </div>
                   <div>
@@ -202,7 +202,7 @@ export default function FreeCheckPage() {
                       onChange={(e) => setBusiness(e.target.value)}
                       placeholder="예: 하랑카페 / 카페"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
                   </div>
                   <div>
@@ -227,7 +227,7 @@ export default function FreeCheckPage() {
                         onChange={(e) => setRank(e.target.value)}
                         placeholder="예: 15"
                         min="1"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-400">위</span>
                     </div>
@@ -238,7 +238,7 @@ export default function FreeCheckPage() {
                   <div className="flex flex-col gap-1.5 py-1">
                     {[
                       { icon: Shield, text: "개인정보는 상담 목적으로만 사용됩니다" },
-                      { icon: Clock, text: "1영업일 내 연락 보장" },
+                      { icon: Clock, text: "24시간 내 연락" },
                       { icon: AlertCircle, text: "계약·비용 강요 일절 없음" },
                     ].map(({ icon: Icon, text }) => (
                       <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-400">

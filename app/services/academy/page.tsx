@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 };
 
 const RESULTS = [
-  { label: "수강생 증가", value: "+68%", sub: "3개월 · 영어학원" },
-  { label: "플레이스 순위", value: "Top 3", sub: "2개월 · 수학학원" },
-  { label: "문의 전화", value: "+210%", sub: "4개월 · 미술학원" },
+  { label: "지역 카페 키워드", value: "19위 → 1위", sub: "20일 계측" },
+  { label: "지역 맛집 키워드", value: "13위 → 1위", sub: "32일 계측" },
+  { label: "지역 치과 키워드", value: "5위 → 1위", sub: "32일 계측" },
 ];
 
 export default function AcademyPage() {
@@ -66,11 +66,11 @@ export default function AcademyPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="학원 마케팅은 어떻게 수강생을 늘리나요?"
-          answer="학원·교육 마케팅은 지역 맘카페 바이럴과 홈페이지형 블로그가 핵심입니다. 학부모가 학원을 고를 때 광고보다 동네 엄마들의 실제 후기를 먼저 찾아보기 때문입니다. 하랑마케팅이 진행한 수도권 학원은 3개월 만에 수강생이 62명에서 96명으로 55% 증가했습니다. 맘카페 바이럴은 일반 블로그 대비 전환율이 2~3배 높습니다. 학원 마케팅 비용은 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="학원·교육 마케팅은 지역 맘카페 바이럴과 홈페이지형 블로그가 핵심입니다. 학부모가 학원을 고를 때 광고보다 동네 엄마들의 실제 후기를 먼저 찾아보기 때문입니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 학원 마케팅 비용은 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
-            { label: "수강생", value: "62→96명" },
-            { label: "증가율", value: "+55%" },
-            { label: "진행 기간", value: "3개월" },
+            { label: "주력 채널", value: "맘카페 바이럴" },
+            { label: "보조 채널", value: "홈페이지형 블로그" },
+            { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -111,7 +111,7 @@ export default function AcademyPage() {
                 { icon: Star, color: "from-blue-600 to-orange-500", title: "성과 리뷰·수강 후기 관리", desc: "수강생 학부모 후기를 전략적으로 쌓습니다. 긍정적 후기가 신뢰를 만들고 신규 문의로 이어집니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-4 shadow-sm`}>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>

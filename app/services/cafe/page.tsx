@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 };
 
 const RESULTS = [
-  { label: "플레이스 순위", before: "27위", after: "3위", period: "2개월" },
-  { label: "월 방문객", before: "120명", after: "380명", period: "3개월" },
-  { label: "네이버 리뷰", before: "31개", after: "140개", period: "4개월" },
+  { label: "지역 카페 키워드", before: "19위", after: "1위", period: "20일" },
+  { label: "지역 맛집 키워드", before: "13위", after: "1위", period: "32일" },
+  { label: "지역 치과 키워드", before: "5위", after: "1위", period: "32일" },
 ];
 
 const SERVICES = [
@@ -101,11 +101,11 @@ export default function CafeLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="카페 마케팅은 어떻게 해야 효과가 있나요?"
-          answer="카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. 하랑마케팅이 진행한 카페는 2개월 만에 플레이스 순위 27위에서 3위, 3개월 만에 월 방문객 120명에서 380명, 4개월 만에 네이버 리뷰 31개에서 140개로 늘었습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. 하랑마케팅이 진행한 카페는 지역 카페 키워드에서 19위가 1위가 됐고(20일 계측), 같은 매장이 지역 맛집 키워드에서는 56위가 1위가 됐습니다(32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
-            { label: "플레이스 순위", value: "27위→3위" },
-            { label: "월 방문객", value: "120→380명" },
-            { label: "네이버 리뷰", value: "31→140개" },
+            { label: "지역 카페 키워드", value: "19위 → 1위" },
+            { label: "계측 기간", value: "32일" },
+            { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -133,8 +133,8 @@ export default function CafeLandingPage() {
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <div className="text-center mb-10">
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">실제 카페 성과</h2>
-              <p className="text-gray-500 text-sm">경기 분당 카페 · 하랑마케팅 4개월 운영</p>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">하랑마케팅 순위 계측 기록</h2>
+              <p className="text-gray-500 text-sm">네이버 플레이스 순위 · 업종별 32일 계측</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {RESULTS.map((r, i) => (
@@ -161,7 +161,7 @@ export default function CafeLandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {SERVICES.map((s, i) => (
                 <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} shadow-sm flex items-center justify-center flex-shrink-0`}>
+                  <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
                     <s.icon size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <div>

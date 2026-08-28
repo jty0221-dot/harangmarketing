@@ -118,7 +118,7 @@ export default function YouTubeSection() {
 
           <p className="text-center text-gray-600 text-xs mt-6">
             채널에 새 영상이 업로드되면 이 목록이 자동으로 바뀝니다 ·{" "}
-            <a href={CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white underline transition-colors">
+            <a href={CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 md:min-h-0 text-gray-400 hover:text-white underline transition-colors">
               채널 전체 보기
             </a>
           </p>

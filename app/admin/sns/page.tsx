@@ -312,7 +312,7 @@ export default function AdminSnsPage() {
                             value={memoDraft}
                             onChange={(e) => setMemoDraft(e.target.value)}
                             placeholder="관리자 메모 (입금 확인 시각 등)"
-                            className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-gray-200 text-xs focus:border-blue-400 focus:outline-none bg-white"
+                            className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-gray-200 text-base md:text-xs focus:border-blue-400 focus:outline-none bg-white"
                           />
                           <button
                             onClick={() => act("memo", o.no, { memo: memoDraft })}

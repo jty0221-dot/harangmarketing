@@ -38,7 +38,15 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "한 달에 얼마나 드나요?",
-        a: "미리 정해둔 월 금액은 없습니다. 항목별 단가를 정해두고 매장에 꼭 필요한 항목만 골라 더합니다. 플레이스 SEO 최적화 10~15만원(1회), 대표키워드 관리 3만원(키워드·월), 블로그 관리대행 4만원(편), 블로그·카페 배포 3만원(건), 파워컨텐츠 5만원(편)이 기준 단가입니다. 같은 업종이어도 출발점·현재 순위·상권 경쟁도에 따라 붙는 항목과 물량이 달라져 월 금액도 같이 달라집니다. 모두 부가세 별도이고 광고 집행비는 실비로 따로 나갑니다.",
+        a: "미리 정해둔 월 금액은 없습니다. 항목별 단가를 정해두고 매장에 꼭 필요한 항목만 골라 더합니다. 플레이스 SEO 최적화 10~15만원(1회), 대표키워드 관리 3만원(키워드·월), 블로그 관리대행 4만원(편), 블로그·카페 배포 3만원(건), 파워컨텐츠 5만원(편)이 기준 단가입니다. 기준 단가는 고정가가 아닙니다. 특히 블로그 원고는 업종에 따라 손이 크게 달라져서, 물량이 많거나 원고가 단순한 업종은 4만원보다 내려가고 병의원처럼 의료광고 심의와 전문 용어 확인이 붙는 업종은 올라갑니다. 같은 업종이어도 출발점·현재 순위·상권 경쟁도에 따라 붙는 항목과 물량이 달라져 월 금액도 같이 달라집니다. 모두 부가세 별도이고 광고 집행비는 실비로 따로 나갑니다.",
+      },
+      {
+        q: "블로그 포스팅 단가는 업종마다 다른가요?",
+        a: "네, 다릅니다. 1편 4만원은 기준값이지 고정가가 아닙니다. 물량이 많거나 원고 내용이 단순한 업종은 4만원보다 내려갑니다. 반대로 병의원·한의원·치과·피부과처럼 의료광고 사전심의가 걸리는 분야는 쓸 수 있는 표현이 정해져 있어 원고를 쓰기 전에 확인할 것이 많고, 잘못 쓰면 글 하나가 아니라 계정이 위험해집니다. 그만큼 손이 더 들어가 단가가 올라갑니다. 업종과 원고 난이도를 본 뒤에 단가를 정해 안내드립니다.",
+      },
+      {
+        q: "스마트스토어 상세페이지 제작은 얼마인가요?",
+        a: "기획형 15만원(3영업일), 제작형 35만원(7영업일), 제작+영상형 55만원(10영업일), 브랜드 패키지 150만원(20영업일) 네 등급입니다. 만들 사람이 이미 있으면 기획형, 없으면 제작형으로 가시는 경우가 대부분입니다. 수정은 텍스트·문구 2회와 이미지 재생성 컷당 3회가 금액 안에 들어 있고 초과분만 따로 계산합니다. 모두 부가세 별도입니다.",
       },
       {
         q: "여러 서비스를 함께 하면 할인되나요?",
@@ -122,7 +130,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "개업 전 매장도 마케팅이 필요한가요?",
-        a: "개업 전부터 시작하면 오픈 첫날부터 효과가 납니다. 플레이스 세팅, 블로그 사전 노출, 인스타 팔로워 확보를 미리 해두면 개업 직후 방문객이 빠르게 늘어납니다.",
+        a: "개업 전에 미리 해두면 오픈 시점에 이미 검색에 잡히는 상태로 시작할 수 있습니다. 플레이스 세팅, 블로그 사전 노출, 인스타 계정 준비를 먼저 끝내두는 방식입니다. 다만 오픈 후 얼마나 빨리 오르는지는 상권 경쟁도에 따라 달라 미리 약속드리지 않습니다.",
       },
     ],
   },
@@ -239,7 +247,7 @@ export default function FAQPage() {
                 const Icon = cat.icon;
                 return (
                   <a key={cat.id} href={`#${cat.id}`}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-semibold hover:bg-white/20 transition-colors">
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-11 md:min-h-0 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-semibold hover:bg-white/20 transition-colors">
                     <Icon size={11} />
                     {cat.label}
                   </a>
@@ -274,7 +282,7 @@ export default function FAQPage() {
           answer={ANSWER_SENTENCES.price}
           facts={[
             { label: "견적 방식", value: "항목 조합형" },
-            { label: "기준 단가", value: "블로그 4만원/편" },
+            { label: "기준 단가", value: "블로그 4만원/편 기준 · 업종별 조정" },
             { label: "월 금액", value: "업체별 맞춤" },
             { label: "상담·진단", value: "0원" },
           ]}
@@ -289,7 +297,7 @@ export default function FAQPage() {
                 <div key={cat.id} id={cat.id} className="scroll-mt-24">
                   {/* Category header */}
                   <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-sm`}>
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm" style={{ background: "var(--w-primary)" }}>
                       <Icon size={16} className="text-white" strokeWidth={2} />
                     </div>
                     <h2 className="text-lg font-black text-gray-900">{cat.label}</h2>
@@ -301,7 +309,7 @@ export default function FAQPage() {
                     {cat.questions.map((faq, i) => (
                       <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors shadow-sm">
                         <summary className="flex items-start gap-3 p-5 cursor-pointer list-none select-none hover:bg-blue-50/30 transition-colors">
-                          <div className={`w-5 h-5 rounded-lg bg-gradient-to-br ${cat.color} text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5`}>
+                          <div className="w-5 h-5 rounded-lg text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--w-primary)" }}>
                             Q
                           </div>
                           <h3 className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</h3>

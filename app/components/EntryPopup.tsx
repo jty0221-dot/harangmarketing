@@ -33,7 +33,9 @@ export default function EntryPopup() {
 
   return (
     <div
-      className="fixed z-[9998] left-4 right-4 bottom-4 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[340px]"
+      /* 모바일 하단은 이미 붐빈다 — 챗봇 버튼이 bottom-[104px] 에 56px 로 떠 있어
+             bottom-4 로 두면 팝업이 그 버튼을 통째로 덮는다. 그 위로 올린다. */
+      className="fixed z-[9998] left-4 right-4 bottom-44 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[340px]"
       style={{
         animation: closing
           ? "haCardOut 0.18s ease both"

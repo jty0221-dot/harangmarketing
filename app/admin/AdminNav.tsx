@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users } from "lucide-react";
+import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users, Clapperboard } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -44,6 +44,13 @@ export function AdminHeader() {
           >
             <FileText size={13} />
             진행 보고서
+          </Link>
+          <Link
+            href="/admin/video-kb"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <Clapperboard size={13} />
+            영상 지식고
           </Link>
           <Link
             href="/"

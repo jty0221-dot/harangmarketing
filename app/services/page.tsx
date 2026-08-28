@@ -5,11 +5,12 @@ import Link from "next/link";
 import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
-  ChevronDown, Users, BarChart3, MessageSquare, Quote,
-  Navigation, Palette, Layers, Calculator, ListChecks,
+  ChevronDown, Users, BarChart3, MessageSquare,
+  Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
+import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -37,6 +38,22 @@ export const metadata: Metadata = {
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
+
+/**
+ * 상세페이지 카드 커버 — 한 장이 아니라 여러 장을 세워 넣는다.
+ *
+ * 상세페이지는 세로로 긴 물건(560x747)인데 카드 커버는 가로로 넓다(960x176).
+ * 한 장을 폭에 맞추면 높이가 1229px 로 늘어나 위쪽 14% 만 남고,
+ * 상세페이지의 위쪽 14% 는 배경 여백이라 화면에는 빈 띠만 보인다.
+ * 칸을 좁게 나누면 같은 높이에서 잘리는 비율이 준다 — 5칸이면 한 장당 90% 가 보인다.
+ *
+ * 고르는 기준은 종류마다 첫 건이다. 앞에서부터 자르면 생활·리빙만 나와서
+ * 생활용품만 하는 곳으로 읽힌다.
+ */
+const DP_COVERS = DP_CATEGORIES.slice(0, 5).map((c) => ({
+  src: `/detail-ref/${c.works[0].slug}.jpg`,
+  alt: `${c.works[0].title} 상세페이지 실제 납품 화면`,
+}));
 
 const SERVICES = [
   {
@@ -66,6 +83,36 @@ const SERVICES = [
     cover: "/cafe-ref/ref-r-01.png",
     coverAlt: "네이버 카페 영역 상위노출 실제 화면",
     coverBadge: "실제 노출 화면",
+  },
+  {
+    // 팔고 있는데 이 목록에 없어서 /services 에서 상세페이지로 가는 길이 없었다.
+    // 단가·일정은 /services/detail-page 의 PLANS 가 정본이고 여기는 요약만 적는다 (C-22).
+    id: "detail-page",
+    icon: LayoutTemplate,
+    color: "from-blue-600 to-blue-800",
+    tag: "상세페이지",
+    title: "스마트스토어 상세페이지 제작",
+    subtitle: "기획 · 카피 · 이미지까지 9단 구성",
+    desc: "상품은 좋은데 안 팔리는 이유는 대부분 순서입니다. 어디서 멈추게 하고 어디서 불안을 지우고 어디서 결제로 넘길지를 먼저 짜고, 그 순서대로 이미지를 만듭니다.",
+    timeline: "기획형 3영업일 · 제작형 7영업일",
+    deliverables: [
+      { label: "기획형", value: "150,000원", note: "구성표·카피·프롬프트" },
+      { label: "제작형", value: "350,000원", note: "상세 이미지까지 · 가장 많이 하십니다" },
+      { label: "제작+영상형", value: "550,000원", note: "첫 화면 GIF·숏폼 포함" },
+    ],
+    features: [
+      "9단 섹션 구성표 — 무엇을 몇 번째에 보여줄지 먼저 정합니다",
+      "섹션별 카피 작성 (확정 안 된 값은 비워 두고 여쭙습니다)",
+      "9단 상세 이미지 제작 · 모바일 가독성 판 별도 조정",
+      "슬라이스 파일 납품 — 받아서 바로 올리시면 됩니다",
+      "문구 수정 2회 · 이미지 재생성 컷당 3회 포함",
+      "식품은 표시사항(원재료·용량·소비기한·보관·제조원) 확인 후 등록",
+    ],
+    rec: "상품은 올렸는데 들어와서 그냥 나가는 스토어",
+    result: `실물 상세페이지 ${DP_TOTAL}건 · 원본 ${DP_CUTS}컷 전체 공개 (잘라낸 구간 없음)`,
+    href: "/services/detail-page",
+    covers: DP_COVERS,
+    coverBadge: "실제 납품 화면",
   },
   {
     // 대행 서비스가 아니라 자사 프로그램. 상세는 /studio 에 따로 있다.
@@ -203,7 +250,7 @@ const SERVICES = [
     desc: "국내 최다 사용 지도 앱 카카오맵에서 매장을 발견하는 고객을 잡습니다. 매장 관리 등록부터 트렌드 랭킹 상위 노출까지.",
     timeline: "등록·최적화 1~2주 · 상위 노출 1개월",
     deliverables: [
-      { label: "매장 관리 등록", value: "대행 처리", note: "빠른 처리 보장" },
+      { label: "매장 관리 등록", value: "대행 처리", note: "등록·최적화 1~2주" },
       { label: "카카오맵 리뷰", value: "실유저 기반", note: "100% 실사용자" },
       { label: "트렌드 랭킹", value: "상위 노출", note: "카카오맵 알고리즘 최적화" },
     ],
@@ -293,10 +340,10 @@ const INDUSTRY_LINKS = [
    원본: E:/하랑/{미미샵|영삼이네우정소갈비|이지클린}/build_quote_hwp.py
    ──────────────────────────────────────────────────────────── */
 
-const UNIT_PRICES: { item: string; unit: string; price: string }[] = [
+const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[] = [
   { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
   { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "3만원" },
-  { item: "블로그 관리대행", unit: "1편", price: "4만원" },
+  { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
   { item: "최적화 블로그 배포", unit: "1건", price: "3만원" },
   { item: "카페 배포", unit: "1건", price: "3만원" },
   { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
@@ -340,7 +387,7 @@ const CALC_EXAMPLES: {
     lines: [
       { label: "플레이스 SEO 최적화", calc: "10만원 × 1회", amount: "100,000" },
       { label: "홈페이지형 블로그 디자인", calc: "20만원 × 1회", amount: "200,000" },
-      { label: "블로그 관리대행", calc: "4만원 × 10편", amount: "400,000" },
+      { label: "블로그 관리대행", calc: "기준 4만원 × 10편", amount: "400,000" },
       { label: "파워컨텐츠 원고 설계·검수", calc: "5만원 × 1편", amount: "50,000" },
       { label: "네이버 광고 세팅·운영대행", calc: "계약 포함", amount: "0" },
     ],
@@ -400,7 +447,7 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   },
   {
     title: "채널 수와 물량이 다릅니다",
-    body: "단가가 채널별 · 건별로 붙습니다. 블로그는 편당 4만원이라 월 4편과 월 15편은 44만원 차이가 납니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
+    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 4만원으로 잡아도 월 4편과 월 15편은 44만원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다 — 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
   },
   {
     title: "심의와 계절이 다릅니다",
@@ -577,7 +624,7 @@ export default function ServicesPage() {
           answer={`${ANSWER_SENTENCES.whatWeDo} ${ANSWER_SENTENCES.price}`}
           facts={[
             { label: "견적 방식", value: "항목 조합형" },
-            { label: "기준 단가", value: "블로그 4만원/편" },
+            { label: "기준 단가", value: "블로그 4만원/편 기준 · 업종별 조정" },
             { label: "구성", value: "업체별 맞춤" },
             { label: "상담·진단", value: "0원" },
           ]}
@@ -622,8 +669,36 @@ export default function ServicesPage() {
                   }
                 >
                   {/* 커버 — 상품마다 자기 화면을 쓴다. 캡처를 공용으로 돌려 쓰면
-                      다른 서비스의 화면이 붙어 고객을 오인시킨다. 없으면 브랜드 밴드. */}
-                  {"cover" in s && s.cover ? (
+                      다른 서비스의 화면이 붙어 고객을 오인시킨다. 없으면 브랜드 밴드.
+                      세로로 긴 화면(상세페이지)은 한 장을 눕히면 여백만 남아서 여러 칸으로 세워 넣는다. */}
+                  {"covers" in s && s.covers ? (
+                    <div className="relative h-48 md:h-60 bg-gray-100 p-3">
+                      {/* 칸 수와 보여줄 장수를 같이 움직인다. 칸만 줄이면 나머지가 아랫줄로
+                          흘러 한 장이 납작해진다 — 좁은 화면에서는 아예 장수를 줄인다. */}
+                      <div className="grid h-full grid-cols-2 grid-rows-1 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        {s.covers.map((c, i) => (
+                          <img
+                            key={c.src}
+                            src={c.src}
+                            alt={c.alt}
+                            width={560}
+                            height={747}
+                            loading="lazy"
+                            decoding="async"
+                            className={`h-full w-full rounded-lg border border-gray-200 bg-white object-cover object-top ${
+                              i === 2 ? "hidden sm:block" : i === 3 ? "hidden md:block" : i >= 4 ? "hidden lg:block" : "block"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <span
+                        className="absolute left-5 top-5 rounded-full px-3 py-1.5 text-[11px] font-black text-white"
+                        style={{ background: "var(--cd-primary)" }}
+                      >
+                        {s.coverBadge}
+                      </span>
+                    </div>
+                  ) : "cover" in s && s.cover ? (
                     <div className="relative">
                       <img
                         src={s.cover}
@@ -654,7 +729,7 @@ export default function ServicesPage() {
                   {/* Card header */}
                   <div className="p-6 md:p-8 border-b border-gray-50">
                     <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center shadow-sm shrink-0`}>
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm shrink-0" style={{ background: "var(--w-primary)" }}>
                         <Icon size={22} className="text-white" strokeWidth={1.5} />
                       </div>
                       <div className="flex-1">
@@ -748,14 +823,14 @@ export default function ServicesPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "+167% 방문객 · 3개월", color: "from-blue-500 to-blue-700" },
-                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "+113% 배달 매출 · 4개월", color: "from-blue-600 to-indigo-700" },
-                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "예약 2주 완전 마감", color: "from-blue-500 to-blue-700" },
-                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "+300% 신규예약 · 6개월", color: "from-blue-600 to-blue-800" },
-                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "+55% 수강생 · 3개월", color: "from-blue-700 to-indigo-800" },
-                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "+64% 매출 · 5개월", color: "from-blue-500 to-indigo-600" },
-                { industry: "한의원·한방", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 마케팅"], result: "+200% 초진 예약 · 4개월", color: "from-blue-600 to-indigo-700" },
-                { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], result: "오픈 첫날부터 노출", color: "from-blue-700 to-blue-900" },
+                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "19위 → 1위 · 20일 계측", color: "from-blue-500 to-blue-700" },
+                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "13위 → 1위 · 32일 계측", color: "from-blue-600 to-indigo-700" },
+                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "인스타그램 중심 설계", color: "from-blue-500 to-blue-700" },
+                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "5위 → 1위 · 32일 계측", color: "from-blue-600 to-blue-800" },
+                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "맘카페 바이럴 중심", color: "from-blue-700 to-indigo-800" },
+                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "블로그 SEO 중심", color: "from-blue-500 to-indigo-600" },
+                { industry: "한의원·한방", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 마케팅"], result: "블로그 마케팅 중심", color: "from-blue-600 to-indigo-700" },
+                { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], result: "오픈 전 플레이스 세팅", color: "from-blue-700 to-blue-900" },
               ].map((ind) => (
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
                   <div className={`bg-gradient-to-br ${ind.color} px-4 py-3`}>
@@ -785,64 +860,6 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ══ 고객 후기 ══ */}
-        <section className="py-14 md:py-18 bg-white border-y border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">고객 후기</p>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900">실제 사장님들의 이야기</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                {
-                  name: "카페 사장님",
-                  location: "경기 포천",
-                  service: "플레이스 SEO",
-                  color: "from-blue-500 to-blue-700",
-                  text: "3주 만에 '지역 카페 추천' 1위가 됐어요. 주말 웨이팅이 생겼고 하루 매출이 2배 됐습니다.",
-                  metric: "매출 +210%",
-                },
-                {
-                  name: "미용실 원장님",
-                  location: "서울 마포",
-                  service: "체험단·리뷰",
-                  color: "from-blue-600 to-indigo-700",
-                  text: "예약이 항상 2주 이상 밀려요. 인스타 포트폴리오도 같이 해주셔서 신규 고객 비율이 확 늘었어요.",
-                  metric: "예약 100% 마감",
-                },
-                {
-                  name: "한식당 대표님",
-                  location: "인천 부평",
-                  service: "블로그 마케팅",
-                  color: "from-blue-500 to-blue-700",
-                  text: "블로그 글 올리고 2달 후부터 네이버 검색 상단에 뜨기 시작했고 점심 손님이 40% 늘었어요.",
-                  metric: "방문객 +140%",
-                },
-              ].map((t) => (
-                <div key={t.name} className="bg-gray-50 rounded-2xl p-5 border border-gray-100 flex flex-col">
-                  <div className="flex gap-0.5 mb-3">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={12} className="text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <Quote size={16} className="text-blue-200 mb-2" />
-                  <p className="text-sm text-gray-700 leading-relaxed flex-1 mb-4">{t.text}</p>
-                  <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r ${t.color} text-white text-xs font-black mb-4 w-fit`}>
-                    <TrendingUp size={11} />
-                    {t.metric}
-                  </div>
-                  <div className="border-t border-gray-100 pt-3 flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-bold text-gray-900">{t.name}</div>
-                      <div className="text-[11px] text-gray-400">{t.location}</div>
-                    </div>
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-semibold">{t.service}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ══ 가격 산출 근거 ══ */}
         <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-20">
@@ -876,7 +893,12 @@ export default function ServicesPage() {
                   <tbody>
                     {UNIT_PRICES.map((u) => (
                       <tr key={u.item} className="border-b border-gray-100 last:border-0 bg-white">
-                        <td className="px-4 py-3 text-gray-800 font-bold">{u.item}</td>
+                        <td className="px-4 py-3 text-gray-800 font-bold">
+                          {u.item}
+                          {u.note && (
+                            <span className="block mt-1 text-[11px] font-normal leading-relaxed text-gray-500">{u.note}</span>
+                          )}
+                        </td>
                         <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{u.unit}</td>
                         <td className="px-4 py-3 text-right font-black text-gray-900 tabular-nums whitespace-nowrap">{u.price}</td>
                       </tr>
@@ -1027,7 +1049,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ══ 성과 보장 약속 ══ */}
+        {/* ══ 하랑의 약속 ══ */}
         <section className="py-14 md:py-20 bg-gray-50 border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
@@ -1061,7 +1083,7 @@ export default function ServicesPage() {
                 },
               ].map((item) => (
                 <div key={item.icon} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white text-xs font-black mb-4 shadow-sm`}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-black mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     {item.icon}
                   </div>
                   <h3 className="font-black text-gray-900 text-sm mb-2">{item.title}</h3>
@@ -1076,7 +1098,7 @@ export default function ServicesPage() {
                   { val: SITE.stats.renewalRate, label: "재계약률", sub: "10년 유지" },
                   { val: "500+", label: "완료 프로젝트", sub: "2020년~현재" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24h", label: "연락 보장", sub: "전담 팀장 직접 응대" },
+                  { val: "24h", label: "이내 연락", sub: "전담 팀장 직접 응대" },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
@@ -1311,7 +1333,7 @@ export default function ServicesPage() {
                 <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-3">자주 묻는 질문</h2>
                 <p className="text-sm text-gray-400 leading-relaxed mb-4">상담 전에 가장 많이 물어보시는 내용을 정리했습니다.</p>
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-yellow-400 text-gray-900 text-xs font-bold hover:bg-yellow-300 transition-colors">
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-11 md:min-h-0 rounded-xl bg-yellow-400 text-gray-900 text-xs font-bold hover:bg-yellow-300 transition-colors">
                   <MessageSquare size={12} />더 물어보기
                 </a>
               </div>
@@ -1333,7 +1355,7 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="text-center mt-6">
-              <Link href="/faq" className="inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm hover:underline">
+              <Link href="/faq" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-blue-600 font-semibold text-sm hover:underline">
                 비용·계약·효과 등 전체 FAQ 보기 <ArrowRight size={13} />
               </Link>
             </div>
@@ -1417,7 +1439,7 @@ export default function ServicesPage() {
               {INDUSTRY_LINKS.map(ind => (
                 <Link key={ind.name} href={ind.href}
                   className="group flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 hover:bg-white hover:shadow-md transition-all">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${ind.color} flex items-center justify-center shrink-0 shadow-sm`}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
                     <ArrowRight size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <div className="min-w-0">

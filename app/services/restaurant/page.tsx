@@ -7,7 +7,7 @@ import { ArrowRight, UtensilsCrossed, TrendingUp, Star, ShoppingCart, CheckCircl
 
 export const metadata: Metadata = {
   title: "음식점·식당 마케팅 대행사 — 하랑마케팅 | 배달·플레이스 매출 증대 전문",
-  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 배달의민족·쿠팡이츠 상위 노출, 네이버 플레이스 SEO, 블로그 체험단 전문. 실제 성과 보장.",
+  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 배달의민족·쿠팡이츠 상위 노출, 네이버 플레이스 SEO, 블로그 체험단 전문. 상권 진단부터 0원으로 시작합니다.",
   keywords: ["음식점 마케팅", "식당 마케팅 대행사", "배달 매출 증대", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {
     title: "음식점·식당 마케팅 대행사 — 하랑마케팅",
@@ -27,9 +27,9 @@ const CHECKLIST = [
 ];
 
 const RESULTS = [
-  { label: "배달 월 매출 증가", value: "+127%", sub: "4개월 · 분식집" },
-  { label: "플레이스 순위", value: "1위", sub: "3개월 · 한식당" },
-  { label: "블로그 유입", value: "+340%", sub: "2개월 · 카레전문점" },
+  { label: "지역 카페 키워드", value: "19위 → 1위", sub: "20일 계측" },
+  { label: "지역 맛집 키워드", value: "13위 → 1위", sub: "32일 계측" },
+  { label: "지역 치과 키워드", value: "5위 → 1위", sub: "32일 계측" },
 ];
 
 export default function RestaurantPage() {
@@ -75,11 +75,11 @@ export default function RestaurantPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="음식점·배달 마케팅은 무엇부터 해야 하나요?"
-          answer="음식점·배달 마케팅은 배달앱 리뷰 관리, 네이버 플레이스 맛집 키워드 노출, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 배달 매출은 리뷰 평점과 리뷰 수에 직접 연동되기 때문입니다. 하랑마케팅이 진행한 서울 마포 음식점은 4개월 만에 월 배달 매출이 480만원에서 1,022만원으로 113% 증가했습니다. 음식점 마케팅 비용은 배달·홀 비중과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="음식점·배달 마케팅은 배달앱 리뷰 관리, 네이버 플레이스 맛집 키워드 노출, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 배달 매출은 리뷰 평점과 리뷰 수에 직접 연동되기 때문입니다. 하랑마케팅이 진행한 음식점은 지역 맛집 키워드에서 13위가 1위가 됐습니다(32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 배달·홀 비중과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
-            { label: "배달 매출", value: "+113%" },
-            { label: "진행 기간", value: "4개월" },
-            { label: "월 매출", value: "480→1,022만" },
+            { label: "지역 맛집 키워드", value: "13위 → 1위" },
+            { label: "계측 기간", value: "32일" },
+            { label: "순위 계측", value: "매일 스냅샷" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -110,7 +110,7 @@ export default function RestaurantPage() {
                     { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아닌 지속적인 콘텐츠 누적으로 검색 노출을 늘립니다." },
                   ].map(s => (
                     <div key={s.title} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                      <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0 shadow-sm`}>
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
                         <s.icon size={16} className="text-white" strokeWidth={2.5} />
                       </div>
                       <div>
