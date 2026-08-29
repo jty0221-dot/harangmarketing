@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { ArrowLeft, ArrowRight, TrendingUp, Clock, MapPin, CheckCircle2, Star, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, MapPin, CheckCircle2, Star } from "lucide-react";
 import JsonLd from "../../components/JsonLd";
 import AnswerBlock from "../../components/AnswerBlock";
 import { SITE, ORG_ID, breadcrumbLd } from "../../lib/seo";
@@ -259,7 +259,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                   ))}
                 </div>
                 <blockquote className="bg-gray-900 rounded-2xl p-5 border-l-4 border-blue-500">
-                  <p className="text-white text-sm leading-relaxed italic mb-3">"{c.quote}"</p>
+                  <p className="text-white text-sm leading-relaxed italic mb-3">&lsquo;{c.quote}&rsquo;</p>
                   <div className="flex items-center gap-2">
                     <div className="flex">
                       {[1,2,3,4,5].map(i => <Star key={i} size={12} className="text-blue-400 fill-blue-400" />)}

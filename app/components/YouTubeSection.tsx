@@ -46,7 +46,7 @@ const CURRICULUM = [
     stepColor: "bg-blue-600",
     videoId: "YA2mETS3y0w",
     title: "마케팅 대행사에 300만 원 입금 전, 제발 이 영상 보세요 (2026 최신 사기수법)",
-    desc: "\"월 5만 원에 상위노출 보장\" 그 말 믿고 입금하는 순간 돈은 사라집니다. 사기꾼들의 3가지 수법 폭로.",
+    desc: "'월 5만 원에 상위노출 보장' 그 말 믿고 입금하는 순간 돈은 사라집니다. 사기꾼들의 3가지 수법 폭로.",
     duration: "11분 25초",
     badge: "주의 필독",
   },
@@ -86,7 +86,7 @@ export default function YouTubeSection() {
               <h2 className="text-2xl md:text-3xl font-black text-white leading-tight mb-1.5" style={{ letterSpacing: "-0.03em" }}>
                 마케팅 노하우,<br className="md:hidden" /> 영상으로 무료 공개합니다
               </h2>
-              <p className="text-gray-400 text-sm">최신 영상이 올라올 때마다 자동 업데이트 — 구독하면 놓치지 않아요</p>
+              <p className="text-gray-400 text-sm">최신 영상이 올라올 때마다 자동 업데이트됩니다. 구독하면 놓치지 않아요</p>
             </div>
             <a
               href={SUBSCRIBE_URL}

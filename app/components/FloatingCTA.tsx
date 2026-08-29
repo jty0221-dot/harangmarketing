@@ -159,9 +159,6 @@ export default function FloatingCTA() {
           {expanded ? <X size={20} /> : <MessageCircle size={22} />}
           {!expanded && (
             <>
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 border-2 border-white text-white text-[11px] font-black flex items-center justify-center">
-                2
-              </span>
               {bizStatus === "open" && (
                 <span className="absolute -bottom-1 -left-1 w-3 h-3 rounded-full bg-green-400 border-2 border-white" />
               )}

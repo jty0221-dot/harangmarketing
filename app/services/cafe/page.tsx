@@ -6,7 +6,7 @@ import RankRecords from "../../components/RankRecords";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Coffee, Users, MessageSquare, BarChart3,
+  Coffee, MessageSquare, BarChart3,
 } from "lucide-react";
 
 export const metadata: Metadata = {

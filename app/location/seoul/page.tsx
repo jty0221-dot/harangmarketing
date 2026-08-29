@@ -16,6 +16,15 @@ const SEOUL_LD = {
   "url": `${BASE}/location/seoul`,
   "logo": `${BASE}/favicon.svg`,
   "image": `${BASE}/og-image.png`,
+  "telephone": SITE.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": SITE.address.street,
+    "addressLocality": SITE.address.locality,
+    "addressRegion": SITE.address.region,
+    "postalCode": SITE.address.postalCode,
+    "addressCountry": SITE.address.country,
+  },
   "description": "서울 강남·강서·마포·성수·홍대·종로 소상공인 맞춤 마케팅. 10년 경력, 전담 팀장 직접 관리. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램 전문.",
   "areaServed": [
     { "@type": "City", "name": "서울특별시" },
@@ -129,7 +138,7 @@ export default function SeoulPage() {
         <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">서울 상권별 특성</h2>
-            <p className="text-gray-500 text-sm text-center mb-10">같은 서울이어도 고객이 찾아오는 경로가 다릅니다 — 상권에 맞춰 채널을 나눕니다</p>
+            <p className="text-gray-500 text-sm text-center mb-10">같은 서울이어도 고객이 찾아오는 경로가 다릅니다. 상권에 맞춰 채널을 나눕니다</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {REGIONS.map(r => (
                 <div key={r.name} className={`rounded-2xl border p-5 ${r.color}`}>

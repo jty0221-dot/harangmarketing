@@ -969,7 +969,7 @@ export default function ServicesPage() {
                 ))}
               </div>
               <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
-                그래서 '월 얼마짜리 패키지' 를 미리 만들어두지 않습니다. 같은 예산이어도 매장 상황에 따라 들어가는 항목이 달라지기 때문입니다.
+                그래서 &lsquo;월 얼마짜리 패키지&rsquo; 를 미리 만들어두지 않습니다. 같은 예산이어도 매장 상황에 따라 들어가는 항목이 달라지기 때문입니다.
               </p>
             </div>
             {/* 4) 업종별 차이 */}

@@ -21,7 +21,7 @@ const STATS = [
   [Users, "누적 클라이언트", "500+"],
   [TrendingUp, "재계약률", SITE.stats.renewalRate],
   [ShieldCheck, "직접 관리", "10년+"],
-  [Star, "평균 만족도", "4.9"],
+  [Star, "상담 답변", "24시간 내"],
 ] as const;
 
 const SERVICES = [

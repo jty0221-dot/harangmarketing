@@ -3,7 +3,8 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
-import { ArrowRight, MapPin, TrendingUp, Users, Anchor } from "lucide-react";
+import { ArrowRight, MapPin, Anchor } from "lucide-react";
+import { SITE } from "../../lib/seo";
 
 const BASE = "https://www.harangmarketing.com";
 
@@ -15,6 +16,15 @@ const INCHEON_LD = {
   "url": `${BASE}/location/incheon`,
   "logo": `${BASE}/favicon.svg`,
   "image": `${BASE}/og-image.png`,
+  "telephone": SITE.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": SITE.address.street,
+    "addressLocality": SITE.address.locality,
+    "addressRegion": SITE.address.region,
+    "postalCode": SITE.address.postalCode,
+    "addressCountry": SITE.address.country,
+  },
   "description": "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 전담 팀장 직접 관리.",
   "areaServed": [
     { "@type": "City", "name": "인천광역시" },
@@ -111,7 +121,7 @@ export default function IncheonPage() {
         <section className="py-14 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-gray-900 mb-2 text-center">인천 상권별 특성</h2>
-            <p className="text-gray-500 text-sm text-center mb-8">신도시와 구도심의 검색 경로가 다릅니다 — 상권에 맞춰 채널을 나눕니다</p>
+            <p className="text-gray-500 text-sm text-center mb-8">신도시와 구도심의 검색 경로가 다릅니다. 상권에 맞춰 채널을 나눕니다</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {REGIONS.map(r => (
                 <div key={r.name} className={`rounded-2xl border p-5 ${r.color}`}>

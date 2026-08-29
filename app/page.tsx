@@ -506,7 +506,7 @@ export default function HomePage() {
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
               </div>
               <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>이런 고민, 해결된 증거 있습니다</h2>
-              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 사장님들이 가장 많이 하는 말 — 하랑이 어떻게 바꿨는지</p>
+              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 사장님들이 가장 많이 하는 말, 하랑이 어떻게 바꿨는지</p>
             </div>
             </RevealOnScroll>
             <div className="space-y-4">
@@ -556,7 +556,6 @@ export default function HomePage() {
                   badgeText: "text-blue-700",
                 },
               ].map((item, idx) => {
-                const Icon = item.icon;
                 return (
                   <RevealOnScroll key={item.q} delay={idx * 60}>
                   <div className="bg-white rounded-2xl border p-5 md:p-7 hover:shadow-lg transition-all group" style={{ borderColor: "var(--h-border)" }}>
@@ -564,7 +563,7 @@ export default function HomePage() {
                       {/* content */}
                       <div className="flex-1 min-w-0">
                         <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: "var(--h-muted)" }}>고객 고민</p>
-                        <h3 className="font-black text-base md:text-lg leading-snug mb-2" style={{ color: "var(--h-dark)" }}>"{item.q}"</h3>
+                        <h3 className="font-black text-base md:text-lg leading-snug mb-2" style={{ color: "var(--h-dark)" }}>&lsquo;{item.q}&rsquo;</h3>
                         <p className="text-sm leading-relaxed pl-3" style={{ borderLeft: "2px solid var(--h-amber)", color: "#4B5563" }}>{item.a}</p>
                       </div>
                       {/* result badge — amber */}
@@ -600,7 +599,7 @@ export default function HomePage() {
                     대표님은 사업의 본질에만 집중하십시오.<br />
                     골치 아픈 홍보와 전략은 하랑이<br className="hidden sm:block" /> 대신 고민하고 실행하겠습니다.
                   </p>
-                  <p className="text-xs mt-4 font-semibold" style={{ color: "var(--h-muted)" }}>— 하랑마케팅 대표</p>
+                  <p className="text-xs mt-4 font-semibold" style={{ color: "var(--h-muted)" }}>하랑마케팅 대표</p>
                 </div>
 
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
@@ -885,7 +884,7 @@ export default function HomePage() {
                 {
                   tag: "업종별 전략",
                   headerBg: "var(--h-dark)",
-                  title: "카페·의원·학원 — 마케팅 채널이 달라야 하는 이유",
+                  title: "카페·의원·학원, 마케팅 채널이 달라야 하는 이유",
                   desc: "같은 비용을 써도 업종에 맞는 채널을 선택해야 ROI가 나옵니다. 업종별 최적 채널 선택 가이드.",
                   readTime: "5분",
                   views: "6,210",
@@ -1071,7 +1070,7 @@ export default function HomePage() {
                   네이버 플레이스 상위 노출,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                  많은 분들이 "사진만 예쁘게 올리면 되는 거 아닌가요?"라고 물어보세요.
+                  많은 분들이 &lsquo;사진만 예쁘게 올리면 되는 거 아닌가요?&rsquo;라고 물어보세요.
                   하랑이 10년간 500개 매장을 분석한 결과는 다릅니다.
                 </p>
                 <div className="space-y-4">
@@ -1560,7 +1559,7 @@ export default function HomePage() {
           <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-gray-400 text-xs font-medium">지금 상담 가능 · 오늘 3명 신청</span>
+              <span className="text-gray-400 text-xs font-medium">상담 신청 24시간 접수</span>
             </div>
 
             <h2 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">

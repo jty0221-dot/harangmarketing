@@ -49,7 +49,7 @@ export default function DifferenceSection() {
               다른 대행사에서 실망하셨다면<br className="sm:hidden" /> 이 표를 먼저 보세요
             </h2>
             <p className="text-sm" style={{ color: "var(--h-muted)" }}>
-              과장 없이 — 실제로 어떻게 다른지 비교해드립니다
+              과장 없이, 실제로 어떻게 다른지 비교해드립니다
             </p>
           </div>
         </RevealOnScroll>

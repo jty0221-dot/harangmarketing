@@ -6,7 +6,7 @@ import RankRecords from "../../components/RankRecords";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Stethoscope, Users, MessageSquare, BarChart3,
+  Stethoscope, MessageSquare,
   ShieldCheck,
 } from "lucide-react";
 

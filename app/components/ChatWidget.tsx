@@ -19,7 +19,6 @@ import {
   X,
   Phone,
   MessageCircle,
-  Zap,
   ArrowRight,
   Newspaper,
   MonitorDown,

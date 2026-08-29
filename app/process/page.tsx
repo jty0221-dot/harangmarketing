@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "진행 과정 — 하랑마케팅 | 상담부터 성과까지 6단계",
   description: "하랑마케팅 상담 신청부터 계약, 실행, 성과 리포트까지 6단계 진행 과정을 투명하게 공개합니다. 상담 비용 0원, 계약 강요 없음.",
   keywords: ["마케팅 대행사 진행 과정", "소상공인 마케팅 상담", "하랑마케팅 프로세스"],
+  alternates: { canonical: "https://www.harangmarketing.com/process" },
   openGraph: {
     title: "하랑마케팅 진행 과정 — 상담부터 성과까지 6단계",
     description: "투명하게 공개하는 6단계 마케팅 진행 과정. 상담 비용 0원.",

@@ -41,9 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/location/gyeonggi`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/location/seoul`,          lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/location/incheon`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/terms`,                   lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
-    { url: `${BASE}/privacy`,                 lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
-    { url: `${BASE}/refund`,                  lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
   ];
 
   const casePages: MetadataRoute.Sitemap = CASE_SLUGS.map((slug) => ({

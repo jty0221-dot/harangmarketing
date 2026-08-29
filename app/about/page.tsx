@@ -4,9 +4,8 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import {
   Shield, Target, TrendingUp, MessageCircle, Heart,
-  CheckCircle2, ArrowRight, Quote, Star, BarChart3,
-  Clock, Phone, BookOpen, MapPin, AtSign, Coffee,
-  Award, Handshake, AlertTriangle, Zap, Users,
+  CheckCircle2, ArrowRight, Quote, Star,
+  Phone, BookOpen, MapPin, AtSign, Coffee, Users,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
@@ -102,7 +101,7 @@ const PROMISES = [
     num: "03",
     icon: TrendingUp,
     color: "from-blue-500 to-blue-700",
-    title: "반짝 노출 NO — 지속 가능한 성장",
+    title: "반짝 노출 NO, 지속 가능한 성장",
     desc: "단순 광고가 아닌 브랜드 신뢰도를 높이는 콘텐츠를 만듭니다. 지속적인 순위 체크, 키워드 최적화, 플랫폼 다각화로 시간이 지날수록 우상향하는 매출 그래프를 만들어냅니다.",
     badge: "장기 성장 설계",
   },
@@ -111,7 +110,7 @@ const PROMISES = [
     icon: MessageCircle,
     color: "from-blue-700 to-indigo-700",
     title: "대표님을 귀찮게 하는 파트너",
-    desc: "계약하고 나면 연락 두절되는 대행사에 지치셨나요? 하랑은 반대입니다. 24시간, 주말 없이 끊임없이 소통하고 피드백을 드립니다. 대표님과 저희가 한 팀이 될 때 최고의 결과가 나옵니다.",
+    desc: "계약하고 나면 연락 두절되는 대행사에 지치셨나요? 하랑은 반대입니다. 24시간, 주말 없이 끊임없이 소통하고 피드백을 드립니다. 대표님과 저희가 한 팀이 될 때 결과가 달라집니다.",
     badge: "24시간 소통",
   },
   {
@@ -148,7 +147,7 @@ const FAQS = [
   },
   {
     q: "광고비가 비싸지는 않나요?",
-    a: "무조건 싼 게 좋은 게 아닙니다. 1년 계약에 120만원(월 10만원)으로 마케팅을 해준다는 업체들은 대부분 기계적인 작업입니다. 하랑은 불필요한 서비스를 빼고 비용 대비 최고의 효율을 만들어드립니다.",
+    a: "무조건 싼 게 좋은 게 아닙니다. 1년 계약에 120만원(월 10만원)으로 마케팅을 해준다는 업체들은 대부분 기계적인 작업입니다. 하랑은 불필요한 서비스를 빼고 비용 대비 높은 효율을 만들어드립니다.",
   },
   {
     q: "계약 기간은 어떻게 되나요?",
@@ -219,7 +218,7 @@ export default function AboutPage() {
                 "내 가게처럼 책임지고 관리해 주는 곳, 정말 없을까요?",
               ].map((text, i) => (
                 <div key={i} className="relative pl-6 border-l-4 border-red-500">
-                  <div className="absolute -top-2 -left-1 text-red-500 text-5xl font-black leading-none select-none opacity-20">"</div>
+                  <div className="absolute -top-2 -left-1 text-red-500 text-5xl font-black leading-none select-none opacity-20">&ldquo;</div>
                   <p className="text-lg md:text-xl font-black text-gray-900 leading-snug">{text}</p>
                   <div className="absolute -bottom-1 left-0 w-1 h-3 bg-red-400 rounded-full opacity-50" />
                 </div>
@@ -261,8 +260,8 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-gray-600 text-base leading-relaxed">
                   <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="text-gray-900">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
-                  <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="text-gray-900">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, "내가 직접 제대로 된 대행사를 만들자"는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
-                  <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 — <strong className="text-gray-900">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
+                  <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="text-gray-900">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, &lsquo;내가 직접 제대로 된 대행사를 만들자&rsquo;는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
+                  <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 <strong className="text-gray-900">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
                 </div>
 
                 <div className="mt-7 p-5 rounded-2xl bg-blue-50 border border-blue-100">
@@ -270,9 +269,9 @@ export default function AboutPage() {
                     <Quote size={12} className="text-white" />
                   </div>
                   <p className="text-sm text-blue-800 leading-relaxed font-medium italic">
-                    "음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요."
+                    &lsquo;음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.&rsquo;
                   </p>
-                  <p className="text-xs text-blue-600 mt-2 font-bold">— 대표 전태영</p>
+                  <p className="text-xs text-blue-600 mt-2 font-bold">대표 전태영</p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -380,18 +379,18 @@ export default function AboutPage() {
             </div>
             <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-5">대표의 편지</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-6 leading-relaxed">
-              "당신이 원하는 마케팅을 하고 계십니까?"
+              &lsquo;당신이 원하는 마케팅을 하고 계십니까?&rsquo;
             </h2>
             <div className="space-y-4 text-blue-100 text-base leading-relaxed mb-8">
               <p>저는 수많은 사장님들을 만나며 느꼈습니다. 음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 맛이 없는데 마케팅만 한다고 성공할 수 없습니다.</p>
               <p>하지만 <strong className="text-white">본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.</strong> 대표님은 사업의 본질에만 집중하십시오. 골치 아픈 홍보와 전략은 하랑이 대신 고민하고 실행하겠습니다.</p>
-              <p>아직 하랑마케팅이 낯설 수 있습니다. 바로 계약하지 않으셔도 좋습니다. 다른 곳들과 충분히 비교해 보십시오. 결국 '진짜'를 알아보는 눈을 가진 대표님들은 하랑으로 오시게 될 거라 확신합니다.</p>
+              <p>아직 하랑마케팅이 낯설 수 있습니다. 바로 계약하지 않으셔도 좋습니다. 다른 곳들과 충분히 비교해 보십시오. 결국 &lsquo;진짜&rsquo;를 알아보는 눈을 가진 대표님들은 하랑으로 오시게 될 거라 확신합니다.</p>
             </div>
             <div className="bg-white/10 border border-white/20 rounded-2xl p-5 mb-8">
               <p className="text-sm text-blue-100 font-medium leading-relaxed">
                 하랑마케팅은 아무 업체나 받지 않습니다. 저희의 철학에 공감하고, 함께 성장할 준비가 되신 분들께만 집중합니다.
               </p>
-              <p className="text-xs text-blue-300 mt-2 font-bold">— 대표 전태영</p>
+              <p className="text-xs text-blue-300 mt-2 font-bold">대표 전태영</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-blue-700 font-black text-sm hover:bg-blue-50 transition-colors shadow-lg">
@@ -512,14 +511,14 @@ export default function AboutPage() {
                 <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gray-100" />
                 <div className="space-y-6">
                   {[
-                    { year: "2014~", event: "대학생 서포터즈 활동 — 마케팅 경력 시작", note: "브랜드 홍보, 콘텐츠 제작, 현장 마케팅 경험 축적" },
-                    { year: "2018", event: "해병대 장교 전역 · 카페 창업 도전", note: "마케팅을 몰라 단기간 폐업 — 소상공인의 아픔을 직접 경험" },
+                    { year: "2014~", event: "대학생 서포터즈 활동 · 마케팅 경력 시작", note: "브랜드 홍보, 콘텐츠 제작, 현장 마케팅 경험 축적" },
+                    { year: "2018", event: "해병대 장교 전역 · 카페 창업 도전", note: "마케팅을 몰라 단기간 폐업. 소상공인의 아픔을 직접 경험" },
                     { year: "2018~", event: "마케팅 대행사 취업 · 팀장까지 근무", note: "내부에서 목격한 허위 보고·불성실 대응에 혐오감 → 직접 창업 결심" },
-                    { year: "2020", event: "하랑마케팅 공식 설립 (4월 15일)", note: "'제대로 된 대행사를 만들자' — 소상공인 전문 마케팅 대행 시작" },
+                    { year: "2020", event: "하랑마케팅 공식 설립 (4월 15일)", note: "'제대로 된 대행사를 만들자' · 소상공인 전문 마케팅 대행 시작" },
                     { year: "2022", event: "누적 클라이언트 100곳 돌파", note: "카페·음식점 중심 → 병원·뷰티·학원으로 업종 확장" },
                     { year: "2024", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
-                    { year: "2026", event: `누적 클라이언트 500곳+, 재계약률 ${SITE.stats.renewalRate}`, note: "7년차 — 전담 팀장 직접 관리 원칙 유지 중" },
-                  ].map((item, i) => (
+                    { year: "2026", event: `누적 클라이언트 500곳+, 재계약률 ${SITE.stats.renewalRate}`, note: "7년차 · 전담 팀장 직접 관리 원칙 유지 중" },
+                  ].map((item) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
                       <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
                         <span className="text-[11px] font-black text-blue-600">{item.year.slice(2)}</span>
@@ -573,7 +572,7 @@ export default function AboutPage() {
 
             {/* ── 로고타입 — 가로형 ── */}
             <div className="mb-16">
-              <h3 className="text-base font-black text-gray-900 mb-1">로고타입 — 가로형</h3>
+              <h3 className="text-base font-black text-gray-900 mb-1">로고타입 · 가로형</h3>
               <p className="text-sm text-gray-400 mb-8">기본 사용 형태입니다. 넓은 지면 및 디지털 환경, 명함, 인쇄물 등에 사용합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -612,7 +611,7 @@ export default function AboutPage() {
 
             {/* ── 로고타입 — 세로형 ── */}
             <div className="mb-16">
-              <h3 className="text-base font-black text-gray-900 mb-1">로고타입 — 세로형</h3>
+              <h3 className="text-base font-black text-gray-900 mb-1">로고타입 · 세로형</h3>
               <p className="text-sm text-gray-400 mb-8">정방형 지면, SNS 프로필, 앱 아이콘 등 세로 배치가 적합한 환경에 사용합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">

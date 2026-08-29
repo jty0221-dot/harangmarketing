@@ -182,7 +182,7 @@ const CasesPage: FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 누적", color: "text-blue-600" },
-                { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "업계 최고 수준", color: "text-blue-600" },
+                { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "진행 고객 기준", color: "text-blue-600" },
                 { to: 6, suffix: "개+", decimals: 0, label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
                 { to: 300, suffix: "%", decimals: 0, label: "최대 매출 상승", sub: "실제 달성 수치", color: "text-blue-700" },
               ].map((s) => (
@@ -209,6 +209,39 @@ const CasesPage: FC = () => {
             { label: "1페이지 유지 키워드", value: `${SUMMARY.page1Keywords}개` },
           ]}
         />
+
+        {/* 상세 리포트 입구 · 카드 3건 */}
+        <section className="py-10 md:py-12 bg-white border-b border-gray-100">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-5">
+              <h2 className="text-lg md:text-xl font-black text-gray-900">과정까지 적은 심층 리포트</h2>
+              <p className="text-xs text-gray-400">진행 단계와 전후 수치를 그대로 공개합니다</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { href: "/cases/cafe-ilsan-place-1st", cat: "카페 · 경기 포천", title: "플레이스 지역 키워드 1위 달성", metric: "방문객 +167%" },
+                { href: "/cases/clinic-gangnam-booking-300", cat: "병원·의원 · 서울 강서", title: "인스타그램 신규 예약 +300%", metric: "팔로워 200명에서 3,800명" },
+                { href: "/cases/restaurant-mapo-delivery-2x", cat: "음식점 · 서울 마포", title: "배달앱 리뷰 10개에서 180개로", metric: "월 배달 매출 2배" },
+              ].map((r) => (
+                <Link
+                  key={r.href}
+                  href={r.href}
+                  className="group bg-gray-50 hover:bg-blue-50/60 border border-gray-100 hover:border-blue-200 rounded-2xl p-5 transition-colors"
+                >
+                  <p className="text-[11px] font-bold text-gray-400 mb-1.5">{r.cat}</p>
+                  <p className="text-sm font-black text-gray-900 leading-snug mb-3">{r.title}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-blue-600">{r.metric}</span>
+                    <span className="inline-flex items-center gap-1 text-xs font-bold text-gray-400 group-hover:text-blue-600 transition-colors">
+                      리포트 보기
+                      <ArrowRight size={12} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Filter + Cases */}
         <section className="py-12 md:py-20 bg-gray-50">
@@ -259,7 +292,7 @@ const CasesPage: FC = () => {
             {/* Result count */}
             {query && (
               <p className="text-sm text-gray-500 mb-4">
-                <span className="font-bold text-gray-800">"{query}"</span> 검색 결과 {filtered.length}건
+                <span className="font-bold text-gray-800">&lsquo;{query}&rsquo;</span> 검색 결과 {filtered.length}건
                 {filtered.length === 0 && (
                   <span className="ml-2 text-blue-600 font-semibold cursor-pointer hover:underline" onClick={() => setQuery("")}>검색어 지우기</span>
                 )}
@@ -336,7 +369,7 @@ const CasesPage: FC = () => {
                       </div>
 
                       {/* Story */}
-                      <p className="text-sm text-gray-500 leading-relaxed italic mb-4 border-l-2 border-blue-200 pl-3 bg-blue-50/40 py-2 rounded-r-lg">"{c.story}"</p>
+                      <p className="text-sm text-gray-500 leading-relaxed italic mb-4 border-l-2 border-blue-200 pl-3 bg-blue-50/40 py-2 rounded-r-lg">&lsquo;{c.story}&rsquo;</p>
 
                       {/* Footer */}
                       <div className="flex items-center justify-between pt-3 border-t border-gray-100">

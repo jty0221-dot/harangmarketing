@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ExternalLink, TrendingUp, BookOpen, ArrowRight, Lightbulb, FileText, MapPin, Camera, LayoutGrid } from "lucide-react";
-import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import { ExternalLink, BookOpen, ArrowRight, Lightbulb, FileText, MapPin, Camera, LayoutGrid } from "lucide-react";
 
 interface StaticPost {
   tag: string;

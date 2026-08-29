@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "자주 묻는 질문 (FAQ) — 하랑마케팅 | 소상공인 마케팅 대행사",
   description: "하랑마케팅 상담 전 가장 많이 물어보시는 질문들을 모았습니다. 비용, 계약 기간, 효과, 지역, 업종 등 궁금한 것을 미리 확인하세요.",
   keywords: ["마케팅 대행사 FAQ", "소상공인 마케팅 비용", "네이버 플레이스 마케팅 가격", "마케팅 대행사 계약", "하랑마케팅 자주묻는질문"],
+  alternates: { canonical: "https://www.harangmarketing.com/faq" },
   openGraph: {
     title: "하랑마케팅 FAQ — 상담 전 미리 확인하세요",
     description: "비용, 계약, 효과, 업종별 질문 등 상담 전에 궁금한 것들을 정리했습니다.",

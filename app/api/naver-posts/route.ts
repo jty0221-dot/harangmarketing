@@ -1,4 +1,9 @@
-export const runtime = "edge";
+/**
+ * 네이버 블로그 글 목록 — 1시간마다 다시 가져온다 (ISR).
+ * edge 런타임은 Next 16 에서 deprecated 라 nodejs 기본값으로 돌렸다.
+ * revalidate 없이 두면 빌드 시점에 정적으로 굳어 새 글이 안 잡힌다.
+ */
+export const revalidate = 3600;
 
 const BLOG_ID = "harangmarketing";
 const NAVER_BASE = "https://blog.naver.com";

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "업종별 마케팅 사례",
   description:
     "음식점·카페·병원·미용실·학원부터 인테리어·여행까지, 하랑마케팅이 직접 진행한 업종별 마케팅 사례를 모았습니다.",
+  alternates: { canonical: "https://www.harangmarketing.com/portfolio" },
 };
 
 export default function PortfolioPage() {

@@ -65,7 +65,7 @@ export default function ReviewsSection() {
             후기는 절대 조작하지 않습니다.<br />
             모든 후기는 실제 계약 클라이언트께서 직접 남겨주신 것만 게재합니다.
           </p>
-          <p className="text-[11px] text-gray-400 mt-1">— 하랑마케팅 대표</p>
+          <p className="text-[11px] text-gray-400 mt-1">하랑마케팅 대표</p>
         </div>
 
       </div>

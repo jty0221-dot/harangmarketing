@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import { SUMMARY } from "../../lib/rank-records";
 import Link from "next/link";
-import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2, Search, MessageSquare } from "lucide-react";
+import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "쇼핑몰·소매점 마케팅 대행사 — 하랑마케팅 | 온·오프라인 매출 증대",

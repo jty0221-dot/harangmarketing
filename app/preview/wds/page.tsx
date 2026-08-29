@@ -225,7 +225,7 @@ export default function WdsPreviewPage() {
             {[
               [TrendingUp, "재계약률", SITE.stats.renewalRate],
               [Users, "누적 프로젝트", "500+"],
-              [Star, "평균 만족도", "4.9"],
+              [Star, "상담 답변", "24시간 내"],
               [ShieldCheck, "대표 경력", "10년+"],
             ].map(([Icon, label, value], i) => {
               const I = Icon as typeof TrendingUp;
