@@ -5,8 +5,10 @@ import { getAllPosts } from "./blog-posts";
  * 블로그 글 통합 인덱스 (서버 전용)
  *
  * 하랑마케팅 블로그 글은 두 곳에 나뉘어 있다.
- *   1) content/blog-posts.json  — /admin 에서 발행한 글 (실제 운영 경로)
- *   2) app/lib/blog-meta.ts     — 초기에 코드로 넣어둔 글 15편
+ *   1) content/blog-posts.json  — /admin 발행 글. 발행하면 GitHub Contents API 로
+ *      main 에 커밋되어 재배포된다 (github-content.ts). 다만 개설 후 발행 0건 —
+ *      2026-08 현재 실제 글은 전부 2) 경로다. 이 파일이 [] 인 것은 정상 상태다.
+ *   2) app/lib/blog-meta.ts     — 코드로 넣은 글 (현재 전 편이 이 경로)
  *
  * sitemap · rss.xml · llms.txt 는 반드시 이 함수를 통해 글 목록을 가져올 것.
  * 각자 BLOG_META 만 직접 import 하면 /admin 에서 새 글을 발행해도

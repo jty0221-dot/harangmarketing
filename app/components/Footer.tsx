@@ -223,6 +223,8 @@ export default function Footer() {
           <div className="text-xs text-gray-600 space-y-1">
             <p>대표: 전태영 · 사업자등록번호: 706-68-00281 · 통신판매업신고: 2020-서울강서-1482</p>
             <p>개인정보보호책임자: 전태영</p>
+            {/* 상호 혼선 안내 — 동명의 콜백문자 서비스 업체와 구분 (Q-0024) */}
+            <p>같은 이름을 쓰는 콜백문자 서비스 회사와는 별개 회사입니다. 하랑마케팅 공식 연락처는 010-7541-9054 한 곳입니다.</p>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-600">
             <Link href="/terms" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors">이용약관</Link>
