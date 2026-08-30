@@ -284,7 +284,7 @@ export default function FreeCheckPage() {
                 <div className="border-t border-gray-100 px-6 py-3 bg-gray-50 flex items-center justify-center gap-4">
                   <span className="flex items-center gap-1 text-[11px] text-gray-500">
                     <MapPin size={10} className="text-blue-500" strokeWidth={2.5} />
-                    경기·서울·인천
+                    전국 어디든
                   </span>
                   <span className="text-[11px] text-gray-400">10년 경력</span>
                   <span className="text-[11px] text-gray-400">500+ 프로젝트</span>

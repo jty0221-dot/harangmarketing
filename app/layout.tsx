@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: "하랑마케팅",
     title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
-      `플레이스·블로그·체험단·인스타그램 마케팅. 네이버 플레이스 순위를 매일 계측합니다. 상담 무료, 재계약률 ${SITE.stats.renewalRate}, 경기·서울·인천 전 지역.`,
+      `플레이스·블로그·체험단·인스타그램 마케팅. 네이버 플레이스 순위를 매일 계측합니다. 상담 무료, 재계약률 ${SITE.stats.renewalRate}, 전국 어디든 진행합니다.`,
     images: [
       {
         url: "https://www.harangmarketing.com/og-image.png",
@@ -264,7 +264,7 @@ gtag('config', '${GA_ID}');`,
                   },
                 },
               ],
-              areaServed: ["서울특별시", "경기도", "인천광역시", "대한민국"],
+              areaServed: ["대한민국", "서울특별시", "경기도", "인천광역시"],
               knowsAbout: [
                 "네이버 플레이스 SEO",
                 "네이버 플레이스 상위 노출",
@@ -392,10 +392,10 @@ gtag('config', '${GA_ID}');`,
                 ],
               },
               areaServed: [
+                { "@type": "Country", name: "대한민국" },
                 { "@type": "City", name: "서울특별시" },
                 { "@type": "AdministrativeArea", name: "경기도" },
                 { "@type": "City", name: "인천광역시" },
-                { "@type": "Country", name: "대한민국" },
               ],
               sameAs: [SITE.naverBlog, SITE.instagram, SITE.kakao],
             },

@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   description: "해병대 장교 출신 대표가 직접 운영. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 진짜 이야기.",
   keywords: [
     "하랑마케팅 소개", "소상공인 마케팅 대행사", "마케팅 대행사 신뢰", "투명한 마케팅",
-    "마케팅 대행사 대표", "전태영", "경기 마케팅 대행사", "수도권 마케팅 대행사",
+    "마케팅 대행사 대표", "전태영", "전국 마케팅 대행사", "경기 마케팅 대행사", "수도권 마케팅 대행사",
     "소상공인 마케팅 전문가", "네이버 플레이스 전문가",
   ],
   alternates: { canonical: `${BASE}/about` },
@@ -202,7 +202,7 @@ export default function AboutPage() {
           facts={[
             { label: "대표", value: "전태영" },
             { label: "설립", value: "2020.04.15" },
-            { label: "담당 지역", value: "경기·서울·인천" },
+            { label: "담당 지역", value: "전국" },
             { label: "클라이언트", value: "500곳+" },
           ]}
         />
@@ -310,11 +310,11 @@ export default function AboutPage() {
                         <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: "var(--w-primary)" }}>
                           <Icon size={20} className="text-white" strokeWidth={2} />
                         </div>
-                        <span className="text-2xl font-black text-gray-100 sm:hidden">{p.num}</span>
+                        <span className="text-lg font-black sm:hidden" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
                       </div>
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className="text-2xl font-black text-gray-100 hidden sm:block">{p.num}</span>
+                          <span className="text-lg font-black hidden sm:block" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
                           <h3 className="font-black text-gray-900 text-base">{p.title}</h3>
                           <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-black">{p.badge}</span>
                         </div>
@@ -379,18 +379,19 @@ export default function AboutPage() {
             </div>
             <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-5">대표의 편지</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-6 leading-relaxed">
-              &lsquo;당신이 원하는 마케팅을 하고 계십니까?&rsquo;
+              광고비는 나가는데 전화는 울리지 않던 달, 저도 겪었습니다
             </h2>
             <div className="space-y-4 text-blue-100 text-base leading-relaxed mb-8">
-              <p>저는 수많은 사장님들을 만나며 느꼈습니다. 음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 맛이 없는데 마케팅만 한다고 성공할 수 없습니다.</p>
-              <p>하지만 <strong className="text-white">본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.</strong> 대표님은 사업의 본질에만 집중하십시오. 골치 아픈 홍보와 전략은 하랑이 대신 고민하고 실행하겠습니다.</p>
-              <p>아직 하랑마케팅이 낯설 수 있습니다. 바로 계약하지 않으셔도 좋습니다. 다른 곳들과 충분히 비교해 보십시오. 결국 &lsquo;진짜&rsquo;를 알아보는 눈을 가진 대표님들은 하랑으로 오시게 될 거라 확신합니다.</p>
+              <p>가게 문을 닫고 그날 매출을 정산하다 보면 압니다. 오늘 들어온 손님 중에 처음 온 사람이 몇인지. 그 숫자가 며칠째 그대로일 때의 기분을요. 저는 그게 맛 때문인 줄 알았습니다. 아니었습니다. 그 골목에 우리 가게가 있다는 걸 아무도 몰랐을 뿐입니다.</p>
+              <p>그때 맡겨봤던 대행사는 물어봐야 답이 왔습니다. 이번 달에 무엇을 했고 무엇이 달라졌는지는 끝까지 알 수 없었습니다. 나중에 그 안으로 들어가 일해보고 나서야 알았습니다. <strong className="text-white">답을 안 준 게 아니라, 보여드릴 것이 없었던 겁니다.</strong></p>
+              <p>그래서 하랑은 순서를 뒤집었습니다. 물어보시기 전에 먼저 말씀드리고, 안 된 것은 안 됐다고 적습니다. 순위가 내려간 주에도 그대로 보내드립니다. 좋은 소식만 골라 보내면 그건 보고가 아니라 광고입니다.</p>
+              <p>전화를 받는 사람도 접니다. 상담한 사람이 그대로 끝까지 맡습니다. 계약하자마자 처음 보는 담당자로 바뀌는 일은 없습니다.</p>
             </div>
             <div className="bg-white/10 border border-white/20 rounded-2xl p-5 mb-8">
               <p className="text-sm text-blue-100 font-medium leading-relaxed">
-                하랑마케팅은 아무 업체나 받지 않습니다. 저희의 철학에 공감하고, 함께 성장할 준비가 되신 분들께만 집중합니다.
+                오늘 계약하지 않으셔도 됩니다. 지금 어디에서 돈이 새고 있는지만 듣고 가셔도 괜찮습니다. 대표님이 지금 넣고 계신 그 돈이, 제가 카페에 넣었던 돈과 다르지 않다는 걸 아니까요.
               </p>
-              <p className="text-xs text-blue-300 mt-2 font-bold">대표 전태영</p>
+              <p className="text-xs text-blue-300 mt-2 font-bold">하랑마케팅 대표 전태영</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-blue-700 font-black text-sm hover:bg-blue-50 transition-colors shadow-lg">

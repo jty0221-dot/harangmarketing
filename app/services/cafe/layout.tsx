@@ -4,7 +4,7 @@ import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "카페·베이커리 마케팅 대행 — 하랑마케팅 | 네이버 플레이스 상위노출 전문",
-  description: "카페·베이커리 전문 마케팅. 네이버 플레이스 상위노출, 포토리뷰 전략, 인스타그램 비주얼 마케팅. 지역 카페 키워드 19위 → 1위, 20일 계측 기록. 경기·서울·인천 무료 상담.",
+  description: "카페·베이커리 전문 마케팅. 네이버 플레이스 상위노출, 포토리뷰 전략, 인스타그램 비주얼 마케팅. 지역 카페 키워드 19위 → 1위, 20일 계측 기록. 전국 무료 상담.",
   keywords: ["카페 마케팅", "베이커리 마케팅", "카페 플레이스 상위노출", "카페 네이버 마케팅", "카페 인스타그램 마케팅", "카페 리뷰 마케팅", "카페 체험단", "베이커리 플레이스"],
   alternates: { canonical: "https://www.harangmarketing.com/services/cafe" },
   openGraph: {

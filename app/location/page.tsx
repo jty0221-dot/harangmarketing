@@ -21,10 +21,10 @@ const LOCATION_LD = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "@id": `${BASE}/location`,
-  name: "지역별 마케팅 서비스 — 하랑마케팅",
+  name: "지역별 마케팅 서비스 · 하랑마케팅",
   url: `${BASE}/location`,
   description:
-    "하랑마케팅이 지원하는 지역별 소상공인 마케팅 안내. 경기·서울·인천 전 지역을 담당합니다.",
+    "하랑마케팅이 지원하는 지역별 소상공인 마케팅 안내. 전국 어디든 담당하고, 경기·서울·인천은 방문 상담도 가능합니다.",
   isPartOf: { "@id": `${BASE}/#website` },
   breadcrumb: {
     "@type": "BreadcrumbList",
@@ -41,18 +41,18 @@ const LOCATION_LD = {
 };
 
 export const metadata: Metadata = {
-  title: "지역별 마케팅 서비스 — 경기·서울·인천 소상공인 마케팅 대행사",
+  title: "지역별 마케팅 서비스 · 전국 소상공인 마케팅 대행사",
   description:
-    "하랑마케팅은 경기·서울·인천 전 지역 소상공인을 지원합니다. 지역별 상권 특성에 맞춘 플레이스 SEO·블로그·체험단 전략을 확인하세요.",
+    "하랑마케팅은 전국 소상공인을 지원하고, 경기·서울·인천은 방문 상담도 가능합니다. 지역별 상권 특성에 맞춘 플레이스 SEO·블로그·체험단 전략을 확인하세요.",
   keywords: [
-    "지역별 마케팅 대행사", "경기 마케팅 대행사", "서울 마케팅 대행사", "인천 마케팅 대행사",
+    "전국 마케팅 대행사", "지역별 마케팅 대행사", "경기 마케팅 대행사", "서울 마케팅 대행사", "인천 마케팅 대행사",
     "고양 마케팅 대행사", "일산 마케팅 대행사", "파주 마케팅", "김포 마케팅", "부천 마케팅",
     "소상공인 마케팅 지역", "우리 동네 마케팅 대행사",
   ],
   alternates: { canonical: `${BASE}/location` },
   openGraph: {
-    title: "지역별 마케팅 서비스 — 하랑마케팅",
-    description: "경기·서울·인천 전 지역 소상공인 마케팅.",
+    title: "지역별 마케팅 서비스 · 하랑마케팅",
+    description: "전국 소상공인 마케팅. 경기·서울·인천은 방문 상담.",
     url: `${BASE}/location`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 지역별 서비스" }],
   },
@@ -103,7 +103,7 @@ export default function LocationHubPage() {
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-6">
               <MapPin size={12} className="text-blue-400" />
-              <span className="text-gray-400 text-xs font-medium">경기 · 서울 · 인천 전 지역</span>
+              <span className="text-gray-400 text-xs font-medium">전국 어디든</span>
             </div>
             <h1 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
               지역마다 검색하는 말이<br />
@@ -132,11 +132,11 @@ export default function LocationHubPage() {
 
         <AnswerBlock
           question="하랑마케팅은 어느 지역까지 담당하나요?"
-          answer="하랑마케팅은 경기·서울·인천 전 지역 소상공인을 지원합니다. 고양·일산·파주·김포·부천 등 경기 북서부는 방문 상담이 가능하고, 그 외 지역은 비대면 상담으로 진행합니다. 지역마다 검색 패턴이 달라 상권을 먼저 분석한 뒤 키워드를 정하며, 상담 비용은 0원입니다. 전국 어디든 온라인 마케팅 자체는 동일하게 진행할 수 있습니다."
+          answer="하랑마케팅은 전국 소상공인을 지원합니다. 지금까지 맡은 매장이 부산·대구·제주·세종을 포함해 14개 시·도에 있습니다. 고양·일산·파주·김포·부천 등 경기 북서부는 사무실이 가까워 방문 상담이 가능하고, 그 밖의 지역은 카카오톡·전화·화상으로 상담합니다. 온라인 마케팅 작업 자체는 지역과 상관없이 동일하게 진행하며, 지역마다 검색 패턴이 달라 상권을 먼저 분석한 뒤 키워드를 정합니다. 상담 비용은 0원입니다."
           facts={[
             { label: "설립", value: "2020년 4월 15일" },
             { label: "방문 상담", value: "경기 북서부" },
-            { label: "지원 지역", value: "경기·서울·인천" },
+            { label: "지원 지역", value: "전국" },
             { label: "상담 비용", value: "0원" },
           ]}
         />
