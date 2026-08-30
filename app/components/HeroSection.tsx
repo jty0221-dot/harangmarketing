@@ -375,7 +375,7 @@ export default function HeroSection({
           className="hidden lg:flex"
         >
           {[
-            { value: "500+", label: "누적 클라이언트", sub: "7년간 직접 관리", delay: "1s", anim: "haFloat0" },
+            { value: "500+", label: "누적 클라이언트", sub: "10년 누적", delay: "1s", anim: "haFloat0" },
             { value: SITE.stats.renewalRate, label: "재계약률", sub: "성과가 증명한 신뢰", delay: "1.15s", anim: "haFloat1" },
             { value: "10년+", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
           ].map((stat) => (

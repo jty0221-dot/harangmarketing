@@ -125,13 +125,13 @@ function ContactPageInner() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
               업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.<br />
-              <span className="text-blue-300 font-semibold">실패를 경험한 전담 팀장이 직접 대표님의 매장을 분석합니다.</span>
+              <span className="text-blue-300 font-semibold">실패를 경험한 하랑 대표가 직접 대표님 매장을 분석합니다.</span>
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
               {[
                 { icon: CheckCircle2, text: "상담 비용 0원" },
                 { icon: CheckCircle2, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 전담 팀장 직접 연락" },
+                { icon: Clock, text: "24시간 내 대표가 직접 연락" },
                 { icon: CheckCircle2, text: "고의 누락 시 10배 보상" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-gray-300">
@@ -264,7 +264,7 @@ function ContactPageInner() {
                     </div>
 
                     <h2 className="text-lg font-black text-gray-900 mb-1">어디로 연락드릴까요?</h2>
-                    <p className="text-xs text-gray-400 mb-6">전담 팀장이 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
+                    <p className="text-xs text-gray-400 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -329,7 +329,7 @@ function ContactPageInner() {
                         )}
                       </button>
 
-                      <p className="text-xs text-gray-400 text-center">상담 비용 없음 · 계약 강요 없음 · 전담 팀장 직접 연락</p>
+                      <p className="text-xs text-gray-400 text-center">상담 비용 없음 · 계약 강요 없음 · 대표가 직접 연락</p>
                     </form>
                   </div>
                 )}
@@ -343,14 +343,14 @@ function ContactPageInner() {
                     <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4">
                       <span className="font-black text-gray-800">{form.name || "사장님"}</span>, 소중한 신청 감사합니다.<br />
-                      전담 팀장이 직접 <span className="font-semibold text-blue-600">24시간 이내</span>에 연락드립니다.
+                      대표가 직접 <span className="font-semibold text-blue-600">24시간 이내</span>에 연락드립니다.
                     </p>
 
                     {/* 다음 단계 안내 */}
                     <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
                       <p className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">앞으로의 과정</p>
                       <ol className="space-y-1.5">
-                        {["전담 팀장이 신청 내용 확인 후 연락드립니다", "20~30분 무료 전략 상담 진행", "업종·경쟁사 분석 리포트 전달", "맞춤 서비스 제안 (비용 0원)"].map((s, i) => (
+                        {["대표가 신청 내용 확인 후 연락드립니다", "20~30분 무료 전략 상담 진행", "업종·경쟁사 분석 리포트 전달", "맞춤 서비스 제안 (비용 0원)"].map((s, i) => (
                           <li key={i} className="flex items-center gap-2.5 text-xs text-gray-600">
                             <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
                             {s}

@@ -25,7 +25,7 @@ const INCHEON_LD = {
     "postalCode": SITE.address.postalCode,
     "addressCountry": SITE.address.country,
   },
-  "description": "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 전담 팀장 직접 관리.",
+  "description": "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 대표 직접 관리.",
   "areaServed": [
     { "@type": "City", "name": "인천광역시" },
     { "@type": "AdministrativeArea", "name": "부평구" },
@@ -49,7 +49,7 @@ const INCHEON_LD = {
 
 export const metadata: Metadata = {
   title: "인천 소상공인 마케팅 대행사 — 하랑마케팅 | 부평·송도·부천·검단 전문",
-  description: "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 전담 팀장 직접 관리. 무료 상담.",
+  description: "인천 부평·송도·연수·부천·검단·계양 소상공인 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 체험단 전문. 10년 경력 대표 직접 관리. 무료 상담.",
   keywords: [
     "인천 마케팅 대행사", "인천 소상공인 마케팅", "부평 마케팅", "송도 마케팅",
     "인천 플레이스 SEO", "검단 마케팅", "부천 마케팅", "계양 마케팅",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/location/incheon` },
   openGraph: {
     title: "인천 소상공인 마케팅 대행사 — 하랑마케팅",
-    description: "인천 부평·송도·연수·검단 등 전 지역 담당. 10년 경력 전담 팀장 직접 관리.",
+    description: "인천 부평·송도·연수·검단 등 전 지역 담당. 10년 경력 대표 직접 관리.",
     url: `${BASE}/location/incheon`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "인천 마케팅 대행사 하랑마케팅" }],
   },

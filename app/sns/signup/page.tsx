@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 
 const BENEFITS = [
@@ -11,6 +12,7 @@ const BENEFITS = [
 ];
 
 export default function SnsSignupPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +31,8 @@ export default function SnsSignupPage() {
       });
       const data = await res.json().catch(() => ({ ok: false, error: `서버 오류 (${res.status})` }));
       if (data.ok) {
-        window.location.href = "/sns/me";
+        router.replace("/sns/me");
+        router.refresh();
         return;
       }
       setError(data.error ?? "가입에 실패했습니다");

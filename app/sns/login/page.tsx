@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, Loader2 } from "lucide-react";
 
 export default function SnsLoginPage() {
+  const router = useRouter();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +24,8 @@ export default function SnsLoginPage() {
       });
       const data = await res.json().catch(() => ({ ok: false, error: `서버 오류 (${res.status})` }));
       if (data.ok) {
-        window.location.href = "/sns/me";
+        router.replace("/sns/me");
+        router.refresh();
         return;
       }
       setError(data.error ?? "로그인에 실패했습니다");

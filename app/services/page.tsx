@@ -313,7 +313,7 @@ const FAQS = [
   },
   {
     q: "직접 담당자가 매번 바뀌지 않나요?",
-    a: "전담 팀장이 모든 프로젝트에 직접 참여합니다. 계약부터 운영까지 담당자가 바뀌지 않는 것이 하랑의 원칙입니다.",
+    a: "대표가 모든 프로젝트에 직접 참여합니다. 상담한 사람이 계약부터 운영까지 그대로 맡습니다.",
   },
   {
     q: "작은 매장도 효과가 있나요?",
@@ -601,7 +601,7 @@ export default function ServicesPage() {
             <p className="mb-8 max-w-xl text-[16px] leading-relaxed md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
               핵심 마케팅 채널을 단독 또는 패키지로 운영합니다.
               <br />
-              모든 서비스는 전담 팀장이 직접 관리합니다.
+              모든 서비스는 대표가 직접 관리합니다.
             </p>
             <div className="flex flex-wrap gap-2">
               {SERVICES.map((s) => {
@@ -636,7 +636,7 @@ export default function ServicesPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { icon: Users, val: "500+", label: "완료 프로젝트", color: "text-blue-600" },
-                { icon: TrendingUp, val: "300%", label: "최대 매출 상승", color: "text-blue-600" },
+                { icon: TrendingUp, val: "3배", label: "최대 매출 상승", color: "text-blue-600" },
                 { icon: Star, val: SITE.stats.renewalRate, label: "재계약률", color: "text-blue-700" },
                 { icon: Clock, val: "10년+", label: "전문 경력", color: "text-indigo-600" },
               ].map(({ icon: Icon, val, label, color }) => (
@@ -1095,10 +1095,10 @@ export default function ServicesPage() {
             <div className="bg-gray-950 rounded-2xl p-6 md:p-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 {[
-                  { val: SITE.stats.renewalRate, label: "재계약률", sub: "10년 유지" },
+                  { val: SITE.stats.renewalRate, label: "재계약률", sub: "누적 기준" },
                   { val: "500+", label: "완료 프로젝트", sub: "2020년~현재" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24h", label: "이내 연락", sub: "전담 팀장 직접 응대" },
+                  { val: "24h", label: "이내 연락", sub: "대표가 직접 응대" },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
@@ -1270,7 +1270,7 @@ export default function ServicesPage() {
                 {
                   label: "담당자",
                   other: "신입·인턴 가능, 자주 교체",
-                  harang: "전담 팀장 직접 관리 · 500+ 경험",
+                  harang: "대표가 직접 관리 · 500+ 경험",
                   highlight: true,
                 },
                 {
@@ -1296,12 +1296,6 @@ export default function ServicesPage() {
                   other: "6개월~1년 장기 의무",
                   harang: "3개월 단위 · 성과 후 연장",
                   highlight: true,
-                },
-                {
-                  label: "재계약률",
-                  other: "업계 평균 65%",
-                  harang: `${SITE.stats.renewalRate} (10년 유지)`,
-                  highlight: false,
                 },
               ].map((row, i) => (
                 <div key={row.label} className={`grid grid-cols-[1fr_1fr_1fr] border-b border-gray-50 last:border-b-0 ${i % 2 === 0 ? "" : "bg-gray-50/50"}`}>

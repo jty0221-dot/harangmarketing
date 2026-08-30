@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowDownLeft, ArrowUpRight, LogOut, Plus, RefreshCw, Loader2, ExternalLink,
 } from "lucide-react";
@@ -45,6 +46,7 @@ const ORDER_STATUS: Record<string, { label: string; chip: string }> = {
 };
 
 export default function SnsMePage() {
+  const router = useRouter();
   const [member, setMember] = useState<{ name: string; phone: string; balance: number } | null>(null);
   const [ledger, setLedger] = useState<LedgerEntry[]>([]);
   const [orders, setOrders] = useState<OrderRow[]>([]);
@@ -55,7 +57,7 @@ export default function SnsMePage() {
     setLoading(true);
     const [meRes, orderRes] = await Promise.all([fetch("/api/sns/me"), fetch("/api/sns/orders")]);
     if (meRes.status === 401) {
-      window.location.href = "/sns/login";
+      router.replace("/sns/login");
       return;
     }
     const me = await meRes.json().catch(() => ({ ok: false }));
@@ -66,7 +68,7 @@ export default function SnsMePage() {
     }
     if (od.ok) setOrders(od.orders ?? []);
     setLoading(false);
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     load();
@@ -74,7 +76,8 @@ export default function SnsMePage() {
 
   const logout = async () => {
     await fetch("/api/sns/auth/logout", { method: "POST" });
-    window.location.href = "/sns/login";
+    router.replace("/sns/login");
+    router.refresh();
   };
 
   if (loading) {

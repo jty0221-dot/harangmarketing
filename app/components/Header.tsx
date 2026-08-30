@@ -29,7 +29,7 @@ const ANN_MESSAGES = [
     badge: "신뢰",
     badgeColor: "text-blue-400",
     dot: "bg-blue-400",
-    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 전담 팀장 직접 관리 · <span className="text-blue-300 font-bold">상담 0원</span></>,
+    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 대표가 직접 관리 · <span className="text-blue-300 font-bold">상담 0원</span></>,
     ctaLabel: "자세히 보기",
     ctaHref: "/about",
   },
@@ -191,7 +191,7 @@ export default function Header() {
                 </span>
                 {(scrolled || !isHome) && (
                   <div className="text-[11px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
-                    10년 경력 · 전담 팀장 직접 관리
+                    10년 경력 · 대표가 직접 관리
                   </div>
                 )}
               </div>
@@ -318,7 +318,7 @@ export default function Header() {
           <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl">
             <div className="px-4 pt-4 pb-3 border-b border-gray-100">
               <div className="text-xs font-black text-gray-900">하랑마케팅</div>
-              <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 전담 팀장 직접 관리</div>
+              <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표가 직접 관리</div>
             </div>
             <div className="px-4 py-3 space-y-0.5">
               {NAV_ITEMS.map((item) => (

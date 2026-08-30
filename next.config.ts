@@ -19,7 +19,14 @@ const nextConfig: NextConfig = {
   /* 견적 계산기 폐지 — 업체마다 금액이 달라 계산기 방식이 맞지 않는다.
      기존 링크·검색 유입은 상담 페이지로 넘긴다. */
   async redirects() {
-    return [{ source: "/estimate", destination: "/contact", permanent: true }];
+    return [
+      { source: "/estimate", destination: "/contact", permanent: true },
+      /* 사례 주소에서 지역명을 뺐다. 사례는 지역이 아니라 업종으로 묶이고,
+         이전 주소는 이미 색인돼 있어 301 로 넘긴다. */
+      { source: "/cases/cafe-ilsan-place-1st", destination: "/cases/cafe-place-1st", permanent: true },
+      { source: "/cases/clinic-gangnam-booking-300", destination: "/cases/clinic-booking-300", permanent: true },
+      { source: "/cases/restaurant-mapo-delivery-2x", destination: "/cases/restaurant-delivery-2x", permanent: true },
+    ];
   },
   async headers() {
     return [

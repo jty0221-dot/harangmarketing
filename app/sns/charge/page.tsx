@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, Check, Copy, CreditCard, Landmark, Loader2 } from "lucide-react";
 
 const PRESETS = [10000, 30000, 50000, 100000, 300000, 500000];
@@ -35,6 +36,7 @@ const STATUS: Record<string, { label: string; chip: string }> = {
 };
 
 export default function SnsChargePage() {
+  const router = useRouter();
   const [preset, setPreset] = useState(30000);
   const [custom, setCustom] = useState("");
   const [charges, setCharges] = useState<Charge[]>([]);
@@ -50,7 +52,7 @@ export default function SnsChargePage() {
   const load = useCallback(async () => {
     const res = await fetch("/api/sns/charge");
     if (res.status === 401) {
-      window.location.href = "/sns/login";
+      router.replace("/sns/login");
       return;
     }
     const data = await res.json().catch(() => ({ ok: false }));
@@ -59,7 +61,7 @@ export default function SnsChargePage() {
       setBank(data.bank ?? "");
       setReady(true);
     }
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     load();

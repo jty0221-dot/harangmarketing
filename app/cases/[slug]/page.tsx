@@ -25,7 +25,7 @@ const CASES: Record<string, {
   quote: string;
   cta: string;
 }> = {
-  "cafe-ilsan-place-1st": {
+  "cafe-place-1st": {
     title: "플레이스 '지역+카페' 키워드 1위 달성",
     category: "카페",
     location: "경기 포천",
@@ -52,7 +52,7 @@ const CASES: Record<string, {
     quote: "처음엔 마케팅에 돈을 써도 되나 망설였어요. 3개월 후엔 주말마다 줄이 서있습니다.",
     cta: "카페 마케팅 상담하기",
   },
-  "clinic-gangnam-booking-300": {
+  "clinic-booking-300": {
     title: "피부과 인스타그램 신규 예약 300% 달성",
     category: "병원·의원",
     location: "서울 강서",
@@ -79,7 +79,7 @@ const CASES: Record<string, {
     quote: "이제 인스타에서 '이 클리닉 어때요?' 질문이 올 정도예요. SNS가 진짜 일을 하기 시작했어요.",
     cta: "병원·의원 마케팅 상담하기",
   },
-  "restaurant-mapo-delivery-2x": {
+  "restaurant-delivery-2x": {
     title: "배달앱 리뷰 10개 → 180개, 매출 2배",
     category: "음식점",
     location: "서울 마포",

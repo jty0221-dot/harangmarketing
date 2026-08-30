@@ -175,7 +175,7 @@ const COMPARE_ITEMS = [
   { category: "전략 설계", harang: "업종별 맞춤형 전략 (카페·병원·쇼핑몰 특화)", general: "일괄 패키지, 템플릿 기반" },
   { category: "분석 방식", harang: "플레이스 순위 매일 스냅샷 계측", general: "노출·클릭 수 위주, 감각 운영" },
   { category: "보고 체계", harang: "월 2회 상세 리포트 + 주간 최적화", general: "월 1회 간단 보고, 설정 후 방치" },
-  { category: "담당자", harang: "10년 경력 전담 팀장이 1:1 관리", general: "신입 담당자 수시 교체" },
+  { category: "담당자", harang: "10년 경력 대표이 1:1 관리", general: "신입 담당자 수시 교체" },
   { category: "성과 기준", harang: "계측 가능한 순위·리뷰 수치 기준", general: "노출 수·팔로워 수 등 허수 지표" },
   { category: "소통 방식", harang: "카카오·전화 24시간 응대, 직접 연락", general: "이메일·업무시스템, 응답 지연 빈번" },
 ];
@@ -228,7 +228,7 @@ const TICKER = [
   "지역 카페 키워드 19위 → 1위 · 20일 계측",
   `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
   "지역 치과 키워드 5위 → 1위 · 32일 계측",
-  "전담 팀장 직접 관리 · 상담 비용 0원",
+  "대표가 직접 관리 · 상담 비용 0원",
   "지역 맛집 키워드 72위 → 2위 · 32일 계측",
   "지역 상가청소 키워드 67위 → 4위 · 17일 계측",
   "지역 꽃집 키워드 8위 → 1위 · 32일 계측",
@@ -524,7 +524,7 @@ export default function HomePage() {
                 },
                 {
                   q: "보고서를 봐도 뭔지 모르겠어요",
-                  a: "복잡한 마케팅 용어 없이 플레이스 순위·리뷰 변화를 숫자로만 보고드립니다. 전담 팀장이 직접 카카오톡으로 설명합니다.",
+                  a: "복잡한 마케팅 용어 없이 플레이스 순위·리뷰 변화를 숫자로만 보고드립니다. 대표가 직접 카카오톡으로 설명합니다.",
                   result: `재계약률 ${SITE.stats.renewalRate}`,
                   period: "6개월 이상 계약 기준",
                   icon: BarChart3,
@@ -535,9 +535,9 @@ export default function HomePage() {
                 },
                 {
                   q: "담당자가 계속 바뀌어서 지쳐요",
-                  a: "하랑은 계약부터 종료까지 전담 팀장이 직접 관리합니다. 10년 현장 경험을 가진 전문가가 처음부터 끝까지 함께합니다.",
-                  result: "담당자 교체 0회",
-                  period: "10년 전 계약부터 현재까지",
+                  a: "하랑은 계약부터 종료까지 대표가 직접 관리합니다. 상담 전화를 받은 사람이 처음부터 끝까지 함께합니다.",
+                  result: "대표가 직접 상담",
+                  period: "2020년 개업부터 현재까지",
                   icon: Handshake,
                   iconColor: "from-blue-600 to-indigo-700",
                   cardBorder: "border-blue-100",
@@ -616,7 +616,7 @@ export default function HomePage() {
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
                     { label: "결과 미달 시 조정", sub: "다음 달 비용" },
-                    { label: "외주 없음", sub: "전담 팀장 직접 관리" },
+                    { label: "외주 없음", sub: "대표가 직접 관리" },
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
                       <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
@@ -629,7 +629,7 @@ export default function HomePage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gray-950 hover:bg-gray-800 text-white font-bold text-sm transition-colors"
                 >
-                  전담 팀장과 상담하기 <ArrowRight size={14} />
+                  대표와 상담하기 <ArrowRight size={14} />
                 </Link>
               </div></RevealOnScroll>
 
@@ -740,7 +740,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0" style={{ border: "1px solid var(--h-border)", borderRadius: "16px", overflow: "hidden" }}>
               {[
                 { icon: ShieldCheck, num: "01", title: "무결과 시 비용 조정", desc: "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 눈속임 없이." },
-                { icon: Handshake, num: "02", title: "전담 팀장 직접 관리", desc: "외주·인턴 없이 전담 팀장이 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다." },
+                { icon: Handshake, num: "02", title: "대표가 직접 관리", desc: "외주·인턴 없이 대표가 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다." },
                 { icon: Clock, num: "03", title: "24시간 내 연락", desc: "상담 신청 후 24시간 이내에 반드시 연락드립니다. 응답이 늦으면 먼저 연락드립니다." },
               ].map((item, idx) => {
                 const Icon = item.icon;
@@ -785,10 +785,10 @@ export default function HomePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end mb-8">
               <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
-                신청 후 4단계,<br />전부 전담 팀장이 직접 합니다
+                신청 후 4단계,<br />전부 대표가 직접 합니다
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: "var(--h-muted)" }}>
-                상담부터 성과 보고까지<br />외주 없이 전담 팀장이 직접 관리
+                상담부터 성과 보고까지<br />외주 없이 대표가 직접 관리
               </p>
             </div>
             </RevealOnScroll>
@@ -1599,7 +1599,7 @@ export default function HomePage() {
               {[
                 { icon: ShieldCheck, text: "상담 비용 0원" },
                 { icon: Handshake, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 전담 팀장 직접 연락" },
+                { icon: Clock, text: "24시간 내 대표가 직접 연락" },
                 { icon: Star, text: `재계약률 ${SITE.stats.renewalRate}` },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs text-gray-600">

@@ -11,7 +11,7 @@ import { X, ArrowRight } from "lucide-react";
  * 재촉하는 인상이 강해 브랜드에 맞지 않아, 화면을 막지 않는 조용한 카드로 바꿨다.
  *   - 배경을 어둡게 덮지 않는다(읽던 내용을 계속 볼 수 있다)
  *   - 데스크톱은 우하단, 모바일은 하단에 붙는다
- *   - 사실만 담는다: 전담 팀장이 직접 관리해서 월 상담 수가 한정된다는 것
+ *   - 사실만 담는다: 대표가 직접 관리해서 월 상담 수가 한정된다는 것
  */
 export default function EntryPopup() {
   const [open, setOpen] = useState(false);
@@ -71,7 +71,7 @@ export default function EntryPopup() {
             매장을 보고 맞춤으로 제안드립니다
           </p>
           <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-alt)" }}>
-            전담 팀장이 직접 관리해서 한 달에 받는 신규 상담이 많지 않습니다.
+            대표가 직접 관리해서 한 달에 받는 신규 상담이 많지 않습니다.
             지금 신청하시면 경쟁사 분석 리포트도 함께 드립니다.
           </p>
 

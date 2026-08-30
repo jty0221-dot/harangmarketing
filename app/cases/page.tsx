@@ -219,9 +219,9 @@ const CasesPage: FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { href: "/cases/cafe-ilsan-place-1st", cat: "카페 · 경기 포천", title: "플레이스 지역 키워드 1위 달성", metric: "방문객 +167%" },
-                { href: "/cases/clinic-gangnam-booking-300", cat: "병원·의원 · 서울 강서", title: "인스타그램 신규 예약 +300%", metric: "팔로워 200명에서 3,800명" },
-                { href: "/cases/restaurant-mapo-delivery-2x", cat: "음식점 · 서울 마포", title: "배달앱 리뷰 10개에서 180개로", metric: "월 배달 매출 2배" },
+                { href: "/cases/cafe-place-1st", cat: "카페 · 경기 포천", title: "플레이스 지역 키워드 1위 달성", metric: "방문객 +167%" },
+                { href: "/cases/clinic-booking-300", cat: "병원·의원 · 서울 강서", title: "인스타그램 신규 예약 +300%", metric: "팔로워 200명에서 3,800명" },
+                { href: "/cases/restaurant-delivery-2x", cat: "음식점 · 서울 마포", title: "배달앱 리뷰 10개에서 180개로", metric: "월 배달 매출 2배" },
               ].map((r) => (
                 <Link
                   key={r.href}

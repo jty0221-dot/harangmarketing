@@ -6,9 +6,9 @@ const BASE = SITE.base;
 
 /** 사례 상세 슬러그 — app/cases/[slug]/page.tsx 의 CASES 키와 반드시 일치시킬 것 */
 const CASE_SLUGS = [
-  "cafe-ilsan-place-1st",
-  "clinic-gangnam-booking-300",
-  "restaurant-mapo-delivery-2x",
+  "cafe-place-1st",
+  "clinic-booking-300",
+  "restaurant-delivery-2x",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

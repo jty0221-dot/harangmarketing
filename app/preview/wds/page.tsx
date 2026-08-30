@@ -203,7 +203,7 @@ export default function WdsPreviewPage() {
                 사장님 매장, 검색되게 만들어 드립니다
               </h3>
               <p className="w-body-1 mt-3 max-w-[520px]" style={{ color: "rgba(255,255,255,0.72)" }}>
-                블로그·플레이스·리뷰까지 10년 경력 전담 팀장이 직접 관리합니다.
+                블로그·플레이스·리뷰까지 10년 경력 대표이 직접 관리합니다.
                 상담 비용 없이 지금 진단부터 받아보세요.
               </p>
               <div className="mt-7 flex flex-wrap gap-2">

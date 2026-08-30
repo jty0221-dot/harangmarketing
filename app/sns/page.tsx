@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   title: "SNS 부스트 스토어 — 인스타 팔로워·좋아요·조회수 셀프 주문",
   description:
     `인스타그램·유튜브·틱톡·네이버 등 전 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문. ` +
-    `1개당 ${won(MIN_UNIT)}원부터, 10년차 마케팅 대행사 하랑마케팅이 직접 운영합니다.`,
+    `1개당 ${won(MIN_UNIT)}원부터, 마케팅 경력 10년의 하랑마케팅이 직접 운영합니다.`,
   alternates: { canonical: URL },
   // 상위 sns/layout 이 기능 화면을 noindex 로 덮으므로 공개 랜딩인 이 페이지만 되살린다
   robots: { index: true, follow: true },
@@ -99,7 +99,7 @@ const STEPS: { icon: typeof Zap; title: string; desc: string }[] = [
 const TRUST: { icon: typeof Zap; title: string; desc: string }[] = [
   {
     icon: BadgeCheck,
-    title: "10년차 대행사 직영",
+    title: "마케팅 대행사 직영",
     desc: `재계약률 ${SITE.stats.renewalRate}의 하랑마케팅이 실제 고객사 캠페인에 쓰는 프로그램을 같은 라인으로 공급합니다. 판매만 하는 업체와 출발점이 다릅니다.`,
   },
   {
@@ -394,7 +394,7 @@ export default function SnsStorePage() {
             </h2>
             <p className="mt-3 text-sm text-gray-300 max-w-xl mx-auto">
               계정 링크만 보내주세요. 지금 상태에서 어떤 수치부터 채우는 게 자연스러운지
-              전담 팀장이 직접 봐드립니다. 상담은 무료입니다.
+              대표가 직접 봐드립니다. 상담은 무료입니다.
             </p>
             <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-2.5">
               <a

@@ -75,7 +75,7 @@ export default function RegionalSection() {
                 className="text-2xl md:text-3xl font-black leading-tight"
                 style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}
               >
-                전국 어디서나,<br className="md:hidden" /> 전담 팀장이 직접 관리합니다
+                전국 어디서나,<br className="md:hidden" /> 대표가 직접 관리합니다
               </h2>
               <p className="text-sm mt-3 leading-relaxed" style={{ color: "var(--h-muted)" }}>
                 수도권에 가장 많은 매장을 두고 있고, 대부분의 작업이 비대면이라 지역 제한은 없습니다.<br />

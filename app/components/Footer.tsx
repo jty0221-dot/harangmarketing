@@ -283,10 +283,10 @@ export default function Footer() {
         </div>
         <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-700">
           {[
-            [`재계약률 ${SITE.stats.renewalRate}`, "10년간 유지"],
+            [`재계약률 ${SITE.stats.renewalRate}`, "2020년 개업 · 7년차"],
             ["상담 비용 0원", "계약 강요 없음"],
             ["500+ 프로젝트", "실무 경력 10년+"],
-            ["24시간 내 연락", "전담 팀장 직접 응답"],
+            ["24시간 내 연락", "대표가 직접 응답"],
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">
               <span className="font-black" style={{ color: "var(--h-blue-light)" }}>{val}</span>
