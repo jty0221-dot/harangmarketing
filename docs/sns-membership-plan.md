@@ -182,8 +182,9 @@ Triple-A · 이지페이(KICC) · 페이먼트월 · 헥토파이낸셜 스무 �
 
 1. 회원이 `/sns/charge` 에서 금액을 고르고 카드 결제를 누른다
 2. 서버가 충전 건(pending)을 만든다. 이 id 가 주문번호 MOID(`hrgchg<id>`)가 된다
-3. 브라우저가 `innopay.goPay()` 로 결제창을 띄운다
-4. 카드 인증이 끝나면 이노페이가 `returnUrl` 로 거래번호(TID)를 보낸다. **여기까지는 인증이고 돈은 아직 안 빠진다**
+3. 브라우저가 `innopay.goPay()` 로 결제창을 띄운다. SDK 가 숨은 폼을 만들어
+   `pg.innopay.co.kr/ipay/interfaceURL.jsp` 로 보내고, 그 응답을 화면 위에 덮은 iframe 에 띄운다
+4. 카드 인증이 끝나면 이노페이가 `ReturnURL` 로 거래번호(TID)를 보낸다. **여기까지는 인증이고 돈은 아직 안 빠진다**
 5. 리턴 라우트가 **DB 의 신청 금액으로** 승인 API 를 호출한다 (브라우저가 보낸 금액을 쓰지 않는다)
 6. 승인 성공 + 금액 일치일 때만 `charges=paid` · `ledger` · `members.balance` 를 한 트랜잭션으로 올린다
 7. 결제창 프레임에서 `/sns/charge` 로 되돌리고 결과를 보여준다
@@ -207,12 +208,19 @@ next.config.ts                              리턴 경로만 프레임 허용(�
    | 이름 | 무엇 | 공개 여부 |
    |---|---|---|
    | `INNOPAY_MID` | 상점아이디 (영문·숫자 10자리) | 서버 전용 |
-   | `INNOPAY_MERCHANT_KEY` | 가맹점 서명키 | **서버 전용 · 절대 노출 금지** |
+   | `INNOPAY_MERCHANT_KEY` | 서버 승인 API 헤더에 넣는 키 | **서버 전용 · 내려가지 않는다** |
    | `NEXT_PUBLIC_INNOPAY_MID` | 결제창에 넣는 상점아이디 (`INNOPAY_MID` 와 같은 값) | 공개값 |
+   | `NEXT_PUBLIC_INNOPAY_MERCHANT_KEY` | **결제창 폼에 들어가는 키** — 아래 설명 | 브라우저에 보인다 |
    | `NEXT_PUBLIC_INNOPAY_TEST` | `1` 이면 화면에 테스트 안내 문구 표시 | 공개값 |
 
-   `NEXT_PUBLIC_INNOPAY_MID` 가 비어 있으면 카드 결제 자리를 아예 그리지 않고
-   기존 무통장입금(P2)만 받는다. 지금 상태가 그렇다.
+   `NEXT_PUBLIC_INNOPAY_MID` 나 `NEXT_PUBLIC_INNOPAY_MERCHANT_KEY` 가 비어 있으면
+   카드 결제 자리를 아예 그리지 않고 기존 무통장입금(P2)만 받는다. 지금 상태가 그렇다.
+
+   **키를 두 개로 나눈 이유** — 이노페이 SDK 는 결제창을 열 때 `MerchantKey` 를 브라우저 폼에 넣는다
+   (`ediDate` + `MID` + `Amt` + `MerchantKey` 를 이어 붙여 해시를 만들고 그것도 같이 보낸다).
+   우리가 고른 방식이 아니라 SDK 구조다. 실제 가맹점 화면도 같은 SDK 를 그대로 쓴다.
+   그래서 결제창용과 서버 승인용을 **이름부터 갈라 뒀다.** 매뉴얼에서 두 값이 같은 값으로 확인되면
+   같은 값을 두 칸에 넣고, 다르면 각각 넣는다. **어느 쪽이든 코드는 안 고친다.**
 
 3. 이노페이 가맹점 관리자에 복귀 주소를 등록한다
 
@@ -234,9 +242,29 @@ next.config.ts                              리턴 경로만 프레임 허용(�
 | `INNOPAY_FIELD_TOKEN` | 승인 요청에 넣을 인증 토큰 필드명 후보 | `paymentToken,PaymentToken,authToken,token` |
 | `INNOPAY_API_BASE` | 승인 API 주소 (스테이징 분리용) | `https://api.innopay.co.kr` |
 
+여기에 더해 **결제창용 `MerchantKey` 와 서버 승인용 키가 같은 값인지**를 확인해야 한다.
+같은 값이라면 브라우저에 보이는 키로 서버 승인까지 부를 수 있다는 뜻이라 대응이 필요하고,
+다른 값이라면 지금 구조 그대로 간다. 계약할 때 반드시 물어볼 항목이다.
+
 **모르는 것은 성공으로 보지 않는다.** 성공 코드 목록에 정확히 들어 있을 때만 승인으로 처리하고,
 아니면 잔액을 올리지 않는다. 취소·환불 API 규격도 매뉴얼에 있어 아직 붙이지 않았다 —
 현재 취소는 어드민 수동 처리(P5)로 간다.
+
+### SDK 를 직접 읽어 고친 것 (2026-08-31 (월))
+
+처음에는 공개 문서와 검색 결과가 적고 있는 주소로 붙였는데 **그 주소가 죽어 있었다.**
+실제 가맹점 화면이 부르는 주소를 확인해 다음 다섯 가지를 고쳤다. 계약 전에 걸러 낸 것들이다.
+
+| 처음 | 실제 | 안 고쳤으면 |
+|---|---|---|
+| `/tpay/js/innopay.js` | `/ipay/js/innopay-2.0.js` | 스크립트가 404 라 결제창이 아예 안 뜬다 |
+| SDK 하나만 로드 | jQuery 를 먼저 로드해야 함 | SDK 가 `jQuery` 전역을 써서 즉시 오류 |
+| `payMethod` `mid` `moid` … | `PayMethod` `MID` `Moid` … | 이름이 달라 필수값 누락으로 막힌다 |
+| `returnUrl` | `ReturnURL` | 결제 후 우리 서버로 안 돌아온다 |
+| `MerchantKey` 는 서버 전용 | 결제창 폼에도 들어간다 | 필수값 누락으로 결제창이 안 열린다 |
+
+`PayMethod` 유효값도 확인했다 — `CARD` `BANK` `VBANK` `CARS` `OUTCALL` `CSMS` `DSMS`
+`CKEYIN` `EPAY` `EBANK`. 주문번호는 특수문자를 막으므로 `hrgchg<id>` 형태가 맞다.
 
 ### 지키는 선
 

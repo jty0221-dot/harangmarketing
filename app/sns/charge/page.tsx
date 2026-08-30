@@ -9,18 +9,30 @@ const PRESETS = [10000, 30000, 50000, 100000, 300000, 500000];
 const won = (n: number) => n.toLocaleString("ko-KR");
 
 /**
- * 결제창 설정 — 상점 아이디는 공개값이라 브라우저에 내려도 된다.
- * (돈을 움직이는 열쇠는 서버의 INNOPAY_MERCHANT_KEY · PORTONE_API_SECRET 이고 그건 내려가지 않는다)
+ * 결제창 설정 — 여기 내려가는 값은 전부 브라우저에서 보인다.
  *
  * 카드 결제는 두 길이 있고 이노페이가 우선이다.
  *   이노페이  결제창을 직접 띄우고, 인증이 끝나면 우리 서버가 승인 API 를 불러 반영한다
  *   포트원    포트원이 지원하는 PG 를 쓸 때의 예전 경로. 이노페이는 포트원 지원 목록에 없다
  *
+ * 이노페이 SDK 는 결제창을 열 때 MerchantKey 를 브라우저 폼에 넣게 돼 있다. 우리가 고른 방식이
+ * 아니라 SDK 구조다. 그래서 결제창용 키와 서버 승인 API 용 키를 이름부터 갈라 둔다.
+ *   NEXT_PUBLIC_INNOPAY_MERCHANT_KEY  결제창용 (브라우저에 내려간다)
+ *   INNOPAY_MERCHANT_KEY              서버 승인 API 용 (내려가지 않는다)
+ * 두 값이 같은 값인지는 계약 매뉴얼에서 확인한다. 코드는 어느 쪽이든 그대로 돈다.
+ *
  * 어느 쪽 값도 없으면 카드 결제 자리를 아예 그리지 않고 예전처럼 무통장입금만 받는다.
  */
 const INNOPAY_MID = process.env.NEXT_PUBLIC_INNOPAY_MID ?? "";
-const INNOPAY_READY = Boolean(INNOPAY_MID);
-const INNOPAY_SDK = "https://pg.innopay.co.kr/tpay/js/innopay.js";
+const INNOPAY_WINDOW_KEY = process.env.NEXT_PUBLIC_INNOPAY_MERCHANT_KEY ?? "";
+const INNOPAY_READY = Boolean(INNOPAY_MID && INNOPAY_WINDOW_KEY);
+
+/**
+ * 결제창 스크립트 두 개 — 순서가 있다. SDK 가 jQuery 를 전역으로 쓴다.
+ * 공개 문서가 적고 있는 /tpay/js/innopay.js 는 404 라 실제 가맹점 화면이 부르는 주소를 쓴다.
+ */
+const INNOPAY_JQUERY = "https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js";
+const INNOPAY_SDK = "https://pg.innopay.co.kr/ipay/js/innopay-2.0.js";
 
 const STORE_ID = process.env.NEXT_PUBLIC_PORTONE_STORE_ID ?? "";
 const CHANNEL_KEY = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY ?? "";
@@ -33,24 +45,32 @@ const TEST_MODE =
 declare global {
   interface Window {
     innopay?: { goPay: (params: Record<string, string>) => void };
+    jQuery?: unknown;
   }
 }
 
-/** 결제창 스크립트를 한 번만 올린다 */
+function loadScript(src: string): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = src;
+    el.async = false;
+    el.onload = () => resolve();
+    el.onerror = () => reject(new Error(src));
+    document.head.appendChild(el);
+  });
+}
+
+/** 결제창 스크립트를 한 번만 올린다 — jQuery 를 먼저 올려야 SDK 가 산다 */
 let innopaySdk: Promise<void> | null = null;
 function loadInnopaySdk(): Promise<void> {
   if (typeof window !== "undefined" && window.innopay) return Promise.resolve();
   if (innopaySdk) return innopaySdk;
-  innopaySdk = new Promise<void>((resolve, reject) => {
-    const el = document.createElement("script");
-    el.src = INNOPAY_SDK;
-    el.async = true;
-    el.onload = () => resolve();
-    el.onerror = () => {
-      innopaySdk = null;
-      reject(new Error("sdk"));
-    };
-    document.head.appendChild(el);
+  innopaySdk = (async () => {
+    if (!window.jQuery) await loadScript(INNOPAY_JQUERY);
+    await loadScript(INNOPAY_SDK);
+  })().catch((e) => {
+    innopaySdk = null;
+    throw e;
   });
   return innopaySdk;
 }
@@ -189,16 +209,21 @@ export default function SnsChargePage() {
       setLoading(false);
       return;
     }
+    // 이름은 전부 대문자로 시작한다 — SDK 가 그 이름으로만 찾고, 하나라도 빠지면 결제창이 안 뜬다
     window.innopay.goPay({
-      payMethod: "CARD",
-      mid: INNOPAY_MID,
-      moid: `hrgchg${created.id}`,
-      goodsName: "SNS 부스트 예치금 충전",
-      amt: String(amount),
-      buyerName: created.buyer.name,
-      buyerTel: created.buyer.phone,
-      buyerEmail: "",
-      returnUrl: `${window.location.origin}/api/sns/charge/innopay/return`,
+      PayMethod: "CARD",
+      MID: INNOPAY_MID,
+      MerchantKey: INNOPAY_WINDOW_KEY,
+      Moid: `hrgchg${created.id}`,
+      GoodsName: "SNS 부스트 예치금 충전",
+      GoodsCnt: "1",
+      Amt: String(amount),
+      BuyerName: created.buyer.name,
+      BuyerTel: created.buyer.phone,
+      BuyerHp: created.buyer.phone,
+      Currency: "KRW",
+      EncodingType: "utf-8",
+      ReturnURL: `${window.location.origin}/api/sns/charge/innopay/return`,
     });
     // 결제창이 뜨면 그다음은 리턴 라우트가 이어받는다. 버튼은 잠근 채로 둔다.
   };

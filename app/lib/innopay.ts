@@ -7,20 +7,40 @@
  *   KICC·페이먼트월·헥토)에 이노페이가 없다. 그래서 app/lib/portone.ts 를 재사용할 수 없고
  *   결제창 호출과 승인 요청을 직접 붙인다.
  *
- * 흐름 (이노페이 공개 자료 기준):
- *   1) 브라우저가 innopay.goPay() 로 결제창을 연다
- *   2) 카드 인증이 끝나면 이노페이가 returnUrl 로 tid 와 주문정보를 보낸다
+ * 흐름 (실제 SDK 를 읽어 확인한 것):
+ *   1) 브라우저가 innopay.goPay() 로 결제창을 연다. SDK 가 숨은 폼을 만들어
+ *      pg.innopay.co.kr/ipay/interfaceURL.jsp 로 보내고, 그 응답을 화면 위에 덮은 iframe 에 띄운다
+ *   2) 카드 인증이 끝나면 이노페이가 ReturnURL 로 tid 와 주문정보를 보낸다
  *   3) 우리 서버가 승인 API 를 호출해야 비로소 돈이 승인된다 (2번까지는 인증일 뿐이다)
  *
  * 보안 원칙:
  *   - 브라우저가 돌려준 금액을 믿지 않는다. 승인 요청 금액은 언제나 DB 의 신청 금액이다
  *   - 승인 응답 금액이 DB 금액과 다르면 반영하지 않는다
  *   - 성공 코드가 아닌 모든 경우는 실패로 본다 (fail-closed)
- *   - MID·MerchantKey 값은 코드에 적지 않는다. 환경변수 이름만 여기 있고 값은 대표가 넣는다
+ *   - 값은 코드에 적지 않는다. 환경변수 이름만 여기 있고 값은 대표가 넣는다
+ *
+ * 키가 두 개인 이유 — 이노페이 SDK 는 결제창을 열 때 MerchantKey 를 브라우저 폼에 넣는다
+ * (ediDate·MID·Amt·MerchantKey 를 이어 붙여 해시를 만든다). 우리가 고른 방식이 아니라 SDK 구조다.
+ * 그래서 결제창용 키(NEXT_PUBLIC_INNOPAY_MERCHANT_KEY)와 서버 승인 API 용 키(INNOPAY_MERCHANT_KEY)를
+ * 이름부터 갈라 둔다. 계약 매뉴얼에서 두 값이 같은지 다른지 확인되면 환경변수만 채우면 된다.
  */
 
-/** 결제창 스크립트 — 브라우저에서 <script> 로 불러온다 */
-export const INNOPAY_JS_SDK = "https://pg.innopay.co.kr/tpay/js/innopay.js";
+/**
+ * 결제창 스크립트 — 브라우저에서 <script> 로 불러온다.
+ * 공개 문서가 적고 있는 /tpay/js/innopay.js 는 404 다. 실제 가맹점 화면이 부르는 주소를 쓴다.
+ * 이 SDK 는 jQuery 를 전역으로 쓰므로 아래 두 개를 순서대로 올려야 한다.
+ */
+export const INNOPAY_JQUERY = "https://pg.innopay.co.kr/ipay/js/jquery-2.1.4.min.js";
+export const INNOPAY_JS_SDK = "https://pg.innopay.co.kr/ipay/js/innopay-2.0.js";
+
+/**
+ * 결제창에 넣는 PayMethod 유효값 (SDK 실측)
+ *   CARD 신용카드 · BANK 계좌이체 · VBANK 가상계좌 · CARS 카드자동결제 · OUTCALL 아웃콜
+ *   CSMS 휴대폰(신용) · DSMS 휴대폰(정보) · CKEYIN 키인 · EPAY 간편결제 · EBANK 간편계좌
+ */
+export const INNOPAY_PAY_METHODS = [
+  "CARD", "BANK", "VBANK", "CARS", "OUTCALL", "CSMS", "DSMS", "CKEYIN", "EPAY", "EBANK",
+] as const;
 
 /** 이노페이가 준 테스트 상점아이디 (심사 전 화면 확인용) */
 export const INNOPAY_TEST_MID = "testpay01m";
