@@ -3,7 +3,7 @@
  *
  * content/portfolio.json 과 성격이 다르다. 그쪽은 scripts/portfolio/collect.py 가
  * 네이버 블로그에서 긁어 만드는 자동 생성물이라 손으로 고치면 다음 수집에 덮어써진다.
- * 이 파일은 계약 대장에서 뽑아 손으로 적는다. 수집기가 건드리지 않는다.
+ * 이 파일은 계약 대장과 견적·계약 서류에서 뽑아 손으로 적는다. 수집기가 건드리지 않는다.
  *
  * 넣지 않는 것: 상호 · 지점명 · 연락처 · 계약 금액 · 정산 내역.
  * 지역은 광역 단위까지만 적는다. 시·군·구까지 적으면 업종과 겹쳐 업체가 특정된다.
@@ -54,6 +54,13 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "갈비 전문점", work: ["사진 촬영", "플레이스 SEO 최적화"], status: "완료" },
       { trade: "고깃집", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "소갈비 전문점", region: "울산", work: ["플레이스 SEO 최적화", "대표 키워드 상위노출"], status: "진행 중" },
+      { trade: "떡갈비 전문점", region: "대구", work: ["인플루언서 릴스"], status: "완료" },
+      { trade: "고깃집", region: "서울", work: ["리뷰 답글 관리"], status: "완료" },
+      { trade: "치킨 전문점", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화"], status: "완료" },
+      { trade: "한식당", region: "서울", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "체험단"], status: "완료" },
+      { trade: "돈까스 전문점", region: "서울", work: ["플레이스 SEO 최적화", "사진 촬영"], status: "완료" },
+      { trade: "토스트 전문점", work: ["블로그 상위노출"], status: "완료" },
+      { trade: "한식당", region: "경남", work: ["플레이스 SEO 최적화"], status: "완료" },
     ],
   },
   {
@@ -69,6 +76,7 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "디저트 카페", region: "경기", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "카페", region: "전남", work: ["브랜딩"], status: "진행 중" },
       { trade: "베이커리", work: ["파워컨텐츠", "블로그 상위노출"], status: "완료" },
+      { trade: "카페", region: "인천", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화", "체험단", "카카오맵 노출"], status: "완료" },
     ],
   },
   {
@@ -86,6 +94,10 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "뷰티샵", region: "대전", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "피부관리실", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "탈모 관리 전문점", region: "부산", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "체험단"], status: "완료" },
+      { trade: "두피·탈모 관리", region: "서울", work: ["플레이스 상위노출", "체험단"], status: "완료" },
+      { trade: "왁싱샵", region: "경기", work: ["인스타그램 운영"], status: "완료" },
+      { trade: "체형 관리샵", region: "서울", work: ["플레이스 상위노출", "플레이스 SEO 최적화"], status: "완료" },
+      { trade: "미용실", region: "서울", work: ["플레이스 상위노출", "블로그 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화", "체험단"], status: "완료" },
     ],
   },
   {
@@ -97,6 +109,7 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "치과", region: "경남", work: ["블로그 상위노출"], status: "진행 중" },
       { trade: "의원", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "보청기 전문점", region: "대구", work: ["블로그 상위노출", "플레이스 상위노출"], status: "완료" },
+      { trade: "의원", work: ["플레이스 SEO 최적화", "예약자 리뷰 관리"], status: "완료" },
     ],
   },
   {
@@ -108,6 +121,9 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "영어 회화 학원", work: ["플레이스 SEO 최적화", "네이버 광고 최적화"], status: "완료" },
       { trade: "미술학원", region: "서울", work: ["플레이스 SEO 최적화", "예약자 리뷰 관리"], status: "완료" },
       { trade: "태권도장", region: "서울", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "예약자 리뷰 관리"], status: "완료" },
+      { trade: "줄넘기 클럽", region: "경기", work: ["블로그 상위노출", "영상 제작"], status: "완료" },
+      { trade: "퍼스널 트레이닝", work: ["플레이스 상위노출", "블로그 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화"], status: "완료" },
+      { trade: "영어 학원", work: ["브랜딩"], status: "완료" },
     ],
   },
   {
@@ -129,6 +145,8 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "가설재", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "용달 이사", region: "충북", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "주간보호센터", work: ["플레이스 순위 관리"], status: "완료" },
+      { trade: "냉난방 공조 설비", region: "충남", work: ["플레이스 상위노출", "블로그 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화", "파워컨텐츠"], status: "완료" },
+      { trade: "하수구 설비", region: "충남", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화"], status: "완료" },
     ],
   },
   {
@@ -138,6 +156,7 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "자동차 정비소", region: "경기", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "자동차 디테일링", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "수입차 영업", work: ["블로그 상위노출"], status: "진행 중" },
+      { trade: "자동차 검사소", region: "경기", work: ["플레이스 상위노출", "블로그 상위노출"], status: "완료" },
     ],
   },
   {
@@ -148,6 +167,7 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "강아지 분양", region: "서울", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "반려동물 토탈케어", region: "경기·경북", branches: 3, work: ["블로그 상위노출"], status: "진행 중" },
       { trade: "반려동물 용품", work: ["블로그 상위노출"], status: "완료" },
+      { trade: "반려동물 분양", region: "경기", work: ["플레이스 상위노출", "체험단"], status: "완료" },
     ],
   },
   {
@@ -175,6 +195,7 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
     items: [
       { trade: "꽃집", work: ["플레이스 상위노출", "플레이스 SEO 최적화", "네이버 광고 최적화"], status: "완료" },
       { trade: "웨딩 업체", work: ["인스타그램 운영"], status: "진행 중" },
+      { trade: "꽃집", work: ["플레이스 상위노출", "블로그 상위노출", "플레이스 SEO 최적화"], status: "완료" },
     ],
   },
 ];

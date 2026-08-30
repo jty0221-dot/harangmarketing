@@ -130,7 +130,7 @@ export default function PortfolioPage() {
             </div>
 
             <p className="w-caption-1 mt-5" style={{ color: "var(--w-label-assistive)" }}>
-              계약 대장에서 뽑았습니다. 상호 · 지점명 · 연락처 · 계약 금액은 넣지 않고, 지역은 광역 단위까지만
+              계약 대장과 견적 · 계약 서류에서 뽑았습니다. 상호 · 지점명 · 연락처 · 계약 금액은 넣지 않고, 지역은 광역 단위까지만
               적습니다. 업종을 확인하지 못한 곳과 아직 착수하지 않은 곳은 뺐습니다.
             </p>
           </section>
