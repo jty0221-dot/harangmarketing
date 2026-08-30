@@ -185,8 +185,9 @@ export default function FreeCheckPage() {
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-1.5">사장님 성함</label>
+                    <label htmlFor="check-name" className="block text-xs font-bold text-gray-700 mb-1.5">사장님 성함</label>
                     <input
+                      id="check-name"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
@@ -196,8 +197,9 @@ export default function FreeCheckPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-1.5">매장명 · 업종</label>
+                    <label htmlFor="check-business" className="block text-xs font-bold text-gray-700 mb-1.5">매장명 · 업종</label>
                     <input
+                      id="check-business"
                       type="text"
                       value={business}
                       onChange={(e) => setBusiness(e.target.value)}
@@ -207,8 +209,9 @@ export default function FreeCheckPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-1.5">연락처</label>
+                    <label htmlFor="check-phone" className="block text-xs font-bold text-gray-700 mb-1.5">연락처</label>
                     <input
+                      id="check-phone"
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
@@ -218,11 +221,12 @@ export default function FreeCheckPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 mb-1.5">
+                    <label htmlFor="check-rank" className="block text-xs font-bold text-gray-700 mb-1.5">
                       현재 플레이스 순위 <span className="text-gray-400 font-normal">(선택)</span>
                     </label>
                     <div className="relative">
                       <input
+                        id="check-rank"
                         type="number"
                         value={rank}
                         onChange={(e) => setRank(e.target.value)}

@@ -144,6 +144,7 @@ export default function Footer() {
                   ["마케팅상품", "/services"],
                   ["프로그램", "/studio"],
                   ["진행사례", "/cases"],
+                  ["업종별 사례", "/portfolio"],
                   ["FAQ", "/faq"],
                   ["블로그", "/blog"],
                   ["진행과정", "/process"],
@@ -214,6 +215,54 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* 업종·지역 진입로
+          업종 6개 페이지는 /services 한 곳에서만, 지역 3개는 홈 한 곳에서만 닿았고
+          /location 허브는 sitemap 에만 있고 들어갈 링크가 한 곳도 없어 고립돼 있었다.
+          모든 화면 하단에서 열리도록 여기에 둔다. */}
+      <div className="border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-6 space-y-3">
+          {[
+            {
+              title: "업종별",
+              items: [
+                { label: "카페·베이커리", href: "/services/cafe" },
+                { label: "병원·의원", href: "/services/clinic" },
+                { label: "뷰티·네일", href: "/services/beauty" },
+                { label: "학원·교육", href: "/services/academy" },
+                { label: "음식점·식당", href: "/services/restaurant" },
+                { label: "쇼핑몰·소매점", href: "/services/shopping" },
+              ],
+            },
+            {
+              title: "지역별",
+              items: [
+                { label: "지역 안내 전체", href: "/location" },
+                { label: "서울", href: "/location/seoul" },
+                { label: "경기도", href: "/location/gyeonggi" },
+                { label: "인천", href: "/location/incheon" },
+              ],
+            },
+          ].map((row) => (
+            <div key={row.title} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
+              <span className="shrink-0 text-[11px] font-bold tracking-widest text-gray-600 sm:w-12">
+                {row.title}
+              </span>
+              <div className="flex flex-wrap gap-x-4 gap-y-0.5">
+                {row.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="inline-flex items-center min-h-11 sm:min-h-0 text-[13px] text-gray-500 hover:text-gray-200 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

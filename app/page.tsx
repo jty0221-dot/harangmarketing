@@ -1472,6 +1472,13 @@ export default function HomePage() {
                 <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">전국 서비스</p>
                 <h2 className="text-xl md:text-2xl font-black text-white mb-1">어디든 달려갑니다</h2>
                 <p className="text-gray-500 text-sm">온라인 진행 기본, 수도권 현장 방문 가능</p>
+                {/* 지역 허브는 sitemap 에만 있고 들어갈 링크가 없어 고립돼 있었다 */}
+                <Link
+                  href="/location"
+                  className="mt-2 inline-flex items-center gap-1 min-h-11 md:min-h-0 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  지역별 안내 자세히 보기 <ArrowRight size={12} />
+                </Link>
               </div>
               <div className="flex flex-wrap gap-2">
                 {[

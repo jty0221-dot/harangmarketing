@@ -269,15 +269,15 @@ function ContactPageInner() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-gray-700 mb-1.5">이름 / 업체명 <span className="text-blue-500">*</span></label>
-                          <input type="text" required value={form.name}
+                          <label htmlFor="contact-name" className="block text-xs font-bold text-gray-700 mb-1.5">이름 / 업체명 <span className="text-blue-500">*</span></label>
+                          <input id="contact-name" type="text" required value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             placeholder="홍길동 / 하랑카페"
                             className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
                         </div>
                         <div>
-                          <label className="block text-xs font-bold text-gray-700 mb-1.5">연락처 <span className="text-blue-500">*</span></label>
-                          <input type="tel" required value={form.phone}
+                          <label htmlFor="contact-phone" className="block text-xs font-bold text-gray-700 mb-1.5">연락처 <span className="text-blue-500">*</span></label>
+                          <input id="contact-phone" type="tel" required value={form.phone}
                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
                             placeholder="010-0000-0000"
                             className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
@@ -285,8 +285,8 @@ function ContactPageInner() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-gray-700 mb-2">예상 월 예산</label>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        <span id="contact-budget-label" className="block text-xs font-bold text-gray-700 mb-2">예상 월 예산</span>
+                        <div role="group" aria-labelledby="contact-budget-label" className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {BUDGETS.map((b) => (
                             <button key={b} type="button" onClick={() => setForm({ ...form, budget: b })}
                               className={`px-3 py-2 rounded-xl border text-xs font-medium transition-all ${form.budget === b ? "border-blue-500 bg-blue-50 text-blue-700 font-bold" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
@@ -297,8 +297,8 @@ function ContactPageInner() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-gray-700 mb-1.5">추가 문의 사항</label>
-                        <textarea rows={3} value={form.message}
+                        <label htmlFor="contact-message" className="block text-xs font-bold text-gray-700 mb-1.5">추가 문의 사항</label>
+                        <textarea id="contact-message" rows={3} value={form.message}
                           onChange={(e) => setForm({ ...form, message: e.target.value })}
                           placeholder="현재 상황, 가장 큰 고민, 기대하는 결과 등을 자유롭게 적어주세요"
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none placeholder:text-gray-300" />
