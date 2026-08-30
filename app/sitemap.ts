@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getBlogIndex } from "./lib/blog-index";
 import { SITE } from "./lib/seo";
+import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 
 const BASE = SITE.base;
 
@@ -14,7 +15,7 @@ const CASE_SLUGS = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticPages: MetadataRoute.Sitemap = [
+  const allStaticPages: MetadataRoute.Sitemap = [
     { url: BASE,                              lastModified: now, changeFrequency: "weekly",  priority: 1.0 },
     { url: `${BASE}/about`,                   lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services`,                lastModified: now, changeFrequency: "monthly", priority: 0.9 },
@@ -42,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/location/seoul`,          lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/location/incheon`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
+
+  // SNS 부스트 스토어를 감춘 동안에는 사이트맵에서도 뺀다 (app/lib/feature-flags.ts).
+  // 화면은 404 를 주고 robots 는 차단하므로 사이트맵에 남겨두면 서로 어긋난 신호가 된다.
+  const staticPages: MetadataRoute.Sitemap = SNS_STORE_ENABLED
+    ? allStaticPages
+    : allStaticPages.filter((page) => page.url !== `${BASE}/sns`);
 
   const casePages: MetadataRoute.Sitemap = CASE_SLUGS.map((slug) => ({
     url: `${BASE}/cases/${slug}`,

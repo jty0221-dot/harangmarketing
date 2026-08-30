@@ -4,6 +4,8 @@ import { PlatformLogo } from "../sns/PlatformLogo";
 import type { PlatformId } from "../lib/sns-store";
 
 import { SITE } from "../lib/seo";
+import { SNS_STORE_ENABLED } from "../lib/feature-flags";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400">
@@ -115,7 +117,10 @@ export default function Footer() {
                   ["인스타그램", "/services#sns"],
                   ["맘카페 바이럴", "/services"],
                   ["무료 플레이스 진단", "/free-check"],
-                ].map(([label, href, isNew]) => (
+                ]
+                  // SNS 부스트 스토어를 감춘 동안에는 이 줄도 뺀다 (app/lib/feature-flags.ts)
+                  .filter(([, href]) => SNS_STORE_ENABLED || href !== "/sns")
+                  .map(([label, href, isNew]) => (
                   <li key={label as string}>
                     <Link
                       href={href as string}

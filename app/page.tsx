@@ -18,6 +18,7 @@ import YouTubeSectionNew from "./components/YouTubeSection";
 import PhotoPlaceholder from "./components/PhotoPlaceholder";
 import RevealOnScroll from "./components/RevealOnScroll";
 import ClientLogosSection from "./components/ClientLogosSection";
+import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 import { PlatformLogo, brandColor } from "./sns/PlatformLogo";
 import type { PlatformId } from "./lib/sns-store";
 import DifferenceSection from "./components/DifferenceSection";
@@ -175,7 +176,7 @@ const COMPARE_ITEMS = [
   { category: "전략 설계", harang: "업종별 맞춤형 전략 (카페·병원·쇼핑몰 특화)", general: "일괄 패키지, 템플릿 기반" },
   { category: "분석 방식", harang: "플레이스 순위 매일 스냅샷 계측", general: "노출·클릭 수 위주, 감각 운영" },
   { category: "보고 체계", harang: "월 2회 상세 리포트 + 주간 최적화", general: "월 1회 간단 보고, 설정 후 방치" },
-  { category: "담당자", harang: "10년 경력 대표이 1:1 관리", general: "신입 담당자 수시 교체" },
+  { category: "담당자", harang: "10년 경력 대표가 1:1 관리", general: "신입 담당자 수시 교체" },
   { category: "성과 기준", harang: "계측 가능한 순위·리뷰 수치 기준", general: "노출 수·팔로워 수 등 허수 지표" },
   { category: "소통 방식", harang: "카카오·전화 24시간 응대, 직접 연락", general: "이메일·업무시스템, 응답 지연 빈번" },
 ];
@@ -335,62 +336,65 @@ export default function HomePage() {
         </section>
 
         {/* ══ SNS 부스트 스토어 배너 ══ */}
-        <section className="py-10 md:py-14" style={{ background: "var(--h-dark)" }}>
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#002966] via-[#16224a] to-[#003E9C] ring-1 ring-white/10 px-6 py-8 md:px-10 md:py-10">
-              <div className="dot-grid-navy absolute inset-0 opacity-40" aria-hidden />
-              <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black text-blue-300 ring-1 ring-white/15">
-                    <Star size={12} strokeWidth={2.5} />
-                    NEW · 회원가입 없이 건당 주문
+        {/* 스토어를 감춘 동안에는 배너도 내린다 (app/lib/feature-flags.ts) */}
+        {SNS_STORE_ENABLED && (
+          <section className="py-10 md:py-14" style={{ background: "var(--h-dark)" }}>
+            <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#002966] via-[#16224a] to-[#003E9C] ring-1 ring-white/10 px-6 py-8 md:px-10 md:py-10">
+                <div className="dot-grid-navy absolute inset-0 opacity-40" aria-hidden />
+                <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-black text-blue-300 ring-1 ring-white/15">
+                      <Star size={12} strokeWidth={2.5} />
+                      NEW · 회원가입 없이 건당 주문
+                    </div>
+                    <h2 className="mt-4 text-2xl md:text-[32px] font-black text-white leading-tight" style={{ letterSpacing: "-0.03em" }}>
+                      SNS 부스트 스토어
+                    </h2>
+                    <p className="mt-2.5 text-sm md:text-[15px] leading-relaxed text-gray-300 max-w-xl">
+                      인스타·유튜브·틱톡·네이버 등 8개 플랫폼의 팔로워·좋아요·조회수를
+                      대행 계약 없이 필요한 만큼만 주문하세요. 비밀번호 없이 링크만으로 진행되고,
+                      주문번호로 진행 상황을 실시간 확인할 수 있습니다.
+                    </p>
+                    <div className="mt-5 flex items-center gap-2.5 flex-wrap">
+                      {(["instagram", "youtube", "tiktok", "threads", "naver", "x", "facebook", "telegram", "kakao"] as PlatformId[]).map((id) => (
+                        <PlatformLogo key={id} id={id} size={32} className="ring-2 ring-white/10" />
+                      ))}
+                    </div>
+                    <div className="mt-6 flex flex-col sm:flex-row gap-2.5">
+                      <Link href="/sns"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-400 text-gray-900 font-black text-sm transition hover:bg-blue-300 shadow-sm">
+                        스토어 구경하기
+                        <ArrowRight size={15} strokeWidth={2.5} />
+                      </Link>
+                      <Link href="/sns/track"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-black text-sm ring-1 ring-white/20 transition hover:bg-white/20">
+                        주문 조회
+                      </Link>
+                    </div>
                   </div>
-                  <h2 className="mt-4 text-2xl md:text-[32px] font-black text-white leading-tight" style={{ letterSpacing: "-0.03em" }}>
-                    SNS 부스트 스토어
-                  </h2>
-                  <p className="mt-2.5 text-sm md:text-[15px] leading-relaxed text-gray-300 max-w-xl">
-                    인스타·유튜브·틱톡·네이버 등 8개 플랫폼의 팔로워·좋아요·조회수를
-                    대행 계약 없이 필요한 만큼만 주문하세요. 비밀번호 없이 링크만으로 진행되고,
-                    주문번호로 진행 상황을 실시간 확인할 수 있습니다.
-                  </p>
-                  <div className="mt-5 flex items-center gap-2.5 flex-wrap">
-                    {(["instagram", "youtube", "tiktok", "threads", "naver", "x", "facebook", "telegram", "kakao"] as PlatformId[]).map((id) => (
-                      <PlatformLogo key={id} id={id} size={32} className="ring-2 ring-white/10" />
+                  {/* 가격 미리보기 카드 */}
+                  <div className="hidden lg:flex flex-col gap-2.5 w-64">
+                    {[
+                      { logo: "instagram" as PlatformId, name: "한국인 팔로워", price: "150원", unit: "명" },
+                      { logo: "youtube" as PlatformId, name: "한국인 조회수", price: "15원", unit: "회" },
+                      { logo: "naver" as PlatformId, name: "플레이스 저장", price: "100원", unit: "개" },
+                    ].map((r) => (
+                      <div key={r.name} className="flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-lg">
+                        <PlatformLogo id={r.logo} size={36} />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[13px] font-black text-gray-900 truncate">{r.name}</p>
+                          <p className="text-[11px] text-gray-400">1{r.unit}당</p>
+                        </div>
+                        <p className="text-[15px] font-black text-blue-600 tabular-nums shrink-0">{r.price}</p>
+                      </div>
                     ))}
                   </div>
-                  <div className="mt-6 flex flex-col sm:flex-row gap-2.5">
-                    <Link href="/sns"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-400 text-gray-900 font-black text-sm transition hover:bg-blue-300 shadow-sm">
-                      스토어 구경하기
-                      <ArrowRight size={15} strokeWidth={2.5} />
-                    </Link>
-                    <Link href="/sns/track"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-black text-sm ring-1 ring-white/20 transition hover:bg-white/20">
-                      주문 조회
-                    </Link>
-                  </div>
-                </div>
-                {/* 가격 미리보기 카드 */}
-                <div className="hidden lg:flex flex-col gap-2.5 w-64">
-                  {[
-                    { logo: "instagram" as PlatformId, name: "한국인 팔로워", price: "150원", unit: "명" },
-                    { logo: "youtube" as PlatformId, name: "한국인 조회수", price: "15원", unit: "회" },
-                    { logo: "naver" as PlatformId, name: "플레이스 저장", price: "100원", unit: "개" },
-                  ].map((r) => (
-                    <div key={r.name} className="flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-lg">
-                      <PlatformLogo id={r.logo} size={36} />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-[13px] font-black text-gray-900 truncate">{r.name}</p>
-                        <p className="text-[11px] text-gray-400">1{r.unit}당</p>
-                      </div>
-                      <p className="text-[15px] font-black text-blue-600 tabular-nums shrink-0">{r.price}</p>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ══ 업종별 특화 ══ */}
         <section className="py-10 md:py-16" style={{ background: "var(--h-bg)" }}>

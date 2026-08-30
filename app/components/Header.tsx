@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock } from "lucide-react";
 
 import { SITE } from "../lib/seo";
+import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 const ANN_KEY = "harang_ann_v1";
 
 const ANN_MESSAGES = [
@@ -35,7 +36,14 @@ const ANN_MESSAGES = [
   },
 ];
 
-const NAV_ITEMS = [
+type NavItem = {
+  label: string;
+  href: string;
+  accent?: boolean;
+  sub?: { label: string; href: string }[];
+};
+
+const ALL_NAV_ITEMS: NavItem[] = [
   { label: "회사소개", href: "/about" },
   {
     label: "서비스",
@@ -64,6 +72,14 @@ const NAV_ITEMS = [
   { label: "FAQ", href: "/faq" },
   { label: "상담신청", href: "/contact" },
 ];
+
+// SNS 부스트 스토어를 감춘 동안에는 최상위 항목과 서비스 드롭다운 줄을 함께 뺀다.
+// 스위치는 app/lib/feature-flags.ts 한 곳에 있다.
+const NAV_ITEMS: NavItem[] = SNS_STORE_ENABLED
+  ? ALL_NAV_ITEMS
+  : ALL_NAV_ITEMS
+      .filter((item) => item.href !== "/sns")
+      .map((item) => (item.sub ? { ...item, sub: item.sub.filter((s) => s.href !== "/sns") } : item));
 
 export default function Header() {
   const [open, setOpen] = useState(false);

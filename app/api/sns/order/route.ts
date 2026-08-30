@@ -9,6 +9,7 @@ import {
   markDispatchFailed,
   InsufficientBalance,
 } from "../../../lib/member-orders";
+import { SNS_STORE_ENABLED } from "../../../lib/feature-flags";
 
 /**
  * 주문 접수 (공개)
@@ -48,6 +49,9 @@ async function notifyOwner(text: string) {
 }
 
 export async function POST(req: NextRequest) {
+  // 스토어를 감춘 동안에는 새 주문을 받지 않는다 (app/lib/feature-flags.ts).
+  // 화면이 404 라 정상 경로로는 닿을 수 없지만, 직접 호출까지 막아 둔다.
+  if (!SNS_STORE_ENABLED) return NextResponse.json({ ok: false, error: "Not Found" }, { status: 404 });
   let body: Record<string, unknown>;
   try {
     body = await req.json();

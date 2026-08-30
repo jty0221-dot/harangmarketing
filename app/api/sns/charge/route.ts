@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyMemberToken, MEMBER_COOKIE_NAME } from "../../../lib/member-auth";
 import { createChargeRequest, getMemberCharges } from "../../../lib/charges";
 import { getMemberById } from "../../../lib/members";
+import { SNS_STORE_ENABLED } from "../../../lib/feature-flags";
 
 const MIN = 5000;
 const MAX = 2000000;
@@ -9,6 +10,9 @@ const BANK = process.env.SNS_BANK || "국민은행 0947-0104-384081 (예금주: 
 
 /** 충전 신청(pending 생성) + 입금 계좌 반환 */
 export async function POST(req: NextRequest) {
+  // 스토어를 감춘 동안에는 새 충전 신청을 받지 않는다 (app/lib/feature-flags.ts).
+  // 화면이 404 라 정상 경로로는 닿을 수 없지만, 직접 호출까지 막아 둔다.
+  if (!SNS_STORE_ENABLED) return NextResponse.json({ ok: false, error: "Not Found" }, { status: 404 });
   const memberId = verifyMemberToken(req.cookies.get(MEMBER_COOKIE_NAME)?.value);
   if (!memberId) return NextResponse.json({ ok: false, error: "로그인이 필요합니다" }, { status: 401 });
   try {

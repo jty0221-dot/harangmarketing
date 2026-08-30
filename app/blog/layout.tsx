@@ -22,7 +22,7 @@ const BLOG_LD = [
     "@id": `${SITE.base}/blog#blog`,
     name: "하랑마케팅 마케팅 인사이트",
     description:
-      "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, 인스타그램 등 소상공인이 바로 적용할 수 있는 실전 마케팅 노하우를 10년 경력 담당자가 직접 씁니다.",
+      "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, 인스타그램 등 소상공인이 바로 적용할 수 있는 실전 마케팅 노하우를 10년 경력 대표가 직접 씁니다.",
     url: `${SITE.base}/blog`,
     inLanguage: "ko-KR",
     isPartOf: { "@id": SITE_ID },

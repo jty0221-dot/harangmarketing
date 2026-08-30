@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | 하랑마케팅",
   },
   description:
-    `10년 경력 담당자가 처음부터 끝까지. 네이버 플레이스·블로그·체험단·인스타그램으로 매출 상승. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
+    `10년 경력 대표가 처음부터 끝까지. 네이버 플레이스·블로그·체험단·인스타그램으로 매출 상승. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
   keywords: [
     "마케팅대행사", "소상공인마케팅", "자영업자마케팅",
     "네이버플레이스", "플레이스SEO", "플레이스상위노출",
