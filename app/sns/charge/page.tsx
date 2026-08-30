@@ -9,16 +9,51 @@ const PRESETS = [10000, 30000, 50000, 100000, 300000, 500000];
 const won = (n: number) => n.toLocaleString("ko-KR");
 
 /**
- * 포트원 결제창 설정 — 상점 아이디와 채널 키는 공개값이라 브라우저에 내려도 된다.
- * (돈을 움직이는 열쇠는 서버의 PORTONE_API_SECRET 이고 그건 절대 내려가지 않는다)
+ * 결제창 설정 — 상점 아이디는 공개값이라 브라우저에 내려도 된다.
+ * (돈을 움직이는 열쇠는 서버의 INNOPAY_MERCHANT_KEY · PORTONE_API_SECRET 이고 그건 내려가지 않는다)
  *
- * 두 값이 비어 있으면 카드 결제 자리를 아예 그리지 않고 예전처럼 무통장입금만 받는다.
- * PG 심사 중에는 테스트 채널 키를 넣어 두면 결제창이 테스트모드로 뜬다.
+ * 카드 결제는 두 길이 있고 이노페이가 우선이다.
+ *   이노페이  결제창을 직접 띄우고, 인증이 끝나면 우리 서버가 승인 API 를 불러 반영한다
+ *   포트원    포트원이 지원하는 PG 를 쓸 때의 예전 경로. 이노페이는 포트원 지원 목록에 없다
+ *
+ * 어느 쪽 값도 없으면 카드 결제 자리를 아예 그리지 않고 예전처럼 무통장입금만 받는다.
  */
+const INNOPAY_MID = process.env.NEXT_PUBLIC_INNOPAY_MID ?? "";
+const INNOPAY_READY = Boolean(INNOPAY_MID);
+const INNOPAY_SDK = "https://pg.innopay.co.kr/tpay/js/innopay.js";
+
 const STORE_ID = process.env.NEXT_PUBLIC_PORTONE_STORE_ID ?? "";
 const CHANNEL_KEY = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY ?? "";
-const CARD_READY = Boolean(STORE_ID && CHANNEL_KEY);
-const TEST_MODE = process.env.NEXT_PUBLIC_PORTONE_TEST === "1";
+const PORTONE_READY = Boolean(STORE_ID && CHANNEL_KEY);
+
+const CARD_READY = INNOPAY_READY || PORTONE_READY;
+const TEST_MODE =
+  process.env.NEXT_PUBLIC_PORTONE_TEST === "1" || process.env.NEXT_PUBLIC_INNOPAY_TEST === "1";
+
+declare global {
+  interface Window {
+    innopay?: { goPay: (params: Record<string, string>) => void };
+  }
+}
+
+/** 결제창 스크립트를 한 번만 올린다 */
+let innopaySdk: Promise<void> | null = null;
+function loadInnopaySdk(): Promise<void> {
+  if (typeof window !== "undefined" && window.innopay) return Promise.resolve();
+  if (innopaySdk) return innopaySdk;
+  innopaySdk = new Promise<void>((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = INNOPAY_SDK;
+    el.async = true;
+    el.onload = () => resolve();
+    el.onerror = () => {
+      innopaySdk = null;
+      reject(new Error("sdk"));
+    };
+    document.head.appendChild(el);
+  });
+  return innopaySdk;
+}
 
 interface Charge {
   id: number;
@@ -61,6 +96,23 @@ export default function SnsChargePage() {
       setBank(data.bank ?? "");
       setReady(true);
     }
+
+    /**
+     * 이노페이는 결제창에서 우리 서버(리턴 라우트)를 거쳐 이 화면으로 되돌아온다.
+     * 그때 붙어 오는 값으로 결과를 보여주고 주소는 깨끗하게 되돌린다.
+     * (새로고침해도 같은 안내가 다시 뜨지 않는다)
+     */
+    const sp = new URLSearchParams(window.location.search);
+    const pay = sp.get("pay");
+    if (pay) {
+      if (pay === "ok") {
+        const amt = Number(sp.get("amt") ?? 0);
+        setDone(amt > 0 ? `${won(amt)}원이 충전되었습니다` : "결제가 완료되었습니다");
+      } else {
+        setError((sp.get("msg") ?? "").slice(0, 120) || "결제가 완료되지 않았습니다");
+      }
+      window.history.replaceState(null, "", "/sns/charge");
+    }
   }, [router]);
 
   useEffect(() => {
@@ -93,8 +145,66 @@ export default function SnsChargePage() {
     setLoading(false);
   };
 
+  /** 충전 건을 먼저 만든다. 이 id 가 주문번호(MOID)와 결제 식별자의 뿌리가 된다 */
+  const createCharge = async (): Promise<{
+    id: number;
+    buyer: { name: string; phone: string };
+  } | null> => {
+    const res = await fetch("/api/sns/charge", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount }),
+    });
+    const data = await res.json().catch(() => ({ ok: false }));
+    if (!data.ok || !data.charge?.id) {
+      setError(data.error ?? "충전 신청에 실패했습니다");
+      return null;
+    }
+    return { id: data.charge.id, buyer: data.buyer ?? { name: "", phone: "" } };
+  };
+
   /**
-   * 카드 결제 — 충전 건을 먼저 만들고(paymentId 의 뿌리가 된다) 포트원 결제창을 띄운다.
+   * 이노페이 카드 결제 — 결제창을 띄우고 나면 이 화면을 떠난다.
+   *
+   * 결제창이 성공을 돌려줘도 그것만으로 잔액이 오르지 않는다. 인증이 끝나면 이노페이가
+   * 우리 서버의 리턴 라우트를 부르고, 서버가 승인 API 를 호출해 금액까지 맞을 때만
+   * 반영한 뒤 이 화면으로 되돌려 보낸다. 브라우저가 보낸 값은 어느 단계에서도 믿지 않는다.
+   */
+  const payWithInnopay = async () => {
+    const created = await createCharge();
+    if (!created) {
+      setLoading(false);
+      return;
+    }
+    try {
+      await loadInnopaySdk();
+    } catch {
+      setError("결제창을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요");
+      setLoading(false);
+      load();
+      return;
+    }
+    if (!window.innopay) {
+      setError("결제창을 열지 못했습니다. 잠시 후 다시 시도해 주세요");
+      setLoading(false);
+      return;
+    }
+    window.innopay.goPay({
+      payMethod: "CARD",
+      mid: INNOPAY_MID,
+      moid: `hrgchg${created.id}`,
+      goodsName: "SNS 부스트 예치금 충전",
+      amt: String(amount),
+      buyerName: created.buyer.name,
+      buyerTel: created.buyer.phone,
+      buyerEmail: "",
+      returnUrl: `${window.location.origin}/api/sns/charge/innopay/return`,
+    });
+    // 결제창이 뜨면 그다음은 리턴 라우트가 이어받는다. 버튼은 잠근 채로 둔다.
+  };
+
+  /**
+   * 포트원 카드 결제 — 포트원이 지원하는 PG 를 쓸 때의 경로.
    *
    * 결제창이 성공을 돌려줘도 그것만으로 잔액을 올리지 않는다. 서버가 포트원 API 에
    * 다시 물어서 PAID 와 금액이 맞을 때만 반영한다 — 브라우저 응답은 위조될 수 있다.
@@ -106,15 +216,16 @@ export default function SnsChargePage() {
     }
     setLoading(true);
     setError("");
+
+    // 이노페이가 설정돼 있으면 그쪽이 우선이다 (포트원 지원 목록에 없는 PG 라 직접 붙였다)
+    if (INNOPAY_READY) {
+      await payWithInnopay();
+      return;
+    }
+
     try {
-      const res = await fetch("/api/sns/charge", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
-      });
-      const data = await res.json().catch(() => ({ ok: false }));
-      if (!data.ok || !data.charge?.id) {
-        setError(data.error ?? "충전 신청에 실패했습니다");
+      const created = await createCharge();
+      if (!created) {
         setLoading(false);
         return;
       }
@@ -123,7 +234,7 @@ export default function SnsChargePage() {
       const paid = await PortOne.default.requestPayment({
         storeId: STORE_ID,
         channelKey: CHANNEL_KEY,
-        paymentId: `harang-charge-${data.charge.id}`,
+        paymentId: `harang-charge-${created.id}`,
         orderName: `SNS 부스트 예치금 ${won(amount)}원`,
         totalAmount: amount,
         currency: "KRW",
@@ -142,7 +253,7 @@ export default function SnsChargePage() {
       const check = await fetch("/api/sns/charge/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ paymentId: `harang-charge-${data.charge.id}` }),
+        body: JSON.stringify({ paymentId: `harang-charge-${created.id}` }),
       });
       const result = await check.json().catch(() => ({ ok: false }));
       if (result.ok && result.status === "paid") {

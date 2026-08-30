@@ -52,6 +52,22 @@ const nextConfig: NextConfig = {
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
         ],
       },
+      {
+        // 이노페이 결제창 복귀 지점만 프레임 허용 — 전역 SAMEORIGIN 을 이 한 경로에서 푼다.
+        // 이노페이 결제창은 우리 페이지 위에 iframe 으로 뜨고, 카드 인증이 끝나면 그 프레임
+        // 안에서 이 주소를 연다. SAMEORIGIN 이면 문서가 아예 안 떠서 결제 결과를 못 받는다.
+        // 뒤에 오는 규칙이 앞의 값을 덮는다(Next.js Header Overriding Behavior).
+        // frame-ancestors 로 이노페이 도메인만 허용하고, X-Frame-Options 는 최신 브라우저가
+        // 무시하는 값으로 바꿔 CSP 판정만 남긴다.
+        source: "/api/sns/charge/innopay/return",
+        headers: [
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://*.innopay.co.kr https://innopay.co.kr",
+          },
+        ],
+      },
     ];
   },
 };

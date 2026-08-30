@@ -40,6 +40,12 @@ export async function createChargeRequest(memberId: number, amount: number): Pro
   return mapCharge(rows[0]);
 }
 
+/** 충전 건 한 건 — 승인 요청에 보낼 금액을 DB 에서 가져올 때 쓴다 */
+export async function getChargeById(chargeId: number): Promise<Charge | null> {
+  const rows = (await getSql()`select * from charges where id = ${chargeId}`) as Row[];
+  return rows[0] ? mapCharge(rows[0]) : null;
+}
+
 /** 회원 본인의 충전 신청 내역 */
 export async function getMemberCharges(memberId: number, limit = 20): Promise<Charge[]> {
   const rows = (await getSql()`
@@ -99,24 +105,27 @@ export async function approveCharge(
 }
 
 /**
- * 포트원 입금 확인 자동 승인 — 웹훅에서 호출한다.
+ * PG 입금 확인 자동 승인 — 포트원 웹훅과 이노페이 리턴 라우트가 함께 쓴다.
  * 금액이 신청액과 다르면 반영하지 않고 "mismatch" 를 돌려준다(사람이 확인할 상황).
  * 멱등: 이미 처리된 건이면 null (웹훅은 여러 번 올 수 있다).
  */
 export async function approveChargeByPayment(
   chargeId: number,
   pgTxId: string,
-  paidAmount: number
+  paidAmount: number,
+  opts: { provider?: string; memo?: string } = {}
 ): Promise<{ memberId: number; amount: number; balanceAfter: number } | null | "mismatch"> {
+  const provider = opts.provider ?? "portone";
+  const memo = opts.memo ?? "가상계좌 입금 자동충전";
   const check = (await getSql()`select amount from charges where id = ${chargeId}`) as Row[];
   if (!check[0]) return null;
   if (Number(check[0].amount) !== paidAmount) return "mismatch";
 
   return withTransaction(async (c) => {
     const ch = await c.query(
-      `update charges set status='paid', paid_at=now(), pg_tx_id=$2, pg_provider='portone'
+      `update charges set status='paid', paid_at=now(), pg_tx_id=$2, pg_provider=$3
         where id=$1 and status='pending' returning member_id, amount`,
-      [chargeId, pgTxId]
+      [chargeId, pgTxId, provider]
     );
     if (ch.rowCount === 0) return null; // 이미 처리됨
     const memberId = Number(ch.rows[0].member_id);
@@ -127,8 +136,8 @@ export async function approveChargeByPayment(
     ]);
     const balanceAfter = Number(upd.rows[0].balance);
     await c.query(
-      "insert into ledger (member_id, kind, amount, balance_after, ref, memo) values ($1,'charge',$2,$3,$4,'가상계좌 입금 자동충전')",
-      [memberId, amount, balanceAfter, `충전#${chargeId}`]
+      "insert into ledger (member_id, kind, amount, balance_after, ref, memo) values ($1,'charge',$2,$3,$4,$5)",
+      [memberId, amount, balanceAfter, `충전#${chargeId}`, memo]
     );
     return { memberId, amount, balanceAfter };
   });

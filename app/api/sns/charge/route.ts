@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyMemberToken, MEMBER_COOKIE_NAME } from "../../../lib/member-auth";
 import { createChargeRequest, getMemberCharges } from "../../../lib/charges";
+import { getMemberById } from "../../../lib/members";
 
 const MIN = 5000;
 const MAX = 2000000;
@@ -20,7 +21,14 @@ export async function POST(req: NextRequest) {
       );
     }
     const charge = await createChargeRequest(memberId, amount);
-    return NextResponse.json({ ok: true, charge, bank: BANK });
+    // 결제창에 넣을 구매자 정보 — 카드 결제일 때만 쓰인다(회원 본인 값이라 새로 묻지 않는다)
+    const member = await getMemberById(memberId);
+    return NextResponse.json({
+      ok: true,
+      charge,
+      bank: BANK,
+      buyer: { name: member?.name ?? "", phone: member?.phone ?? "" },
+    });
   } catch {
     return NextResponse.json({ ok: false, error: "충전 신청 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요." }, { status: 500 });
   }

@@ -164,3 +164,84 @@ GET  /api/sns/orders           내 주문 목록
       키가 없으면 웹훅은 조용히 무시하고, 기존 수동승인(P2) 흐름이 그대로 동작한다.
 
 즉 **P1·P2·P3·P5 는 지금 라이브**. P4 는 대표의 PG 심사 승인만 기다린다.
+
+## 9. 이노페이(INNOPAY) 카드결제 직연동 — 2026-08-31 (일)
+
+### 왜 포트원이 아니라 직연동인가
+
+포트원 V2 가 지원하는 PG 목록에 **이노페이가 없다**. 실측한 목록은 토스페이먼츠 · KSNET ·
+스마트로 · 나이스정보통신 · KG이니시스 · KG이니시스 일본결제 · 한국결제네트웍스(KPN) · NHN KCP ·
+웰컴페이먼츠 · 카카오페이 · 네이버페이 · 토스페이 · 페이팔 · 엑심베이 · 페이레터 · 갤럭시아머니트리 ·
+Triple-A · 이지페이(KICC) · 페이먼트월 · 헥토파이낸셜 스무 곳이다.
+
+그래서 이미 만들어 둔 `app/lib/portone.ts` 계통을 이노페이에 재사용할 수 없다. 결제창 호출과
+승인 요청을 직접 붙였다. **포트원 경로는 지우지 않고 그대로 뒀다** — 나중에 포트원이 지원하는 PG 로
+가더라도 코드를 다시 쓰지 않아도 된다.
+
+### 흐름
+
+1. 회원이 `/sns/charge` 에서 금액을 고르고 카드 결제를 누른다
+2. 서버가 충전 건(pending)을 만든다. 이 id 가 주문번호 MOID(`hrgchg<id>`)가 된다
+3. 브라우저가 `innopay.goPay()` 로 결제창을 띄운다
+4. 카드 인증이 끝나면 이노페이가 `returnUrl` 로 거래번호(TID)를 보낸다. **여기까지는 인증이고 돈은 아직 안 빠진다**
+5. 리턴 라우트가 **DB 의 신청 금액으로** 승인 API 를 호출한다 (브라우저가 보낸 금액을 쓰지 않는다)
+6. 승인 성공 + 금액 일치일 때만 `charges=paid` · `ledger` · `members.balance` 를 한 트랜잭션으로 올린다
+7. 결제창 프레임에서 `/sns/charge` 로 되돌리고 결과를 보여준다
+
+### 만든 것
+
+```
+app/lib/innopay.ts                          승인 API 호출 · MOID 변환 · 성공코드 판정 · 필드 추출
+app/api/sns/charge/innopay/return/route.ts  결제창 복귀 지점(returnUrl) · 승인 · 잔액 반영
+app/api/sns/charge/route.ts                 POST 응답에 구매자 이름·연락처 추가(결제창 입력값)
+app/lib/charges.ts                          approveChargeByPayment 에 provider·memo 인자 · getChargeById
+app/sns/charge/page.tsx                     결제창 호출 · 복귀 결과 표시
+next.config.ts                              리턴 경로만 프레임 허용(전역 SAMEORIGIN 예외)
+```
+
+### 대표 준비사항
+
+1. **이노페이 가맹점 계약·심사** — 이게 병목이다. 사업자등록증 · 정산계좌 필요
+2. 승인 후 Vercel 환경변수에 값을 넣는다 (**이름만 여기 적는다. 값은 대표가 직접 넣는다**)
+
+   | 이름 | 무엇 | 공개 여부 |
+   |---|---|---|
+   | `INNOPAY_MID` | 상점아이디 (영문·숫자 10자리) | 서버 전용 |
+   | `INNOPAY_MERCHANT_KEY` | 가맹점 서명키 | **서버 전용 · 절대 노출 금지** |
+   | `NEXT_PUBLIC_INNOPAY_MID` | 결제창에 넣는 상점아이디 (`INNOPAY_MID` 와 같은 값) | 공개값 |
+   | `NEXT_PUBLIC_INNOPAY_TEST` | `1` 이면 화면에 테스트 안내 문구 표시 | 공개값 |
+
+   `NEXT_PUBLIC_INNOPAY_MID` 가 비어 있으면 카드 결제 자리를 아예 그리지 않고
+   기존 무통장입금(P2)만 받는다. 지금 상태가 그렇다.
+
+3. 이노페이 가맹점 관리자에 복귀 주소를 등록한다
+
+   ```
+   https://www.harangmarketing.com/api/sns/charge/innopay/return
+   ```
+
+### 계약 후에 확정할 값 (매뉴얼이 로그인 뒤에 있다)
+
+이노페이 기술 매뉴얼(`/guide/*`)은 전부 가맹점 로그인 뒤에 있어 아래 세 가지를 계약 전에
+확정할 수 없다. **코드를 고치지 않고 환경변수만 채우면 되도록 한 곳에 모아 뒀다**
+(`app/lib/innopay.ts` 상단).
+
+| 이름 | 무엇 | 기본값 |
+|---|---|---|
+| `INNOPAY_SUCCESS_CODES` | 승인 성공으로 볼 결과코드 (쉼표로 여러 개) | `0000` |
+| `INNOPAY_FIELD_TID` | 복귀 시 오는 거래번호 필드명 후보 | `tid,TID,trxId,authTid` |
+| `INNOPAY_FIELD_MOID` | 주문번호 필드명 후보 | `moid,MOID,orderNo,orderNumber` |
+| `INNOPAY_FIELD_TOKEN` | 승인 요청에 넣을 인증 토큰 필드명 후보 | `paymentToken,PaymentToken,authToken,token` |
+| `INNOPAY_API_BASE` | 승인 API 주소 (스테이징 분리용) | `https://api.innopay.co.kr` |
+
+**모르는 것은 성공으로 보지 않는다.** 성공 코드 목록에 정확히 들어 있을 때만 승인으로 처리하고,
+아니면 잔액을 올리지 않는다. 취소·환불 API 규격도 매뉴얼에 있어 아직 붙이지 않았다 —
+현재 취소는 어드민 수동 처리(P5)로 간다.
+
+### 지키는 선
+
+- 브라우저가 보낸 금액을 어느 단계에서도 쓰지 않는다. 승인 요청 금액은 언제나 DB 의 신청 금액이다
+- 승인 응답 금액이 DB 금액과 다르면 반영하지 않고 사장님께 알린다
+- 승인 요청이 네트워크 오류로 끝나면 잔액을 올리지 않는다. 돈은 PG 에 남고 사람이 확인한다
+- 같은 요청이 두 번 와도 잔액은 한 번만 오른다 (`pg_tx_id` unique + `status='pending'` 조건부 갱신)
+- 프레임 허용은 리턴 경로 한 곳만 푼다. 나머지 페이지는 전역 `SAMEORIGIN` 그대로다
