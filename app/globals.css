@@ -1,0 +1,810 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+
+  /* 하랑마케팅 브랜드 토큰 — WDS(원티드) 블루로 통일 (2026-08-22 대표 결정)
+     이름은 그대로 두고 값만 WDS 단계로 바꿨다. 기존 273곳의 var(--h-*) 가
+     한 번에 새 팔레트를 따라간다. 새 색이 필요하면 아래 --w-* 를 쓸 것. */
+  --h-dark:       var(--w-blue-10);   /* #001536 */
+  --h-navy:       var(--w-blue-20);   /* #002966 */
+  --h-navy-mid:   var(--w-blue-30);   /* #003E9C */
+  --h-blue:       var(--w-blue-50);   /* #0066FF — 시그니처 */
+  --h-blue-light: var(--w-blue-60);   /* #3385FF */
+  /* 앰버 포인트도 블루로 흡수한다 — 한 가지 색으로 통일하는 게 이번 결정이다 */
+  --h-amber:      var(--w-blue-50);
+  --h-amber-light:var(--w-blue-60);
+  /* 따뜻한 오프화이트 → WDS 쿨 뉴트럴 */
+  --h-bg:         var(--w-cn-99);     /* #F7F7F8 */
+  --h-surface:    var(--w-cn-98);     /* #F4F4F5 */
+  --h-border:     var(--w-cn-96);     /* #E1E2E4 */
+  --h-muted:      var(--w-cn-50);     /* #70737C */
+  --h-rule:       3px solid var(--w-blue-50);
+
+  /* Hero dark tokens */
+  --hero-bg: #001536;
+  --hero-blob-1: rgba(0, 102, 255, 0.28);
+  --hero-blob-2: rgba(26, 117, 255, 0.22);
+  --hero-blob-3: rgba(0, 62, 156, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
+    'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*
+    한글 줄바꿈: keep-all 로 어절(띄어쓰기) 단위로만 끊는다.
+    이게 없으면 좁은 화면에서 한글이 음절 단위로 끊겨("자연스럽게 키/웁니다") 어색하다.
+    긴 영어 단어·URL 은 overflow-wrap 으로 강제로 끊어 넘침을 막는다.
+  */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Prevent iOS zoom on input focus */
+input, select, textarea {
+  font-size: 16px;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* Details/summary reset */
+details summary::-webkit-details-marker { display: none; }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Prevent orphan words in headings */
+h1, h2, h3, h4 { text-wrap: balance; }
+/* 본문 단락: 마지막 줄에 한 단어만 남는 것(고아 단어) 방지 (지원 브라우저에서만) */
+p { text-wrap: pretty; }
+
+/* Prevent horizontal overflow */
+body { overflow-x: hidden; }
+
+/* Tabular numbers */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* ═══════════════════════════════════════
+   HERO DARK — 21st.dev-style
+═══════════════════════════════════════ */
+
+.hero-dark {
+  background: var(--hero-bg);
+  position: relative;
+}
+
+/* Animated gradient blobs */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  will-change: transform;
+}
+@media (min-width: 768px) {
+  .hero-blob { filter: blur(80px); }
+}
+.hero-blob-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--hero-blob-1) 0%, transparent 65%);
+  top: -100px;
+  left: -120px;
+  animation: blob-drift-1 14s ease-in-out infinite alternate;
+}
+@media (min-width: 768px) {
+  .hero-blob-1 { width: 780px; height: 780px; top: -220px; left: -180px; }
+}
+.hero-blob-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--hero-blob-2) 0%, transparent 65%);
+  bottom: -60px;
+  right: -60px;
+  animation: blob-drift-2 17s ease-in-out infinite alternate;
+}
+@media (min-width: 768px) {
+  .hero-blob-2 { width: 650px; height: 650px; bottom: -120px; right: -80px; }
+}
+.hero-blob-3 {
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, var(--hero-blob-3) 0%, transparent 65%);
+  top: 50%;
+  left: 50%;
+  animation: blob-drift-3 11s ease-in-out 1s infinite alternate;
+}
+@media (min-width: 768px) {
+  .hero-blob-3 { width: 420px; height: 420px; top: 45%; left: 48%; }
+}
+
+@keyframes blob-drift-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(90px, 60px) scale(1.14); }
+}
+@keyframes blob-drift-2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-70px, -50px) scale(1.12); }
+}
+@keyframes blob-drift-3 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(50px, -40px) scale(1.2); }
+}
+
+/* Dot grid (dark variant) */
+.dot-grid-dark {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Noise texture */
+.hero-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* Thin horizontal rule lines overlay */
+.hero-grid-lines {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Hero text gradient ── */
+.hero-gradient-text {
+  background: linear-gradient(130deg, #60A5FA 0%, #818CF8 45%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* ── Hero CTA primary ── */
+.hero-cta-primary {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  box-shadow: 0 0 28px rgba(37, 99, 235, 0.45), 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+.hero-cta-primary:hover {
+  box-shadow: 0 0 50px rgba(37, 99, 235, 0.65), 0 8px 24px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Hero CTA secondary ── */
+.hero-cta-secondary {
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.82);
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.hero-cta-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.32);
+  transform: translateY(-1px);
+}
+
+/* ── Glassmorphism stat card ── */
+.hero-stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.hero-stat-card:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* ── Hero badge pill ── */
+.hero-badge {
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Hero entrance stagger animations ── */
+@keyframes hero-float-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-anim-1 { animation: hero-float-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both; }
+.hero-anim-2 { animation: hero-float-up 0.7s  cubic-bezier(0.22, 1, 0.36, 1) 0.2s  both; }
+.hero-anim-3 { animation: hero-float-up 0.7s  cubic-bezier(0.22, 1, 0.36, 1) 0.36s both; }
+.hero-anim-4 { animation: hero-float-up 0.7s  cubic-bezier(0.22, 1, 0.36, 1) 0.5s  both; }
+.hero-anim-5 { animation: hero-float-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both; }
+
+/* ── Floating card (right panel) ── */
+.hero-float-card {
+  animation: hero-float-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+@keyframes hero-card-hover {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.hero-float-anim {
+  animation: hero-card-hover 6s ease-in-out infinite;
+}
+
+/* Glow dot */
+@keyframes glow-ping {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+  50%       { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+}
+.glow-dot {
+  animation: glow-ping 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: none; }
+  .hero-anim-1, .hero-anim-2, .hero-anim-3,
+  .hero-anim-4, .hero-anim-5, .hero-float-card { animation: none; opacity: 1; }
+  .hero-blob-1, .hero-blob-2, .hero-blob-3 { animation: none; }
+}
+/*
+  좌우 슬라이드 등장(translateX)은 화면 가장자리 요소를 32px 밀어내 가로 넘침을 만든다.
+  기준선은 컨테이너 좌우 여백이다 -- lg 부터는 px-8(32px) 이라 32px 를 밀어도 화면 안에서 끝나는데,
+  md 구간은 px-6(24px) 뿐이라 8px 가 밖으로 나간다(768px 실측 scrollWidth 770 > 762).
+  767px 까지만 막아 두었더니 768~1023px 가 그대로 뚫려 있었다 (2026-08-27 (목) 수정).
+  1023px 이하에서는 좌우 이동을 세로 페이드로 대체해 넘침을 원천 차단한다.
+*/
+@media (max-width: 1023px) {
+  .reveal-left, .reveal-right { transform: translateY(24px); }
+  .reveal-left.revealed, .reveal-right.revealed { transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════
+   DOT GRID (LIGHT)
+═══════════════════════════════════════ */
+.dot-grid {
+  background-image: radial-gradient(circle, #C8C0B0 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ═══════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* ═══════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════ */
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════
+   MOTION ENHANCEMENTS
+═══════════════════════════════════════ */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(37,99,235,0.25); }
+  70%  { box-shadow: 0 0 0 10px rgba(37,99,235,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-right {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+.anim-float { animation: float-y 4s ease-in-out infinite; }
+.anim-float-slow { animation: float-y 6s ease-in-out infinite; }
+.anim-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+/* Stagger helpers for grid children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(9,29,62,0.13);
+}
+
+/* Navy card border accent */
+.card-navy-accent {
+  border-top: 3px solid var(--h-navy);
+}
+
+/* Dot grid navy variant */
+.dot-grid-navy {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Editorial / Agency layout utilities ─── */
+
+/* Oversized editorial number */
+.editorial-num {
+  /* 4단 칼럼 폭에 맞춘 크기다. 7vw/88px 로 두면 '97.4%' 가 칸을 넘어
+     옆 숫자와 붙고, '10년+' 은 한글 뒤 줄바꿈 지점에서 '+' 만 떨어진다
+     (2026-08-27 (목) 수정). 숫자는 절대 줄바꿈하지 않는다. */
+  font-size: clamp(36px, 4.8vw, 62px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 단위(+ · % · 년+)는 숫자보다 작게 조판한다.
+   숫자와 같은 크기로 두면 칸의 3분의 1을 단위가 먹는다.
+   .editorial-num 안에서만 적용되므로 다른 카운터에는 영향이 없다. */
+.editorial-num .counter-suffix {
+  font-size: 0.46em;
+  letter-spacing: -0.01em;
+  margin-left: 0.05em;
+}
+
+/* Ghost step number (decorative) */
+.ghost-num {
+  font-size: clamp(72px, 12vw, 140px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--h-surface);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Amber rule left accent */
+.rule-amber {
+  border-left: 3px solid var(--h-amber);
+  padding-left: 1rem;
+}
+
+/* Thin section divider line */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(to right, var(--h-border), transparent 70%);
+}
+
+/* Editorial service row */
+.svc-row {
+  border-bottom: 1px solid var(--h-border);
+  transition: background 0.18s ease;
+}
+.svc-row:hover {
+  background: var(--h-bg);
+}
+
+/* Dark split panel */
+.split-dark {
+  background: var(--h-dark);
+}
+
+/* Angled top separator */
+.angle-top::before {
+  content: '';
+  display: block;
+  height: 48px;
+  background: white;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+  margin-bottom: -1px;
+}
+
+/* Shimmer text */
+.shimmer-text {
+  background: linear-gradient(90deg, #2563EB 25%, #818CF8 50%, #2563EB 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out both; }
+.animate-fade-in    { animation: fadeIn  0.4s ease-out both; }
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.animate-slide-up { animation: slideUp 0.3s ease-out both; }
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.animate-pulse-ring { animation: pulseRing 2s ease-out infinite; }
+
+/* ─────────────────────────────────────────────────────────────
+   카페 배포 상세 · 레퍼런스 페이지 전용 토큰
+   design_handoff_cafe_distribution/README.md 의 Design Tokens 값 그대로.
+   사이트 공통 토큰(--h-*)과 별개다 — 임의로 통합하지 말 것.
+   ───────────────────────────────────────────────────────────── */
+.cafe-dist {
+  --cd-primary:      #1655e8;
+  --cd-primary-deep: #1449c8;
+  --cd-primary-dark: #0f42c0;
+  --cd-primary-lt:   #2f6bf5;
+  --cd-primary-lt2:  #5b8dfa;
+  --cd-primary-lt3:  #7fa6ff;
+
+  --cd-tint:    #f3f6fc;
+  --cd-tint-2:  #eaf1ff;
+  --cd-tint-3:  #f1f4fb;
+
+  --cd-border:   #dde5f4;
+  --cd-border-2: #e2e8f5;
+
+  --cd-ink:   #12172a;
+  --cd-ink-2: #131a2b;
+  --cd-ink-3: #111111;
+
+  --cd-body:  #3c4459;
+  --cd-body-2:#5a627a;
+
+  --cd-muted:   #7a8298;
+  --cd-muted-2: #8c95ab;
+  --cd-muted-3: #a2aabd;
+
+  --cd-dark:   #0b1226;
+  --cd-dark-2: #101a36;
+  --cd-dark-3: #16224a;
+
+  --cd-on-dark:   #c6cfe4;
+  --cd-on-dark-2: #98a3bc;
+  --cd-on-dark-3: #93a2c4;
+  --cd-on-dark-4: #6c7488;
+
+  --cd-sale:    #e02b2b;
+  --cd-sale-bg: #fff3f3;
+}
+
+/* 대형 헤드라인·숫자 전용 디스플레이 서체.
+   한글 대형 텍스트는 letter-spacing 음수값이 필수 — 빠지면 완전히 다른 디자인이 된다. */
+.cd-display {
+  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.cd-num {
+  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* 진행 바 등장 애니메이션 */
+@keyframes cdFillbar { from { width: 0; } }
+.cd-fillbar { animation: cdFillbar 1.4s ease-out both; }
+
+/* CTA 버튼 상하 부유 */
+@keyframes cdPulseCta {
+  0%, 100% { transform: translateY(0);     box-shadow: 0 12px 30px rgba(47,107,245,.35); }
+  50%      { transform: translateY(-4px);  box-shadow: 0 20px 44px rgba(47,107,245,.5); }
+}
+.cd-pulse-cta { animation: cdPulseCta 2.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cd-fillbar, .cd-pulse-cta { animation: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   진행 보고서 본문 (/r/[code])
+   에디터가 만든 HTML 을 그대로 렌더하므로, 태그별 기본 스타일을 여기서 준다.
+   (@tailwindcss/typography 플러그인은 이 프로젝트에 설치돼 있지 않다 — prose 클래스는 동작하지 않는다)
+   ───────────────────────────────────────────────────────────── */
+.report-body { color: var(--w-label); font-size: var(--w-body2); line-height: 1.75; letter-spacing: var(--w-tracking); }
+.report-body > :first-child { margin-top: 0; }
+.report-body > :last-child { margin-bottom: 0; }
+
+.report-body h1,
+.report-body h2,
+.report-body h3 {
+  color: var(--w-label-strong);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  margin: 1.6em 0 0.6em;
+}
+.report-body h1 { font-size: var(--w-heading2); }
+.report-body h2 { font-size: var(--w-headline1); }
+.report-body h3 { font-size: var(--w-body1); }
+
+.report-body p { margin: 0.8em 0; }
+.report-body strong { font-weight: 700; color: var(--w-label-strong); }
+.report-body em { font-style: normal; background: linear-gradient(transparent 60%, #fde68a 60%); }
+
+.report-body ul,
+.report-body ol { margin: 0.8em 0; padding-left: 1.25em; }
+.report-body ul { list-style: disc; }
+.report-body ol { list-style: decimal; }
+.report-body li { margin: 0.35em 0; }
+.report-body li::marker { color: var(--w-primary); }
+
+.report-body a { color: var(--w-primary); font-weight: 700; text-decoration: underline; word-break: break-all; }
+
+.report-body blockquote {
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  background: var(--w-fill);
+  border-left: 3px solid var(--w-primary);
+  border-radius: 0 12px 12px 0;
+  color: #4b5563;
+}
+
+.report-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1em 0;
+  display: block;
+}
+
+.report-body hr { margin: 1.6em 0; border: 0; border-top: 1px solid var(--w-line); }
+
+/* 표는 좁은 화면에서 가로 스크롤 — 페이지 전체가 밀리면 안 된다 */
+.report-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 14px; }
+.report-body th,
+.report-body td { border: 1px solid var(--w-line-strong); padding: 8px 10px; text-align: left; }
+.report-body th { background: var(--w-fill); font-weight: 700; color: var(--w-label-strong); }
+
+.report-body iframe { max-width: 100%; border-radius: 12px; }
+
+/* 진행 보고서 인쇄 — 사장님이 PDF 로 저장하거나 직원에게 보여줄 때 */
+@media print {
+  .report-body { font-size: 11pt; }
+  .report-body h1,
+  .report-body h2,
+  .report-body h3 { break-after: avoid; }
+  .report-body li,
+  .report-body blockquote,
+  .report-body img,
+  .report-body table { break-inside: avoid; }
+  /* 화면용 그림자·둥근 모서리는 인쇄에서 잉크만 먹는다 */
+  .report-body { border: 0 !important; padding: 0 !important; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Wanted Design System (WDS) 토큰
+   출처: Wanted Design System (Community).fig — 파일에서 직접 추출한 값이다(추정 아님).
+   기존 --h-* (하랑 브랜드 토큰) 는 그대로 두고, 새로 만들거나 다듬는 화면에서 이 --w-* 를 쓴다.
+   두 벌을 섞지 말 것 — 한 화면은 한 쪽으로 통일한다.
+
+   척도 규칙: 숫자가 클수록 밝다. 100 = 흰색, 0 = 검정. 50 이 각 색의 기준색이다.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* 중립 — 회색 대부분은 Cool Neutral 을 쓴다. 순수 회색(Neutral)은 흑백 대비가 필요할 때만 */
+  --w-cn-100: #FFFFFF;
+  --w-cn-99: #F7F7F8;
+  --w-cn-98: #F4F4F5;
+  --w-cn-97: #EAEBEC;
+  --w-cn-96: #E1E2E4;
+  --w-cn-95: #DBDCDF;
+  --w-cn-90: #C2C4C8;
+  --w-cn-80: #AEB0B6;
+  --w-cn-70: #989BA2;
+  --w-cn-60: #878A93;
+  --w-cn-50: #70737C;
+  --w-cn-40: #5A5C63;
+  --w-cn-30: #46474C;
+  --w-cn-25: #37383C;
+  --w-cn-23: #333438;
+  --w-cn-22: #2E2F33;
+  --w-cn-20: #292A2D;
+  --w-cn-17: #212225;
+  --w-cn-15: #1B1C1E;
+  --w-cn-10: #171719;
+  --w-cn-7: #141415;
+  --w-cn-5: #0F0F10;
+  --w-cn-0: #000000;
+
+  /* 주색 — Blue/50 이 원티드 시그니처 블루 */
+  --w-blue-100: #FFFFFF;
+  --w-blue-99: #F7FBFF;
+  --w-blue-95: #EAF2FE;
+  --w-blue-90: #C9DEFE;
+  --w-blue-80: #9EC5FF;
+  --w-blue-70: #69A5FF;
+  --w-blue-65: #4F95FF;
+  --w-blue-60: #3385FF;
+  --w-blue-55: #1A75FF;
+  --w-blue-50: #0066FF;
+  --w-blue-45: #005EEB;
+  --w-blue-40: #0054D1;
+  --w-blue-30: #003E9C;
+  --w-blue-20: #002966;
+  --w-blue-10: #001536;
+  --w-blue-0: #000000;
+
+  /* 상태색 */
+  --w-green-50: #00BF40;
+  --w-green-90: #ACFCC7;
+  --w-green-30: #006E25;
+  --w-red-50: #FF4242;
+  --w-red-90: #FED5D5;
+  --w-red-30: #B20C0C;
+  --w-orange-99: #FFFCF7;
+  --w-orange-50: #FF9200;
+  --w-orange-90: #FEE6C6;
+  --w-orange-30: #9C5800;
+  --w-violet-50: #6541F2;
+  --w-cyan-50: #00BDDE;
+
+  /* ── 시맨틱 ──
+     이름은 WDS 체계(Label/Line/Fill/Background/Primary/Status)를 따르고,
+     어느 단계를 쓸지는 우리가 정했다. 화면에서는 아래 이름만 쓴다 — 숫자 단계를 직접 부르지 않는다. */
+  --w-bg: var(--w-cn-100);              /* 기본 배경 */
+  --w-bg-alt: var(--w-cn-99);           /* 한 단 낮은 배경 — 페이지 바탕. app/sns/theme.css 의 #F7F7F8 과 같은 값으로 맞춤 */
+  --w-bg-elevated: var(--w-cn-100);     /* 카드·모달 */
+
+  --w-label: var(--w-cn-17);            /* 본문 글자 */
+  --w-label-strong: var(--w-cn-10);     /* 제목 */
+  --w-label-neutral: var(--w-cn-30);
+  --w-label-alt: var(--w-cn-50);        /* 보조 설명 */
+  --w-label-assistive: var(--w-cn-70);  /* 더 약한 보조 */
+  --w-label-disable: var(--w-cn-80);
+
+  --w-line: var(--w-cn-97);             /* 옅은 구분선. app/wds.css 의 #EAEBEC 과 같은 값 */
+  --w-line-strong: var(--w-cn-90);      /* 카드 테두리 */
+
+  --w-fill: var(--w-cn-97);             /* 옅은 채움 — 태그·비활성 버튼 */
+  --w-fill-strong: var(--w-cn-95);
+
+  --w-primary: var(--w-blue-50);
+  --w-primary-strong: var(--w-blue-45);
+  --w-primary-heavy: var(--w-blue-40);
+  --w-primary-bg: var(--w-blue-99);     /* 파란 계열 옅은 배경 */
+
+  --w-positive: var(--w-green-50);
+  --w-cautionary: var(--w-orange-50);
+  --w-negative: var(--w-red-50);
+
+  /* ── 타이포 ──
+     px 값은 .fig 스펙 시트에서 실측한 것이다.
+     Display 3 · Body 1 · Body 2 · Label 1 은 스펙 라벨이 없어 스케일 순서로 채웠다(추정). */
+  --w-display1: 56px;   /* 실측 */
+  --w-display2: 40px;   /* 실측 */
+  --w-display3: 32px;   /* 추정 */
+  --w-heading1: 22px;   /* 실측 */
+  --w-heading2: 20px;   /* 실측 */
+  --w-headline1: 18px;  /* 실측 */
+  --w-headline2: 17px;  /* 실측 */
+  --w-body1: 16px;      /* 추정 */
+  --w-body2: 15px;      /* 추정 */
+  --w-label1: 14px;     /* 추정 */
+  --w-label2: 13px;     /* 실측 */
+  --w-caption1: 12px;   /* 실측 */
+  --w-caption2: 11px;   /* 실측 */
+
+  /* 자간 — .fig 전반에 -1.309% 가 쓰인다(한글은 음수 자간이 필수) */
+  --w-tracking: -0.01309em;
+
+  /* 높낮이·모서리 — app/wds.css 와 같은 값으로 맞춘다 */
+  --w-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --w-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --w-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --w-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --w-radius-sm: 8px;
+  --w-radius:    12px;
+  --w-radius-lg: 16px;
+}
+
+/* WDS 타이포 유틸 — 크기·행간·자간을 한 벌로 묶는다. 낱개로 쓰지 말 것 */
+.w-display2 { font-size: var(--w-display2); line-height: 1.25; letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-display3 { font-size: var(--w-display3); line-height: 1.3;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-heading1  { font-size: var(--w-heading1);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-heading2  { font-size: var(--w-heading2);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-headline1 { font-size: var(--w-headline1); line-height: 1.45; letter-spacing: var(--w-tracking); font-weight: 600; }
+.w-headline2 { font-size: var(--w-headline2); line-height: 1.45; letter-spacing: var(--w-tracking); font-weight: 600; }
+.w-body1     { font-size: var(--w-body1);     line-height: 1.65; letter-spacing: var(--w-tracking); }
+.w-body2     { font-size: var(--w-body2);     line-height: 1.65; letter-spacing: var(--w-tracking); }
+.w-label1    { font-size: var(--w-label1);    line-height: 1.5;  letter-spacing: var(--w-tracking); }
+.w-label2    { font-size: var(--w-label2);    line-height: 1.5;  letter-spacing: var(--w-tracking); }
+.w-caption1  { font-size: var(--w-caption1);  line-height: 1.4;  letter-spacing: var(--w-tracking); }
+.w-caption2  { font-size: var(--w-caption2);  line-height: 1.4;  letter-spacing: var(--w-tracking); }

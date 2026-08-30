@@ -1,0 +1,157 @@
+/**
+ * WDS 컴포넌트 계층 — 카드·버튼·입력·칩
+ *
+ * 색·타이포·그림자·모서리의 **정본은 app/globals.css** 다(.fig 실측값·23단계 쿨그레이).
+ * 이 파일은 그 위에 얹는 컴포넌트만 담는다. 색을 여기서 다시 정의하지 않는다.
+ * 두 벌이 갈라지면 회색 톤이 미묘하게 어긋나므로, 새 색이 필요하면 globals.css 에 추가한다.
+ *
+ * 쓰는 곳: /sns/*, /preview/*
+ */
+
+:root {
+  /* 별칭 — 이 계층이 쓰는 이름을 globals 의 시맨틱 토큰에 연결한다.
+     (globals 에 이미 있는 --w-bg, --w-bg-alt, --w-line, --w-primary, 그림자, 모서리는 다시 정의하지 않는다) */
+  --w-text:          var(--w-label-strong);
+  --w-text-sub:      var(--w-label-neutral);
+  --w-text-muted:    var(--w-label-alt);
+  --w-text-assist:   var(--w-label-assistive);
+  --w-text-disabled: var(--w-label-disable);
+  --w-text-inverse:  var(--w-cn-100);
+
+  --w-bg-sunken:     var(--w-cn-98);
+  --w-border:        var(--w-cn-96);
+  --w-border-strong: var(--w-line-strong);
+
+  --w-primary-hover:  var(--w-primary-strong);
+  --w-primary-active: var(--w-primary-heavy);
+  --w-primary-weak:   var(--w-blue-95);
+  --w-primary-weaker: var(--w-blue-99);
+  --w-primary-border: var(--w-blue-90);
+
+  --w-danger:       var(--w-negative);
+  --w-danger-dark:  var(--w-red-30);
+  --w-danger-weak:  var(--w-red-90);
+  --w-success:      var(--w-positive);
+  --w-success-dark: var(--w-green-30);
+  --w-success-weak: var(--w-green-90);
+  --w-warning:      var(--w-cautionary);
+  --w-warning-dark: var(--w-orange-30);
+  --w-warning-weak: var(--w-orange-90);
+}
+
+/* ── 타이포 별칭 ──
+   globals 의 실측 스케일을 그대로 쓰되, 하이픈 표기(w-title-1 …)로도 부를 수 있게 한다. */
+.w-display-2 { font-size: var(--w-display2);  line-height: 1.25; letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-heading-1 { font-size: var(--w-display3);  line-height: 1.3;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-heading-2 { font-size: var(--w-heading1);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-title-1   { font-size: var(--w-heading1);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-title-2   { font-size: var(--w-heading2);  line-height: 1.4;  letter-spacing: var(--w-tracking); font-weight: 700; }
+.w-title-3   { font-size: var(--w-headline1); line-height: 1.45; letter-spacing: var(--w-tracking); font-weight: 600; }
+.w-body-1    { font-size: var(--w-body1);     line-height: 1.65; letter-spacing: var(--w-tracking); }
+.w-body-2    { font-size: var(--w-body2);     line-height: 1.65; letter-spacing: var(--w-tracking); }
+.w-label-1   { font-size: var(--w-label1);    line-height: 1.5;  letter-spacing: var(--w-tracking); font-weight: 500; }
+.w-label-2   { font-size: var(--w-label2);    line-height: 1.5;  letter-spacing: var(--w-tracking); font-weight: 500; }
+.w-caption-1 { font-size: var(--w-caption1);  line-height: 1.4;  letter-spacing: var(--w-tracking); }
+
+/* ── 컴포넌트 ────────────────────────────────── */
+.w-card {
+  background: var(--w-bg);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  box-shadow: var(--w-shadow-xs);
+}
+
+.w-field-label {
+  display: block;
+  font-size: var(--w-label2);
+  line-height: 1.5;
+  letter-spacing: var(--w-tracking);
+  font-weight: 600;
+  color: var(--w-text-sub);
+  margin-bottom: 6px;
+}
+
+.w-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  font-size: 16px; /* iOS 자동 확대 방지 — 16px 미만으로 내리지 말 것 */
+  letter-spacing: var(--w-tracking);
+  color: var(--w-text);
+  background: var(--w-bg);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.w-input::placeholder { color: var(--w-text-disabled); }
+.w-input:hover:not(:focus) { border-color: var(--w-border-strong); }
+.w-input:focus {
+  outline: none;
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+}
+.w-input-error { border-color: var(--w-danger); }
+
+.w-help {
+  font-size: var(--w-caption1);
+  line-height: 1.4;
+  color: var(--w-text-muted);
+  margin-top: 6px;
+}
+.w-error-text {
+  font-size: var(--w-label2);
+  line-height: 1.5;
+  color: var(--w-danger-dark);
+  font-weight: 500;
+}
+
+.w-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 52px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: var(--w-tracking);
+  border-radius: var(--w-radius);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+}
+.w-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.w-btn-primary { background: var(--w-primary); color: var(--w-text-inverse); }
+.w-btn-primary:hover:not(:disabled) { background: var(--w-primary-hover); }
+.w-btn-primary:active:not(:disabled) { background: var(--w-primary-active); }
+
+.w-btn-secondary {
+  background: var(--w-bg);
+  color: var(--w-text-sub);
+  border: 1px solid var(--w-border);
+}
+.w-btn-secondary:hover:not(:disabled) { background: var(--w-bg-alt); border-color: var(--w-border-strong); }
+
+.w-btn-ghost { background: transparent; color: var(--w-text-muted); }
+.w-btn-ghost:hover:not(:disabled) { background: var(--w-bg-alt); color: var(--w-text); }
+
+.w-btn-sm { height: 40px; padding: 0 14px; font-size: 13px; border-radius: var(--w-radius-sm); }
+
+.w-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: var(--w-caption1);
+  line-height: 1.4;
+  font-weight: 700;
+}
+.w-chip-blue    { background: var(--w-primary-weak);  color: var(--w-primary-active); }
+.w-chip-green   { background: var(--w-success-weak);  color: var(--w-success-dark); }
+.w-chip-amber   { background: var(--w-warning-weak);  color: var(--w-warning-dark); }
+.w-chip-red     { background: var(--w-danger-weak);   color: var(--w-danger-dark); }
+.w-chip-neutral { background: var(--w-fill);          color: var(--w-text-muted); }
+
+/* 숫자는 자릿수가 흔들리지 않게 */
+.w-num { font-variant-numeric: tabular-nums; }
