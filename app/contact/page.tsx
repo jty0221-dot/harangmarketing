@@ -52,6 +52,8 @@ function ContactPageInner() {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
   const [loading, setLoading] = useState(false);
+  // 봇 트랩 — 사람 눈에 안 보이는 칸이라 값이 차 있으면 자동 도배로 본다
+  const [website, setWebsite] = useState("");
 
   useEffect(() => {
     if (checklistCount > 0 && form.message === "") {
@@ -95,6 +97,7 @@ function ContactPageInner() {
           budget: form.budget,
           goals: selectedGoals,
           message: form.message,
+          website,
         }),
       });
     } catch {
@@ -267,6 +270,16 @@ function ContactPageInner() {
                     <p className="text-xs text-gray-400 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      <input
+                        type="text"
+                        name="website"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        className="absolute w-px h-px -left-[9999px] opacity-0"
+                      />
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="contact-name" className="block text-xs font-bold text-gray-700 mb-1.5">이름 / 업체명 <span className="text-blue-500">*</span></label>

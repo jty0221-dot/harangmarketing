@@ -38,6 +38,20 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
+      {
+        // 전역 보안 응답 헤더 (심층방어).
+        // X-Frame-Options 는 DENY 가 아니라 SAMEORIGIN — /r/[code] 보고서를 동일 출처
+        // 미리보기·인쇄 프레임에서 열 여지를 남긴다. CSP 는 인라인 JSON-LD·GA 스크립트가
+        // 많아 여기 enforce 로 넣지 않는다(필요 시 Report-Only 로 먼저 관측 후 좁힌다).
+        source: "/:path*",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
+      },
     ];
   },
 };
