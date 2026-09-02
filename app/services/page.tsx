@@ -215,6 +215,9 @@ const SERVICES = [
     ],
     rec: "리뷰가 부족해 신규 고객 유입이 어려운 매장",
     result: "한 달 내 리뷰 30개+ 확보 (패키지 기준)",
+    href: "/services/review",
+    // 체험단 랜딩에는 가격이 없다. 기본 라벨(가격 보기)을 그대로 쓰면 없는 것을 약속하게 된다.
+    hrefLabel: "체험단 안내 보기",
   },
   {
     id: "sns",
@@ -803,7 +806,7 @@ export default function ServicesPage() {
                         href={s.href}
                         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-blue-700 sm:w-auto"
                       >
-                        상품 상세 · 가격 보기 <ArrowRight size={14} />
+                        {"hrefLabel" in s && s.hrefLabel ? s.hrefLabel : "상품 상세 · 가격 보기"} <ArrowRight size={14} />
                       </Link>
                     )}
                   </div>
