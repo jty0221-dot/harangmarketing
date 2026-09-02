@@ -120,7 +120,7 @@ export default async function ReferencePage({
 
               <div className="mx-auto mt-8 flex w-full max-w-[620px] flex-col gap-3">
                 {[
-                  "모바일 통합검색 기준 100% 카페 상위 노출",
+                  "모바일 통합검색 카페 영역 노출",
                   "실제 대행사에 전달된 100% 실사 증빙 자료",
                   "지역맘 카페 · 대형 카페 100% 커뮤니티 노출",
                 ].map((t) => (

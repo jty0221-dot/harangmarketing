@@ -152,7 +152,7 @@ const SERVICES = [
     title: "블로그 마케팅",
     subtitle: "검색 상단 노출 → 방문 고객 증대",
     desc: "네이버 블로그 상위 노출로 잠재 고객이 직접 찾아오게 만드는 콘텐츠 마케팅입니다.",
-    timeline: "첫 노출 2~4주 · 상위권 안착 2~3개월",
+    timeline: "첫 발행 1주 이내 · 이후 계약 물량대로 정기 발행",
     deliverables: [
       { label: "월 콘텐츠", value: "4~8건", note: "키워드 분석 기반" },
       { label: "SEO 최적화", value: "매 포스팅", note: "제목·본문·태그" },
@@ -166,7 +166,7 @@ const SERVICES = [
       "월간 순위 변화 리포트 제공",
     ],
     rec: "네이버 검색으로 신규 고객을 유입하고 싶은 매장",
-    result: "평균 3개월 내 지역 키워드 상위 10위 진입",
+    result: "게시 URL 전체 공개 · 순위 변동 월간 리포트",
   },
   {
     id: "place",
@@ -176,7 +176,7 @@ const SERVICES = [
     title: "네이버 플레이스 SEO",
     subtitle: "지도 상단 노출 → 당일 방문 증가",
     desc: "네이버 지도·플레이스 상위 노출로 '지금 근처 맛집 찾는 고객'을 매장으로 안내합니다.",
-    timeline: "효과 체감 3~4주 · 상위권 안착 1~2개월",
+    timeline: "정보 최적화 1~2주 · 이후 순위 매일 계측",
     deliverables: [
       { label: "플레이스 최적화", value: "초기 완성", note: "정보·사진·카테고리" },
       { label: "키워드 세팅", value: "20개 이상", note: "지역·업종·특징" },
@@ -190,7 +190,7 @@ const SERVICES = [
       "주간 순위 모니터링 및 조정",
     ],
     rec: "근처 검색으로 당장 찾아오는 고객이 필요한 매장",
-    result: "평균 4주 내 플레이스 Top 5 진입",
+    result: "매일 순위 계측 · 밀린 날 원인까지 보고",
     href: "/services/place",
     // 플레이스 랜딩에도 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
     hrefLabel: "플레이스 안내 보기",
@@ -217,7 +217,7 @@ const SERVICES = [
       "리뷰 답글 작성 대행",
     ],
     rec: "리뷰가 부족해 신규 고객 유입이 어려운 매장",
-    result: "한 달 내 리뷰 30개+ 확보 (패키지 기준)",
+    result: "실제 방문 고객 리뷰만 · 구매 리뷰 없음",
     href: "/services/review",
     // 체험단 랜딩에는 가격이 없다. 기본 라벨(가격 보기)을 그대로 쓰면 없는 것을 약속하게 된다.
     hrefLabel: "체험단 안내 보기",
@@ -230,7 +230,7 @@ const SERVICES = [
     title: "SNS · 인스타그램 마케팅",
     subtitle: "팔로워 증가 → 예약·방문 연결",
     desc: "인스타그램 계정 육성부터 맘카페 입소문 마케팅까지. 온라인 인지도를 높여 실제 방문·예약으로 전환합니다.",
-    timeline: "팔로워 증가 1개월 · 바이럴 효과 2~3개월",
+    timeline: "콘텐츠 세팅 1~2주 · 이후 정기 발행",
     deliverables: [
       { label: "콘텐츠 제작", value: "월 12~16건", note: "피드·스토리·릴스" },
       { label: "맘카페 바이럴", value: "월 4~8건", note: "업종별 맞춤 전략" },
@@ -244,7 +244,7 @@ const SERVICES = [
       "콘텐츠 공유·하이라이트 세팅",
     ],
     rec: "비주얼 중심 업종(카페·미용·음식점)이나 주부 고객 타겟 매장",
-    result: "3개월 내 팔로워 500~1,000명 목표",
+    result: "발행 수와 도달을 월간 리포트로 공개",
   },
   {
     id: "kakaomap",
@@ -254,7 +254,7 @@ const SERVICES = [
     title: "카카오맵 매장 관리",
     subtitle: "카카오 검색 노출 → 지도 상단 진입",
     desc: "국내 최다 사용 지도 앱 카카오맵에서 매장을 발견하는 고객을 잡습니다. 매장 관리 등록부터 트렌드 랭킹 상위 노출까지.",
-    timeline: "등록·최적화 1~2주 · 상위 노출 1개월",
+    timeline: "등록·최적화 1~2주 · 이후 월간 리포트",
     deliverables: [
       { label: "매장 관리 등록", value: "대행 처리", note: "등록·최적화 1~2주" },
       { label: "카카오맵 리뷰", value: "실유저 기반", note: "100% 실사용자" },
@@ -268,7 +268,7 @@ const SERVICES = [
       "카카오 플레이스 통합 관리",
     ],
     rec: "카카오맵으로 유입되는 고객을 놓치고 싶지 않은 매장",
-    result: "한 달 내 카카오맵 트렌드 랭킹 Top 10 진입",
+    result: "네이버에서 놓친 검색을 카카오에서 받는 구조",
   },
   {
     id: "startup",
@@ -332,11 +332,11 @@ const FAQS = [
 ];
 
 const INDUSTRY_LINKS = [
-  { name: "카페·베이커리", href: "/services/cafe", color: "from-blue-600 to-orange-500", desc: "플레이스 1위 · 포토리뷰 · 인스타" },
-  { name: "병원·의원", href: "/services/clinic", color: "from-blue-500 to-blue-700", desc: "블로그 신뢰 · 체험단 · 예약 증대" },
-  { name: "뷰티·네일", href: "/services/beauty", color: "from-pink-500 to-rose-600", desc: "릴스 · 비포애프터 · 예약 마감" },
+  { name: "카페·베이커리", href: "/services/cafe", color: "from-blue-600 to-orange-500", desc: "플레이스 SEO · 포토리뷰 · 인스타" },
+  { name: "병원·의원", href: "/services/clinic", color: "from-blue-500 to-blue-700", desc: "블로그 신뢰 · 체험단 · 플레이스 SEO" },
+  { name: "뷰티·네일", href: "/services/beauty", color: "from-pink-500 to-rose-600", desc: "릴스 · 비포애프터 · 리뷰 관리" },
   { name: "음식점·식당", href: "/services/restaurant", color: "from-orange-500 to-red-500", desc: "배달 매출 · 플레이스 · 리뷰" },
-  { name: "학원·교육", href: "/services/academy", color: "from-green-500 to-emerald-600", desc: "맘카페 · 수강생 증대 · 블로그" },
+  { name: "학원·교육", href: "/services/academy", color: "from-green-500 to-emerald-600", desc: "맘카페 · 블로그 · 플레이스 SEO" },
   { name: "쇼핑몰·소매점", href: "/services/shopping", color: "from-purple-500 to-purple-700", desc: "스마트스토어 · 인스타 · 오프라인" },
 ];
 
@@ -486,7 +486,7 @@ const SERVICES_LD = {
       "item": {
         "@type": "Service",
         "name": "블로그 마케팅",
-        "description": "네이버 블로그 상위 노출 최적화. 키워드 SEO, 콘텐츠 제작, 블로그 배포 대행. 평균 3개월 내 지역 키워드 상위 10위 진입.",
+        "description": "네이버 블로그 상위 노출 최적화. 키워드 SEO, 콘텐츠 제작, 블로그 배포 대행. 게시 URL 전체 공개.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "url": "https://www.harangmarketing.com/services#blog",
@@ -497,7 +497,7 @@ const SERVICES_LD = {
       "item": {
         "@type": "Service",
         "name": "네이버 플레이스 SEO",
-        "description": "네이버 지도·플레이스 상위 노출 최적화. 리뷰 관리, 키워드 세팅, 사진 최적화. 평균 4주 내 Top 5 진입.",
+        "description": "네이버 지도·플레이스 상위 노출 최적화. 리뷰 관리, 키워드 세팅, 사진 최적화. 순위는 매일 계측해 리포트로 공개.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "url": "https://www.harangmarketing.com/services#place",
@@ -530,7 +530,7 @@ const SERVICES_LD = {
       "item": {
         "@type": "Service",
         "name": "카카오맵 마케팅",
-        "description": "카카오맵 플레이스 등록 및 상위 노출 최적화, 트렌드 랭킹 진입 전략. 2개월 만에 Top 3 진입 사례.",
+        "description": "카카오맵 플레이스 등록 및 상위 노출 최적화, 트렌드 랭킹 진입 전략. 네이버에서 놓친 검색을 카카오에서 받습니다.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
       },
@@ -1145,16 +1145,16 @@ export default function ServicesPage() {
         <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">기대 성과</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">계약 후 언제 효과가 날까요?</h2>
-              <p className="text-gray-500 text-sm">업종·경쟁 강도에 따라 다를 수 있으며, 아래는 평균 기준입니다.</p>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">진행 순서</p>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">계약 후 무엇이 언제 진행되나요?</h2>
+              <p className="text-gray-500 text-sm">성과가 나는 시점을 약속드리는 표가 아니라, 작업이 진행되는 순서입니다.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {[
                 { period: "1주차", title: "분석 완료", desc: "업종·키워드·경쟁사 분석 리포트 + 전략 미팅", color: "bg-gray-900", dot: "bg-gray-400" },
                 { period: "2~4주", title: "첫 콘텐츠 발행", desc: "블로그·플레이스 초기 콘텐츠 세팅, 노출 시작", color: "bg-blue-600", dot: "bg-blue-400" },
-                { period: "1~2개월", title: "순위 상승 체감", desc: "검색 상위권 진입, 방문·예약 증가 확인 가능", color: "bg-indigo-600", dot: "bg-indigo-400" },
-                { period: "3개월+", title: "본격 매출 증대", desc: "안정적 상위권 유지, 신규 고객 유입 자동화", color: "bg-blue-800", dot: "bg-blue-600" },
+                { period: "1~2개월", title: "순위 계측 공개", desc: "키워드별 순위를 매일 저장해 월간 리포트로 확인", color: "bg-indigo-600", dot: "bg-indigo-400" },
+                { period: "3개월+", title: "누적 콘텐츠 관리", desc: "발행물이 쌓이며 검색 유입 경로가 늘어나는 구간", color: "bg-blue-800", dot: "bg-blue-600" },
               ].map((step, i) => (
                 <div key={i} className="relative bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
                   <div className={`${step.color} px-4 py-3`}>
@@ -1188,7 +1188,7 @@ export default function ServicesPage() {
                   desc: "이미 순위가 어느 정도 나오거나, 한 곳만 확실히 잡으면 되는 매장",
                   highlight: false,
                   services: ["플레이스 SEO 최적화 1회", "대표키워드 상위노출 관리", "리뷰 유도 동선 설계", "순위 모니터링 · 경쟁업체 분석", "월 성과 리포트"],
-                  result: "3위권 키워드를 1~2위로",
+                  result: "대표 키워드 한 곳에 집중",
                 },
                 {
                   tier: "두세 채널 묶음",

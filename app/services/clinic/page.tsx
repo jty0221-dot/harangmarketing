@@ -104,12 +104,12 @@ export default function ClinicLandingPage() {
               의원 · 한의원 전문
             </div>
             <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
-              초진 예약을<br />
-              <span className="text-blue-400">3배 만드는 방법</span>
+              병원 검색 마케팅은<br />
+              <span className="text-blue-400">잰 숫자로 말합니다</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-              의료법을 준수하면서도 신환이 늘어나는 마케팅.<br />
-              피부과·한의원·치과·정형외과 실제 성과로 검증.
+              의료광고법을 지킨 콘텐츠만 만듭니다.<br />
+              순위는 매일 저장해 월 리포트로 그대로 보여드립니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link

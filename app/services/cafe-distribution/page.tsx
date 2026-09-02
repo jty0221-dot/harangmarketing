@@ -449,7 +449,7 @@ export default function CafeDistributionPage() {
               {/* 배포 기준 — 레퍼런스 배너와 동일한 지표 */}
               <div className="mt-6 flex flex-col gap-2.5">
                 {[
-                  "모바일 통합검색 기준 100% 카페 상위 노출",
+                  "모바일 통합검색 카페 영역 노출",
                   "실제 대행사에 전달된 100% 실사 증빙 자료",
                   "지역맘 카페 · 대형 카페 100% 커뮤니티 노출",
                 ].map((t) => (

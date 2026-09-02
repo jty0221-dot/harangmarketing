@@ -76,7 +76,7 @@ const INDUSTRIES: Industry[] = [
     color: "from-blue-500 to-blue-700",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["플레이스 상위 3위 진입", "포토리뷰 전략", "인스타 비주얼"],
+    points: ["플레이스 SEO 세팅", "포토리뷰 전략", "인스타 비주얼"],
     result: "19위 → 1위",
     resultLabel: "지역 카페 키워드",
     before: "19위",
@@ -192,7 +192,7 @@ const PACKAGES = [
   {
     name: "한 채널 집중",
     desc: "한 곳만 확실히 잡으면 되는 매장",
-    roi: "3위권 키워드를 1~2위로",
+    roi: "대표 키워드 한 곳에 집중",
     features: ["플레이스 SEO 최적화 1회", "대표키워드 5개 관리", "리뷰 유도 동선 설계", "월 리포트 1회"],
     popular: false,
   },
