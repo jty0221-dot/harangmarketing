@@ -191,6 +191,9 @@ const SERVICES = [
     ],
     rec: "근처 검색으로 당장 찾아오는 고객이 필요한 매장",
     result: "평균 4주 내 플레이스 Top 5 진입",
+    href: "/services/place",
+    // 플레이스 랜딩에도 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
+    hrefLabel: "플레이스 안내 보기",
   },
   {
     id: "review",
