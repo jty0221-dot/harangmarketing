@@ -34,6 +34,8 @@ import {
 } from "./lib/seo";
 import type { LucideIcon } from "lucide-react";
 import { SUMMARY, SNAPSHOT_DATE, fmt, BIGGEST_GAIN } from "./lib/rank-records";
+import PlaceRankCasesSection from "./components/PlaceRankCases";
+import { byCode, PLACE_RANK_GENERATED, PLACE_RANK_TOTALS } from "./lib/place-rank-cases";
 
 /* ─── AEO/GEO 구조화 데이터 (홈) ───────────────────
    FAQPage·DefinedTermSet 는 아래 화면에 실제로 렌더링되는
@@ -306,6 +308,18 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ══ 매장별 순위 계측 발췌 ══ */}
+        {/* 숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
+            전체 목록은 /cases/place-rank 에 있고 여기는 네 장만 발췌한다. */}
+        <PlaceRankCasesSection
+          cases={byCode("HC-01", "HC-02", "HC-03", "HC-06")}
+          eyebrow="Place Rank"
+          title="매장별 순위, 잰 그대로 적었습니다"
+          description={`${PLACE_RANK_GENERATED} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드의 계측 기록을 공개합니다. 상호 공개에 동의한 곳만 이름을 적었습니다.`}
+          cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
+          compact
+        />
 
         {/* ══ 함께한 브랜드 로고 슬라이더 ══ */}
         <ClientLogosSection />

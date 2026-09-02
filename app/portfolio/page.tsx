@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Briefcase, Store } from "lucide-react";
+import { ArrowRight, Briefcase, LineChart, Store } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getPortfolio } from "../lib/portfolio";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
+import { PlaceRankCaseCards } from "../components/PlaceRankCases";
+import {
+  byCode, PLACE_RANK_GENERATED, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE, PLACE_RANK_TOTALS,
+} from "../lib/place-rank-cases";
 
 export const metadata: Metadata = {
   title: "업종별 마케팅 사례",
@@ -39,6 +43,40 @@ export default function PortfolioPage() {
           </div>
 
           <PortfolioGrid industries={industries} />
+
+          {/* 순위 계측 사례 — 블로그 사례와 채널이 다른 실적이다.
+              숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
+          <section className="mt-16">
+            <div className="mb-6">
+              <span className="w-chip w-chip-blue">
+                <LineChart size={12} strokeWidth={2.5} />
+                PLACE RANK
+              </span>
+              <h2 className="w-heading-2 mt-3" style={{ color: "var(--w-label-strong)" }}>
+                매일 잰 네이버 플레이스 순위
+              </h2>
+              <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
+                위가 블로그에 글로 공개한 사례라면, 여기는 순위를 매일 재서 남긴 기록입니다.
+                {" "}{PLACE_RANK_GENERATED} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 계측하고 있고 그중 세 곳입니다.
+                {" "}{PLACE_RANK_LABEL_NOTE}
+              </p>
+            </div>
+
+            <PlaceRankCaseCards cases={byCode("HC-06", "HC-05", "HC-08")} columns={3} />
+
+            <p className="w-caption-1 mt-4" style={{ color: "var(--w-label-assistive)" }}>
+              {PLACE_RANK_NOTE}
+            </p>
+
+            <Link
+              href="/cases/place-rank"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
+              style={{ color: "var(--w-primary)" }}
+            >
+              계측 사례 전체 보기
+              <ArrowRight size={14} />
+            </Link>
+          </section>
 
           <section className="mt-16">
             <div className="mb-6">

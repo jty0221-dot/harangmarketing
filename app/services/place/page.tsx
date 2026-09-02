@@ -9,6 +9,7 @@ import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
+import PlaceRankCasesSection from "../../components/PlaceRankCases";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
 } from "../../lib/seo";
@@ -16,6 +17,9 @@ import {
   RECORDS, SUMMARY, EXCLUDED_COUNT, SNAPSHOT_DATE, BIGGEST_GAIN,
   gap, fmt, MEASURE_NOTE, PAGE1_NOTE,
 } from "../../lib/rank-records";
+import {
+  byCode, PLACE_RANK_GENERATED, PLACE_RANK_TOTALS,
+} from "../../lib/place-rank-cases";
 
 /**
  * 네이버 플레이스 랜딩.
@@ -526,6 +530,18 @@ export default function PlaceServicePage() {
             </div>
           </div>
         </section>
+
+        {/* 매장별 계측 사례 — 위 표는 키워드 단위, 여기는 매장 단위다.
+            숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
+        <PlaceRankCasesSection
+          cases={byCode("HC-03", "HC-04", "HC-01", "HC-02")}
+          eyebrow="Place Rank"
+          title="매장 한 곳에서 무엇이 움직였나"
+          description={`${PLACE_RANK_GENERATED} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드 가운데 네 곳입니다. 한 매장에서 키워드 여러 개를 함께 재면 어떻게 되는지 그대로 폈습니다.`}
+          cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
+          showAllKeywords
+          background="bg-white"
+        />
 
         {/* 하지 않는 것 */}
         <section className="py-14 md:py-20 bg-gray-950">

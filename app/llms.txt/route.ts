@@ -3,6 +3,9 @@ import { getBlogIndex } from "../lib/blog-index";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
 import { SUMMARY, SNAPSHOT_DATE } from "../lib/rank-records";
+import {
+  PLACE_RANK_CASES, PLACE_RANK_GENERATED, PLACE_RANK_NOTE, PLACE_RANK_TOTALS, fmtMoveDays,
+} from "../lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
 /**
@@ -29,6 +32,13 @@ export async function GET() {
   ).join("\n\n");
 
   const faq = CORE_FAQ.map((f) => `**Q. ${f.q}**\nA. ${f.a}`).join("\n\n");
+
+  // 매장별 순위 계측 사례 — 숫자와 표기는 app/lib/place-rank-cases.ts 에서만 온다
+  const placeRankCases = PLACE_RANK_CASES.map(
+    (c) =>
+      `- ${c.label} (${c.region} · ${c.industry}): ` +
+      c.keywords.map((k) => `${k.detail} 키워드 ${fmtMoveDays(k)}`).join(" · ")
+  ).join("\n");
 
   // 서비스 목록 — 번호를 손으로 매기지 않는다. 감춘 상품을 빼면 번호가 저절로 당겨진다.
   const services = [
@@ -165,6 +175,17 @@ ${ANSWER_SENTENCES.timeline}
 - 그중 ${SUMMARY.heldAllSnapshots}개 키워드는 누적 스냅샷 ${SUMMARY.snapshots}회 동안 한 번도 1페이지를 벗어나지 않았다.
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
+### 매장별 순위 계측 사례 (${PLACE_RANK_GENERATED} 기준)
+
+계측 매장 ${PLACE_RANK_TOTALS.stores}곳 · 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 시·군 ${PLACE_RANK_TOTALS.regions}곳
+
+${placeRankCases}
+
+${PLACE_RANK_NOTE}
+상호는 공개에 동의한 곳만 적었고 나머지는 업종과 지역으로만 적었다. 지역은 시·군 단위까지만 쓴다.
+괄호 안 일수는 시작 순위에서 확인 순위까지 걸린 기간이고, 위 대표 사례의 'N일 계측' 은 계측을 이어온 전체 기간이라 세는 방식이 다르다.
+전체 목록: ${B}/cases/place-rank
+
 ## 서비스 지역
 
 전국이 서비스 지역입니다. 실제로 맡아 관리한 매장이 14개 시·도에 있고, 카카오톡·전화·화상 상담과 온라인 작업으로 지역 제한 없이 진행합니다.
@@ -213,6 +234,7 @@ ${faq}
 - [온라인 쇼핑몰 마케팅](${B}/services/shopping)
 - [진행 과정](${B}/process): 상담부터 성과 리포트까지 6단계
 - [성공 사례](${B}/cases): 업종별 실제 수치 기반 사례
+- [플레이스 순위 계측 사례](${B}/cases/place-rank): 매장별 시작 순위 · 확인 순위 · 걸린 일수 기록
 - [자주 묻는 질문](${B}/faq)
 - [마케팅 인사이트 블로그](${B}/blog)
 - [경기도 마케팅](${B}/location/gyeonggi) · [서울 마케팅](${B}/location/seoul) · [인천 마케팅](${B}/location/incheon)

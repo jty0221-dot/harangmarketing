@@ -1,0 +1,324 @@
+{
+  "generated": "2026-09-03",
+  "source": "E:/하랑/순위모니터/홈페이지사례.json (성과대장 추출 · 세영)",
+  "note": "네이버 플레이스 순위 계측 결과다. 서면 동의를 받지 않은 매장은 상호 대신 업종으로 적고 지역은 시 · 군 단위까지만 쓴다. 보장 · 확약 문구를 붙이지 않는다.",
+  "sources": [
+    "애드랭크",
+    "루메인"
+  ],
+  "pendingReview": [
+    {
+      "code": "HC-09",
+      "reason": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50)"
+    },
+    {
+      "code": "HC-10",
+      "reason": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50)"
+    }
+  ],
+  "cases": [
+    {
+      "code": "HC-01",
+      "label": "부천 꽃집",
+      "named": false,
+      "industry": "꽃집",
+      "region": "부천",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "꽃집",
+          "from": 113,
+          "to": 18,
+          "days": 33,
+          "from_date": "2026-07-28",
+          "to_date": "2026-08-30",
+          "grade": "B",
+          "ids": [
+            "W-0023",
+            "W-0018",
+            "W-0024"
+          ]
+        }
+      ],
+      "best": {
+        "from": 113,
+        "to": 18,
+        "days": 33
+      },
+      "count": 1
+    },
+    {
+      "code": "HC-02",
+      "label": "부천 샤브샤브 전문점",
+      "named": false,
+      "industry": "샤브샤브 전문점",
+      "region": "부천",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "맛집",
+          "from": 72,
+          "to": 2,
+          "days": 31,
+          "from_date": "2026-07-30",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0002",
+            "W-0005",
+            "W-0015",
+            "W-0016"
+          ]
+        }
+      ],
+      "best": {
+        "from": 72,
+        "to": 2,
+        "days": 31
+      },
+      "count": 1
+    },
+    {
+      "code": "HC-03",
+      "label": "부천 청소 업체",
+      "named": false,
+      "industry": "청소 업체",
+      "region": "부천",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "상가청소",
+          "from": 67,
+          "to": 4,
+          "days": 20,
+          "from_date": "2026-08-10",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0003"
+          ]
+        },
+        {
+          "detail": "청소업체",
+          "from": 49,
+          "to": 5,
+          "days": 16,
+          "from_date": "2026-08-14",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0007"
+          ]
+        },
+        {
+          "detail": "정기청소",
+          "from": 36,
+          "to": 4,
+          "days": 20,
+          "from_date": "2026-08-10",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0008",
+            "W-0009"
+          ]
+        },
+        {
+          "detail": "병원청소",
+          "from": 22,
+          "to": 5,
+          "days": 20,
+          "from_date": "2026-08-10",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0012"
+          ]
+        }
+      ],
+      "best": {
+        "from": 67,
+        "to": 4,
+        "days": 20
+      },
+      "count": 4
+    },
+    {
+      "code": "HC-04",
+      "label": "김포 청소 업체",
+      "named": false,
+      "industry": "청소 업체",
+      "region": "김포",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "상가청소",
+          "from": 53,
+          "to": 4,
+          "days": 11,
+          "from_date": "2026-08-19",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0004"
+          ]
+        },
+        {
+          "detail": "정기청소",
+          "from": 35,
+          "to": 8,
+          "days": 11,
+          "from_date": "2026-08-19",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0010"
+          ]
+        },
+        {
+          "detail": "병원청소",
+          "from": 22,
+          "to": 6,
+          "days": 11,
+          "from_date": "2026-08-19",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0013"
+          ]
+        },
+        {
+          "detail": "후드청소",
+          "from": 9,
+          "to": 2,
+          "days": 11,
+          "from_date": "2026-08-19",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0017"
+          ]
+        }
+      ],
+      "best": {
+        "from": 53,
+        "to": 4,
+        "days": 11
+      },
+      "count": 4
+    },
+    {
+      "code": "HC-05",
+      "label": "여수 네일숍",
+      "named": false,
+      "industry": "네일숍",
+      "region": "여수",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "네일",
+          "from": 38,
+          "to": 11,
+          "days": 4,
+          "from_date": "2026-08-28",
+          "to_date": "2026-09-01",
+          "grade": "B",
+          "ids": [
+            "W-0029"
+          ]
+        }
+      ],
+      "best": {
+        "from": 38,
+        "to": 11,
+        "days": 4
+      },
+      "count": 1
+    },
+    {
+      "code": "HC-06",
+      "label": "미니데이카페",
+      "named": true,
+      "industry": "카페",
+      "region": "해남",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "카페",
+          "from": 19,
+          "to": 1,
+          "days": 24,
+          "from_date": "2026-08-07",
+          "to_date": "2026-08-31",
+          "grade": "A",
+          "ids": [
+            "W-0011",
+            "W-0014"
+          ]
+        }
+      ],
+      "best": {
+        "from": 19,
+        "to": 1,
+        "days": 24
+      },
+      "count": 1
+    },
+    {
+      "code": "HC-07",
+      "label": "강화 카페",
+      "named": false,
+      "industry": "카페",
+      "region": "강화",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "카페",
+          "from": 21,
+          "to": 12,
+          "days": 31,
+          "from_date": "2026-07-30",
+          "to_date": "2026-08-30",
+          "grade": "B",
+          "ids": [
+            "W-0026"
+          ]
+        }
+      ],
+      "best": {
+        "from": 21,
+        "to": 12,
+        "days": 31
+      },
+      "count": 1
+    },
+    {
+      "code": "HC-08",
+      "label": "부천 가발 전문점",
+      "named": false,
+      "industry": "가발 전문점",
+      "region": "부천",
+      "medical": false,
+      "keywords": [
+        {
+          "detail": "가발",
+          "from": 7,
+          "to": 2,
+          "days": 40,
+          "from_date": "2026-07-21",
+          "to_date": "2026-08-30",
+          "grade": "A",
+          "ids": [
+            "W-0019"
+          ]
+        }
+      ],
+      "best": {
+        "from": 7,
+        "to": 2,
+        "days": 40
+      },
+      "count": 1
+    }
+  ]
+}

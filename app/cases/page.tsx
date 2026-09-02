@@ -12,6 +12,8 @@ import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
 import { SITE, itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
 import { SUMMARY, SNAPSHOT_DATE, fmt, BIGGEST_GAIN } from "../lib/rank-records";
+import PlaceRankCasesSection from "../components/PlaceRankCases";
+import { byCode, PLACE_RANK_GENERATED, PLACE_RANK_TOTALS } from "../lib/place-rank-cases";
 
 const ALL_CASES = [
   {
@@ -242,6 +244,15 @@ const CasesPage: FC = () => {
             </div>
           </div>
         </section>
+
+        {/* 매장별 순위 계측 — 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
+        <PlaceRankCasesSection
+          cases={byCode("HC-04", "HC-05", "HC-07", "HC-08")}
+          eyebrow="Place Rank"
+          title="매일 잰 순위를 그대로 옮긴 기록"
+          description={`${PLACE_RANK_GENERATED} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 계측하고 있습니다. 네 곳을 먼저 보여드리고 나머지는 전체 목록에 있습니다.`}
+          cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
+        />
 
         {/* Filter + Cases */}
         <section className="py-12 md:py-20 bg-gray-50">

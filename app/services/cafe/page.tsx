@@ -3,9 +3,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import PlaceRankCasesSection from "../../components/PlaceRankCases";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { byIndustry, PLACE_RANK_GENERATED } from "../../lib/place-rank-cases";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
@@ -161,6 +163,17 @@ export default function CafeLandingPage() {
 
         {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
         <RankRecords industries={["카페"]} industryLabel="카페·베이커리" />
+
+        {/* 카페 매장 단위 계측 — 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
+        <PlaceRankCasesSection
+          cases={byIndustry("카페")}
+          eyebrow="Place Rank"
+          title="카페 매장에서 잰 순위"
+          description={`${PLACE_RANK_GENERATED} 기준 계측 기록입니다. 상호 공개에 동의한 곳만 이름을 적었습니다.`}
+          cta={{ href: "/cases/place-rank", label: "다른 업종 기록도 보기" }}
+          columns={2}
+          background="bg-gray-50"
+        />
 
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">
