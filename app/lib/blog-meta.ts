@@ -4,6 +4,12 @@ export interface BlogMeta {
   excerpt: string;
   tag: string;
   date: string; // YYYY-MM-DD
+  /**
+   * 내린 글 — 목록·사이트맵·RSS·llms.txt 에서 뺀다 (H-0081 · 2026-09-02 (수) 승인).
+   * 파일에는 남겨 둔다 — 아론이 다시 쓸 원본이라서다.
+   * 상세 URL 은 살아 있으나 noindex 가 걸린다 (app/blog/[slug]/page.tsx).
+   */
+  unlisted?: boolean;
 }
 
 export const BLOG_META: BlogMeta[] = [
@@ -55,6 +61,7 @@ export const BLOG_META: BlogMeta[] = [
     excerpt: "맘카페는 구매 결정권을 가진 주부가 모이는 최고의 로컬 마케팅 채널입니다. 자연스럽게 입소문을 내는 방법을 공개합니다.",
     tag: "업종별 전략",
     date: "2024-12-15",
+    unlisted: true,
   },
   {
     slug: "naver-place-review-100",
@@ -111,5 +118,6 @@ export const BLOG_META: BlogMeta[] = [
     excerpt: "학원 마케팅은 학부모를 설득하는 일입니다. 학부모가 가는 채널에 집중하면 수강생이 늘어납니다. 3개월 실전 과정을 공개합니다.",
     tag: "업종별 전략",
     date: "2025-02-23",
+    unlisted: true,
   },
 ];

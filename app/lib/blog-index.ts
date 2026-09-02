@@ -42,8 +42,9 @@ export function getBlogIndex(): BlogEntry[] {
   }));
 
   // 같은 슬러그면 /admin 에서 발행한 글이 우선
+  // unlisted 는 여기 한 곳에서 걸러낸다 — sitemap·rss·llms.txt 가 전부 이 함수를 쓴다
   const cmsSlugs = new Set(cms.map((p) => p.slug));
-  const legacy: BlogEntry[] = BLOG_META.filter((m) => !cmsSlugs.has(m.slug)).map((m) => ({
+  const legacy: BlogEntry[] = BLOG_META.filter((m) => !m.unlisted && !cmsSlugs.has(m.slug)).map((m) => ({
     slug: m.slug,
     title: m.title,
     excerpt: m.excerpt,

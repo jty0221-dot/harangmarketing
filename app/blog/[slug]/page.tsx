@@ -766,6 +766,8 @@ export async function generateMetadata(
   const meta = BLOG_META.find((m) => m.slug === slug);
   return {
     title: `${post.title} — 하랑마케팅 블로그`,
+    // 내린 글은 URL 은 살아 있으나 검색엔진에 올리지 않는다 (H-0081)
+    robots: meta?.unlisted ? { index: false, follow: false } : undefined,
     description: post.summary,
     keywords: ["소상공인 마케팅", "하랑마케팅", post.tag, "마케팅 노하우", post.title],
     authors: [{ name: "하랑마케팅" }],

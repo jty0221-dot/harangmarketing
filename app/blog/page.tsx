@@ -11,7 +11,7 @@ import { getNaverBlogPosts } from "../lib/naver-blog";
 
 export const metadata: Metadata = {
   title: "마케팅 블로그 — 하랑마케팅 | 소상공인 실전 마케팅 노하우",
-  description: "10년 경력 실무진이 직접 쓰는 소상공인 마케팅 노하우. 네이버 플레이스 SEO, 블로그 마케팅, 리뷰 관리, 맘카페 바이럴 등 실제 성과 기반 인사이트.",
+  description: "10년 경력 실무진이 직접 쓰는 소상공인 마케팅 노하우. 네이버 플레이스 SEO, 블로그 마케팅, 리뷰 관리, 카카오맵 노출 등 실제 성과 기반 인사이트.",
   keywords: ["소상공인 마케팅 블로그", "플레이스 SEO 방법", "카페 마케팅 노하우", "마케팅 대행사 블로그", "하랑마케팅 블로그"],
   alternates: { canonical: "https://www.harangmarketing.com/blog" },
   openGraph: {
