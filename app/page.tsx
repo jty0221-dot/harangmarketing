@@ -120,7 +120,7 @@ const INDUSTRIES: Industry[] = [
     color: "from-blue-600 to-blue-800",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["블로그 신뢰도 강화", "체험단 후기", "플레이스 SEO"],
+    points: ["블로그 신뢰도 강화", "의료광고 심의 확인", "플레이스 SEO"],
     result: "5위 → 1위",
     resultLabel: "지역 치과 키워드",
     before: "5위",
