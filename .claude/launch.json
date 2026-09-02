@@ -4,8 +4,21 @@
     {
       "name": "harang-dev",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
+      "runtimeArgs": [
+        "node_modules/next/dist/bin/next",
+        "dev"
+      ],
       "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "harang-start",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "node_modules/next/dist/bin/next",
+        "start"
+      ],
+      "port": 3100,
       "autoPort": true
     }
   ]
