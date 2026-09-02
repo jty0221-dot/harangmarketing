@@ -12,6 +12,8 @@ import { X, ArrowRight } from "lucide-react";
  *   - 배경을 어둡게 덮지 않는다(읽던 내용을 계속 볼 수 있다)
  *   - 데스크톱은 우하단, 모바일은 하단에 붙는다
  *   - 사실만 담는다: 대표가 직접 관리해서 월 상담 수가 한정된다는 것
+ *   - 첫 화면(히어로)에서는 띄우지 않는다. 모바일에서 카드가 화면 폭을 다 쓰기 때문에
+ *     히어로 문구와 '무료 마케팅 진단 받기' 버튼을 통째로 가린다 (375px 실측: 세로 37px)
  */
 export default function EntryPopup() {
   const [open, setOpen] = useState(false);
@@ -19,8 +21,30 @@ export default function EntryPopup() {
 
   useEffect(() => {
     if (sessionStorage.getItem("harang_popup_dismissed")) return;
-    const timer = setTimeout(() => setOpen(true), 6000);
-    return () => clearTimeout(timer);
+
+    // 진입 6초가 지나고, 히어로를 지나 아래로 내려간 뒤에 띄운다.
+    // 두 조건을 다 채워야 한다. 첫 화면에서 뜨면 자기 CTA 를 자기가 가린다.
+    let elapsed = false;
+    let shown = false;
+
+    const tryOpen = () => {
+      if (shown || !elapsed) return;
+      if (window.scrollY <= window.innerHeight * 0.6) return;
+      shown = true;
+      setOpen(true);
+      window.removeEventListener("scroll", tryOpen);
+    };
+
+    const timer = setTimeout(() => {
+      elapsed = true;
+      tryOpen();
+    }, 6000);
+    window.addEventListener("scroll", tryOpen, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", tryOpen);
+    };
   }, []);
 
   const dismiss = () => {

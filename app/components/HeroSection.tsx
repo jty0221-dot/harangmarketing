@@ -62,6 +62,12 @@ export default function HeroSection({
   return (
     <>
       <style>{`
+        /* 히어로 문구 하단 여백. 데스크톱은 기존 값 그대로 두고,
+           1023px 이하에서는 우하단 상담 위젯이 CTA 버튼을 덮지 않도록 더 띄운다 */
+        .ha-hero-copy { bottom: clamp(40px,7vh,86px); }
+        @media (max-width: 1023px) {
+          .ha-hero-copy { bottom: 176px; }
+        }
         @keyframes haFadeUp {
           from { opacity: 0; transform: translateY(26px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -204,11 +210,11 @@ export default function HeroSection({
 
         {/* ── 텍스트 콘텐츠 ── */}
         <div
+          className="ha-hero-copy"
           style={{
             position: "absolute",
             left: "clamp(24px,4vw,72px)",
             right: "clamp(24px,4vw,72px)",
-            bottom: "clamp(40px,7vh,86px)",
             zIndex: 5,
           }}
         >
@@ -367,7 +373,6 @@ export default function HeroSection({
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 5,
-            display: "flex",
             flexDirection: "column",
             gap: 16,
             pointerEvents: "none",
