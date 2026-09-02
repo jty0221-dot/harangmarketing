@@ -3,6 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import FaqAccordion from "../../components/FaqAccordion";
+import JsonLd from "../../components/JsonLd";
+import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import { SUMMARY } from "../../lib/rank-records";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
@@ -26,6 +29,37 @@ const RESULTS = [
   { label: "계측 매장", value: `${SUMMARY.stores}곳`, sub: "계측 중인 매장" },
   { label: "계측 키워드", value: `${SUMMARY.keywords}개`, sub: "플레이스 계측 키워드" },
   { label: "1페이지 유지", value: `${SUMMARY.page1Keywords}개`, sub: "1페이지 유지 키워드" },
+];
+
+/* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
+   숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
+const SERVICE_FAQ: FaqItem[] = [
+  {
+    q: "상세페이지만 바꿔도 매출이 오르나요?",
+    a:
+      "들어오는 사람이 있을 때만 오릅니다. 상세페이지는 이미 들어온 사람을 결제까지 데려가는 역할이라, 유입이 하루 몇 명인 상태에서 상세만 고치면 변화가 잘 보이지 않습니다. 그래서 저희는 유입과 상세를 같이 봅니다. 지금 어느 쪽이 막혀 있는지는 유입 수와 구매 전환을 놓고 보면 바로 갈립니다.",
+  },
+  {
+    q: "상세페이지에서 가장 먼저 나와야 하는 것은 무엇인가요?",
+    a:
+      "이게 무엇이고 나에게 왜 필요한지입니다. 브랜드 이야기나 제조 공정을 앞에 두면 대부분 첫 화면에서 나갑니다. 첫 스크롤에서 제품과 용도 · 핵심 차이를 보여주고, 그다음에 근거와 후기 · 배송과 교환 정보를 둡니다. 불안을 지우는 순서대로 놓는 것이 설득 순서입니다.",
+  },
+  {
+    q: "체험단 후기는 몇 개나 필요한가요?",
+    a:
+      "정해진 숫자는 없고 카테고리마다 다릅니다. 후기가 없으면 첫 구매가 안 일어나기 때문에 초기에는 도움이 되지만, 후기 숫자만 늘린다고 전환이 따라 오르지는 않습니다. 실제 사용한 사람이 쓴 글인지가 훨씬 크게 작용합니다. 저희는 구매 후기를 사거나 대신 쓰지 않고, 대가를 받은 글에는 그 사실을 표시하게 합니다.",
+  },
+  {
+    q: "식품을 파는데 표시사항은 어떻게 해야 하나요?",
+    a:
+      "원재료와 용량 · 소비기한 · 보관방법 · 제조원 · 알레르기 유발 물질은 빠뜨릴 수 없는 법정 항목입니다. 이 값은 저희가 추측해서 채우지 않고 사장님께 확인받은 것만 넣습니다. 틀린 값은 빈 값보다 위험해서, 모르면 비워두고 여쭤봅니다. 효능이나 질병 예방을 말하는 표현도 쓰지 않습니다.",
+  },
+  {
+    q: "스마트스토어와 자사몰 중 어디에 힘을 써야 하나요?",
+    a:
+      "파는 물건이 이미 검색되는 물건이면 스마트스토어가 빠릅니다. 검색량이 있는 카테고리에서는 유입을 네이버가 만들어 주기 때문입니다. 반대로 브랜드로 파는 물건이거나 재구매가 중요한 물건이면 자사몰에 쌓는 편이 오래갑니다. 둘 다 여신다면 스마트스토어로 먼저 팔리는 것을 확인하고 자사몰을 붙이는 순서를 권합니다.",
+  },
 ];
 
 export default function ShoppingPage() {
@@ -129,6 +163,15 @@ export default function ShoppingPage() {
             </div>
           </div>
         </section>
+
+        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/shopping`)} />
+        <FaqAccordion
+          items={SERVICE_FAQ}
+          title="쇼핑몰 운영에서 가장 많이 받는 질문"
+          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
+          showMoreHref="/faq"
+        />
 
         <section className="py-14 bg-gray-950">
           <div className="max-w-2xl mx-auto px-4 text-center">

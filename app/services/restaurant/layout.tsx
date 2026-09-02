@@ -31,7 +31,7 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
             "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "음식점·배달 전문 마케팅. 계측 기록: 네이버 플레이스 지역 맛집 키워드 72위→2위(32일), 지역 맛집 키워드 56위→1위(32일), 지역 역세권 맛집 키워드 13위→1위(32일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
             "offers": { "@type": "Offer", "description": "음식점·배달 전문 마케팅. 배달·홀 비중과 진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "음식점·배달 전문 배달앱 리뷰, 맘카페 바이럴, 블로그 맛집 마케팅 대행",
-            "areaServed": ["서울", "경기도", "인천"],
+            "areaServed": "대한민국",
             "url": "https://www.harangmarketing.com/services/restaurant",
           }),
         }}

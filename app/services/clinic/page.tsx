@@ -3,6 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import FaqAccordion from "../../components/FaqAccordion";
+import JsonLd from "../../components/JsonLd";
+import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
@@ -55,6 +58,37 @@ const CHECKLIST = [
   "리뷰 응답률이 50% 미만인가요?",
   "블로그 포스팅이 불규칙하거나 월 4개 미만인가요?",
   "근처에 같은 과목 경쟁 의원이 3곳 이상인가요?",
+];
+
+/* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
+   숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
+const SERVICE_FAQ: FaqItem[] = [
+  {
+    q: "병원 광고는 심의를 꼭 받아야 하나요?",
+    a:
+      "매체에 따라 다릅니다. 의료법 제57조는 신문과 정기간행물 · 현수막과 전단 · 전광판 · 이용자가 많은 인터넷 매체와 애플리케이션을 심의 대상으로 정하고 있습니다. 반대로 의료기관 명칭과 소재지 · 전화번호, 진료과목, 소속 의료인의 성명과 성별 및 면허의 종류만 알리는 광고는 심의를 받지 않아도 됩니다. 저희는 원고를 쓰기 전에 이 매체가 심의 대상인지부터 확인하고 시작합니다.",
+  },
+  {
+    q: "환자 후기를 블로그에 올려도 되나요?",
+    a:
+      "치료경험담은 의료법 제56조 제2항이 금지하는 항목에 들어갑니다. 환자가 자발적으로 쓴 글이라도 병원이 그것을 시키거나 대가를 주면 제27조 제3항의 소개 · 알선 · 유인을 사주하는 행위가 될 수 있습니다. 그래서 저희는 병원에 체험단이나 후기 대가 지급을 권하지 않습니다. 대신 진료 과정과 장비 · 원장 이력처럼 사실로 확인되는 것을 씁니다.",
+  },
+  {
+    q: "심의를 한 번 받으면 계속 쓸 수 있나요?",
+    a:
+      "심의 유효기간은 승인일부터 3년입니다. 기간이 끝나고도 같은 광고를 계속 쓰려면 만료 6개월 전에 다시 심의를 신청해야 합니다. 문제는 이 날짜를 관리하는 곳이 없으면 조용히 지나간다는 점입니다. 저희는 병원별로 심의 번호와 승인일 · 만료일을 대장에 적어 두고 만료 전에 먼저 알려드립니다.",
+  },
+  {
+    q: "병원도 플레이스 순위가 올라가나요?",
+    a:
+      "매일 저장한 스냅샷 기준으로 지역 치과 키워드가 5위에서 1위까지 32일, 지역 역세권 치과 키워드가 6위에서 1위까지 32일, 지역 피부과 키워드가 10위에서 2위까지 32일 걸린 기록이 있습니다. 다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 순위 보장도 하지 않습니다.",
+  },
+  {
+    q: "광고에 문제가 생기면 누가 책임지나요?",
+    a:
+      "의료법 제56조 제1항은 의료광고를 할 수 있는 주체를 의료기관 개설자와 의료기관의 장 또는 의료인으로 정하고 있습니다. 즉 광고의 주체는 병원이고 행정처분도 병원에 갑니다. 대행사가 썼다는 것은 면책 사유가 되지 않습니다. 그래서 저희는 원장님 확인을 받기 전에는 어떤 원고도 게시하지 않고, 심의가 필요한 매체는 심의필증을 받은 뒤에 올립니다.",
+  },
 ];
 
 export default function ClinicLandingPage() {
@@ -148,6 +182,15 @@ export default function ClinicLandingPage() {
             </div>
           </div>
         </section>
+
+        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/clinic`)} />
+        <FaqAccordion
+          items={SERVICE_FAQ}
+          title="병원 · 의원에서 가장 많이 받는 질문"
+          subtitle="의료법과 심의 기준이 걸리는 질문을 조문과 함께 정리했습니다. 상담 전에 미리 확인해보세요."
+          showMoreHref="/faq"
+        />
 
         {/* CTA */}
         <section className="py-14 md:py-20 bg-blue-600">

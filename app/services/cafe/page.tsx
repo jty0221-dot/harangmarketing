@@ -3,6 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import FaqAccordion from "../../components/FaqAccordion";
+import JsonLd from "../../components/JsonLd";
+import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
@@ -54,6 +57,37 @@ const CHECKLIST = [
   "신규 오픈 후 6개월 이내인가요?",
   "주변 카페 대비 방문객이 적은가요?",
   "블로그·인스타 포스팅이 월 4개 미만인가요?",
+];
+
+/* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
+   숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
+const SERVICE_FAQ: FaqItem[] = [
+  {
+    q: "카페 플레이스 순위를 올리는 데 얼마나 걸리나요?",
+    a:
+      "저희가 매일 저장한 스냅샷 기준으로 지역 카페 키워드가 19위에서 1위까지 20일, 지역 디저트카페 키워드가 3위에서 1위까지 9일 걸린 기록이 있습니다. 다만 이 숫자는 그 지역 · 그 경쟁 상황에서 나온 값이라 모든 카페에 같은 기간을 약속드리지 않습니다. 경쟁 업체가 많은 상권일수록 오래 걸리고, 내려간 곳도 있습니다. 시작 전에 현재 순위와 경쟁 업체 수를 먼저 재서 보여드립니다.",
+  },
+  {
+    q: "리뷰는 몇 개나 있어야 하나요?",
+    a:
+      "정해진 숫자는 없습니다. 다만 리뷰가 한 자리 수면 손님이 결정을 미루고, 최근 한 달 안에 달린 리뷰가 없으면 문 닫은 곳으로 오해받습니다. 그래서 총 개수보다 최근 리뷰가 꾸준히 붙는지가 더 중요합니다. 저희는 리뷰를 사거나 대신 써주지 않고, 방문한 손님이 남기기 쉽게 만드는 쪽으로 합니다.",
+  },
+  {
+    q: "카페 사진은 무엇을 찍어야 하나요?",
+    a:
+      "손님이 검색할 때 궁금해하는 순서대로 찍습니다. 대표 메뉴 한 컷 · 앉는 자리가 보이는 내부 · 간판과 입구 · 주차 공간 · 메뉴판입니다. 이 다섯 가지가 없으면 순위가 올라도 방문으로 잘 넘어가지 않습니다. 카카오톡으로 보내주신 압축 사진은 화질이 떨어져 상세 화면에 그대로 쓰지 않고 원본을 다시 받습니다.",
+  },
+  {
+    q: "인스타그램과 네이버 중 어디에 먼저 힘을 써야 하나요?",
+    a:
+      "지금 매출을 만드는 쪽이 먼저입니다. 카페는 대부분 지역 검색으로 발견되기 때문에 네이버 플레이스와 블로그를 먼저 세우고, 인스타그램은 그다음에 붙입니다. 인스타그램은 발견보다 재방문과 팬을 만드는 자리에 가깝습니다. 둘 다 하시더라도 순서를 바꾸면 같은 비용으로 덜 남습니다.",
+  },
+  {
+    q: "오픈 전에도 마케팅을 시작할 수 있나요?",
+    a:
+      "오픈 전에 시작하는 편이 낫습니다. 플레이스 등록과 사진 · 메뉴 정리는 오픈 당일에 끝내는 것보다 미리 해두어야 첫 주부터 검색에 걸립니다. 다만 오픈 전에는 아직 리뷰가 없으니 첫 달은 방문을 만드는 데 집중합니다. 사업자등록과 영업신고가 끝나야 등록되는 항목이 있어서 일정은 미리 맞춰봅니다.",
+  },
 ];
 
 export default function CafeLandingPage() {
@@ -147,6 +181,15 @@ export default function CafeLandingPage() {
             </div>
           </div>
         </section>
+
+        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/cafe`)} />
+        <FaqAccordion
+          items={SERVICE_FAQ}
+          title="카페 사장님들이 가장 많이 묻는 질문"
+          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 매일 저장한 스냅샷 실측값입니다."
+          showMoreHref="/faq"
+        />
 
         {/* CTA */}
         <section className="py-14 md:py-20 bg-blue-600">

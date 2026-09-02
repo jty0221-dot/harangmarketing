@@ -3,6 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import FaqAccordion from "../../components/FaqAccordion";
+import JsonLd from "../../components/JsonLd";
+import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
@@ -54,6 +57,37 @@ const CHECKLIST = [
   "인스타그램 팔로워가 500명 미만인가요?",
   "리뷰 포토가 30장 미만인가요?",
   "주변에 경쟁 미용실·네일샵이 많은가요?",
+];
+
+/* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
+   숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
+const SERVICE_FAQ: FaqItem[] = [
+  {
+    q: "미용실 인스타그램은 팔로워를 늘려야 예약이 늘어나나요?",
+    a:
+      "팔로워 수와 예약 수는 생각보다 붙어 있지 않습니다. 예약은 대부분 지역 검색과 저장에서 오고, 인스타그램은 시술 결과를 확인하는 자리로 쓰입니다. 그래서 저희는 팔로워를 사거나 이벤트로 숫자만 올리는 방식을 쓰지 않습니다. 시술 카테고리별로 결과 사진을 정리해 두는 쪽이 예약까지 훨씬 짧게 갑니다.",
+  },
+  {
+    q: "네일샵도 네이버 플레이스가 중요한가요?",
+    a:
+      "중요합니다. 네일과 속눈썹은 집이나 직장 가까운 곳을 지도에서 찾아 예약하는 경우가 많아서, 지도에서 몇 번째에 보이는지가 문의 수를 그대로 바꿉니다. 저희는 플레이스 정보와 사진 · 메뉴 · 예약 버튼까지 정리한 다음 순위를 매일 저장해 변화를 봅니다. 다만 미용 업종은 아직 공개할 순위 기록이 없어서 다른 업종 숫자를 대신 보여드리지 않습니다.",
+  },
+  {
+    q: "체험단은 꼭 해야 하나요?",
+    a:
+      "필수는 아닙니다. 체험단은 후기가 아예 없어서 첫 방문이 망설여지는 초기에 쓰는 도구이고, 후기가 이미 쌓인 곳에서는 굳이 하지 않아도 됩니다. 하는 경우에도 실제 방문하고 실제 시술을 받은 사람만 씁니다. 대가를 받고 쓴 글에는 그 사실을 표시하게 합니다.",
+  },
+  {
+    q: "시술 사진은 어떻게 찍어야 하나요?",
+    a:
+      "같은 자리 · 같은 조명에서 시술 전과 후를 찍는 것이 가장 강합니다. 저희는 밝기와 색온도를 맞추고 배경을 정리하는 보정까지만 합니다. 손톱 모양이나 색을 실물과 다르게 바꾸지 않습니다. 받아보신 손님이 사진과 다르다고 말할 수 있으면 그건 보정이 아니라 조작이라고 봅니다.",
+  },
+  {
+    q: "예약이 꽉 차면 마케팅을 멈춰야 하나요?",
+    a:
+      "멈추기보다 방향을 바꾸는 편이 낫습니다. 예약이 찼다는 것은 지금 손님이 온다는 뜻이지 다음 달에도 온다는 뜻은 아니고, 플레이스 순위는 손을 놓으면 다시 내려갑니다. 이럴 때는 신규 유입을 늘리는 대신 단가가 높은 시술을 앞으로 빼고 재방문을 붙이는 쪽으로 옮깁니다. 실제로 그렇게 조정한 곳이 있고 판단은 사장님과 같이 합니다.",
+  },
 ];
 
 export default function BeautyLandingPage() {
@@ -146,6 +180,15 @@ export default function BeautyLandingPage() {
             </div>
           </div>
         </section>
+
+        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/beauty`)} />
+        <FaqAccordion
+          items={SERVICE_FAQ}
+          title="미용실 · 네일샵 사장님들이 가장 많이 묻는 질문"
+          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
+          showMoreHref="/faq"
+        />
 
         {/* CTA */}
         <section className="py-14 md:py-20 bg-pink-600">

@@ -3,6 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import FaqAccordion from "../../components/FaqAccordion";
+import JsonLd from "../../components/JsonLd";
+import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import { byIndustry } from "../../lib/rank-records";
 import Link from "next/link";
 import { ArrowRight, UtensilsCrossed, TrendingUp, Star, ShoppingCart, CheckCircle2 } from "lucide-react";
@@ -35,6 +38,37 @@ const RESULTS = byIndustry("음식점").slice(0, 3).map((r) => ({
   value: `${r.to}위`,
   sub: `${r.from}위에서 · ${r.days}일`,
 }));
+
+/* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
+   숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
+const SERVICE_FAQ: FaqItem[] = [
+  {
+    q: "배달앱 광고와 네이버 중 어디에 돈을 써야 하나요?",
+    a:
+      "성격이 다릅니다. 배달앱 광고는 켜는 동안만 노출되는 비용이고, 네이버 플레이스와 블로그는 쌓아 두면 광고를 끄고도 남는 자산입니다. 배달 매출 비중이 큰 곳은 두 가지를 같이 쓰고, 홀 매출이 큰 곳은 네이버부터 세웁니다. 어느 쪽이든 지금 매출이 어디서 오는지 먼저 보고 정합니다.",
+  },
+  {
+    q: "음식점 플레이스 순위는 얼마나 올라가나요?",
+    a:
+      "매일 저장한 스냅샷 기준으로 지역 맛집 키워드가 72위에서 2위까지 32일, 다른 곳은 56위에서 1위까지 32일, 지역 역세권 맛집 키워드가 13위에서 1위까지 32일 걸린 기록이 있습니다. 같은 기간에 순위가 내려간 곳도 있고 첫 페이지에 못 올라간 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.",
+  },
+  {
+    q: "리뷰에 악평이 달렸는데 지울 수 있나요?",
+    a:
+      "사실에 근거한 리뷰는 지울 수 없고 지우려 해서도 안 됩니다. 다만 욕설이나 명백한 허위 · 다른 가게와 혼동한 글은 플랫폼에 신고해 처리할 수 있습니다. 실제로 효과가 있는 것은 삭제보다 답글입니다. 어떻게 고쳤는지 적힌 답글은 그 리뷰를 읽는 다음 손님에게 설명이 됩니다.",
+  },
+  {
+    q: "음식 사진은 전문가가 찍어야 하나요?",
+    a:
+      "꼭 그렇지는 않습니다. 창가 자리에서 낮에 찍고 접시를 정리하는 것만으로도 크게 달라집니다. 다만 대표 메뉴 서너 개는 제대로 찍어 두시는 편이 오래 남습니다. 저희는 밝기와 색온도를 맞추는 보정까지만 하고 양이나 크기를 실물과 다르게 만들지 않습니다.",
+  },
+  {
+    q: "신메뉴를 낼 때마다 알려야 하나요?",
+    a:
+      "알리는 편이 낫습니다. 플레이스 소식과 블로그에 신메뉴가 올라가면 새 검색어가 하나 생기고, 기존 손님에게는 다시 올 이유가 됩니다. 다만 메뉴판과 가격을 같이 맞춰 두지 않으면 손님이 헛걸음합니다. 저희는 가격을 최신 메뉴판에서만 가져오고 지난 행사가를 쓰지 않습니다.",
+  },
+];
 
 export default function RestaurantPage() {
   return (
@@ -130,6 +164,15 @@ export default function RestaurantPage() {
             </div>
           </div>
         </section>
+
+        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/restaurant`)} />
+        <FaqAccordion
+          items={SERVICE_FAQ}
+          title="음식점 사장님들이 가장 많이 묻는 질문"
+          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 매일 저장한 스냅샷 실측값입니다."
+          showMoreHref="/faq"
+        />
 
         <section className="py-14 bg-gray-950">
           <div className="max-w-2xl mx-auto px-4 text-center">

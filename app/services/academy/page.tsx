@@ -3,6 +3,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
+import FaqAccordion from "../../components/FaqAccordion";
+import JsonLd from "../../components/JsonLd";
+import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import { SUMMARY } from "../../lib/rank-records";
 import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
@@ -26,6 +29,37 @@ const RESULTS = [
   { label: "계측 매장", value: `${SUMMARY.stores}곳`, sub: "계측 중인 매장" },
   { label: "계측 키워드", value: `${SUMMARY.keywords}개`, sub: "플레이스 계측 키워드" },
   { label: "1페이지 유지", value: `${SUMMARY.page1Keywords}개`, sub: "1페이지 유지 키워드" },
+];
+
+/* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
+   (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
+   숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
+const SERVICE_FAQ: FaqItem[] = [
+  {
+    q: "학원 마케팅 비용은 보통 얼마나 드나요?",
+    a:
+      "학원 마케팅 비용은 무엇을 하느냐에 따라 갈립니다. 블로그와 플레이스처럼 쌓아 두면 남는 작업은 월 단위 관리비가 들고, 검색광고처럼 클릭할 때마다 나가는 비용은 네이버에 직접 결제하는 광고비라 저희에게 오지 않습니다. 두 가지를 섞어 쓰는 것이 보통이고, 시작 금액은 지역과 경쟁 강도에 따라 달라집니다. 상담은 0원이고 상담하는 사람은 하랑 대표입니다.",
+  },
+  {
+    q: "맘카페 마케팅은 효과가 있나요?",
+    a:
+      "맘카페는 학원을 고르는 자리라기보다 이미 후보에 오른 학원을 검증하는 자리입니다. 그래서 맘카페 하나만 하면 잘 움직이지 않고, 검색에서 먼저 발견된 다음 맘카페에서 확인이 되면 문의로 이어집니다. 저희는 맘카페를 단독 상품으로 팔지 않고 블로그 · 플레이스와 묶어 씁니다. 카페 규칙을 어기는 홍보 글이나 계정 구매는 하지 않습니다.",
+  },
+  {
+    q: "학원도 네이버 플레이스 순위가 올라가나요?",
+    a:
+      "플레이스 최적화 자체는 업종을 가리지 않습니다. 다만 저희가 매일 저장한 스냅샷 가운데 학원 업종의 순위 기록은 아직 공개할 것이 없어서, 다른 업종의 숫자를 학원 성과처럼 말씀드리지 않습니다. 지금 학원에서 확인할 수 있는 것은 현재 순위와 경쟁 업체 수까지이고, 계측이 쌓이면 그 숫자로 다시 보고드립니다. 순위를 미리 약속드리지 않는 이유도 같습니다.",
+  },
+  {
+    q: "블로그는 원장님이 직접 써야 하나요?",
+    a:
+      "원장님이 쓰시면 가장 좋지만 현실적으로 매주 쓰기는 어렵습니다. 저희가 초안을 쓰고 원장님은 수업 이야기와 사진만 주시는 방식이 오래갑니다. 발행 전에 원장님 확인을 받고 올리기 때문에 사실과 다른 문장이 나갈 일은 없습니다. 학원명과 강사 경력처럼 확인이 필요한 값은 서류로 받은 것만 씁니다.",
+  },
+  {
+    q: "계약 기간이나 위약금이 있나요?",
+    a:
+      "기본은 월 단위이고 자동 연장되는 약정을 걸지 않습니다. 중간에 그만두실 때 위약금을 청구하지 않습니다. 다만 블로그와 플레이스는 쌓이면서 효과가 나오는 작업이라 한 달만 보고 판단하기는 어렵습니다. 계약서에 적힌 범위 밖의 일이 생기면 먼저 말씀드리고 진행합니다.",
+  },
 ];
 
 export default function AcademyPage() {
@@ -129,6 +163,15 @@ export default function AcademyPage() {
             </div>
           </div>
         </section>
+
+        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/academy`)} />
+        <FaqAccordion
+          items={SERVICE_FAQ}
+          title="학원 마케팅에서 가장 많이 받는 질문"
+          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
+          showMoreHref="/faq"
+        />
 
         <section className="py-14 bg-gray-950">
           <div className="max-w-2xl mx-auto px-4 text-center">
