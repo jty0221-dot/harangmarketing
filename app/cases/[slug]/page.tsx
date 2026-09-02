@@ -57,7 +57,7 @@ const CASES: Record<string, {
     category: "병원·의원",
     location: "서울 강서",
     period: "6개월",
-    services: ["인스타그램 마케팅", "체험단 모집", "블로그 관리"],
+    services: ["인스타그램 마케팅", "블로그 관리", "플레이스 SEO"],
     metric: "+300%",
     metricLabel: "신규 예약 증가",
     color: "from-blue-600 to-indigo-700",
@@ -67,13 +67,12 @@ const CASES: Record<string, {
     solution: [
       "의료 광고법 준수 범위 내 콘텐츠 전략 수립",
       "피부 고민별 솔루션 릴스 시리즈 기획·촬영 지원",
-      "실제 환자 체험단 모집 및 후기 콘텐츠 제작",
+      "진료 과정과 장비, 원장 이력을 사실 그대로 담은 콘텐츠 제작",
       "인스타그램 예약 링크 → 카카오 채널 연동으로 전환 경로 단순화",
       "블로그 '강서 피부과' '강서 피부 고민' 키워드 포스팅 배포",
     ],
     results: [
       { label: "팔로워", before: "200명", after: "3,800명" },
-      { label: "체험단 후기", before: "없음", after: "60개+" },
       { label: "월 신규 예약", before: "20건", after: "80건" },
     ],
     quote: "이제 인스타에서 '이 클리닉 어때요?' 질문이 올 정도예요. SNS가 진짜 일을 하기 시작했어요.",

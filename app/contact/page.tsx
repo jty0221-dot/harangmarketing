@@ -18,7 +18,7 @@ const INDUSTRY_ICONS = [
   { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "72위 → 2위", case: "지역 맛집 키워드 · 32일 계측", color: "from-blue-600 to-indigo-700" },
   { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], result: "67위 → 4위", case: "지역 상가청소 키워드 · 17일 계측", color: "from-blue-600 to-blue-800" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "5위 → 1위", case: "지역 치과 키워드 · 32일 계측", color: "from-blue-600 to-blue-800" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "5위 → 1위", case: "지역 치과 키워드 · 32일 계측", color: "from-blue-600 to-blue-800" },
   { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정", color: "from-blue-700 to-indigo-800" },
   { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-indigo-600" },
   { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
@@ -135,7 +135,7 @@ function ContactPageInner() {
                 { icon: CheckCircle2, text: "상담 비용 0원" },
                 { icon: CheckCircle2, text: "계약 강요 없음" },
                 { icon: Clock, text: "24시간 내 대표가 직접 연락" },
-                { icon: CheckCircle2, text: "고의 누락 시 10배 보상" },
+                { icon: CheckCircle2, text: "작업 내역 100% 공개" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-gray-300">
                   <Icon size={14} className="text-blue-400" strokeWidth={2.5} /> {text}

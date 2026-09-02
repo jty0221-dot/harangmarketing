@@ -333,7 +333,7 @@ const FAQS = [
 
 const INDUSTRY_LINKS = [
   { name: "카페·베이커리", href: "/services/cafe", color: "from-blue-600 to-orange-500", desc: "플레이스 SEO · 포토리뷰 · 인스타" },
-  { name: "병원·의원", href: "/services/clinic", color: "from-blue-500 to-blue-700", desc: "블로그 신뢰 · 체험단 · 플레이스 SEO" },
+  { name: "병원·의원", href: "/services/clinic", color: "from-blue-500 to-blue-700", desc: "의료광고 심의 확인 · 블로그 · 플레이스 SEO" },
   { name: "뷰티·네일", href: "/services/beauty", color: "from-pink-500 to-rose-600", desc: "릴스 · 비포애프터 · 리뷰 관리" },
   { name: "음식점·식당", href: "/services/restaurant", color: "from-orange-500 to-red-500", desc: "배달 매출 · 플레이스 · 리뷰" },
   { name: "학원·교육", href: "/services/academy", color: "from-green-500 to-emerald-600", desc: "맘카페 · 블로그 · 플레이스 SEO" },
@@ -832,7 +832,7 @@ export default function ServicesPage() {
                 { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "19위 → 1위 · 20일 계측", color: "from-blue-500 to-blue-700" },
                 { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "72위 → 2위 · 32일 계측", color: "from-blue-600 to-indigo-700" },
                 { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "인스타그램 중심 설계", color: "from-blue-500 to-blue-700" },
-                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "5위 → 1위 · 32일 계측", color: "from-blue-600 to-blue-800" },
+                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 답글 관리"], result: "5위 → 1위 · 32일 계측", color: "from-blue-600 to-blue-800" },
                 { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "맘카페 바이럴 중심", color: "from-blue-700 to-indigo-800" },
                 { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "블로그 SEO 중심", color: "from-blue-500 to-indigo-600" },
                 { industry: "청소·시설관리", firstRec: "플레이스 SEO", recs: ["블로그 관리", "리뷰 마케팅"], result: "67위 → 4위 · 17일 계측", color: "from-blue-600 to-blue-800" },

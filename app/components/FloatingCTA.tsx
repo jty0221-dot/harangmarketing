@@ -113,7 +113,7 @@ export default function FloatingCTA() {
             {/* Trust badge */}
             <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2 mb-2 flex items-center gap-2">
               <Shield size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
-              <p className="text-[11px] font-bold text-blue-700">고의 누락 시 결제금액 10배 보상 정책 운용 중</p>
+              <p className="text-[11px] font-bold text-blue-700">게시 URL · 매체사 전달 내역 100% 공개</p>
             </div>
 
             {/* Buttons */}

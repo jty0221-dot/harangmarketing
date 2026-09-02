@@ -30,7 +30,7 @@ const ANN_MESSAGES = [
     badge: "신뢰",
     badgeColor: "text-blue-400",
     dot: "bg-blue-400",
-    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 대표가 직접 관리 · <span className="text-blue-300 font-bold">상담 0원</span></>,
+    text: <>작업한 <span className="text-white font-black">게시 URL 전량 공개</span> · 대표가 직접 관리 · <span className="text-blue-300 font-bold">상담 0원</span></>,
     ctaLabel: "자세히 보기",
     ctaHref: "/about",
   },

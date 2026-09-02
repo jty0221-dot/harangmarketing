@@ -86,8 +86,8 @@ const PROMISES = [
     icon: Shield,
     color: "from-blue-500 to-blue-700",
     title: "투명하게 작업합니다",
-    desc: "말로만 '믿어달라' 하지 않습니다. 약속한 작업을 100% 진행하고 결과를 투명하게 공유합니다. 고의로 빠뜨리거나 속인 사실이 확인되면 결제 금액의 10배를 보상해드립니다.",
-    badge: "10배 보상 정책",
+    desc: "말로만 '믿어달라' 하지 않습니다. 약속한 작업을 100% 진행하고 결과를 투명하게 공유합니다. 게시한 글은 URL 을 전부 드려 직접 확인하실 수 있게 하고, 매체사에 얼마가 전달됐는지도 내역 그대로 공유합니다.",
+    badge: "작업 내역 전량 공개",
   },
   {
     num: "02",
@@ -278,7 +278,7 @@ export default function AboutPage() {
                   {[
                     { val: "10년+", label: "마케팅 경력" },
                     { val: "500+", label: "함께한 대표님" },
-                    { val: "10배", label: "기만행위 보상" },
+                    { val: "100%", label: "작업 내역 공개" },
                     { val: "24/7", label: "소통 가능" },
                   ].map((s) => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
@@ -449,7 +449,7 @@ export default function AboutPage() {
                   { item: "성과 보고", general: "복잡한 지표 · 실제 매출 연결 안 됨", harang: "매월 매출 연결 지표 리포트" },
                   { item: "작업 투명성", general: "어디에 썼는지 알기 어려움", harang: "매체사 전달 내역 100% 공유" },
                   { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정 · 중도 해지 위약금 없음" },
-                  { item: "보상 정책", general: "없음", harang: "고의 누락 시 결제금액 10배 보상" },
+                  { item: "순위 약속", general: "몇 위까지 올려준다고 약속", harang: "약속 대신 매일 계측 · 잰 숫자 그대로 공개" },
                   { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 1개월부터 가능" },
                 ].map((row, i) => (
                   <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] gap-0 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"}`}>

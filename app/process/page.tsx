@@ -113,7 +113,7 @@ const STEPS = [
 ];
 
 const TRUST_POINTS = [
-  { icon: ShieldCheck, label: "고의 누락 시 결제금액 10배 보상" },
+  { icon: ShieldCheck, label: "게시 URL · 전달 내역 100% 공개" },
   { icon: Star, label: `재계약률 ${SITE.stats.renewalRate}` },
   { icon: Clock, label: "24시간 소통 가능" },
 ];
