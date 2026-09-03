@@ -15,6 +15,7 @@ const ANN_MESSAGES = [
     badgeColor: "text-blue-400",
     dot: "bg-blue-400",
     text: <>상담 신청하시면 <span className="text-white font-black">경쟁사 분석 리포트</span>를 드립니다 · <span className="text-blue-300 font-bold">계약 전 확인 가능</span></>,
+    mobileText: <><span className="text-white font-black">경쟁사 분석 리포트</span> 무료 제공</>,
     ctaLabel: "무료 신청",
     ctaHref: "/contact",
   },
@@ -23,6 +24,7 @@ const ANN_MESSAGES = [
     badgeColor: "text-green-400",
     dot: "bg-green-400",
     text: <>누적 <span className="text-white font-black">{SITE.stats.projects}</span> 프로젝트 · <span className="text-blue-300 font-bold">재계약률 {SITE.stats.renewalRate}</span></>,
+    mobileText: <>누적 <span className="text-white font-black">{SITE.stats.projects}</span> · <span className="text-blue-300 font-bold">재계약률 {SITE.stats.renewalRate}</span></>,
     ctaLabel: "진단 신청",
     ctaHref: "/contact",
   },
@@ -31,6 +33,7 @@ const ANN_MESSAGES = [
     badgeColor: "text-blue-400",
     dot: "bg-blue-400",
     text: <>작업한 <span className="text-white font-black">게시 URL 전량 공개</span> · 대표가 직접 관리 · <span className="text-blue-300 font-bold">상담 0원</span></>,
+    mobileText: <><span className="text-white font-black">게시 URL 전량 공개</span> · 대표가 직접 관리</>,
     ctaLabel: "자세히 보기",
     ctaHref: "/about",
   },
@@ -149,7 +152,11 @@ export default function Header() {
             </div>
             <div className="hidden sm:block w-px h-3 bg-white/10" />
             <div className="flex items-center gap-2 text-xs min-w-0">
-              <span className="text-gray-300 truncate">{msg.text}</span>
+              {/* 375px 에서 이 자리에 쓸 수 있는 폭이 215px 뿐이다 (닫기 버튼 44px + CTA 버튼이 나머지를 먹는다).
+                  전체 문구를 그대로 넣으면 말줄임표가 마지막 글자를 먹어 재계약률 97.4% 가 97.4... 로 나온다.
+                  숫자는 그대로 두고 좁은 화면에서만 서술어를 줄인다 (2026-09-03 (목) 실측 후 수정). */}
+              <span className="text-gray-300 truncate sm:hidden">{msg.mobileText}</span>
+              <span className="text-gray-300 truncate hidden sm:block">{msg.text}</span>
             </div>
             <Link
               href={msg.ctaHref}
