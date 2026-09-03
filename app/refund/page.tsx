@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, RefreshCw } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "환불·취소 정책 — 하랑마케팅",
+  title: "환불·취소 정책",
   description: "하랑마케팅 환불 및 취소 정책입니다.",
   robots: { index: false, follow: false },
 };

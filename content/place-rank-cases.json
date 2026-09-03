@@ -1,324 +1,249 @@
 {
-  "generated": "2026-09-03",
-  "source": "E:/하랑/순위모니터/홈페이지사례.json (성과대장 추출 · 세영)",
-  "note": "네이버 플레이스 순위 계측 결과다. 서면 동의를 받지 않은 매장은 상호 대신 업종으로 적고 지역은 시 · 군 단위까지만 쓴다. 보장 · 확약 문구를 붙이지 않는다.",
-  "sources": [
-    "애드랭크",
-    "루메인"
+  "generated": "2026-09-04",
+  "source": "E:/하랑/순위모니터/성과대장.tsv (세영 · 애드랭크 순위 계측)",
+  "note": "상호와 지역명을 쓰지 않는다. 업종과 행정단위까지만 공개한다 (2026-09-04 (금) 대표 지시). 실리는 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다.",
+  "monitoring": {
+    "stores": 22,
+    "keywords": 61,
+    "page1Keywords": 37,
+    "page1Stores": 18,
+    "asOf": "2026-08-31"
+  },
+  "cases": [
+    {
+      "id": "W-0002",
+      "industry": "샤브샤브 전문점",
+      "storeLabel": "00샤브샤브전문점",
+      "keywordLabel": "00시 맛집",
+      "from": 72,
+      "to": 4,
+      "days": 32,
+      "startDate": "2026-07-30",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0003",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 상가청소",
+      "from": 67,
+      "to": 3,
+      "days": 21,
+      "startDate": "2026-08-10",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0024",
+      "industry": "꽃집",
+      "storeLabel": "00꽃집",
+      "keywordLabel": "00시 꽃집",
+      "from": 83,
+      "to": 20,
+      "days": 32,
+      "startDate": "2026-07-30",
+      "asOf": "2026-08-31",
+      "page1": false,
+      "grade": "B"
+    },
+    {
+      "id": "W-0004",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 상가청소",
+      "from": 53,
+      "to": 4,
+      "days": 12,
+      "startDate": "2026-08-19",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0007",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 청소업체",
+      "from": 49,
+      "to": 3,
+      "days": 17,
+      "startDate": "2026-08-14",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0005",
+      "industry": "샤브샤브 전문점",
+      "storeLabel": "00샤브샤브전문점",
+      "keywordLabel": "00동 맛집",
+      "from": 48,
+      "to": 3,
+      "days": 32,
+      "startDate": "2026-07-30",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0008",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 정기청소",
+      "from": 36,
+      "to": 4,
+      "days": 21,
+      "startDate": "2026-08-10",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0029",
+      "industry": "네일숍",
+      "storeLabel": "00네일숍",
+      "keywordLabel": "00시 네일",
+      "from": 38,
+      "to": 10,
+      "days": 3,
+      "startDate": "2026-08-28",
+      "asOf": "2026-08-31",
+      "page1": false,
+      "grade": "B"
+    },
+    {
+      "id": "W-0010",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 정기청소",
+      "from": 35,
+      "to": 9,
+      "days": 12,
+      "startDate": "2026-08-19",
+      "asOf": "2026-08-31",
+      "page1": false,
+      "grade": "A"
+    },
+    {
+      "id": "W-0011",
+      "industry": "카페",
+      "storeLabel": "00카페",
+      "keywordLabel": "00군 카페",
+      "from": 19,
+      "to": 1,
+      "days": 24,
+      "startDate": "2026-08-07",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0012",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 병원청소",
+      "from": 22,
+      "to": 5,
+      "days": 21,
+      "startDate": "2026-08-10",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0013",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 병원청소",
+      "from": 22,
+      "to": 6,
+      "days": 12,
+      "startDate": "2026-08-19",
+      "asOf": "2026-08-31",
+      "page1": false,
+      "grade": "A"
+    },
+    {
+      "id": "W-0015",
+      "industry": "샤브샤브 전문점",
+      "storeLabel": "00샤브샤브전문점",
+      "keywordLabel": "00역 맛집",
+      "from": 11,
+      "to": 1,
+      "days": 32,
+      "startDate": "2026-07-30",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0026",
+      "industry": "카페",
+      "storeLabel": "00카페",
+      "keywordLabel": "00군 카페",
+      "from": 21,
+      "to": 12,
+      "days": 32,
+      "startDate": "2026-07-30",
+      "asOf": "2026-08-31",
+      "page1": false,
+      "grade": "B"
+    },
+    {
+      "id": "W-0017",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 후드청소",
+      "from": 9,
+      "to": 2,
+      "days": 12,
+      "startDate": "2026-08-19",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0018",
+      "industry": "꽃집",
+      "storeLabel": "00꽃집",
+      "keywordLabel": "00동 꽃집",
+      "from": 7,
+      "to": 1,
+      "days": 32,
+      "startDate": "2026-07-30",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    },
+    {
+      "id": "W-0019",
+      "industry": "가발 전문점",
+      "storeLabel": "00가발전문점",
+      "keywordLabel": "00시 가발",
+      "from": 7,
+      "to": 2,
+      "days": 41,
+      "startDate": "2026-07-21",
+      "asOf": "2026-08-31",
+      "page1": true,
+      "grade": "A"
+    }
   ],
   "pendingReview": [
     {
-      "code": "HC-09",
-      "reason": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50)"
+      "id": "W-0020",
+      "why": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50 · D-0177)"
     },
     {
-      "code": "HC-10",
-      "reason": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50)"
-    }
-  ],
-  "cases": [
-    {
-      "code": "HC-01",
-      "label": "부천 꽃집",
-      "named": false,
-      "industry": "꽃집",
-      "region": "부천",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "꽃집",
-          "from": 113,
-          "to": 18,
-          "days": 33,
-          "from_date": "2026-07-28",
-          "to_date": "2026-08-30",
-          "grade": "B",
-          "ids": [
-            "W-0023",
-            "W-0018",
-            "W-0024"
-          ]
-        }
-      ],
-      "best": {
-        "from": 113,
-        "to": 18,
-        "days": 33
-      },
-      "count": 1
+      "id": "W-0021",
+      "why": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50 · D-0177)"
     },
     {
-      "code": "HC-02",
-      "label": "부천 샤브샤브 전문점",
-      "named": false,
-      "industry": "샤브샤브 전문점",
-      "region": "부천",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "맛집",
-          "from": 72,
-          "to": 2,
-          "days": 31,
-          "from_date": "2026-07-30",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0002",
-            "W-0005",
-            "W-0015",
-            "W-0016"
-          ]
-        }
-      ],
-      "best": {
-        "from": 72,
-        "to": 2,
-        "days": 31
-      },
-      "count": 1
-    },
-    {
-      "code": "HC-03",
-      "label": "부천 청소 업체",
-      "named": false,
-      "industry": "청소 업체",
-      "region": "부천",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "상가청소",
-          "from": 67,
-          "to": 4,
-          "days": 20,
-          "from_date": "2026-08-10",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0003"
-          ]
-        },
-        {
-          "detail": "청소업체",
-          "from": 49,
-          "to": 5,
-          "days": 16,
-          "from_date": "2026-08-14",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0007"
-          ]
-        },
-        {
-          "detail": "정기청소",
-          "from": 36,
-          "to": 4,
-          "days": 20,
-          "from_date": "2026-08-10",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0008",
-            "W-0009"
-          ]
-        },
-        {
-          "detail": "병원청소",
-          "from": 22,
-          "to": 5,
-          "days": 20,
-          "from_date": "2026-08-10",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0012"
-          ]
-        }
-      ],
-      "best": {
-        "from": 67,
-        "to": 4,
-        "days": 20
-      },
-      "count": 4
-    },
-    {
-      "code": "HC-04",
-      "label": "김포 청소 업체",
-      "named": false,
-      "industry": "청소 업체",
-      "region": "김포",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "상가청소",
-          "from": 53,
-          "to": 4,
-          "days": 11,
-          "from_date": "2026-08-19",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0004"
-          ]
-        },
-        {
-          "detail": "정기청소",
-          "from": 35,
-          "to": 8,
-          "days": 11,
-          "from_date": "2026-08-19",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0010"
-          ]
-        },
-        {
-          "detail": "병원청소",
-          "from": 22,
-          "to": 6,
-          "days": 11,
-          "from_date": "2026-08-19",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0013"
-          ]
-        },
-        {
-          "detail": "후드청소",
-          "from": 9,
-          "to": 2,
-          "days": 11,
-          "from_date": "2026-08-19",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0017"
-          ]
-        }
-      ],
-      "best": {
-        "from": 53,
-        "to": 4,
-        "days": 11
-      },
-      "count": 4
-    },
-    {
-      "code": "HC-05",
-      "label": "여수 네일숍",
-      "named": false,
-      "industry": "네일숍",
-      "region": "여수",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "네일",
-          "from": 38,
-          "to": 11,
-          "days": 4,
-          "from_date": "2026-08-28",
-          "to_date": "2026-09-01",
-          "grade": "B",
-          "ids": [
-            "W-0029"
-          ]
-        }
-      ],
-      "best": {
-        "from": 38,
-        "to": 11,
-        "days": 4
-      },
-      "count": 1
-    },
-    {
-      "code": "HC-06",
-      "label": "미니데이카페",
-      "named": true,
-      "industry": "카페",
-      "region": "해남",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "카페",
-          "from": 19,
-          "to": 1,
-          "days": 24,
-          "from_date": "2026-08-07",
-          "to_date": "2026-08-31",
-          "grade": "A",
-          "ids": [
-            "W-0011",
-            "W-0014"
-          ]
-        }
-      ],
-      "best": {
-        "from": 19,
-        "to": 1,
-        "days": 24
-      },
-      "count": 1
-    },
-    {
-      "code": "HC-07",
-      "label": "강화 카페",
-      "named": false,
-      "industry": "카페",
-      "region": "강화",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "카페",
-          "from": 21,
-          "to": 12,
-          "days": 31,
-          "from_date": "2026-07-30",
-          "to_date": "2026-08-30",
-          "grade": "B",
-          "ids": [
-            "W-0026"
-          ]
-        }
-      ],
-      "best": {
-        "from": 21,
-        "to": 12,
-        "days": 31
-      },
-      "count": 1
-    },
-    {
-      "code": "HC-08",
-      "label": "부천 가발 전문점",
-      "named": false,
-      "industry": "가발 전문점",
-      "region": "부천",
-      "medical": false,
-      "keywords": [
-        {
-          "detail": "가발",
-          "from": 7,
-          "to": 2,
-          "days": 40,
-          "from_date": "2026-07-21",
-          "to_date": "2026-08-30",
-          "grade": "A",
-          "ids": [
-            "W-0019"
-          ]
-        }
-      ],
-      "best": {
-        "from": 7,
-        "to": 2,
-        "days": 40
-      },
-      "count": 1
+      "id": "W-0022",
+      "why": "병 · 의원이라 진우 검수 전에는 화면에 올리지 않는다 (C-50 · D-0177)"
     }
   ]
 }

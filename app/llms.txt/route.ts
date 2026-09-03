@@ -2,9 +2,9 @@ import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
-import { SUMMARY, SNAPSHOT_DATE } from "../lib/rank-records";
+import { best, fmt, BIGGEST_GAIN, type RankRecord } from "../lib/rank-records";
 import {
-  PLACE_RANK_CASES, PLACE_RANK_GENERATED, PLACE_RANK_NOTE, PLACE_RANK_TOTALS, fmtMoveDays,
+  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, PLACE_RANK_TOTALS, fmtMoveDays,
 } from "../lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
@@ -19,6 +19,18 @@ import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 export const revalidate = 86400;
 
 const B = SITE.base;
+
+/*
+ * 업종별 대표 사례 — 손으로 적지 않는다.
+ * 여기 여섯 줄을 직접 써 뒀더니 스냅샷이 바뀌는 동안 넷이 틀린 값이 됐다
+ * (치과 5위 → 1위는 RECORDS 에서 사라진 기록이었다). RECORDS 에서 그때그때 만든다.
+ * 기록이 없는 업종은 줄 자체가 빠진다. 없는 업종에 남의 기록을 붙이지 않는다 (C-42).
+ */
+const TOP_BY_INDUSTRY = ["음식점", "청소", "카페", "피부과", "꽃집", "치과"]
+  .map((industry) => ({ industry, r: best(industry) }))
+  .filter((x): x is { industry: string; r: RankRecord } => x.r !== undefined)
+  .map((x) => `- ${x.industry} · ${x.r.keyword} ${fmt(x.r)} (${x.r.days}일 계측)`)
+  .join("\n");
 
 export async function GET() {
   // /admin 발행 글 포함, 최신 12편 (getBlogIndex 가 정렬·병합 담당)
@@ -36,8 +48,8 @@ export async function GET() {
   // 매장별 순위 계측 사례 — 숫자와 표기는 app/lib/place-rank-cases.ts 에서만 온다
   const placeRankCases = PLACE_RANK_CASES.map(
     (c) =>
-      `- ${c.label} (${c.region} · ${c.industry}): ` +
-      c.keywords.map((k) => `${k.detail} 키워드 ${fmtMoveDays(k)}`).join(" · ")
+      `- ${c.keywords[0].detail} 키워드 (${c.industry} · ${c.label}): ` +
+      `${fmtMoveDays(c.keywords[0])} · ${c.asOf} 계측`
   ).join("\n");
 
   // 서비스 목록 — 번호를 손으로 매기지 않는다. 감춘 상품을 빼면 번호가 저절로 당겨진다.
@@ -161,29 +173,24 @@ ${ANSWER_SENTENCES.timeline}
 - 재계약률: ${SITE.stats.renewalRate}
 
 대표 사례
-- 음식점 — 지역 맛집 키워드 72위 → 2위 (32일 계측)
-- 청소 — 지역 상가청소 키워드 67위 → 4위 (17일 계측)
-- 카페 — 지역 카페 키워드 19위 → 1위 (20일 계측)
-- 피부과 — 지역 피부과 키워드 10위 → 2위 (32일 계측)
-- 꽃집 — 지역 꽃집 키워드 8위 → 1위 (32일 계측)
-- 치과 — 지역 치과 키워드 5위 → 1위 (32일 계측)
-- 1페이지에 진입한 기록 가운데 가장 큰 상승폭 — 지역 맛집 키워드 72위 → 2위 (32일 계측)
+${TOP_BY_INDUSTRY}
+- 1페이지에 진입한 기록 가운데 가장 큰 상승폭 — ${BIGGEST_GAIN.keyword} ${fmt(BIGGEST_GAIN)} (${BIGGEST_GAIN.days}일 계측)
 
-계측 현황 (${SNAPSHOT_DATE} 스냅샷 기준)
-- 계측 매장 ${SUMMARY.stores}곳 · 계측 키워드 ${SUMMARY.keywords}개
-- 네이버 플레이스 1페이지(1~5위)를 지키는 키워드 ${SUMMARY.page1Keywords}개 (매장 ${SUMMARY.page1Stores}곳)
-- 그중 ${SUMMARY.heldAllSnapshots}개 키워드는 누적 스냅샷 ${SUMMARY.snapshots}회 동안 한 번도 1페이지를 벗어나지 않았다.
+계측 현황 (${PLACE_RANK_AS_OF} 기준)
+- 계측 매장 ${PLACE_RANK_TOTALS.stores}곳 · 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 · 업종 ${PLACE_RANK_TOTALS.industries}종
+- 네이버 플레이스 1페이지(1~5위)를 지키는 키워드 ${PLACE_RANK_TOTALS.page1Keywords}개 (매장 ${PLACE_RANK_TOTALS.page1Stores}곳)
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
-### 매장별 순위 계측 사례 (${PLACE_RANK_GENERATED} 기준)
+### 매장별 순위 계측 사례 (${PLACE_RANK_AS_OF} 기준)
 
-계측 매장 ${PLACE_RANK_TOTALS.stores}곳 · 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 시·군 ${PLACE_RANK_TOTALS.regions}곳
+계측 매장 ${PLACE_RANK_TOTALS.stores}곳 · 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 1~5위 유지 키워드 ${PLACE_RANK_TOTALS.page1Keywords}개(매장 ${PLACE_RANK_TOTALS.page1Stores}곳) · 공개 사례 ${PLACE_RANK_TOTALS.works}건
 
 ${placeRankCases}
 
 ${PLACE_RANK_NOTE}
-상호는 공개에 동의한 곳만 적었고 나머지는 업종과 지역으로만 적었다. 지역은 시·군 단위까지만 쓴다.
-괄호 안 일수는 시작 순위에서 확인 순위까지 걸린 기간이고, 위 대표 사례의 'N일 계측' 은 계측을 이어온 전체 기간이라 세는 방식이 다르다.
+상호와 지역명은 적지 않고 업종과 행정단위까지만 적었다. 00 을 실제 지명으로 되살려 쓰지 않는다.
+카드 하나가 키워드 하나다. 같은 매장이 키워드 셋을 올렸으면 기록도 셋이고, 표기가 겹쳐도 묶지 않는다.
+괄호 안 일수는 계측을 시작한 날부터 그 순위가 확인된 날까지의 기간이다.
 전체 목록: ${B}/cases/place-rank
 
 ## 서비스 지역

@@ -6,6 +6,44 @@ import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { byKeyword, fmt, fmtSentence } from "../../lib/rank-records";
+
+/*
+ * 순위 문장 — 손으로 적지 않는다.
+ * 병·의원 화면이라 더 엄하다. 이미 계측한 것만 적고 앞으로 어떻게 된다는 말은 적지 않는다
+ * (C-50 · D-0177). 그런데 여기 숫자를 직접 써 뒀더니 세 줄이 다 틀린 값이 됐다 —
+ * 지역 치과 5위 → 1위는 08-31 스냅샷에서 사라진 기록이고, 역세권 치과와 피부과도 값이 달라졌다.
+ * 기록이 없으면 문장이 통째로 빠진다 (C-42).
+ */
+const DENTAL = byKeyword("지역 치과 키워드");
+const DENTAL_STN = byKeyword("지역 역세권 치과 키워드");
+const DERMA = byKeyword("지역 피부과 키워드");
+
+const CLINIC_STORY = [
+  DENTAL && `하랑마케팅이 진행한 치과는 지역 치과 키워드에서 ${fmtSentence(DENTAL)}.`,
+  DENTAL_STN && `지역 역세권 치과 키워드에서도 ${fmtSentence(DENTAL_STN)}.`,
+  DERMA && `피부과는 지역 피부과 키워드에서 ${fmtSentence(DERMA)}.`,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const CLINIC_DURATIONS = [
+  DENTAL && `지역 치과 키워드가 ${DENTAL.from}위에서 ${DENTAL.to}위까지 ${DENTAL.days}일`,
+  DENTAL_STN && `지역 역세권 치과 키워드가 ${DENTAL_STN.from}위에서 ${DENTAL_STN.to}위까지 ${DENTAL_STN.days}일`,
+  DERMA && `지역 피부과 키워드가 ${DERMA.from}위에서 ${DERMA.to}위까지 ${DERMA.days}일`,
+]
+  .filter(Boolean)
+  .join(", ");
+
+const CLINIC_FACTS = [
+  ...(DENTAL ? [{ label: DENTAL.keyword, value: fmt(DENTAL) }] : []),
+  ...(DERMA ? [{ label: DERMA.keyword, value: fmt(DERMA) }] : []),
+  ...(DENTAL || DERMA
+    ? [{ label: "계측 기간", value: `${Math.max(DENTAL?.days ?? 0, DERMA?.days ?? 0)}일` }]
+    : []),
+  { label: "순위 계측", value: "매일 스냅샷" },
+  { label: "상담·진단", value: "0원" },
+];
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
@@ -14,11 +52,11 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "의원·한의원·피부과 마케팅 — 하랑마케팅 | 신환 유입 · 플레이스 SEO · 블로그",
+  title: "의원·한의원·피부과 마케팅 | 신환 유입 · 플레이스 SEO · 블로그",
   description: "의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위 노출, 리뷰 관리로 신환 예약을 늘립니다. 무료 상담 가능.",
   keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "신환 유입 마케팅"],
   openGraph: {
-    title: "의원·한의원·피부과 마케팅 — 하랑마케팅",
+    title: "의원·한의원·피부과 마케팅 | 하랑마케팅",
     description: "의료법을 준수하면서 신환이 늘어나는 병원 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/clinic",
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
@@ -82,7 +120,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "병원도 플레이스 순위가 올라가나요?",
     a:
-      "매일 저장한 스냅샷 기준으로 지역 치과 키워드가 5위에서 1위까지 32일, 지역 역세권 치과 키워드가 6위에서 1위까지 32일, 지역 피부과 키워드가 10위에서 2위까지 32일 걸린 기록이 있습니다. 다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 순위 보장도 하지 않습니다.",
+      `매일 저장한 스냅샷 기준으로 ${CLINIC_DURATIONS} 걸린 기록이 있습니다. 다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 순위 보장도 하지 않습니다.`,
   },
   {
     q: "광고에 문제가 생기면 누가 책임지나요?",
@@ -131,14 +169,8 @@ export default function ClinicLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="병원·의원 마케팅은 무엇이 중요한가요?"
-          answer="의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장님의 이력과 진료 과목을 사실대로 정리한 블로그 콘텐츠가 가장 중요합니다. 치료경험담은 의료법 제56조 제2항이 금지하는 항목이라 후기를 만들어 내는 방식은 쓰지 않습니다. 하랑마케팅이 진행한 치과는 지역 치과 키워드에서 5위가 1위가 됐고(32일 계측), 지역 역세권 치과 키워드에서도 6위가 1위가 됐습니다(32일 계측). 피부과는 지역 피부과 키워드에서 10위가 2위가 됐습니다(32일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료법 제56조와 제57조를 기준으로 원고를 검수한 뒤 병원 명의 채널에 올립니다. 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
-          facts={[
-            { label: "지역 치과 키워드", value: "5위 → 1위" },
-            { label: "지역 피부과 키워드", value: "10위 → 2위" },
-            { label: "계측 기간", value: "32일" },
-            { label: "순위 계측", value: "매일 스냅샷" },
-            { label: "상담·진단", value: "0원" },
-          ]}
+          answer={`의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장님의 이력과 진료 과목을 사실대로 정리한 블로그 콘텐츠가 가장 중요합니다. 치료경험담은 의료법 제56조 제2항이 금지하는 항목이라 후기를 만들어 내는 방식은 쓰지 않습니다. ${CLINIC_STORY} 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료법 제56조와 제57조를 기준으로 원고를 검수한 뒤 병원 명의 채널에 올립니다. 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다.`}
+          facts={CLINIC_FACTS}
         />
 
 

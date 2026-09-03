@@ -13,12 +13,26 @@ import {
 import { GA_EVENTS } from "../components/Analytics";
 
 import { SITE } from "../lib/seo";
+import { best, fmt } from "../lib/rank-records";
+
+/*
+ * 업종별 순위 문구 — 손으로 적지 않는다.
+ * 여기 숫자를 직접 써 뒀더니 스냅샷이 6회에서 11회로 바뀌는 동안 넷이 틀린 값이 됐다
+ * (치과 5위 → 1위는 RECORDS 에서 사라진 기록이었다). rank-records 에서 그때그때 만든다.
+ */
+const rank = (industry: string) => {
+  const r = best(industry);
+  return r
+    ? { result: fmt(r), case: `${r.keyword} · ${r.days}일 계측` }
+    : { result: "무료 진단 후 목표 설정", case: "계측 기록 준비 중" };
+};
+
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "19위 → 1위", case: "지역 카페 키워드 · 20일 계측", color: "from-blue-500 to-blue-700" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "72위 → 2위", case: "지역 맛집 키워드 · 32일 계측", color: "from-blue-600 to-indigo-700" },
-  { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], result: "67위 → 4위", case: "지역 상가청소 키워드 · 17일 계측", color: "from-blue-600 to-blue-800" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], ...rank("카페"), color: "from-blue-500 to-blue-700" },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점"), color: "from-blue-600 to-indigo-700" },
+  { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소"), color: "from-blue-600 to-blue-800" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "5위 → 1위", case: "지역 치과 키워드 · 32일 계측", color: "from-blue-600 to-blue-800" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], ...rank("치과"), color: "from-blue-600 to-blue-800" },
   { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정", color: "from-blue-700 to-indigo-800" },
   { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-indigo-600" },
   { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
@@ -452,21 +466,25 @@ function ContactPageInner() {
                   <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "음식점·배달", location: "지역 맛집 키워드", result: "72위 → 2위", label: "32일 계측" },
-                      { ind: "청소·시설관리", location: "지역 상가청소 키워드", result: "67위 → 4위", label: "17일 계측" },
-                      { ind: "카페·베이커리", location: "지역 카페 키워드", result: "19위 → 1위", label: "20일 계측" },
-                      { ind: "의원·치과", location: "지역 치과 키워드", result: "5위 → 1위", label: "32일 계측" },
-                    ].map((r) => (
-                      <div key={r.ind} className="flex items-center gap-2">
-                        <div className="flex-1 min-w-0">
-                          <div className="text-xs font-bold text-gray-800 truncate">{r.ind}</div>
-                          <div className="text-[11px] text-gray-400">{r.location}</div>
-                        </div>
-                        <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
-                          {r.label} {r.result}
-                        </div>
-                      </div>
-                    ))}
+                      { ind: "음식점·배달", industry: "음식점" },
+                      { ind: "청소·시설관리", industry: "청소" },
+                      { ind: "카페·베이커리", industry: "카페" },
+                      { ind: "의원·치과", industry: "치과" },
+                    ].flatMap((row) => {
+                      const r = best(row.industry);
+                      if (!r) return [];
+                      return [
+                        <div key={row.ind} className="flex items-center gap-2">
+                          <div className="flex-1 min-w-0">
+                            <div className="text-xs font-bold text-gray-800 truncate">{row.ind}</div>
+                            <div className="text-[11px] text-gray-400">{r.keyword}</div>
+                          </div>
+                          <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
+                            {r.days}일 계측 {fmt(r)}
+                          </div>
+                        </div>,
+                      ];
+                    })}
                   </div>
                 </div>
 

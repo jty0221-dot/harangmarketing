@@ -6,7 +6,7 @@ import { ArrowRight, MessageCircle, Home, Search, Phone } from "lucide-react";
 
 import { SITE } from "./lib/seo";
 export const metadata: Metadata = {
-  title: "페이지를 찾을 수 없습니다 — 하랑마케팅",
+  title: "페이지를 찾을 수 없습니다",
   description: "요청하신 페이지가 존재하지 않습니다. 하랑마케팅 홈으로 돌아가세요.",
   robots: { index: false, follow: false },
 };

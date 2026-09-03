@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { SITE } from "../lib/seo";
+import { best, fmt } from "../lib/rank-records";
 const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
@@ -17,12 +18,28 @@ const CHECKS = [
   { icon: TrendingUp, label: "목표 기간 산정", desc: "이 상권이 어느 정도 걸리는 자리인지" },
 ];
 
-/* 숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
+/*
+ * 숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다.
+ * 이 주석을 달아 놓고도 아래 세 줄을 손으로 적어 뒀고, 스냅샷이 바뀌자 둘이 틀린 값이 됐다.
+ * 그래서 적는 자리를 없앴다. 업종만 고르고 숫자는 RECORDS 가 만든다.
+ */
 const CASES = [
-  { category: "음식점", loc: "지역 맛집 키워드", result: "플레이스 1페이지", period: "32일 계측", metric: "72위 → 2위" },
-  { category: "청소", loc: "지역 상가청소 키워드", result: "플레이스 1페이지", period: "17일 계측", metric: "67위 → 4위" },
-  { category: "카페", loc: "지역 카페 키워드", result: "플레이스 1위", period: "20일 계측", metric: "19위 → 1위" },
-];
+  { category: "음식점", industry: "음식점" },
+  { category: "청소", industry: "청소" },
+  { category: "카페", industry: "카페" },
+].flatMap((c) => {
+  const r = best(c.industry);
+  if (!r) return [];
+  return [
+    {
+      category: c.category,
+      loc: r.keyword,
+      result: r.to === 1 ? "플레이스 1위" : "플레이스 1페이지",
+      period: `${r.days}일 계측`,
+      metric: fmt(r),
+    },
+  ];
+});
 
 const STEPS = [
   { n: "1", text: "아래 폼 또는 카카오로 매장명·업종 전달" },

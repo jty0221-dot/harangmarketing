@@ -5,6 +5,22 @@ import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users } from "lucide-react";
 import { SITE } from "../../lib/seo";
+import { byKeyword, fmt } from "../../lib/rank-records";
+
+/*
+ * 순위 문장 — 손으로 적지 않는다.
+ * 여기 두 줄을 직접 써 뒀더니 상가청소 쪽이 틀린 값이 됐다 (67위 → 4위 · 17일로 적혀 있었는데
+ * 08-31 스냅샷은 67위 → 3위 · 22일이다). 기록이 없으면 그 줄이 빠진다 (C-42).
+ */
+const GG_FOOD = byKeyword("지역 맛집 키워드");
+const GG_CLEAN = byKeyword("지역 상가청소 키워드");
+
+const GG_LINES = [
+  GG_FOOD && `지역 맛집 키워드가 ${GG_FOOD.from}위에서 ${GG_FOOD.to}위(${GG_FOOD.days}일 계측)`,
+  GG_CLEAN && `지역 상가청소 키워드가 ${GG_CLEAN.from}위에서 ${GG_CLEAN.to}위(${GG_CLEAN.days}일 계측)`,
+]
+  .filter(Boolean)
+  .join(", ");
 
 const BASE = "https://www.harangmarketing.com";
 
@@ -52,7 +68,7 @@ const GYEONGGI_LD = {
 };
 
 export const metadata: Metadata = {
-  title: "경기도 소상공인 마케팅 대행사 — 하랑마케팅 | 네이버 플레이스 SEO 전문",
+  title: "경기도 소상공인 마케팅 대행사 | 네이버 플레이스 SEO 전문",
   description: "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 플레이스 상위 노출, 리뷰 확보, SNS 운영까지. 무료 상담.",
   keywords: [
     "경기도 마케팅 대행사", "경기 소상공인 마케팅", "경기도 플레이스 SEO",
@@ -61,7 +77,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE}/location/gyeonggi` },
   openGraph: {
-    title: "경기도 소상공인 마케팅 대행사 — 하랑마케팅",
+    title: "경기도 소상공인 마케팅 대행사 | 하랑마케팅",
     description: "경기도 지역 특화 마케팅. 일산·분당·수원·고양 등 전 지역 담당.",
     url: `${BASE}/location/gyeonggi`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
@@ -124,10 +140,10 @@ export default function GyeonggiPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="경기도 마케팅 대행사를 찾고 있습니다"
-          answer="하랑마케팅은 전국 소상공인을 맡는 마케팅 대행사이고, 경기도는 사무실이 가까워 방문 상담까지 되는 지역입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴을 함께 씁니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유하며, 경기 지역에서는 지역 맛집 키워드가 72위에서 2위(32일 계측), 지역 상가청소 키워드가 67위에서 4위(17일 계측)가 된 기록이 있습니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 전화 010-7541-9054로 무료 상담이 가능합니다."
+          answer={`하랑마케팅은 전국 소상공인을 맡는 마케팅 대행사이고, 경기도는 사무실이 가까워 방문 상담까지 되는 지역입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴을 함께 씁니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유하며, 경기 지역에서는 ${GG_LINES}가 된 기록이 있습니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 전화 010-7541-9054로 무료 상담이 가능합니다.`}
           facts={[
             { label: "방문 상담", value: "경기 전 지역" },
-            { label: "경기 계측 기록", value: "72위 → 2위" },
+            ...(GG_FOOD ? [{ label: "경기 계측 기록", value: fmt(GG_FOOD) }] : []),
             { label: "계약 기간", value: "월 단위 · 1개월부터" },
             { label: "상담 비용", value: "0원" },
           ]}

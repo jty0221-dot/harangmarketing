@@ -33,9 +33,75 @@ import {
   faqLd, webPageLd, breadcrumbLd, definitionsLd,
 } from "./lib/seo";
 import type { LucideIcon } from "lucide-react";
-import { SUMMARY, SNAPSHOT_DATE, fmt, BIGGEST_GAIN } from "./lib/rank-records";
+import { fmt, byKeyword, BIGGEST_GAIN } from "./lib/rank-records";
+
+/*
+ * 업종 카드와 마퀴의 순위 칸 — 손으로 적지 않는다.
+ * 여기 숫자를 직접 써 뒀더니 스냅샷이 6회에서 11회로 바뀌는 동안 여섯 줄이 틀린 값이 됐다
+ * (지역 치과 5위 → 1위는 08-31 스냅샷에서 아예 사라진 기록이다).
+ * 기록이 없어지면 「계측 중」으로 내려간다. 틀린 값보다 빈 값이 낫다 (C-42).
+ */
+function rankCells(keyword: string) {
+  const r = byKeyword(keyword);
+  if (!r) {
+    return {
+      result: "계측 중",
+      resultLabel: "플레이스 순위",
+      before: "진단 전",
+      after: "목표 설정",
+      duration: "월 리포트",
+    };
+  }
+  return {
+    result: fmt(r),
+    resultLabel: r.keyword,
+    before: `${r.from}위`,
+    after: `${r.to}위`,
+    duration: `${r.days}일 계측`,
+  };
+}
+
+/** 같은 업종의 두 번째 기록 한 줄 — 없으면 칸 자체를 붙이지 않는다 */
+function rankExtra(keyword: string) {
+  const r = byKeyword(keyword);
+  return r ? { extra: `${r.keyword} ${fmt(r)} · ${r.days}일 계측` } : {};
+}
+
+/*
+ * 사례 카드 넉 장 — Before · After · 걸린 일수를 손으로 적지 않는다.
+ * 여기 넉 장을 직접 써 뒀더니 셋이 틀린 값이 됐다 (치과 5위 → 1위는 아예 없는 기록이고,
+ * 청소는 67위 → 3위 · 22일, 카페는 25일이다). 기록이 없으면 카드가 통째로 빠진다 (C-42).
+ * 1위 달성 · 1페이지 진입 배지도 계측값이 정한다 — 2위를 1위라고 적지 않게.
+ */
+const CASE_CARDS = [
+  { industry: "음식점", keyword: "지역 맛집 키워드", service: "플레이스 SEO + 리뷰", icon: UtensilsCrossed },
+  { industry: "청소", keyword: "지역 상가청소 키워드", service: "플레이스 SEO + 블로그", icon: Sparkles },
+  { industry: "카페", keyword: "지역 카페 키워드", service: "플레이스 SEO + 블로그", icon: Coffee },
+  { industry: "치과", keyword: "지역 치과 키워드", service: "블로그 + 플레이스 SEO", icon: Stethoscope },
+].flatMap((c) => {
+  const r = byKeyword(c.keyword);
+  if (!r) return [];
+  return [
+    {
+      industry: c.industry,
+      service: c.service,
+      icon: c.icon,
+      location: r.keyword,
+      before: { label: "플레이스 순위", value: `${r.from}위` },
+      after: { label: "플레이스 순위", value: `${r.to}위` },
+      period: `${r.days}일 계측`,
+      highlight: r.to === 1 ? "플레이스 1위 달성" : "플레이스 1페이지 진입",
+    },
+  ];
+});
+
+/** 마퀴 한 줄 — 기록이 없으면 빈 배열이라 줄이 사라진다 */
+function tickerLine(keyword: string) {
+  const r = byKeyword(keyword);
+  return r ? [`${r.keyword} ${fmt(r)} · ${r.days}일 계측`] : [];
+}
 import PlaceRankCasesSection from "./components/PlaceRankCases";
-import { byCode, PLACE_RANK_GENERATED, PLACE_RANK_TOTALS } from "./lib/place-rank-cases";
+import { byDepth, PLACE_RANK_AS_OF, PLACE_RANK_TOTALS } from "./lib/place-rank-cases";
 
 /* ─── AEO/GEO 구조화 데이터 (홈) ───────────────────
    FAQPage·DefinedTermSet 는 아래 화면에 실제로 렌더링되는
@@ -79,12 +145,8 @@ const INDUSTRIES: Industry[] = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["플레이스 SEO 세팅", "포토리뷰 전략", "인스타 비주얼"],
-    result: "19위 → 1위",
-    resultLabel: "지역 카페 키워드",
-    before: "19위",
-    after: "1위",
-    duration: "20일 계측",
-    extra: "지역 디저트카페 키워드 3위 → 1위 · 9일 계측",
+    ...rankCells("지역 카페 키워드"),
+    ...rankExtra("지역 디저트카페 키워드"),
     location: "플레이스 순위",
   },
   {
@@ -94,12 +156,8 @@ const INDUSTRIES: Industry[] = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["배달앱 리뷰 전략", "맘카페 바이럴", "블로그 맛집 등록"],
-    result: "72위 → 2위",
-    resultLabel: "지역 맛집 키워드",
-    before: "72위",
-    after: "2위",
-    duration: "32일 계측",
-    extra: "지역 역세권 맛집 키워드 13위 → 1위 · 32일 계측",
+    ...rankCells("지역 맛집 키워드"),
+    ...rankExtra("지역 역세권 맛집 키워드"),
     location: "플레이스 순위",
   },
   {
@@ -123,12 +181,8 @@ const INDUSTRIES: Industry[] = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["블로그 신뢰도 강화", "의료광고 심의 확인", "플레이스 SEO"],
-    result: "5위 → 1위",
-    resultLabel: "지역 치과 키워드",
-    before: "5위",
-    after: "1위",
-    duration: "32일 계측",
-    extra: "지역 피부과 키워드 10위 → 2위 · 32일 계측",
+    ...rankCells("지역 치과 키워드"),
+    ...rankExtra("지역 피부과 키워드"),
     location: "플레이스 순위",
   },
   {
@@ -228,21 +282,21 @@ const TRUST_ITEMS = [
  * 근거 없는 수치와 재촉 문구는 넣지 않는다 (WDS — 재촉형 UI 금지).
  */
 const TICKER = [
-  "지역 카페 키워드 19위 → 1위 · 20일 계측",
+  ...tickerLine("지역 카페 키워드"),
   `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
-  "지역 치과 키워드 5위 → 1위 · 32일 계측",
+  ...tickerLine("지역 치과 키워드"),
   "대표가 직접 관리 · 상담 비용 0원",
-  "지역 맛집 키워드 72위 → 2위 · 32일 계측",
-  "지역 상가청소 키워드 67위 → 4위 · 17일 계측",
-  "지역 꽃집 키워드 8위 → 1위 · 32일 계측",
+  ...tickerLine("지역 맛집 키워드"),
+  ...tickerLine("지역 상가청소 키워드"),
+  ...tickerLine("지역 꽃집 키워드"),
   "업종별 맞춤 설계 · 묶음 강요 없음",
-  "지역 피부과 키워드 10위 → 2위 · 32일 계측",
+  ...tickerLine("지역 피부과 키워드"),
   "매일 순위 계측 · 월 리포트 제공",
   "상담 비용 0원 · 계약 강요 없음",
-  "지역 정기청소 키워드 36위 → 4위 · 17일 계측",
+  ...tickerLine("지역 정기청소 키워드"),
   "10년+ 경력 · 업종별 맞춤 전략",
   "24시간 내 연락",
-  `플레이스 1페이지 유지 ${SUMMARY.page1Keywords}개 키워드 · ${SNAPSHOT_DATE} 기준`,
+  `플레이스 1페이지 유지 ${PLACE_RANK_TOTALS.page1Keywords}개 키워드 · ${PLACE_RANK_AS_OF} 기준`,
   "네이버 플레이스 스냅샷 매일 저장",
   "성과 확약 없음 · 계측값만 보고",
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
@@ -311,12 +365,13 @@ export default function HomePage() {
 
         {/* ══ 매장별 순위 계측 발췌 ══ */}
         {/* 숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
-            전체 목록은 /cases/place-rank 에 있고 여기는 네 장만 발췌한다. */}
+            카드 하나가 키워드 하나이고, 전체 목록은 /cases/place-rank 에 있다.
+            자리마다 byDepth 로 다른 구간을 뜬다 — 홈 0 · 사례 4 · 플레이스 8. */}
         <PlaceRankCasesSection
-          cases={byCode("HC-01", "HC-02", "HC-03", "HC-06")}
+          cases={byDepth(4)}
           eyebrow="Place Rank"
-          title="매장별 순위, 잰 그대로 적었습니다"
-          description={`${PLACE_RANK_GENERATED} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드의 계측 기록을 공개합니다. 상호 공개에 동의한 곳만 이름을 적었습니다.`}
+          title="키워드별 순위, 잰 그대로 적었습니다"
+          description={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 상승이 확인된 ${PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 실었고, 여기는 시작 순위가 가장 낮았던 네 건입니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />
@@ -1333,57 +1388,12 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-              {[
-                {
-                  industry: "음식점",
-                  location: "지역 맛집 키워드",
-                  service: "플레이스 SEO + 리뷰",
-                  before: { label: "플레이스 순위", value: "72위" },
-                  after: { label: "플레이스 순위", value: "2위" },
-                  period: "32일 계측",
-                  highlight: "플레이스 1페이지 진입",
-                  color: "from-blue-700 to-blue-900",
-                  icon: UtensilsCrossed,
-                },
-                {
-                  industry: "청소",
-                  location: "지역 상가청소 키워드",
-                  service: "플레이스 SEO + 블로그",
-                  before: { label: "플레이스 순위", value: "67위" },
-                  after: { label: "플레이스 순위", value: "4위" },
-                  period: "17일 계측",
-                  highlight: "플레이스 1페이지 진입",
-                  color: "from-blue-600 to-blue-800",
-                  icon: Sparkles,
-                },
-                {
-                  industry: "카페",
-                  location: "지역 카페 키워드",
-                  service: "플레이스 SEO + 블로그",
-                  before: { label: "플레이스 순위", value: "19위" },
-                  after: { label: "플레이스 순위", value: "1위" },
-                  period: "20일 계측",
-                  highlight: "플레이스 1위 달성",
-                  color: "from-blue-500 to-blue-700",
-                  icon: Coffee,
-                },
-                {
-                  industry: "치과",
-                  location: "지역 치과 키워드",
-                  service: "블로그 + 플레이스 SEO",
-                  before: { label: "플레이스 순위", value: "5위" },
-                  after: { label: "플레이스 순위", value: "1위" },
-                  period: "32일 계측",
-                  highlight: "플레이스 1위 달성",
-                  color: "from-blue-600 to-indigo-700",
-                  icon: Stethoscope,
-                },
-              ].map((c) => {
+              {CASE_CARDS.map((c) => {
                 const Icon = c.icon;
                 return (
                   <div key={c.industry} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    {/* 그라데이션 비주얼 헤더 (사진 대체) */}
-                    <div className={`bg-gradient-to-br ${c.color} px-5 py-6 relative overflow-hidden`}>
+                    {/* 비주얼 헤더 (사진 대체) — 그라데이션을 쓰지 않는다 (WDS) */}
+                    <div className="px-5 py-6 relative overflow-hidden" style={{ backgroundColor: "var(--h-navy)" }}>
                       <div className="absolute -right-4 -top-4 w-20 h-20 bg-white/10 rounded-full" />
                       <div className="absolute -right-2 -bottom-6 w-14 h-14 bg-white/8 rounded-full" />
                       <div className="relative">

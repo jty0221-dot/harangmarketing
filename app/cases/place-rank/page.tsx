@@ -6,9 +6,11 @@ import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import AnswerBlock from "../../components/AnswerBlock";
 import PlaceRankExplorer from "./PlaceRankExplorer";
+import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
 import { breadcrumbLd, itemListLd, webPageLd } from "../../lib/seo";
 import {
   PLACE_RANK_CASES,
+  PLACE_RANK_AS_OF,
   PLACE_RANK_GENERATED,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
@@ -25,7 +27,7 @@ import {
 
 const PATH = "/cases/place-rank";
 const DESCRIPTION =
-  "부천 · 김포 · 여수 · 해남 · 강화의 꽃집 · 음식점 · 청소 업체 · 네일숍 · 카페 · 가발 전문점 네이버 플레이스 순위 계측 기록입니다. 시작 순위와 확인 순위, 걸린 일수를 그대로 적었습니다.";
+  "꽃집 · 음식점 · 청소 업체 · 네일숍 · 카페 · 가발 전문점의 네이버 플레이스 순위 계측 기록입니다. 상호와 지역명은 적지 않고, 시작 순위와 확인된 순위와 걸린 일수만 그대로 적었습니다.";
 
 export const metadata: Metadata = {
   title: "네이버 플레이스 순위 계측 사례 | 업종·지역별 기록",
@@ -33,8 +35,8 @@ export const metadata: Metadata = {
   keywords: [
     "네이버 플레이스 순위",
     "플레이스 상위노출 사례",
-    "부천 플레이스 마케팅",
-    "김포 청소업체 마케팅",
+    "업종별 플레이스 순위 사례",
+    "청소업체 플레이스 마케팅",
     "카페 플레이스 순위",
     "플레이스 순위 계측",
   ],
@@ -51,9 +53,9 @@ const LIST_LD = itemListLd({
   path: PATH,
   name: "네이버 플레이스 순위 계측 사례",
   items: PLACE_RANK_CASES.map((c) => ({
-    name: `${c.label} · ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`,
+    name: `${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`,
     path: `${PATH}#case-${c.code.toLowerCase()}`,
-    description: c.keywords.map((k) => `${k.detail} 키워드 ${fmtMoveDays(k)}`).join(" · "),
+    description: `${c.industry} · ${c.label} · ${fmtMoveDays(c.keywords[0])} · ${c.asOf} 계측`,
   })),
 });
 
@@ -109,16 +111,19 @@ export default function PlaceRankCasesPage() {
 
         <AnswerBlock
           question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
-          answer={`${PLACE_RANK_GENERATED} 기준으로 공개하는 매장별 계측 기록은 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드입니다. ${PLACE_RANK_CASES.slice(0, 4)
-            .map((c) => `${c.label} · ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
+          answer={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있고, 그중 상승이 확인된 ${PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_CASES.slice(0, 4)
+            .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
             .join(", ")}. ${PLACE_RANK_NOTE}`}
           facts={[
             { label: "계측 매장", value: `${PLACE_RANK_TOTALS.stores}곳` },
             { label: "계측 키워드", value: `${PLACE_RANK_TOTALS.keywords}개` },
-            { label: "업종", value: `${PLACE_RANK_TOTALS.industries}종` },
-            { label: "시 · 군", value: `${PLACE_RANK_TOTALS.regions}곳` },
+            { label: "1~5위 유지 키워드", value: `${PLACE_RANK_TOTALS.page1Keywords}개` },
+            { label: "공개 사례", value: `${PLACE_RANK_TOTALS.works}건` },
           ]}
         />
+
+        {/* 재고 있는 전체 규모 — 카드는 올라간 건만 보여주므로 여기서 전체를 밝힌다 */}
+        <PlaceRankMonitoring background="bg-white" />
 
         <section className="py-12 md:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">

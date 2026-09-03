@@ -334,7 +334,7 @@ export default function AdminReportsPage() {
                   type="text"
                   value={form.clientName}
                   onChange={(e) => setForm({ ...form, clientName: e.target.value })}
-                  placeholder="소금정원 강화점"
+                  placeholder="00카페 00점"
                   className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-base outline-none focus:border-blue-400"
                 />
               </Field>
@@ -364,7 +364,7 @@ export default function AdminReportsPage() {
                 type="text"
                 value={form.summary}
                 onChange={(e) => setForm({ ...form, summary: e.target.value })}
-                placeholder="'강화도 카페' 키워드가 7위에서 3위로 올라왔습니다."
+                placeholder="00시 카페 키워드가 7위에서 3위로 올라왔습니다."
                 className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-base outline-none focus:border-blue-400"
               />
             </Field>
@@ -402,7 +402,7 @@ export default function AdminReportsPage() {
                           type="text"
                           value={m.label}
                           onChange={(e) => setMetric(i, { label: e.target.value })}
-                          placeholder="지표 (예: 강화도 카페 순위)"
+                          placeholder="지표 (예: 00시 카페 순위)"
                           className="w-full rounded-xl border border-gray-200 px-3 py-2 text-base outline-none focus:border-blue-400"
                         />
                         <input

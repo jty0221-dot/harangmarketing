@@ -15,9 +15,42 @@ import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGO
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
+import { best, fmtLong } from "../lib/rank-records";
+
+/*
+ * 업종별 추천 — 순위 칸은 손으로 적지 않는다.
+ * 여기 세 줄을 직접 써 뒀더니 스냅샷이 바뀌는 동안 전부 틀린 값이 됐다
+ * (의원 칸의 5위 → 1위는 08-31 스냅샷에 아예 없는 기록이었다).
+ * 계측 기록이 있는 업종만 순위를 쓰고, 없는 업종은 fallback 문구를 그대로 쓴다 (C-42).
+ *
+ * 카드 머리띠는 그라데이션을 쓰지 않는다 (WDS · 그라데이션 아이콘 박스 금지).
+ * 여덟 장이 서로 다른 파랑을 쓰던 것을 Primary 한 색으로 맞췄다.
+ */
+type IndustryRec = {
+  industry: string;
+  firstRec: string;
+  recs: string[];
+  /** 계측 기록을 가져올 업종. 없으면 fallback 문구를 쓴다 */
+  rank?: string;
+  fallback: string;
+};
+
+const INDUSTRY_RECS = ([
+  { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], rank: "카페", fallback: "플레이스 SEO 중심" },
+  { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], rank: "음식점", fallback: "리뷰 마케팅 중심" },
+  { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], fallback: "인스타그램 중심 설계" },
+  { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 답글 관리"], rank: "피부과", fallback: "의료법 검수 원고 중심" },
+  { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], fallback: "맘카페 바이럴 중심" },
+  { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], fallback: "블로그 SEO 중심" },
+  { industry: "청소·시설관리", firstRec: "플레이스 SEO", recs: ["블로그 관리", "리뷰 마케팅"], rank: "청소", fallback: "플레이스 SEO 중심" },
+  { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], fallback: "오픈 전 플레이스 세팅" },
+] as IndustryRec[]).map(({ rank, fallback, ...row }) => {
+  const r = rank ? best(rank) : undefined;
+  return { ...row, result: r ? fmtLong(r) : fallback };
+});
 
 export const metadata: Metadata = {
-  title: "마케팅 서비스 — 하랑마케팅 | 플레이스 SEO · 블로그 · 체험단 · SNS",
+  title: "마케팅 서비스 | 플레이스 SEO · 블로그 · 체험단 · SNS",
   description: "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 업종별 최적 패키지와 실제 성과를 확인하세요.",
   keywords: [
     "마케팅 서비스", "네이버 플레이스 SEO", "플레이스 상위노출",
@@ -33,7 +66,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://www.harangmarketing.com/services" },
   openGraph: {
-    title: "하랑마케팅 서비스 — 소상공인 맞춤 마케팅",
+    title: "하랑마케팅 서비스 | 소상공인 맞춤 마케팅",
     description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 견적은 진단 후 산정, 상담 무료.",
     url: "https://www.harangmarketing.com/services",
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
@@ -121,7 +154,7 @@ const SERVICES = [
     icon: Palette,
     color: "from-slate-700 to-slate-900",
     tag: "프로그램",
-    title: "하랑 스튜디오 — 사진·영상 정리 프로그램",
+    title: "하랑 스튜디오 · 사진·영상 정리 프로그램",
     subtitle: "동영상 GIF 변환 · 사진 세탁 · 워터마크",
     desc: "대행 일을 하면서 매일 겪는 문제라 직접 만들어 쓰는 윈도우 프로그램입니다. 현장 사진 100장을 1분 안에 정리하고, 영상은 끌어다 놓으면 움짤이 됩니다. 파일을 외부에 올리지 않고 내 컴퓨터 안에서 처리합니다.",
     timeline: "설치 없음 · 받는 즉시 사용",
@@ -829,18 +862,9 @@ export default function ServicesPage() {
               <p className="text-gray-400 text-sm mt-2">업종별로 성과가 가장 빠른 서비스를 먼저 추천합니다</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "19위 → 1위 · 20일 계측", color: "from-blue-500 to-blue-700" },
-                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "72위 → 2위 · 32일 계측", color: "from-blue-600 to-indigo-700" },
-                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "인스타그램 중심 설계", color: "from-blue-500 to-blue-700" },
-                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 답글 관리"], result: "5위 → 1위 · 32일 계측", color: "from-blue-600 to-blue-800" },
-                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "맘카페 바이럴 중심", color: "from-blue-700 to-indigo-800" },
-                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "블로그 SEO 중심", color: "from-blue-500 to-indigo-600" },
-                { industry: "청소·시설관리", firstRec: "플레이스 SEO", recs: ["블로그 관리", "리뷰 마케팅"], result: "67위 → 4위 · 17일 계측", color: "from-blue-600 to-blue-800" },
-                { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], result: "오픈 전 플레이스 세팅", color: "from-blue-700 to-blue-900" },
-              ].map((ind) => (
+              {INDUSTRY_RECS.map((ind) => (
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <div className={`bg-gradient-to-br ${ind.color} px-4 py-3`}>
+                  <div className="px-4 py-3" style={{ backgroundColor: "var(--w-primary)" }}>
                     <div className="font-black text-white text-sm">{ind.industry}</div>
                     <div className="text-white/70 text-[11px] mt-0.5">{ind.result}</div>
                   </div>

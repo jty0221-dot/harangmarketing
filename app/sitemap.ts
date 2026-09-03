@@ -5,12 +5,6 @@ import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 
 const BASE = SITE.base;
 
-/** 사례 상세 슬러그 — app/cases/[slug]/page.tsx 의 CASES 키와 반드시 일치시킬 것 */
-const CASE_SLUGS = [
-  "cafe-place-1st",
-  "clinic-booking-300",
-  "restaurant-delivery-2x",
-];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -54,12 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? allStaticPages
     : allStaticPages.filter((page) => page.url !== `${BASE}/sns`);
 
-  const casePages: MetadataRoute.Sitemap = CASE_SLUGS.map((slug) => ({
-    url: `${BASE}/cases/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
 
   // /admin 발행 글 + 기존 정적 글을 함께 포함한다 (getBlogIndex 참고)
   const blogPages: MetadataRoute.Sitemap = getBlogIndex().map((post) => ({
@@ -69,5 +57,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...casePages, ...blogPages];
+  return [...staticPages, ...blogPages];
 }

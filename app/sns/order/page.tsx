@@ -11,7 +11,7 @@ import OrderForm from "./OrderForm";
  */
 
 export const metadata: Metadata = {
-  title: "주문하기 — SNS 부스트 스토어",
+  title: "주문하기 | SNS 부스트 스토어",
   robots: { index: false, follow: false },
 };
 

@@ -32,7 +32,7 @@ const KAKAO = SITE.kakaoChat;
 const MIN_UNIT = Math.min(...SNS_PRODUCTS.map((p) => p.unitPrice));
 
 export const metadata: Metadata = {
-  title: "SNS 부스트 스토어 — 인스타 팔로워·좋아요·조회수 셀프 주문",
+  title: "SNS 부스트 스토어 | 인스타 팔로워·좋아요·조회수 셀프 주문",
   description:
     `인스타그램·유튜브·틱톡·네이버 등 전 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문. ` +
     `1개당 ${won(MIN_UNIT)}원부터, 마케팅 경력 10년의 하랑마케팅이 직접 운영합니다.`,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   // 상위 sns/layout 이 기능 화면을 noindex 로 덮으므로 공개 랜딩인 이 페이지만 되살린다
   robots: { index: true, follow: true },
   openGraph: {
-    title: "SNS 부스트 스토어 — 하랑마케팅 직영 셀프 주문",
+    title: "SNS 부스트 스토어 | 하랑마케팅 직영 셀프 주문",
     description: "대행 계약 없이 필요한 만큼만. 인스타 팔로워·좋아요·조회수 건당 주문.",
     url: URL,
   },

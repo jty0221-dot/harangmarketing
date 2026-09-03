@@ -10,15 +10,16 @@ import AnswerBlock from "../../components/AnswerBlock";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import PlaceRankCasesSection from "../../components/PlaceRankCases";
+import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
 } from "../../lib/seo";
 import {
-  RECORDS, SUMMARY, EXCLUDED_COUNT, SNAPSHOT_DATE, BIGGEST_GAIN,
-  gap, fmt, MEASURE_NOTE, PAGE1_NOTE,
+  RECORDS, EXCLUDED_COUNT, SNAPSHOT_DATE, BIGGEST_GAIN,
+  gap, fmt, MEASURE_NOTE,
 } from "../../lib/rank-records";
 import {
-  byCode, PLACE_RANK_GENERATED, PLACE_RANK_TOTALS,
+  byDepth, PLACE_RANK_AS_OF, PLACE_RANK_PAGE1_NOTE, PLACE_RANK_TOTALS,
 } from "../../lib/place-rank-cases";
 
 /**
@@ -52,7 +53,10 @@ const TOP_RECORDS = [...RECORDS].sort((a, b) => gap(b) - gap(a)).slice(0, 6);
 const FASTEST = RECORDS.reduce((a, b) => (b.days < a.days ? b : a));
 const INDUSTRY_COUNT = new Set(RECORDS.map((r) => r.industry)).size;
 const EXCLUDED_TOTAL =
-  EXCLUDED_COUNT.declined + EXCLUDED_COUNT.outsidePage1 + EXCLUDED_COUNT.insufficient;
+  EXCLUDED_COUNT.declined +
+  EXCLUDED_COUNT.outsidePage1 +
+  EXCLUDED_COUNT.heldNoGain +
+  EXCLUDED_COUNT.insufficient;
 
 /* 1페이지에 있는 자리는 두 종류다. 이 구분이 이 페이지의 뼈대다. */
 const PAGE1_SLOTS = [
@@ -275,7 +279,7 @@ export default function PlaceServicePage() {
           answer="지도에 올리는 등록은 무료라 직접 하시면 됩니다. 대행이 필요한 지점은 그다음입니다. 1페이지에는 광고 지면 3자리와 순위 1위부터 5위가 있는데, 광고는 예산을 멈추면 그날 내려오고 순위는 정보 완성도·키워드·사진·리뷰가 쌓여야 올라갑니다. 하랑마케팅은 순위를 매일 재서 밀린 자리를 되찾는 일을 합니다. 순위는 보장하지 않고 매일 저장한 실측값으로만 보고합니다. 상담 비용은 0원입니다."
           facts={[
             { label: "등록 비용", value: "0원 · 직접 가능" },
-            { label: "매일 계측 중", value: `매장 ${SUMMARY.stores}곳 · 키워드 ${SUMMARY.keywords}개` },
+            { label: "매일 계측 중", value: `매장 ${PLACE_RANK_TOTALS.stores}곳 · 키워드 ${PLACE_RANK_TOTALS.keywords}개` },
             { label: "상담", value: "0원" },
           ]}
         />
@@ -314,7 +318,7 @@ export default function PlaceServicePage() {
             </div>
 
             <p className="mt-6 rounded-lg bg-gray-50 border border-gray-200 px-4 py-3 text-xs md:text-[13px] leading-relaxed text-gray-600">
-              {PAGE1_NOTE}
+              {PLACE_RANK_PAGE1_NOTE}
             </p>
           </div>
         </section>
@@ -439,10 +443,10 @@ export default function PlaceServicePage() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
               {[
-                { icon: Store, label: "계측 중인 매장", value: `${SUMMARY.stores}곳` },
-                { icon: Layers, label: "계측 중인 키워드", value: `${SUMMARY.keywords}개` },
-                { icon: ListOrdered, label: "1페이지 유지 키워드", value: `${SUMMARY.page1Keywords}개` },
-                { icon: LineChart, label: `스냅샷 ${SUMMARY.snapshots}회 내내 유지`, value: `${SUMMARY.heldAllSnapshots}개` },
+                { icon: Store, label: "계측 중인 매장", value: `${PLACE_RANK_TOTALS.stores}곳` },
+                { icon: Layers, label: "계측 중인 키워드", value: `${PLACE_RANK_TOTALS.keywords}개` },
+                { icon: ListOrdered, label: "1페이지 유지 키워드", value: `${PLACE_RANK_TOTALS.page1Keywords}개` },
+                { icon: LineChart, label: "계측 업종", value: `${PLACE_RANK_TOTALS.industries}종` },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-gray-200 bg-white p-4 md:p-5 shadow-sm">
                   <div className="w-9 h-9 rounded-xl bg-gray-900 shadow-sm flex items-center justify-center mb-3">
@@ -520,7 +524,8 @@ export default function PlaceServicePage() {
                   싣지 않은 기록도 {EXCLUDED_TOTAL}건 있습니다.
                 </span>
                 {" "}순위가 내려간 것 {EXCLUDED_COUNT.declined}건,
-                올랐지만 1페이지 밖에 머문 것 {EXCLUDED_COUNT.outsidePage1}건,
+                1페이지 밖에 머문 것 {EXCLUDED_COUNT.outsidePage1}건,
+                이미 1~5위여서 더 올릴 자리가 없던 것 {EXCLUDED_COUNT.heldNoGain}건,
                 계측을 막 시작해 시작값이 없는 것 {EXCLUDED_COUNT.insufficient}건입니다.
                 지우지 않고 남겨 둡니다. 올라간 것만 보여 드리면 이 표를 믿을 이유가 없어집니다.
               </p>
@@ -531,17 +536,19 @@ export default function PlaceServicePage() {
           </div>
         </section>
 
-        {/* 매장별 계측 사례 — 위 표는 키워드 단위, 여기는 매장 단위다.
+        {/* 개별 계측 사례 — 위 표는 업종별 집계, 여기는 키워드 하나하나다.
             숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
         <PlaceRankCasesSection
-          cases={byCode("HC-03", "HC-04", "HC-01", "HC-02")}
+          cases={byDepth(4, 8)}
           eyebrow="Place Rank"
-          title="매장 한 곳에서 무엇이 움직였나"
-          description={`${PLACE_RANK_GENERATED} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드 가운데 네 곳입니다. 한 매장에서 키워드 여러 개를 함께 재면 어떻게 되는지 그대로 폈습니다.`}
+          title="키워드 하나하나를 따로 잰 기록"
+          description={`${PLACE_RANK_AS_OF} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
-          showAllKeywords
           background="bg-white"
         />
+
+        {/* 올린 뒤에도 계속 재고 있다는 것 — 사례 카드가 못 보여주는 전체 규모다 */}
+        <PlaceRankMonitoring background="bg-gray-50" />
 
         {/* 하지 않는 것 */}
         <section className="py-14 md:py-20 bg-gray-950">

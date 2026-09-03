@@ -29,7 +29,7 @@ const URL = `${SITE.base}${PATH}`;
 
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
-  title: "상세페이지 레퍼런스 — 종류별 스마트스토어 상세페이지 실물",
+  title: "상세페이지 레퍼런스 | 종류별 스마트스토어 상세페이지 실물",
   description: `생활·리빙, 수납·가구, 차량, 뷰티·헬스, 반려동물, 유아, 패션, 식품 등 ${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물을 그대로 공개합니다. 기획·카피·이미지까지 하랑마케팅이 만든 상세페이지입니다.`,
   keywords: [
     "상세페이지 레퍼런스", "스마트스토어 상세페이지 사례", "상세페이지 포트폴리오",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: URL },
   openGraph: {
-    title: "상세페이지 레퍼런스 — 종류별 상세페이지 실물",
+    title: "상세페이지 레퍼런스 | 종류별 상세페이지 실물",
     description: `${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 상세페이지를 처음부터 끝까지 펼쳐 보여드립니다.`,
     url: URL,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 상세페이지 레퍼런스" }],

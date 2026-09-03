@@ -1,6 +1,6 @@
 import { getBlogIndex } from "../lib/blog-index";
 import {
-  PLACE_RANK_CASES, PLACE_RANK_GENERATED, PLACE_RANK_TOTALS,
+  PLACE_RANK_GENERATED, PLACE_RANK_TOTALS,
 } from "../lib/place-rank-cases";
 
 export const revalidate = 86400;
@@ -26,12 +26,11 @@ export async function GET() {
 
   // 순위 계측 사례는 글이 아니라 기록이라 블로그 색인에 없다.
   // 갱신을 구독으로 받아볼 수 있게 맨 앞에 한 건만 싣는다 (숫자는 lib 에서만 온다).
-  const rankRegions = Array.from(new Set(PLACE_RANK_CASES.map((c) => c.region))).join(" · ");
   const rankItem = `    <item>
-      <title>${escapeXml(`네이버 플레이스 순위 계측 사례 ${PLACE_RANK_TOTALS.stores}곳`)}</title>
+      <title>${escapeXml(`네이버 플레이스 순위 계측 사례 ${PLACE_RANK_TOTALS.works}건`)}</title>
       <link>${BASE}/cases/place-rank</link>
       <description>${escapeXml(
-        `${rankRegions} ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드의 네이버 플레이스 순위 계측 기록입니다. 시작 순위와 확인된 순위, 걸린 일수를 그대로 적었습니다.`
+        `${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 상승이 확인된 ${PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩, 시작 순위와 확인된 순위와 걸린 일수만 적었습니다.`
       )}</description>
       <pubDate>${toRfc822(PLACE_RANK_GENERATED)}</pubDate>
       <guid isPermaLink="false">${BASE}/cases/place-rank?d=${PLACE_RANK_GENERATED}</guid>

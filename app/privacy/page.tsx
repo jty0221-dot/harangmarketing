@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "개인정보처리방침 — 하랑마케팅",
+  title: "개인정보처리방침",
   description: "하랑마케팅의 개인정보처리방침입니다.",
   robots: { index: false, follow: false },
 };

@@ -15,11 +15,11 @@
  *
  * 입력 JSON (필수는 clientName, title)
  *   {
- *     "clientName": "소금정원 강화점",
+ *     "clientName": "00카페 00점",
  *     "title": "8월 3주차 진행 보고",
  *     "period": "2026-08-18 ~ 08-22",
- *     "summary": "'강화도 카페' 키워드가 7위에서 3위로 올라왔습니다.",
- *     "metrics": [{ "label": "강화도 카페 순위", "before": "7위", "after": "3위" }],
+ *     "summary": "'00동 카페' 키워드가 7위에서 3위로 올라왔습니다.",
+ *     "metrics": [{ "label": "00동 카페 순위", "before": "7위", "after": "3위" }],
  *     "body": "<h2>진행사항</h2><ul><li>…</li></ul>",
  *     "requests": "1. 신메뉴 사진 5장만 보내주세요.",
  *     "code": "e2zfhpyry2wj"   // 있으면 그 보고서를 수정한다

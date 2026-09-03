@@ -64,7 +64,7 @@ const ABOUT_LD = [
 ];
 
 export const metadata: Metadata = {
-  title: "회사소개 — 하랑마케팅 | 10년 경력 소상공인 전문 마케팅 대행사",
+  title: "회사소개 | 10년 경력 소상공인 전문 마케팅 대행사",
   description: "해병대 장교 출신 대표가 직접 운영. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 진짜 이야기.",
   keywords: [
     "하랑마케팅 소개", "소상공인 마케팅 대행사", "마케팅 대행사 신뢰", "투명한 마케팅",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
-    title: "하랑마케팅 — 대표가 직접 관리, 결과 없으면 솔직히 말씀드립니다",
+    title: "하랑마케팅 | 대표가 직접 관리, 결과 없으면 솔직히 말씀드립니다",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: `${BASE}/about`,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 소개" }],

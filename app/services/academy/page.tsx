@@ -6,16 +6,16 @@ import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
-import { SUMMARY } from "../../lib/rank-records";
+import { PLACE_RANK_TOTALS } from "../../lib/place-rank-cases";
 import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "학원·교육 마케팅 대행사 — 하랑마케팅 | 수강생 증대 전문",
+  title: "학원·교육 마케팅 대행사 | 수강생 증대 전문",
   description: "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 수강생 증대 실제 성과. 무료 상담.",
   keywords: ["학원 마케팅", "교육 마케팅 대행사", "학원 수강생 늘리기", "학원 플레이스 SEO", "공부방 마케팅"],
   openGraph: {
-    title: "학원·교육 마케팅 대행사 — 하랑마케팅",
+    title: "학원·교육 마케팅 대행사 | 하랑마케팅",
     description: "수강생을 늘리는 학원 마케팅 전략. 실제 성과 보유.",
     url: "https://www.harangmarketing.com/services/academy",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "학원 마케팅 하랑마케팅" }],
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
    히어로에 다른 업종 기록을 걸어 두었던 것을 전사 계측 현황으로 바꾼다.
    숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
 const RESULTS = [
-  { label: "계측 매장", value: `${SUMMARY.stores}곳`, sub: "계측 중인 매장" },
-  { label: "계측 키워드", value: `${SUMMARY.keywords}개`, sub: "플레이스 계측 키워드" },
-  { label: "1페이지 유지", value: `${SUMMARY.page1Keywords}개`, sub: "1페이지 유지 키워드" },
+  { label: "계측 매장", value: `${PLACE_RANK_TOTALS.stores}곳`, sub: "계측 중인 매장" },
+  { label: "계측 키워드", value: `${PLACE_RANK_TOTALS.keywords}개`, sub: "플레이스 계측 키워드" },
+  { label: "1페이지 유지", value: `${PLACE_RANK_TOTALS.page1Keywords}개`, sub: "1페이지 유지 키워드" },
 ];
 
 /* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.

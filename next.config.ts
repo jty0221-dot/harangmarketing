@@ -21,11 +21,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/estimate", destination: "/contact", permanent: true },
-      /* 사례 주소에서 지역명을 뺐다. 사례는 지역이 아니라 업종으로 묶이고,
-         이전 주소는 이미 색인돼 있어 301 로 넘긴다. */
-      { source: "/cases/cafe-ilsan-place-1st", destination: "/cases/cafe-place-1st", permanent: true },
-      { source: "/cases/clinic-gangnam-booking-300", destination: "/cases/clinic-booking-300", permanent: true },
-      { source: "/cases/restaurant-mapo-delivery-2x", destination: "/cases/restaurant-delivery-2x", permanent: true },
+      /* 지어낸 사례 심층 리포트 3편을 내렸다 (2026-09-04 · D-0181).
+         방문객 +167% · 배달 매출 +113% · 신규 예약 +300% 는 어느 계측에서 나온 값인지 댈 수가 없었고
+         피부과 편은 예약 건수를 적은 것만으로 D-0177 에 걸렸다.
+         여섯 주소가 이미 색인돼 있어 404 로 두지 않고 실측 기록 페이지로 넘긴다.
+         지역명을 뺐던 옛 주소 셋도 같은 곳으로 모은다. */
+      { source: "/cases/cafe-place-1st", destination: "/cases/place-rank", permanent: true },
+      { source: "/cases/clinic-booking-300", destination: "/cases/place-rank", permanent: true },
+      { source: "/cases/restaurant-delivery-2x", destination: "/cases/place-rank", permanent: true },
+      { source: "/cases/cafe-ilsan-place-1st", destination: "/cases/place-rank", permanent: true },
+      { source: "/cases/clinic-gangnam-booking-300", destination: "/cases/place-rank", permanent: true },
+      { source: "/cases/restaurant-mapo-delivery-2x", destination: "/cases/place-rank", permanent: true },
     ];
   },
   async headers() {

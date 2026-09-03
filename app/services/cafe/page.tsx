@@ -7,19 +7,53 @@ import PlaceRankCasesSection from "../../components/PlaceRankCases";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
-import { byIndustry, PLACE_RANK_GENERATED } from "../../lib/place-rank-cases";
+import { byIndustry, PLACE_RANK_AS_OF } from "../../lib/place-rank-cases";
+import { byKeyword, fmt, fmtSentence } from "../../lib/rank-records";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Coffee, MessageSquare, BarChart3,
 } from "lucide-react";
 
+/*
+ * 순위 문장 — 손으로 적지 않는다.
+ * 이 파일은 아래 FAQ 위에 「손으로 적지 않는다」고 적어 두고도 문장에 숫자를 직접 써 뒀고,
+ * 스냅샷이 6회에서 11회로 바뀌자 셋이 틀린 값이 됐다 (56위 → 1위는 아예 없는 기록이었다).
+ * 기록이 없으면 문장이 통째로 빠진다. 틀린 값보다 빈 값이 낫다 (C-42).
+ */
+const CAFE = byKeyword("지역 카페 키워드");
+const DESSERT = byKeyword("지역 디저트카페 키워드");
+
+const CAFE_STORY = [
+  CAFE && `하랑마케팅이 진행한 카페는 지역 카페 키워드에서 ${fmtSentence(CAFE)}.`,
+  DESSERT && `다른 카페는 지역 디저트카페 키워드에서 ${fmtSentence(DESSERT)}.`,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const CAFE_DURATIONS = [
+  CAFE && `지역 카페 키워드가 ${CAFE.from}위에서 ${CAFE.to}위까지 ${CAFE.days}일`,
+  DESSERT && `지역 디저트카페 키워드가 ${DESSERT.from}위에서 ${DESSERT.to}위까지 ${DESSERT.days}일`,
+]
+  .filter(Boolean)
+  .join(", ");
+
+const CAFE_FACTS = [
+  ...(CAFE ? [{ label: CAFE.keyword, value: fmt(CAFE) }] : []),
+  ...(DESSERT ? [{ label: DESSERT.keyword, value: fmt(DESSERT) }] : []),
+  ...(CAFE || DESSERT
+    ? [{ label: "계측 기간", value: `${Math.max(CAFE?.days ?? 0, DESSERT?.days ?? 0)}일` }]
+    : []),
+  { label: "순위 계측", value: "매일 스냅샷" },
+  { label: "상담·진단", value: "0원" },
+];
+
 export const metadata: Metadata = {
-  title: "카페·베이커리 마케팅 — 하랑마케팅 | 플레이스 SEO · 리뷰 · 블로그",
+  title: "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그",
   description: "카페·베이커리 전문 마케팅. 네이버 플레이스 상위 노출, 포토리뷰 확보, 블로그·인스타 바이럴로 방문객을 늘립니다. 무료 상담 가능.",
   keywords: ["카페 마케팅", "카페 플레이스 SEO", "카페 리뷰 마케팅", "베이커리 마케팅", "네이버 플레이스 카페"],
   openGraph: {
-    title: "카페·베이커리 마케팅 — 하랑마케팅",
+    title: "카페·베이커리 마케팅 | 하랑마케팅",
     description: "플레이스 상위 노출부터 포토리뷰 확보까지. 카페 전문 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/cafe",
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
@@ -68,7 +102,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "카페 플레이스 순위를 올리는 데 얼마나 걸리나요?",
     a:
-      "저희가 매일 저장한 스냅샷 기준으로 지역 카페 키워드가 19위에서 1위까지 20일, 지역 디저트카페 키워드가 3위에서 1위까지 9일 걸린 기록이 있습니다. 다만 이 숫자는 그 지역 · 그 경쟁 상황에서 나온 값이라 모든 카페에 같은 기간을 약속드리지 않습니다. 경쟁 업체가 많은 상권일수록 오래 걸리고, 내려간 곳도 있습니다. 시작 전에 현재 순위와 경쟁 업체 수를 먼저 재서 보여드립니다.",
+      `저희가 매일 저장한 스냅샷 기준으로 ${CAFE_DURATIONS} 걸린 기록이 있습니다. 다만 이 숫자는 그 지역 · 그 경쟁 상황에서 나온 값이라 모든 카페에 같은 기간을 약속드리지 않습니다. 경쟁 업체가 많은 상권일수록 오래 걸리고, 내려간 곳도 있습니다. 시작 전에 현재 순위와 경쟁 업체 수를 먼저 재서 보여드립니다.`,
   },
   {
     q: "리뷰는 몇 개나 있어야 하나요?",
@@ -132,14 +166,8 @@ export default function CafeLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="카페 마케팅은 어떻게 해야 효과가 있나요?"
-          answer="카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. 하랑마케팅이 진행한 카페는 지역 카페 키워드에서 19위가 1위가 됐고(20일 계측), 같은 매장이 지역 맛집 키워드에서는 56위가 1위가 됐습니다(32일 계측). 다른 카페는 지역 디저트카페 키워드에서 3위가 1위가 됐습니다(9일 계측). 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
-          facts={[
-            { label: "지역 카페 키워드", value: "19위 → 1위" },
-            { label: "지역 디저트카페 키워드", value: "3위 → 1위" },
-            { label: "계측 기간", value: "32일" },
-            { label: "순위 계측", value: "매일 스냅샷" },
-            { label: "상담·진단", value: "0원" },
-          ]}
+          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. ${CAFE_STORY} 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+          facts={CAFE_FACTS}
         />
 
 
@@ -164,12 +192,12 @@ export default function CafeLandingPage() {
         {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
         <RankRecords industries={["카페"]} industryLabel="카페·베이커리" />
 
-        {/* 카페 매장 단위 계측 — 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
+        {/* 카페 업종 계측 — 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
         <PlaceRankCasesSection
           cases={byIndustry("카페")}
           eyebrow="Place Rank"
           title="카페 매장에서 잰 순위"
-          description={`${PLACE_RANK_GENERATED} 기준 계측 기록입니다. 상호 공개에 동의한 곳만 이름을 적었습니다.`}
+          description={`${PLACE_RANK_AS_OF} 기준으로 카페 업종에서 잰 기록입니다. 카드 하나가 키워드 하나입니다.`}
           cta={{ href: "/cases/place-rank", label: "다른 업종 기록도 보기" }}
           columns={2}
           background="bg-gray-50"

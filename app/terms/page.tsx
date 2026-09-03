@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "이용약관 — 하랑마케팅",
+  title: "이용약관",
   description: "하랑마케팅 이용약관입니다.",
   robots: { index: false, follow: false },
 };

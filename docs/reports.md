@@ -95,7 +95,7 @@
 관리자 화면에 로그인해서 붙여넣지 않아도 된다. Claude 에게 말하면 끝난다.
 
 ```
-대표님: 소금정원 강화점 이번 주 보고서 써줘
+대표님: 00카페 00점 이번 주 보고서 써줘
 Claude: (client-report 스킬로 본문 작성) → scripts/report.js 로 등록 → r/xxxxxxxxxxxx 전달
 ```
 

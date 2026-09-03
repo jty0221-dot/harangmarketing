@@ -1,15 +1,30 @@
 import type { Metadata } from "next";
+import { byKeyword, fmt } from "../../lib/rank-records";
+
+/* 순위 문구는 정본에서 만든다. 기록이 없으면 문장에서 빠진다 (C-42). */
+const CAFE = byKeyword("지역 카페 키워드");
+const CAFE_LINE = CAFE ? `지역 카페 키워드 ${fmt(CAFE)}, ${CAFE.days}일 계측 기록.` : "";
+
+/* JSON-LD 의 계측 기록 절 — 화면 문구와 같은 정본에서 만든다 */
+const DESSERT = byKeyword("지역 디저트카페 키워드");
+const CAFE_LD_LINE = (() => {
+  const parts = [
+    CAFE && `네이버 플레이스 지역 카페 키워드 ${CAFE.from}위→${CAFE.to}위(${CAFE.days}일)`,
+    DESSERT && `지역 디저트카페 키워드 ${DESSERT.from}위→${DESSERT.to}위(${DESSERT.days}일)`,
+  ].filter(Boolean);
+  return parts.length > 0 ? `계측 기록: ${parts.join(", ")}.` : "";
+})();
 import JsonLd from "../../components/JsonLd";
 import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
-  title: "카페·베이커리 마케팅 대행 — 하랑마케팅 | 네이버 플레이스 상위노출 전문",
-  description: "카페·베이커리 전문 마케팅. 네이버 플레이스 상위노출, 포토리뷰 전략, 인스타그램 비주얼 마케팅. 지역 카페 키워드 19위 → 1위, 20일 계측 기록. 전국 무료 상담.",
+  title: "카페·베이커리 마케팅 대행 | 네이버 플레이스 상위노출 전문",
+  description: `카페·베이커리 전문 마케팅. 네이버 플레이스 상위노출, 포토리뷰 전략, 인스타그램 비주얼 마케팅. ${CAFE_LINE} 전국 무료 상담.`,
   keywords: ["카페 마케팅", "베이커리 마케팅", "카페 플레이스 상위노출", "카페 네이버 마케팅", "카페 인스타그램 마케팅", "카페 리뷰 마케팅", "카페 체험단", "베이커리 플레이스"],
   alternates: { canonical: "https://www.harangmarketing.com/services/cafe" },
   openGraph: {
-    title: "카페·베이커리 마케팅 대행 — 하랑마케팅",
-    description: "네이버 플레이스 상위노출 · 포토리뷰 전략 · 인스타 비주얼. 지역 카페 키워드 19위 → 1위, 20일 계측 기록.",
+    title: "카페·베이커리 마케팅 대행 | 하랑마케팅",
+    description: `네이버 플레이스 상위노출 · 포토리뷰 전략 · 인스타 비주얼. ${CAFE_LINE}`,
     url: "https://www.harangmarketing.com/services/cafe",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "카페 마케팅 대행 하랑마케팅" }],
   },
@@ -28,7 +43,7 @@ export default function CafeLayout({ children }: { children: React.ReactNode }) 
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": "카페·베이커리 전문 마케팅. 계측 기록: 네이버 플레이스 지역 카페 키워드 19위→1위(20일), 지역 디저트카페 키워드 3위→1위(9일). 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다." },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": `카페·베이커리 전문 마케팅. ${CAFE_LD_LINE} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.` },
             "description": "카페·베이커리 전문 네이버 플레이스 SEO, 포토리뷰 전략, 인스타그램 마케팅 대행 서비스",
             "areaServed": "대한민국",
             "serviceType": "마케팅 대행",

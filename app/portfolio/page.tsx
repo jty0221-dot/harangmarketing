@@ -8,7 +8,7 @@ import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import {
-  byCode, PLACE_RANK_GENERATED, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE, PLACE_RANK_TOTALS,
+  byDepth, PLACE_RANK_AS_OF, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE, PLACE_RANK_TOTALS,
 } from "../lib/place-rank-cases";
 
 export const metadata: Metadata = {
@@ -57,12 +57,13 @@ export default function PortfolioPage() {
               </h2>
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
                 위가 블로그에 글로 공개한 사례라면, 여기는 순위를 매일 재서 남긴 기록입니다.
-                {" "}{PLACE_RANK_GENERATED} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 계측하고 있고 그중 세 곳입니다.
+                {" "}{PLACE_RANK_AS_OF} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다.
+                {" "}그중 상승이 확인된 {PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 남겼고, 여기는 시작 순위가 가장 낮았던 여섯 건입니다.
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>
 
-            <PlaceRankCaseCards cases={byCode("HC-06", "HC-05", "HC-08")} columns={3} />
+            <PlaceRankCaseCards cases={byDepth(6)} columns={3} />
 
             <p className="w-caption-1 mt-4" style={{ color: "var(--w-label-assistive)" }}>
               {PLACE_RANK_NOTE}

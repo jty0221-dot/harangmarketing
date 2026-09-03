@@ -3,12 +3,12 @@ import JsonLd from "../../components/JsonLd";
 import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
-  title: "미용·네일·뷰티 마케팅 대행 — 하랑마케팅 | 인스타그램 · 체험단 · 예약 전환",
+  title: "미용·네일·뷰티 마케팅 대행 | 인스타그램 · 체험단 · 예약 전환",
   description: "미용실·네일샵·뷰티샵 전문 마케팅. 인스타그램 포트폴리오, 체험단 모집, 예약 전환 최적화를 대표가 직접 진행합니다. 무료 상담 0원.",
   keywords: ["미용실 마케팅", "네일샵 마케팅", "뷰티 마케팅", "미용실 인스타그램", "네일샵 플레이스", "미용실 체험단", "뷰티샵 상위노출", "헤어샵 마케팅"],
   alternates: { canonical: "https://www.harangmarketing.com/services/beauty" },
   openGraph: {
-    title: "미용·네일·뷰티 마케팅 대행 — 하랑마케팅",
+    title: "미용·네일·뷰티 마케팅 대행 | 하랑마케팅",
     description: "인스타그램 포트폴리오 · 체험단 · 예약 전환 최적화. 대표가 직접 관리 · 상담 0원.",
     url: "https://www.harangmarketing.com/services/beauty",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "미용 마케팅 대행 하랑마케팅" }],

@@ -51,7 +51,7 @@ export default function PlaceRankExplorer() {
         })}
       </div>
 
-      <PlaceRankCaseCards cases={list} showAllKeywords columns={3} />
+      <PlaceRankCaseCards cases={list} columns={3} />
     </div>
   );
 }

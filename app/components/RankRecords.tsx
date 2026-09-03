@@ -1,8 +1,9 @@
 import { ArrowRight, Clock, ShieldCheck, Database } from "lucide-react";
 import {
-  byIndustry, SUMMARY, SNAPSHOT_DATE, MEASURE_NOTE,
+  byIndustry, SNAPSHOT_DATE, MEASURE_NOTE,
   type RankRecord,
 } from "../lib/rank-records";
+import { PLACE_RANK_TOTALS } from "../lib/place-rank-cases";
 
 /**
  * 업종별 순위 계측 기록 블록.
@@ -67,10 +68,10 @@ export default function RankRecords({
           <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 md:p-6">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5">
               {[
-                { label: "계측 매장", value: `${SUMMARY.stores}곳` },
-                { label: "계측 키워드", value: `${SUMMARY.keywords}개` },
-                { label: "1페이지 유지", value: `${SUMMARY.page1Keywords}개` },
-                { label: "누적 스냅샷", value: `${SUMMARY.snapshots}회` },
+                { label: "계측 매장", value: `${PLACE_RANK_TOTALS.stores}곳` },
+                { label: "계측 키워드", value: `${PLACE_RANK_TOTALS.keywords}개` },
+                { label: "1페이지 유지", value: `${PLACE_RANK_TOTALS.page1Keywords}개` },
+                { label: "계측 업종", value: `${PLACE_RANK_TOTALS.industries}종` },
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <p className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--w-primary)" }}>{s.value}</p>

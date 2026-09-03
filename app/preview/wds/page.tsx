@@ -6,7 +6,7 @@ import {
 import { SITE } from "../../lib/seo";
 
 export const metadata: Metadata = {
-  title: "디자인 미리보기 — 하랑마케팅",
+  title: "디자인 미리보기",
   robots: { index: false, follow: false },
 };
 

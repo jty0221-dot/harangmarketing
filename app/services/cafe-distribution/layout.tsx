@@ -6,7 +6,7 @@ const URL = `${SITE.base}${PATH}`;
 
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
-  title: "최적화 블로그 · 카페 배포 — 네이버 카페 상위노출 배포 대행",
+  title: "최적화 블로그 · 카페 배포 | 네이버 카페 상위노출 배포 대행",
   description:
     "네이버 최적화 블로그 배포에 카페 배포를 함께 진행합니다. 블로그 탭과 카페 탭 동시 노출로 검색 유입 경로를 넓히세요. 최블 10·20·30건 기준 카페 배포 5·10·20건 추가 제공, 1건당 28,600원부터. 업종별 실사 레퍼런스 165건 공개.",
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     type: "website",
-    title: "최적화 블로그 · 카페 배포 — 하랑마케팅",
+    title: "최적화 블로그 · 카페 배포 | 하랑마케팅",
     description:
       "블로그 탭 + 카페 탭 동시 노출. 최블 진행 시 카페 배포 최대 20건 추가 제공. 1건당 28,600원부터, 업종별 실사 레퍼런스 165건.",
     url: URL,

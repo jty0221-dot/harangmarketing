@@ -6,16 +6,16 @@ import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
-import { SUMMARY } from "../../lib/rank-records";
+import { PLACE_RANK_TOTALS } from "../../lib/place-rank-cases";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "쇼핑몰·소매점 마케팅 대행사 — 하랑마케팅 | 온·오프라인 매출 증대",
+  title: "쇼핑몰·소매점 마케팅 대행사 | 온·오프라인 매출 증대",
   description: "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온·오프라인 동시 매출 증대 실제 성과.",
   keywords: ["쇼핑몰 마케팅", "소매점 마케팅", "의류 마케팅 대행사", "스마트스토어 마케팅", "인스타 쇼핑 마케팅"],
   openGraph: {
-    title: "쇼핑몰·소매점 마케팅 대행사 — 하랑마케팅",
+    title: "쇼핑몰·소매점 마케팅 대행사 | 하랑마케팅",
     description: "온·오프라인 매출을 동시에 올리는 쇼핑몰 마케팅.",
     url: "https://www.harangmarketing.com/services/shopping",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "쇼핑몰 마케팅 하랑마케팅" }],
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
    히어로에 다른 업종 기록을 걸어 두었던 것을 전사 계측 현황으로 바꾼다.
    숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
 const RESULTS = [
-  { label: "계측 매장", value: `${SUMMARY.stores}곳`, sub: "계측 중인 매장" },
-  { label: "계측 키워드", value: `${SUMMARY.keywords}개`, sub: "플레이스 계측 키워드" },
-  { label: "1페이지 유지", value: `${SUMMARY.page1Keywords}개`, sub: "1페이지 유지 키워드" },
+  { label: "계측 매장", value: `${PLACE_RANK_TOTALS.stores}곳`, sub: "계측 중인 매장" },
+  { label: "계측 키워드", value: `${PLACE_RANK_TOTALS.keywords}개`, sub: "플레이스 계측 키워드" },
+  { label: "1페이지 유지", value: `${PLACE_RANK_TOTALS.page1Keywords}개`, sub: "1페이지 유지 키워드" },
 ];
 
 /* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
