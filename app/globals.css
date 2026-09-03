@@ -629,6 +629,48 @@ body { overflow-x: hidden; }
 
 .report-body a { color: var(--w-primary); font-weight: 700; text-decoration: underline; word-break: break-all; }
 
+/* 코드 표시(`Q-0166` · `자동 집계`) — 휴대폰에서 한글이 벌어지던 자리다.
+
+   원래 글꼴 목록이 monospace 로 끝나서, 한글이 고정폭 CJK 글꼴로 떨어졌다.
+   실측 — `자동 집계` 가 화면에 `자 동   집 계` 로 벌어져 나왔다(글자 사이가 벌어지고 공백이 두 배).
+   글꼴 대체는 글자 단위로 일어나므로, 목록 끝에 Pretendard 를 붙이면
+   숫자·영문은 고정폭 그대로 두고 한글만 본문 글꼴로 돌아온다.
+
+   배경을 옅게 깔아 본문과 구분한다 — 색이 없으면 본문에 섞여 표시가 아무 일도 안 한다. */
+.report-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 0.92em;
+  background: var(--w-fill);
+  color: var(--w-label-strong);
+  border-radius: 5px;
+  padding: 0.1em 0.35em;
+  /* 표시 하나가 줄 끝에서 반으로 갈라지면 안 된다 — 실측 `H-0102` 가 `H-01` / `02` 로
+     끊겨 회색 상자 두 조각으로 보였다. 안에 있는 공백은 page.tsx 가 줄바꿈 없는 공백으로
+     바꿔 주므로, 여기서는 글자 사이를 끊지 않게만 해 둔다.
+     한 표시가 한 줄보다 길 때만 break-word 로 마지막에 끊는다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 짧은 표시는 갈라지지 않고 통째로 다음 줄로 내려간다 — page.tsx 가 24자 이하에만 표를 단다.
+   붙임표(`H-0102`)도 줄바꿈 자리라 keep-all 만으로는 안 막힌다. */
+.report-body code[data-nb] {
+  white-space: nowrap;
+}
+
+.report-body pre {
+  margin: 1em 0;
+  padding: 12px 14px;
+  background: var(--w-fill);
+  border-radius: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.report-body pre code { background: none; padding: 0; font-size: inherit; word-break: normal; }
+
 .report-body blockquote {
   margin: 1em 0;
   padding: 0.75em 1em;
@@ -636,6 +678,21 @@ body { overflow-x: hidden; }
   border-left: 3px solid var(--w-primary);
   border-radius: 0 12px 12px 0;
   color: #4b5563;
+}
+
+/* 인용문이 연달아 오면 회색 상자 두 개가 한 문장을 가운데서 자른다
+   (실측 — `자동 집계는 무엇을 했는지가 아니라` / `무엇이 큐에 남아 있는지만 압니다` 가 다른 상자에 있었다).
+   원고를 고치는 대신 붙여 그린다 — 지난 보고서까지 같이 좋아진다.
+   :has() 를 못 읽는 브라우저에서는 지금처럼 두 상자로 남는다(깨지지 않는다). */
+.report-body blockquote:has(+ blockquote) {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom-right-radius: 0;
+}
+.report-body blockquote + blockquote {
+  margin-top: 0;
+  padding-top: 0;
+  border-top-right-radius: 0;
 }
 
 .report-body img {
@@ -648,11 +705,115 @@ body { overflow-x: hidden; }
 
 .report-body hr { margin: 1.6em 0; border: 0; border-top: 1px solid var(--w-line); }
 
-/* 표는 좁은 화면에서 가로 스크롤 — 페이지 전체가 밀리면 안 된다 */
+/* 표 — 데스크톱 */
 .report-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 14px; }
 .report-body th,
 .report-body td { border: 1px solid var(--w-line-strong); padding: 8px 10px; text-align: left; }
 .report-body th { background: var(--w-fill); font-weight: 700; color: var(--w-label-strong); }
+
+/* 본문 마크다운 변환기가 <thead>·<th> 를 만들어 주지 않는다.
+   page.tsx 의 withColumnLabels() 가 첫 줄에 data-head 를 붙여 주므로 여기서 머리줄로 그린다. */
+.report-body tr[data-head] td {
+  background: var(--w-fill);
+  font-weight: 700;
+  color: var(--w-label-strong);
+}
+
+/* ── 표 — 모바일 ──────────────────────────────────────────────
+   보고서는 대부분 휴대폰에서 열린다. 열이 네댓 개만 돼도 표가 페이지를 옆으로 민다
+   (실측 — 7열 표 하나가 375px 화면에서 문서 폭을 505px 로 늘렸다).
+
+   가로 스크롤로 가두면 페이지는 안 밀리지만 사장님이 오른쪽에 뭐가 더 있는지 모른 채 지나간다.
+   그래서 한 줄을 카드 한 장으로 눕히고 칸마다 열 이름을 앞에 붙인다.
+   열 이름은 page.tsx 가 data-l 로 심어 준다 — 심지 못한 표만 가로 스크롤로 가둔다.
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .report-body table[data-cards] { display: block; border: 0; }
+  .report-body table[data-cards] thead,
+  .report-body table[data-cards] tbody,
+  .report-body table[data-cards] tr,
+  .report-body table[data-cards] th,
+  .report-body table[data-cards] td { display: block; }
+
+  /* 머리줄은 각 칸 앞에 이름으로 다시 나오므로 통째로는 감춘다 */
+  .report-body table[data-cards] tr[data-head] { display: none; }
+
+  .report-body table[data-cards] tr {
+    background: var(--w-bg);
+    border: 1px solid var(--w-line-strong);
+    border-radius: 12px;
+    margin: 0 0 10px;
+    padding: 0 12px;
+    overflow: hidden;
+  }
+  .report-body table[data-cards] tr:last-child { margin-bottom: 0; }
+
+  .report-body table[data-cards] td {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    justify-content: space-between;
+    border: 0;
+    border-top: 1px solid var(--w-line);
+    padding: 9px 0;
+    text-align: right;
+    word-break: break-word;
+  }
+  /* 값은 통째로 한 쪽이다 — page.tsx 가 span[data-v] 로 싸 준다.
+     안 싸면 칸 안의 <strong>·<code> 가 저마다 한 쪽이 돼 옆으로 밀려 나간다. */
+  .report-body table[data-cards] td > [data-v] {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .report-body table[data-cards] td[data-l]::before {
+    content: attr(data-l);
+    flex: 0 0 auto;
+    max-width: 45%;
+    color: var(--w-label-alt);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  /* 값이 긴 칸은 이름을 윗줄로 올리고 아래로 폭을 다 쓴다.
+     오른쪽에 세워 두면 폭이 절반뿐이라 문장이 여섯 줄로 접히고 줄 시작이 들쭉날쭉하다.
+     page.tsx 가 글자 수를 세어 data-long 을 붙인다. */
+  .report-body table[data-cards] td[data-long] {
+    display: block;
+    padding: 9px 0 11px;
+    text-align: left;
+  }
+  .report-body table[data-cards] td[data-long]::before {
+    display: block;
+    max-width: none;
+    margin-bottom: 3px;
+  }
+
+  /* 빈 칸은 `열 이름 :` 만 남아 지저분하다 — 아예 뺀다 */
+  .report-body table[data-cards] td[data-x] { display: none; }
+
+  /* 첫 칸은 카드 제목으로 쓴다 — 이름을 앞에 또 붙이지 않는다 */
+  .report-body table[data-cards] tr td:first-child {
+    display: block;
+    border-top: 0;
+    padding: 11px 0 9px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--w-label-strong);
+  }
+  .report-body table[data-cards] tr td:first-child::before { content: none; }
+
+  /* 열 이름을 못 심은 표(머리줄이 없거나 한 칸짜리)는 최소한 가로 스크롤로 가둔다 */
+  .report-body table:not([data-cards]) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 .report-body iframe { max-width: 100%; border-radius: 12px; }
 

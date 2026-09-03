@@ -65,6 +65,97 @@ function trendOf(m: ReportMetric): "up" | "down" | "flat" {
   return (lowerIsBetter ? b < a : b > a) ? "up" : "down";
 }
 
+/**
+ * 표에 열 이름을 심는다 — 좁은 화면에서 표를 카드로 펼치기 위한 준비다.
+ *
+ * 왜 필요한가
+ *   보고서 본문은 사장님이 쓴 HTML 을 그대로 렌더한다. 데스크톱에서는 표가 표로 읽히지만
+ *   휴대폰(대부분 여기서 연다)에서는 열이 네댓 개만 돼도 페이지 전체가 옆으로 밀린다.
+ *   실측 — 7열짜리 견적 표 하나가 375px 화면에서 문서 폭을 505px 로 늘렸다(130px 이 화면 밖).
+ *
+ *   가로 스크롤로 가두는 방법도 있지만, 그러면 사장님이 오른쪽에 뭐가 더 있는지 모른 채 지나간다.
+ *   그래서 한 줄을 카드 한 장으로 눕히고, 각 칸 앞에 그 칸이 무슨 열인지 붙인다.
+ *   CSS 는 `열 이름` 을 모르므로 여기서 `data-l` 로 심어 준다(globals.css 의 ::before 가 읽는다).
+ *
+ * 무엇을 하는가
+ *   1) 첫 줄을 머리줄로 보고 `data-head` 를 붙인다 — 본문 마크다운 변환기가 <thead>·<th> 를
+ *      만들어 주지 않아서(실측 `hasThead: false`) 첫 줄이 그냥 데이터로 렌더되고 있었다.
+ *   2) 둘째 줄부터 각 칸에 `data-l="열 이름"` 을 심는다.
+ *   3) 빈 칸은 `data-x` 로 표시한다 — 모바일 카드에서 `열 이름: (빈칸)` 줄이 남으면 지저분하다.
+ *   4) 표에 `data-cards` 를 붙인다. 이걸 못 붙인 표는 CSS 가 가로 스크롤로 가둔다.
+ *
+ * 렌더할 때마다 돌기 때문에 이미 DB 에 저장된 지난 보고서까지 소급해서 좋아진다.
+ * 값을 고치지 않고 속성만 더한다 — 표 안의 숫자·글자는 한 글자도 건드리지 않는다.
+ */
+/**
+ * 표시(`H-0102` · `측정 불가`) 안의 공백을 줄바꿈 없는 공백으로 바꾼다.
+ *
+ * 휴대폰 화면이 좁아 표시가 줄 끝에 걸리면 공백 자리에서 갈라지는데,
+ * 배경을 깐 상자라 반으로 잘린 회색 조각 두 개로 보인다.
+ * 공백을 붙여 두면 표시가 통째로 다음 줄로 내려간다.
+ */
+function withUnbreakableCode(html: string): string {
+  return html.replace(/<code([^>]*)>([\s\S]*?)<\/code>/gi, (whole, attrs: string, body: string) => {
+    if (/<[a-z]/i.test(body)) return whole; // 태그가 든 코드 블록은 손대지 않는다
+
+    // 붙임표도 줄바꿈 자리다 — `H-0102` 가 `H-` / `0102` 로 갈라졌다.
+    // 짧은 표시는 통째로 안 끊기게 표를 달아 두고(CSS 가 nowrap 으로 받는다),
+    // 긴 경로(`sec/Q-0187-oauth-state-cron-failclose`)는 그대로 접히게 둔다.
+    const nb = body.length <= 24 ? ' data-nb="1"' : "";
+    return `<code${attrs}${nb}>${body.replace(/ /g, "\u00a0")}</code>`;
+  });
+}
+
+function withColumnLabels(html: string): string {
+  const text = (frag: string) =>
+    frag.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").trim();
+  const attr = (v: string) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+
+  return html.replace(/<table([^>]*)>([\s\S]*?)<\/table>/gi, (whole, tableAttrs: string, inner: string) => {
+    if (/data-cards/i.test(tableAttrs)) return whole;
+
+    const rows = inner.match(/<tr[^>]*>[\s\S]*?<\/tr>/gi) || [];
+    const headRow = rows[0];
+    if (!headRow || rows.length < 2) return whole; // 머리줄 + 최소 한 줄이 있어야 카드가 성립한다
+
+    const heads = (headRow.match(/<(t[hd])[^>]*>[\s\S]*?<\/\1>/gi) || []).map(text);
+    if (heads.length < 2) return whole; // 한 칸짜리는 표가 아니라 상자다
+
+    let r = -1;
+    const out = inner.replace(/<tr([^>]*)>([\s\S]*?)<\/tr>/gi, (rowWhole, rowAttrs: string, cells: string) => {
+      r += 1;
+      if (r === 0) return `<tr${rowAttrs} data-head="1">${cells}</tr>`;
+
+      let c = -1;
+      const newCells = cells.replace(
+        /<(t[hd])([^>]*)>([\s\S]*?)<\/\1>/gi,
+        (cellWhole, tag: string, cellAttrs: string, body: string) => {
+          c += 1;
+          const label = heads[c] || "";
+          const value = text(body);
+          const empty = value === "";
+          // 값이 길면 이름 옆에 세우지 않는다 — 휴대폰에서 칸 너비가 절반뿐이라
+          // 문장이 여섯 줄로 접히고 오른쪽 정렬이라 줄 시작이 들쭉날쭉해진다.
+          // 긴 값은 이름을 윗줄에 두고 아래로 폭을 다 쓴다.
+          const long = value.length > 16;
+          const add =
+            (label ? ` data-l="${attr(label)}"` : "") +
+            (empty ? ' data-x="1"' : "") +
+            (long ? ' data-long="1"' : "");
+          // 칸 내용을 한 겹 싼다 — 휴대폰에서 칸 하나를 `이름 : 값` 두 쪽으로 눕히는데,
+          // 싸지 않으면 칸 안의 <strong> · <code> 하나하나가 저마다 한 쪽이 돼 옆으로 밀린다.
+          // 실측 — 문장이 든 칸에서 요소 셋이 화면(375px) 밖 389~416px 로 나가 있었다.
+          // 데스크톱에서는 span 한 겹일 뿐이라 보이는 것이 달라지지 않는다.
+          return `<${tag}${cellAttrs}${add}><span data-v="1">${body}</span></${tag}>`;
+        },
+      );
+      return `<tr${rowAttrs}>${newCells}</tr>`;
+    });
+
+    return `<table${tableAttrs} data-cards="1">${out}</table>`;
+  });
+}
+
 export default async function ReportPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
   const report = await getPublishedReport(code);
@@ -118,7 +209,9 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           </h1>
 
           <dl
-            className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-5 sm:grid-cols-3"
+            // 휴대폰에서는 한 줄에 하나씩 — 2열이면 칸이 155px 이라
+            // `2026-08-24 ~ 2026-08-30` 이 `2026-08-` 에서 잘려 두 줄이 됐다
+            className="mt-6 grid grid-cols-1 gap-x-6 gap-y-3 border-t pt-5 sm:grid-cols-3"
             style={{ borderColor: "rgba(255,255,255,.16)" }}
           >
             {report.period && <Meta label="보고 기간" value={report.period} />}
@@ -173,7 +266,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
                 border: "1px solid var(--w-line)",
                 borderRadius: "var(--w-radius-lg)",
               }}
-              dangerouslySetInnerHTML={{ __html: report.body }}
+              dangerouslySetInnerHTML={{ __html: withColumnLabels(withUnbreakableCode(report.body)) }}
             />
           </Section>
         )}
