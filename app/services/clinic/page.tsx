@@ -10,7 +10,7 @@ import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Stethoscope, MessageSquare,
-  ShieldCheck,
+  ShieldCheck, ScrollText,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -180,6 +180,39 @@ export default function ClinicLandingPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* 의료광고 심의 판정 자료 — 자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <Link
+              href="/services/clinic/medical-ad-guide"
+              className="group block bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
+            >
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--w-primary)" }}
+                >
+                  <ScrollText size={16} className="text-white" strokeWidth={2.5} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-base md:text-lg font-black text-gray-900 mb-1.5 flex items-center gap-1.5">
+                    의료광고 심의 대상 판정 자료
+                    <ArrowRight
+                      size={15}
+                      className="text-gray-400 group-hover:text-blue-600 transition-colors"
+                    />
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 의료법 제57조와
+                    시행령 제24조 순서대로 정리했습니다. 채널 16곳 판정과 금지 15가지, 전후 사진 요건,
+                    심의 유효기간까지 조문 번호와 함께 적었습니다.
+                  </p>
+                </div>
+              </div>
+            </Link>
           </div>
         </section>
 

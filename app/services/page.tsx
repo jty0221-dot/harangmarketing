@@ -7,6 +7,7 @@ import {
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare,
   Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
+  ScrollText,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
@@ -1433,7 +1434,7 @@ export default function ServicesPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">업종별 전문 전략 보기</h2>
-              <p className="text-gray-500 text-sm">업종마다 효과적인 채널과 전략이 다릅니다 — 내 업종 전용 페이지를 확인하세요</p>
+              <p className="text-gray-500 text-sm">업종마다 효과적인 채널과 전략이 다릅니다. 내 업종 전용 페이지를 확인하세요</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {INDUSTRY_LINKS.map(ind => (
@@ -1450,6 +1451,25 @@ export default function ServicesPage() {
                 </Link>
               ))}
             </div>
+
+            {/* 병·의원 자료 — 본문은 /services/clinic/medical-ad-guide 가 정본이다 (HP/MED) */}
+            <Link
+              href="/services/clinic/medical-ad-guide"
+              className="group mt-4 flex items-start gap-4 p-4 md:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-white hover:shadow-md transition-all"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
+                <ScrollText size={16} className="text-white" strokeWidth={2.5} />
+              </div>
+              <div className="min-w-0">
+                <div className="font-black text-gray-900 text-sm flex items-center gap-1.5">
+                  의료광고 심의 대상 판정 자료
+                  <ArrowRight size={14} className="text-gray-300 group-hover:text-gray-500 transition-colors" />
+                </div>
+                <div className="text-xs text-gray-500 mt-1 leading-relaxed">
+                  병원 · 치과 · 한의원 광고에서 어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 조문 번호와 함께 정리했습니다
+                </div>
+              </div>
+            </Link>
           </div>
         </section>
       </main>

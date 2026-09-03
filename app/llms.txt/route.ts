@@ -230,6 +230,7 @@ ${faq}
 - [음식점·배달 마케팅](${B}/services/restaurant)
 - [미용·네일·뷰티 마케팅](${B}/services/beauty)
 - [의원·한의원·피부과 마케팅](${B}/services/clinic)
+- [의료광고 심의 대상 판정 자료](${B}/services/clinic/medical-ad-guide): 의료법 제57조·시행령 제24조 기준 채널 16곳 판정 · 심의 없이 쓸 수 있는 9가지 · 금지 15가지 · 심의 유효기간 3년
 - [학원·교육 마케팅](${B}/services/academy)
 - [온라인 쇼핑몰 마케팅](${B}/services/shopping)
 - [진행 과정](${B}/process): 상담부터 성과 리포트까지 6단계
