@@ -279,7 +279,7 @@ export default function AdminReportsPage() {
                 <p className="text-[12px] font-bold text-gray-500">알림톡에 넣을 값</p>
                 <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
-                    <p className="text-[11px] text-gray-400 mb-1">
+                    <p className="text-[11px] text-gray-500 mb-1">
                       변수 <span className="font-mono">보고서링크</span> — 이 값 그대로
                     </p>
                     <div className="flex items-center gap-1.5">
@@ -296,7 +296,7 @@ export default function AdminReportsPage() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-[11px] text-gray-400 mb-1">전체 주소 — 카톡에 직접 붙일 때</p>
+                    <p className="text-[11px] text-gray-500 mb-1">전체 주소 — 카톡에 직접 붙일 때</p>
                     <div className="flex items-center gap-1.5">
                       <code className="flex-1 min-w-0 truncate rounded-lg bg-white border border-gray-200 px-2.5 py-2 text-[12px] font-mono text-gray-800">
                         {SITE}/r/{form.code}

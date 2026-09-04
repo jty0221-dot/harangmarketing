@@ -20,7 +20,7 @@ const CONTACT_LD = [
   webPageLd({
     path: "/contact",
     type: "ContactPage",
-    name: "무료 상담 신청 — 하랑마케팅",
+    name: "무료 상담 신청 | 하랑마케팅",
     description: ANSWER_SENTENCES.contact,
   }),
   {

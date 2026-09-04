@@ -68,6 +68,24 @@ export function brandColor(id: PlatformId): string {
   return BRANDS[id]?.plain ?? WORDMARKS[id]?.plain ?? NEUTRAL.plain;
 }
 
+/**
+ * 밝은 바탕에 글자로 쓸 때만 내려 쓰는 브랜드색.
+ *
+ * 타일 안 글리프는 로고라 WCAG 1.4.11 예외지만, 같은 색을 칩 글자로 쓰면 예외가 아니다.
+ * 흰 계열(#f9fafb) 위에서 네이버 #03C75A 는 2.16, 인스타 #E1306C 는 4.15 로 4.5:1 에 못 미친다.
+ * 배경으로 쓰는 brandColor 는 그대로 두고 글자 자리만 가른다 (Catalog 의 타일 배경이 같이 움직이면 안 된다).
+ * 실측한 색만 적는다 — 안 재본 브랜드는 넣지 않고 brandColor 로 떨어뜨린다.
+ */
+const TEXT_SAFE: Partial<Record<PlatformId, string>> = {
+  naver: "#008236",     // #f9fafb 위 4.73
+  instagram: "#C13584", // 인스타 그라데이션의 보라핑크 정거장 · #f9fafb 위 4.89
+};
+
+/** 밝은 바탕 글자용 브랜드색 — 재본 것이 없으면 원래 브랜드색 그대로 */
+export function brandTextColor(id: PlatformId): string {
+  return TEXT_SAFE[id] ?? brandColor(id);
+}
+
 /** 작은 타일에서는 워드마크가 뭉개진다 — 28px 미만이면 첫 글자만 남긴다 */
 function wordMarkLines(w: WordMark, size: number): string[] {
   if (size < 28) return [w.mark.join("").slice(0, 1)];

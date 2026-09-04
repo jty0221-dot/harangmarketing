@@ -146,7 +146,7 @@ const PROCESS_LD = [
   }),
   webPageLd({
     path: "/process",
-    name: "진행 과정 — 하랑마케팅",
+    name: "진행 과정 | 하랑마케팅",
     description: "상담 신청부터 월간 성과 리포트까지 6단계 마케팅 대행 진행 과정.",
   }),
   breadcrumbLd([
@@ -289,7 +289,7 @@ export default function ProcessPage() {
                 <details key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
                   <summary className="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
                     <span className="font-bold text-gray-900 text-sm">{faq.q}</span>
-                    <svg className="shrink-0 w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="shrink-0 w-4 h-4 text-gray-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
@@ -306,7 +306,7 @@ export default function ProcessPage() {
         <section className="py-14 bg-blue-600">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">준비됐다면, 지금 바로 시작하세요</h2>
-            <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+            <p className="text-blue-50 text-sm mb-7">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 font-black px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm">

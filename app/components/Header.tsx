@@ -147,7 +147,7 @@ export default function Header() {
         <div className="relative bg-gray-950 border-b border-white/5">
           <div className="max-w-6xl mx-auto pl-4 pr-11 md:pr-12 py-2 md:py-2.5 flex items-center justify-center gap-2 md:gap-4">
             <div className="hidden sm:flex items-center gap-1.5 shrink-0">
-              <span className={`w-1.5 h-1.5 rounded-full ${msg.dot} animate-pulse`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${msg.dot}`} />
               <span className={`${msg.badgeColor} font-black text-[11px] uppercase tracking-wider`}>{msg.badge}</span>
             </div>
             <div className="hidden sm:block w-px h-3 bg-white/10" />
@@ -174,7 +174,7 @@ export default function Header() {
               보이는 칩은 28px 로 남겨 둔다 (2026-08-27 (목) 수정). */}
           <button
             onClick={closeAnn}
-            className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 text-gray-600 hover:text-gray-300 transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 text-gray-400 hover:text-white transition-colors"
             aria-label="공지 닫기"
           >
             <span className="flex items-center justify-center w-7 h-7 rounded-lg hover:bg-white/10 transition-colors">
@@ -341,7 +341,7 @@ export default function Header() {
           <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl">
             <div className="px-4 pt-4 pb-3 border-b border-gray-100">
               <div className="text-xs font-black text-gray-900">하랑마케팅</div>
-              <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표가 직접 관리</div>
+              <div className="text-[11px] text-gray-600">10년 경력 · 소상공인 전문 · 대표가 직접 관리</div>
             </div>
             <div className="px-4 py-3 space-y-0.5">
               {NAV_ITEMS.map((item) => (

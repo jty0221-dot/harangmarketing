@@ -118,7 +118,7 @@ export default function ReferenceClient({
                   {c.short}
                   <span
                     className="ml-1.5 text-[12px]"
-                    style={{ color: i === active ? "rgba(255,255,255,.7)" : "var(--cd-primary)" }}
+                    style={{ color: i === active ? "rgba(255,255,255,.88)" : "var(--cd-primary)" }}
                   >
                     {c.keywords.length}
                   </span>

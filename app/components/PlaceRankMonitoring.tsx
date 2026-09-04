@@ -101,7 +101,7 @@ export default function PlaceRankMonitoring({
           ))}
         </div>
 
-        <p className="mt-5 text-xs text-gray-400 leading-relaxed max-w-3xl">
+        <p className="mt-5 text-xs text-gray-500 leading-relaxed max-w-3xl">
           위 숫자는 마지막으로 저장한 {PLACE_RANK_AS_OF} 계측값입니다. {PLACE_RANK_NOTE}
         </p>
       </div>

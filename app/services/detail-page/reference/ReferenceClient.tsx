@@ -92,7 +92,7 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
                 }
               >
                 {t.label}
-                <span className={i === active ? "text-blue-100" : "text-blue-600"}>{t.works.length}</span>
+                <span className={i === active ? "text-blue-50" : "text-blue-600"}>{t.works.length}</span>
               </button>
             ))}
           </div>
@@ -112,7 +112,7 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
 
           {works.length === 0 ? (
             <div className="flex flex-col items-center gap-2 rounded-2xl border border-gray-200 bg-white py-16 text-center">
-              <ImageOff size={22} className="text-gray-400" strokeWidth={2} />
+              <ImageOff size={22} className="text-gray-500" strokeWidth={2} />
               <p className="text-[15px] text-gray-600">레퍼런스 준비 중입니다.</p>
             </div>
           ) : (

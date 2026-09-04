@@ -202,7 +202,7 @@ const VERDICT_STYLE: Record<Verdict, string> = {
   "대상 아님": "bg-gray-100 text-gray-700 border border-gray-200",
   "확인 불가": "bg-amber-50 text-amber-700 border border-amber-200",
   "광고 자체 금지": "bg-red-50 text-red-700 border border-red-200",
-  "시행 전": "bg-gray-100 text-gray-500 border border-gray-200",
+  "시행 전": "bg-gray-100 text-gray-600 border border-gray-200",
 };
 
 /* ── 제56조 제2항 금지 15가지 ─────────────────────────────── */
@@ -835,7 +835,7 @@ export default function MedicalAdGuidePage() {
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
               우리 병원 글이 지금 어느 축에 있는지부터 봅니다
             </h2>
-            <p className="text-blue-100 text-sm mb-7 leading-relaxed">
+            <p className="text-blue-50 text-sm mb-7 leading-relaxed">
               지금 올라가 있는 글과 홈페이지 문구를 조문 번호로 짚어 드립니다.
               <br />
               상담과 진단은 0원이고, 상담은 하랑 대표가 직접 합니다.
@@ -864,7 +864,7 @@ export default function MedicalAdGuidePage() {
                     {l.label}
                     <ArrowRight
                       size={14}
-                      className="text-gray-400 group-hover:text-blue-600 transition-colors"
+                      className="text-gray-500 group-hover:text-blue-600 transition-colors"
                     />
                   </p>
                   <p className="text-xs text-gray-500 mt-1.5 leading-relaxed">{l.desc}</p>

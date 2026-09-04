@@ -25,7 +25,7 @@ export default function PlaceRankExplorer() {
   return (
     <div>
       <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
-        <Filter size={14} className="text-gray-400 shrink-0 mr-1" />
+        <Filter size={14} className="text-gray-500 shrink-0 mr-1" />
         {tabs.map((tab) => {
           const on = industry === tab;
           return (
@@ -42,7 +42,7 @@ export default function PlaceRankExplorer() {
             >
               {tab}
               {tab !== "전체" && (
-                <span className={`ml-1.5 text-xs ${on ? "text-white/70" : "text-gray-300"}`}>
+                <span className={`ml-1.5 text-xs ${on ? "text-white" : "text-gray-500"}`}>
                   {PLACE_RANK_CASES.filter((c) => c.industry === tab).length}
                 </span>
               )}

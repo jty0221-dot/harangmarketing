@@ -165,9 +165,9 @@ export default function AdminPage() {
         {/* 글 목록 */}
         <h2 className="text-sm font-black text-gray-900 mb-3">작성된 글 ({posts.length})</h2>
         {loading ? (
-          <p className="text-sm text-gray-400">불러오는 중...</p>
+          <p className="text-sm text-gray-500">불러오는 중...</p>
         ) : posts.length === 0 ? (
-          <p className="text-sm text-gray-400">아직 작성된 글이 없습니다.</p>
+          <p className="text-sm text-gray-500">아직 작성된 글이 없습니다.</p>
         ) : (
           <div className="space-y-2">
             {posts.map((p) => (

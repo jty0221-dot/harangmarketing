@@ -78,7 +78,7 @@ function NaverPostCard({ post }: { post: NaverPost }) {
             네이버 블로그
           </span>
           {post.category && (
-            <span className="text-[11px] text-gray-400">{post.category}</span>
+            <span className="text-[11px] text-gray-600">{post.category}</span>
           )}
         </div>
         <h3 className="font-black text-gray-900 text-sm leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
@@ -88,7 +88,7 @@ function NaverPostCard({ post }: { post: NaverPost }) {
           {post.excerpt}
         </p>
         <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-50">
-          <span className="text-[11px] text-gray-400">{post.pubDate}</span>
+          <span className="text-[11px] text-gray-600">{post.pubDate}</span>
           <ExternalLink size={11} className="text-gray-300 group-hover:text-blue-400 transition-colors" />
         </div>
       </div>
@@ -248,7 +248,7 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
               <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
                 <BookOpen size={20} className="text-gray-300" />
               </div>
-              <p className="text-sm text-gray-400">아직 작성된 글이 없습니다.</p>
+              <p className="text-sm text-gray-500">아직 작성된 글이 없습니다.</p>
               <p className="text-xs text-gray-300 mt-1">곧 업데이트될 예정입니다.</p>
             </div>
           )}

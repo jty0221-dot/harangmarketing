@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
           <Lock size={18} className="text-white" strokeWidth={2.5} />
         </div>
         <h1 className="text-lg font-black text-gray-900 mb-1">하랑마케팅 관리자</h1>
-        <p className="text-xs text-gray-400 mb-6">블로그 글 작성 페이지입니다</p>
+        <p className="text-xs text-gray-500 mb-6">블로그 글 작성 페이지입니다</p>
 
         <label className="block text-xs font-bold text-gray-700 mb-1.5">비밀번호</label>
         <input

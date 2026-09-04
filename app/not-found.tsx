@@ -53,7 +53,7 @@ export default function NotFound() {
                   <div className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors mb-0.5">
                     {link.label}
                   </div>
-                  <div className="text-[11px] text-gray-400">{link.sub}</div>
+                  <div className="text-[11px] text-gray-600">{link.sub}</div>
                 </Link>
               ))}
             </div>

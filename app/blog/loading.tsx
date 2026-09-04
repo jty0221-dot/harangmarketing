@@ -43,7 +43,7 @@ export default function Loading() {
               </div>
             ))}
           </div>
-          <p className="mt-10 text-center text-xs text-gray-400">
+          <p className="mt-10 text-center text-xs text-gray-500">
             글 목록을 불러오는 중입니다
           </p>
         </section>

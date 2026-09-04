@@ -69,7 +69,7 @@ export default function RegionalSection() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>전국 서비스</span>
+                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>전국 서비스</span>
               </div>
               <h2
                 className="text-2xl md:text-3xl font-black leading-tight"

@@ -135,10 +135,10 @@ const SERVICES = [
       { label: "제작+영상형", value: "550,000원", note: "첫 화면 GIF·숏폼 포함" },
     ],
     features: [
-      "9단 섹션 구성표 — 무엇을 몇 번째에 보여줄지 먼저 정합니다",
+      "9단 섹션 구성표 · 무엇을 몇 번째에 보여줄지 먼저 정합니다",
       "섹션별 카피 작성 (확정 안 된 값은 비워 두고 여쭙습니다)",
       "9단 상세 이미지 제작 · 모바일 가독성 판 별도 조정",
-      "슬라이스 파일 납품 — 받아서 바로 올리시면 됩니다",
+      "슬라이스 파일 납품 · 받아서 바로 올리시면 됩니다",
       "문구 수정 2회 · 이미지 재생성 컷당 3회 포함",
       "식품은 표시사항(원재료·용량·소비기한·보관·제조원) 확인 후 등록",
     ],
@@ -487,7 +487,7 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   },
   {
     title: "채널 수와 물량이 다릅니다",
-    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 4만원으로 잡아도 월 4편과 월 15편은 44만원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다 — 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
+    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 4만원으로 잡아도 월 4편과 월 15편은 44만원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다. 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
   },
   {
     title: "심의와 계절이 다릅니다",
@@ -602,7 +602,7 @@ const SERVICES_PAGE_LD = [
   webPageLd({
     path: "/services",
     type: "CollectionPage",
-    name: "서비스 — 하랑마케팅",
+    name: "서비스 | 하랑마케팅",
     description: ANSWER_SENTENCES.whatWeDo,
   }),
   breadcrumbLd([
@@ -684,7 +684,7 @@ export default function ServicesPage() {
                   <Icon size={18} className={color} strokeWidth={1.5} />
                   <div>
                     <div className={`text-xl font-black ${color}`}>{val}</div>
-                    <div className="text-xs text-gray-400">{label}</div>
+                    <div className="text-xs text-gray-500">{label}</div>
                   </div>
                 </div>
               ))}
@@ -777,7 +777,7 @@ export default function ServicesPage() {
                           <span className={`px-2 py-0.5 rounded-full bg-gradient-to-r ${s.color} text-white text-[11px] font-black`}>
                             {s.tag}
                           </span>
-                          <span className="text-[11px] text-gray-400 flex items-center gap-1">
+                          <span className="text-[11px] text-gray-500 flex items-center gap-1">
                             <Clock size={10} />
                             {s.timeline}
                           </span>
@@ -797,9 +797,9 @@ export default function ServicesPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {s.deliverables.map((d) => (
                         <div key={d.label} className="bg-white rounded-xl p-4 border border-gray-100">
-                          <div className="text-[11px] text-gray-400 mb-1">{d.label}</div>
+                          <div className="text-[11px] text-gray-500 mb-1">{d.label}</div>
                           <div className="text-base font-black text-gray-900">{d.value}</div>
-                          <div className="text-[11px] text-gray-400 mt-0.5">{d.note}</div>
+                          <div className="text-[11px] text-gray-500 mt-0.5">{d.note}</div>
                         </div>
                       ))}
                     </div>
@@ -859,24 +859,24 @@ export default function ServicesPage() {
             <div className="text-center mb-8">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">업종별 추천</p>
               <h2 className="text-xl md:text-2xl font-black text-gray-900">내 업종엔 어떤 서비스가 맞나요?</h2>
-              <p className="text-gray-400 text-sm mt-2">업종별로 성과가 가장 빠른 서비스를 먼저 추천합니다</p>
+              <p className="text-gray-500 text-sm mt-2">업종별로 성과가 가장 빠른 서비스를 먼저 추천합니다</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {INDUSTRY_RECS.map((ind) => (
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
                   <div className="px-4 py-3" style={{ backgroundColor: "var(--w-primary)" }}>
                     <div className="font-black text-white text-sm">{ind.industry}</div>
-                    <div className="text-white/70 text-[11px] mt-0.5">{ind.result}</div>
+                    <div className="text-white text-[11px] mt-0.5">{ind.result}</div>
                   </div>
                   <div className="p-4">
-                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">우선 추천</div>
+                    <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">우선 추천</div>
                     <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-black mb-3">
                       {ind.firstRec}
                     </div>
-                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">추가 옵션</div>
+                    <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">추가 옵션</div>
                     <div className="flex gap-1 flex-wrap">
                       {ind.recs.map((r) => (
-                        <span key={r} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-medium">{r}</span>
+                        <span key={r} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-[11px] font-medium">{r}</span>
                       ))}
                     </div>
                   </div>
@@ -937,7 +937,7 @@ export default function ServicesPage() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
+              <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
                 모든 금액은 부가세 별도입니다. 네이버·인스타 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
               </p>
             </div>
@@ -962,7 +962,7 @@ export default function ServicesPage() {
                         {c.lines.map((l) => (
                           <li key={l.label} className="flex items-start justify-between gap-3 text-xs">
                             <span className="text-gray-700 leading-snug">{l.label}</span>
-                            <span className="text-gray-400 tabular-nums whitespace-nowrap shrink-0">{l.calc}</span>
+                            <span className="text-gray-500 tabular-nums whitespace-nowrap shrink-0">{l.calc}</span>
                           </li>
                         ))}
                       </ul>
@@ -970,7 +970,7 @@ export default function ServicesPage() {
                         <span className="text-xs font-black text-gray-500">월 합계</span>
                         <span className="text-lg font-black text-blue-600 tabular-nums">{c.total}원</span>
                       </div>
-                      <p className="text-[11px] text-gray-400 mt-2 leading-relaxed">{c.note}</p>
+                      <p className="text-[11px] text-gray-500 mt-2 leading-relaxed">{c.note}</p>
                     </div>
                   </div>
                 ))}
@@ -999,7 +999,7 @@ export default function ServicesPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
+              <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
                 그래서 &lsquo;월 얼마짜리 패키지&rsquo; 를 미리 만들어두지 않습니다. 같은 예산이어도 매장 상황에 따라 들어가는 항목이 달라지기 때문입니다.
               </p>
             </div>
@@ -1033,7 +1033,7 @@ export default function ServicesPage() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-[11px] text-gray-400 mt-2.5 leading-relaxed">
+              <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
                 같은 예산이어도 업종에 따라 쓰는 곳이 달라집니다. 음식점은 배포 건수로, 청소업은 블로그 편수로, 카페는 사진과 인스타로 갑니다.
               </p>
             </div>
@@ -1134,7 +1134,7 @@ export default function ServicesPage() {
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
                     <div className="text-xs font-bold text-gray-300">{s.label}</div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">{s.sub}</div>
+                    <div className="text-[11px] text-gray-400 mt-0.5">{s.sub}</div>
                   </div>
                 ))}
               </div>
@@ -1148,12 +1148,12 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex-1">
                 <h3 className="font-black text-gray-800 text-base mb-1">마케팅 사례가 궁금하시면</h3>
-                <p className="text-xs text-gray-400">네이버 블로그와 인스타그램에서 실제 운영 사례를 확인하세요</p>
+                <p className="text-xs text-gray-500">네이버 블로그와 인스타그램에서 실제 운영 사례를 확인하세요</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 <a href="https://blog.naver.com/harangmarketing" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-green-50 border border-green-100 text-green-700 text-xs font-bold hover:bg-green-100 transition-colors">
-                  <span className="w-5 h-5 rounded bg-green-600 text-white text-[11px] font-black flex items-center justify-center">N</span>
+                  <span className="w-5 h-5 rounded bg-green-700 text-white text-[11px] font-black flex items-center justify-center">N</span>
                   네이버 블로그
                 </a>
                 <a href="https://www.instagram.com/jty0221/" target="_blank" rel="noopener noreferrer"
@@ -1183,7 +1183,7 @@ export default function ServicesPage() {
               ].map((step, i) => (
                 <div key={i} className="relative bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
                   <div className={`${step.color} px-4 py-3`}>
-                    <div className="text-[11px] font-black text-white/70 uppercase tracking-widest mb-0.5">STEP {i + 1}</div>
+                    <div className="text-[11px] font-black text-white uppercase tracking-widest mb-0.5">STEP {i + 1}</div>
                     <div className="text-white font-black text-sm">{step.period}</div>
                   </div>
                   <div className="p-4">
@@ -1241,7 +1241,7 @@ export default function ServicesPage() {
                       </div>
                     )}
                     <div className="text-xl font-black text-white mb-2">{pkg.tier}</div>
-                    <p className="text-white/70 text-xs leading-relaxed">{pkg.desc}</p>
+                    <p className="text-white text-xs leading-relaxed">{pkg.desc}</p>
                   </div>
                   <div className="bg-white p-6">
                     <ul className="space-y-2 mb-5">
@@ -1269,7 +1269,7 @@ export default function ServicesPage() {
                 </div>
               ))}
             </div>
-            <p className="text-center text-[11px] text-gray-400 mt-6 leading-relaxed">
+            <p className="text-center text-[11px] text-gray-500 mt-6 leading-relaxed">
               * 실제 계약·견적 9건에서 뽑은 구성입니다. 항목마다 물량은 매장마다 다르게 잡으므로 진단 후에 항목별로 다시 계산합니다.
             </p>
           </div>
@@ -1287,7 +1287,7 @@ export default function ServicesPage() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-w-[480px]">
               {/* Header row */}
               <div className="grid grid-cols-[1fr_1fr_1fr] border-b border-gray-100">
-                <div className="px-4 py-4 text-xs font-black text-gray-400 uppercase tracking-wider">비교 항목</div>
+                <div className="px-4 py-4 text-xs font-black text-gray-500 uppercase tracking-wider">비교 항목</div>
                 <div className="px-4 py-4 text-center bg-gray-50 border-l border-gray-100">
                   <div className="text-xs font-black text-gray-500 uppercase tracking-wider">일반 대행사</div>
                 </div>
@@ -1331,7 +1331,7 @@ export default function ServicesPage() {
               ].map((row, i) => (
                 <div key={row.label} className={`grid grid-cols-[1fr_1fr_1fr] border-b border-gray-50 last:border-b-0 ${i % 2 === 0 ? "" : "bg-gray-50/50"}`}>
                   <div className="px-4 py-4 text-sm font-bold text-gray-700 flex items-center">{row.label}</div>
-                  <div className="px-4 py-4 text-sm text-gray-400 border-l border-gray-100 flex items-center bg-gray-50/30">
+                  <div className="px-4 py-4 text-sm text-gray-500 border-l border-gray-100 flex items-center bg-gray-50/30">
                     {row.other}
                   </div>
                   <div className={`px-4 py-4 text-sm border-l border-blue-100 flex items-center gap-1.5 ${row.highlight ? "bg-blue-50 font-black text-blue-700" : "font-semibold text-gray-800"}`}>
@@ -1345,7 +1345,7 @@ export default function ServicesPage() {
             </div>
 
             </div>
-            <p className="text-center text-xs text-gray-400 mt-5">실제 대행사 전환 클라이언트 40% 경험 기반</p>
+            <p className="text-center text-xs text-gray-500 mt-5">실제 대행사 전환 클라이언트 40% 경험 기반</p>
           </div>
         </section>
 
@@ -1356,7 +1356,7 @@ export default function ServicesPage() {
               <div className="lg:sticky lg:top-24">
                 <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
                 <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-3">자주 묻는 질문</h2>
-                <p className="text-sm text-gray-400 leading-relaxed mb-4">상담 전에 가장 많이 물어보시는 내용을 정리했습니다.</p>
+                <p className="text-sm text-gray-500 leading-relaxed mb-4">상담 전에 가장 많이 물어보시는 내용을 정리했습니다.</p>
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-11 md:min-h-0 rounded-xl bg-yellow-400 text-gray-900 text-xs font-bold hover:bg-yellow-300 transition-colors">
                   <MessageSquare size={12} />더 물어보기
@@ -1367,10 +1367,10 @@ export default function ServicesPage() {
                   <details key={i} className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors">
                     <summary className="flex items-center justify-between gap-3 p-5 cursor-pointer font-bold text-gray-800 text-[15px] list-none select-none hover:bg-white transition-colors">
                       <span className="flex items-start gap-3">
-                        <span className="text-[11px] font-black text-blue-500 bg-blue-50 rounded-lg px-2 py-1 shrink-0 mt-0.5">Q{i + 1}</span>
+                        <span className="text-[11px] font-black text-blue-700 bg-blue-50 rounded-lg px-2 py-1 shrink-0 mt-0.5">Q{i + 1}</span>
                         {faq.q}
                       </span>
-                      <ChevronDown size={16} className="text-gray-300 group-open:rotate-180 transition-transform shrink-0" />
+                      <ChevronDown size={16} className="text-gray-500 group-open:rotate-180 transition-transform shrink-0" />
                     </summary>
                     <div className="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-100 pt-4 ml-[52px]">
                       {faq.a}
@@ -1469,9 +1469,9 @@ export default function ServicesPage() {
                   </div>
                   <div className="min-w-0">
                     <div className="font-black text-gray-900 text-sm">{ind.name}</div>
-                    <div className="text-xs text-gray-400 truncate">{ind.desc}</div>
+                    <div className="text-xs text-gray-500 truncate">{ind.desc}</div>
                   </div>
-                  <ArrowRight size={14} className="text-gray-300 group-hover:text-gray-500 shrink-0 ml-auto transition-colors" />
+                  <ArrowRight size={14} className="text-gray-500 group-hover:text-gray-700 shrink-0 ml-auto transition-colors" />
                 </Link>
               ))}
             </div>
@@ -1487,7 +1487,7 @@ export default function ServicesPage() {
               <div className="min-w-0">
                 <div className="font-black text-gray-900 text-sm flex items-center gap-1.5">
                   의료광고 심의 대상 판정 자료
-                  <ArrowRight size={14} className="text-gray-300 group-hover:text-gray-500 transition-colors" />
+                  <ArrowRight size={14} className="text-gray-500 group-hover:text-gray-700 transition-colors" />
                 </div>
                 <div className="text-xs text-gray-500 mt-1 leading-relaxed">
                   병원 · 치과 · 한의원 광고에서 어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 조문 번호와 함께 정리했습니다

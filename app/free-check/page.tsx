@@ -88,7 +88,7 @@ export default function FreeCheckPage() {
           <div>
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-500/30 rounded-full px-3 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
               <span className="text-blue-400 text-xs font-bold">무료 · 부담 없음 · 1영업일 내 결과</span>
             </div>
 
@@ -97,7 +97,7 @@ export default function FreeCheckPage() {
             </h1>
 
             <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
-              네이버 플레이스 순위, 리뷰, 경쟁사 3곳 비교까지 —
+              네이버 플레이스 순위, 리뷰, 경쟁사 3곳 비교까지 해 드립니다.
               진단 비용 0원, 계약 강요 없습니다.
             </p>
 
@@ -162,7 +162,7 @@ export default function FreeCheckPage() {
                   <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
-                      <span className="text-[11px] text-gray-500">{c.loc}</span>
+                      <span className="text-[11px] text-gray-400">{c.loc}</span>
                     </div>
                     <p className="font-black text-white text-sm">{c.result}</p>
                     <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
@@ -183,7 +183,7 @@ export default function FreeCheckPage() {
                 <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />24시간 내 연락드립니다.</p>
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"
+                  className="inline-flex items-center gap-2 min-h-11 md:min-h-0 text-blue-600 font-bold text-sm hover:underline"
                 >
                   홈으로 돌아가기 <ArrowRight size={13} />
                 </Link>
@@ -239,7 +239,7 @@ export default function FreeCheckPage() {
                   </div>
                   <div>
                     <label htmlFor="check-rank" className="block text-xs font-bold text-gray-700 mb-1.5">
-                      현재 플레이스 순위 <span className="text-gray-400 font-normal">(선택)</span>
+                      현재 플레이스 순위 <span className="text-gray-500 font-normal">(선택)</span>
                     </label>
                     <div className="relative">
                       <input
@@ -251,9 +251,9 @@ export default function FreeCheckPage() {
                         min="1"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                       />
-                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-400">위</span>
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500">위</span>
                     </div>
-                    <p className="text-[11px] text-gray-400 mt-1">모르시면 비워두셔도 됩니다</p>
+                    <p className="text-[11px] text-gray-600 mt-1">모르시면 비워두셔도 됩니다</p>
                   </div>
 
                   {/* Trust indicators */}
@@ -263,8 +263,8 @@ export default function FreeCheckPage() {
                       { icon: Clock, text: "24시간 내 연락" },
                       { icon: AlertCircle, text: "계약·비용 강요 일절 없음" },
                     ].map(({ icon: Icon, text }) => (
-                      <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-400">
-                        <Icon size={10} className="text-gray-400" strokeWidth={2.5} />
+                      <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-500">
+                        <Icon size={10} className="text-gray-500" strokeWidth={2.5} />
                         {text}
                       </div>
                     ))}
@@ -282,7 +282,7 @@ export default function FreeCheckPage() {
                       <div className="w-full border-t border-gray-100" />
                     </div>
                     <div className="relative flex justify-center">
-                      <span className="px-3 bg-white text-[11px] text-gray-400">또는</span>
+                      <span className="px-3 bg-white text-[11px] text-gray-500">또는</span>
                     </div>
                   </div>
 
@@ -303,8 +303,8 @@ export default function FreeCheckPage() {
                     <MapPin size={10} className="text-blue-500" strokeWidth={2.5} />
                     전국 어디든
                   </span>
-                  <span className="text-[11px] text-gray-400">10년 경력</span>
-                  <span className="text-[11px] text-gray-400">500+ 프로젝트</span>
+                  <span className="text-[11px] text-gray-600">10년 경력</span>
+                  <span className="text-[11px] text-gray-600">500+ 프로젝트</span>
                 </div>
               </div>
             )}

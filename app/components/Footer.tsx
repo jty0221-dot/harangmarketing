@@ -41,7 +41,7 @@ export default function Footer() {
             <div>
               <div className="flex items-center gap-1.5 mb-2">
                 <Handshake size={13} className="text-yellow-300" strokeWidth={2.5} />
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.62)" }}>재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
               </div>
               <h3 className="text-lg md:text-xl font-black text-white mb-1">
                 지금 바로 무료 전략 진단을 받아보세요
@@ -75,7 +75,7 @@ export default function Footer() {
                 <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
                 <span className="font-black text-white text-[17px]">하랑마케팅</span>
               </Link>
-              <p className="text-sm text-gray-500 leading-relaxed mb-5">
+              <p className="text-sm text-gray-400 leading-relaxed mb-5">
                 상생을 기반으로 한 마케팅.<br />
                 10년 경력, 직접 담당합니다.
               </p>
@@ -125,7 +125,7 @@ export default function Footer() {
                     <Link
                       href={href as string}
                       className={`inline-flex items-center gap-1.5 min-h-11 md:min-h-0 transition-colors ${
-                        isNew ? "font-bold text-gray-300 hover:text-white" : "text-gray-500 hover:text-gray-200"
+                        isNew ? "font-bold text-gray-300 hover:text-white" : "text-gray-400 hover:text-white"
                       }`}
                     >
                       {label}
@@ -156,7 +156,7 @@ export default function Footer() {
                   ["상담신청", "/contact"],
                 ].map(([label, href]) => (
                   <li key={label}>
-                    <Link href={href} className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-200 transition-colors text-gray-500">
+                    <Link href={href} className="inline-flex items-center min-h-11 md:min-h-0 hover:text-white transition-colors text-gray-300">
                       {label}
                     </Link>
                   </li>
@@ -166,7 +166,7 @@ export default function Footer() {
                     href="https://blog.naver.com/harangmarketing"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 min-h-11 md:min-h-0 hover:text-gray-200 transition-colors text-gray-500"
+                    className="flex items-center gap-1 min-h-11 md:min-h-0 hover:text-white transition-colors text-gray-300"
                   >
                     네이버 블로그
                     <ExternalLink size={11} />
@@ -186,7 +186,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-white text-sm font-bold group-hover:text-blue-300 transition-colors">010-7541-9054</div>
-                    <div className="text-[11px] text-gray-600">전화 상담</div>
+                    <div className="text-[11px] text-gray-400">전화 상담</div>
                   </div>
                 </a>
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
@@ -196,7 +196,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-yellow-300 text-sm font-bold">카카오톡 상담</div>
-                    <div className="text-[11px] text-gray-600">빠른 답변</div>
+                    <div className="text-[11px] text-gray-400">빠른 답변</div>
                   </div>
                 </a>
                 <a href="mailto:harangmarketing@naver.com"
@@ -208,13 +208,13 @@ export default function Footer() {
                       태블릿 폭(768px)에서 푸터 컬럼 밖으로 삐져나간다 */}
                   <div className="min-w-0">
                     <div className="truncate text-gray-300 text-xs group-hover:text-gray-100 transition-colors">harangmarketing@naver.com</div>
-                    <div className="text-[11px] text-gray-600">이메일 문의</div>
+                    <div className="text-[11px] text-gray-400">이메일 문의</div>
                   </div>
                 </a>
               </div>
               <div className="flex items-start gap-2">
-                <MapPin size={11} className="text-gray-600 shrink-0 mt-0.5" />
-                <span className="text-gray-600 text-[11px] leading-relaxed">
+                <MapPin size={11} className="text-gray-400 shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-[11px] leading-relaxed">
                   경기 고양시 일산동구 장백로19<br />더루벤투스카운티 501호
                 </span>
               </div>
@@ -252,7 +252,7 @@ export default function Footer() {
             },
           ].map((row) => (
             <div key={row.title} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
-              <span className="shrink-0 text-[11px] font-bold tracking-widest text-gray-600 sm:w-12">
+              <span className="shrink-0 text-[11px] font-bold tracking-widest text-gray-400 sm:w-12">
                 {row.title}
               </span>
               <div className="flex flex-wrap gap-x-4 gap-y-0.5">
@@ -260,7 +260,7 @@ export default function Footer() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="inline-flex items-center min-h-11 sm:min-h-0 text-[13px] text-gray-500 hover:text-gray-200 transition-colors"
+                    className="inline-flex items-center min-h-11 sm:min-h-0 text-[13px] text-gray-300 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -274,19 +274,19 @@ export default function Footer() {
       {/* Bottom */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="text-xs text-gray-600 space-y-1">
+          <div className="text-xs text-gray-400 space-y-1">
             <p>대표: 전태영 · 사업자등록번호: 706-68-00281 · 통신판매업신고: 2020-서울강서-1482</p>
             <p>개인정보보호책임자: 전태영</p>
             {/* 상호 혼선 안내 — 동명의 콜백문자 서비스 업체와 구분 (Q-0024) */}
             <p>같은 이름을 쓰는 콜백문자 서비스 회사와는 별개 회사입니다. 하랑마케팅 공식 연락처는 010-7541-9054 한 곳입니다.</p>
           </div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-600">
-            <Link href="/terms" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors">이용약관</Link>
-            <Link href="/privacy" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors font-semibold text-gray-500">개인정보처리방침</Link>
-            <Link href="/refund" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-gray-400 transition-colors">환불/취소 정책</Link>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-400">
+            <Link href="/terms" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-white transition-colors">이용약관</Link>
+            <Link href="/privacy" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-white transition-colors font-semibold text-gray-200">개인정보처리방침</Link>
+            <Link href="/refund" className="inline-flex items-center min-h-11 md:min-h-0 hover:text-white transition-colors">환불/취소 정책</Link>
           </div>
         </div>
-        <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-700">
+        <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-400">
           {[
             [`재계약률 ${SITE.stats.renewalRate}`, "2020년 개업 · 7년차"],
             ["상담 비용 0원", "계약 강요 없음"],
@@ -295,12 +295,12 @@ export default function Footer() {
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">
               <span className="font-black" style={{ color: "var(--h-blue-light)" }}>{val}</span>
-              <span className="text-gray-700">·</span>
+              <span aria-hidden="true">·</span>
               <span>{sub}</span>
             </div>
           ))}
         </div>
-        <p className="text-[11px] text-gray-700 mt-3">© 2026 하랑마케팅. All rights reserved.</p>
+        <p className="text-[11px] text-gray-400 mt-3">© 2026 하랑마케팅. All rights reserved.</p>
       </div>
     </footer>
   );

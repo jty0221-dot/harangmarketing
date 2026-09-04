@@ -216,7 +216,7 @@ export default function VideoKbPage() {
               <div className="relative">
                 <Search
                   size={15}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500"
                 />
                 <input
                   value={query}

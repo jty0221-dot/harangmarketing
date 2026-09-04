@@ -356,7 +356,7 @@ export default function DetailPageServicePage() {
                   className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-xs font-bold text-gray-700 shadow-sm transition-colors hover:border-blue-300 hover:text-blue-600"
                 >
                   {c.short}
-                  <span className="tabular-nums font-semibold text-gray-400">{c.works.length}</span>
+                  <span className="tabular-nums font-semibold text-gray-500">{c.works.length}</span>
                 </Link>
               ))}
             </div>
@@ -397,7 +397,7 @@ export default function DetailPageServicePage() {
               {REF_TOTAL}건 전부 펼쳐 보기 <ArrowRight size={15} strokeWidth={2.5} />
             </Link>
 
-            <p className="mt-3 text-center text-[11px] text-gray-400">
+            <p className="mt-3 text-center text-[11px] text-gray-500">
               상호 노출 동의를 받기 전이라 제품 종류만 적습니다. 상호·브랜드는 쓰지 않습니다.
             </p>
           </div>
@@ -438,7 +438,7 @@ export default function DetailPageServicePage() {
                       <h3 className="font-bold text-gray-900 text-sm">{s.name}</h3>
                       <span className="text-gray-500 text-xs">{s.role}</span>
                     </div>
-                    <p className="text-gray-400 text-xs mt-1">{s.note}</p>
+                    <p className="text-gray-500 text-xs mt-1">{s.note}</p>
                   </div>
                 </li>
               ))}
@@ -522,7 +522,7 @@ export default function DetailPageServicePage() {
                   <div className="mb-1">
                     <span className="text-2xl font-black text-gray-900">{p.price}</span>
                   </div>
-                  <p className="text-xs text-gray-400 mb-4">
+                  <p className="text-xs text-gray-500 mb-4">
                     {p.lead} · {p.forWhom}
                   </p>
 
@@ -535,8 +535,8 @@ export default function DetailPageServicePage() {
                     ))}
                     {p.excludes.map((it) => (
                       <li key={it} className="flex items-start gap-2">
-                        <Ban size={14} className="text-gray-400 mt-0.5 shrink-0" strokeWidth={2.5} />
-                        <span className="text-xs md:text-[13px] text-gray-400 leading-relaxed">
+                        <Ban size={14} className="text-gray-500 mt-0.5 shrink-0" strokeWidth={2.5} />
+                        <span className="text-xs md:text-[13px] text-gray-500 leading-relaxed">
                           {it}
                         </span>
                       </li>
@@ -612,7 +612,7 @@ export default function DetailPageServicePage() {
             </div>
 
             <div className="mt-5 flex items-start gap-2.5 rounded-xl bg-white border border-gray-200 p-4">
-              <Info size={15} className="text-gray-400 mt-0.5 shrink-0" />
+              <Info size={15} className="text-gray-500 mt-0.5 shrink-0" />
               <div className="text-xs md:text-[13px] text-gray-500 leading-relaxed">
                 <p className="mb-1">표기 금액은 상품 1개 기준입니다. 등급 사이 금액과 장당 단가는 따로 만들지 않습니다.</p>
                 <p>
@@ -706,7 +706,7 @@ export default function DetailPageServicePage() {
                       </dl>
                       {c.aiNote && (
                         <div className="mt-3 pt-3 border-t border-gray-100">
-                          <p className="text-[11px] text-gray-400">{c.aiNote}</p>
+                          <p className="text-[11px] text-gray-600">{c.aiNote}</p>
                         </div>
                       )}
                     </div>
@@ -731,7 +731,7 @@ export default function DetailPageServicePage() {
                   {" "}{REF_CATEGORIES.length}가지 종류로 나눠 처음부터 끝까지 펼쳐 볼 수 있습니다.
                 </span>
               </span>
-              <ArrowRight size={16} className="shrink-0 text-gray-400" />
+              <ArrowRight size={16} className="shrink-0 text-gray-500" />
             </Link>
           </div>
         </section>

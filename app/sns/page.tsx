@@ -76,7 +76,7 @@ const LD = [
   },
   webPageLd({
     path: PATH,
-    name: "SNS 부스트 스토어 — 인스타 팔로워·좋아요·조회수 셀프 주문",
+    name: "SNS 부스트 스토어 | 인스타 팔로워·좋아요·조회수 셀프 주문",
     description:
       `전 플랫폼 ${SNS_PRODUCTS.length}개 상품을 회원가입 없이 건당 주문하는 하랑마케팅 직영 스토어. ` +
       "비밀번호 없이 링크만으로 진행되고, 주문번호로 진행 상황을 실시간 확인할 수 있습니다.",
@@ -156,15 +156,15 @@ function PhoneMockup() {
             <div className="flex flex-1 items-center justify-between text-center">
               <div>
                 <p className="text-[14px] font-black text-gray-900 tabular-nums">214</p>
-                <p className="text-[11px] text-gray-400">게시물</p>
+                <p className="text-[11px] text-gray-600">게시물</p>
               </div>
               <div>
                 <p className="text-[14px] font-black text-blue-600 tabular-nums">12,480</p>
-                <p className="text-[11px] text-gray-400">팔로워</p>
+                <p className="text-[11px] text-gray-600">팔로워</p>
               </div>
               <div>
                 <p className="text-[14px] font-black text-gray-900 tabular-nums">87</p>
-                <p className="text-[11px] text-gray-400">팔로잉</p>
+                <p className="text-[11px] text-gray-600">팔로잉</p>
               </div>
             </div>
           </div>

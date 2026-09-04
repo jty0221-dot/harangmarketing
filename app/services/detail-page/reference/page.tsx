@@ -49,7 +49,7 @@ const LD = [
   webPageLd({
     path: PATH,
     type: "CollectionPage",
-    name: "상세페이지 레퍼런스 — 하랑마케팅",
+    name: "상세페이지 레퍼런스 | 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물 모음. 하랑마케팅이 만든 상세페이지.`,
   }),
   breadcrumbLd([
@@ -142,7 +142,7 @@ export default async function DetailPageReferencePage({
                 { k: "잘라낸 구간", v: "0" },
               ].map((s) => (
                 <div key={s.k} className="rounded-xl border border-white/10 px-3 py-3 md:px-4">
-                  <dt className="text-[11px] text-gray-500 md:text-xs">{s.k}</dt>
+                  <dt className="text-[11px] text-gray-400 md:text-xs">{s.k}</dt>
                   <dd className="mt-1 text-lg font-black text-white md:text-xl">{s.v}</dd>
                 </div>
               ))}
@@ -159,7 +159,7 @@ export default async function DetailPageReferencePage({
               </div>
               <div className="min-w-0">
                 <p className="text-sm font-black text-gray-900 md:text-base">
-                  표기 원칙 — 상호는 적지 않고, 없는 성과는 만들지 않습니다
+                  표기 원칙 · 상호는 적지 않고, 없는 성과는 만들지 않습니다
                 </p>
                 <p className="mt-2 text-[13px] leading-relaxed text-gray-600 md:text-sm">
                   제품 상호와 브랜드명은 각 판매자의 노출 동의를 받기 전이라 적지 않고, 제품 종류만 적었습니다.
@@ -212,7 +212,7 @@ export default async function DetailPageReferencePage({
             </ol>
 
             <div className="mt-6 flex items-start gap-3 rounded-xl border border-gray-200 p-4 md:p-5">
-              <ShieldCheck size={16} className="mt-0.5 shrink-0 text-gray-400" strokeWidth={2} />
+              <ShieldCheck size={16} className="mt-0.5 shrink-0 text-gray-500" strokeWidth={2} />
               <p className="text-[13px] leading-relaxed text-gray-600 md:text-sm">
                 판매량이나 전환율 수치는 적지 않았습니다. 저희가 실측한 값이 아니기 때문입니다.
                 숫자가 필요하시면 진행 후 실제로 재서 드립니다.
@@ -248,7 +248,7 @@ export default async function DetailPageReferencePage({
             </div>
             <Link
               href="/services/detail-page"
-              className="mt-6 inline-block text-[13px] text-gray-500 underline underline-offset-4 transition-colors hover:text-gray-300"
+              className="mt-6 inline-flex items-center min-h-11 md:min-h-0 text-[13px] text-gray-400 underline underline-offset-4 transition-colors hover:text-gray-300"
             >
               제작 공정과 단가 보러 가기
             </Link>

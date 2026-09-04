@@ -231,7 +231,7 @@ export default function ReviewServicePage() {
               </a>
             </div>
 
-            <p className="mt-6 text-xs md:text-[13px] text-gray-500">
+            <p className="mt-6 text-xs md:text-[13px] text-gray-400">
               매장을 운영하시는 사장님께 드리는 안내입니다. 체험단 참여를 찾아오셨다면 이 페이지가 아닙니다.
             </p>
           </div>

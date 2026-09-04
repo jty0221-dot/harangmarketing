@@ -93,7 +93,7 @@ export default function TermsPage() {
             </div>
             <div>
               <h1 className="text-xl font-black text-gray-900">이용약관</h1>
-              <p className="text-xs text-gray-400">하랑마케팅 · 2026년 8월 30일 개정 · 2026년 9월 6일 시행</p>
+              <p className="text-xs text-gray-500">하랑마케팅 · 2026년 8월 30일 개정 · 2026년 9월 6일 시행</p>
             </div>
           </div>
 

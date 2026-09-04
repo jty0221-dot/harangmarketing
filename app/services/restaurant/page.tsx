@@ -122,7 +122,7 @@ export default function RestaurantPage() {
               <span className="text-orange-400">배달도 홀도</span> 살립니다
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              배민·쿠팡이츠 상위 노출부터 네이버 플레이스 SEO, 블로그 체험단까지 — 음식점 매출에 직접 연결되는 마케팅만 합니다.
+              배민·쿠팡이츠 상위 노출부터 네이버 플레이스 SEO, 블로그 체험단까지, 음식점 매출에 직접 연결되는 마케팅만 합니다.
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {RESULTS.map(r => (
@@ -134,7 +134,7 @@ export default function RestaurantPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/contact?industry=음식점"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-white font-bold text-sm transition-colors">
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition-colors">
                 음식점 무료 상담 <ArrowRight size={15} />
               </Link>
               <Link href="/free-check"

@@ -158,7 +158,7 @@ export default function GyeonggiPage() {
                 <div key={r.label}>
                   <div className="text-3xl md:text-4xl font-black text-blue-600 mb-1">{r.value}</div>
                   <div className="text-sm font-bold text-gray-900 mb-0.5">{r.label}</div>
-                  <div className="text-xs text-gray-400">{r.sub}</div>
+                  <div className="text-xs text-gray-500">{r.sub}</div>
                 </div>
               ))}
             </div>
@@ -170,7 +170,7 @@ export default function GyeonggiPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-10 text-center">
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">경기도 상권별 특성</h2>
-              <p className="text-gray-500 text-sm">지역마다 고객이 찾아오는 경로가 다릅니다 — 상권에 맞춰 채널을 나눕니다</p>
+              <p className="text-gray-500 text-sm">지역마다 고객이 찾아오는 경로가 다릅니다. 상권에 맞춰 채널을 나눕니다</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {REGIONS.map(r => (

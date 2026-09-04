@@ -79,7 +79,7 @@ export default function ShoppingPage() {
               <span className="text-purple-400">온·오프라인 동시에</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              스마트스토어·인스타그램 쇼핑부터 오프라인 매장 집객까지 — 쇼핑몰과 소매점의 두 채널을 동시에 살립니다.
+              스마트스토어·인스타그램 쇼핑부터 오프라인 매장 집객까지, 쇼핑몰과 소매점의 두 채널을 동시에 살립니다.
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {RESULTS.map(r => (

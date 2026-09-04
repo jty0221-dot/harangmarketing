@@ -61,7 +61,7 @@ export default function FaqAccordion({
                 </h3>
                 <ChevronDown
                   size={18}
-                  className="shrink-0 mt-0.5 text-gray-400 transition-transform duration-200 group-open:rotate-180"
+                  className="shrink-0 mt-0.5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
                   strokeWidth={2.5}
                 />
               </summary>

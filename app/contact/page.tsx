@@ -57,9 +57,28 @@ const PROCESS_STEPS = [
   { step: "04", title: "즉시 시작", desc: "계약 당일 착수" },
 ];
 
-function ContactPageInner() {
+/**
+ * 자가진단에서 넘어온 개수만 읽는 잎 컴포넌트.
+ *
+ * useSearchParams 는 이 훅을 부른 컴포넌트부터 가장 가까운 Suspense 경계까지를
+ * 미리 그린 HTML 에서 빼 버린다. 전에는 페이지 전체가 이 훅을 부르고 fallback 이
+ * null 이라 /contact 서버 HTML 이 통째로 비어 있었다 (h1 0개 · 제목 문구 0회).
+ * 그래서 훅을 이 잎 하나에 가두고 나머지 화면은 그대로 미리 그려지게 둔다.
+ */
+function ChecklistParam({ onCount }: { onCount: (n: number) => void }) {
   const searchParams = useSearchParams();
-  const checklistCount = Number(searchParams.get("checklist") ?? 0);
+  const raw = Number(searchParams.get("checklist") ?? 0);
+  const count = Number.isFinite(raw) ? raw : 0;
+  useEffect(() => {
+    onCount(count);
+  }, [count, onCount]);
+  return null;
+}
+
+export default function ContactPage() {
+  // 주소창 쿼리는 아래 ChecklistParam 이 하이드레이션 뒤에 채운다.
+  // 값이 안 와도 화면은 그대로 동작한다. 문구 한 줄과 메모 초안이 더 붙을 뿐이다.
+  const [checklistCount, setChecklistCount] = useState(0);
 
   const [step, setStep] = useState<"industry" | "form" | "done">("industry");
   const [selectedIndustry, setSelectedIndustry] = useState("");
@@ -124,6 +143,9 @@ function ContactPageInner() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <ChecklistParam onCount={setChecklistCount} />
+      </Suspense>
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
@@ -132,7 +154,7 @@ function ContactPageInner() {
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             {checklistCount >= 3 && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30 mb-5">
-                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-blue-400" />
                 <span className="text-blue-200 text-sm font-bold">자가진단에서 {checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.</span>
               </div>
             )}
@@ -166,13 +188,13 @@ function ContactPageInner() {
               {PROCESS_STEPS.map((s, i) => (
                 <div key={s.step} className="flex items-center gap-2 md:gap-3">
                   <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 transition-colors ${
-                    (step === "form" && i <= 1) || step === "done" ? "bg-blue-600 text-white" : i === 0 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-400"
+                    (step === "form" && i <= 1) || step === "done" ? "bg-blue-600 text-white" : i === 0 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"
                   }`}>
                     {s.step}
                   </div>
                   <div className="hidden sm:block">
                     <div className="text-xs font-bold text-gray-700">{s.title}</div>
-                    <div className="text-[11px] text-gray-400">{s.desc}</div>
+                    <div className="text-[11px] text-gray-600">{s.desc}</div>
                   </div>
                   {i < PROCESS_STEPS.length - 1 && <ChevronRight size={12} className="text-gray-200 hidden md:block" />}
                 </div>
@@ -191,7 +213,7 @@ function ContactPageInner() {
                 {step === "industry" && (
                   <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                     <h2 className="text-lg font-black text-gray-900 mb-1">어떤 업종을 운영하고 계신가요?</h2>
-                    <p className="text-xs text-gray-400 mb-6">업종에 맞는 전략을 추천해드립니다</p>
+                    <p className="text-xs text-gray-500 mb-6">업종에 맞는 전략을 추천해드립니다</p>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
                       {INDUSTRY_ICONS.map((ind) => {
@@ -206,7 +228,7 @@ function ContactPageInner() {
                                 : "border-gray-100 bg-gray-50 hover:border-blue-200"
                             }`}
                           >
-                            <Icon size={22} className={selectedIndustry === ind.id ? "text-blue-600" : "text-gray-400"} strokeWidth={1.5} />
+                            <Icon size={22} className={selectedIndustry === ind.id ? "text-blue-600" : "text-gray-500"} strokeWidth={1.5} />
                             <span className={`text-xs font-bold leading-tight ${selectedIndustry === ind.id ? "text-blue-700" : "text-gray-600"}`}>
                               {ind.label}
                             </span>
@@ -262,7 +284,7 @@ function ContactPageInner() {
                       다음 단계: 연락처 입력
                       <ArrowRight size={16} />
                     </button>
-                    {!selectedIndustry && <p className="text-xs text-gray-400 text-center mt-2">업종을 먼저 선택해주세요</p>}
+                    {!selectedIndustry && <p className="text-xs text-gray-500 text-center mt-2">업종을 먼저 선택해주세요</p>}
                   </div>
                 )}
 
@@ -281,7 +303,7 @@ function ContactPageInner() {
                     </div>
 
                     <h2 className="text-lg font-black text-gray-900 mb-1">어디로 연락드릴까요?</h2>
-                    <p className="text-xs text-gray-400 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
+                    <p className="text-xs text-gray-500 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <input
@@ -386,7 +408,7 @@ function ContactPageInner() {
                       </ol>
                     </div>
 
-                    <p className="text-xs text-gray-400 mb-4">급하신 경우 아래로 바로 연락주세요</p>
+                    <p className="text-xs text-gray-500 mb-4">급하신 경우 아래로 바로 연락주세요</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
                       <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
@@ -398,7 +420,7 @@ function ContactPageInner() {
                     </div>
                     <div className="flex justify-center items-center gap-1.5">
                       <Handshake size={13} className="text-blue-400" strokeWidth={2.5} />
-                      <p className="text-xs text-gray-400">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</p>
+                      <p className="text-xs text-gray-500">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</p>
                     </div>
                   </div>
                 )}
@@ -417,9 +439,9 @@ function ContactPageInner() {
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">카카오톡 채널</div>
-                        <div className="text-xs text-gray-400">평균 응답 10분 이내</div>
+                        <div className="text-xs text-gray-500">평균 응답 10분 이내</div>
                       </div>
-                      <ArrowRight size={13} className="text-gray-300 group-hover:text-yellow-500 transition-colors" />
+                      <ArrowRight size={13} className="text-gray-500 group-hover:text-yellow-500 transition-colors" />
                     </a>
                     <a href="tel:010-7541-9054"
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
@@ -428,9 +450,9 @@ function ContactPageInner() {
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">010-7541-9054</div>
-                        <div className="text-xs text-gray-400">평일 09:00~18:00</div>
+                        <div className="text-xs text-gray-600">평일 09:00~18:00</div>
                       </div>
-                      <ArrowRight size={13} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
+                      <ArrowRight size={13} className="text-gray-600 group-hover:text-blue-500 transition-colors" />
                     </a>
                     <a href="mailto:harangmarketing@naver.com"
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
@@ -439,9 +461,9 @@ function ContactPageInner() {
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">이메일 문의</div>
-                        <div className="text-xs text-gray-400 truncate">harangmarketing@naver.com</div>
+                        <div className="text-xs text-gray-500 truncate">harangmarketing@naver.com</div>
                       </div>
-                      <ArrowRight size={13} className="text-gray-300 group-hover:text-gray-500 transition-colors" />
+                      <ArrowRight size={13} className="text-gray-500 group-hover:text-gray-700 transition-colors" />
                     </a>
                   </div>
                 </div>
@@ -477,7 +499,7 @@ function ContactPageInner() {
                         <div key={row.ind} className="flex items-center gap-2">
                           <div className="flex-1 min-w-0">
                             <div className="text-xs font-bold text-gray-800 truncate">{row.ind}</div>
-                            <div className="text-[11px] text-gray-400">{r.keyword}</div>
+                            <div className="text-[11px] text-gray-600">{r.keyword}</div>
                           </div>
                           <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
                             {r.days}일 계측 {fmt(r)}
@@ -493,7 +515,7 @@ function ContactPageInner() {
                   <h4 className="font-bold text-white text-sm mb-3">무료 진단에서 받는 것</h4>
                   <ul className="space-y-2">
                     {["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "현실적인 목표 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"].map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-xs text-blue-100">
+                      <li key={item} className="flex items-center gap-2 text-xs text-blue-50">
                         <CheckCircle2 size={12} className="text-blue-300 shrink-0" strokeWidth={2.5} />
                         {item}
                       </li>
@@ -508,13 +530,5 @@ function ContactPageInner() {
       </main>
       <Footer />
     </>
-  );
-}
-
-export default function ContactPage() {
-  return (
-    <Suspense fallback={null}>
-      <ContactPageInner />
-    </Suspense>
   );
 }

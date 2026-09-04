@@ -94,13 +94,13 @@ export default function FloatingCTA() {
             <div className="mb-3">
               <div className="flex items-center justify-between mb-1.5">
                 <p className="text-sm font-black text-gray-900">하랑마케팅 빠른 상담</p>
-                <button onClick={() => setExpanded(false)} className="p-0.5 rounded hover:bg-gray-100 text-gray-400">
+                <button onClick={() => setExpanded(false)} className="p-0.5 rounded hover:bg-gray-100 text-gray-500">
                   <X size={14} />
                 </button>
               </div>
               <div className="flex items-center gap-1.5 mb-1">
                 <Handshake size={10} className="text-blue-400" strokeWidth={2.5} />
-                <span className="text-[11px] text-gray-400">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
+                <span className="text-[11px] text-gray-600">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
               </div>
               {/* Business hours status */}
               <div className="flex items-center gap-1.5 mt-1.5">

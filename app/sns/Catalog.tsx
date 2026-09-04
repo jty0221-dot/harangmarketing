@@ -98,7 +98,7 @@ export default function Catalog() {
     <div>
       {/* 검색 */}
       <div className="relative mb-4 max-w-md">
-        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" strokeWidth={2.2} />
+        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" strokeWidth={2.2} />
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}

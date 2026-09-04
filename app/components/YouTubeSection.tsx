@@ -28,7 +28,7 @@ const CURRICULUM = [
     stepColor: "bg-blue-600",
     videoId: "owgcIulD8xk",
     title: "네이버 스마트 플레이스 예약·쿠폰·마케팅 메시지 완벽 활용 가이드",
-    desc: "1페이지 노출됐는데 매출이 그대로인 이유 — 예약·쿠폰·메시지로 방문 전환율 높이는 실전 가이드.",
+    desc: "1페이지 노출됐는데 매출이 그대로인 이유. 예약·쿠폰·메시지로 방문 전환율 높이는 실전 가이드.",
     duration: "7분 28초",
     badge: "플레이스 활용",
   },
@@ -116,7 +116,7 @@ export default function YouTubeSection() {
             ))}
           </div>
 
-          <p className="text-center text-gray-600 text-xs mt-6">
+          <p className="text-center text-gray-400 text-xs mt-6">
             채널에 새 영상이 업로드되면 이 목록이 자동으로 바뀝니다 ·{" "}
             <a href={CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 md:min-h-0 text-gray-400 hover:text-white underline transition-colors">
               채널 전체 보기
@@ -130,12 +130,12 @@ export default function YouTubeSection() {
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #fff 0%, transparent 60%), radial-gradient(circle at 80% 20%, #fff 0%, transparent 50%)" }} />
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
-            <p className="text-red-100 text-xs font-bold uppercase tracking-widest mb-1.5">무료 마케팅 강의</p>
+            <p className="text-white text-xs font-bold uppercase tracking-widest mb-1.5">무료 마케팅 강의</p>
             <h3 className="text-xl md:text-2xl font-black text-white mb-1" style={{ letterSpacing: "-0.02em" }}>
               새 영상 올라올 때마다 알림 받아보세요
             </h3>
-            <p className="text-red-100 text-sm">
-              네이버 플레이스 · 블로그 · 리뷰 · SNS — 실전 노하우를 무료로 공개합니다
+            <p className="text-white text-sm">
+              네이버 플레이스 · 블로그 · 리뷰 · SNS 실전 노하우를 무료로 공개합니다
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
@@ -166,7 +166,7 @@ export default function YouTubeSection() {
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-              <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>마케팅 교과서</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>마케팅 교과서</span>
               <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
             </div>
             <h2 className="text-2xl md:text-3xl font-black mb-2" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
@@ -185,7 +185,7 @@ export default function YouTubeSection() {
 
           <div className="mt-8 pt-8 border-t border-gray-200 text-center">
             <p className="text-sm mb-4" style={{ color: "var(--h-muted)" }}>
-              영상이 도움됐다면 구독과 좋아요로 응원해주세요 — 더 좋은 콘텐츠를 만드는 힘이 됩니다
+              영상이 도움됐다면 구독과 좋아요로 응원해주세요. 더 좋은 콘텐츠를 만드는 힘이 됩니다
             </p>
             <a
               href={SUBSCRIBE_URL}
@@ -243,7 +243,7 @@ function CurriculumCard({
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2 mb-1.5">
           <span className="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{badge}</span>
-          <span className="text-[11px] text-gray-400">{duration}</span>
+          <span className="text-[11px] text-gray-600">{duration}</span>
         </div>
         <h3 className="text-sm md:text-base font-black leading-snug mb-1.5 line-clamp-2" style={{ color: "var(--h-dark)" }}>
           {title}

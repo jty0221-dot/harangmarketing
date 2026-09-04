@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 블로그 | 소상공인 마케팅 노하우",
     description: "10년 경력 실무진이 직접 쓰는 소상공인 마케팅 인사이트",
     url: "https://www.harangmarketing.com/blog",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 블로그 — 소상공인 마케팅 노하우" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 블로그 | 소상공인 마케팅 노하우" }],
   },
 };
 
@@ -39,7 +39,7 @@ const BLOG_LD = [
   webPageLd({
     path: "/blog",
     type: "CollectionPage",
-    name: "마케팅 인사이트 — 하랑마케팅",
+    name: "마케팅 인사이트 | 하랑마케팅",
     description: "소상공인이 바로 적용할 수 있는 실전 마케팅 노하우 모음.",
   }),
   breadcrumbLd([

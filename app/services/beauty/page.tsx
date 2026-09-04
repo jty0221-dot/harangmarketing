@@ -113,7 +113,7 @@ export default function BeautyLandingPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-400 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-pink-700 hover:bg-pink-800 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
               >
                 무료 상담 신청 <ArrowRight size={15} />
               </Link>
@@ -191,7 +191,7 @@ export default function BeautyLandingPage() {
         />
 
         {/* CTA */}
-        <section className="py-14 md:py-20 bg-pink-600">
+        <section className="py-14 md:py-20 bg-pink-700">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
               <TrendingUp size={22} className="text-white" strokeWidth={2.5} />

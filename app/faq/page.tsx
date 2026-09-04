@@ -216,7 +216,7 @@ const FAQ_LD = [
   // 공식 FAQ 목록에 쓰면 FAQPage 와 신호가 충돌한다.
   webPageLd({
     path: "/faq",
-    name: "자주 묻는 질문 — 하랑마케팅",
+    name: "자주 묻는 질문 | 하랑마케팅",
     description:
       "하랑마케팅 상담 전 가장 많이 물어보시는 질문과 답변. 비용, 계약 기간, 성과, 지역, 업종별 궁금증을 정리했습니다.",
   }),
@@ -314,7 +314,7 @@ export default function FAQPage() {
                             Q
                           </div>
                           <h3 className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</h3>
-                          <svg className="w-4 h-4 text-gray-400 shrink-0 mt-0.5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <svg className="w-4 h-4 text-gray-500 shrink-0 mt-0.5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                           </svg>
                         </summary>
@@ -339,7 +339,7 @@ export default function FAQPage() {
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
               더 궁금한 것이 있으신가요?
             </h2>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-md mx-auto">
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-md mx-auto">
               위 내용으로 해결이 안 된 경우 바로 물어보세요.<br />
               카카오톡 평균 응답 10분 · 전화 즉시 연결
             </p>
@@ -367,7 +367,7 @@ export default function FAQPage() {
                 무료 진단 신청 <ArrowRight size={14} />
               </Link>
             </div>
-            <p className="text-xs text-gray-400 mt-5">상담 비용 없음 · 계약 강요 없음 · 대표가 직접 연락</p>
+            <p className="text-xs text-gray-500 mt-5">상담 비용 없음 · 계약 강요 없음 · 대표가 직접 연락</p>
           </div>
         </section>
       </main>

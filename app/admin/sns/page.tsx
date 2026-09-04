@@ -212,7 +212,7 @@ export default function AdminSnsPage() {
           </div>
 
           {loading ? (
-            <p className="text-sm text-gray-400">불러오는 중...</p>
+            <p className="text-sm text-gray-500">불러오는 중...</p>
           ) : visible.length === 0 ? (
             <p className="text-sm text-gray-400 bg-white rounded-2xl ring-1 ring-gray-100 p-8 text-center">
               해당 상태의 주문이 없습니다.
@@ -307,7 +307,7 @@ export default function AdminSnsPage() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <StickyNote size={13} className="text-gray-400 shrink-0" strokeWidth={2.5} />
+                          <StickyNote size={13} className="text-gray-500 shrink-0" strokeWidth={2.5} />
                           <input
                             value={memoDraft}
                             onChange={(e) => setMemoDraft(e.target.value)}

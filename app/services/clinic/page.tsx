@@ -152,7 +152,7 @@ export default function ClinicLandingPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
               >
                 무료 상담 신청 <ArrowRight size={15} />
               </Link>
@@ -234,7 +234,7 @@ export default function ClinicLandingPage() {
                     의료광고 심의 대상 판정 자료
                     <ArrowRight
                       size={15}
-                      className="text-gray-400 group-hover:text-blue-600 transition-colors"
+                      className="text-gray-500 group-hover:text-blue-600 transition-colors"
                     />
                   </p>
                   <p className="text-sm text-gray-600 leading-relaxed">
@@ -266,7 +266,7 @@ export default function ClinicLandingPage() {
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
               우리 의원에 맞는 전략이 궁금하신가요?
             </h2>
-            <p className="text-blue-100 text-sm mb-7">
+            <p className="text-blue-50 text-sm mb-7">
               진료과목 · 지역 · 경쟁 현황을 분석해서<br />
               맞춤 전략을 무료로 제안해드립니다.
             </p>

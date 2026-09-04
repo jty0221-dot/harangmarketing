@@ -389,13 +389,13 @@ export default function ChatWidget() {
             <div className="flex-1 min-w-0">
               <p className="text-sm font-black text-gray-900">정보라 팀장</p>
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                <p className="text-[11px] text-gray-400">바로 답변 · 24시간 문의 가능</p>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                <p className="text-[11px] text-gray-600">바로 답변 · 24시간 문의 가능</p>
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400"
+              className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-500"
               aria-label="챗봇 닫기"
             >
               <X size={18} />

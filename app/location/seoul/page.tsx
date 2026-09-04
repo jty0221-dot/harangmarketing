@@ -105,7 +105,7 @@ export default function SeoulPage() {
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
                   <div className="text-xl font-black text-white mb-0.5">{s.val}</div>
-                  <div className="text-[11px] text-gray-500">{s.label}</div>
+                  <div className="text-[11px] text-gray-400">{s.label}</div>
                 </div>
               ))}
             </div>

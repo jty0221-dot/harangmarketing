@@ -166,7 +166,7 @@ export default function LocationHubPage() {
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-4">{a.body}</p>
-                    <p className="text-xs md:text-[13px] text-gray-400 mb-4 truncate" title={a.spots}>
+                    <p className="text-xs md:text-[13px] text-gray-500 mb-4 truncate" title={a.spots}>
                       {a.spots}
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 group-hover:gap-2.5 transition-all">

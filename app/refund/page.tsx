@@ -63,7 +63,7 @@ export default function RefundPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px] min-h-screen bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-16">
-          <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6">
+          <Link href="/" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6">
             <ArrowLeft size={14} /> 홈으로
           </Link>
 
@@ -73,7 +73,7 @@ export default function RefundPage() {
             </div>
             <div>
               <h1 className="text-xl font-black text-gray-900">환불·취소 정책</h1>
-              <p className="text-xs text-gray-400">하랑마케팅 · 최종 개정: 2026년 8월 30일</p>
+              <p className="text-xs text-gray-500">하랑마케팅 · 최종 개정: 2026년 8월 30일</p>
             </div>
           </div>
 

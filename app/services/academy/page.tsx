@@ -91,7 +91,7 @@ export default function AcademyPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/contact?industry=학원"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-sm transition-colors">
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-green-700 hover:bg-green-800 text-white font-bold text-sm transition-colors">
                 학원 무료 상담 <ArrowRight size={15} />
               </Link>
               <Link href="/free-check"
@@ -178,7 +178,7 @@ export default function AcademyPage() {
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">학원 무료 진단 받기</h2>
             <p className="text-gray-400 text-sm mb-7">경쟁 학원 분석·현재 순위·개선 방향까지 0원.</p>
             <Link href="/contact?industry=학원"
-              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm">
+              className="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm">
               무료 상담 신청 <ArrowRight size={15} />
             </Link>
           </div>

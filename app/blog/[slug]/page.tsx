@@ -799,7 +799,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <main className="pt-[104px] md:pt-[108px]">
           <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
             <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-              <Link href="/blog" className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
+              <Link href="/blog" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
                 <ArrowLeft size={13} /> 블로그 목록으로
               </Link>
               <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border mb-4 bg-blue-50 text-blue-700 border-blue-200">
@@ -882,7 +882,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-            <Link href="/blog" className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
+            <Link href="/blog" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
               <ArrowLeft size={13} /> 블로그 목록으로
             </Link>
             <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border mb-4 ${post.tagColor}`}>
@@ -974,7 +974,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-6">
               <p className="text-base font-black text-gray-900">다른 인사이트도 읽어보세요</p>
-              <Link href="/blog" className="inline-flex items-center gap-1 text-blue-600 font-bold text-xs hover:underline">
+              <Link href="/blog" className="inline-flex items-center gap-1 min-h-11 md:min-h-0 text-blue-600 font-bold text-xs hover:underline">
                 전체 보기 <ArrowRight size={11} />
               </Link>
             </div>

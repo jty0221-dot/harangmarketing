@@ -24,7 +24,7 @@ const ABOUT_LD = [
   webPageLd({
     path: "/about",
     type: "AboutPage",
-    name: "회사소개 — 하랑마케팅",
+    name: "회사소개 | 하랑마케팅",
     description:
       "해병대 장교 출신 전태영 대표가 직접 운영하는 소상공인 전문 마케팅 대행사. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 이야기.",
   }),
@@ -188,7 +188,7 @@ export default function AboutPage() {
                   {/* 375px 3칸에서 칸 안쪽이 71px 뿐이라 '97.4%' 의 % 가 둘째 줄로 떨어졌다.
                       숫자는 줄바꿈하지 않는다 (2026-08-27 (목) 수정) */}
                   <div className="text-xl sm:text-2xl font-black text-white mb-0.5 whitespace-nowrap tabular-nums">{s.val}</div>
-                  <div className="text-xs text-gray-500">{s.label}</div>
+                  <div className="text-xs text-gray-400">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -210,7 +210,7 @@ export default function AboutPage() {
         {/* Pain Points */}
         <section className="py-14 md:py-20 bg-white border-b border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-red-500 uppercase tracking-widest mb-6 text-center">혹시 이런 고민 중이신가요?</p>
+            <p className="text-xs font-bold text-red-700 uppercase tracking-widest mb-6 text-center">혹시 이런 고민 중이신가요?</p>
             <div className="space-y-5">
               {[
                 "마케팅, 해야 하는 건 아는데 막상 하려니 너무 어렵고 귀찮습니다.",
@@ -243,10 +243,10 @@ export default function AboutPage() {
                 <div className="w-full bg-blue-50 border border-blue-100 rounded-2xl p-4 text-center">
                   <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
                   <div className="text-xs text-blue-600 font-bold">하랑마케팅 대표</div>
-                  <div className="text-[11px] text-gray-400 mt-1">해병대 장교 출신 · 마케팅 경력 10년+ · 7년차 대표</div>
+                  <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년+ · 7년차 대표</div>
                   <div className="flex gap-0.5 justify-center mt-2">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={11} className="text-blue-400 fill-blue-400" />
+                      <Star key={i} size={11} className="text-blue-600 fill-blue-600" />
                     ))}
                   </div>
                 </div>
@@ -298,7 +298,7 @@ export default function AboutPage() {
             <div className="text-center mb-12">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">하랑의 약속</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">왜 하랑마케팅을 선택해야 할까요?</h2>
-              <p className="text-gray-400 text-sm mt-2">미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다</p>
+              <p className="text-gray-500 text-sm mt-2">미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다</p>
             </div>
             <div className="space-y-4">
               {PROMISES.map((p) => {
@@ -334,7 +334,7 @@ export default function AboutPage() {
             <div className="text-center mb-10">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">All-in-One 서비스</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">하랑을 통하면 원스텝으로 해결됩니다</h2>
-              <p className="text-gray-400 text-sm mt-2">복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다</p>
+              <p className="text-gray-500 text-sm mt-2">복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {SERVICES_LIST.map((s) => {
@@ -418,7 +418,7 @@ export default function AboutPage() {
                 <div key={s.label} className="bg-white rounded-2xl p-4 md:p-5 text-center border border-gray-100 shadow-sm">
                   <div className="text-2xl md:text-3xl font-black text-blue-600 mb-0.5">{s.value}</div>
                   <div className="text-xs font-black text-gray-800">{s.label}</div>
-                  <div className="text-[11px] text-gray-400 mt-0.5">{s.sub}</div>
+                  <div className="text-[11px] text-gray-500 mt-0.5">{s.sub}</div>
                 </div>
               ))}
             </div>
@@ -439,8 +439,8 @@ export default function AboutPage() {
               <div className="min-w-[600px] md:min-w-0 px-4 md:px-0">
                 {/* Header row */}
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mb-1">
-                  <div className="py-3 px-4 text-xs font-black text-gray-400 uppercase tracking-widest">항목</div>
-                  <div className="py-3 px-4 rounded-t-2xl bg-gray-100 text-center text-xs font-black text-gray-500 uppercase tracking-widest">일반 대행사</div>
+                  <div className="py-3 px-4 text-xs font-black text-gray-500 uppercase tracking-widest">항목</div>
+                  <div className="py-3 px-4 rounded-t-2xl bg-gray-100 text-center text-xs font-black text-gray-600 uppercase tracking-widest">일반 대행사</div>
                   <div className="py-3 px-4 rounded-t-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
                 </div>
                 {[
@@ -454,8 +454,8 @@ export default function AboutPage() {
                 ].map((row, i) => (
                   <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] gap-0 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"}`}>
                     <div className="py-4 px-4 text-sm font-bold text-gray-700 flex items-center border-b border-gray-100">{row.item}</div>
-                    <div className="py-4 px-4 text-sm text-gray-400 flex items-center border-b border-gray-100 bg-gray-100/50">
-                      <CheckCircle2 size={13} className="text-gray-300 shrink-0 mr-2" strokeWidth={2.5} />
+                    <div className="py-4 px-4 text-sm text-gray-600 flex items-center border-b border-gray-100 bg-gray-100/50">
+                      <CheckCircle2 size={13} className="text-gray-600 shrink-0 mr-2" strokeWidth={2.5} />
                       {row.general}
                     </div>
                     <div className="py-4 px-4 text-sm text-blue-700 font-semibold flex items-center border-b border-blue-50 bg-blue-50/50">
@@ -467,7 +467,7 @@ export default function AboutPage() {
                 {/* Footer row */}
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mt-1">
                   <div />
-                  <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-400 font-semibold">일반 대행사</div>
+                  <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-600 font-semibold">일반 대행사</div>
                   <div className="rounded-b-2xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 px-4 text-center text-xs text-white font-black">재계약률 {SITE.stats.renewalRate}</div>
                 </div>
               </div>
@@ -494,7 +494,7 @@ export default function AboutPage() {
                   <summary className="flex items-center gap-3 p-5 cursor-pointer list-none select-none">
                     <span className="w-6 h-6 rounded-lg bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
                     <span className="font-bold text-gray-800 text-sm flex-1">Q. {faq.q}</span>
-                    <svg className="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
@@ -537,7 +537,7 @@ export default function AboutPage() {
 
             <div className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center">
               <p className="text-sm font-black text-gray-900 mb-1">더 궁금한 것이 있으신가요?</p>
-              <p className="text-xs text-gray-500 mb-4">24시간 이내 대표가 직접 답변드립니다</p>
+              <p className="text-xs text-gray-600 mb-4">24시간 이내 대표가 직접 답변드립니다</p>
               <div className="flex flex-col sm:flex-row gap-2 justify-center">
                 <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-sm transition-colors">
@@ -574,7 +574,7 @@ export default function AboutPage() {
             {/* ── 로고타입 — 가로형 ── */}
             <div className="mb-16">
               <h3 className="text-base font-black text-gray-900 mb-1">로고타입 · 가로형</h3>
-              <p className="text-sm text-gray-400 mb-8">기본 사용 형태입니다. 넓은 지면 및 디지털 환경, 명함, 인쇄물 등에 사용합니다.</p>
+              <p className="text-sm text-gray-500 mb-8">기본 사용 형태입니다. 넓은 지면 및 디지털 환경, 명함, 인쇄물 등에 사용합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* 컬러 */}
@@ -584,7 +584,7 @@ export default function AboutPage() {
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">컬러</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">기본 사용 버전</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">기본 사용 버전</p>
                   </div>
                 </div>
                 {/* 블루 배경 */}
@@ -594,7 +594,7 @@ export default function AboutPage() {
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">블루 배경</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">컬러 배경 사용 시</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">컬러 배경 사용 시</p>
                   </div>
                 </div>
                 {/* 흑백 */}
@@ -604,7 +604,7 @@ export default function AboutPage() {
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">흑백</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">흑백 인쇄 시</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">흑백 인쇄 시</p>
                   </div>
                 </div>
               </div>
@@ -613,7 +613,7 @@ export default function AboutPage() {
             {/* ── 로고타입 — 세로형 ── */}
             <div className="mb-16">
               <h3 className="text-base font-black text-gray-900 mb-1">로고타입 · 세로형</h3>
-              <p className="text-sm text-gray-400 mb-8">정방형 지면, SNS 프로필, 앱 아이콘 등 세로 배치가 적합한 환경에 사용합니다.</p>
+              <p className="text-sm text-gray-500 mb-8">정방형 지면, SNS 프로필, 앱 아이콘 등 세로 배치가 적합한 환경에 사용합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
@@ -622,7 +622,7 @@ export default function AboutPage() {
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">영문형</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">Harang 영문 로고타입</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">Harang 영문 로고타입</p>
                   </div>
                 </div>
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
@@ -631,7 +631,7 @@ export default function AboutPage() {
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
                     <p className="text-xs font-bold text-gray-700">국문형</p>
-                    <p className="text-[11px] text-gray-400 mt-0.5">하랑 국문 로고타입</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">하랑 국문 로고타입</p>
                   </div>
                 </div>
               </div>
@@ -640,11 +640,11 @@ export default function AboutPage() {
             {/* ── 슬로건 ── */}
             <div className="mb-16">
               <h3 className="text-base font-black text-gray-900 mb-1">슬로건</h3>
-              <p className="text-sm text-gray-400 mb-8">하랑마케팅의 핵심 가치를 담은 브랜드 슬로건입니다.</p>
+              <p className="text-sm text-gray-500 mb-8">하랑마케팅의 핵심 가치를 담은 브랜드 슬로건입니다.</p>
               <div className="rounded-2xl border border-gray-100 bg-gray-50 flex items-center justify-center py-12 px-6">
                 <div className="text-center">
                   <p className="text-3xl md:text-5xl font-black text-blue-600 tracking-tight mb-3">하랑, 함께 더 높이</p>
-                  <p className="text-sm text-gray-400">사장님과 함께, 더 높은 곳을 향해 성장합니다</p>
+                  <p className="text-sm text-gray-500">사장님과 함께, 더 높은 곳을 향해 성장합니다</p>
                 </div>
               </div>
             </div>
@@ -652,7 +652,7 @@ export default function AboutPage() {
             {/* ── 브랜드 색상 ── */}
             <div className="mb-10">
               <h3 className="text-base font-black text-gray-900 mb-1">브랜드 색상</h3>
-              <p className="text-sm text-gray-400 mb-8">하랑마케팅의 공식 브랜드 컬러입니다. CI 적용 시 아래 색상 규정을 준수해야 합니다.</p>
+              <p className="text-sm text-gray-500 mb-8">하랑마케팅의 공식 브랜드 컬러입니다. CI 적용 시 아래 색상 규정을 준수해야 합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
@@ -683,12 +683,12 @@ export default function AboutPage() {
                 ].map((c) => (
                   <div key={c.hex} className="rounded-2xl border border-gray-100 overflow-hidden">
                     <div className="h-32 flex items-end p-4" style={{ background: c.hex }}>
-                      <span className={`text-sm font-black tracking-wider ${c.dark ? "text-white/70" : "text-gray-800/70"}`}>{c.hex}</span>
+                      <span className={`text-sm font-black tracking-wider ${c.dark ? "text-white" : "text-gray-900"}`}>{c.hex}</span>
                     </div>
                     <div className="p-4">
                       <p className="font-black text-sm text-gray-900 mb-1">{c.name}</p>
-                      <p className="text-[11px] text-gray-400 mb-0.5">{c.rgb}</p>
-                      <p className="text-[11px] text-gray-400 mb-2">{c.cmyk}</p>
+                      <p className="text-[11px] text-gray-500 mb-0.5">{c.rgb}</p>
+                      <p className="text-[11px] text-gray-500 mb-2">{c.cmyk}</p>
                       <p className="text-[11px] text-gray-500 leading-relaxed">{c.desc}</p>
                     </div>
                   </div>

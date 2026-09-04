@@ -35,7 +35,7 @@ const LD = [
   webPageLd({
     path: PATH,
     type: "CollectionPage",
-    name: "카페 배포 레퍼런스 — 하랑마케팅",
+    name: "카페 배포 레퍼런스 | 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음.`,
   }),
   breadcrumbLd([

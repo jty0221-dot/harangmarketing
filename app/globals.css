@@ -19,7 +19,7 @@
   --h-bg:         var(--w-cn-99);     /* #F7F7F8 */
   --h-surface:    var(--w-cn-98);     /* #F4F4F5 */
   --h-border:     var(--w-cn-96);     /* #E1E2E4 */
-  --h-muted:      var(--w-cn-50);     /* #70737C */
+  --h-muted:      var(--w-cn-40);     /* #5A5C63 — 옅은 배경 대비 확보 */
   --h-rule:       3px solid var(--w-blue-50);
 
   /* Hero dark tokens */
@@ -548,9 +548,9 @@ body { overflow-x: hidden; }
   --cd-body:  #3c4459;
   --cd-body-2:#5a627a;
 
-  --cd-muted:   #7a8298;
-  --cd-muted-2: #8c95ab;
-  --cd-muted-3: #a2aabd;
+  --cd-muted:   #4f566b;
+  --cd-muted-2: #5f6880;
+  --cd-muted-3: #6a7389;
 
   --cd-dark:   #0b1226;
   --cd-dark-2: #101a36;
@@ -559,9 +559,9 @@ body { overflow-x: hidden; }
   --cd-on-dark:   #c6cfe4;
   --cd-on-dark-2: #98a3bc;
   --cd-on-dark-3: #93a2c4;
-  --cd-on-dark-4: #6c7488;
+  --cd-on-dark-4: #868ea3;
 
-  --cd-sale:    #e02b2b;
+  --cd-sale:    #d42020;
   --cd-sale-bg: #fff3f3;
 }
 
@@ -907,8 +907,8 @@ body { overflow-x: hidden; }
   --w-label: var(--w-cn-17);            /* 본문 글자 */
   --w-label-strong: var(--w-cn-10);     /* 제목 */
   --w-label-neutral: var(--w-cn-30);
-  --w-label-alt: var(--w-cn-50);        /* 보조 설명 */
-  --w-label-assistive: var(--w-cn-70);  /* 더 약한 보조 */
+  --w-label-alt: var(--w-cn-40);        /* 보조 설명 — #F4F4F5·#EAEBEC 위 4.5:1 확보 */
+  --w-label-assistive: var(--w-cn-50);  /* 더 약한 보조 — 흰 바탕 2.79 → 4.73 */
   --w-label-disable: var(--w-cn-80);
 
   --w-line: var(--w-cn-97);             /* 옅은 구분선. app/wds.css 의 #EAEBEC 과 같은 값 */

@@ -36,7 +36,7 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
           size={16}
           strokeWidth={2.5}
           className="absolute left-4 top-1/2 -translate-y-1/2"
-          style={{ color: "var(--w-label-disable)" }}
+          style={{ color: "var(--w-label-assistive)" }}
         />
         <input
           value={q}

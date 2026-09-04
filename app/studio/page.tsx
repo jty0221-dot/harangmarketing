@@ -71,7 +71,7 @@ const LD = [
   },
   webPageLd({
     path: PATH,
-    name: "하랑 스튜디오 — 동영상 GIF 변환 · 사진 세탁 프로그램",
+    name: "하랑 스튜디오 | 동영상 GIF 변환 · 사진 세탁 프로그램",
     description:
       `현장 사진 ${STUDIO.trialCount}장을 1분 안에 정리하고 영상을 움짤로 바꾸는 윈도우 프로그램. ` +
       `업로드 없이 내 컴퓨터에서 처리합니다. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
@@ -153,7 +153,7 @@ export default function StudioPage() {
               <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
                 <img
                   src="/studio/demo-flow.gif"
-                  alt="하랑 스튜디오 사용 순서 — 사진을 넣고 세탁 강도를 고르고 실행합니다"
+                  alt="하랑 스튜디오 사용 순서. 사진을 넣고 세탁 강도를 고르고 실행합니다"
                   width={1000}
                   height={633}
                   loading="eager"
@@ -184,7 +184,7 @@ export default function StudioPage() {
                   <div className="text-sm font-bold text-white">{m.job}</div>
                   <div className="mt-3 flex items-center gap-3">
                     <div className="flex-1">
-                      <div className="text-[11px] font-black uppercase tracking-wider text-gray-500">
+                      <div className="text-[11px] font-black uppercase tracking-wider text-gray-400">
                         손으로
                       </div>
                       <div className="mt-0.5 text-sm text-gray-400 line-through">{m.manual}</div>
@@ -319,7 +319,7 @@ export default function StudioPage() {
                       <td className="px-4 py-3 font-bold text-gray-700">{r.item}</td>
                       <td className="px-4 py-3 text-gray-500">
                         <span className="inline-flex items-center gap-1.5">
-                          <X size={13} className="shrink-0 text-gray-300" strokeWidth={2.5} />
+                          <X size={13} className="shrink-0 text-gray-500" strokeWidth={2.5} />
                           {r.online}
                         </span>
                       </td>
@@ -392,7 +392,7 @@ export default function StudioPage() {
                     <span className="text-2xl font-black tracking-tight text-gray-900">
                       {won(p.price)}
                     </span>
-                    <span className="text-sm font-bold text-gray-400">원</span>
+                    <span className="text-sm font-bold text-gray-500">원</span>
                   </div>
                   {p.perMonth && p.perMonth !== p.price && (
                     <div className="mt-0.5 text-xs font-bold text-blue-600">
@@ -511,7 +511,7 @@ export default function StudioPage() {
                 ))}
 
                 <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200">
-                  <div className="text-xs font-black uppercase tracking-wider text-gray-400">
+                  <div className="text-xs font-black uppercase tracking-wider text-gray-500">
                     왜 이게 뜨나요
                   </div>
                   <p className="mt-1.5 text-xs leading-relaxed text-gray-600">
@@ -529,7 +529,7 @@ export default function StudioPage() {
                 <span className="text-sm font-black text-gray-900">
                   받으신 파일이 맞는지 확인하는 법
                 </span>
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-gray-500">
                   버전 {STUDIO.version} · 약 {STUDIO.fileSizeMb}MB
                 </span>
               </div>
@@ -586,7 +586,7 @@ export default function StudioPage() {
               </a>
             </div>
 
-            <p className="mt-5 text-xs text-blue-100">
+            <p className="mt-5 text-xs text-blue-50">
               마케팅 대행도 함께 필요하시면{" "}
               <Link href="/services" className="font-black underline underline-offset-2">
                 서비스 안내

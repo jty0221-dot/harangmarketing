@@ -91,11 +91,11 @@ export default function AdminChargesPage() {
           )}
 
           {loading ? (
-            <p className="text-sm text-gray-400">불러오는 중...</p>
+            <p className="text-sm text-gray-500">불러오는 중...</p>
           ) : charges.length === 0 ? (
             <div className="bg-white rounded-2xl ring-1 ring-gray-100 p-10 text-center">
               <Wallet size={24} className="text-gray-300 mx-auto mb-2" strokeWidth={2} />
-              <p className="text-sm text-gray-400">입금 확인을 기다리는 충전 신청이 없습니다.</p>
+              <p className="text-sm text-gray-500">입금 확인을 기다리는 충전 신청이 없습니다.</p>
             </div>
           ) : (
             <div className="space-y-2">
