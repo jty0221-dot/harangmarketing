@@ -8,7 +8,8 @@ import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import {
-  byDepth, PLACE_RANK_AS_OF, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE, PLACE_RANK_TOTALS,
+  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_HELD, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
+  PLACE_RANK_RISEN, PLACE_RANK_TOTALS,
 } from "../lib/place-rank-cases";
 
 export const metadata: Metadata = {
@@ -58,20 +59,20 @@ export default function PortfolioPage() {
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
                 위가 블로그에 글로 공개한 사례라면, 여기는 순위를 매일 재서 남긴 기록입니다.
                 {" "}{PLACE_RANK_AS_OF} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다.
-                {" "}그중 상승이 확인된 {PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 남겼고, 여기는 시작 순위가 가장 낮았던 여섯 건입니다.
+                {" "}그중 올라간 {PLACE_RANK_RISEN}건과 자리를 지키고 있는 {PLACE_RANK_HELD}건을 키워드마다 한 장씩 남겼습니다.
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>
 
-            <PlaceRankCaseCards cases={byDepth(6)} columns={3} />
+            <PlaceRankCaseCards cases={byVolume()} columns={3} />
 
-            <p className="w-caption-1 mt-4" style={{ color: "var(--w-label-assistive)" }}>
+            <p className="w-caption-1 mt-4" style={{ color: "var(--w-label-alt)" }}>
               {PLACE_RANK_NOTE}
             </p>
 
             <Link
               href="/cases/place-rank"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold"
+              className="mt-4 inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-sm font-semibold"
               style={{ color: "var(--w-primary)" }}
             >
               계측 사례 전체 보기
@@ -144,7 +145,7 @@ export default function PortfolioPage() {
                             {item.trade}
                           </span>
                           {item.region && (
-                            <span className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>
+                            <span className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
                               {item.region}
                             </span>
                           )}
@@ -168,7 +169,7 @@ export default function PortfolioPage() {
               ))}
             </div>
 
-            <p className="w-caption-1 mt-5" style={{ color: "var(--w-label-assistive)" }}>
+            <p className="w-caption-1 mt-5" style={{ color: "var(--w-label-alt)" }}>
               계약 대장과 견적 · 계약 서류에서 뽑았습니다. 상호 · 지점명 · 연락처 · 계약 금액은 넣지 않고, 지역은 광역 단위까지만
               적습니다. 업종을 확인하지 못한 곳과 아직 착수하지 않은 곳은 뺐습니다.
             </p>
@@ -193,7 +194,7 @@ export default function PortfolioPage() {
           </div>
 
           {generatedAt && (
-            <p className="w-caption-1 mt-6 text-center" style={{ color: "var(--w-label-assistive)" }}>
+            <p className="w-caption-1 mt-6 text-center" style={{ color: "var(--w-label-alt)" }}>
               최종 갱신 {generatedAt}
             </p>
           )}

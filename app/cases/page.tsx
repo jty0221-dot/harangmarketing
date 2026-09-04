@@ -14,10 +14,12 @@ import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import {
   PLACE_RANK_AS_OF,
   PLACE_RANK_BIGGEST_GAIN,
+  PLACE_RANK_HELD,
   PLACE_RANK_CASES,
   PLACE_RANK_INDUSTRIES,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
+  PLACE_RANK_RISEN,
   PLACE_RANK_TOP_LINES,
   PLACE_RANK_TOTALS,
   bestCase,
@@ -124,14 +126,14 @@ const CasesPage: FC = () => {
                 { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 누적", color: "text-blue-600" },
                 { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "진행 고객 기준", color: "text-blue-600" },
                 { to: 6, suffix: "개+", decimals: 0, label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
-                { to: PLACE_RANK_TOTALS.works, suffix: "건", decimals: 0, label: "순위 계측 사례", sub: `${PLACE_RANK_AS_OF} 기준 상승 확인분`, color: "text-blue-700" },
+                { to: PLACE_RANK_TOTALS.works, suffix: "건", decimals: 0, label: "순위 계측 사례", sub: `${PLACE_RANK_AS_OF} 기준 상승·유지 확인분`, color: "text-blue-700" },
               ].map((s) => (
                 <div key={s.label} className="text-center py-2">
                   <div className={`text-2xl md:text-3xl font-black ${s.color} mb-0.5`}>
                     <AnimatedCounter to={s.to} suffix={s.suffix} decimals={s.decimals} duration={1400} />
                   </div>
                   <div className="text-xs md:text-sm font-bold text-gray-700 mb-0.5">{s.label}</div>
-                  <div className="text-[11px] text-gray-400">{s.sub}</div>
+                  <div className="text-[11px] text-gray-600">{s.sub}</div>
                 </div>
               ))}
             </div>
@@ -161,7 +163,7 @@ const CasesPage: FC = () => {
               <h2 className="text-xl md:text-2xl font-black text-gray-900">키워드마다 한 장씩 실은 계측 기록</h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
                 {PLACE_RANK_AS_OF} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다.
-                그중 상승이 확인된 {PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 실었습니다.
+                그중 올라간 {PLACE_RANK_RISEN}건과 자리를 지키고 있는 {PLACE_RANK_HELD}건을 키워드마다 한 장씩 실었습니다.
               </p>
               <Link
                 href="/cases/place-rank"
@@ -174,7 +176,7 @@ const CasesPage: FC = () => {
 
             {/* Search */}
             <div className="relative mb-4 max-w-sm">
-              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" strokeWidth={2} />
+              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" strokeWidth={2} />
               <input
                 type="text"
                 value={query}
@@ -194,7 +196,7 @@ const CasesPage: FC = () => {
 
             {/* Filter tabs */}
             <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
-              <Filter size={14} className="text-gray-400 shrink-0 mr-1" />
+              <Filter size={14} className="text-gray-500 shrink-0 mr-1" />
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat}
@@ -207,7 +209,7 @@ const CasesPage: FC = () => {
                 >
                   {cat}
                   {cat !== "전체" && (
-                    <span className={`ml-1.5 text-xs ${active === cat ? "text-blue-200" : "text-gray-300"}`}>
+                    <span className={`ml-1.5 text-xs ${active === cat ? "text-white" : "text-gray-500"}`}>
                       {PLACE_RANK_CASES.filter((c) => c.industry === cat).length}
                     </span>
                   )}
@@ -229,10 +231,10 @@ const CasesPage: FC = () => {
             {filtered.length === 0 && (
               <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
                 <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                  <Search size={22} className="text-gray-400" strokeWidth={1.5} />
+                  <Search size={22} className="text-gray-500" strokeWidth={1.5} />
                 </div>
                 <p className="font-bold text-gray-700 mb-1">검색 결과가 없습니다</p>
-                <p className="text-sm text-gray-400 mb-4">다른 키워드나 카테고리를 선택해보세요</p>
+                <p className="text-sm text-gray-500 mb-4">다른 키워드나 카테고리를 선택해보세요</p>
                 <button
                   onClick={() => { setQuery(""); setActive("전체"); }}
                   className="inline-flex items-center px-4 py-2 min-h-11 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors"
@@ -246,7 +248,7 @@ const CasesPage: FC = () => {
             <PlaceRankCaseCards cases={filtered} columns={3} />
 
             {filtered.length > 0 && (
-              <p className="mt-5 text-xs text-gray-400 leading-relaxed">
+              <p className="mt-5 text-xs text-gray-500 leading-relaxed">
                 {PLACE_RANK_AS_OF} 기준 계측값입니다. {PLACE_RANK_NOTE} {PLACE_RANK_LABEL_NOTE}
               </p>
             )}
@@ -338,7 +340,7 @@ const CasesPage: FC = () => {
                 <div key={r.ind} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
                   <div className="text-lg font-black text-white tabular-nums mb-0.5">{r.result}</div>
                   <div className="text-xs text-gray-400 font-medium">{r.ind}</div>
-                  <div className="text-[11px] text-gray-600 mt-1">{r.time}</div>
+                  <div className="text-[11px] text-gray-400 mt-1">{r.time}</div>
                 </div>
               ))}
             </div>
@@ -355,7 +357,7 @@ const CasesPage: FC = () => {
                 상담 신청 <ArrowRight size={15} />
               </Link>
             </div>
-            <p className="text-center text-[11px] text-gray-600 mt-4">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+            <p className="text-center text-[11px] text-gray-400 mt-4">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
 
           </div>
         </section>

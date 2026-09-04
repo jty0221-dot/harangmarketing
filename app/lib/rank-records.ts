@@ -2,15 +2,21 @@
  * 플레이스 순위 계측 기록 — 홈페이지 단일 정본
  *
  * 출처: E:\하랑\순위모니터\snapshots\*.tsv (세영 · 애드랭크 일일 스냅샷)
- * 기준 스냅샷: 2026-08-31 (11회 누적 · 2026-08-21 ~ 2026-08-31)
+ * 기준 스냅샷: 2026-09-04 (15회 누적 · 2026-08-21 ~ 2026-09-04)
  * 시작 순위·시작일은 애드랭크가 보관하는 30~32일치 이력에서 가장 오래된 실측값이다.
  *
  * 규칙 (헌장 C-36 · C-42)
  * 1) 순위 외 지표를 쓰지 않는다. 방문객·매출·예약 건수는 계측 대상이 아니다.
  * 2) 퍼센트로 말하지 않는다. `8위 → 3위 (7일)` 처럼 순위와 일수로만 말한다.
  * 3) 업체명·지역명을 쓰지 않는다. 업종과 키워드 유형까지만 공개한다.
- * 4) 하락·정체 기록은 싣지 않되 지우지도 않는다 (아래 EXCLUDED 참고).
+ * 4) 하락 기록은 싣지 않되 지우지도 않는다 (아래 EXCLUDED 참고).
+ *    자리를 지키고 있는 것(유지)은 함께 싣는다 (2026-09-05 (토) 대표 지시).
+ *    다만 유지 기록에 올랐다고 적지 않는다. 3위에서 3위는 오른 것이 아니라 지킨 것이다.
+ *    화면에서는 from === to 로 가려낸다.
  * 5) 최상급(최대·최고)은 이 파일의 계산값으로만 쓴다. 손으로 적지 않는다.
+ * 6) 순서는 키워드 월 검색수가 정한다 (같은 대표 지시).
+ *    검색수는 content/keyword-volume.tsv 실측값이고 화면에 숫자로 적지 않는다.
+ *    많이 찾는 키워드를 앞에 두는 정렬 기준일 뿐, 성과의 크기가 아니다.
  *
  * 갱신 방법 — 손으로 세지 않는다
  *   python scripts/place-rank/rank_records.py
@@ -34,71 +40,74 @@ export type RankRecord = {
 };
 
 /** 기준 스냅샷 날짜 — 화면 표기용 */
-export const SNAPSHOT_DATE = "2026-08-31";
+export const SNAPSHOT_DATE = "2026-09-04";
 
 /**
- * 게시 가능 기록 — 상승했고, 기준일 순위가 1페이지(1~5위) 안이다.
- * 계단 수 내림차순.
+ * 게시 가능 기록 — 기준일 순위가 1페이지(1~5위) 안이고 내려가지 않았다.
+ * 올라온 것과 자리를 지키고 있는 것이 함께 들어 있다. 키워드 월 검색수 내림차순.
  *
  * 같은 매장의 키워드가 둘이면 줄도 둘이다. 표기가 겹쳐도 묶지 않는다
  * (2026-09-04 (금) 대표 지시 — 겹치는 게 있다면 그래도 추가해 별도의 작품이니깐).
  */
 export const RECORDS: RankRecord[] = [
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 72, to: 2, days: 32, heldPage1: false },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 70, to: 4, days: 32, heldPage1: true },
-  { industry: "청소", keyword: "지역 상가청소 키워드", from: 67, to: 3, days: 22, heldPage1: true },
-  { industry: "청소", keyword: "지역 상가청소 키워드", from: 53, to: 4, days: 13, heldPage1: false },
-  { industry: "청소", keyword: "지역 청소업체 키워드", from: 49, to: 3, days: 18, heldPage1: false },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 44, to: 3, days: 32, heldPage1: false },
-  { industry: "청소", keyword: "지역 정기청소 키워드", from: 36, to: 4, days: 22, heldPage1: true },
-  { industry: "카페", keyword: "지역 카페 키워드", from: 19, to: 1, days: 25, heldPage1: false },
-  { industry: "청소", keyword: "지역 병원청소 키워드", from: 22, to: 5, days: 22, heldPage1: true },
-  { industry: "음식점", keyword: "지역 역세권 맛집 키워드", from: 11, to: 1, days: 32, heldPage1: true },
-  { industry: "청소", keyword: "지역 후드청소 키워드", from: 9, to: 2, days: 13, heldPage1: true },
-  { industry: "꽃집", keyword: "지역 꽃집 키워드", from: 7, to: 1, days: 32, heldPage1: true },
+  { industry: "카페", keyword: "지역 카페 키워드", from: 19, to: 4, days: 29, heldPage1: false },
+  { industry: "카페", keyword: "지역 카페 키워드", from: 1, to: 1, days: 24, heldPage1: true },
+  { industry: "카페", keyword: "지역 카페 키워드", from: 3, to: 3, days: 24, heldPage1: true },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 42, to: 4, days: 32, heldPage1: true },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 27, to: 3, days: 32, heldPage1: false },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 16, to: 2, days: 32, heldPage1: false },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 9, to: 2, days: 32, heldPage1: false },
+  { industry: "음식점", keyword: "지역 역세권 맛집 키워드", from: 5, to: 1, days: 32, heldPage1: true },
   { industry: "치과", keyword: "지역 치과 키워드", from: 7, to: 2, days: 32, heldPage1: true },
   { industry: "치과", keyword: "지역 역세권 치과 키워드", from: 7, to: 2, days: 32, heldPage1: true },
-  { industry: "카페", keyword: "지역 카페 키워드", from: 8, to: 4, days: 32, heldPage1: true },
-  { industry: "피부과", keyword: "지역 피부과 키워드", from: 6, to: 3, days: 32, heldPage1: true },
+  { industry: "음식점", keyword: "지역 샤브샤브 키워드", from: 3, to: 3, days: 32, heldPage1: false },
+  { industry: "청소", keyword: "지역 청소업체 키워드", from: 49, to: 4, days: 22, heldPage1: false },
+  { industry: "카페", keyword: "지역 디저트카페 키워드", from: 3, to: 2, days: 18, heldPage1: true },
   { industry: "가발", keyword: "지역 가발 키워드", from: 3, to: 2, days: 32, heldPage1: true },
-  { industry: "카페", keyword: "지역 디저트카페 키워드", from: 3, to: 2, days: 14, heldPage1: true },
 ];
 
 /**
  * 싣지 않는 기록 — 지우지 않는다. 왜 안 실었는지가 남아 있어야
  * 다음 사람이 같은 숫자를 다시 주워 오지 않는다 (헌장 C-36 · 스냅샷 삭제 금지의 취지).
  *
- * 하락 — 지역 맛집 70위 → 199위 · 지역 고기집 36위 → 49위 · 지역 고기집 12위 → 18위 ·
- *        지역 청소업체 5위 → 9위 · 지역 맛집 79위 → 83위 · 지역 입주청소 2위 → 5위 ·
- *        지역 맞춤가발 6위 → 9위 · 지역 소갈비 29위 → 32위 · 지역 입주청소 2위 → 4위 ·
- *        지역 정장 7위 → 8위 · 지역 정장 8위 → 9위 · 지역 카페 3위 → 4위
- * 1페이지 밖 — 지역 꽃집 65위 → 20위 · 지역 입주청소 88위 → 43위 · 지역 맛집 187위 → 155위 ·
- *        지역 정기청소 35위 → 9위 · 지역 맛집 57위 → 33위 · 지역 병원청소 22위 → 6위 ·
- *        지역 카페 50위 → 35위 · 지역 네일 20위 → 10위 · 지역 네일 18위 → 9위 ·
- *        지역 카페 20위 → 12위 · 지역 샤브샤브 43위 → 39위 · 지역 카페 9위 → 6위 ·
- *        지역 피부과 13위 → 10위 · 지역 맛집 20위 → 18위 · 지역 청소업체 12위 → 10위 ·
- *        지역 고기집 31위 → 29위 · 지역 역세권 맛집 77위 → 76위 · 지역 데이트 12위 → 11위 ·
- *        지역 맛집 68위 → 68위 · 지역 맛집 12위 → 12위 · 지역 샤브샤브 6위 → 6위
- * 1~5위인데 그대로 — 지역 카페 1위 · 지역 샤브샤브 3위 · 지역 카센터 5위
- *        (이미 1페이지에 있어 올릴 자리가 없다. 지키는 것이 일이라 상승 기록에는 넣지 않는다)
- * 데이터 부족 — 8건 (계측 시작 직후라 시작값이 없다)
+ * 하락 — 지역 역세권 맛집 61위 → 76위 · 지역 맞춤가발 6위 → 12위 · 지역 입주청소 1위 → 5위 ·
+ *        지역 고기집 125위 → 129위 · 지역 피부과 9위 → 12위 · 지역 피부과 3위 → 5위 ·
+ *        지역 입주청소 2위 → 3위
+ * 1페이지 밖 — 지역 맛집 110위 → 32위 · 지역 입주청소 88위 → 13위 · 지역 맛집 66위 → 8위 ·
+ *        지역 상가청소 67위 → 20위 · 지역 상가청소 53위 → 26위 · 지역 정기청소 36위 → 12위 ·
+ *        지역 맛집 55위 → 35위 · 지역 정기청소 35위 → 18위 · 지역 병원청소 22위 → 6위 ·
+ *        지역 병원청소 22위 → 7위 · 지역 네일 20위 → 8위 · 지역 카페 24위 → 13위 ·
+ *        지역 네일 18위 → 7위 · 지역 맛집 79위 → 69위 · 지역 샤브샤브 43위 → 39위 ·
+ *        지역 고기집 31위 → 28위 · 지역 정장 7위 → 6위 · 지역 정장 7위 → 6위 ·
+ *        지역 청소업체 12위 → 11위 · 지역 소갈비 29위 → 28위 · 지역 후드청소 9위 → 8위 ·
+ *        지역 샤브샤브 6위 → 6위 · 지역 청소업체 6위 → 6위 · 지역 카센터 7위 → 7위
+ * 데이터 부족 — 9건 (계측 시작 직후라 시작값이 없다)
+ *
+ * 유지(1~5위인데 그대로)는 2026-09-05 (토) 대표 지시로 RECORDS 안에 들어갔다.
+ * 여기 남는 것은 하락 · 1페이지 밖 · 데이터 부족 셋뿐이다.
  */
-export const EXCLUDED_COUNT = { declined: 12, outsidePage1: 21, heldNoGain: 3, insufficient: 8 };
+export const EXCLUDED_COUNT = { declined: 7, outsidePage1: 24, insufficient: 9 };
+
+/** 올라온 기록 수 — 손으로 세지 않는다 */
+export const RISEN = RECORDS.filter((r) => r.from > r.to).length;
+
+/** 자리를 지키고 있는 기록 수 */
+export const HELD = RECORDS.filter((r) => r.from === r.to).length;
 
 /** 기준 스냅샷 집계 — 손으로 고치지 않는다. scripts/place-rank/rank_records.py 를 다시 돌린다. */
 export const SUMMARY = {
   /** 매일 계측 중인 매장 수 */
   stores: 18,
-  /** 매일 계측 중인 키워드 수 (시작값이 없는 8건 제외) */
-  keywords: 54,
+  /** 매일 계측 중인 키워드 수 (시작값이 없는 9건 제외) */
+  keywords: 45,
   /** 기준일에 1페이지(1~5위)를 지키고 있는 키워드 수 */
-  page1Keywords: 24,
+  page1Keywords: 17,
   /** 기준일에 1페이지를 지키고 있는 매장 수 */
-  page1Stores: 13,
-  /** 누적 스냅샷 11회에 빠짐없이 잡히면서 한 번도 1페이지 밖으로 나가지 않은 키워드 수 */
-  heldAllSnapshots: 16,
+  page1Stores: 9,
+  /** 누적 스냅샷 15회에 빠짐없이 잡히면서 한 번도 1페이지 밖으로 나가지 않은 키워드 수 */
+  heldAllSnapshots: 9,
   /** 누적 스냅샷 회차 */
-  snapshots: 11,
+  snapshots: 15,
 };
 
 /** 계단 수 */
@@ -146,12 +155,18 @@ export function byKeyword(keyword: string): RankRecord | undefined {
   );
 }
 
-/** `19위가 1위가 됐습니다(25일 계측)` — 서술문에 넣는 형태 */
-export const fmtSentence = (r: RankRecord) => `${r.from}위가 ${r.to}위가 됐습니다(${r.days}일 계측)`;
-
-/** `72위 → 2위` */
-export const fmt = (r: RankRecord) => `${r.from}위 → ${r.to}위`;
-
+/**
+ * `19위가 1위가 됐습니다(25일 계측)` — 서술문에 넣는 형태.
+ * 자리를 지키고 있는 기록(from === to)은 올랐다고 적지 않는다.
+ * 3위에서 3위는 오른 것이 아니라 지킨 것이다 (2026-09-05 (토) 대표 지시).
+ */
+export const fmtSentence = (r: RankRecord) =>
+  r.from === r.to
+    ? `${r.to}위를 지키고 있습니다(${r.days}일 계측)`
+    : `${r.from}위가 ${r.to}위가 됐습니다(${r.days}일 계측)`;
+/** `72위 → 2위` · 자리를 지킨 기록은 `2위 유지` */
+export const fmt = (r: RankRecord) =>
+  r.from === r.to ? `${r.to}위 유지` : `${r.from}위 → ${r.to}위`;
 /** `72위 → 2위 · 32일 계측` */
 export const fmtLong = (r: RankRecord) => `${fmt(r)} · ${r.days}일 계측`;
 

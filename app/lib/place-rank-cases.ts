@@ -20,6 +20,11 @@ import raw from "../../content/place-rank-cases.json";
  *    생성기가 pendingReview 로 빼내므로 cases 에는 애초에 오지 않는다.
  * 5) 표기 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다.
  *    한 번 1위를 찍고 지금 12위인 곳을 1위로 적지 않는다 (2026-09-04 (금) 대표 지시).
+ * 6) 올라간 건과 지키고 있는 건을 함께 싣는다 (2026-09-05 (토) 대표 지시).
+ *    떨어진 건만 뺀다. trend 가 유지인 카드에 올랐다고 적지 않는다 — 3위에서 3위는 지킨 것이다.
+ * 7) 카드 순서의 기본은 키워드 월 검색수다 (같은 대표 지시).
+ *    검색수는 content/keyword-volume.tsv 실측값이고 화면에 숫자로 적지 않는다.
+ *    많이 찾는 키워드를 앞에 두는 정렬 기준일 뿐, 성과의 크기가 아니다.
  *
  * 한 카드가 한 작품이다. 같은 매장이 키워드 셋을 올렸으면 카드도 셋이고,
  * 표기가 겹쳐도 묶지 않는다 — 대표 지시가 겹치는 게 있다면 그래도 추가해 별도의 작품이니깐 이다.
@@ -58,6 +63,12 @@ export interface PlaceRankCase {
   asOf: string;
   /** 성과대장 ID. 앵커와 key 로 쓴다 */
   code: string;
+  /** 상승 · 유지 — 떨어진 건은 애초에 오지 않는다 */
+  trend: "상승" | "유지";
+  /** 이 키워드 종류의 월 검색수. 정렬용이고 화면에 적지 않는다 */
+  volume: number;
+  /** 가림 처리된 키워드 종류. `맛집` `청소업체` — 지역명이 빠진 형태다 */
+  keywordType: string;
 }
 
 interface RawCase {
@@ -72,12 +83,16 @@ interface RawCase {
   asOf: string;
   page1: boolean;
   grade: string;
+  trend: "상승" | "유지";
+  volume: number;
+  keywordType: string;
 }
 
 interface PlaceRankFile {
   generated: string;
   source: string;
   note: string;
+  volumeAsOf: string;
   monitoring: {
     stores: number;
     keywords: number;
@@ -115,8 +130,20 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
     page1: c.page1,
     asOf: c.asOf,
     code: c.id,
+    trend: c.trend,
+    volume: c.volume,
+    keywordType: c.keywordType,
   };
 });
+
+/** 검색수를 잰 날 */
+export const PLACE_RANK_VOLUME_AS_OF = FILE.volumeAsOf;
+
+/** 올라온 카드 수 */
+export const PLACE_RANK_RISEN = PLACE_RANK_CASES.filter((c) => c.trend === "상승").length;
+
+/** 자리를 지키고 있는 카드 수 */
+export const PLACE_RANK_HELD = PLACE_RANK_CASES.filter((c) => c.trend === "유지").length;
 
 /**
  * 집계.
@@ -166,6 +193,7 @@ export function bestCase(industry: string): PlaceRankCase | undefined {
  * 화면에 손으로 적어 두면 대장에서 빠진 기록이 그대로 남는다. 매번 다시 뽑는다.
  */
 export const PLACE_RANK_TOP_LINES = [...PLACE_RANK_CASES]
+  .filter((c) => c.trend === "상승")
   .sort((a, b) => caseGap(b) - caseGap(a))
   .slice(0, 6)
   .map((c) => `${c.keywords[0].detail} ${c.keywords[0].from}위에서 ${c.keywords[0].to}위(${c.keywords[0].days}일 계측)`)
@@ -176,15 +204,23 @@ export const PLACE_RANK_INDUSTRIES: string[] = Array.from(
   new Set(PLACE_RANK_CASES.map((c) => c.industry))
 );
 
-/** `67위에서 3위` */
-export const fmtMove = (k: { from: number; to: number }) => `${k.from}위에서 ${k.to}위`;
+/**
+ * `67위에서 3위` · 자리를 지킨 기록은 `3위 유지`.
+ * from 과 to 가 같으면 올랐다고 적지 않는다 (2026-09-05 (토) 대표 지시).
+ */
+export const fmtMove = (k: { from: number; to: number }) =>
+  k.from === k.to ? `${k.to}위 유지` : `${k.from}위에서 ${k.to}위`;
 
 /** `67위에서 3위 (21일)` — 밖으로 나갈 수 있는 유일한 형태 */
 export const fmtMoveDays = (k: { from: number; to: number; days: number }) =>
   `${fmtMove(k)} (${k.days}일)`;
 
-/** `67위 → 3위` — 좁은 자리에서 쓰는 짧은 형태 (헌장 C-36 예시 표기) */
-export const fmtArrow = (k: { from: number; to: number }) => `${k.from}위 → ${k.to}위`;
+/**
+ * `67위 → 3위` — 좁은 자리에서 쓰는 짧은 형태 (헌장 C-36 예시 표기).
+ * 자리를 지킨 기록은 `3위 유지`.
+ */
+export const fmtArrow = (k: { from: number; to: number }) =>
+  k.from === k.to ? `${k.to}위 유지` : `${k.from}위 → ${k.to}위`;
 
 /** 업종으로 고른다. 없으면 빈 배열 — 없는 업종에 남의 기록을 붙이지 않는다 */
 export function byIndustry(...industries: string[]): PlaceRankCase[] {
@@ -192,12 +228,28 @@ export function byIndustry(...industries: string[]): PlaceRankCase[] {
 }
 
 /**
- * 시작 순위가 낮았던 순서로 고른다. 정렬일 뿐이고 평균 같은 집계값을 만들지 않는다.
+ * 검색수가 큰 키워드부터 고른다. 정렬일 뿐이고 평균 같은 집계값을 만들지 않는다.
+ * 같은 검색수면 계단 수가 큰 쪽, 그다음은 현재 순위가 높은 쪽이다.
  *
  * skip 은 자리마다 다른 카드를 싣기 위한 것이다 (홈 0 · 사례 4 · 플레이스 8).
  * 대장 ID 를 페이지에 박아 두면 그 ID 가 대장에서 빠질 때 조용히 빈 배열이 되고,
  * 카드 컴포넌트가 빈 배열에서 null 을 돌려주므로 섹션 하나가 통째로 사라진다.
  * 타입 오류도 런타임 오류도 없이 사라져서 ID 로 고르는 방식을 걷었다.
+ */
+export function byVolume(limit?: number, skip = 0): PlaceRankCase[] {
+  const sorted = [...PLACE_RANK_CASES].sort(
+    (a, b) => b.volume - a.volume || caseGap(b) - caseGap(a) || a.best.to - b.best.to,
+  );
+  if (typeof limit !== "number") return sorted.slice(skip);
+  const start = sorted.length > skip ? skip : 0;
+  return sorted.slice(start, start + limit);
+}
+
+/**
+ * 시작 순위가 낮았던 순서로 고른다. 정렬일 뿐이고 평균 같은 집계값을 만들지 않는다.
+ *
+ * 기본 정렬은 이제 byVolume 이다 (2026-09-05 (토) 대표 지시 — 많이 찾는 키워드를 앞에).
+ * byDepth 는 계단 수를 앞세우고 싶은 자리에만 남겨 둔다.
  */
 export function byDepth(limit?: number, skip = 0): PlaceRankCase[] {
   const sorted = [...PLACE_RANK_CASES].sort((a, b) => b.best.from - a.best.from);

@@ -14,19 +14,25 @@ import { PLACE_RANK_TOTALS } from "../lib/place-rank-cases";
  *
  * 기록이 없으면 빈 배열이 오고, 그때는 숫자를 지어내지 않고
  * 계측 현황만 보여준다 (헌장 C-42 · 틀린 값이 빈 값보다 나쁘다).
+ *
+ * limit 을 주지 않으면 그 업종 기록을 전부 그린다 (2026-09-05 (토) 대표 지시).
+ * 자리를 지키고 있는 기록(from === to)은 화살표 대신 「유지」로 그린다 —
+ * 3위에서 3위는 오른 것이 아니라 지킨 것이다.
  */
 export default function RankRecords({
   industries,
   industryLabel,
-  limit = 3,
+  limit,
 }: {
   /** rank-records.ts 의 industry 값. 비우면 집계만 보여준다 */
   industries: string[];
   /** 화면에 쓰는 업종 이름 — 기록이 없을 때 문장에 들어간다 */
   industryLabel: string;
+  /** 주지 않으면 그 업종 기록을 전부 그린다 */
   limit?: number;
 }) {
-  const records: RankRecord[] = byIndustry(...industries).slice(0, limit);
+  const all: RankRecord[] = byIndustry(...industries);
+  const records: RankRecord[] = typeof limit === "number" ? all.slice(0, limit) : all;
 
   return (
     <section className="py-12 md:py-16 bg-white">
@@ -41,14 +47,23 @@ export default function RankRecords({
         </div>
 
         {records.length > 0 ? (
-          <div className={`grid grid-cols-1 gap-4 ${records.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
+          <div className={`grid grid-cols-1 gap-4 ${records.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"}`}>
             {records.map((r, i) => (
               <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-5 text-center">
                 <p className="text-xs text-gray-500 mb-3 font-medium">{r.keyword}</p>
                 <div className="flex items-center justify-center gap-3 mb-3">
-                  <span className="text-lg font-bold text-gray-400 line-through tabular-nums">{r.from}위</span>
-                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
-                  <span className="text-2xl font-black tabular-nums" style={{ color: "var(--w-primary)" }}>{r.to}위</span>
+                  {r.from === r.to ? (
+                    <>
+                      <span className="text-2xl font-black tabular-nums" style={{ color: "var(--w-primary)" }}>{r.to}위</span>
+                      <span className="text-sm font-bold text-gray-600">유지</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-lg font-bold text-gray-500 line-through tabular-nums">{r.from}위</span>
+                      <ArrowRight size={14} className="text-gray-500 shrink-0" />
+                      <span className="text-2xl font-black tabular-nums" style={{ color: "var(--w-primary)" }}>{r.to}위</span>
+                    </>
+                  )}
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-1.5">
                   <span className="inline-flex items-center gap-1 bg-white text-gray-600 text-xs font-bold px-2.5 py-1 rounded-full border border-gray-200">
@@ -56,7 +71,7 @@ export default function RankRecords({
                   </span>
                   {r.heldPage1 && (
                     <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full border"
-                      style={{ color: "var(--w-primary)", background: "#F0F6FF", borderColor: "#D6E4FF" }}>
+                      style={{ color: "var(--w-primary-strong)", background: "#F0F6FF", borderColor: "#D6E4FF" }}>
                       <ShieldCheck size={10} strokeWidth={2.5} /> 1페이지 유지
                     </span>
                   )}
@@ -80,7 +95,7 @@ export default function RankRecords({
               ))}
             </div>
             <div className="flex items-start gap-2.5 bg-white border border-gray-200 rounded-xl p-3.5">
-              <Database size={15} className="text-gray-400 shrink-0 mt-0.5" strokeWidth={2} />
+              <Database size={15} className="text-gray-500 shrink-0 mt-0.5" strokeWidth={2} />
               <p className="text-xs md:text-[13px] text-gray-600 leading-relaxed min-w-0">
                 {industryLabel} 업종은 아직 공개할 순위 기록이 없습니다.
                 다른 업종의 기록을 이 업종의 성과로 표시하지 않습니다.
@@ -90,7 +105,7 @@ export default function RankRecords({
           </div>
         )}
 
-        <p className="text-xs text-gray-400 leading-relaxed text-center mt-5 max-w-2xl mx-auto">
+        <p className="text-xs text-gray-500 leading-relaxed text-center mt-5 max-w-2xl mx-auto">
           {MEASURE_NOTE}
         </p>
       </div>

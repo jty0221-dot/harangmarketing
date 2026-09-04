@@ -12,8 +12,10 @@ import {
   PLACE_RANK_CASES,
   PLACE_RANK_AS_OF,
   PLACE_RANK_GENERATED,
+  PLACE_RANK_HELD,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
+  PLACE_RANK_RISEN,
   PLACE_RANK_TOTALS,
   fmtMoveDays,
 } from "../../lib/place-rank-cases";
@@ -111,7 +113,7 @@ export default function PlaceRankCasesPage() {
 
         <AnswerBlock
           question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
-          answer={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있고, 그중 상승이 확인된 ${PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_CASES.slice(0, 4)
+          answer={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있고, 그중 올라간 ${PLACE_RANK_RISEN}건과 자리를 지키고 있는 ${PLACE_RANK_HELD}건을 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_CASES.slice(0, 4)
             .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
             .join(", ")}. ${PLACE_RANK_NOTE}`}
           facts={[
@@ -128,7 +130,7 @@ export default function PlaceRankCasesPage() {
         <section className="py-12 md:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <PlaceRankExplorer />
-            <p className="mt-6 text-xs text-gray-400 leading-relaxed max-w-3xl">
+            <p className="mt-6 text-xs text-gray-500 leading-relaxed max-w-3xl">
               {PLACE_RANK_NOTE}
             </p>
           </div>

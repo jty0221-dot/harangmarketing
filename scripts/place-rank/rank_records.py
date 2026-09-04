@@ -33,6 +33,7 @@ app/lib/rank-records.ts 본문 생성기 — 손으로 세지 않는다.
 import collections
 import glob
 import io
+import pathlib
 import re
 import sys
 
@@ -41,6 +42,10 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 SNAP_GLOB = "E:/하랑/순위모니터/snapshots/*.tsv"
+
+# 화면에 실을 순서를 정하는 표. 저장소 안에 있고 키워드 유형 단위라 지역명이 없다.
+# 여기 없는 유형은 0 으로 두고 뒤로 보낸다 — 추정해서 숫자를 만들지 않는다 (C-42).
+VOLUME_TSV = str(pathlib.Path(__file__).resolve().parents[2] / "content" / "keyword-volume.tsv")
 
 # 키워드 꼬리 → (공개 표기, 업종). 긴 것부터 본다 — `입주청소` 가 `청소` 보다 먼저 걸려야 한다.
 KIND = [
@@ -111,6 +116,27 @@ def num(v):
     return int(v) if re.fullmatch(r"\d+", v) else None
 
 
+def volumes():
+    """키워드 유형 → 월 검색수. 표가 없으면 빈 표로 돌려보내 순서만 예전 기준으로 간다."""
+    out = {}
+    try:
+        with io.open(VOLUME_TSV, encoding="utf-8") as f:
+            for ln in f:
+                if ln.startswith("#") or not ln.strip():
+                    continue
+                c = ln.rstrip("\n").split("\t")
+                if len(c) >= 2 and num(c[1]) is not None:
+                    out[c[0].strip()] = int(c[1])
+    except IOError:
+        print("[경고] 검색량 표를 못 읽었다: %s" % VOLUME_TSV)
+    return out
+
+
+def vol(vmap, label):
+    """`역세권 맛집` 처럼 앞에 붙은 수식은 떼고 유형만 본다."""
+    return vmap.get(label.replace("역세권 ", "").strip(), 0)
+
+
 def main():
     paths = sorted(glob.glob(SNAP_GLOB))
     if not paths:
@@ -149,23 +175,29 @@ def main():
         row = (ind, label, start, today, days or 0, held)
 
         # 네 갈래다. 순서가 중요하다 — 정체를 하락에 섞으면 화면 숫자가 거짓이 된다.
+        # 2026-09-05 (토) 대표 지시로 정체(유지)도 싣는다. 빼는 것은 하락뿐이다.
+        # 갈래는 그대로 넷으로 둔다 — 유지를 상승으로 세면 화면이 거짓말을 한다.
         if today > start:
-            decl.append(row)        # 내려갔다
+            decl.append(row)        # 내려갔다 → 안 싣는다
         elif today > 5:
-            out1.append(row)        # 올랐지만(혹은 그대로) 1페이지 밖이다
+            out1.append(row)        # 올랐지만(혹은 그대로) 1페이지 밖이다 → 안 싣는다
         elif today == start:
-            flat.append(row)        # 이미 1~5위였고 그대로다. 올릴 자리가 없었다
+            flat.append(row)        # 이미 1~5위였고 그대로다 → 유지로 싣는다
         else:
-            rec.append(row)         # 올랐고 1페이지 안이다 → 게시 가능
+            rec.append(row)         # 올랐고 1페이지 안이다 → 상승으로 싣는다
 
-    rec.sort(key=lambda x: (x[2] - x[3], -x[3]), reverse=True)
+    # 순서는 검색량이 정한다 (2026-09-05 (토) 대표 지시).
+    # 시작 순위가 낮았던 것을 앞세우면 한 달에 400명 찾는 키워드가 맨 앞에 선다.
+    # 같은 검색량이면 계단 수, 그다음 현재 순위 순이다.
+    vmap = volumes()
+    pub = rec + flat
+    pub.sort(key=lambda x: (-vol(vmap, x[1]), -(x[2] - x[3]), x[3]))
     decl.sort(key=lambda x: x[3] - x[2], reverse=True)
     out1.sort(key=lambda x: x[2] - x[3], reverse=True)
-    flat.sort(key=lambda x: x[3])
 
     print('export const SNAPSHOT_DATE = "%s";\n' % last_date)
     print("export const RECORDS: RankRecord[] = [")
-    for ind, label, f, t, d, held in rec:
+    for ind, label, f, t, d, held in pub:
         print(
             '  { industry: "%s", keyword: "지역 %s 키워드", from: %d, to: %d, days: %d, heldPage1: %s },'
             % (ind, label, f, t, d, "true" if held else "false")
@@ -175,10 +207,13 @@ def main():
     line = lambda rows: " · ".join("지역 %s %d위 → %d위" % (l, f, t) for _, l, f, t, _, _ in rows)
     print(" * 하락 — " + line(decl))
     print(" * 1페이지 밖 — " + line(out1))
-    print(" * 1~5위인데 그대로 — " + " · ".join("지역 %s %d위" % (l, t) for _, l, _, t, _, _ in flat))
     print(
-        "\nexport const EXCLUDED_COUNT = { declined: %d, outsidePage1: %d, heldNoGain: %d, insufficient: %d };"
-        % (len(decl), len(out1), len(flat), insuf)
+        "\nexport const EXCLUDED_COUNT = { declined: %d, outsidePage1: %d, insufficient: %d };"
+        % (len(decl), len(out1), insuf)
+    )
+    print(
+        "// 실은 것 → 상승 %d건 · 유지 %d건 (유지는 RECORDS 안에서 from === to 로 가려낸다)"
+        % (len(rec), len(flat))
     )
 
     ok = [
@@ -215,8 +250,8 @@ export const SUMMARY = {
     total = len(rec) + len(decl) + len(out1) + len(flat)
     mark = "맞음" if total == len(ok) else "어긋남"
     print(
-        "\n// 검산 → %d(게시) + %d(하락) + %d(1페이지밖) + %d(정체) = %d · keywords %d · %s"
-        % (len(rec), len(decl), len(out1), len(flat), total, len(ok), mark)
+        "\n// 검산 → %d(상승) + %d(유지) + %d(하락) + %d(1페이지밖) = %d · keywords %d · %s"
+        % (len(rec), len(flat), len(decl), len(out1), total, len(ok), mark)
     )
 
     if rec:

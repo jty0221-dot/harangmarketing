@@ -19,7 +19,7 @@ import PhotoPlaceholder from "./components/PhotoPlaceholder";
 import RevealOnScroll from "./components/RevealOnScroll";
 import ClientLogosSection from "./components/ClientLogosSection";
 import { SNS_STORE_ENABLED } from "./lib/feature-flags";
-import { PlatformLogo, brandColor } from "./sns/PlatformLogo";
+import { PlatformLogo, brandTextColor } from "./sns/PlatformLogo";
 import type { PlatformId } from "./lib/sns-store";
 import DifferenceSection from "./components/DifferenceSection";
 import EntryPopup from "./components/EntryPopup";
@@ -101,7 +101,9 @@ function tickerLine(keyword: string) {
   return r ? [`${r.keyword} ${fmt(r)} · ${r.days}일 계측`] : [];
 }
 import PlaceRankCasesSection from "./components/PlaceRankCases";
-import { byDepth, PLACE_RANK_AS_OF, PLACE_RANK_TOTALS } from "./lib/place-rank-cases";
+import {
+  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_HELD, PLACE_RANK_RISEN, PLACE_RANK_TOTALS,
+} from "./lib/place-rank-cases";
 
 /* ─── AEO/GEO 구조화 데이터 (홈) ───────────────────
    FAQPage·DefinedTermSet 는 아래 화면에 실제로 렌더링되는
@@ -110,7 +112,7 @@ import { byDepth, PLACE_RANK_AS_OF, PLACE_RANK_TOTALS } from "./lib/place-rank-c
 const HOME_LD = [
   webPageLd({
     path: "/",
-    name: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
+    name: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description: ANSWER_SENTENCES.whoWeAre,
   }),
   breadcrumbLd([{ name: "홈", path: "/" }]),
@@ -366,12 +368,12 @@ export default function HomePage() {
         {/* ══ 매장별 순위 계측 발췌 ══ */}
         {/* 숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
             카드 하나가 키워드 하나이고, 전체 목록은 /cases/place-rank 에 있다.
-            자리마다 byDepth 로 다른 구간을 뜬다 — 홈 0 · 사례 4 · 플레이스 8. */}
+            많이 찾는 키워드부터 전부 싣는다 (2026-09-05 (토) 대표 지시). */}
         <PlaceRankCasesSection
-          cases={byDepth(4)}
+          cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드별 순위, 잰 그대로 적었습니다"
-          description={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 상승이 확인된 ${PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩 실었고, 여기는 시작 순위가 가장 낮았던 네 건입니다.`}
+          description={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 올라간 ${PLACE_RANK_RISEN}건과 자리를 지키고 있는 ${PLACE_RANK_HELD}건을 키워드마다 한 장씩 실었습니다. 많이 찾는 키워드부터 놓았습니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />
@@ -453,7 +455,7 @@ export default function HomePage() {
                         <PlatformLogo id={r.logo} size={36} />
                         <div className="flex-1 min-w-0">
                           <p className="text-[13px] font-black text-gray-900 truncate">{r.name}</p>
-                          <p className="text-[11px] text-gray-400">1{r.unit}당</p>
+                          <p className="text-[11px] text-gray-600">1{r.unit}당</p>
                         </div>
                         <p className="text-[15px] font-black text-blue-600 tabular-nums shrink-0">{r.price}</p>
                       </div>
@@ -517,10 +519,10 @@ export default function HomePage() {
                       {/* before / after */}
                       <div className="flex items-center gap-2 mb-4 rounded-xl p-3" style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)" }}>
                         <div className="flex-1 text-center">
-                          <div className="text-[11px] font-bold text-red-500 mb-1">BEFORE</div>
+                          <div className="text-[11px] font-bold text-red-700 mb-1">BEFORE</div>
                           <div className="text-xs font-semibold" style={{ color: "var(--h-muted)" }}>{ind.before}</div>
                         </div>
-                        <ChevronRight size={14} strokeWidth={1.5} style={{ color: "var(--h-border)" }} className="shrink-0" />
+                        <ChevronRight size={14} strokeWidth={1.5} style={{ color: "var(--w-label-assistive)" }} className="shrink-0" />
                         <div className="flex-1 text-center">
                           <div className="text-[11px] font-bold mb-1" style={{ color: "var(--h-blue)" }}>AFTER</div>
                           <div className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{ind.after}</div>
@@ -575,7 +577,7 @@ export default function HomePage() {
             <div className="text-center mb-7">
               <div className="flex items-center gap-3 justify-center mb-4">
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>왜 하랑인가</span>
+                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>왜 하랑인가</span>
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
               </div>
               <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>이런 고민, 해결된 증거 있습니다</h2>
@@ -642,7 +644,7 @@ export default function HomePage() {
                       {/* result badge — amber */}
                       <div className="shrink-0">
                         <div className="inline-flex flex-col items-center gap-0.5 px-5 py-4 rounded-2xl min-w-[100px] text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
-                          <span className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>{item.result}</span>
+                          <span className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--w-primary-strong)" }}>{item.result}</span>
                           <span className="text-[11px] font-medium" style={{ color: "var(--h-muted)" }}>{item.period}</span>
                         </div>
                       </div>
@@ -693,7 +695,7 @@ export default function HomePage() {
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
                       <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
-                      <div className="text-[11px] text-gray-400">{b.sub}</div>
+                      <div className="text-[11px] text-gray-600">{b.sub}</div>
                     </div>
                   ))}
                 </div>
@@ -723,7 +725,7 @@ export default function HomePage() {
                   ].map(s => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
                       <div className="text-base font-black text-gray-900">{s.val}</div>
-                      <div className="text-[11px] text-gray-400 mt-0.5">{s.label}</div>
+                      <div className="text-[11px] text-gray-500 mt-0.5">{s.label}</div>
                     </div>
                   ))}
                 </div>
@@ -738,7 +740,7 @@ export default function HomePage() {
             <RevealOnScroll>
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
-                <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>10년 운영 데이터</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>10년 운영 데이터</p>
               </div>
             </RevealOnScroll>
 
@@ -797,7 +799,7 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
-                  <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>하랑의 약속</p>
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>하랑의 약속</p>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                   결과가 없으면<br />말씀드립니다
@@ -854,7 +856,7 @@ export default function HomePage() {
             <RevealOnScroll>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
-              <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>진행 과정</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>진행 과정</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end mb-8">
               <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
@@ -920,7 +922,7 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>무료 마케팅 인사이트</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>무료 마케팅 인사이트</span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-black mb-2" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                   10년 노하우, 무료로 읽어보세요
@@ -981,7 +983,7 @@ export default function HomePage() {
                       <h3 className="font-black text-gray-900 text-sm leading-snug mb-2 transition-colors flex-1 group-hover:opacity-80">{post.title}</h3>
                       <p className="text-xs text-gray-500 leading-relaxed mb-4">{post.desc}</p>
                       <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                        <span className="text-[11px] text-gray-400">{post.readTime} 읽기</span>
+                        <span className="text-[11px] text-gray-600">{post.readTime} 읽기</span>
                         <div className="flex items-center gap-1 text-xs font-bold group-hover:gap-2 transition-all" style={{ color: "var(--h-navy)" }}>
                           읽으러 가기 <ArrowRight size={11} />
                         </div>
@@ -1011,7 +1013,7 @@ export default function HomePage() {
         <section className="py-10 md:py-14 bg-white border-y border-gray-100">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-6">
-              <p className="text-xs text-gray-400 font-semibold uppercase tracking-widest">SNS 채널에서도 만나보세요</p>
+              <p className="text-xs text-gray-500 font-semibold uppercase tracking-widest">SNS 채널에서도 만나보세요</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
@@ -1050,14 +1052,14 @@ export default function HomePage() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="font-bold text-gray-900 text-sm">{s.label}</div>
-                        <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandColor(s.logo) }}>{s.sub}</span>
+                        <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandTextColor(s.logo) }}>{s.sub}</span>
                       </div>
-                      <div className="text-xs text-gray-400">{s.desc}</div>
+                      <div className="text-xs text-gray-500">{s.desc}</div>
                     </div>
-                    <ChevronRight size={14} className="text-gray-300 shrink-0 transition-colors group-hover:opacity-60" />
+                    <ChevronRight size={14} className="text-gray-500 shrink-0 transition-colors group-hover:opacity-60" />
                   </div>
                   <div className="mx-5 mb-4 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
-                    <p className="text-[11px] text-gray-400 truncate">{s.preview}</p>
+                    <p className="text-[11px] text-gray-500 truncate">{s.preview}</p>
                   </div>
                 </a>
               ))}
@@ -1073,7 +1075,7 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
-                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>서비스</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>서비스</span>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                   카페·병원·학원,<br />업종마다 전략이 다릅니다
@@ -1094,7 +1096,7 @@ export default function HomePage() {
                   <Link key={service.title} href="/services"
                     className="svc-row group flex items-center gap-4 md:gap-8 py-4 md:py-5 px-2 -mx-2">
                     {/* Number */}
-                    <span className="text-[11px] font-black tabular-nums w-6 shrink-0" style={{ color: "var(--h-border)" }}>{num}</span>
+                    <span className="text-[11px] font-black tabular-nums w-6 shrink-0" style={{ color: "var(--w-label-assistive)" }}>{num}</span>
                     {/* Icon */}
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
                       <Icon size={15} strokeWidth={2} style={{ color: "var(--h-navy)" }} />
@@ -1110,7 +1112,7 @@ export default function HomePage() {
                       <p className="text-xs md:text-sm mt-0.5 line-clamp-1 hidden sm:block" style={{ color: "var(--h-muted)" }}>{service.desc}</p>
                     </div>
                     {/* Arrow */}
-                    <ArrowRight size={14} strokeWidth={2} className="shrink-0 transition-transform group-hover:translate-x-1" style={{ color: "var(--h-border)" }} />
+                    <ArrowRight size={14} strokeWidth={2} className="shrink-0 transition-transform group-hover:translate-x-1" style={{ color: "var(--w-label-assistive)" }} />
                   </Link>
                 );
               })}
@@ -1182,19 +1184,19 @@ export default function HomePage() {
                       { label: "플레이스 저장", you: "낮음", comp: "높음", bad: true },
                     ].map((row) => (
                       <div key={row.label} className="grid grid-cols-[80px_1fr_1fr] gap-2 text-xs">
-                        <span className="text-gray-400 pt-1">{row.label}</span>
-                        <div className="flex items-center gap-1.5 bg-red-50 border border-red-100 rounded-lg px-2.5 py-1.5 text-red-600 font-semibold">
+                        <span className="text-gray-500 pt-1">{row.label}</span>
+                        <div className="flex items-center gap-1.5 bg-red-50 border border-red-100 rounded-lg px-2.5 py-1.5 text-red-700 font-semibold">
                           <X size={10} strokeWidth={3} />{row.you}
                         </div>
-                        <div className="flex items-center gap-1.5 bg-green-50 border border-green-100 rounded-lg px-2.5 py-1.5 text-green-600 font-semibold">
+                        <div className="flex items-center gap-1.5 bg-green-50 border border-green-100 rounded-lg px-2.5 py-1.5 text-green-700 font-semibold">
                           <CheckCircle2 size={10} strokeWidth={3} />{row.comp}
                         </div>
                       </div>
                     ))}
                   </div>
                   <div className="mt-5 grid grid-cols-2 gap-2 text-[11px] text-center">
-                    <div className="text-red-500 font-bold">내 매장 (예시)</div>
-                    <div className="text-green-600 font-bold">경쟁 매장 (예시)</div>
+                    <div className="text-red-700 font-bold">내 매장 (예시)</div>
+                    <div className="text-green-700 font-bold">경쟁 매장 (예시)</div>
                   </div>
                 </div>
                 <Link href="/contact"
@@ -1230,11 +1232,11 @@ export default function HomePage() {
                   <div key={item.label}>
                     <div className="text-xl md:text-2xl font-black tabular-nums" style={{ color: "var(--h-navy)" }}>{item.value}</div>
                     <div className="text-xs font-bold text-gray-700 mt-0.5">{item.label}</div>
-                    <div className="text-[11px] text-gray-400">{item.note}</div>
+                    <div className="text-[11px] text-gray-600">{item.note}</div>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400 text-center mt-4">
+              <p className="text-xs text-gray-600 text-center mt-4">
                 * 단가는 실제로 나간 견적서에 쓴 금액 그대로입니다. 부가세 별도이고 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
               </p>
             </div>
@@ -1274,7 +1276,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <p className="text-center text-xs text-gray-400 mt-6 leading-relaxed">
+            <p className="text-center text-xs text-gray-500 mt-6 leading-relaxed">
               * 같은 구성이어도 출발점 · 현재 순위 · 상권 경쟁도에 따라 붙는 항목과 물량이 달라집니다.{" "}
               <Link href="/services#pricing" className="inline-flex items-center min-h-11 md:min-h-0 font-bold underline underline-offset-2" style={{ color: "var(--h-navy)" }}>
                 항목별 단가와 계산 과정 보기
@@ -1297,7 +1299,7 @@ export default function HomePage() {
             {/* Desktop table */}
             <div className="hidden md:block rounded-2xl overflow-hidden shadow-lg border border-gray-100">
               <div className="grid grid-cols-[160px_1fr_1fr]">
-                <div className="p-5 text-xs font-bold uppercase tracking-wider flex items-end" style={{ background: "var(--h-dark)", color: "#6B7280" }}>구분</div>
+                <div className="p-5 text-xs font-bold uppercase tracking-wider flex items-end" style={{ background: "var(--h-dark)", color: "#99A1AF" }}>구분</div>
                 <div className="p-5 text-center" style={{ background: "var(--h-navy)" }}>
                   <div className="text-white font-black text-sm tracking-wide">하랑마케팅</div>
                   <div className="text-[11px] mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>10년 경력 · 데이터 기반</div>
@@ -1323,7 +1325,7 @@ export default function HomePage() {
                       <div className="w-4 h-4 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
                         <X size={9} className="text-red-400" strokeWidth={3} />
                       </div>
-                      <span className="text-gray-400 text-xs md:text-sm leading-relaxed">{item.general}</span>
+                      <span className="text-gray-500 text-xs md:text-sm leading-relaxed">{item.general}</span>
                     </div>
                   </div>
                 </div>
@@ -1359,8 +1361,8 @@ export default function HomePage() {
                         <X size={10} className="text-red-400" strokeWidth={3} />
                       </div>
                       <div>
-                        <div className="text-[11px] font-black text-gray-400 mb-0.5">일반 대행사</div>
-                        <span className="text-gray-400 text-xs leading-relaxed">{item.general}</span>
+                        <div className="text-[11px] font-black text-gray-500 mb-0.5">일반 대행사</div>
+                        <span className="text-gray-500 text-xs leading-relaxed">{item.general}</span>
                       </div>
                     </div>
                   </div>
@@ -1381,7 +1383,7 @@ export default function HomePage() {
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>진행 사례</p>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">실제 매장, 실제 수치입니다</h2>
-                <p className="text-gray-400 text-sm">과장 없는 실제 클라이언트의 before·after 데이터</p>
+                <p className="text-gray-500 text-sm">과장 없는 실제 클라이언트의 before·after 데이터</p>
               </div>
               <Link href="/cases" className="inline-flex items-center gap-1.5 font-bold text-sm hover:underline shrink-0 min-h-11 md:min-h-0" style={{ color: "var(--h-navy)" }}>
                 전체 사례 보기 <ArrowRight size={13} />
@@ -1410,18 +1412,18 @@ export default function HomePage() {
                     <div className="p-4">
                       <div className="grid grid-cols-2 gap-2 mb-3">
                         <div className="bg-red-50 border border-red-100 rounded-xl p-2.5 text-center">
-                          <div className="text-[11px] font-black text-red-400 mb-0.5 uppercase">Before</div>
-                          <div className="text-[11px] text-gray-400 mb-1 leading-tight">{c.before.label}</div>
-                          <div className="text-sm font-black text-red-500">{c.before.value}</div>
+                          <div className="text-[11px] font-black text-red-700 mb-0.5 uppercase">Before</div>
+                          <div className="text-[11px] text-gray-600 mb-1 leading-tight">{c.before.label}</div>
+                          <div className="text-sm font-black text-red-700">{c.before.value}</div>
                         </div>
                         <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
                           <div className="text-[11px] font-black mb-0.5 uppercase" style={{ color: "var(--h-navy)" }}>After</div>
-                          <div className="text-[11px] text-gray-400 mb-1 leading-tight">{c.after.label}</div>
+                          <div className="text-[11px] text-gray-600 mb-1 leading-tight">{c.after.label}</div>
                           <div className="text-sm font-black" style={{ color: "var(--h-navy)" }}>{c.after.value}</div>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] text-gray-400">{c.period}</span>
+                        <span className="text-[11px] text-gray-600">{c.period}</span>
                         <span className="text-[11px] font-black px-2 py-0.5 rounded-full" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{c.highlight}</span>
                       </div>
                     </div>
@@ -1446,7 +1448,7 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                  <span className="text-[11px] font-black tracking-[0.22em] uppercase" style={{ color: "var(--h-amber)" }}>
+                  <span className="text-[11px] font-black tracking-[0.22em] uppercase" style={{ color: "var(--w-primary-strong)" }}>
                     Client Testimonials
                   </span>
                 </div>
@@ -1499,7 +1501,7 @@ export default function HomePage() {
               <div>
                 <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">전국 서비스</p>
                 <h2 className="text-xl md:text-2xl font-black text-white mb-1">어디든 달려갑니다</h2>
-                <p className="text-gray-500 text-sm">온라인 진행 기본, 수도권 현장 방문 가능</p>
+                <p className="text-gray-400 text-sm">온라인 진행 기본, 수도권 현장 방문 가능</p>
                 {/* 지역 허브는 sitemap 에만 있고 들어갈 링크가 없어 고립돼 있었다 */}
                 <Link
                   href="/location"
@@ -1553,7 +1555,7 @@ export default function HomePage() {
                   <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
                     플레이스 순위를 올리는<br />7가지 체크리스트
                   </h2>
-                  <p className="text-blue-100 text-sm leading-relaxed mb-6">
+                  <p className="text-blue-50 text-sm leading-relaxed mb-6">
                     10년간 500개 매장 데이터에서 추출한 플레이스 SEO 핵심 포인트.
                     지금 무료 상담 신청하면 PDF로 바로 보내드립니다.
                   </p>
@@ -1565,7 +1567,7 @@ export default function HomePage() {
                     ].map(item => (
                       <div key={item} className="flex items-center gap-2">
                         <CheckCircle2 size={14} className="text-blue-200 shrink-0" strokeWidth={2.5} />
-                        <span className="text-blue-100 text-sm">{item}</span>
+                        <span className="text-blue-50 text-sm">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1575,7 +1577,7 @@ export default function HomePage() {
                     className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 font-black px-6 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm text-center">
                     무료 가이드 받기 <ArrowRight size={15} />
                   </Link>
-                  <p className="text-blue-200 text-xs text-center">상담 신청 후 카카오톡으로 전송</p>
+                  <p className="text-blue-50 text-xs text-center">상담 신청 후 카카오톡으로 전송</p>
                 </div>
               </div>
             </div>
@@ -1630,7 +1632,7 @@ export default function HomePage() {
                 { icon: Clock, text: "24시간 내 대표가 직접 연락" },
                 { icon: Star, text: `재계약률 ${SITE.stats.renewalRate}` },
               ].map(({ icon: Icon, text }) => (
-                <span key={text} className="flex items-center gap-1.5 text-xs text-gray-600">
+                <span key={text} className="flex items-center gap-1.5 text-xs text-gray-400">
                   <Icon size={12} className="text-blue-500" strokeWidth={2} />
                   {text}
                 </span>

@@ -15,6 +15,22 @@
   추출기를 고치지 않고 새로 만든 이유는 소유자가 다르기 때문이다 (C-48 · 수정은 소유자).
   세영의 파일은 성과를 감지해 대장에 올리는 일까지, 이 파일은 그 대장을 화면 문구로 바꾸는 일까지다.
 
+무엇을 후보로 삼나 (2026-09-05 (토) 대표 지시)
+  대표 지시 원문 : 저거 말고도 상승한 내역이 겁나게 많은데 왜 저런것만 4개만 보여줘
+  성과대장은 29행(중복 제거 25)인데 애드랭크가 재고 있는 키워드는 61개다.
+  대장은 세영이 성과를 감지했을 때 적는 장부라 계측 전체를 담지 않는다.
+  그래서 후보를 스냅샷에서 뽑고, 대장에 있는 건은 대장의 시작값을 쓴다.
+
+  스냅샷의 시작 · 시작일은 30일 롤링이다 (게시판정.tsv 의 W-0027 판정에 적혀 있다).
+  대장 밖 건의 카드는 계약 시작이 아니라 최근 30일 남짓의 구간을 말한다 —
+  우리 기간을 짧게 말하는 쪽이라 부풀리는 방향이 아니다.
+
+무엇을 앞에 두나 (2026-09-05 (토) 대표 지시)
+  대표 지시 원문 : 상가청소 보다는 검색량이 높은 입주청소나, 청소업체 이런 키워드들 위주로
+  지금까지는 시작 순위가 낮았던 순서였다. 100위에서 올라온 것이 앞에 섰는데
+  그 키워드를 한 달에 400명이 찾으면 사장님에게 큰 숫자가 아니다.
+  content/keyword-volume.tsv 의 실측 검색량을 붙여 그 순서로 싣는다.
+
 가리는 규칙 (2026-09-04 (금) 대표 지시)
   상호를 아예 쓰지 않는다 — 00카페 · 00고깃집 처럼 업종만 남긴다.
   지역명도 쓰지 않는다 — 00동 맛집 · 00시 상가청소 처럼 행정단위만 남긴다.
@@ -25,8 +41,12 @@
   미확인 계약 — 우리가 관리한 건지 확인되지 않았다 (C-42 · 틀린 값이 빈 값보다 나쁘다)
   게시불가 판정 — 검수자가 뺀 건 (게시판정.tsv)
   보고 제외 명단 — exclude.tsv
-  현재 순위가 시작 순위보다 높아지지 않은 건 — 대표 지시
+  현재 순위가 시작보다 떨어진 건 — 대표 지시
+    2026-09-05 (토) 에 기준이 바뀌었다. 그 전에는 같은 순위(유지중)도 뺐는데
+    대표 지시가 유지중인것들도 싹다 이다. 이제 하락만 뺀다
   병 · 의원 — 진우 검수 전까지 화면에 오르지 않는다 (C-50 · D-0177)
+    대표가 피부과 · 치과도 올리라고 했으나(2026-09-05 (토)) 게이트는 준수가 못 연다.
+    진우 검수 한 줄이 오면 MEDICAL 을 비우는 것이 아니라 게시판정.tsv 에 통과가 적힌다
 
 쓰는 법
   python scripts/place-rank/build_cases.py          # 계산만 하고 보고서를 찍는다
@@ -43,6 +63,8 @@ REPO = pathlib.Path(__file__).resolve().parents[2]
 OUT = REPO / "content" / "place-rank-cases.json"
 # 실제 키워드가 적혀 있어 저장소에 커밋하지 않는다 (.gitignore · .local 규칙)
 MASK = REPO / "content" / "place-rank-mask.local.tsv"
+# 이쪽은 지역명이 없어 커밋한다 — 키워드 유형별 월 검색수
+VOL = REPO / "content" / "keyword-volume.tsv"
 
 WRITE = "--write" in sys.argv
 
@@ -129,6 +151,9 @@ for kw, unit, detail, why in plain(MASK, 4):
 SRC = {"애드랭크": MON / "snapshots", "루메인": MON / "snapshots_lumain"}
 seen = collections.defaultdict(dict)    # (매장, 키워드) -> {출처: (날짜, 오늘)}
 covered = collections.defaultdict(set)  # 출처 -> {(매장, 키워드)}
+# 스냅샷에도 시작 · 시작일 칸이 있다. 대장에 없는 키워드도 이걸로 상승 판정이 된다.
+# 날짜 표기가 다르다 — 스냅샷은 2026.08.04, 대장은 2026-08-05. 여기서 맞춰 둔다.
+snap_start = {}                         # (매장, 키워드) -> (날짜, 시작순위, 시작일)
 latest_file = {}
 for src, folder in SRC.items():
     files = sorted(folder.glob("*.tsv"))
@@ -143,6 +168,14 @@ for src, folder in SRC.items():
             prev = seen[(store, kw)].get(src)
             if prev is None or day > prev[0]:
                 seen[(store, kw)][src] = (day, int(today))
+            if src != "애드랭크":
+                continue
+            s0, d0 = r.get("시작", "").strip(), r.get("시작일", "").strip()
+            if not s0.isdigit() or not d0:
+                continue
+            prev0 = snap_start.get((store, kw))
+            if prev0 is None or day > prev0[0]:
+                snap_start[(store, kw)] = (day, int(s0), d0.replace(".", "-"))
 
 
 def current(store, kw):
@@ -163,12 +196,51 @@ def current(store, kw):
     return None
 
 
+# ---------- 6-B. 검색량 ----------
+# 가림 표기의 공개세부(맛집 · 청소업체)로 join 한다. 지역이 붙은 실제 키워드로 잡지 않는다 —
+# 이 저장소는 공개라 그런 키가 커밋되면 어느 가게인지 좁혀진다.
+volume = {}
+for kind, mv, asof in plain(VOL, 3):
+    if mv.strip().isdigit():
+        volume[kind] = int(mv)
+
+
+# ---------- 6-C. 후보 ----------
+# 대장에 있으면 대장의 시작값(계약 시작)을 쓰고, 없으면 스냅샷의 30일 롤링 시작값을 쓴다.
+CAND = {}
+for _w in wins:
+    if not _w["시작"].strip().isdigit():
+        continue
+    CAND[(_w["매장"], _w["키워드"])] = {
+        "wid": _w["성과ID"], "store": _w["매장"], "kw": _w["키워드"],
+        "start": int(_w["시작"]), "startDate": _w["시작일"].replace(".", "-"),
+        "best": int(_w["최고"]) if _w["최고"].strip().isdigit() else None,
+        "grade": _w["등급"], "origin": "대장",
+    }
+for _key, (_day, _s0, _d0) in snap_start.items():
+    if _key in CAND:
+        continue
+    CAND[_key] = {
+        "wid": None, "store": _key[0], "kw": _key[1],
+        "start": _s0, "startDate": _d0,
+        "best": None, "grade": "", "origin": "스냅샷",
+    }
+# 대장 밖 건에 번호를 붙인다. 정렬이 고정이라 다시 돌려도 같은 번호가 나온다.
+# 게시판정.tsv 는 W- 번호로만 키를 잡고 있어 진우가 이 번호를 못 부른다 — 세영에게 넘긴 건이다.
+_p = 0
+for _key in sorted(CAND):
+    if CAND[_key]["wid"] is None:
+        _p += 1
+        CAND[_key]["wid"] = "P-%04d" % _p
+cands = [CAND[_key] for _key in sorted(CAND)]
+
+
 # ---------- 7. 판정 ----------
 MEDICAL = {"치과", "피부과", "한의원", "의원", "성형외과", "정형외과"}
 passed, held = [], []
 
-for w in wins:
-    wid, store, kw = w["성과ID"], w["매장"], w["키워드"]
+for c in cands:
+    wid, store, kw = c["wid"], c["store"], c["kw"]
     tag = wid + " " + store + " · " + kw
 
     d = deal.get(store)
@@ -209,14 +281,14 @@ for w in wins:
         held.append((tag, "애드랭크가 이 키워드를 재고 있지 않다 — 루메인만 있다"))
         continue
 
-    start = int(w["시작"])
-    if cur["rank"] >= start:
+    start = c["start"]
+    if cur["rank"] > start:
         held.append((tag, "현재 " + str(cur["rank"]) + "위로 시작 " + str(start)
-                     + "위보다 높아지지 않았다 (" + cur["asOf"] + " 기준 · 대표 지시)"))
+                     + "위보다 떨어졌다 (" + cur["asOf"] + " 기준 · 대표 지시)"))
         continue
 
     unit, detail = mask[kw]
-    d0 = datetime.date.fromisoformat(w["시작일"])
+    d0 = datetime.date.fromisoformat(c["startDate"])
     d1 = datetime.date.fromisoformat(cur["asOf"].replace(".", "-"))
     passed.append({
         "id": wid,
@@ -226,12 +298,18 @@ for w in wins:
         "keywordLabel": ("00" + unit + " " + detail) if unit else ("00 " + detail),
         "from": start,
         "to": cur["rank"],
+        # 올라간 건과 지킨 건을 한 칸으로 구분한다. 화면에서 문장이 달라진다 —
+        # 3위에서 3위는 올랐다 가 아니라 지키고 있다 이다.
+        "trend": "상승" if cur["rank"] < start else "유지",
+        "volume": volume.get(detail, 0),
+        "keywordType": detail,
+        "origin": c["origin"],
         "days": (d1 - d0).days,
-        "startDate": w["시작일"],
+        "startDate": c["startDate"],
         "asOf": cur["asOf"],
-        "best": int(w["최고"]),
+        "best": c["best"],
         "page1": cur["rank"] <= 5,
-        "grade": w["등급"],
+        "grade": c["grade"],
         "deal": d["kind"],
         "srcUsed": cur["src"],
         "cross": cur["cross"],
@@ -275,8 +353,9 @@ monitoring = {
 snap_count = {src: len(list(folder.glob("*.tsv"))) for src, folder in SRC.items()}
 
 # ---------- 9. 보고서 ----------
-print("[대장] " + str(len(wins)) + "건 → 게시 가능 " + str(len(passed))
-      + "건 · 보류 " + str(len(held)) + "건")
+print("[후보] %d건 (대장 %d · 스냅샷 %d) → 게시 가능 %d건 · 보류 %d건"
+      % (len(cands), sum(1 for c in cands if c["origin"] == "대장"),
+         sum(1 for c in cands if c["origin"] == "스냅샷"), len(passed), len(held)))
 print("[스냅샷] 애드랭크 최신 " + str(latest_file["애드랭크"])
       + " · 루메인 최신 " + str(latest_file["루메인"]))
 print("[스냅샷 회차] " + " · ".join(k + " " + str(v) + "회" for k, v in snap_count.items()))
@@ -320,6 +399,9 @@ def public(p):
         "keywordLabel": p["keywordLabel"],
         "from": p["from"],
         "to": p["to"],
+        "trend": p["trend"],
+        "volume": p["volume"],
+        "keywordType": p["keywordType"],
         "days": p["days"],
         "startDate": p["startDate"],
         "asOf": p["asOf"],
@@ -332,9 +414,14 @@ doc = {
     "generated": datetime.date.today().isoformat(),
     "source": "E:/하랑/순위모니터/성과대장.tsv (세영 · 애드랭크 순위 계측)",
     "note": ("상호와 지역명을 쓰지 않는다. 업종과 행정단위까지만 공개한다 (2026-09-04 (금) 대표 지시). "
-             "실리는 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다."),
+             "실리는 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다. "
+             "올라간 건과 지키고 있는 건을 함께 싣고 떨어진 건만 뺀다 (2026-09-05 (토) 대표 지시). "
+             "순서는 키워드 월 검색수가 큰 쪽부터다 — content/keyword-volume.tsv."),
+    "volumeAsOf": "2026-09-04",
     "monitoring": monitoring,
-    "cases": [public(p) for p in sorted(live_cases, key=lambda x: x["to"] - x["from"])],
+    # 검색량이 큰 키워드가 앞에 선다. 같으면 많이 올라온 쪽이 앞이다.
+    "cases": [public(p) for p in sorted(live_cases,
+                                        key=lambda x: (-x["volume"], x["to"] - x["from"]))],
     "pendingReview": pending,
 }
 

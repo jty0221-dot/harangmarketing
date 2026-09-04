@@ -1,6 +1,6 @@
 import { getBlogIndex } from "../lib/blog-index";
 import {
-  PLACE_RANK_GENERATED, PLACE_RANK_TOTALS,
+  PLACE_RANK_GENERATED, PLACE_RANK_HELD, PLACE_RANK_RISEN, PLACE_RANK_TOTALS,
 } from "../lib/place-rank-cases";
 
 export const revalidate = 86400;
@@ -30,7 +30,7 @@ export async function GET() {
       <title>${escapeXml(`네이버 플레이스 순위 계측 사례 ${PLACE_RANK_TOTALS.works}건`)}</title>
       <link>${BASE}/cases/place-rank</link>
       <description>${escapeXml(
-        `${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 상승이 확인된 ${PLACE_RANK_TOTALS.works}건을 키워드마다 한 장씩, 시작 순위와 확인된 순위와 걸린 일수만 적었습니다.`
+        `${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 올라간 ${PLACE_RANK_RISEN}건과 자리를 지키고 있는 ${PLACE_RANK_HELD}건을 키워드마다 한 장씩, 시작 순위와 확인된 순위와 걸린 일수만 적었습니다.`
       )}</description>
       <pubDate>${toRfc822(PLACE_RANK_GENERATED)}</pubDate>
       <guid isPermaLink="false">${BASE}/cases/place-rank?d=${PLACE_RANK_GENERATED}</guid>

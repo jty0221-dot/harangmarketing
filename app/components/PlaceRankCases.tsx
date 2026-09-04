@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Clock, Store } from "lucide-react";
+import { ArrowRight, Check, Clock, ShieldCheck, Store } from "lucide-react";
 import {
   PLACE_RANK_AS_OF,
   PLACE_RANK_LABEL_NOTE,
@@ -16,7 +16,9 @@ import {
  *
  * 숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다. 이 파일에 숫자를 적지 않는다.
  * label 과 keyword 는 이미 가림 처리가 끝난 값이라 화면에서 다시 만들지 않는다.
- * 쓸 수 있는 문장은 `67위에서 3위 (21일)` 하나뿐이고 집계값을 새로 만들지 않는다.
+ * 쓸 수 있는 문장은 `67위에서 3위 (21일)` 와 `3위 유지 (23일)` 둘뿐이고 집계값을 새로 만들지 않는다.
+ * trend 가 유지인 카드에 올랐다고 적지 않는다 (2026-09-05 (토) 대표 지시).
+ * 3위에서 3위는 오른 것이 아니라 지킨 것이다.
  *
  * 서버 · 클라이언트 컴포넌트 양쪽에서 부를 수 있게 훅과 fs 를 쓰지 않는다.
  */
@@ -50,7 +52,7 @@ export function PlaceRankCaseCards({
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <p className="text-sm md:text-base font-semibold text-gray-900 truncate">{k.detail}</p>
-                <p className="mt-0.5 flex items-center gap-1 text-xs text-gray-400">
+                <p className="mt-0.5 flex items-center gap-1 text-xs text-gray-500">
                   <Store size={11} strokeWidth={2.5} className="shrink-0" />
                   <span className="truncate">{c.label}</span>
                 </p>
@@ -64,13 +66,22 @@ export function PlaceRankCaseCards({
             </div>
 
             <p className="mt-3 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
-              <span className="text-base font-semibold text-gray-400 tabular-nums">{k.from}위</span>
-              <span className="text-xs text-gray-400">에서</span>
+              {c.trend === "상승" && (
+                <>
+                  <span className="text-base font-semibold text-gray-500 tabular-nums">{k.from}위</span>
+                  <span className="text-xs text-gray-500">에서</span>
+                </>
+              )}
               <span className="text-2xl font-bold tabular-nums" style={{ color: "var(--w-primary)" }}>
                 {k.to}위
               </span>
+              {c.trend === "유지" && (
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-500">
+                  <ShieldCheck size={11} strokeWidth={2.5} />유지
+                </span>
+              )}
               <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-500 tabular-nums">
-                <Clock size={11} strokeWidth={2.5} />({k.days}일)
+                <Clock size={11} strokeWidth={2.5} />({k.days}일{c.trend === "유지" ? " 계측" : ""})
               </span>
             </p>
             <p className="mt-1 text-xs text-gray-500">
@@ -132,7 +143,7 @@ export default function PlaceRankCasesSection({
 
         <PlaceRankCaseCards cases={cases} columns={columns} />
 
-        <p className="mt-5 text-xs text-gray-400 leading-relaxed">
+        <p className="mt-5 text-xs text-gray-500 leading-relaxed">
           {PLACE_RANK_AS_OF} 기준 계측값입니다. {PLACE_RANK_NOTE}
           {!compact && ` ${PLACE_RANK_LABEL_NOTE}`}
         </p>

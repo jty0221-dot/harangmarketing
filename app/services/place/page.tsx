@@ -19,7 +19,8 @@ import {
   gap, fmt, MEASURE_NOTE,
 } from "../../lib/rank-records";
 import {
-  byDepth, PLACE_RANK_AS_OF, PLACE_RANK_PAGE1_NOTE, PLACE_RANK_TOTALS,
+  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_HELD, PLACE_RANK_PAGE1_NOTE,
+  PLACE_RANK_RISEN, PLACE_RANK_TOTALS,
 } from "../../lib/place-rank-cases";
 
 /**
@@ -50,12 +51,13 @@ const KAKAO_HREF = SITE.kakaoChat;
 
 /* 집계 — 손으로 적지 않는다. RECORDS 를 다시 세어서 쓴다. */
 const TOP_RECORDS = [...RECORDS].sort((a, b) => gap(b) - gap(a)).slice(0, 6);
-const FASTEST = RECORDS.reduce((a, b) => (b.days < a.days ? b : a));
+/* 「올라온 기록 중 가장 빨랐던 건」이라고 말하는 자리다. 유지는 후보에서 뺀다. */
+const RISEN_RECORDS = RECORDS.filter((r) => r.from > r.to);
+const FASTEST = RISEN_RECORDS.reduce((a, b) => (b.days < a.days ? b : a));
 const INDUSTRY_COUNT = new Set(RECORDS.map((r) => r.industry)).size;
 const EXCLUDED_TOTAL =
   EXCLUDED_COUNT.declined +
   EXCLUDED_COUNT.outsidePage1 +
-  EXCLUDED_COUNT.heldNoGain +
   EXCLUDED_COUNT.insufficient;
 
 /* 1페이지에 있는 자리는 두 종류다. 이 구분이 이 페이지의 뼈대다. */
@@ -415,7 +417,7 @@ export default function PlaceServicePage() {
                 </p>
                 <Link
                   href="/services#pricing"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-blue-700 hover:text-blue-800"
+                  className="mt-4 inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-sm font-bold text-blue-700 hover:text-blue-800"
                 >
                   비용 기준 보기
                   <ArrowRight size={14} strokeWidth={2.5} />
@@ -483,7 +485,7 @@ export default function PlaceServicePage() {
                               유지 중
                             </span>
                           ) : (
-                            <span className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-500">
+                            <span className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-600">
                               변동 있음
                             </span>
                           )}
@@ -525,7 +527,6 @@ export default function PlaceServicePage() {
                 </span>
                 {" "}순위가 내려간 것 {EXCLUDED_COUNT.declined}건,
                 1페이지 밖에 머문 것 {EXCLUDED_COUNT.outsidePage1}건,
-                이미 1~5위여서 더 올릴 자리가 없던 것 {EXCLUDED_COUNT.heldNoGain}건,
                 계측을 막 시작해 시작값이 없는 것 {EXCLUDED_COUNT.insufficient}건입니다.
                 지우지 않고 남겨 둡니다. 올라간 것만 보여 드리면 이 표를 믿을 이유가 없어집니다.
               </p>
@@ -539,10 +540,10 @@ export default function PlaceServicePage() {
         {/* 개별 계측 사례 — 위 표는 업종별 집계, 여기는 키워드 하나하나다.
             숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
         <PlaceRankCasesSection
-          cases={byDepth(4, 8)}
+          cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드 하나하나를 따로 잰 기록"
-          description={`${PLACE_RANK_AS_OF} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다.`}
+          description={`${PLACE_RANK_AS_OF} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 올라간 ${PLACE_RANK_RISEN}건과 자리를 지키고 있는 ${PLACE_RANK_HELD}건을 실었습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           background="bg-white"
         />
