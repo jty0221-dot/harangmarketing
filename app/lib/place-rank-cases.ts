@@ -101,7 +101,7 @@ interface PlaceRankFile {
     asOf: string;
   };
   cases: RawCase[];
-  pendingReview: { id: string; reason: string }[];
+  pendingReview: { id: string; why: string }[];
 }
 
 const FILE = raw as unknown as PlaceRankFile;
