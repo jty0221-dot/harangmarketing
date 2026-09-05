@@ -58,7 +58,7 @@ export const BLOG_META: BlogMeta[] = [
   {
     slug: "momcafe-viral-guide",
     title: "맘카페 바이럴 마케팅 완전 가이드",
-    excerpt: "맘카페는 구매 결정권을 가진 주부가 모이는 최고의 로컬 마케팅 채널입니다. 자연스럽게 입소문을 내는 방법을 공개합니다.",
+    excerpt: "맘카페는 구매 결정권을 가진 주부가 모이는 로컬 마케팅 채널입니다. 자연스럽게 입소문을 내는 방법을 공개합니다.",
     tag: "업종별 전략",
     date: "2024-12-15",
     unlisted: true,

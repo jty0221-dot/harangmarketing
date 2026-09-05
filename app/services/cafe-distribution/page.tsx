@@ -450,8 +450,8 @@ export default function CafeDistributionPage() {
               <div className="mt-6 flex flex-col gap-2.5">
                 {[
                   "모바일 통합검색 카페 영역 노출",
-                  "실제 대행사에 전달된 100% 실사 증빙 자료",
-                  "지역맘 카페 · 대형 카페 100% 커뮤니티 노출",
+                  "실제 대행사에 전달된 실사 증빙 자료",
+                  "지역맘 카페 · 대형 카페 커뮤니티 배포",
                 ].map((t) => (
                   <span
                     key={t}
