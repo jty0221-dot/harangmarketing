@@ -13,10 +13,15 @@ app/lib/rank-records.ts 본문 생성기 — 손으로 세지 않는다.
   RECORDS + 하락 + 1페이지밖 + 정체 = SUMMARY.keywords 가 정확히 맞아야 한다.
 
 쓰는 법
-  python scripts/place-rank/rank_records.py
-  찍힌 블록을 app/lib/rank-records.ts 의 같은 이름 자리에 그대로 옮긴다.
-  TSV 는 저장소 밖(E:\하랑\순위모니터)에 있어 빌드가 읽을 수 없다.
-  그래서 옮겨 적기는 남지만, 세는 것은 사람이 하지 않는다.
+  python scripts/place-rank/rank_records.py           계산만 한다 (아무것도 안 쓴다)
+  python scripts/place-rank/rank_records.py --write   app/lib/rank-records.ts 를 갱신한다
+
+  TSV 는 저장소 밖(E:\하랑\순위모니터)에 있어 빌드가 읽을 수 없다. 그래서 값을 옮겨 심는
+  구간이 남는데, 그 구간을 사람이 하면 거기서 멈춘다 — 실제로 08-26 에 5일 멈춰 있었다.
+  --write 는 rank-records.ts 의 다섯 자리(SNAPSHOT_DATE · RECORDS · 제외 주석 ·
+  EXCLUDED_COUNT · SUMMARY)만 갈아 끼운다. 나머지 줄은 한 글자도 건드리지 않는다.
+  검산이 어긋나면 아무것도 쓰지 않고 멈춘다 — 틀린 값이 빈 값보다 나쁘다 (C-42).
+  (2026-09-05 (토) 대표 지시 · 최신 날짜 기준으로 계속 체크되게 체계 확립)
 
 지키는 선 (헌장 C-36 · 2026-09-04 (금) 대표 지시)
   · 읽기만 한다. 아무 파일도 쓰지 않는다. 스냅샷은 지우지 않는다
@@ -43,6 +48,10 @@ if hasattr(sys.stdout, "reconfigure"):
 
 SNAP_GLOB = "E:/하랑/순위모니터/snapshots/*.tsv"
 
+# 갱신 대상. 이 파일 기준 두 칸 위가 저장소 뿌리다 (scripts/place-rank/ → harang/).
+TS_PATH = pathlib.Path(__file__).resolve().parents[2] / "app" / "lib" / "rank-records.ts"
+WRITE = "--write" in sys.argv
+
 # 화면에 실을 순서를 정하는 표. 저장소 안에 있고 키워드 유형 단위라 지역명이 없다.
 # 여기 없는 유형은 0 으로 두고 뒤로 보낸다 — 추정해서 숫자를 만들지 않는다 (C-42).
 VOLUME_TSV = str(pathlib.Path(__file__).resolve().parents[2] / "content" / "keyword-volume.tsv")
@@ -58,11 +67,15 @@ KIND = [
     ("에어컨청소", "에어컨청소", "청소"),
     ("청소업체", "청소업체", "청소"),
     ("청소", "청소", "청소"),
+    ("누수탐지", "누수탐지", "누수탐지"),
+    ("누수", "누수", "누수탐지"),
     ("디저트카페", "디저트카페", "카페"),
     ("카페", "카페", "카페"),
     ("데이트", "데이트", "카페"),
     ("샤브샤브", "샤브샤브", "음식점"),
     ("맛집", "맛집", "음식점"),
+    ("점심", "점심", "음식점"),
+    ("회식", "회식", "음식점"),
     ("고기집", "고기집", "음식점"),
     ("고깃집", "고기집", "음식점"),
     ("삼겹살", "삼겹살", "음식점"),
@@ -137,6 +150,45 @@ def vol(vmap, label):
     return vmap.get(label.replace("역세권 ", "").strip(), 0)
 
 
+# rank-records.ts 안에서 갈아 끼울 여섯 자리. 정규식은 각각 딱 한 번만 맞아야 한다.
+# 두 번 맞거나 한 번도 못 맞으면 파일 구조가 바뀐 것이라 아무것도 쓰지 않고 멈춘다.
+TS_ANCHORS = [
+    ("HEADER", r"^ \* 기준 스냅샷: [^\n]*"),
+    ("SNAPSHOT_DATE", r'^export const SNAPSHOT_DATE = "[^"]*";'),
+    ("RECORDS", r"^export const RECORDS: RankRecord\[\] = \[$.*?^\];"),
+    ("EXCLUDED", r"^ \* 하락 — .*?^ \* 데이터 부족 — [^\n]*"),
+    ("EXCLUDED_COUNT", r"^export const EXCLUDED_COUNT = \{[^\n]*\};"),
+    ("SUMMARY", r"^export const SUMMARY = \{$.*?^\};"),
+]
+
+
+def write_ts(B, mark):
+    """계산한 블록을 app/lib/rank-records.ts 에 넣는다. 사람이 옮겨 적던 구간을 없앤다."""
+    if mark != "맞음":
+        print("\n[중단] 검산이 어긋났다. 갈래가 새는 상태로 화면에 올리지 않는다 (C-42)")
+        return 1
+    if not TS_PATH.exists():
+        print("\n[중단] 갱신 대상이 없다: %s" % TS_PATH)
+        return 1
+
+    src = io.open(TS_PATH, encoding="utf-8").read()
+    new = src
+    for key, pat in TS_ANCHORS:
+        hits = len(re.findall(pat, new, flags=re.M | re.S))
+        if hits != 1:
+            print("\n[중단] %s 자리를 %d개 찾았다 (1개여야 한다). 아무것도 쓰지 않았다" % (key, hits))
+            return 1
+        # 치환문을 람다로 감싼다. \g 같은 역참조가 원고 안에 있어도 그대로 들어간다.
+        new = re.sub(pat, lambda m, v=B[key]: v, new, count=1, flags=re.M | re.S)
+
+    if new == src:
+        print("\n// 바뀐 값이 없다. %s 는 그대로 둔다" % TS_PATH.name)
+        return 0
+    io.open(TS_PATH, "w", encoding="utf-8", newline="\n").write(new)
+    print("\n// 갱신함 → %s (여섯 자리)" % TS_PATH)
+    return 0
+
+
 def main():
     paths = sorted(glob.glob(SNAP_GLOB))
     if not paths:
@@ -195,22 +247,49 @@ def main():
     decl.sort(key=lambda x: x[3] - x[2], reverse=True)
     out1.sort(key=lambda x: x[2] - x[3], reverse=True)
 
-    print('export const SNAPSHOT_DATE = "%s";\n' % last_date)
-    print("export const RECORDS: RankRecord[] = [")
-    for ind, label, f, t, d, held in pub:
-        print(
+    # 아래 블록은 화면으로 그대로 간다. 찍기만 하고 끝내지 않고 B 에 담아 두는 이유는
+    # --write 가 이걸 rank-records.ts 의 같은 자리에 넣기 때문이다 (사람이 옮겨 적지 않는다).
+    B = {}
+    B["HEADER"] = " * 기준 스냅샷: %s (%d회 누적 · %s ~ %s)" % (
+        last_date, len(snaps), snaps[0][0], last_date
+    )
+    B["SNAPSHOT_DATE"] = 'export const SNAPSHOT_DATE = "%s";' % last_date
+    B["RECORDS"] = "\n".join(
+        ["export const RECORDS: RankRecord[] = ["]
+        + [
             '  { industry: "%s", keyword: "지역 %s 키워드", from: %d, to: %d, days: %d, heldPage1: %s },'
             % (ind, label, f, t, d, "true" if held else "false")
-        )
-    print("];\n")
+            for ind, label, f, t, d, held in pub
+        ]
+        + ["];"]
+    )
+    print(B["SNAPSHOT_DATE"] + "\n")
+    print(B["RECORDS"] + "\n")
 
-    line = lambda rows: " · ".join("지역 %s %d위 → %d위" % (l, f, t) for _, l, f, t, _, _ in rows)
-    print(" * 하락 — " + line(decl))
-    print(" * 1페이지 밖 — " + line(out1))
-    print(
-        "\nexport const EXCLUDED_COUNT = { declined: %d, outsidePage1: %d, insufficient: %d };"
+    item = lambda rows: ["지역 %s %d위 → %d위" % (l, f, t) for _, l, f, t, _, _ in rows]
+
+    def wrap(head, rows):
+        # 주석 폭을 사람이 맞추지 않는다. 세 건마다 접고 이어지는 줄은 여덟 칸 들여쓴다.
+        xs = item(rows)
+        if not xs:
+            return " * %s — 없음" % head
+        parts = [" · ".join(xs[i:i + 3]) for i in range(0, len(xs), 3)]
+        return "\n".join(
+            (" * %s — " % head if i == 0 else " *        ") + p + (" ·" if i < len(parts) - 1 else "")
+            for i, p in enumerate(parts)
+        )
+
+    B["EXCLUDED"] = "\n".join([
+        wrap("하락", decl),
+        wrap("1페이지 밖", out1),
+        " * 데이터 부족 — %d건 (계측 시작 직후라 시작값이 없다)" % insuf,
+    ])
+    B["EXCLUDED_COUNT"] = (
+        "export const EXCLUDED_COUNT = { declined: %d, outsidePage1: %d, insufficient: %d };"
         % (len(decl), len(out1), insuf)
     )
+    print(B["EXCLUDED"])
+    print("\n" + B["EXCLUDED_COUNT"])
     print(
         "// 실은 것 → 상승 %d건 · 유지 %d건 (유지는 RECORDS 안에서 from === to 로 가려낸다)"
         % (len(rec), len(flat))
@@ -226,25 +305,25 @@ def main():
         if len(hist[(r["매장"], r["키워드"])]) == len(snaps)
         and all(v <= 5 for v in hist[(r["매장"], r["키워드"])])
     )
-    print(
-        """
-export const SUMMARY = {
-  stores: %d,
-  keywords: %d,
-  page1Keywords: %d,
-  page1Stores: %d,
-  heldAllSnapshots: %d,
-  snapshots: %d,
-};"""
-        % (
-            len({r["매장"] for r in last}),
-            len(ok),
-            len(p1),
-            len({r["매장"] for r in p1}),
-            held_all,
-            len(snaps),
-        )
-    )
+    # 주석 안 숫자까지 같이 만든다. 값만 갈아 끼우면 `누적 스냅샷 15회` 가 옛 회차로 남는다.
+    B["SUMMARY"] = "\n".join([
+        "export const SUMMARY = {",
+        "  /** 매일 계측 중인 매장 수 */",
+        "  stores: %d," % len({r["매장"] for r in last}),
+        "  /** 매일 계측 중인 키워드 수 (시작값이 없는 %d건 제외) */" % insuf,
+        "  keywords: %d," % len(ok),
+        "  /** 기준일에 1페이지(1~5위)를 지키고 있는 키워드 수 */",
+        "  page1Keywords: %d," % len(p1),
+        "  /** 기준일에 1페이지를 지키고 있는 매장 수 */",
+        "  page1Stores: %d," % len({r["매장"] for r in p1}),
+        "  /** 누적 스냅샷 %d회에 빠짐없이 잡히면서 한 번도 1페이지 밖으로 나가지 않은 키워드 수 */"
+        % len(snaps),
+        "  heldAllSnapshots: %d," % held_all,
+        "  /** 누적 스냅샷 회차 */",
+        "  snapshots: %d," % len(snaps),
+        "};",
+    ])
+    print("\n" + B["SUMMARY"])
 
     # 산수 점검 — 네 갈래를 합치면 keywords 와 딱 맞아야 한다. 안 맞으면 갈래가 새고 있다.
     total = len(rec) + len(decl) + len(out1) + len(flat)
@@ -270,6 +349,9 @@ export const SUMMARY = {
         for kw in sorted(unmatched):
             print("        %s" % kw)
 
+    if WRITE:
+        return write_ts(B, mark)
+    print("\n// (계산만 했다. app/lib/rank-records.ts 를 갱신하려면 --write 를 붙인다)")
     return 0
 
 

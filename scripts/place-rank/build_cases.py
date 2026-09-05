@@ -199,10 +199,15 @@ def current(store, kw):
 # ---------- 6-B. 검색량 ----------
 # 가림 표기의 공개세부(맛집 · 청소업체)로 join 한다. 지역이 붙은 실제 키워드로 잡지 않는다 —
 # 이 저장소는 공개라 그런 키가 커밋되면 어느 가게인지 좁혀진다.
+# 조회일을 손으로 적지 않는다. 적어 둔 날짜는 다음 사람이 안 고친다 —
+# 표를 다시 뽑으면 asOf 도 같이 움직여야 화면 숫자와 근거 날짜가 어긋나지 않는다.
 volume = {}
+volume_asof = ""
 for kind, mv, asof in plain(VOL, 3):
     if mv.strip().isdigit():
         volume[kind] = int(mv)
+        if asof.strip() > volume_asof:
+            volume_asof = asof.strip()
 
 
 # ---------- 6-C. 후보 ----------
@@ -417,7 +422,7 @@ doc = {
              "실리는 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다. "
              "올라간 건과 지키고 있는 건을 함께 싣고 떨어진 건만 뺀다 (2026-09-05 (토) 대표 지시). "
              "순서는 키워드 월 검색수가 큰 쪽부터다 — content/keyword-volume.tsv."),
-    "volumeAsOf": "2026-09-04",
+    "volumeAsOf": volume_asof,
     "monitoring": monitoring,
     # 검색량이 큰 키워드가 앞에 선다. 같으면 많이 올라온 쪽이 앞이다.
     "cases": [public(p) for p in sorted(live_cases,
