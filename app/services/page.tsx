@@ -279,6 +279,9 @@ const SERVICES = [
     ],
     rec: "비주얼 중심 업종(카페·미용·음식점)이나 주부 고객 타겟 매장",
     result: "발행 수와 도달을 월간 리포트로 공개",
+    href: "/services/instagram",
+    // 인스타 랜딩에도 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
+    hrefLabel: "인스타 안내 보기",
   },
   {
     id: "kakaomap",
