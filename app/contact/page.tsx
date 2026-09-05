@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
   Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2,
-  Clock, ArrowRight, ChevronRight,
+  Clock, ArrowRight, ChevronRight, AlertCircle,
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle, Sparkles,
   Handshake,
 } from "lucide-react";
@@ -80,7 +80,9 @@ export default function ContactPage() {
   // 값이 안 와도 화면은 그대로 동작한다. 문구 한 줄과 메모 초안이 더 붙을 뿐이다.
   const [checklistCount, setChecklistCount] = useState(0);
 
-  const [step, setStep] = useState<"industry" | "form" | "done">("industry");
+  const [step, setStep] = useState<"industry" | "form" | "done" | "blocked">("industry");
+  // 접수가 막혔을 때 사장님이 적은 내용을 그대로 다시 보낼 수 있게 링크를 들고 있는다
+  const [kakaoUrl, setKakaoUrl] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
@@ -115,12 +117,17 @@ export default function ContactPage() {
     );
 
     GA_EVENTS.contactFormSubmit(indLabel);
-    // 카카오톡 채널에 문의 내용 전달
-    window.open(`https://pf.kakao.com/_MuUkG/chat?text=${kakaoMsg}`, "_blank");
+    /* 카카오톡 채널에 문의 내용 전달.
+       팝업 차단이나 인앱 브라우저에서는 창이 안 열리고 null 이 돌아온다.
+       반환값을 안 보고 완료를 띄우면 사장님은 신청했다고 믿는데 우리에게는 아무것도 안 온다. */
+    const kakaoLink = `https://pf.kakao.com/_MuUkG/chat?text=${kakaoMsg}`;
+    setKakaoUrl(kakaoLink);
+    const kakaoWindow = window.open(kakaoLink, "_blank");
 
-    // 이메일 알림 (API route)
+    // 서버 접수 (저장 + 알림). 카톡 창이 막혀도 이 길이 살아 있으면 접수된 것이다
+    let saved = false;
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -133,12 +140,14 @@ export default function ContactPage() {
           website,
         }),
       });
+      saved = res.ok;
     } catch {
-      // 이메일 실패해도 카카오로 전달됐으므로 무시
+      saved = false;
     }
 
     setLoading(false);
-    setStep("done");
+    // 두 길이 다 막혔을 때는 완료라고 말하지 않는다
+    setStep(!kakaoWindow && !saved ? "blocked" : "done");
   };
 
   return (
@@ -422,6 +431,36 @@ export default function ContactPage() {
                       <Handshake size={13} className="text-blue-400" strokeWidth={2.5} />
                       <p className="text-xs text-gray-500">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</p>
                     </div>
+                  </div>
+                )}
+
+                {/* 카톡 창도 막히고 서버 접수도 안 닿았을 때. 완료라고 하지 않고 직접 연락 수단을 준다 */}
+                {step === "blocked" && (
+                  <div className="bg-white rounded-2xl p-8 shadow-sm border border-orange-200 text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-orange-500 flex items-center justify-center mx-auto mb-5 shadow-md">
+                      <AlertCircle size={28} className="text-white" strokeWidth={2} />
+                    </div>
+                    <h2 className="text-xl font-black text-gray-900 mb-2">접수가 끝나지 않았습니다</h2>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-5">
+                      브라우저가 카카오톡 창을 막았고 서버 접수도 닿지 않았습니다.<br />
+                      <span className="font-semibold text-gray-800">아래로 한 번만 더 눌러 주세요.</span> 적으신 내용은 그대로 담겨 있습니다.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
+                      <a href={kakaoUrl || "https://pf.kakao.com/_MuUkG/chat"} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
+                        <MessageCircle size={15} />카카오톡으로 보내기
+                      </a>
+                      <a href="tel:010-7541-9054"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors">
+                        <Phone size={15} />010-7541-9054
+                      </a>
+                    </div>
+
+                    <button type="button" onClick={() => setStep("form")}
+                      className="min-h-11 text-xs text-gray-500 underline underline-offset-2 hover:text-gray-700">
+                      입력한 내용으로 다시 시도
+                    </button>
                   </div>
                 )}
               </div>

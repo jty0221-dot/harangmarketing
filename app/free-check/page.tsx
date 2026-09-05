@@ -53,14 +53,51 @@ export default function FreeCheckPage() {
   const [phone, setPhone] = useState("");
   const [rank, setRank] = useState("");
   const [sent, setSent] = useState(false);
+  // 카톡 창도 막히고 서버 접수도 안 닿은 상태. 이때는 완료라고 하지 않는다
+  const [blocked, setBlocked] = useState(false);
+  const [kakaoUrl, setKakaoUrl] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
+    setSending(true);
     const rankInfo = rank ? `\n현재 플레이스 순위: ${rank}위권` : "";
     const msg = encodeURIComponent(
       `[무료 진단 신청]\n사장님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`
     );
-    window.open(`https://pf.kakao.com/_MuUkG/chat?text=${msg}`, "_blank");
+
+    /* 팝업 차단이나 인앱 브라우저에서는 창이 안 열리고 null 이 돌아온다.
+       반환값을 안 보고 완료를 띄우면 사장님은 신청했다고 믿는데 우리에게는 아무것도 안 온다. */
+    const kakaoLink = `https://pf.kakao.com/_MuUkG/chat?text=${msg}`;
+    setKakaoUrl(kakaoLink);
+    const kakaoWindow = window.open(kakaoLink, "_blank");
+
+    /* 서버 접수 (저장 + 알림).
+       예전에는 이 길이 아예 없어서 카톡 창이 막히면 접수 경로가 0 개였다. */
+    let saved = false;
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          industry: business,
+          message: rank ? `현재 플레이스 순위: ${rank}위권` : "",
+          source: "free-check",
+        }),
+      });
+      saved = res.ok;
+    } catch {
+      saved = false;
+    }
+
+    setSending(false);
+    if (!kakaoWindow && !saved) {
+      setBlocked(true);
+      return;
+    }
     setSent(true);
   };
 
@@ -174,7 +211,28 @@ export default function FreeCheckPage() {
 
           {/* Right: Form */}
           <div className="lg:sticky lg:top-6">
-            {sent ? (
+            {blocked ? (
+              <div className="bg-white rounded-2xl p-8 text-center shadow-2xl">
+                <div className="w-16 h-16 rounded-2xl bg-orange-500 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <AlertCircle size={28} className="text-white" strokeWidth={2} />
+                </div>
+                <h2 className="text-xl font-black text-gray-900 mb-2">접수가 끝나지 않았습니다</h2>
+                <p className="text-gray-500 text-sm mb-5 leading-relaxed">
+                  브라우저가 카카오톡 창을 막았고 서버 접수도 닿지 않았습니다.<br />
+                  <span className="font-semibold text-gray-800">아래로 한 번만 더 눌러 주세요.</span>
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a href={kakaoUrl || "https://pf.kakao.com/_MuUkG/chat"} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
+                    <MessageCircle size={15} />카카오톡으로 보내기
+                  </a>
+                  <a href="tel:010-7541-9054"
+                    className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors">
+                    <Phone size={15} />010-7541-9054
+                  </a>
+                </div>
+              </div>
+            ) : sent ? (
               <div className="bg-white rounded-2xl p-8 text-center shadow-2xl">
                 <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
@@ -272,9 +330,10 @@ export default function FreeCheckPage() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm transition-colors shadow-sm shadow-blue-200 flex items-center justify-center gap-2"
+                    disabled={sending}
+                    className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-black text-sm transition-colors shadow-sm shadow-blue-200 flex items-center justify-center gap-2"
                   >
-                    무료 진단 신청하기 <ArrowRight size={15} />
+                    {sending ? "접수하는 중" : "무료 진단 신청하기"} <ArrowRight size={15} />
                   </button>
 
                   <div className="relative">
