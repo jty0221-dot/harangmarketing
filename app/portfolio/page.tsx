@@ -25,7 +25,7 @@ export default function PortfolioPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen" style={{ background: "var(--w-bg-alt)" }}>
+      <main className="min-h-screen pt-[104px] md:pt-[108px]" style={{ background: "var(--w-bg-alt)" }}>
         <div className="mx-auto max-w-[1100px] px-5 py-12 md:py-16">
           <div className="mb-8">
             <span className="w-chip w-chip-blue">

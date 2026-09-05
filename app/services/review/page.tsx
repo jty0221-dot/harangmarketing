@@ -193,7 +193,7 @@ export default function ReviewServicePage() {
       <JsonLd data={LD} />
       <Header />
 
-      <main>
+      <main className="pt-[104px] md:pt-[108px]">
         {/* 히어로 */}
         <section className="bg-gray-950 py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
