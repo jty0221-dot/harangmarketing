@@ -8,7 +8,7 @@ import {
   Search, BookOpen, Megaphone, AtSign, ChevronRight,
   ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
-  UtensilsCrossed, ShoppingBag, Sparkles,
+  UtensilsCrossed, ShoppingBag, Sparkles, Store,
 } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -34,6 +34,7 @@ import {
 } from "./lib/seo";
 import type { LucideIcon } from "lucide-react";
 import { fmt, byKeyword, BIGGEST_GAIN } from "./lib/rank-records";
+import { TRACK_RECORD, TRACK_TOTALS } from "./lib/track-record";
 
 /*
  * 업종 카드와 마퀴의 순위 칸 — 손으로 적지 않는다.
@@ -380,6 +381,113 @@ export default function HomePage() {
 
         {/* ══ 함께한 브랜드 로고 슬라이더 ══ */}
         <ClientLogosSection />
+
+        {/* ══ 관리 매장 이력 ══ */}
+        {/* 상호 없이 업종·지역·진행 상태만 적는다. 정본은 app/lib/track-record.ts 한 곳이고
+            /portfolio · /services/review 가 같은 데이터를 쓴다.
+            홈에서는 업종 칩을 접지 않고 99곳 전부 펼친다 — 진행 항목까지는 /portfolio 로 넘긴다
+            (2026-09-05 (토) 대표 지시 · 관리 매장을 홈에 최대한 많이 보이게). */}
+        <section className="py-12 md:py-16 border-t" style={{ background: "#fff", borderColor: "var(--h-border)" }}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <RevealOnScroll>
+              <div className="max-w-3xl">
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[11px] font-black uppercase tracking-[0.16em]"
+                  style={{ background: "var(--h-bg)", color: "var(--h-blue)" }}
+                >
+                  <Store size={13} strokeWidth={2.5} />
+                  Track Record
+                </span>
+                <h2 className="mt-3 text-2xl md:text-[32px] font-black leading-tight" style={{ color: "var(--h-navy)" }}>
+                  맡아온 매장을 업종별로 전부 적었습니다
+                </h2>
+                <p className="mt-3 text-sm md:text-[15px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
+                  계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호와 지점명은 밝히지 않고 업종 · 지역 · 진행 상태만
+                  적습니다. 지역은 시 · 군 · 구까지 적으면 업종과 겹쳐 업체가 드러나기 때문에 광역 단위까지만 남겼고,
+                  출장 위주라 권역이 넓은 곳은 비워 두었습니다.
+                </p>
+              </div>
+            </RevealOnScroll>
+
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { value: TRACK_TOTALS.stores, unit: "곳", label: "맡아온 매장", sub: "서류로 확인한 것만" },
+                { value: TRACK_TOTALS.trades, unit: "종", label: "업종", sub: "음식점부터 설비까지" },
+                { value: TRACK_TOTALS.regions, unit: "곳", label: "시 · 도", sub: "지역 표기가 있는 건 기준" },
+                { value: TRACK_TOTALS.ongoing, unit: "곳", label: "지금도 관리 중", sub: "계약 진행 중" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl border p-4 md:p-5"
+                  style={{ background: "var(--h-bg)", borderColor: "var(--h-border)" }}
+                >
+                  <p className="text-2xl md:text-3xl font-black tabular-nums leading-none" style={{ color: "var(--h-navy)" }}>
+                    {s.value}
+                    <span className="text-base md:text-lg font-bold ml-0.5">{s.unit}</span>
+                  </p>
+                  <p className="mt-2 text-[13px] font-bold" style={{ color: "var(--h-navy)" }}>{s.label}</p>
+                  <p className="mt-0.5 text-[11px] md:text-xs" style={{ color: "var(--h-muted)" }}>{s.sub}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8">
+              {TRACK_RECORD.map((group) => (
+                <div
+                  key={group.key}
+                  className="grid gap-2.5 border-t py-4 md:grid-cols-[168px_1fr] md:gap-6 md:py-5"
+                  style={{ borderColor: "var(--h-border)" }}
+                >
+                  <div className="flex items-baseline gap-2 md:block">
+                    <h3 className="text-[15px] md:text-base font-bold" style={{ color: "var(--h-navy)" }}>{group.name}</h3>
+                    <p className="text-xs tabular-nums md:mt-1" style={{ color: "var(--h-muted)" }}>{group.items.length}곳</p>
+                  </div>
+                  <ul className="flex flex-wrap gap-1.5 md:gap-2">
+                    {group.items.map((item, i) => (
+                      <li
+                        key={group.key + "-" + i}
+                        className="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5"
+                        style={{ background: "var(--h-bg)", borderColor: "var(--h-border)" }}
+                      >
+                        {item.status === "진행 중" && (
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--h-blue)" }} aria-hidden />
+                        )}
+                        <span className="text-[12px] md:text-[13px] font-semibold" style={{ color: "var(--h-navy)" }}>{item.trade}</span>
+                        {item.region && (
+                          <span className="text-[11px] md:text-xs" style={{ color: "var(--h-muted)" }}>{item.region}</span>
+                        )}
+                        {item.branches && (
+                          <span className="text-[11px] font-bold tabular-nums" style={{ color: "var(--h-blue)" }}>
+                            {item.branches}{item.unit ?? "지점"}
+                          </span>
+                        )}
+                        {item.status === "진행 중" && <span className="sr-only">진행 중</span>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <div
+              className="mt-6 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between"
+              style={{ borderColor: "var(--h-border)" }}
+            >
+              <p className="flex items-start gap-2 text-xs leading-relaxed max-w-2xl" style={{ color: "var(--h-muted)" }}>
+                <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ background: "var(--h-blue)" }} aria-hidden />
+                파란 점은 지금도 관리 중인 곳입니다. 숫자가 붙은 칸은 같은 브랜드의 지점 · 권역을 한 줄로 묶은 것입니다.
+              </p>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-bold text-white shrink-0"
+                style={{ background: "var(--h-blue)" }}
+              >
+                업종별 진행 항목까지 보기
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* ══ 차별화 비교표 ══ */}
         <DifferenceSection />

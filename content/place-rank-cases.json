@@ -316,6 +316,22 @@
       "grade": "A"
     },
     {
+      "id": "P-0047",
+      "industry": "청소 업체",
+      "storeLabel": "00청소업체",
+      "keywordLabel": "00시 사무실청소",
+      "from": 94,
+      "to": 26,
+      "trend": "상승",
+      "volume": 1770,
+      "keywordType": "사무실청소",
+      "days": 7,
+      "startDate": "2026-08-19",
+      "asOf": "2026-08-26",
+      "page1": false,
+      "grade": ""
+    },
+    {
       "id": "W-0008",
       "industry": "청소 업체",
       "storeLabel": "00청소업체",

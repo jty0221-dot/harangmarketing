@@ -5,12 +5,13 @@ import type { FC } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { ArrowRight, MessageCircle, Filter, Search, X, Handshake } from "lucide-react";
+import { ArrowRight, MessageCircle, Filter, Search, X, Handshake, Store } from "lucide-react";
 import AnimatedCounter from "../components/AnimatedCounter";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
 import { SITE, itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
+import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import {
   PLACE_RANK_AS_OF,
   PLACE_RANK_BIGGEST_GAIN,
@@ -309,6 +310,61 @@ const CasesPage: FC = () => {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ══ 관리 매장 이력 요약 ══ */}
+        {/* 전체 99행은 홈과 /portfolio 에 있다. 여기서는 순위 카드와 목록이 서로 잡아먹지 않게
+            합계와 업종 그룹만 놓고 넘긴다 (2026-09-05 (토) 대표 지시 · 관리 매장을 최대한 많이 보이게). */}
+        <section className="py-12 md:py-16 bg-white border-t border-gray-100">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "var(--w-primary)" }}>
+              Track Record
+            </p>
+            <h2 className="text-xl md:text-2xl font-black text-gray-900">순위 말고, 맡아온 매장 자체를 세어 봤습니다</h2>
+            <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
+              계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호와 지점명은 밝히지 않고 업종 · 지역 · 진행 상태만
+              적습니다.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { value: TRACK_TOTALS.stores, unit: "곳", label: "맡아온 매장" },
+                { value: TRACK_TOTALS.trades, unit: "종", label: "업종" },
+                { value: TRACK_TOTALS.regions, unit: "곳", label: "시 · 도" },
+                { value: TRACK_TOTALS.ongoing, unit: "곳", label: "지금도 관리 중" },
+              ].map((s) => (
+                <div key={s.label} className="rounded-2xl border border-gray-100 bg-gray-50 p-4 md:p-5">
+                  <p className="text-2xl md:text-3xl font-black text-gray-900 tabular-nums leading-none">
+                    {s.value}<span className="text-base md:text-lg font-bold ml-0.5">{s.unit}</span>
+                  </p>
+                  <p className="mt-2 text-[13px] font-bold text-gray-700">{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <ul className="mt-5 flex flex-wrap gap-1.5 md:gap-2">
+              {TRACK_RECORD.map((group) => (
+                <li
+                  key={group.key}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-100 bg-gray-50 px-2.5 py-1.5"
+                >
+                  <Store size={12} className="text-gray-400" strokeWidth={2.5} />
+                  <span className="text-[12px] md:text-[13px] font-semibold text-gray-700">{group.name}</span>
+                  <span className="text-[11px] font-bold tabular-nums" style={{ color: "var(--w-primary)" }}>
+                    {group.items.length}곳
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold min-h-11 hover:underline"
+              style={{ color: "var(--w-primary)" }}
+            >
+              업종별 매장과 진행 항목 전부 보기 <ArrowRight size={13} />
+            </Link>
           </div>
         </section>
 
