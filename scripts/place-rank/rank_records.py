@@ -10,7 +10,7 @@ app/lib/rank-records.ts 본문 생성기 — 손으로 세지 않는다.
     2) heldAllSnapshots 가 "잡힌 회차에서만 1~5위" 를 세고 있었다
        → 화면은 「누적 스냅샷 N회 내내 한 번도 벗어나지 않았다」라고 말한다. 다른 문장이다
   세는 일을 스크립트에 넘기면 이 둘이 산수로 닫힌다.
-  RECORDS + 하락 + 1페이지밖 + 정체 = SUMMARY.keywords 가 정확히 맞아야 한다.
+  RECORDS + 하락 + 1페이지밖 + 정체 + 병·의원 = SUMMARY.keywords 가 정확히 맞아야 한다.
 
 쓰는 법
   python scripts/place-rank/rank_records.py           계산만 한다 (아무것도 안 쓴다)
@@ -57,6 +57,21 @@ WRITE = "--write" in sys.argv
 VOLUME_TSV = str(pathlib.Path(__file__).resolve().parents[2] / "content" / "keyword-volume.tsv")
 
 # 키워드 꼬리 → (공개 표기, 업종). 긴 것부터 본다 — `입주청소` 가 `청소` 보다 먼저 걸려야 한다.
+# 병·의원은 다른 업종과 규칙이 다르다 — 진우가 통과시킨 것만 화면에 올린다 (C-50 · D-0177).
+# 다른 업종은 순위가 오르면 그대로 실리지만, 의료광고는 순위 숫자 자체가
+# 병원 명의 광고로 옮겨 붙을 수 있어 의료법 제56조가 걸린다.
+#
+# 왜 화면에서 지우는 것으로 안 끝나나 — 시작값이 30일 롤링이라 매일 바뀐다.
+# 실제로 게시불가 판정을 받은 건이 09-03 에는 하락(3위 → 5위)이라 저절로 빠져 있다가
+# 09-05 에는 유지(4위 → 4위)가 되어 화면에 다시 올라왔다.
+# 화면에서 손으로 지우면 다음 --write 때 돌아온다. 그래서 게이트를 여기 둔다.
+MED = {"치과", "피부과", "의원", "한의원", "성형외과", "안과", "정형외과", "통증의학과"}
+
+# 진우가 게재 가능으로 판정한 (업종, 공개 표기) 짝만 통과시킨다. 상호는 여기에도 적지 않는다.
+# 판정 정본 : E:\ud558랑\ubcf8부장\ubcd1의원\uc778계_홈페이지_병의원_2026-09-05.md
+# 여기에 줄을 추가하려면 진우 판정이 먼저다. 생각만으로 푸지 않는다.
+MED_OK = {("치과", "치과"), ("치과", "역세권 치과")}
+
 KIND = [
     ("입주청소", "입주청소", "입주청소"),
     ("상가청소", "상가청소", "청소"),
@@ -206,7 +221,7 @@ def main():
             if v is not None:
                 hist[(r["매장"], r["키워드"])].append(v)
 
-    rec, decl, out1, flat = [], [], [], []
+    rec, decl, out1, flat, med = [], [], [], [], []
     insuf = 0
     unmatched = set()
 
@@ -229,7 +244,9 @@ def main():
         # 네 갈래다. 순서가 중요하다 — 정체를 하락에 섞으면 화면 숫자가 거짓이 된다.
         # 2026-09-05 (토) 대표 지시로 정체(유지)도 싣는다. 빼는 것은 하락뿐이다.
         # 갈래는 그대로 넷으로 둔다 — 유지를 상승으로 세면 화면이 거짓말을 한다.
-        if today > start:
+        if ind in MED and (ind, label) not in MED_OK:
+            med.append(row)         # 병·의원인데 진우 판정이 없다 → 안 싣는다 (맨 앞에 둔다)
+        elif today > start:
             decl.append(row)        # 내려갔다 → 안 싣는다
         elif today > 5:
             out1.append(row)        # 올랐지만(혹은 그대로) 1페이지 밖이다 → 안 싣는다
@@ -282,11 +299,13 @@ def main():
     B["EXCLUDED"] = "\n".join([
         wrap("하락", decl),
         wrap("1페이지 밖", out1),
+        wrap("병·의원 검수 대기", med),
         " * 데이터 부족 — %d건 (계측 시작 직후라 시작값이 없다)" % insuf,
     ])
     B["EXCLUDED_COUNT"] = (
-        "export const EXCLUDED_COUNT = { declined: %d, outsidePage1: %d, insufficient: %d };"
-        % (len(decl), len(out1), insuf)
+        "export const EXCLUDED_COUNT = { declined: %d, outsidePage1: %d, "
+        "insufficient: %d, pendingReview: %d };"
+        % (len(decl), len(out1), insuf, len(med))
     )
     print(B["EXCLUDED"])
     print("\n" + B["EXCLUDED_COUNT"])
@@ -326,11 +345,11 @@ def main():
     print("\n" + B["SUMMARY"])
 
     # 산수 점검 — 네 갈래를 합치면 keywords 와 딱 맞아야 한다. 안 맞으면 갈래가 새고 있다.
-    total = len(rec) + len(decl) + len(out1) + len(flat)
+    total = len(rec) + len(decl) + len(out1) + len(flat) + len(med)
     mark = "맞음" if total == len(ok) else "어긋남"
     print(
-        "\n// 검산 → %d(상승) + %d(유지) + %d(하락) + %d(1페이지밖) = %d · keywords %d · %s"
-        % (len(rec), len(flat), len(decl), len(out1), total, len(ok), mark)
+        "\n// 검산 → %d(상승) + %d(유지) + %d(하락) + %d(1페이지밖) + %d(병·의원) = %d · keywords %d · %s"
+        % (len(rec), len(flat), len(decl), len(out1), len(med), total, len(ok), mark)
     )
 
     if rec:

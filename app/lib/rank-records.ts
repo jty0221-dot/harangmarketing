@@ -62,7 +62,6 @@ export const RECORDS: RankRecord[] = [
   { industry: "음식점", keyword: "지역 맛집 키워드", from: 14, to: 2, days: 32, heldPage1: false },
   { industry: "음식점", keyword: "지역 맛집 키워드", from: 8, to: 2, days: 32, heldPage1: false },
   { industry: "음식점", keyword: "지역 역세권 맛집 키워드", from: 4, to: 1, days: 32, heldPage1: true },
-  { industry: "피부과", keyword: "지역 피부과 키워드", from: 4, to: 4, days: 32, heldPage1: true },
   { industry: "치과", keyword: "지역 치과 키워드", from: 7, to: 1, days: 32, heldPage1: true },
   { industry: "치과", keyword: "지역 역세권 치과 키워드", from: 7, to: 1, days: 32, heldPage1: true },
   { industry: "음식점", keyword: "지역 샤브샤브 키워드", from: 3, to: 3, days: 32, heldPage1: false },
@@ -76,7 +75,7 @@ export const RECORDS: RankRecord[] = [
  *
  * 하락 — 지역 역세권 맛집 65위 → 76위 · 지역 입주청소 2위 → 8위 · 지역 맞춤가발 6위 → 12위 ·
  *        지역 청소업체 6위 → 11위 · 지역 입주청소 1위 → 5위 · 지역 고기집 125위 → 128위 ·
- *        지역 피부과 9위 → 11위 · 지역 가발 1위 → 2위 · 지역 카센터 7위 → 8위
+ *        지역 가발 1위 → 2위 · 지역 카센터 7위 → 8위
  * 1페이지 밖 — 지역 누수탐지 125위 → 29위 · 지역 누수 141위 → 58위 · 지역 맛집 110위 → 36위 ·
  *        지역 입주청소 88위 → 14위 · 지역 맛집 74위 → 13위 · 지역 상가청소 67위 → 20위 ·
  *        지역 상가청소 53위 → 26위 · 지역 정기청소 36위 → 12위 · 지역 누수 30위 → 13위 ·
@@ -86,12 +85,13 @@ export const RECORDS: RankRecord[] = [
  *        지역 누수탐지 139위 → 137위 · 지역 정장 7위 → 6위 · 지역 정장 7위 → 6위 ·
  *        지역 청소업체 12위 → 11위 · 지역 소갈비 29위 → 28위 · 지역 후드청소 9위 → 8위 ·
  *        지역 샤브샤브 6위 → 6위
+ * 병·의원 검수 대기 — 지역 피부과 4위 → 4위 · 지역 피부과 9위 → 11위
  * 데이터 부족 — 11건 (계측 시작 직후라 시작값이 없다)
  *
  * 유지(1~5위인데 그대로)는 2026-09-05 (토) 대표 지시로 RECORDS 안에 들어갔다.
  * 여기 남는 것은 하락 · 1페이지 밖 · 데이터 부족 셋뿐이다.
  */
-export const EXCLUDED_COUNT = { declined: 9, outsidePage1: 25, insufficient: 11 };
+export const EXCLUDED_COUNT = { declined: 8, outsidePage1: 25, insufficient: 11, pendingReview: 2 };
 
 /** 올라온 기록 수 — 손으로 세지 않는다 */
 export const RISEN = RECORDS.filter((r) => r.from > r.to).length;

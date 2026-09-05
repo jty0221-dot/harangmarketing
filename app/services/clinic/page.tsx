@@ -49,7 +49,39 @@ import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Stethoscope, MessageSquare,
   ShieldCheck, ScrollText,
+  ClipboardCheck, Images, UserX, CalendarClock,
 } from "lucide-react";
+
+/*
+ * 의료광고 검수 공정 — 진우(병·의원 팀장) 인계서 제5절 문장 그대로다.
+ * 정본 : E:\하랑\본부장\병의원\인계_홈페이지_병의원_2026-09-05.md
+ *
+ * 읽기 좋게 다듬지 않는다. 네 줄은 의료법 조문에서 나온 것이라
+ * 문장을 부드럽게 고치는 순간 우리가 지키겠다고 적은 것과 실제가 어긋난다.
+ * 고치려면 진우 검수가 먼저다 (C-50).
+ */
+const MEDICAL_PROCESS = [
+  {
+    icon: ClipboardCheck,
+    title: "쓰는 사람과 보는 사람을 나눕니다",
+    desc: "병원 · 의원 원고는 의료법 검수를 따로 거칩니다.",
+  },
+  {
+    icon: Images,
+    title: "전후 사진은 세 가지가 함께 있어야 합니다",
+    desc: "전후 사진은 시술명 · 시술일자 · 부작용 경고 세 가지가 함께 있어야 게시합니다.",
+  },
+  {
+    icon: UserX,
+    title: "체험단은 병원에 제안하지 않습니다",
+    desc: "치료경험담을 대가로 받는 체험단은 병원에 제안하지 않습니다.",
+  },
+  {
+    icon: CalendarClock,
+    title: "심의 유효기간을 대장으로 셈니다",
+    desc: "사전심의 대상 광고는 승인 유효기간 3년을 대장으로 관리합니다.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "의원·한의원·피부과 마케팅 | 신환 유입 · 플레이스 SEO · 블로그",
@@ -120,7 +152,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "병원도 플레이스 순위가 올라가나요?",
     a:
-      `매일 저장한 스냅샷 기준으로 ${CLINIC_DURATIONS} 걸린 기록이 있습니다. 다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 순위 보장도 하지 않습니다.`,
+      `매일 저장한 스냅샷 기준으로 ${CLINIC_DURATIONS} 걸린 기록이 있습니다. 다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 앞으로 몇 위가 될지는 말씀드리지 않습니다.`,
   },
   {
     q: "광고에 문제가 생기면 누가 책임지나요?",
@@ -193,7 +225,8 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        <RankRecords industries={["치과", "피부과"]} industryLabel="의원·한의원·피부과" />
+        {/* 진료과를 늘리려면 진우 판정이 먼저다. 생성기 MED_OK 와 이 배열을 같이 늘린다 (C-50) */}
+        <RankRecords industries={["치과"]} industryLabel="치과" />
 
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">
@@ -215,12 +248,48 @@ export default function ClinicLandingPage() {
           </div>
         </section>
 
-        {/* 의료광고 심의 판정 자료 — 자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
+        {/* 의료광고 검수 공정 + 심의 판정 자료.
+            순위 사례는 병·의원에서 한 칸도 못 채운다. 진우 판단으로 공정 설명을 가운데 둔다.
+            자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <div className="text-center mb-8 md:mb-10">
+              <div
+                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mb-3"
+                style={{ background: "#F0F6FF", color: "var(--w-primary-strong)" }}
+              >
+                <ShieldCheck size={13} strokeWidth={2.5} />
+                <span className="text-xs font-bold">의료광고 검수 공정</span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">
+                병원 · 의원은 한 단계를 더 거칩니다
+              </h2>
+              <p className="text-sm text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                의료광고는 표현이 틀리면 광고 심사에서 반려되는 것으로 끝나지 않고 원장님이 행정처분을 받습니다.
+                그래서 하랑마케팅은 원고를 쓰는 사람과 그 원고가 의료법에 걸리는지 보는 사람을 따로 둡니다.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {MEDICAL_PROCESS.map((m, i) => (
+                <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                  <div
+                    className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
+                    style={{ background: "var(--w-primary)" }}
+                  >
+                    <m.icon size={16} className="text-white" strokeWidth={2.5} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-bold text-gray-900 text-sm mb-1">{m.title}</p>
+                    <p className="text-xs md:text-[13px] text-gray-600 leading-relaxed">{m.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <Link
               href="/services/clinic/medical-ad-guide"
-              className="group block bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
+              className="group block mt-4 bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
             >
               <div className="flex items-start gap-4">
                 <div
