@@ -294,7 +294,7 @@ const SERVICES = [
     timeline: "등록·최적화 1~2주 · 이후 월간 리포트",
     deliverables: [
       { label: "매장 관리 등록", value: "대행 처리", note: "등록·최적화 1~2주" },
-      { label: "카카오맵 리뷰", value: "실유저 기반", note: "100% 실사용자" },
+      { label: "카카오맵 리뷰", value: "실유저 기반", note: "실사용자 후기" },
       { label: "트렌드 랭킹", value: "상위 노출", note: "카카오맵 알고리즘 최적화" },
     ],
     features: [
