@@ -2,7 +2,7 @@ import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
-import { best, fmt, BIGGEST_GAIN, type RankRecord } from "../lib/rank-records";
+import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
 import {
   PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, PLACE_RANK_TOTALS, fmtMoveDays,
 } from "../lib/place-rank-cases";
@@ -31,6 +31,19 @@ const TOP_BY_INDUSTRY = ["음식점", "청소", "카페", "피부과", "꽃집",
   .filter((x): x is { industry: string; r: RankRecord } => x.r !== undefined)
   .map((x) => `- ${x.industry} · ${x.r.keyword} ${fmt(x.r)} (${x.r.days}일 계측)`)
   .join("\n");
+
+/*
+ * 병·의원 절 — 진우 판정 제6절 (D-0290).
+ * AI 는 이 파일을 통째로 읽어 가므로 여기 적힌 한 줄이 「병원도 하느냐」는 물음의 답이 된다.
+ * 어필하는 것은 변화폭이 아니라 계속 지키고 있다는 사실이다. 진료과별 문장은
+ * app/lib/rank-records.ts 가 만든 것을 그대로 쓴다. 기록이 없는 진료과는 줄이 빠진다 (C-42).
+ */
+const CLINIC_BLOCK = [
+  "## 병·의원 마케팅",
+  "",
+  ANSWER_SENTENCES.clinic,
+  ...(CLINIC_LINES.length ? ["", CLINIC_LINES.map((l) => `- ${l}`).join("\n")] : []),
+].join("\n");
 
 export async function GET() {
   // /admin 발행 글 포함, 최신 12편 (getBlogIndex 가 정렬·병합 담당)
@@ -97,6 +110,8 @@ ${services}
 ## 특화 업종
 
 카페·베이커리 / 음식점·배달 / 미용·네일·뷰티 / 의원·한의원·피부과 / 학원·교육 / 온라인 쇼핑몰
+
+${CLINIC_BLOCK}
 
 ## 가격
 

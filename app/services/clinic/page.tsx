@@ -6,41 +6,48 @@ import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
-import { byKeyword, fmt, fmtSentence } from "../../lib/rank-records";
+import {
+  byKeyword, fmt,
+  CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE, CLINIC_RISE_DURATIONS,
+} from "../../lib/rank-records";
 
 /*
  * 순위 문장 — 손으로 적지 않는다.
  * 병·의원 화면이라 더 엄하다. 이미 계측한 것만 적고 앞으로 어떻게 된다는 말은 적지 않는다
- * (C-50 · D-0177). 그런데 여기 숫자를 직접 써 뒀더니 세 줄이 다 틀린 값이 됐다 —
- * 지역 치과 5위 → 1위는 08-31 스냅샷에서 사라진 기록이고, 역세권 치과와 피부과도 값이 달라졌다.
+ * (C-50 · D-0177). 그런데 여기 숫자를 직접 써 뒀더니 세 줄이 다 틀린 값이 됐다.
+ * 지역 치과 5위에서 1위는 08-31 스냅샷에서 사라진 기록이고, 역세권 치과와 피부과도 값이 달라졌다.
  * 기록이 없으면 문장이 통째로 빠진다 (C-42).
+ *
+ * 문장까지 이 파일에서 만들지 않는다. 같은 말을 화면과 JSON-LD 와 llms.txt 가 같이 쓰는데
+ * 세 곳에서 따로 만들면 스냅샷이 바뀌는 날 서로 다른 말을 한다.
+ * app/lib/rank-records.ts 의 CLINIC_ 상수들이 그 한 곳이다 (진우 판정 제4-C절 · 2026-09-06 (일)).
  */
 const DENTAL = byKeyword("지역 치과 키워드");
-const DENTAL_STN = byKeyword("지역 역세권 치과 키워드");
 const DERMA = byKeyword("지역 피부과 키워드");
 
-const CLINIC_STORY = [
-  DENTAL && `하랑마케팅이 진행한 치과는 지역 치과 키워드에서 ${fmtSentence(DENTAL)}.`,
-  DENTAL_STN && `지역 역세권 치과 키워드에서도 ${fmtSentence(DENTAL_STN)}.`,
-  DERMA && `피부과는 지역 피부과 키워드에서 ${fmtSentence(DERMA)}.`,
+/** 병·의원 서술문 — 공통 한 줄 뒤에 업종 줄이 붙는다 */
+const CLINIC_STORY = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
+
+/*
+ * 순위 문답 답변.
+ * 자리를 지킨 기록은 기간을 말하지 않는다. 「4위에서 4위까지 32일 걸렸다」는 말이 안 된다.
+ * 오른 기록이 하나도 없는 날에는 그 문장이 통째로 빠지고 공통 한 줄만 남는다.
+ */
+const CLINIC_RANK_ANSWER = [
+  CLINIC_NOTE,
+  CLINIC_RISE_DURATIONS && `매일 저장한 스냅샷 기준으로 ${CLINIC_RISE_DURATIONS} 걸린 기록이 있습니다.`,
+  "다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 앞으로 몇 위가 될지는 말씀드리지 않습니다.",
 ]
   .filter(Boolean)
   .join(" ");
 
-const CLINIC_DURATIONS = [
-  DENTAL && `지역 치과 키워드가 ${DENTAL.from}위에서 ${DENTAL.to}위까지 ${DENTAL.days}일`,
-  DENTAL_STN && `지역 역세권 치과 키워드가 ${DENTAL_STN.from}위에서 ${DENTAL_STN.to}위까지 ${DENTAL_STN.days}일`,
-  DERMA && `지역 피부과 키워드가 ${DERMA.from}위에서 ${DERMA.to}위까지 ${DERMA.days}일`,
-]
-  .filter(Boolean)
-  .join(", ");
-
+/*
+ * 「계측 기간」 칸은 뺐다. 진료과가 둘이 되면서 두 기간 중 큰 값을 적게 되는데,
+ * 그러면 한 진료과의 기간이 다른 진료과의 기간처럼 읽힌다.
+ */
 const CLINIC_FACTS = [
   ...(DENTAL ? [{ label: DENTAL.keyword, value: fmt(DENTAL) }] : []),
   ...(DERMA ? [{ label: DERMA.keyword, value: fmt(DERMA) }] : []),
-  ...(DENTAL || DERMA
-    ? [{ label: "계측 기간", value: `${Math.max(DENTAL?.days ?? 0, DERMA?.days ?? 0)}일` }]
-    : []),
   { label: "순위 계측", value: "매일 스냅샷" },
   { label: "상담·진단", value: "0원" },
 ];
@@ -152,7 +159,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "병원도 플레이스 순위가 올라가나요?",
     a:
-      `매일 저장한 스냅샷 기준으로 ${CLINIC_DURATIONS} 걸린 기록이 있습니다. 다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 앞으로 몇 위가 될지는 말씀드리지 않습니다.`,
+      CLINIC_RANK_ANSWER,
   },
   {
     q: "광고에 문제가 생기면 누가 책임지나요?",
@@ -225,8 +232,8 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        {/* 진료과를 늘리려면 진우 판정이 먼저다. 생성기 MED_OK 와 이 배열을 같이 늘린다 (C-50) */}
-        <RankRecords industries={["치과"]} industryLabel="치과" />
+        {/* 진료과를 늘리려면 진우 판정이 먼저다. 생성기 MED_OK 와 CLINIC_INDUSTRIES 를 같이 늘린다 (C-50) */}
+        <RankRecords industries={CLINIC_INDUSTRIES} industryLabel="병·의원" />
 
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">
@@ -249,7 +256,7 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 의료광고 검수 공정 + 심의 판정 자료.
-            순위 사례는 병·의원에서 한 칸도 못 채운다. 진우 판단으로 공정 설명을 가운데 둔다.
+            순위 사례는 진우 판정을 통과한 진료과만 위에 걸린다. 그 아래에 공정 설명을 둔다.
             자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">

@@ -528,9 +528,12 @@ export default function PlaceServicePage() {
                 </span>
                 {" "}순위가 내려간 것 {EXCLUDED_COUNT.declined}건,
                 1페이지 밖에 머문 것 {EXCLUDED_COUNT.outsidePage1}건,
-                계측을 막 시작해 시작값이 없는 것 {EXCLUDED_COUNT.insufficient}건,
-                병·의원이라 의료법 검수를 거치기 전까지 올리지 않는 것 {EXCLUDED_COUNT.pendingReview}건입니다.
-                지우지 않고 남겨 둡니다. 올라간 것만 보여 드리면 이 표를 믿을 이유가 없어집니다.
+                계측을 막 시작해 시작값이 없는 것 {EXCLUDED_COUNT.insufficient}건
+                {/* 검수 대기가 0건인 날에는 절을 통째로 뺀다. 「0건입니다」 는 세어 본 적이 없다는 말로도 읽힌다 */}
+                {EXCLUDED_COUNT.pendingReview > 0
+                  ? `, 병·의원이라 의료법 검수를 거치기 전까지 올리지 않는 것 ${EXCLUDED_COUNT.pendingReview}건입니다.`
+                  : "입니다."}
+                {" "}지우지 않고 남겨 둡니다. 올라간 것만 보여 드리면 이 표를 믿을 이유가 없어집니다.
               </p>
               <p className="text-xs md:text-[13px] leading-relaxed text-gray-400 mt-4">
                 {MEASURE_NOTE} 지금까지 {INDUSTRY_COUNT}개 업종에서 계측했습니다.

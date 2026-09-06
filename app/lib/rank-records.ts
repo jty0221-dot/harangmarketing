@@ -62,6 +62,7 @@ export const RECORDS: RankRecord[] = [
   { industry: "음식점", keyword: "지역 맛집 키워드", from: 14, to: 2, days: 32, heldPage1: false },
   { industry: "음식점", keyword: "지역 맛집 키워드", from: 8, to: 2, days: 32, heldPage1: false },
   { industry: "음식점", keyword: "지역 역세권 맛집 키워드", from: 4, to: 1, days: 32, heldPage1: true },
+  { industry: "피부과", keyword: "지역 피부과 키워드", from: 4, to: 4, days: 32, heldPage1: true },
   { industry: "치과", keyword: "지역 치과 키워드", from: 7, to: 1, days: 32, heldPage1: true },
   { industry: "치과", keyword: "지역 역세권 치과 키워드", from: 7, to: 1, days: 32, heldPage1: true },
   { industry: "음식점", keyword: "지역 샤브샤브 키워드", from: 3, to: 3, days: 32, heldPage1: false },
@@ -75,7 +76,7 @@ export const RECORDS: RankRecord[] = [
  *
  * 하락 — 지역 역세권 맛집 65위 → 76위 · 지역 입주청소 2위 → 8위 · 지역 맞춤가발 6위 → 12위 ·
  *        지역 청소업체 6위 → 11위 · 지역 입주청소 1위 → 5위 · 지역 고기집 125위 → 128위 ·
- *        지역 가발 1위 → 2위 · 지역 카센터 7위 → 8위
+ *        지역 피부과 9위 → 11위 · 지역 가발 1위 → 2위 · 지역 카센터 7위 → 8위
  * 1페이지 밖 — 지역 누수탐지 125위 → 29위 · 지역 누수 141위 → 58위 · 지역 맛집 110위 → 36위 ·
  *        지역 입주청소 88위 → 14위 · 지역 맛집 74위 → 13위 · 지역 상가청소 67위 → 20위 ·
  *        지역 상가청소 53위 → 26위 · 지역 정기청소 36위 → 12위 · 지역 누수 30위 → 13위 ·
@@ -85,13 +86,13 @@ export const RECORDS: RankRecord[] = [
  *        지역 누수탐지 139위 → 137위 · 지역 정장 7위 → 6위 · 지역 정장 7위 → 6위 ·
  *        지역 청소업체 12위 → 11위 · 지역 소갈비 29위 → 28위 · 지역 후드청소 9위 → 8위 ·
  *        지역 샤브샤브 6위 → 6위
- * 병·의원 검수 대기 — 지역 피부과 4위 → 4위 · 지역 피부과 9위 → 11위
+ * 병·의원 검수 대기 — 없음
  * 데이터 부족 — 11건 (계측 시작 직후라 시작값이 없다)
  *
  * 유지(1~5위인데 그대로)는 2026-09-05 (토) 대표 지시로 RECORDS 안에 들어갔다.
  * 여기 남는 것은 하락 · 1페이지 밖 · 데이터 부족 셋뿐이다.
  */
-export const EXCLUDED_COUNT = { declined: 8, outsidePage1: 25, insufficient: 11, pendingReview: 2 };
+export const EXCLUDED_COUNT = { declined: 9, outsidePage1: 25, insufficient: 11, pendingReview: 0 };
 
 /** 올라온 기록 수 — 손으로 세지 않는다 */
 export const RISEN = RECORDS.filter((r) => r.from > r.to).length;
@@ -184,3 +185,80 @@ export const PAGE1_NOTE =
   `네이버 플레이스 1페이지는 광고 지면 3개와 순위 1~5위로 구성됩니다. ` +
   `${SNAPSHOT_DATE} 기준 ${SUMMARY.page1Keywords}개 키워드가 1~5위를 지키고 있고, ` +
   `그중 ${SUMMARY.heldAllSnapshots}개는 누적 스냅샷 ${SUMMARY.snapshots}회 내내 한 번도 1페이지를 벗어나지 않았습니다.`;
+
+/*
+ * 병·의원 문장 — 화면 · JSON-LD · llms.txt 가 여기서 같은 문장을 가져간다.
+ * 판정 정본 : E:\하랑\본부장\병의원\인계_SEO_GEO_AEO_병의원_2026-09-06.md 제4-C절
+ *
+ * 병·의원은 문장이 어긋나면 광고 성과가 아니라 원장님 행정처분이 걸린다 (C-50).
+ * 화면마다 손으로 적으면 스냅샷이 바뀌는 날 세 곳이 서로 다른 말을 하므로 한 곳에서만 만든다.
+ *
+ * 두 가지를 지킨다.
+ * 1) 상호를 적지 않는다. 업종 앞에 OO 를 붙이는 데서 멈춘다.
+ * 2) 「누적 스냅샷 N회 내내」는 그 업종 기록이 전부 heldPage1 일 때만 붙인다.
+ *    한 줄이라도 도중에 1페이지를 벗어났으면 그 문장이 거짓이 된다.
+ */
+
+/** 화면에 올릴 수 있는 병·의원 업종 — 진우 판정을 통과한 것만 RECORDS 에 들어온다 */
+export const CLINIC_INDUSTRIES = ["치과", "피부과"];
+
+/** 화면에 올라가 있는 병·의원 기록 */
+export const CLINIC_RECORDS = byIndustry(...CLINIC_INDUSTRIES);
+
+/** 기준일에 1페이지(1~5위)에 있는 병·의원 키워드 */
+export const CLINIC_PAGE1 = CLINIC_RECORDS.filter((r) => r.to <= 5);
+
+/** `2026-09-05` → `2026년 9월 5일` */
+const koDate = (iso: string) => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${y}년 ${m}월 ${d}일`;
+};
+
+const KO_COUNT = ["", "", "두 개", "세 개", "네 개", "다섯 개"];
+const koCount = (n: number) => KO_COUNT[n] || `${n}개`;
+
+const heldAll = (rows: RankRecord[]) => rows.length > 0 && rows.every((r) => r.heldPage1);
+const HELD_TAIL = `누적 스냅샷 ${SUMMARY.snapshots}회 내내 1페이지를 지키고 있습니다.`;
+
+/** `32일 계측에서 7위가 1위가 됐고` · 자리를 지킨 기록은 `4위이고` */
+const clinicClause = (r: RankRecord, cont: boolean) =>
+  r.from === r.to
+    ? `${r.to}위${cont ? "이고" : "입니다"}`
+    : `${r.days}일 계측에서 ${r.from}위가 ${r.to}위가 ${cont ? "됐고" : "됐습니다"}`;
+
+/** 업종 한 줄 — 값이 같은 기록끼리는 묶고, 다르면 기록마다 따로 적는다 */
+function clinicLine(industry: string): string {
+  const rows = byIndustry(industry);
+  if (rows.length === 0) return "";
+  const head = rows[0];
+  const same = rows.every((r) => r.from === head.from && r.to === head.to && r.days === head.days);
+  if (!same) {
+    const each = rows.map((r) => fmtSentence(r)).join(", ");
+    return `OO${industry}는 계약 키워드 ${koCount(rows.length)}가 각각 ${each}.`;
+  }
+  const cnt = rows.length === 1 ? "계약 키워드가" : `계약 키워드 ${koCount(rows.length)}가`;
+  return heldAll(rows)
+    ? `OO${industry}는 ${cnt} ${clinicClause(head, true)}, ${HELD_TAIL}`
+    : `OO${industry}는 ${cnt} ${clinicClause(head, false)}.`;
+}
+
+/** 업종별 한 줄 — 기록이 없는 업종은 아예 빠진다 (C-42) */
+export const CLINIC_LINES = CLINIC_INDUSTRIES.map(clinicLine).filter(Boolean);
+
+/** 병·의원 공통 한 줄 — 화면 · JSON-LD · llms.txt 머리에 같이 쓴다 */
+export const CLINIC_NOTE =
+  CLINIC_PAGE1.length === 0
+    ? ""
+    : `${koDate(SNAPSHOT_DATE)} 기준 병·의원 계약 키워드 ${CLINIC_PAGE1.length}개가 ` +
+      `네이버 플레이스 1페이지에 있습니다.` +
+      (heldAll(CLINIC_PAGE1)
+        ? ` 누적 스냅샷 ${SUMMARY.snapshots}회 내내 한 번도 1페이지를 벗어나지 않았습니다.`
+        : "");
+
+/**
+ * 올라온 기록만 기간을 말한다.
+ * 자리를 지킨 기록에 「4위에서 4위까지 32일」이라고 적으면 읽는 사람이 뜻을 못 잡는다.
+ */
+export const CLINIC_RISE_DURATIONS = CLINIC_RECORDS.filter((r) => r.from > r.to)
+  .map((r) => `${r.keyword}가 ${r.from}위에서 ${r.to}위까지 ${r.days}일`)
+  .join(", ");

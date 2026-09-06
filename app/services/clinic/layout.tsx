@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
-import { byKeyword, fmt } from "../../lib/rank-records";
+import {
+  byKeyword, fmtLong,
+  CLINIC_LINES, CLINIC_NOTE,
+} from "../../lib/rank-records";
 
-/* 순위 문구는 정본에서 만든다. 기록이 없으면 문장에서 빠진다 (C-42 · C-50). */
+/*
+ * 순위 문구는 정본에서 만든다. 기록이 없으면 문장에서 빠진다 (C-42 · C-50).
+ *
+ * 숫자를 여기서 손으로 붙이지 않는다. 예전에는 `4위→4위` 처럼 화살표로 이어 붙였는데
+ * 자리를 지킨 기록이 올라간 기록처럼 읽혔다. 지킨 것과 오른 것을 갈라 쓰는 일은
+ * app/lib/rank-records.ts 의 fmt 계열과 CLINIC_ 상수들이 한다 (진우 판정 제4-C절 · 제5절).
+ *
+ * 스키마 타입도 여기서 정한다. 우리는 의료기관이 아니라 마케팅 대행사다.
+ * MedicalBusiness · MedicalClinic · Physician · Dentist · MedicalWebPage · MedicalOrganization 을
+ * 우리 도메인에 쓰지 않는다. 우리가 쓰는 것은 Service · ProfessionalService · Organization 뿐이다.
+ * 우리 문서에 의료기관 타입을 붙이면 검색엔진과 AI 가 하랑마케팅을 의료기관으로 읽는다
+ * (진우 판정 제8절 · 의료법 제56조 제1항 · C-50).
+ */
 const DENTAL = byKeyword("지역 치과 키워드");
-const DENTAL_LINE = DENTAL ? `지역 치과 키워드 ${fmt(DENTAL)}, ${DENTAL.days}일 계측 기록.` : "";
+const DENTAL_LINE = DENTAL ? `지역 치과 키워드 ${fmtLong(DENTAL)} 기록.` : "";
 
-/* JSON-LD 의 계측 기록 절 — 화면 문구와 같은 정본에서 만든다 */
-const DENTAL_STN = byKeyword("지역 역세권 치과 키워드");
-const DERMA = byKeyword("지역 피부과 키워드");
-const CLINIC_LD_LINE = (() => {
-  const parts = [
-    DENTAL && `네이버 플레이스 지역 치과 키워드 ${DENTAL.from}위→${DENTAL.to}위(${DENTAL.days}일)`,
-    DENTAL_STN && `지역 역세권 치과 키워드 ${DENTAL_STN.from}위→${DENTAL_STN.to}위(${DENTAL_STN.days}일)`,
-    DERMA && `지역 피부과 키워드 ${DERMA.from}위→${DERMA.to}위(${DERMA.days}일)`,
-  ].filter(Boolean);
-  return parts.length > 0 ? `계측 기록: ${parts.join(", ")}.` : "";
-})();
+/* JSON-LD 의 계측 기록 절 — 화면에 뜨는 문장과 글자까지 같은 것을 쓴다 */
+const CLINIC_LD_LINE = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
 import JsonLd from "../../components/JsonLd";
 import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
