@@ -299,7 +299,7 @@ const TICKER = [
   ...tickerLine("지역 정기청소 키워드"),
   "10년+ 경력 · 업종별 맞춤 전략",
   "24시간 내 연락",
-  `플레이스 1페이지 유지 ${PLACE_RANK_TOTALS.page1Keywords}개 키워드 · ${PLACE_RANK_AS_OF} 기준`,
+  `플레이스 1~5위 기록 ${PLACE_RANK_TOTALS.works}개 키워드 · ${PLACE_RANK_AS_OF} 기준`,
   "네이버 플레이스 스냅샷 매일 저장",
   "성과 확약 없음 · 계측값만 보고",
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
@@ -374,7 +374,7 @@ export default function HomePage() {
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드별 순위, 잰 그대로 적었습니다"
-          description={`${PLACE_RANK_AS_OF} 기준으로 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 올라간 ${PLACE_RANK_RISEN}건과 자리를 지키고 있는 ${PLACE_RANK_HELD}건을 키워드마다 한 장씩 실었습니다. 많이 찾는 키워드부터 놓았습니다.`}
+          description={`${PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 실었습니다. 올라간 것이 ${PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 ${PLACE_RANK_HELD}건입니다. 많이 찾는 키워드부터 놓았습니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />
@@ -402,19 +402,17 @@ export default function HomePage() {
                   맡아온 매장을 업종별로 전부 적었습니다
                 </h2>
                 <p className="mt-3 text-sm md:text-[15px] leading-relaxed" style={{ color: "var(--h-muted)" }}>
-                  계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호와 지점명은 밝히지 않고 업종 · 지역 · 진행 상태만
-                  적습니다. 지역은 시 · 군 · 구까지 적으면 업종과 겹쳐 업체가 드러나기 때문에 광역 단위까지만 남겼고,
-                  출장 위주라 권역이 넓은 곳은 비워 두었습니다.
+                  계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호 · 지점명 · 지역은 밝히지 않고 업종과 맡아서 한
+                  일만 적습니다. 지역까지 적으면 업종과 겹쳐 어느 업체인지 드러나기 때문입니다.
                 </p>
               </div>
             </RevealOnScroll>
 
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="mt-6 grid grid-cols-3 gap-3">
               {[
                 { value: TRACK_TOTALS.stores, unit: "곳", label: "맡아온 매장", sub: "서류로 확인한 것만" },
                 { value: TRACK_TOTALS.trades, unit: "종", label: "업종", sub: "음식점부터 설비까지" },
-                { value: TRACK_TOTALS.regions, unit: "곳", label: "시 · 도", sub: "지역 표기가 있는 건 기준" },
-                { value: TRACK_TOTALS.ongoing, unit: "곳", label: "지금도 관리 중", sub: "계약 진행 중" },
+                { value: TRACK_TOTALS.workKinds, unit: "종", label: "맡아서 한 일", sub: "플레이스부터 영상까지" },
               ].map((s) => (
                 <div
                   key={s.label}
@@ -449,19 +447,12 @@ export default function HomePage() {
                         className="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5"
                         style={{ background: "var(--h-bg)", borderColor: "var(--h-border)" }}
                       >
-                        {item.status === "진행 중" && (
-                          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--h-blue)" }} aria-hidden />
-                        )}
                         <span className="text-[12px] md:text-[13px] font-semibold" style={{ color: "var(--h-navy)" }}>{item.trade}</span>
-                        {item.region && (
-                          <span className="text-[11px] md:text-xs" style={{ color: "var(--h-muted)" }}>{item.region}</span>
-                        )}
                         {item.branches && (
                           <span className="text-[11px] font-bold tabular-nums" style={{ color: "var(--h-blue)" }}>
                             {item.branches}{item.unit ?? "지점"}
                           </span>
                         )}
-                        {item.status === "진행 중" && <span className="sr-only">진행 중</span>}
                       </li>
                     ))}
                   </ul>
@@ -475,7 +466,7 @@ export default function HomePage() {
             >
               <p className="flex items-start gap-2 text-xs leading-relaxed max-w-2xl" style={{ color: "var(--h-muted)" }}>
                 <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ background: "var(--h-blue)" }} aria-hidden />
-                파란 점은 지금도 관리 중인 곳입니다. 숫자가 붙은 칸은 같은 브랜드의 지점 · 권역을 한 줄로 묶은 것입니다.
+                숫자가 붙은 칸은 같은 브랜드의 지점 · 권역을 한 줄로 묶은 것입니다.
               </p>
               <Link
                 href="/portfolio"

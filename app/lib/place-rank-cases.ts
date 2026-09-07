@@ -112,6 +112,17 @@ export const PLACE_RANK_GENERATED = FILE.generated;
 /** 가장 최근 순위 계측일 */
 export const PLACE_RANK_AS_OF = FILE.monitoring.asOf;
 
+/**
+ * 화면에 싣는 순위 상한 — 여기보다 아래에 있는 키워드는 카드로 만들지 않는다.
+ *
+ * 왜 데이터가 아니라 화면에서 거르나 (2026-09-07 (월) 대표 지시)
+ *   「순위가 5위권 밖은 굳이 안 보여줘도 될 것 같음. 이후 순위가 돌아오면 보일 수 있게」
+ *   대장(content/place-rank-cases.json)에는 스물여섯 건이 그대로 남는다.
+ *   여기서만 걸러 두면 다음 계측에서 순위가 돌아오는 날 카드가 저절로 다시 올라온다.
+ *   대장에서 지우면 돌아와도 되살릴 근거가 사라진다.
+ */
+const SHOW_WITHIN = 5;
+
 /** 화면에 올릴 수 있는 사례. 한 카드가 한 작품이다 */
 export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
   const kw: PlaceRankKeyword = {
@@ -134,7 +145,8 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
     volume: c.volume,
     keywordType: c.keywordType,
   };
-});
+})
+  .filter((c) => c.best.to <= SHOW_WITHIN);
 
 /** 검색수를 잰 날 */
 export const PLACE_RANK_VOLUME_AS_OF = FILE.volumeAsOf;
@@ -146,19 +158,14 @@ export const PLACE_RANK_RISEN = PLACE_RANK_CASES.filter((c) => c.trend === "상�
 export const PLACE_RANK_HELD = PLACE_RANK_CASES.filter((c) => c.trend === "유지").length;
 
 /**
- * 집계.
- * stores · keywords 는 실제로 매일 재고 있는 수이고 (계약이 확인된 곳만 센다),
- * works 는 그중 상승이 확인돼 사례로 실은 수다. 두 숫자는 다르고 섞어 쓰지 않는다.
+ * 집계 — 화면에 실제로 실린 카드에서만 센다.
+ *
+ * 매장 수 · 계측 키워드 수 같은 전체 규모는 여기서 만들지 않는다 (2026-09-07 (월) 대표 지시).
+ *   「굳이 22곳 61개 키워드라는 세부적으로 나타내는 말 적지 말고 표기하고」
+ * 잰 그대로의 키워드별 순위만 보여주기로 했다. 카드에 없는 숫자를 옆에 적으면
+ * 보는 사람이 그 차이를 계약이 끊긴 곳으로 읽는다.
  */
 export const PLACE_RANK_TOTALS = {
-  /** 매일 계측 중인 매장 수 */
-  stores: FILE.monitoring.stores,
-  /** 매일 계측 중인 키워드 수 */
-  keywords: FILE.monitoring.keywords,
-  /** 계측일에 1~5위를 지키고 있는 키워드 수 */
-  page1Keywords: FILE.monitoring.page1Keywords,
-  /** 그 키워드를 가진 매장 수 */
-  page1Stores: FILE.monitoring.page1Stores,
   /** 사례로 실은 작품 수 */
   works: PLACE_RANK_CASES.length,
   /** 사례에 담긴 서로 다른 업종 수 */
@@ -267,15 +274,15 @@ export const PLACE_RANK_NOTE =
   `업종 · 지역 경쟁 강도에 따라 결과는 달라집니다. 몇 위까지 올려 드린다는 말을 하지 않습니다.`;
 
 /**
- * 1페이지가 무엇인지 설명하는 문장 — 숫자는 이 대장에서만 가져온다.
+ * 1페이지가 무엇인지 설명하는 문장.
  *
- * 예전에는 rank-records 의 PAGE1_NOTE 를 썼는데, 그 문장은 애드랭크 스냅샷만 센
- * 숫자여서 바로 옆 카드의 총계와 어긋났다. 범위가 넓은 쪽에서 다시 만든다.
+ * 예전에는 여기에 「계측 키워드 몇 개 가운데 몇 개」라는 총계가 붙어 있었다.
+ * 2026-09-07 (월) 대표 지시로 총계를 걷고, 1페이지가 어디까지인지만 남긴다.
+ * 실제 순위는 바로 아래 카드가 키워드마다 한 장씩 말한다.
  */
 export const PLACE_RANK_PAGE1_NOTE =
   `네이버 플레이스 1페이지는 광고 지면 3개와 순위 1~5위로 구성됩니다. ` +
-  `${PLACE_RANK_AS_OF} 기준 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 가운데 ` +
-  `${PLACE_RANK_TOTALS.page1Keywords}개가 1~5위를 지키고 있고, 매장으로 세면 ${PLACE_RANK_TOTALS.page1Stores}곳입니다.`;
+  `아래 기록은 ${PLACE_RANK_AS_OF} 계측분 가운데 1~5위 안에 있는 키워드만 키워드마다 한 장씩 실은 것입니다.`;
 
 export const PLACE_RANK_LABEL_NOTE =
   `상호와 지역명은 적지 않고 업종과 행정단위까지만 적었습니다. ` +

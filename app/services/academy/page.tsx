@@ -6,7 +6,7 @@ import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
-import { PLACE_RANK_TOTALS } from "../../lib/place-rank-cases";
+import { PLACE_RANK_HELD, PLACE_RANK_RISEN, PLACE_RANK_TOTALS } from "../../lib/place-rank-cases";
 import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
 
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
    히어로에 다른 업종 기록을 걸어 두었던 것을 전사 계측 현황으로 바꾼다.
    숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
 const RESULTS = [
-  { label: "계측 매장", value: `${PLACE_RANK_TOTALS.stores}곳`, sub: "계측 중인 매장" },
-  { label: "계측 키워드", value: `${PLACE_RANK_TOTALS.keywords}개`, sub: "플레이스 계측 키워드" },
-  { label: "1페이지 유지", value: `${PLACE_RANK_TOTALS.page1Keywords}개`, sub: "1페이지 유지 키워드" },
+  { label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건`, sub: "1~5위 안에 있는 키워드" },
+  { label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건`, sub: "순위가 올라온 키워드" },
+  { label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건`, sub: "순위를 유지한 키워드" },
 ];
 
 /* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.

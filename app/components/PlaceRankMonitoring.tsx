@@ -1,7 +1,9 @@
-import { CalendarCheck, Eye, LineChart, Store } from "lucide-react";
+import { ArrowUpRight, Layers, LineChart, ShieldCheck } from "lucide-react";
 import {
   PLACE_RANK_AS_OF,
+  PLACE_RANK_HELD,
   PLACE_RANK_NOTE,
+  PLACE_RANK_RISEN,
   PLACE_RANK_TOTALS,
 } from "../lib/place-rank-cases";
 
@@ -20,10 +22,10 @@ import {
  */
 
 const STATS = [
-  { icon: Store, label: "매일 재는 매장", value: `${PLACE_RANK_TOTALS.stores}곳` },
-  { icon: LineChart, label: "매일 재는 키워드", value: `${PLACE_RANK_TOTALS.keywords}개` },
-  { icon: Eye, label: "1~5위를 지키는 키워드", value: `${PLACE_RANK_TOTALS.page1Keywords}개` },
-  { icon: CalendarCheck, label: "그 키워드를 가진 매장", value: `${PLACE_RANK_TOTALS.page1Stores}곳` },
+  { icon: LineChart, label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
+  { icon: ArrowUpRight, label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건` },
+  { icon: ShieldCheck, label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건` },
+  { icon: Layers, label: "업종", value: `${PLACE_RANK_TOTALS.industries}종` },
 ];
 
 const STEPS = [
@@ -59,8 +61,8 @@ export default function PlaceRankMonitoring({
           올린 뒤에도 매일 재고 있습니다
         </h2>
         <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-          플레이스 순위는 올린 날이 끝이 아니라 시작입니다. 지금 재고 있는 전체 규모와,
-          그중 1~5위를 지키고 있는 만큼을 계측한 그대로 적었습니다.
+          플레이스 순위는 올린 날이 끝이 아니라 시작입니다. 올라온 것과 자리를 지키고 있는 것을
+          계측한 그대로 나눠 적었습니다.
         </p>
 
         <div className="mt-6 md:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">

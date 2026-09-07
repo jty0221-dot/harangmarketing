@@ -4,7 +4,8 @@ import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
 import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
 import {
-  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, PLACE_RANK_TOTALS, fmtMoveDays,
+  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_HELD, PLACE_RANK_NOTE, PLACE_RANK_RISEN,
+  PLACE_RANK_TOTALS, fmtMoveDays,
 } from "../lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
@@ -192,13 +193,13 @@ ${TOP_BY_INDUSTRY}
 - 1페이지에 진입한 기록 가운데 가장 큰 상승폭 — ${BIGGEST_GAIN.keyword} ${fmt(BIGGEST_GAIN)} (${BIGGEST_GAIN.days}일 계측)
 
 계측 현황 (${PLACE_RANK_AS_OF} 기준)
-- 계측 매장 ${PLACE_RANK_TOTALS.stores}곳 · 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 · 업종 ${PLACE_RANK_TOTALS.industries}종
-- 네이버 플레이스 1페이지(1~5위)를 지키는 키워드 ${PLACE_RANK_TOTALS.page1Keywords}개 (매장 ${PLACE_RANK_TOTALS.page1Stores}곳)
+- 네이버 플레이스 1페이지(1~5위) 안에 있는 키워드 기록 ${PLACE_RANK_TOTALS.works}건 · 업종 ${PLACE_RANK_TOTALS.industries}종
+- 그중 올라온 것 ${PLACE_RANK_RISEN}건 · 자리를 지키고 있는 것 ${PLACE_RANK_HELD}건
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
 ### 매장별 순위 계측 사례 (${PLACE_RANK_AS_OF} 기준)
 
-계측 매장 ${PLACE_RANK_TOTALS.stores}곳 · 계측 키워드 ${PLACE_RANK_TOTALS.keywords}개 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 1~5위 유지 키워드 ${PLACE_RANK_TOTALS.page1Keywords}개(매장 ${PLACE_RANK_TOTALS.page1Stores}곳) · 공개 사례 ${PLACE_RANK_TOTALS.works}건
+1~5위 안에 있는 키워드 기록 ${PLACE_RANK_TOTALS.works}건 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 올라온 것 ${PLACE_RANK_RISEN}건 · 자리를 지키고 있는 것 ${PLACE_RANK_HELD}건
 
 ${placeRankCases}
 

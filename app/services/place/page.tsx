@@ -282,7 +282,7 @@ export default function PlaceServicePage() {
           answer="지도에 올리는 등록은 무료라 직접 하시면 됩니다. 대행이 필요한 지점은 그다음입니다. 1페이지에는 광고 지면 3자리와 순위 1위부터 5위가 있는데, 광고는 예산을 멈추면 그날 내려오고 순위는 정보 완성도·키워드·사진·리뷰가 쌓여야 올라갑니다. 하랑마케팅은 순위를 매일 재서 밀린 자리를 되찾는 일을 합니다. 몇 위까지 올려 드린다는 말은 하지 않고 매일 저장한 실측값으로만 보고합니다. 상담 비용은 0원입니다."
           facts={[
             { label: "등록 비용", value: "0원 · 직접 가능" },
-            { label: "매일 계측 중", value: `매장 ${PLACE_RANK_TOTALS.stores}곳 · 키워드 ${PLACE_RANK_TOTALS.keywords}개` },
+            { label: "1~5위 기록", value: `키워드 ${PLACE_RANK_TOTALS.works}개 · 업종 ${PLACE_RANK_TOTALS.industries}종` },
             { label: "상담", value: "0원" },
           ]}
         />
@@ -446,9 +446,9 @@ export default function PlaceServicePage() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
               {[
-                { icon: Store, label: "계측 중인 매장", value: `${PLACE_RANK_TOTALS.stores}곳` },
-                { icon: Layers, label: "계측 중인 키워드", value: `${PLACE_RANK_TOTALS.keywords}개` },
-                { icon: ListOrdered, label: "1페이지 유지 키워드", value: `${PLACE_RANK_TOTALS.page1Keywords}개` },
+                { icon: ListOrdered, label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
+                { icon: Layers, label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건` },
+                { icon: Store, label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건` },
                 { icon: LineChart, label: "계측 업종", value: `${PLACE_RANK_TOTALS.industries}종` },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-gray-200 bg-white p-4 md:p-5 shadow-sm">
@@ -548,7 +548,7 @@ export default function PlaceServicePage() {
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드 하나하나를 따로 잰 기록"
-          description={`${PLACE_RANK_AS_OF} 기준 ${PLACE_RANK_TOTALS.stores}곳 ${PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다. 그중 올라간 ${PLACE_RANK_RISEN}건과 자리를 지키고 있는 ${PLACE_RANK_HELD}건을 실었습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다.`}
+          description={`${PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 실었습니다. 올라간 것이 ${PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 ${PLACE_RANK_HELD}건입니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           background="bg-white"
         />

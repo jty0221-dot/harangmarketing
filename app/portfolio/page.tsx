@@ -9,7 +9,7 @@ import PortfolioGrid from "./PortfolioGrid";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import {
   byVolume, PLACE_RANK_AS_OF, PLACE_RANK_HELD, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
-  PLACE_RANK_RISEN, PLACE_RANK_TOTALS,
+  PLACE_RANK_RISEN,
 } from "../lib/place-rank-cases";
 
 export const metadata: Metadata = {
@@ -58,8 +58,8 @@ export default function PortfolioPage() {
               </h2>
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
                 위가 블로그에 글로 공개한 사례라면, 여기는 순위를 매일 재서 남긴 기록입니다.
-                {" "}{PLACE_RANK_AS_OF} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다.
-                {" "}그중 올라간 {PLACE_RANK_RISEN}건과 자리를 지키고 있는 {PLACE_RANK_HELD}건을 키워드마다 한 장씩 남겼습니다.
+                {" "}{PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 남겼습니다.
+                {" "}올라간 것이 {PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 {PLACE_RANK_HELD}건입니다.
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>
@@ -95,12 +95,11 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="grid grid-cols-3 gap-3">
               {[
                 { label: "관리 매장", value: TRACK_TOTALS.stores, unit: "곳" },
                 { label: "업종", value: TRACK_TOTALS.trades, unit: "종" },
-                { label: "시·도", value: TRACK_TOTALS.regions, unit: "곳" },
-                { label: "지금도 관리 중", value: TRACK_TOTALS.ongoing, unit: "곳" },
+                { label: "맡아서 한 일", value: TRACK_TOTALS.workKinds, unit: "종" },
               ].map((s) => (
                 <div key={s.label} className="w-card px-4 py-4 md:px-5 md:py-5">
                   <p className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>
@@ -144,19 +143,11 @@ export default function PortfolioPage() {
                           >
                             {item.trade}
                           </span>
-                          {item.region && (
-                            <span className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
-                              {item.region}
-                            </span>
-                          )}
                           {item.branches && (
                             <span className="w-caption-1 w-num" style={{ color: "var(--w-label-alt)" }}>
                               {item.branches}
                               {item.unit ?? "지점"}
                             </span>
-                          )}
-                          {item.status === "진행 중" && (
-                            <span className="w-chip w-chip-blue">진행 중</span>
                           )}
                         </div>
                         <p className="w-caption-1 mt-1.5" style={{ color: "var(--w-label-alt)" }}>
@@ -170,8 +161,8 @@ export default function PortfolioPage() {
             </div>
 
             <p className="w-caption-1 mt-5" style={{ color: "var(--w-label-alt)" }}>
-              계약 대장과 견적 · 계약 서류에서 뽑았습니다. 상호 · 지점명 · 연락처 · 계약 금액은 넣지 않고, 지역은 광역 단위까지만
-              적습니다. 업종을 확인하지 못한 곳과 아직 착수하지 않은 곳은 뺐습니다.
+              계약 대장과 견적 · 계약 서류에서 뽑았습니다. 상호 · 지점명 · 지역 · 연락처 · 계약 금액은 넣지 않고 업종과
+              맡아서 한 일만 적습니다. 업종을 확인하지 못한 곳과 아직 착수하지 않은 곳은 뺐습니다.
             </p>
           </section>
 

@@ -144,12 +144,12 @@ const CasesPage: FC = () => {
         {/* AEO — 성과 질의 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer={`하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. ${PLACE_RANK_AS_OF} 기준 ${PLACE_RANK_TOTALS.keywords}개 계측 키워드 가운데 ${PLACE_RANK_TOTALS.page1Keywords}개가 네이버 플레이스 1페이지(1~5위)를 지키고 있습니다. 순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
+          answer={`하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. ${PLACE_RANK_AS_OF} 기준으로 네이버 플레이스 1페이지(1~5위) 안에 있는 키워드만 키워드마다 한 장씩 실었고, 올라간 것이 ${PLACE_RANK_RISEN}건 자리를 지키고 있는 것이 ${PLACE_RANK_HELD}건입니다. 순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
           facts={[
             { label: "완료 프로젝트", value: "500건+" },
             { label: "재계약률", value: SITE.stats.renewalRate },
             { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
-            { label: "1페이지 유지 키워드", value: `${PLACE_RANK_TOTALS.page1Keywords}개` },
+            { label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
           ]}
         />
 
@@ -163,8 +163,8 @@ const CasesPage: FC = () => {
               </p>
               <h2 className="text-xl md:text-2xl font-black text-gray-900">키워드마다 한 장씩 실은 계측 기록</h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-                {PLACE_RANK_AS_OF} 기준 {PLACE_RANK_TOTALS.stores}곳 {PLACE_RANK_TOTALS.keywords}개 키워드를 매일 재고 있습니다.
-                그중 올라간 {PLACE_RANK_RISEN}건과 자리를 지키고 있는 {PLACE_RANK_HELD}건을 키워드마다 한 장씩 실었습니다.
+                {PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 실었습니다.
+                올라간 것이 {PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 {PLACE_RANK_HELD}건입니다.
               </p>
               <Link
                 href="/cases/place-rank"
@@ -323,16 +323,15 @@ const CasesPage: FC = () => {
             </p>
             <h2 className="text-xl md:text-2xl font-black text-gray-900">순위 말고, 맡아온 매장 자체를 세어 봤습니다</h2>
             <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-              계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호와 지점명은 밝히지 않고 업종 · 지역 · 진행 상태만
-              적습니다.
+              계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호 · 지점명 · 지역은 밝히지 않고 업종과 맡아서 한
+              일만 적습니다.
             </p>
 
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="mt-6 grid grid-cols-3 gap-3">
               {[
                 { value: TRACK_TOTALS.stores, unit: "곳", label: "맡아온 매장" },
                 { value: TRACK_TOTALS.trades, unit: "종", label: "업종" },
-                { value: TRACK_TOTALS.regions, unit: "곳", label: "시 · 도" },
-                { value: TRACK_TOTALS.ongoing, unit: "곳", label: "지금도 관리 중" },
+                { value: TRACK_TOTALS.workKinds, unit: "종", label: "맡아서 한 일" },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-gray-100 bg-gray-50 p-4 md:p-5">
                   <p className="text-2xl md:text-3xl font-black text-gray-900 tabular-nums leading-none">
