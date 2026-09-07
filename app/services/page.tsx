@@ -12,6 +12,7 @@ import {
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
+import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -84,9 +85,36 @@ export const metadata: Metadata = {
  * 고르는 기준은 종류마다 첫 건이다. 앞에서부터 자르면 생활·리빙만 나와서
  * 생활용품만 하는 곳으로 읽힌다.
  */
-const DP_COVERS = DP_CATEGORIES.slice(0, 5).map((c) => ({
+/**
+ * 커버 한 칸의 규격. 실치수를 같이 들고 다닌다.
+ * 예전에는 렌더 쪽에 560x747 을 박아 뒀는데, 그 값은 상세페이지 썸네일 하나에만 맞는 값이라
+ * 비율이 다른 커버를 걸면 그 커버가 잘렸다.
+ */
+type ServiceCover = { src: string; alt: string; w: number; h: number };
+
+const DP_COVERS: ServiceCover[] = DP_CATEGORIES.slice(0, 5).map((c) => ({
   src: `/detail-ref/${c.works[0].slug}.jpg`,
   alt: `${c.works[0].title} 상세페이지 실제 납품 화면`,
+  w: 560,
+  h: 747,
+}));
+
+/**
+ * 하이라이트 세팅 카드 커버 — 곳마다 대표 한 장씩 다섯 곳.
+ *
+ * 상세페이지 커버와 달리 여기는 비율이 두 가지 섞여 있다.
+ * 커버는 720x720(1:1) 이고 스토리는 540x960(9:16) 이다.
+ * 그래서 이 카드만 object-contain 으로 받는다(coverFit). object-cover object-top 으로 받으면
+ * 1:1 커버의 좌우가 잘려 나가 커버 안에 넣은 글자가 날아간다.
+ *
+ * 업체명은 어떤 업체든 화면에 올리지 않는다 (대표 지시 2026-09-07 (월)).
+ * alt 도 데이터가 만든 문장을 그대로 쓴다. 여기서 상호를 붙이지 않는다.
+ */
+const HL_CARD_COVERS: ServiceCover[] = HL_COVERS.slice(0, 5).map((c) => ({
+  src: c.src,
+  alt: c.alt,
+  w: c.w,
+  h: c.h,
 }));
 
 const SERVICES = [
@@ -146,6 +174,7 @@ const SERVICES = [
     result: `실물 상세페이지 ${DP_TOTAL}건 · 원본 ${DP_CUTS}컷 전체 공개 (잘라낸 구간 없음)`,
     href: "/services/detail-page",
     covers: DP_COVERS,
+    coverFit: "cover" as const,
     coverBadge: "실제 납품 화면",
   },
   {
@@ -272,14 +301,20 @@ const SERVICES = [
     ],
     features: [
       "인스타그램 계정 육성 및 세팅",
+      "하이라이트 커버 제작 · 여섯 칸 순서 설계",
       "피드·스토리·릴스 콘텐츠 제작",
       "인기 게시물 상위 노출 전략",
       "맘카페·지역 커뮤니티 자연스러운 입소문",
-      "콘텐츠 공유·하이라이트 세팅",
+      "콘텐츠 공유·확산",
     ],
     rec: "비주얼 중심 업종(카페·미용·음식점)이나 주부 고객 타겟 매장",
-    result: "발행 수와 도달을 월간 리포트로 공개",
+    result: `발행 수와 도달을 월간 리포트로 공개 · 하이라이트 세팅 실물 ${HL_SHOP_TOTAL}곳 ${HL_TOTAL}장 공개`,
     href: "/services/instagram",
+    // 하이라이트 세팅은 마지막 불릿 한 줄에 묻혀 있었다. 파는 물건인데 화면이 없었다는 뜻이라
+    // 상세페이지 카드와 같은 방식으로 실물 커버를 건다 (2026-09-07 (월)).
+    covers: HL_CARD_COVERS,
+    coverFit: "contain" as const,
+    coverBadge: "실제 세팅 화면",
     // 인스타 랜딩에도 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
     hrefLabel: "인스타 안내 보기",
   },
@@ -724,11 +759,15 @@ export default function ServicesPage() {
                             key={c.src}
                             src={c.src}
                             alt={c.alt}
-                            width={560}
-                            height={747}
+                            width={c.w}
+                            height={c.h}
                             loading="lazy"
                             decoding="async"
-                            className={`h-full w-full rounded-lg border border-gray-200 bg-white object-cover object-top ${
+                            /* 세로로 긴 상세페이지는 위에서부터 잘라 담는다(cover).
+                               비율이 섞여 있는 커버는 잘리면 안에 넣은 글자가 날아가므로 통째로 담는다(contain). */
+                            className={`h-full w-full rounded-lg border border-gray-200 bg-white ${
+                              s.coverFit === "contain" ? "object-contain p-1" : "object-cover object-top"
+                            } ${
                               i === 2 ? "hidden sm:block" : i === 3 ? "hidden md:block" : i >= 4 ? "hidden lg:block" : "block"
                             }`}
                           />
