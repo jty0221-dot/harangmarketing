@@ -161,7 +161,19 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
   const report = await getPublishedReport(code);
   if (!report) notFound();
 
-  const written = fmtDate(report.publishedAt || report.createdAt);
+  // 표지 날짜 — 공개한 뒤에 내용을 다시 쓴 보고서가 있다.
+  //
+  // 같은 링크를 살린 채 숫자만 갱신하는 경우(알림톡이 이미 나간 보고서)
+  // published_at 은 첫 공개일에 그대로 머문다. 그러면 9월 숫자를 담은 문서에
+  // 작성일이 8월로 찍혀서, 사장님이 보시는 날짜와 본문이 서로 다른 말을 한다.
+  // 내용을 고친 날이 공개일보다 뒤면 그날을 적고 이름도 '갱신일' 로 바꾼다.
+  const firstAt = report.publishedAt || report.createdAt;
+  const editedAfter =
+    !!report.updatedAt &&
+    !!firstAt &&
+    new Date(report.updatedAt).getTime() - new Date(firstAt).getTime() > 60_000;
+  const written = fmtDate(editedAfter ? report.updatedAt : firstAt);
+  const writtenLabel = editedAfter ? "갱신일" : "작성일";
 
   // 섹션 번호는 실제로 존재하는 블록에만 붙인다 (비어 있는 섹션 번호가 뜨면 문서가 이상해진다)
   const sections: string[] = [];
@@ -215,7 +227,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
             style={{ borderColor: "rgba(255,255,255,.16)" }}
           >
             {report.period && <Meta label="보고 기간" value={report.period} />}
-            <Meta label="작성일" value={written} />
+            <Meta label={writtenLabel} value={written} />
             <Meta label="담당" value="하랑마케팅" />
           </dl>
         </div>
