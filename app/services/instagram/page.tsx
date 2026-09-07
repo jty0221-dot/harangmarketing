@@ -13,7 +13,7 @@ import JsonLd from "../../components/JsonLd";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
 } from "../../lib/seo";
-import { HL_WORKS, HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../../lib/highlight-reference";
+import { HL_WORKS, HL_TOTAL, HL_SHOP_TOTAL } from "../../lib/highlight-reference";
 
 /**
  * 인스타그램 계정 관리 랜딩.
@@ -119,6 +119,32 @@ const HIGHLIGHT_RULES = [
     icon: MessageCircle,
     title: "마지막 칸은 반드시 문의입니다",
     body: "복도의 끝에 문이 있어야 합니다. 여기까지 본 사람이 그냥 나가지 않게 하는 칸입니다.",
+  },
+];
+
+/* 하이라이트 한 벌을 만드는 공정 4단계.
+   아래 STEPS(계정 운영 진행 절차 5단계)와 다른 것이다. 저건 계약 전체의 흐름이고
+   이건 그 03 안에서 실제로 손이 가는 순서다. 대표 지시 어떤식으로 구축하고 보일지. */
+const HL_STEPS = [
+  {
+    icon: Search,
+    title: "지금 프로필부터 셉니다",
+    body: "칸이 몇 개인지, 이름이 잘리는지, 커버 톤이 제각각인지 먼저 봅니다. 여기서 고칠 것이 정해집니다.",
+  },
+  {
+    icon: ListOrdered,
+    title: "칸 이름을 업종에 맞춰 정합니다",
+    body: "아래 실제 화면의 칸 이름이 곳마다 다른 이유입니다. 펜션에서는 이용 안내를 묻고 왁싱에서는 가격을 먼저 묻습니다.",
+  },
+  {
+    icon: ImageIcon,
+    title: "커버 여섯 장을 한 벌로 그립니다",
+    body: "아이콘과 여백과 글자 크기를 같은 값으로 맞춥니다. 한 장씩 예쁜 것보다 여섯 장이 한 벌로 보이는 것이 먼저입니다.",
+  },
+  {
+    icon: Layers,
+    title: "칸 안까지 채우고 프로필에서 확인합니다",
+    body: "커버만 드리고 끝내지 않습니다. 칸 안에 들어갈 장면까지 올린 뒤 프로필에서 실제로 어떻게 보이는지 보고 마칩니다.",
   },
 ];
 
@@ -579,74 +605,170 @@ export default function InstagramServicePage() {
           </div>
         </section>
 
-        {/* 하이라이트 세팅 실물
-            상호는 화면 · 파일명 · alt 어디에도 넣지 않는다 (대표 지시 2026-09-07 (월)).
-            사진 안에 보이던 상호 · 로고 글자 · 주소는 납품 전에 지웠고, 가려도 화면이 남지 않는
-            컷과 인물 컷은 아예 빼서 여기 없다.
-            업종은 묶는 기준이 아니라 카드에 붙는 라벨이다. 탭 · 필터 · 업종별 페이지를 만들지 않는다.
-            커버는 720x720(1:1) 이고 스토리는 540x960(9:16) 이다. 한 틀에 몰아넣고 object-cover 로
-            자르면 커버 안의 글자가 날아가므로, 틀 높이만 고정하고 가로는 kind 가 정하게 뒀다.
-            틀 높이(h-32 sm:h-40 = 128/160px)는 lg 4칸일 때 카드 안쪽 폭 176px 보다 작게 잡은 값이다.
-            이보다 키우면 1:1 커버가 카드 밖으로 나간다.
-            곳 수와 장수는 손으로 적지 않는다. HL_SHOP_TOTAL · HL_TOTAL 이 데이터에서 온다.
+        {/* 하이라이트 세팅 포트폴리오 · 3층
+            대표 지시 2026-09-07 (월) 세 줄로 이 구조가 정해졌다.
+              1) 각 업체 인스타도 들어가서 보여주는 형태로 이미지도 확립했으면 좋겠음
+                 → 커버 낱장이 아니라 프로필에 걸린 줄(band)을 그대로 건다.
+              2) 단순하게 커버만 보여줄게 아니라 어떤식으로 구축하고 보일지에 대한 포트폴리오
+                 → 만드는 순서(4단계) → 완성 화면(밴드) → 칸 이름(목차) → 커버·스토리 순으로 쌓았다.
+              3) 업체명이 오픈되는 건 없애라 · 아래 상세설명이든
+                 → 화면 · 파일명 · alt · 칸 이름 어디에도 상호를 넣지 않는다.
+                    사진 안 원에 박힌 워드마크는 모자이크로 지웠고, 칸 이름이 상호였던 곳은
+                    그 자리에 업종을 다시 써 넣었다(만두 전문점 · Cafe).
+                    가려도 화면이 남지 않는 컷은 아예 뺐다.
+            밴드는 업체마다 원본 크기가 달라서 한 틀에 맞추지 않는다. maxWidth 를 원본 폭으로
+            잡아 확대를 막고, 그 아래에서만 폭에 맞춰 줄어들게 뒀다. 늘리면 칸 이름이 뭉갠다.
+            밴드 캡처가 없는 곳은 band 가 undefined 라 밴드 · 목차를 통째로 안 그린다
+            (C-42 : 모르면 비워둔다. 없는 화면을 그려 넣지 않는다).
+            곳 수 · 장수는 손으로 적지 않는다. HL_SHOP_TOTAL · HL_TOTAL 이 데이터에서 온다.
             가격은 이 페이지에 넣지 않는다 (머리 주석 참조). */}
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              직접 만든 하이라이트 커버입니다
+              하이라이트 한 벌은 이렇게 만듭니다
             </h2>
             <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              위 여섯 칸을 실제로 만들면 이렇게 나옵니다.
+              커버 여섯 장을 그리는 일이 아닙니다.
+              무엇을 묻는지 먼저 세고, 칸 이름을 정하고, 그다음에 그립니다.
+              올린 뒤 프로필에서 실제로 어떻게 보이는지까지 확인하고 끝냅니다.
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {HL_STEPS.map((st, i) => (
+                <div
+                  key={st.title}
+                  className="rounded-2xl bg-white p-4 md:p-5 shadow-sm"
+                  style={{ border: "1px solid var(--h-border)" }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div
+                      className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center shrink-0"
+                      style={{ background: "var(--h-blue)" }}
+                    >
+                      <st.icon size={16} className="text-white" strokeWidth={2.5} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm md:text-base font-bold text-gray-900 leading-snug">
+                        <span className="tabular-nums" style={{ color: "var(--h-blue)" }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="ml-2">{st.title}</span>
+                      </p>
+                      <p className="mt-2 text-sm text-gray-600 leading-relaxed">{st.body}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
+          <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
+              실제로 세팅한 곳입니다
+            </h2>
+            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
+              프로필에 걸린 줄을 그대로 가져왔습니다.
               업종마다 방문자가 묻는 것이 달라서 칸 이름도 안에 넣는 장면도 같이 달라집니다.
               지금까지 {HL_SHOP_TOTAL}곳에 {HL_TOTAL}장을 만들어 드렸습니다.
             </p>
 
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-              {HL_WORKS.map((w, i) => {
-                const cover = HL_COVERS[i];
-                const shots = w.covers.length + w.stories.length;
+            <div className="mt-8 space-y-4">
+              {HL_WORKS.map((w) => {
+                const shots = [...w.covers, ...w.stories];
+                const shown = shots.slice(0, 6);
+                const rest = shots.length - shown.length;
                 return (
                   <div
                     key={w.slug}
-                    className="rounded-2xl bg-white p-2.5 md:p-3 shadow-sm"
+                    className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
                     style={{ border: "1px solid var(--h-border)" }}
                   >
-                    <div
-                      className="flex h-32 sm:h-40 items-center justify-center overflow-hidden rounded-xl"
-                      style={{ background: "var(--h-surface)" }}
-                    >
-                      <div
-                        className={`relative h-full overflow-hidden rounded-lg ${
-                          cover.kind === "cover" ? "aspect-square" : "aspect-[9/16]"
-                        }`}
-                      >
-                        <Image
-                          src={cover.src}
-                          alt={cover.alt}
-                          fill
-                          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 200px"
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                    <p className="mt-3 text-sm font-bold text-gray-900 leading-snug">{w.title}</p>
-                    <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                      <span className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-medium text-gray-700">
-                        {w.industry}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-sm md:text-base font-bold text-gray-900">{w.title}</p>
+                      {/* 제목이 이미 업종이라 칩이 같은 말이면 안 그린다 (카페 · 카페 로 두 번 서던 자리) */}
+                      {w.industry !== w.title && (
+                        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-medium text-gray-700">
+                          {w.industry}
+                        </span>
+                      )}
                       <span
                         className="inline-flex items-center rounded-lg bg-blue-50 px-2 py-1 text-[11px] font-bold tabular-nums"
                         style={{ color: "var(--h-blue)" }}
                       >
-                        {shots}장
+                        {shots.length}장
                       </span>
+                    </div>
+
+                    {w.band ? (
+                      <>
+                        <div
+                          className="mt-4 overflow-hidden rounded-xl"
+                          style={{ border: "1px solid var(--h-border)", maxWidth: w.band.w }}
+                        >
+                          <Image
+                            src={`/highlight-ref/band/${w.band.file}`}
+                            alt={`${w.industry} 프로필에 걸린 하이라이트 줄`}
+                            width={w.band.w}
+                            height={w.band.h}
+                            sizes="(max-width: 640px) 92vw, 540px"
+                            className="w-full h-auto"
+                          />
+                        </div>
+                        {w.menu && w.menu.length > 0 && (
+                          <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                            <span className="text-[11px] font-medium text-gray-500 mr-0.5">칸 이름</span>
+                            {w.menu.map((m, k) => (
+                              <span
+                                key={`${w.slug}-m${k}`}
+                                className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-medium text-gray-700"
+                              >
+                                {m}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <p className="mt-3 text-[13px] text-gray-500 leading-relaxed">
+                        프로필 화면 캡처가 없어 만든 커버만 올렸습니다.
+                      </p>
+                    )}
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {shown.map((sh) => (
+                        <div
+                          key={sh.file}
+                          className={`relative h-24 sm:h-28 overflow-hidden rounded-lg ${
+                            sh.kind === "cover" ? "aspect-square" : "aspect-[9/16]"
+                          }`}
+                          style={{ background: "var(--h-surface)" }}
+                        >
+                          <Image
+                            src={`/highlight-ref/${sh.file}`}
+                            alt={`${w.industry} 하이라이트 ${sh.kind === "cover" ? "커버" : "스토리"}`}
+                            fill
+                            sizes="120px"
+                            className="object-cover"
+                          />
+                        </div>
+                      ))}
+                      {rest > 0 && (
+                        <div
+                          className="flex h-24 sm:h-28 w-16 items-center justify-center rounded-lg text-[12px] font-bold tabular-nums text-gray-500"
+                          style={{ background: "var(--h-surface)" }}
+                        >
+                          +{rest}장
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            <div className="mt-6 flex items-start gap-3 rounded-2xl p-4 md:p-6" style={{ background: "var(--h-surface)" }}>
+            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-white p-4 md:p-6 shadow-sm" style={{ border: "1px solid var(--h-border)" }}>
               <div className="w-9 h-9 rounded-xl bg-gray-900 shadow-sm flex items-center justify-center shrink-0">
                 <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
               </div>
@@ -656,6 +778,7 @@ export default function InstagramServicePage() {
                 </p>
                 <p className="mt-2 text-sm text-gray-700 leading-relaxed">
                   화면에 상호가 보이던 자리는 전부 가려 두었습니다.
+                  칸 이름이 상호였던 곳은 그 자리에 업종을 대신 적었습니다.
                   가려도 화면이 남지 않는 컷은 아예 빼고 올렸습니다.
                   맡겨 주신 곳의 상호는 동의를 받기 전에는 내보내지 않습니다.
                 </p>

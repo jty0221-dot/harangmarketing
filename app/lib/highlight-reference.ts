@@ -13,12 +13,22 @@ export interface HlShot {
   h: number;
 }
 
+// 프로필에 실제로 걸린 하이라이트 줄. 원 안의 상호 · 로고와 상호가 적힌 칸 이름은
+// 전부 지우고 그 자리에 업종을 다시 써 넣었다.
+export interface HlBand {
+  file: string;
+  w: number;
+  h: number;
+}
+
 export interface HlWork {
   slug: string;
   title: string;    // 화면 표기 — 업종만. 상호 · 브랜드는 쓰지 않는다
   industry: string; // 업종 라벨. 모르면 기타
   covers: HlShot[];
   stories: HlShot[];
+  band?: HlBand;   // 프로필 캡처가 있는 곳만. 없으면 비운다 (C-42 : 모르면 비워둔다)
+  menu?: string[]; // 그 줄에 보이는 칸 이름. 밴드에서 읽은 그대로 옮긴다
 }
 
 export const HL_WORKS: HlWork[] = [
@@ -61,6 +71,8 @@ export const HL_WORKS: HlWork[] = [
       { file: "beauty2-s10.jpg", kind: "story", w: 540, h: 960 },
       { file: "beauty2-s11.jpg", kind: "story", w: 540, h: 960 },
     ],
+    band: { file: "beauty2.jpg", w: 448, h: 140 },
+    menu: ["리뷰", "소개", "자주묻는질문", "비포&에프터"],
   },
   {
     slug: "beauty3",
@@ -81,6 +93,8 @@ export const HL_WORKS: HlWork[] = [
       { file: "beauty3-s11.jpg", kind: "story", w: 540, h: 960 },
       { file: "beauty3-s12.jpg", kind: "story", w: 540, h: 960 },
     ],
+    band: { file: "beauty3.jpg", w: 386, h: 142 },
+    menu: ["소개", "가격", "이벤트", "찾아오시는길"],
   },
   {
     slug: "travel1",
@@ -106,6 +120,8 @@ export const HL_WORKS: HlWork[] = [
       { file: "travel1-s06.jpg", kind: "story", w: 540, h: 960 },
       { file: "travel1-s07.jpg", kind: "story", w: 540, h: 960 },
     ],
+    band: { file: "travel1.jpg", w: 432, h: 109 },
+    menu: ["후기", "이용 안내", "이용 안내", "추천 장소"],
   },
   {
     slug: "travel2",
@@ -139,6 +155,8 @@ export const HL_WORKS: HlWork[] = [
       { file: "food1-c05.jpg", kind: "cover", w: 720, h: 720 },
     ],
     stories: [],
+    band: { file: "food1.jpg", w: 540, h: 154 },
+    menu: ["만두 전문점", "메뉴소개", "리얼 후기", "방송출연"],
   },
   {
     slug: "food2",
@@ -153,6 +171,8 @@ export const HL_WORKS: HlWork[] = [
       { file: "food2-s05.jpg", kind: "story", w: 540, h: 960 },
       { file: "food2-s06.jpg", kind: "story", w: 540, h: 960 },
     ],
+    band: { file: "food2.jpg", w: 432, h: 110 },
+    menu: ["메뉴", "리뷰", "이벤트", "위치", "메뉴판"],
   },
   {
     slug: "cafe1",
@@ -166,12 +186,16 @@ export const HL_WORKS: HlWork[] = [
       { file: "cafe1-c05.jpg", kind: "cover", w: 720, h: 720 },
     ],
     stories: [],
+    band: { file: "cafe1.jpg", w: 540, h: 140 },
+    menu: ["Cafe", "Signature", "Reviews", "Location"],
   },
 ];
 
 export const HL_TOTAL = HL_WORKS.reduce((n, w) => n + w.covers.length + w.stories.length, 0);
 
 export const HL_SHOP_TOTAL = HL_WORKS.length;
+
+export const HL_BANDS = HL_WORKS.filter((w) => w.band);
 
 export const HL_INDUSTRIES = Array.from(new Set(HL_WORKS.map((w) => w.industry)));
 
