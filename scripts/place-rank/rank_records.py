@@ -18,8 +18,9 @@ app/lib/rank-records.ts 본문 생성기 — 손으로 세지 않는다.
 
   TSV 는 저장소 밖(E:\하랑\순위모니터)에 있어 빌드가 읽을 수 없다. 그래서 값을 옮겨 심는
   구간이 남는데, 그 구간을 사람이 하면 거기서 멈춘다 — 실제로 08-26 에 5일 멈춰 있었다.
-  --write 는 rank-records.ts 의 다섯 자리(SNAPSHOT_DATE · RECORDS · 제외 주석 ·
-  EXCLUDED_COUNT · SUMMARY)만 갈아 끼운다. 나머지 줄은 한 글자도 건드리지 않는다.
+  --write 는 rank-records.ts 의 여덟 자리(SNAPSHOT_DATE · RECORDS · 제외 주석 ·
+  EXCLUDED_COUNT · SUMMARY · CLINIC_KEYWORDS · CLINIC_SUMMARY)만 갈아 끼운다.
+  나머지 줄은 한 글자도 건드리지 않는다.
   검산이 어긋나면 아무것도 쓰지 않고 멈춘다 — 틀린 값이 빈 값보다 나쁘다 (C-42).
   (2026-09-05 (토) 대표 지시 · 최신 날짜 기준으로 계속 체크되게 체계 확립)
 
@@ -77,6 +78,15 @@ MED = {"치과", "피부과", "의원", "한의원", "성형외과", "안과", "
 # 4위에 그대로 있는 줄은 1페이지 안이라 실리고, 9위가 11위가 된 줄은 내려간 줄이라 그 앞에서 걸린다.
 # 업종마다 예외를 새로 만들지 않는 것이 이 순서의 값이다.
 MED_OK = {("치과", "치과"), ("치과", "역세권 치과"), ("피부과", "피부과")}
+
+# 병·의원 현황표 (D-0280 · D-0282). 위 게이트와 층이 다르다 — 병원 하나의 개선 카드가 아니라
+# 계약 키워드 전체의 순위를 한 표로 세는 집계라 병원을 특정하지 않는다.
+# 어느 키워드가 계약인지는 세영 대장이 정본이다. 여기서 짐작하지 않는다 (C-42). 읽기만 한다 (C-48).
+ROSTER_TSV = "E:/하랑/순위모니터/수집대상.tsv"   # 매장 · 출처 · 계약 키워드(쉼표) · 별칭 · 비고
+DEAL_TSV = "E:/하랑/순위모니터/계약구분.tsv"     # 매장 · 구분 · 원청 · 근거
+OURS = {"직계약", "자사"}                          # 대대행 · 미확인은 우리 사례가 아니다
+# 화면 표기는 업종 앞에 OO 두 글자뿐이다 (2026-09-06 (일) 대표 지시 · D-0282). 지역도 키워드도 안 적는다.
+CLINIC_DISPLAY = lambda ind: "OO" + ind
 
 KIND = [
     ("입주청소", "입주청소", "입주청소"),
@@ -171,7 +181,48 @@ def vol(vmap, label):
     return vmap.get(label.replace("역세권 ", "").strip(), 0)
 
 
-# rank-records.ts 안에서 갈아 끼울 여섯 자리. 정규식은 각각 딱 한 번만 맞아야 한다.
+def kw_suffix(kw):
+    """KIND 에서 걸린 꼬리. kind() 와 같은 순서로 본다 — 긴 것부터."""
+    for suf, _, _ in KIND:
+        if kw.endswith(suf):
+            return suf
+    return None
+
+
+def load_plain(path):
+    """머리글 없는 세영 대장용. # 주석과 빈 줄을 건너뛰고 탭으로 가른다. 못 읽으면 None."""
+    try:
+        f = io.open(path, encoding="utf-8-sig")
+    except (IOError, OSError):
+        return None
+    with f:
+        return [ln.rstrip("\r\n").split("\t") for ln in f if ln.strip() and not ln.startswith("#")]
+
+
+def contract_keywords():
+    """매장 → 계약 키워드 집합. 세영 대장 두 개를 맞대어 만든다 (읽기만 한다 · C-48).
+    · 수집대상.tsv 셋째 열 — 세영이 계약 키워드를 적는 칸 (쉼표로 여럿 · 빈칸이면 순위 계약이 아니다)
+    · 계약구분.tsv 둘째 열이 직계약·자사인 매장만 — 대대행·미확인은 우리 사례가 아니다
+    둘 중 하나라도 못 읽으면 None. 빈 표를 내보내 화면이 「계약 0곳」이 되게 두지 않는다 (C-42)."""
+    roster, deal = load_plain(ROSTER_TSV), load_plain(DEAL_TSV)
+    if roster is None or deal is None:
+        return None
+    ours = {c[0].strip() for c in deal if len(c) >= 2 and c[1].strip() in OURS}
+    out = {}
+    for c in roster:
+        if len(c) < 3:
+            continue
+        kws = {k.strip() for k in c[2].split(",") if k.strip()}
+        if not kws or c[0].strip() not in ours:
+            continue
+        # 별칭(넷째 열)으로 올라온 스냅샷 행도 같은 매장으로 묶는다
+        names = [c[0].strip()] + ([a.strip() for a in c[3].split(",") if a.strip()] if len(c) >= 4 else [])
+        for n in names:
+            out[n] = kws
+    return out
+
+
+# rank-records.ts 안에서 갈아 끼울 여덟 자리. 정규식은 각각 딱 한 번만 맞아야 한다.
 # 두 번 맞거나 한 번도 못 맞으면 파일 구조가 바뀐 것이라 아무것도 쓰지 않고 멈춘다.
 TS_ANCHORS = [
     ("HEADER", r"^ \* 기준 스냅샷: [^\n]*"),
@@ -180,6 +231,8 @@ TS_ANCHORS = [
     ("EXCLUDED", r"^ \* 하락 — .*?^ \* 데이터 부족 — [^\n]*"),
     ("EXCLUDED_COUNT", r"^export const EXCLUDED_COUNT = \{[^\n]*\};"),
     ("SUMMARY", r"^export const SUMMARY = \{$.*?^\};"),
+    ("CLINIC", r"^export const CLINIC_KEYWORDS: ClinicKeyword\[\] = \[$.*?^\];"),
+    ("CLINIC_SUMMARY", r"^export const CLINIC_SUMMARY = \{$.*?^\};"),
 ]
 
 
@@ -206,7 +259,7 @@ def write_ts(B, mark):
         print("\n// 바뀐 값이 없다. %s 는 그대로 둔다" % TS_PATH.name)
         return 0
     io.open(TS_PATH, "w", encoding="utf-8", newline="\n").write(new)
-    print("\n// 갱신함 → %s (여섯 자리)" % TS_PATH)
+    print("\n// 갱신함 → %s (여덟 자리)" % TS_PATH)
     return 0
 
 
@@ -350,6 +403,49 @@ def main():
     ])
     print("\n" + B["SUMMARY"])
 
+    # 병·의원 현황표 (D-0280 · D-0282 · 2026-09-06 (일) 대표 지시) — 위 RECORDS 와 층이 다르다.
+    # RECORDS 는 병원 하나의 개선 카드라 진우 판정(MED_OK)을 거친 것만 실리고, 여기는 계약 키워드
+    # 전체의 순위를 한 표로 세는 집계라 병원을 특정하지 않는다. 그래서 MED_OK 게이트를 안 거친다.
+    # 관측용 서브 키워드를 세면 「3개 전부 1페이지」가 「4개 중 3개」로 바뀐다 (D-0282 한계 1).
+    cmap = contract_keywords()
+    clinic = []
+    if cmap is None:
+        print("\n[중단] 계약 대장을 못 읽었다 (%s · %s). 병·의원 현황표를 만들지 않는다" % (ROSTER_TSV, DEAL_TSV))
+    else:
+        for r in last:
+            store, kw = r["매장"], r["키워드"]
+            _, ind = kind(kw)
+            if ind not in MED or kw not in cmap.get(store, set()):
+                continue
+            suf = kw_suffix(kw) or ""
+            shape = "지역 + 진료과" if kw[: len(kw) - len(suf)].strip() else "진료과"
+            clinic.append((CLINIC_DISPLAY(ind), shape, num(r.get("오늘")), store))
+        # 순위 오름차순. 계측이 빠진 날은 맨 뒤 (null 로 나가고 화면은 「계측 중」으로 읽는다)
+        clinic.sort(key=lambda x: (x[2] is None, x[2] or 0, x[0]))
+        B["CLINIC"] = "\n".join(
+            ["export const CLINIC_KEYWORDS: ClinicKeyword[] = ["]
+            + [
+                '  { display: "%s", shape: "%s", rank: %s, page1: %s },'
+                % (d, sh, "null" if t is None else t, "true" if t is not None and t <= 5 else "false")
+                for d, sh, t, _ in clinic
+            ]
+            + ["];"]
+        )
+        B["CLINIC_SUMMARY"] = "\n".join([
+            "export const CLINIC_SUMMARY = {",
+            "  /** 플레이스 순위 계약이 있는 병·의원 수 */",
+            "  stores: %d," % len({x[3] for x in clinic}),
+            "  /** 계약 키워드 수 (관측용 서브 키워드는 세지 않는다) */",
+            "  keywords: %d," % len(clinic),
+            "  /** 기준일에 1페이지(1~5위) 안에 있는 계약 키워드 수 */",
+            "  page1: %d," % sum(1 for x in clinic if x[2] is not None and x[2] <= 5),
+            "  /** 기준일에 1위인 계약 키워드 수 */",
+            "  top1: %d," % sum(1 for x in clinic if x[2] == 1),
+            "};",
+        ])
+        print("\n" + B["CLINIC"])
+        print(B["CLINIC_SUMMARY"])
+
     # 산수 점검 — 네 갈래를 합치면 keywords 와 딱 맞아야 한다. 안 맞으면 갈래가 새고 있다.
     total = len(rec) + len(decl) + len(out1) + len(flat) + len(med)
     mark = "맞음" if total == len(ok) else "어긋남"
@@ -375,6 +471,9 @@ def main():
             print("        %s" % kw)
 
     if WRITE:
+        if "CLINIC" not in B:
+            print("\n[중단] 병·의원 현황표가 비어 아무것도 쓰지 않는다 — 계약 대장부터 확인한다")
+            return 1
         return write_ts(B, mark)
     print("\n// (계산만 했다. app/lib/rank-records.ts 를 갱신하려면 --write 를 붙인다)")
     return 0

@@ -116,6 +116,42 @@ export const SUMMARY = {
   snapshots: 16,
 };
 
+/**
+ * 병·의원 순위 현황 — 집계 층 (진우 D-0280 · D-0282 · 2026-09-06 (일) 대표 지시).
+ * 위 RECORDS 는 병원 하나의 개선 카드라 진우 판정을 거친 것만 실리고, 여기는 계약 키워드 전체를
+ * 한 표로 세는 집계라 병원을 특정하지 않는다. 표기는 `OO치과` 처럼 업종 앞 두 글자 가림뿐이고
+ * 지역 · 키워드 · 상호는 어느 칸에도 담지 않는다. 계약 키워드만 센다 (관측용 서브 키워드 제외).
+ * 손으로 고치지 않는다 — scripts/place-rank/rank_records.py --write 가 채운다.
+ */
+export type ClinicKeyword = {
+  /** 화면 표기. 업종 앞에 OO 두 글자 — 지역도 상호도 아니다 */
+  display: string;
+  /** 키워드 형태. 실제 키워드는 적지 않는다 */
+  shape: string;
+  /** 기준일 순위. null 이면 그날 계측이 없었다 */
+  rank: number | null;
+  /** 기준일에 1페이지(1~5위) 안인가 */
+  page1: boolean;
+};
+export const CLINIC_KEYWORDS: ClinicKeyword[] = [
+  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true },
+  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true },
+  { display: "OO피부과", shape: "지역 + 진료과", rank: 4, page1: true },
+];
+export const CLINIC_SUMMARY = {
+  /** 플레이스 순위 계약이 있는 병·의원 수 */
+  stores: 2,
+  /** 계약 키워드 수 (관측용 서브 키워드는 세지 않는다) */
+  keywords: 3,
+  /** 기준일에 1페이지(1~5위) 안에 있는 계약 키워드 수 */
+  page1: 3,
+  /** 기준일에 1위인 계약 키워드 수 */
+  top1: 2,
+};
+/** 계약 키워드 전부가 1페이지 안인가 — 집계 문장의 「모두」 분기 */
+export const CLINIC_ALL_PAGE1 =
+  CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.page1 === CLINIC_SUMMARY.keywords;
+
 /** 계단 수 */
 export const gap = (r: RankRecord) => r.from - r.to;
 
@@ -262,3 +298,41 @@ export const CLINIC_NOTE =
 export const CLINIC_RISE_DURATIONS = CLINIC_RECORDS.filter((r) => r.from > r.to)
   .map((r) => `${r.keyword}가 ${r.from}위에서 ${r.to}위까지 ${r.days}일`)
   .join(", ");
+
+/*
+ * 병·의원 순위 현황 문장 — 진우 인계서 3-C 절 다섯 문장 (D-0280 · D-0282 · 2026-09-06 (일) 대표 지시).
+ * 바로 위 4-C 절과 층이 다르다. 저기는 진우 판정을 통과한 진료과 하나의 개선 카드를 서술하고,
+ * 여기는 계약 키워드 전체를 한 표로 세는 집계라 병원을 특정하지 않는다.
+ * 문장을 화면에서 만들지 않는 이유는 위와 같다. 같은 말을 화면과 llms.txt 가 같이 쓰는데
+ * 두 곳에서 따로 만들면 스냅샷이 바뀌는 날 서로 다른 말을 한다.
+ * 「일곱 곳」은 누적이라 스냅샷에 없다. 진우 점검대장이 출처이고 바뀌면 진우가 알려 준다.
+ * 표기는 OO치과 · OO피부과 에서 멈춘다. 지역 · 계약 키워드 · 상호는 어느 칸에도 적지 않는다 (C-50).
+ */
+const KO_NUM = ["", "한 ", "두 ", "세 ", "네 ", "다섯 ", "여섯 ", "일곱 ", "여덟 ", "아홉 ", "열 "];
+/** 열까지는 우리말 수사(두 곳 · 세 개), 그 위는 숫자(12곳). 위 koCount 는 「개」가 붙어 있어 「곳」에 못 쓴다 */
+const koNum = (n: number) => (n >= 1 && n <= 10 ? KO_NUM[n] : String(n));
+
+function clinicStatusRankLine(): string {
+  const { keywords, page1, top1 } = CLINIC_SUMMARY;
+  const body = CLINIC_ALL_PAGE1
+    ? `${koNum(keywords)}개 모두 1페이지 안에 있`
+    : page1 === 0
+      ? `${koNum(keywords)}개 중 1페이지 안에 있는 것이 없`
+      : `${koNum(keywords)}개 중 ${koNum(page1)}개가 1페이지 안에 있`;
+  const tail = top1 > 0 ? `고 그중 ${koNum(top1)}개는 1위입니다.` : "습니다.";
+  return `${koDate(SNAPSHOT_DATE)} 기준으로 ${body}${tail}`;
+}
+
+/** 3-C 다섯 문장. 넷째 줄만 스냅샷마다 값이 바뀐다 */
+export const CLINIC_STATUS_LINES = [
+  "하랑마케팅은 병원과 의원 마케팅을 맡고 있습니다.",
+  "지금까지 치과와 의원 일곱 곳의 블로그와 플레이스를 맡아왔습니다.",
+  `플레이스 순위 계약은 현재 ${koNum(CLINIC_SUMMARY.stores)}곳이고 계약 키워드는 ${koNum(CLINIC_SUMMARY.keywords)}개입니다.`,
+  clinicStatusRankLine(),
+  "순위는 매일 계측하고 결과를 하루도 빠뜨리지 않고 기록으로 남깁니다.",
+];
+
+/** 3-D 표 아래 한 줄. 무엇을 언제 잰 숫자인지 표 옆에 붙여 둔다 */
+export const CLINIC_STATUS_CAPTION = `기준일 ${koDate(SNAPSHOT_DATE)} · 계약 키워드 ${CLINIC_SUMMARY.keywords}개 ${
+  CLINIC_ALL_PAGE1 ? "전부" : `중 ${CLINIC_SUMMARY.page1}개`
+} 1페이지 안 · 매일 계측`;

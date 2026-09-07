@@ -114,7 +114,7 @@ const CasesPage: FC = () => {
             </p>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xl mt-4">
               상호와 지역명은 적지 않고 업종과 행정단위까지만 적었습니다. 방문객과 매출은 계측 대상이 아니어서
-              수치로 적지 않습니다. 순위는 보장하지 않습니다.
+              수치로 적지 않습니다. 몇 위까지 올려 드린다는 말을 하지 않습니다.
             </p>
           </div>
         </section>

@@ -9,6 +9,7 @@ import { SITE, faqLd, type FaqItem } from "../../lib/seo";
 import {
   byKeyword, fmt,
   CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE, CLINIC_RISE_DURATIONS,
+  CLINIC_KEYWORDS, CLINIC_SUMMARY, CLINIC_STATUS_LINES, CLINIC_STATUS_CAPTION,
 } from "../../lib/rank-records";
 
 /*
@@ -235,6 +236,74 @@ export default function ClinicLandingPage() {
         {/* 진료과를 늘리려면 진우 판정이 먼저다. 생성기 MED_OK 와 CLINIC_INDUSTRIES 를 같이 늘린다 (C-50) */}
         <RankRecords industries={CLINIC_INDUSTRIES} industryLabel="병·의원" />
 
+        {/*
+          병·의원 순위 현황 — 진우 인계서 3-C 다섯 문장 + 3-D 표 (D-0280 · D-0282).
+          문장도 숫자도 app/lib/rank-records.ts 에서 온다. 화면에서 만들지 않는다.
+          위 RankRecords 는 진우 판정을 통과한 진료과의 개선 카드고, 여기는 계약 키워드 전체 집계다.
+          계약 대장을 못 읽으면 생성기가 아무것도 쓰지 않고 멈춰 이 절이 통째로 사라진다.
+        */}
+        {CLINIC_SUMMARY.keywords > 0 && (
+          <section className="py-12 md:py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4 md:px-6">
+              <div className="text-center mb-8 md:mb-10">
+                <div
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mb-3"
+                  style={{ background: "#F0F6FF", color: "var(--w-primary-strong)" }}
+                >
+                  <Stethoscope size={13} strokeWidth={2.5} />
+                  <span className="text-xs font-bold">병·의원</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-black text-gray-900">플레이스 순위 현황</h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 md:gap-6 items-start">
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 md:p-7 shadow-sm space-y-2">
+                  {CLINIC_STATUS_LINES.map((line, i) => (
+                    <p
+                      key={i}
+                      className={
+                        i === 3
+                          ? "text-sm md:text-[15px] leading-relaxed text-gray-900 font-semibold"
+                          : "text-sm md:text-[15px] leading-relaxed text-gray-700"
+                      }
+                    >
+                      {line}
+                    </p>
+                  ))}
+                </div>
+
+                <div className="min-w-0">
+                  <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
+                    <table className="w-full text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>
+                      <thead className="bg-gray-50 text-gray-500 text-xs">
+                        <tr>
+                          <th className="text-left font-semibold px-4 py-2.5">병원</th>
+                          <th className="text-left font-semibold px-4 py-2.5">계약 키워드</th>
+                          <th className="text-right font-semibold px-4 py-2.5">순위</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {CLINIC_KEYWORDS.map((k, i) => (
+                          <tr key={i} className="border-t border-gray-100">
+                            <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">{k.display}</td>
+                            <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{k.shape}</td>
+                            <td
+                              className="px-4 py-3 text-right font-black whitespace-nowrap"
+                              style={{ color: k.page1 ? "var(--w-primary)" : "#70737C" }}
+                            >
+                              {k.rank === null ? "계측 중" : `${k.rank}위`}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-3">{CLINIC_STATUS_CAPTION}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
@@ -256,7 +325,7 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 의료광고 검수 공정 + 심의 판정 자료.
-            순위 사례는 진우 판정을 통과한 진료과만 위에 걸린다. 그 아래에 공정 설명을 둔다.
+            순위는 위 「플레이스 순위 현황」 절이 집계로 보여 준다. 진우 판단으로 공정 설명을 가운데 둔다.
             자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">

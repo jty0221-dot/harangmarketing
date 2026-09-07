@@ -811,7 +811,7 @@ export default function MedicalAdGuidePage() {
                 씁니다.
               </p>
               <p className="font-semibold text-gray-900">
-                병원 화면에는 이미 잰 것만 적습니다. 보장이나 확약, 몇 위까지, 몇 배 같은 말을 쓰지 않습니다.
+                병원 화면에는 이미 잰 것만 적습니다. 확약, 몇 위까지, 몇 배 같은 말을 쓰지 않습니다.
                 예약 건수와 환자 수와 매출은 저희가 계측하지 못하는 값이라 지난 일로도 적지 않습니다.
               </p>
             </div>
