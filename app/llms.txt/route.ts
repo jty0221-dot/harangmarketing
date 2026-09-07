@@ -110,7 +110,7 @@ ${services}
 
 ## 특화 업종
 
-카페·베이커리 / 음식점·배달 / 미용·네일·뷰티 / 의원·한의원·피부과 / 학원·교육 / 온라인 쇼핑몰
+카페·베이커리 / 음식점·식당 / 미용·네일·뷰티 / 의원·한의원·피부과 / 학원·교육 / 온라인 쇼핑몰
 
 ${CLINIC_BLOCK}
 
@@ -250,7 +250,7 @@ ${faq}
 - [스마트스토어 상세페이지 제작](${B}/services/detail-page): 4등급 단가·제작 순서·수정 규정
 - [상세페이지 레퍼런스](${B}/services/detail-page/reference): ${DP_REF_CATEGORIES.length}개 종류 ${DP_REF_TOTAL}건의 상세페이지 실물을 처음부터 끝까지 공개
 - [카페·베이커리 마케팅](${B}/services/cafe)
-- [음식점·배달 마케팅](${B}/services/restaurant)
+- [음식점·식당 마케팅](${B}/services/restaurant)
 - [미용·네일·뷰티 마케팅](${B}/services/beauty)
 - [의원·한의원·피부과 마케팅](${B}/services/clinic)
 - [의료광고 심의 대상 판정 자료](${B}/services/clinic/medical-ad-guide): 의료법 제57조·시행령 제24조 기준 채널 16곳 판정 · 심의 없이 쓸 수 있는 9가지 · 금지 15가지 · 심의 유효기간 3년

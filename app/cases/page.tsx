@@ -292,7 +292,7 @@ const CasesPage: FC = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5">
                   {[
                     { name: "카페·베이커리", result: "플레이스 SEO" },
-                    { name: "음식점·배달", result: "리뷰 마케팅" },
+                    { name: "음식점·식당", result: "리뷰 마케팅" },
                     { name: "미용·뷰티", result: "인스타그램" },
                     { name: "의원·한의원", result: "블로그 마케팅" },
                     { name: "학원·교육", result: "맘카페 바이럴" },

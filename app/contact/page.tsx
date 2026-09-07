@@ -29,7 +29,7 @@ const rank = (industry: string) => {
 
 const INDUSTRY_ICONS = [
   { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], ...rank("카페"), color: "from-blue-500 to-blue-700" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점"), color: "from-blue-600 to-indigo-700" },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·식당", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점"), color: "from-blue-600 to-indigo-700" },
   { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소"), color: "from-blue-600 to-blue-800" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
   { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], ...rank("치과"), color: "from-blue-600 to-blue-800" },
@@ -527,7 +527,7 @@ export default function ContactPage() {
                   <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "음식점·배달", industry: "음식점" },
+                      { ind: "음식점·식당", industry: "음식점" },
                       { ind: "청소·시설관리", industry: "청소" },
                       { ind: "카페·베이커리", industry: "카페" },
                       { ind: "의원·치과", industry: "치과" },

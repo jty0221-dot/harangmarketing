@@ -22,13 +22,13 @@ const FOOD_LD_LINE = (() => {
 })();
 
 export const metadata: Metadata = {
-  title: "음식점·배달 마케팅 대행 | 네이버 플레이스 상위노출 전문",
-  description: `음식점·배달 전문 마케팅. 배달앱 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_LINE} 무료 상담 0원.`,
-  keywords: ["음식점 마케팅", "배달 마케팅", "맛집 마케팅", "식당 플레이스 상위노출", "배달앱 리뷰 마케팅", "맛집 블로그 마케팅", "음식점 체험단", "배달의민족 마케팅"],
+  title: "음식점·식당 마케팅 대행 | 네이버 플레이스 상위노출 전문",
+  description: `음식점·식당 전문 마케팅. 플레이스 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_LINE} 무료 상담 0원.`,
+  keywords: ["음식점 마케팅", "식당 마케팅", "맛집 마케팅", "식당 플레이스 상위노출", "음식점 리뷰 마케팅", "맛집 블로그 마케팅", "음식점 체험단", "맛집 맘카페 바이럴"],
   alternates: { canonical: "https://www.harangmarketing.com/services/restaurant" },
   openGraph: {
-    title: "음식점·배달 마케팅 대행 | 하랑마케팅",
-    description: `배달앱 리뷰 전략 · 맘카페 바이럴 · 블로그 맛집 등록. ${FOOD_LINE}`,
+    title: "음식점·식당 마케팅 대행 | 하랑마케팅",
+    description: `플레이스 리뷰 전략 · 맘카페 바이럴 · 블로그 맛집 등록. ${FOOD_LINE}`,
     url: "https://www.harangmarketing.com/services/restaurant",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "음식점 마케팅 대행 하랑마케팅" }],
   },
@@ -43,13 +43,13 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "음식점·배달 마케팅 대행",
+            "name": "음식점·식당 마케팅 대행",
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": `음식점·배달 전문 마케팅. ${FOOD_LD_LINE} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.` },
-            "offers": { "@type": "Offer", "description": "음식점·배달 전문 마케팅. 배달·홀 비중과 진행 범위에 따라 견적 산정, 상담·진단 0원." },
-            "description": "음식점·배달 전문 배달앱 리뷰, 맘카페 바이럴, 블로그 맛집 마케팅 대행",
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": `음식점·식당 전문 마케팅. ${FOOD_LD_LINE} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.` },
+            "offers": { "@type": "Offer", "description": "음식점·식당 전문 마케팅. 진행 범위에 따라 견적 산정, 상담·진단 0원." },
+            "description": "음식점·식당 전문 플레이스 리뷰, 맘카페 바이럴, 블로그 맛집 마케팅 대행",
             "areaServed": "대한민국",
             "url": "https://www.harangmarketing.com/services/restaurant",
           }),
@@ -59,7 +59,7 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
         data={breadcrumbLd([
           { name: "홈", path: "/" },
           { name: "서비스", path: "/services" },
-          { name: "음식점·배달 마케팅", path: "/services/restaurant" },
+          { name: "음식점·식당 마케팅", path: "/services/restaurant" },
         ])}
       />
       {children}

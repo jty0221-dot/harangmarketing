@@ -154,11 +154,11 @@ const INDUSTRIES: Industry[] = [
   },
   {
     icon: UtensilsCrossed,
-    name: "음식점·배달",
+    name: "음식점·식당",
     color: "from-blue-600 to-indigo-700",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["배달앱 리뷰 전략", "맘카페 바이럴", "블로그 맛집 등록"],
+    points: ["플레이스 리뷰 전략", "맘카페 바이럴", "블로그 맛집 등록"],
     ...rankCells("지역 맛집 키워드"),
     ...rankExtra("지역 역세권 맛집 키워드"),
     location: "플레이스 순위",

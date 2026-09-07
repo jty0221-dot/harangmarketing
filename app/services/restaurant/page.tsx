@@ -43,22 +43,22 @@ const FOOD_FACTS = [
   { label: "상담·진단", value: "0원" },
 ];
 import Link from "next/link";
-import { ArrowRight, UtensilsCrossed, TrendingUp, Star, ShoppingCart, CheckCircle2 } from "lucide-react";
+import { ArrowRight, UtensilsCrossed, TrendingUp, Star, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "음식점·식당 마케팅 대행사 | 배달·플레이스 매출 증대 전문",
-  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 배달의민족·쿠팡이츠 상위 노출, 네이버 플레이스 SEO, 블로그 체험단 전문. 상권 진단부터 0원으로 시작합니다.",
-  keywords: ["음식점 마케팅", "식당 마케팅 대행사", "배달 매출 증대", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
+  title: "음식점·식당 마케팅 대행사 | 네이버 플레이스 상위노출 전문",
+  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 네이버 플레이스 SEO, 블로그 체험단, 지역 맘카페 바이럴 전문. 상권 진단부터 0원으로 시작합니다.",
+  keywords: ["음식점 마케팅", "식당 마케팅 대행사", "맛집 마케팅", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {
     title: "음식점·식당 마케팅 대행사 | 하랑마케팅",
-    description: "배달·홀 매출 동시 증대. 음식점 전문 마케팅 전략.",
+    description: "네이버 플레이스와 블로그로 음식점 검색 노출을 만듭니다.",
     url: "https://www.harangmarketing.com/services/restaurant",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "음식점 마케팅 하랑마케팅" }],
   },
 };
 
 const CHECKLIST = [
-  "배민·쿠팡이츠에 등록은 했는데 주문이 거의 없다",
+  "리뷰가 몇 개 없어서 손님이 그냥 지나간다",
   "네이버 플레이스에 내 가게가 안 보인다",
   "블로그 체험단을 어디서 구해야 할지 모른다",
   "점심·저녁 피크 외 시간대 매출이 너무 없다",
@@ -79,9 +79,9 @@ const RESULTS = byIndustry("음식점").slice(0, 3).map((r) => ({
    숫자는 app/lib/rank-records.ts 계측값만 쓴다 - 손으로 적지 않는다. */
 const SERVICE_FAQ: FaqItem[] = [
   {
-    q: "배달앱 광고와 네이버 중 어디에 돈을 써야 하나요?",
+    q: "네이버 검색광고와 플레이스·블로그 중 어디에 돈을 써야 하나요?",
     a:
-      "성격이 다릅니다. 배달앱 광고는 켜는 동안만 노출되는 비용이고, 네이버 플레이스와 블로그는 쌓아 두면 광고를 끄고도 남는 자산입니다. 배달 매출 비중이 큰 곳은 두 가지를 같이 쓰고, 홀 매출이 큰 곳은 네이버부터 세웁니다. 어느 쪽이든 지금 매출이 어디서 오는지 먼저 보고 정합니다.",
+      "성격이 다릅니다. 검색광고는 켜는 동안만 노출되는 비용이고, 네이버 플레이스와 블로그는 쌓아 두면 광고를 끄고도 남는 자산입니다. 당장 이번 달이 급한 곳은 두 가지를 같이 쓰고, 길게 보는 곳은 플레이스부터 세웁니다. 어느 쪽이든 지금 손님이 어디서 오는지 먼저 보고 정합니다.",
   },
   {
     q: "음식점 플레이스 순위는 얼마나 올라가나요?",
@@ -119,10 +119,10 @@ export default function RestaurantPage() {
             </div>
             <h1 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
               음식점 마케팅,<br />
-              <span className="text-orange-400">배달도 홀도</span> 살립니다
+              <span className="text-orange-400">네이버부터</span> 제대로 합니다
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              배민·쿠팡이츠 상위 노출부터 네이버 플레이스 SEO, 블로그 체험단까지, 음식점 매출에 직접 연결되는 마케팅만 합니다.
+              네이버 플레이스 SEO부터 블로그 체험단, 지역 맘카페 바이럴까지, 음식점 매출에 직접 연결되는 마케팅만 합니다.
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {RESULTS.map(r => (
@@ -147,13 +147,13 @@ export default function RestaurantPage() {
 
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
-          question="음식점·배달 마케팅은 무엇부터 해야 하나요?"
-          answer={`음식점·배달 마케팅은 배달앱 리뷰 관리, 네이버 플레이스 맛집 키워드 노출, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 배달 매출은 리뷰 평점과 리뷰 수에 직접 연동되기 때문입니다. ${FOOD_STORY} 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 배달·홀 비중과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+          question="음식점·식당 마케팅은 무엇부터 해야 하나요?"
+          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY} 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
           facts={FOOD_FACTS}
         />
 
         {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        <RankRecords industries={["음식점"]} industryLabel="음식점·배달" />
+        <RankRecords industries={["음식점"]} industryLabel="음식점·식당" />
 
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
@@ -175,9 +175,9 @@ export default function RestaurantPage() {
                 <p className="text-gray-500 text-sm mb-6">음식점 채널별 맞춤 전략</p>
                 <div className="space-y-4">
                   {[
-                    { icon: ShoppingCart, color: "from-orange-500 to-red-500", title: "배달 플랫폼 최적화", desc: "배민·쿠팡이츠 메뉴 사진 품질 개선, 리뷰 관리, 상위 노출 전략. 주문당 마진이 높은 메뉴 중심으로 재구성합니다." },
-                    { icon: TrendingUp, color: "from-blue-500 to-indigo-600", title: "네이버 플레이스 SEO", desc: "지역 키워드 '맛집', '배달' 등 롱테일 키워드 공략. 리뷰 수·답글률·사진 수를 알고리즘 기준에 맞춰 최적화합니다." },
+                    { icon: TrendingUp, color: "from-blue-500 to-indigo-600", title: "네이버 플레이스 SEO", desc: "지역 키워드 '맛집', '역세권 맛집' 등 롱테일 키워드 공략. 리뷰 수·답글률·사진 수를 알고리즘 기준에 맞춰 최적화합니다." },
                     { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아닌 지속적인 콘텐츠 누적으로 검색 노출을 늘립니다." },
+                    { icon: Users, color: "from-blue-500 to-blue-700", title: "지역 맘카페 바이럴", desc: "동네 맘카페와 지역 커뮤니티에 매장 소식을 배포합니다. 게시 URL 과 매체사 전달 내역을 그대로 드립니다." },
                   ].map(s => (
                     <div key={s.title} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                       <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
@@ -207,7 +207,7 @@ export default function RestaurantPage() {
         <section className="py-14 bg-gray-950">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">음식점 무료 진단 받기</h2>
-            <p className="text-gray-400 text-sm mb-7">배달·홀 매출 분석부터 경쟁 식당 비교까지 0원.</p>
+            <p className="text-gray-400 text-sm mb-7">현재 검색 순위 확인부터 경쟁 식당 비교까지 0원.</p>
             <Link href="/contact?industry=음식점"
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm">
               무료 상담 신청 <ArrowRight size={15} />

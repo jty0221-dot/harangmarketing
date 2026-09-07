@@ -37,7 +37,7 @@ type IndustryRec = {
 
 const INDUSTRY_RECS = ([
   { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], rank: "카페", fallback: "플레이스 SEO 중심" },
-  { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], rank: "음식점", fallback: "리뷰 마케팅 중심" },
+  { industry: "음식점·식당", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], rank: "음식점", fallback: "리뷰 마케팅 중심" },
   { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], fallback: "인스타그램 중심 설계" },
   { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 답글 관리"], rank: "피부과", fallback: "의료법 검수 원고 중심" },
   { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], fallback: "맘카페 바이럴 중심" },
@@ -372,7 +372,7 @@ const INDUSTRY_LINKS = [
   { name: "카페·베이커리", href: "/services/cafe", color: "from-blue-600 to-orange-500", desc: "플레이스 SEO · 포토리뷰 · 인스타" },
   { name: "병원·의원", href: "/services/clinic", color: "from-blue-500 to-blue-700", desc: "의료광고 심의 확인 · 블로그 · 플레이스 SEO" },
   { name: "뷰티·네일", href: "/services/beauty", color: "from-pink-500 to-rose-600", desc: "릴스 · 비포애프터 · 리뷰 관리" },
-  { name: "음식점·식당", href: "/services/restaurant", color: "from-orange-500 to-red-500", desc: "배달 매출 · 플레이스 · 리뷰" },
+  { name: "음식점·식당", href: "/services/restaurant", color: "from-orange-500 to-red-500", desc: "플레이스 SEO · 리뷰 · 맘카페" },
   { name: "학원·교육", href: "/services/academy", color: "from-green-500 to-emerald-600", desc: "맘카페 · 블로그 · 플레이스 SEO" },
   { name: "쇼핑몰·소매점", href: "/services/shopping", color: "from-purple-500 to-purple-700", desc: "스마트스토어 · 인스타 · 오프라인" },
 ];
@@ -545,7 +545,7 @@ const SERVICES_LD = {
       "item": {
         "@type": "Service",
         "name": "체험단 모집 대행",
-        "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행. 네이버 플레이스·블로그·배달앱 리뷰 확보.",
+        "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행. 네이버 플레이스·블로그 리뷰 확보.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
         "url": "https://www.harangmarketing.com/services#review",
