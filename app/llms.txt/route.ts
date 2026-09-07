@@ -1,11 +1,11 @@
 import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
-import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, PRICE_MAX, CAFE_TIER_MIN, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
 import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
+import { TRACK_TOTALS } from "../lib/track-record";
 import {
-  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_HELD, PLACE_RANK_NOTE, PLACE_RANK_RISEN,
-  PLACE_RANK_TOTALS, fmtMoveDays,
+  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, fmtMoveDays,
 } from "../lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
@@ -68,7 +68,7 @@ export async function GET() {
 
   // 서비스 목록 — 번호를 손으로 매기지 않는다. 감춘 상품을 빼면 번호가 저절로 당겨진다.
   const services = [
-    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 최블 10건에 카페 5건, 20건에 10건, 30건에 20건 추가 제공. 원고 포함 총 50건 1,715,000원(1건당 34,300원), 원고 미포함 총 50건 1,430,000원(1건당 28,600원), 부가세 별도. 진행 후 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
+    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 10건 · 30건 패키지(최블형 · 혼합형 · 카페형) ${won(PRICE_MIN)}~${won(PRICE_MAX)}, 원고 작성 포함과 직접 제공 두 가격, 부가세 별도. 카페 단건은 등급별 ${won(CAFE_TIER_MIN)}부터. 발행 뒤 키워드별 노출 위치 확인과 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
     ...(SNS_STORE_ENABLED
       ? [
           `**SNS 부스트 스토어 (셀프 주문)** — 인스타그램·유튜브·스레드·틱톡·페이스북·엑스·네이버·카카오 8개 플랫폼의 팔로워·좋아요·조회수·트래픽을 회원가입 없이 건당 주문. 계정 비밀번호 불필요, 주문번호로 진행 상황 실시간 조회. 하랑마케팅 직영. (${B}/sns)`,
@@ -193,13 +193,13 @@ ${TOP_BY_INDUSTRY}
 - 1페이지에 진입한 기록 가운데 가장 큰 상승폭 — ${BIGGEST_GAIN.keyword} ${fmt(BIGGEST_GAIN)} (${BIGGEST_GAIN.days}일 계측)
 
 계측 현황 (${PLACE_RANK_AS_OF} 기준)
-- 네이버 플레이스 1페이지(1~5위) 안에 있는 키워드 기록 ${PLACE_RANK_TOTALS.works}건 · 업종 ${PLACE_RANK_TOTALS.industries}종
-- 그중 올라온 것 ${PLACE_RANK_RISEN}건 · 자리를 지키고 있는 것 ${PLACE_RANK_HELD}건
+- 네이버 플레이스 순위는 매일 같은 시각에 저장한다. 내려간 키워드는 그날 찾아 손보고, 손본 다음 날부터 다시 잰다.
+- 맡아 온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종 · 맡아서 한 일 ${TRACK_TOTALS.workKinds}종
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
 ### 매장별 순위 계측 사례 (${PLACE_RANK_AS_OF} 기준)
 
-1~5위 안에 있는 키워드 기록 ${PLACE_RANK_TOTALS.works}건 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 올라온 것 ${PLACE_RANK_RISEN}건 · 자리를 지키고 있는 것 ${PLACE_RANK_HELD}건
+아래는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아니다. 여기 실린 건수를 회사가 맡은 매장 수로 읽지 않는다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종이다.
 
 ${placeRankCases}
 

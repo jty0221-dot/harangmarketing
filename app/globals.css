@@ -560,9 +560,6 @@ body { overflow-x: hidden; }
   --cd-on-dark-2: #98a3bc;
   --cd-on-dark-3: #93a2c4;
   --cd-on-dark-4: #868ea3;
-
-  --cd-sale:    #d42020;
-  --cd-sale-bg: #fff3f3;
 }
 
 /* 대형 헤드라인·숫자 전용 디스플레이 서체.
@@ -577,21 +574,6 @@ body { overflow-x: hidden; }
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
-}
-
-/* 진행 바 등장 애니메이션 */
-@keyframes cdFillbar { from { width: 0; } }
-.cd-fillbar { animation: cdFillbar 1.4s ease-out both; }
-
-/* CTA 버튼 상하 부유 */
-@keyframes cdPulseCta {
-  0%, 100% { transform: translateY(0);     box-shadow: 0 12px 30px rgba(47,107,245,.35); }
-  50%      { transform: translateY(-4px);  box-shadow: 0 20px 44px rgba(47,107,245,.5); }
-}
-.cd-pulse-cta { animation: cdPulseCta 2.6s ease-in-out infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-  .cd-fillbar, .cd-pulse-cta { animation: none; }
 }
 
 /* ─────────────────────────────────────────────────────────────

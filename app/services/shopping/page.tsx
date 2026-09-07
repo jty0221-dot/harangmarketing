@@ -6,7 +6,7 @@ import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, faqLd, type FaqItem } from "../../lib/seo";
-import { PLACE_RANK_HELD, PLACE_RANK_RISEN, PLACE_RANK_TOTALS } from "../../lib/place-rank-cases";
+import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 };
 
 /* 온라인 쇼핑몰 업종은 공개할 순위 기록이 없다.
-   히어로에 다른 업종 기록을 걸어 두었던 것을 전사 계측 현황으로 바꾼다.
-   숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
+   히어로에 다른 업종 기록을 걸어 두었던 것을 회사가 맡아 온 규모로 바꾼다.
+   숫자 정본은 app/lib/track-record.ts — 손으로 고치지 않는다 */
 const RESULTS = [
-  { label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건`, sub: "1~5위 안에 있는 키워드" },
-  { label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건`, sub: "순위가 올라온 키워드" },
-  { label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건`, sub: "순위를 유지한 키워드" },
+  { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳`, sub: "지금까지 맡아 온 곳" },
+  { label: "업종", value: `${TRACK_TOTALS.trades}종`, sub: "업종마다 따로 설계" },
+  { label: "맡아서 한 일", value: `${TRACK_TOTALS.workKinds}종`, sub: "플레이스 · 블로그 · 영상 등" },
 ];
 
 /* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.

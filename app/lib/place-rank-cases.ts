@@ -151,26 +151,18 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
 /** 검색수를 잰 날 */
 export const PLACE_RANK_VOLUME_AS_OF = FILE.volumeAsOf;
 
-/** 올라온 카드 수 */
-export const PLACE_RANK_RISEN = PLACE_RANK_CASES.filter((c) => c.trend === "상승").length;
-
-/** 자리를 지키고 있는 카드 수 */
-export const PLACE_RANK_HELD = PLACE_RANK_CASES.filter((c) => c.trend === "유지").length;
-
-/**
- * 집계 — 화면에 실제로 실린 카드에서만 센다.
+/*
+ * 화면에 실은 카드가 몇 장인지 세는 값은 두지 않는다 (2026-09-07 (월) 대표 지시).
+ *   「이런 멘트 자체를 넣지마 고객이 보았을 때 이것밖에 안하는 매장처럼 보이잖아」
  *
- * 매장 수 · 계측 키워드 수 같은 전체 규모는 여기서 만들지 않는다 (2026-09-07 (월) 대표 지시).
- *   「굳이 22곳 61개 키워드라는 세부적으로 나타내는 말 적지 말고 표기하고」
- * 잰 그대로의 키워드별 순위만 보여주기로 했다. 카드에 없는 숫자를 옆에 적으면
- * 보는 사람이 그 차이를 계약이 끊긴 곳으로 읽는다.
+ * 여기 실리는 카드는 그날 1~5위 안에 있던 키워드를 골라 담은 발췌다. 그 장수를 옆에
+ * 적어 두면 보는 사람이 그것을 회사가 맡은 전부로 읽는다. 맡아 온 매장 수와 업종 수는
+ * app/lib/track-record.ts 에 따로 있고, 규모를 말해야 하는 자리에는 그 값을 쓴다.
+ *
+ * PLACE_RANK_RISEN · PLACE_RANK_HELD · PLACE_RANK_TOTALS 를 이 지시로 지웠다. 다시
+ * 만들면 지운 이유가 같이 지워진다. 카드 한 장의 상승 · 유지 표시는 c.trend 에서 오므로
+ * 이 삭제와 상관없이 그대로 남는다 (2026-09-07 (월) 대표 지시 「유지하는 것도 올려놔」).
  */
-export const PLACE_RANK_TOTALS = {
-  /** 사례로 실은 작품 수 */
-  works: PLACE_RANK_CASES.length,
-  /** 사례에 담긴 서로 다른 업종 수 */
-  industries: new Set(PLACE_RANK_CASES.map((c) => c.industry)).size,
-};
 
 /** 계단 수 — 시작 순위에서 현재 순위까지 몇 칸 올라왔나 */
 export const caseGap = (c: PlaceRankCase) => c.best.from - c.best.to;
@@ -282,7 +274,7 @@ export const PLACE_RANK_NOTE =
  */
 export const PLACE_RANK_PAGE1_NOTE =
   `네이버 플레이스 1페이지는 광고 지면 3개와 순위 1~5위로 구성됩니다. ` +
-  `아래 기록은 ${PLACE_RANK_AS_OF} 계측분 가운데 1~5위 안에 있는 키워드만 키워드마다 한 장씩 실은 것입니다.`;
+  `아래 카드는 ${PLACE_RANK_AS_OF} 계측분에서 그 1~5위 안에 있던 키워드를 한 장에 하나씩 옮긴 것입니다.`;
 
 export const PLACE_RANK_LABEL_NOTE =
   `상호와 지역명은 적지 않고 업종과 행정단위까지만 적었습니다. ` +

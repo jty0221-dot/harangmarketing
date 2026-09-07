@@ -5,117 +5,103 @@
  * 가격이나 수량을 바꿀 때는 여기만 고치면 전부 따라간다.
  *
  * 출처: design_handoff_cafe_distribution (2026-08 핸드오프)
+ * 가격 갱신: 2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS
  */
 
 /* ─────────────────────────────────────────────────────────
-   캠페인 지표 — 손대지 않아도 회차가 자동으로 굴러간다.
+   패키지 가격 (2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS)
 
-   cycleAnchor 부터 cycleDays 주기로 회차가 반복된다.
-   마감일이 지나면 다음 회차 마감일로 자동 이동하고 잔여 슬롯도 리셋된다.
-   따라서 "D-14" 가 굳어버리거나 마감 이후 카운트다운이 멈추는 일이 없다.
-
-   잔여 슬롯은 회차 진행률에 따라 slotsAtStart → slotsAtEnd 로 줄어든다.
-   실제 예약 현황을 연동한 값이 아니라 회차 배정 추이를 반영한 수치이므로,
-   실측 슬롯을 관리하게 되면 remainingSlots() 를 그 값으로 교체할 것.
-   운영을 멈출 때는 showCampaignBar 를 false 로 두면 바 전체가 사라진다.
+   구성은 사는 것과 파는 것을 같게 둔다 — 10건 · 30건 × 최블형 · 혼합형 · 카페형.
+   가격은 두 열이다 : 원고 작성을 맡기는 경우(withCopy) · 원고를 직접 주는 경우(withoutCopy).
+   이벤트가 · 회차 · 잔여 슬롯 같은 장치는 두지 않는다 — 화면에 적힌 숫자는 대표가 한 약속이 된다.
    ───────────────────────────────────────────────────────── */
-export const CAMPAIGN = {
-  /** 캠페인 지표 바 노출 여부 */
-  showCampaignBar: true,
-  /** 회차 기준일 — 이 날짜를 시작점으로 cycleDays 마다 회차가 반복된다 */
-  cycleAnchor: "2026-08-06",
-  /** 한 회차 길이(일) */
-  cycleDays: 14,
-  /** 회차 총 슬롯 */
-  totalSlots: 50,
-  /** 회차 시작 시 잔여 슬롯 */
-  slotsAtStart: 42,
-  /** 마감 임박 시 남는 잔여 슬롯 */
-  slotsAtEnd: 4,
-  /** 누적 진행 건수 (실적값 — 자동 증가시키지 않는다) */
-  cumulativeCount: 1480,
-  /** 카페 배포 주간 처리량 */
-  weeklyVolume: 1000,
-} as const;
+export type PackageSize = 10 | 30;
+export type PackageKind = "최블형" | "혼합형" | "카페형";
 
-const DAY_MS = 86_400_000;
-
-/** 기준일 자정(KST)의 epoch */
-function anchorMs(): number {
-  return new Date(`${CAMPAIGN.cycleAnchor}T00:00:00+09:00`).getTime();
-}
-
-export interface CampaignRound {
-  /** 회차 번호 (1부터) */
-  round: number;
-  /** 마감까지 남은 일수 (최소 1 — 0 이면 이미 다음 회차로 넘어간다) */
-  dday: number;
-  /** 회차 진행률 0~1 */
-  progress: number;
-}
-
-/**
- * 지금 시점의 회차 정보.
- * 마감이 지나면 자동으로 다음 회차가 되므로 별도 관리가 필요 없다.
- */
-export function currentRound(now: Date = new Date()): CampaignRound {
-  const cycleMs = CAMPAIGN.cycleDays * DAY_MS;
-  const elapsed = now.getTime() - anchorMs();
-  const index = Math.floor(elapsed / cycleMs);
-  const intoCycle = elapsed - index * cycleMs;
-  const progress = Math.min(1, Math.max(0, intoCycle / cycleMs));
-  const dday = Math.max(1, Math.ceil((cycleMs - intoCycle) / DAY_MS));
-  return { round: index + 1, dday, progress };
-}
-
-/** 회차 진행률에 따라 줄어드는 잔여 슬롯 */
-export function remainingSlots(now: Date = new Date()): number {
-  const { progress } = currentRound(now);
-  const { slotsAtStart, slotsAtEnd } = CAMPAIGN;
-  return Math.max(slotsAtEnd, Math.round(slotsAtStart - (slotsAtStart - slotsAtEnd) * progress));
-}
-
-/** 이번 회차 배정률(%) — 잔여 슬롯에서 역산 */
-export function allocationRate(now: Date = new Date()): number {
-  return Math.round(((CAMPAIGN.totalSlots - remainingSlots(now)) / CAMPAIGN.totalSlots) * 100);
-}
-
-export interface RewardPlan {
-  /** 기준 상품 수량 */
-  base: string;
-  /** 추가 제공되는 카페 배포 건수 */
-  bonus: string;
-  /** 정상가 (원, 부가세 별도) */
-  listPrice: number;
-  /** 이벤트가 (원, 부가세 별도) */
-  eventPrice: number;
-  /** 할인율 (%) — 원고 미포함 플랜은 표기하지 않음 */
-  discount?: number;
+export interface CafePackage {
   /** 총 건수 */
-  totalCount: string;
-  /** 1건당 단가 (원) */
-  unitPrice: number;
-  /** 가장 많이 선택하는 플랜 강조 */
+  size: PackageSize;
+  /** 구성 유형 */
+  kind: PackageKind;
+  /** 최적화 블로그 건수 */
+  blog: number;
+  /** 카페 건수 */
+  cafe: number;
+  /** 원고 작성 포함 가격 (원, 부가세 별도) */
+  withCopy: number;
+  /** 원고를 직접 주는 경우 가격 (원, 부가세 별도) */
+  withoutCopy: number;
+  /** 상담에서 먼저 권하는 구성 */
   featured?: boolean;
 }
 
-/** REWARD 01 — 원고 작성 포함 */
-export const REWARD_WITH_COPY: RewardPlan[] = [
-  { base: "최블 10건", bonus: "카페 배포 5건 추가",  listPrice: 643000,  eventPrice: 579000,  discount: 10, totalCount: "총 15건", unitPrice: 38600 },
-  { base: "최블 20건", bonus: "카페 배포 10건 추가", listPrice: 1287000, eventPrice: 1092000, discount: 15, totalCount: "총 30건", unitPrice: 36400 },
-  { base: "최블 30건", bonus: "카페 배포 20건 추가", listPrice: 2145000, eventPrice: 1715000, discount: 20, totalCount: "총 50건", unitPrice: 34300, featured: true },
+export const PACKAGES: CafePackage[] = [
+  { size: 10, kind: "최블형", blog: 10, cafe: 0,  withCopy: 336000,  withoutCopy: 276000 },
+  { size: 10, kind: "혼합형", blog: 5,  cafe: 5,  withCopy: 456000,  withoutCopy: 396000, featured: true },
+  { size: 10, kind: "카페형", blog: 0,  cafe: 10, withCopy: 600000,  withoutCopy: 540000 },
+  { size: 30, kind: "최블형", blog: 30, cafe: 0,  withCopy: 960000,  withoutCopy: 780000 },
+  { size: 30, kind: "혼합형", blog: 20, cafe: 10, withCopy: 1200000, withoutCopy: 1020000 },
+  { size: 30, kind: "혼합형", blog: 15, cafe: 15, withCopy: 1260000, withoutCopy: 1080000 },
+  { size: 30, kind: "혼합형", blog: 10, cafe: 20, withCopy: 1440000, withoutCopy: 1260000, featured: true },
+  { size: 30, kind: "카페형", blog: 0,  cafe: 30, withCopy: 1680000, withoutCopy: 1500000 },
 ];
 
-/** REWARD 02 — 원고 작성 미포함 (원고를 직접 제공하는 경우) */
-export const REWARD_WITHOUT_COPY: RewardPlan[] = [
-  { base: "최블 10건", bonus: "카페 배포 5건",  listPrice: 536000,  eventPrice: 483000,  totalCount: "총 15건", unitPrice: 32200 },
-  { base: "최블 20건", bonus: "카페 배포 10건", listPrice: 1072000, eventPrice: 912000,  totalCount: "총 30건", unitPrice: 30400 },
-  { base: "최블 30건", bonus: "카페 배포 20건", listPrice: 1787000, eventPrice: 1430000, totalCount: "총 50건", unitPrice: 28600 },
+export const PACKAGE_SIZES: PackageSize[] = [10, 30];
+
+/** 구성 한 줄 — "최블 5건 + 카페 5건" */
+export function packageLabel(p: CafePackage): string {
+  const parts: string[] = [];
+  if (p.blog > 0) parts.push(`최블 ${p.blog}건`);
+  if (p.cafe > 0) parts.push(`카페 ${p.cafe}건`);
+  return parts.join(" + ");
+}
+
+/** 1건당 단가 (원) */
+export function unitPrice(price: number, size: number): number {
+  return Math.round(price / size);
+}
+
+/** 원고를 직접 줄 때 내려가는 금액 — 같은 건수 안에서는 구성과 무관하게 같다 */
+export function copyDiscount(size: PackageSize): number {
+  const p = PACKAGES.find((x) => x.size === size);
+  return p ? p.withCopy - p.withoutCopy : 0;
+}
+
+/** 가장 싼 패키지 (원고 직접 제공 · 10건 최블형) */
+export const PRICE_MIN = Math.min(...PACKAGES.map((p) => p.withoutCopy));
+/** 가장 비싼 패키지 (원고 포함 · 30건 카페형) */
+export const PRICE_MAX = Math.max(...PACKAGES.map((p) => p.withCopy));
+/** 패키지 기준 가장 낮은 1건당 단가 */
+export const UNIT_MIN = Math.min(...PACKAGES.map((p) => unitPrice(p.withoutCopy, p.size)));
+
+/** 최블 10건 패키지 기준 1건당 단가 — 서비스 목록의 단가표에서 쓴다 */
+const BLOG10 = PACKAGES.find((p) => p.size === 10 && p.kind === "최블형") ?? PACKAGES[0];
+export const BLOG_UNIT_WITH_COPY = unitPrice(BLOG10.withCopy, BLOG10.size);
+export const BLOG_UNIT_WITHOUT_COPY = unitPrice(BLOG10.withoutCopy, BLOG10.size);
+
+/* 카페만 단건으로 진행할 때 — 카페 등급별 건당 단가 (원, 부가세 별도) */
+export interface CafeTier {
+  grade: string;
+  desc: string;
+  price: number;
+}
+
+export const CAFE_TIERS: CafeTier[] = [
+  { grade: "지역 · 주제 카페", desc: "지역과 관심사로 모인 카페. 동네 상권 키워드와 맞습니다.", price: 24000 },
+  { grade: "리뷰 · 문화 카페", desc: "맛집과 문화 후기가 모이는 카페. 후기형 원고와 맞습니다.", price: 36000 },
+  { grade: "대형 카페", desc: "회원 수와 활동량이 가장 큰 카페. 대표 키워드 한 건을 크게 올릴 때 씁니다.", price: 60000 },
 ];
+
+/** 카페 단건에 원고 작성까지 맡길 때 건당 추가 */
+export const CAFE_COPY_FEE = 6000;
+
+/** 카페 단건 가장 낮은 단가 */
+export const CAFE_TIER_MIN = Math.min(...CAFE_TIERS.map((t) => t.price));
 
 export const PRICE_NOTE = [
   "표기 금액은 부가세 별도입니다.",
-  "정상가는 이벤트 미적용 시 기준 단가입니다.",
+  "원고를 직접 주시면 오른쪽 금액이 적용됩니다.",
+  "카페만 진행할 때는 카페 등급별 건당 단가가 적용됩니다.",
 ];
 
 /** 카페 배포가 필요한 이유 */
@@ -132,17 +118,17 @@ export const WHY_CAFE = [
   },
   {
     no: "03",
-    title: "추가 비용 없음",
-    desc: "이벤트 기간 중에는 기존 상품 진행분에 배포 건이 얹혀 제공됩니다.",
+    title: "발행 뒤 노출 확인",
+    desc: "올리고 끝내지 않습니다. 키워드별로 어디에 떴는지 확인하고, 안 뜬 건은 본문과 키워드를 다시 점검합니다.",
   },
 ];
 
 /** 진행 프로세스 4단계 */
 export const PROCESS_STEPS = [
-  { no: 1, title: "상담 · 신청",     desc: "업종과 목표 키워드 확인 후 수량 확정" },
-  { no: 2, title: "원고 · 소재 준비", desc: "포함 상품은 원고 작성까지 진행" },
-  { no: 3, title: "카페 배포",       desc: "주제와 맞는 카페에 순차 게시" },
-  { no: 4, title: "URL 보고",        desc: "전체 게시 링크를 정리해 전달" },
+  { no: 1, title: "상담 · 구성 확정",     desc: "업종과 목표 키워드를 보고 10건 · 30건 구성을 정합니다" },
+  { no: 2, title: "원고 · 소재 준비",     desc: "원고 포함 구성은 초안까지 써서 확인받습니다" },
+  { no: 3, title: "카페 선별 · 발행",     desc: "주제가 맞는 활성 카페에 시간대를 나눠 순차 게시" },
+  { no: 4, title: "노출 확인 · URL 보고", desc: "키워드별 노출 위치와 게시 링크를 정리해 전달" },
 ];
 
 /** 상세페이지 FAQ — FAQPage 구조화 데이터와 공용 */
@@ -156,16 +142,24 @@ export const CAFE_FAQ = [
     a: "본문 텍스트와 사용 가능한 이미지를 전달해 주시면 됩니다. 카페별 게시 형식에 맞춘 편집은 하랑마케팅이 처리합니다.",
   },
   {
-    q: "이벤트가 종료되면 카페 배포는 못 받나요?",
-    a: "이벤트는 회차별 슬롯이 정해져 있어 마감 시 다음 회차 대기로 넘어갑니다. 종료 후에는 카페 배포가 별도 상품으로 전환됩니다.",
+    q: "원고를 직접 주면 얼마나 달라지나요?",
+    a: `같은 구성에서 10건은 ${won(copyDiscount(10))}, 30건은 ${won(copyDiscount(30))}이 내려갑니다. 초안이 이미 있거나 직접 쓰시는 사장님께 맞습니다. 카페별 게시 형식에 맞춘 편집은 그대로 하랑마케팅이 합니다.`,
   },
   {
     q: "수량을 나눠서 진행할 수 있나요?",
-    a: "가능합니다. 신청 수량 기준으로 혜택이 적용되며, 실제 게시 일정은 협의해 분산 진행할 수 있습니다.",
+    a: "가능합니다. 구성은 신청할 때 정하고, 실제 게시 일정은 협의해 나눠 진행할 수 있습니다.",
   },
   {
     q: "카페 배포는 블로그 배포와 무엇이 다른가요?",
     a: "블로그 배포는 네이버 블로그 탭에, 카페 배포는 카페 탭에 노출됩니다. 카페 탭은 실사용자 후기가 모이는 영역으로 인식되어 신뢰도가 높고, 두 영역에 함께 노출되면 같은 키워드에서 고객이 유입될 경로가 늘어납니다.",
+  },
+  {
+    q: "카페만 따로 진행할 수 있나요?",
+    a: `가능합니다. 카페 등급별 건당 단가로 진행하고, 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)}이 더해집니다.`,
+  },
+  {
+    q: "발행했는데 노출이 안 되면 어떻게 되나요?",
+    a: "키워드별로 어디에 떴는지 확인해 보고서에 적습니다. 안 뜬 건은 본문 구성과 키워드 배치를 다시 점검합니다. 다만 노출 순위는 네이버가 정하는 것이라 순위를 약속하지는 않습니다.",
   },
 ];
 
@@ -1067,9 +1061,10 @@ export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
     slug: c.slug,
   }));
 
-/** 상세페이지 신뢰 보장 항목 */
+/** 상세페이지 약속 항목 */
 export const GUARANTEES = [
   { title: "게시 URL 전체 전달", desc: "진행한 건마다 실제 게시 링크를 정리해 드립니다. 확인 못 하는 작업은 없습니다." },
+  { title: "발행 뒤 노출 위치 확인", desc: "올린 건마다 키워드로 검색해 어디에 떴는지 확인하고 보고서에 적습니다." },
   { title: "표기 금액 부가세 별도", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
   { title: "상담·업종 가능 여부 진단 0원", desc: "진행이 어려운 업종이면 계약 전에 솔직하게 말씀드립니다." },
 ];

@@ -5,10 +5,26 @@ import JsonLd from "../../components/JsonLd";
 import { SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd } from "../../lib/seo";
 import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import {
-  CAMPAIGN, REWARD_WITH_COPY, REWARD_WITHOUT_COPY, PRICE_NOTE,
-  WHY_CAFE, PROCESS_STEPS, CAFE_FAQ, REF_CATEGORIES, REF_TOTAL, won,
-  PROOF_SAMPLES, GUARANTEES, currentRound, remainingSlots, allocationRate,
-  type RewardPlan,
+  PACKAGES,
+  PACKAGE_SIZES,
+  CAFE_TIERS,
+  CAFE_COPY_FEE,
+  PRICE_NOTE,
+  PRICE_MIN,
+  PRICE_MAX,
+  packageLabel,
+  unitPrice,
+  copyDiscount,
+  WHY_CAFE,
+  PROCESS_STEPS,
+  CAFE_FAQ,
+  REF_CATEGORIES,
+  REF_TOTAL,
+  won,
+  PROOF_SAMPLES,
+  GUARANTEES,
+  type CafePackage,
+  type CafeTier,
 } from "../../lib/cafe-distribution";
 
 /**
@@ -19,6 +35,7 @@ import {
  * - 색상은 .cafe-dist 스코프의 --cd-* 토큰 = README Design Tokens 원본값
  * - 대형 헤드라인·숫자는 .cd-display / .cd-num (Black Han Sans)
  * 사이트 공통 토큰(--h-*)이나 max-w-4xl 컨테이너로 바꾸지 말 것. 디자인이 무너진다.
+ * 2026-09-07 (월) 가격·구성 갱신 — 이벤트·회차·잔여 슬롯 장치를 걷고 10건·30건 패키지 두 가격 체계로 바꿨다.
  */
 
 const PATH = "/services/cafe-distribution";
@@ -26,9 +43,6 @@ const URL = `${SITE.base}${PATH}`;
 
 const CTA_HREF = "/contact?service=cafe-distribution";
 const KAKAO_HREF = "https://pf.kakao.com/_MuUkG/chat";
-
-const cheapest = REWARD_WITHOUT_COPY[0];
-const priciest = REWARD_WITH_COPY[REWARD_WITH_COPY.length - 1];
 
 const LD = [
   {
@@ -53,26 +67,34 @@ const LD = [
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "KRW",
-      lowPrice: cheapest.eventPrice,
-      highPrice: priciest.eventPrice,
-      offerCount: REWARD_WITH_COPY.length + REWARD_WITHOUT_COPY.length,
+      lowPrice: PRICE_MIN,
+      highPrice: PRICE_MAX,
+      offerCount: PACKAGES.length * 2 + CAFE_TIERS.length,
       description: "표기 금액은 부가세 별도입니다.",
       offers: [
-        ...REWARD_WITH_COPY.map((p) => ({
+        ...PACKAGES.map((p) => ({
           "@type": "Offer",
-          name: `${p.base} + ${p.bonus} (원고 작성 포함)`,
-          price: p.eventPrice,
+          name: `${p.size}건 ${p.kind} (${packageLabel(p)}) · 원고 작성 포함`,
+          price: p.withCopy,
           priceCurrency: "KRW",
-          description: `${p.totalCount}, 1건당 ${p.unitPrice.toLocaleString("ko-KR")}원. 정상가 ${p.listPrice.toLocaleString("ko-KR")}원.`,
-          availability: "https://schema.org/LimitedAvailability",
+          description: `총 ${p.size}건, 1건당 ${unitPrice(p.withCopy, p.size).toLocaleString("ko-KR")}원. 원고 작성 포함.`,
+          availability: "https://schema.org/InStock",
         })),
-        ...REWARD_WITHOUT_COPY.map((p) => ({
+        ...PACKAGES.map((p) => ({
           "@type": "Offer",
-          name: `${p.base} + ${p.bonus} (원고 미포함)`,
-          price: p.eventPrice,
+          name: `${p.size}건 ${p.kind} (${packageLabel(p)}) · 원고 직접 제공`,
+          price: p.withoutCopy,
           priceCurrency: "KRW",
-          description: `${p.totalCount}, 1건당 ${p.unitPrice.toLocaleString("ko-KR")}원. 원고를 직접 제공하는 경우.`,
-          availability: "https://schema.org/LimitedAvailability",
+          description: `총 ${p.size}건, 1건당 ${unitPrice(p.withoutCopy, p.size).toLocaleString("ko-KR")}원. 원고를 직접 제공하는 경우.`,
+          availability: "https://schema.org/InStock",
+        })),
+        ...CAFE_TIERS.map((t) => ({
+          "@type": "Offer",
+          name: `카페 단건 배포 · ${t.grade}`,
+          price: t.price,
+          priceCurrency: "KRW",
+          description: `${t.desc} 건당 금액, 원고 작성까지 맡기면 ${CAFE_COPY_FEE.toLocaleString("ko-KR")}원 추가.`,
+          availability: "https://schema.org/InStock",
         })),
       ],
     },
@@ -108,108 +130,95 @@ const LD = [
 /** 섹션 내부 폭 — 데스크톱 860px 기준, 모바일에서 패딩만 축소 */
 const INNER = "mx-auto w-full max-w-[860px] px-5 md:px-[60px]";
 
-/* ─── REWARD 01 카드 (원고 작성 포함) ─── */
-function RewardCard({ p }: { p: RewardPlan }) {
+/* ─── 패키지 한 줄 — 구성 · 원고 작성 포함 · 원고 직접 제공 · 1건당 ─── */
+function PackageRow({ p }: { p: CafePackage }) {
+  const unit = unitPrice(p.withCopy, p.size);
   return (
     <div
-      className="relative overflow-hidden rounded-[20px] bg-white"
+      className="rounded-[20px] bg-white md:rounded-[16px]"
       style={
         p.featured
           ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(22,85,232,.14)" }
           : { border: "1px solid var(--cd-border)" }
       }
     >
-      {p.featured && (
-        <span
-          className="absolute right-0 top-0 px-3 py-1.5 text-[12px] font-black text-white md:text-[13px]"
-          style={{ background: "var(--cd-primary)", borderRadius: "0 0 14px 0" }}
-        >
-          가장 많이 선택
-        </span>
-      )}
-
-      {/* 상단 — 구성 */}
-      <div className="flex flex-wrap items-center gap-2 px-4 py-4 md:gap-3 md:px-7 md:py-6">
-        <span
-          className="inline-flex min-w-[92px] items-center justify-center rounded-[10px] px-3 py-2 text-[15px] font-black md:min-w-[118px] md:text-[17px]"
-          style={
-            p.featured
-              ? { background: "var(--cd-primary)", color: "#fff" }
-              : { background: "var(--cd-tint-2)", color: "var(--cd-primary-deep)" }
-          }
-        >
-          {p.base}
-        </span>
-        <span className="text-[15px] font-bold md:text-[17px]" style={{ color: "var(--cd-muted-3)" }}>+</span>
-        <span className="text-[15px] font-bold md:text-[19px]" style={{ color: "var(--cd-ink-2)" }}>
-          {p.bonus}
-        </span>
-        {p.discount && !p.featured && (
+      <div className="grid grid-cols-2 items-center gap-x-4 gap-y-4 px-4 py-4 md:grid-cols-[1fr_140px_140px_110px] md:px-7 md:py-5">
+        <div className="col-span-2 flex flex-wrap items-center gap-2 md:col-span-1">
           <span
-            className="ml-auto shrink-0 rounded-full px-2.5 py-1 text-[12px] font-black md:text-[13px]"
-            style={{ background: "var(--cd-sale-bg)", color: "var(--cd-sale)" }}
+            className="inline-flex items-center justify-center rounded-[10px] px-3 py-1.5 text-[14px] font-black md:text-[15px]"
+            style={
+              p.featured
+                ? { background: "var(--cd-primary)", color: "#fff" }
+                : { background: "var(--cd-tint-2)", color: "var(--cd-primary-deep)" }
+            }
           >
-            {p.discount}% OFF
+            {p.kind}
           </span>
-        )}
-      </div>
-
-      {/* 하단 — 가격 */}
-      <div
-        className="grid grid-cols-2 items-end gap-x-4 gap-y-3 px-4 py-4 md:grid-cols-[auto_1fr_auto] md:gap-x-7 md:px-7 md:py-6"
-        style={{ borderTop: "1px solid var(--cd-border-2)" }}
-      >
-        <div>
-          <div className="mb-1 text-[12px]" style={{ color: "var(--cd-muted-2)" }}>정상가</div>
-          <div className="text-[15px] line-through md:text-[19px]" style={{ color: "var(--cd-muted-3)" }}>
-            {won(p.listPrice)}
+          <span className="text-[16px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>
+            {packageLabel(p)}
+          </span>
+          {p.featured && (
+            <span
+              className="rounded-full px-2.5 py-1 text-[11px] font-black md:text-[12px]"
+              style={{ background: "var(--cd-tint-2)", color: "var(--cd-primary)" }}
+            >
+              먼저 권하는 구성
+            </span>
+          )}
+        </div>
+        <div className="md:text-right">
+          <div className="mb-1 text-[12px]" style={{ color: "var(--cd-muted-2)" }}>원고 작성 포함</div>
+          <div className="cd-num whitespace-nowrap text-[18px] leading-none sm:text-[22px]" style={{ color: "var(--cd-ink-3)" }}>
+            {won(p.withCopy)}
           </div>
         </div>
-
-        <div>
-          <div className="mb-1 flex flex-wrap items-center gap-2">
-            <span className="text-[12px] font-bold" style={{ color: "var(--cd-primary)" }}>이벤트가</span>
-            {p.discount && p.featured && (
-              <span
-                className="rounded-full px-2 py-0.5 text-[11px] font-black"
-                style={{ background: "var(--cd-sale-bg)", color: "var(--cd-sale)" }}
-              >
-                {p.discount}% OFF
-              </span>
-            )}
-          </div>
-          {/* 320px 에서 "1,715,000원" 이 칸을 넘어 두 줄로 깨진다.
-              좁은 화면에서는 자간을 조여 한 줄을 유지한다. */}
-          <div
-            className="cd-num whitespace-nowrap text-[21px] leading-none sm:text-[26px] md:text-[34px]"
-            style={{ color: "var(--cd-ink-3)" }}
-          >
-            {won(p.eventPrice)}
+        <div className="md:text-right">
+          <div className="mb-1 text-[12px]" style={{ color: "var(--cd-muted-2)" }}>원고 직접 제공</div>
+          <div className="cd-num whitespace-nowrap text-[18px] leading-none sm:text-[22px]" style={{ color: "var(--cd-primary-deep)" }}>
+            {won(p.withoutCopy)}
           </div>
         </div>
-
-        <div className="col-span-2 md:col-span-1 md:text-right">
-          <div className="mb-1 text-[12px]" style={{ color: "var(--cd-muted-2)" }}>
-            {p.totalCount} · 1건당
-          </div>
-          <div className="text-[18px] font-black md:text-[22px]" style={{ color: "var(--cd-primary-deep)" }}>
-            {won(p.unitPrice)}
-          </div>
+        <div
+          className="col-span-2 flex items-baseline justify-between text-[13px] md:col-span-1 md:block md:text-right md:text-[14px]"
+          style={{ color: "var(--cd-muted-2)" }}
+        >
+          <span className="md:hidden">1건당 · 원고 포함 기준</span>
+          <span className="font-bold" style={{ color: "var(--cd-body)" }}>{won(unit)}</span>
         </div>
       </div>
     </div>
   );
 }
 
-/** D-day 가 날짜에 따라 움직이므로 하루 단위로 다시 생성한다 */
-export const revalidate = 3600;
+/* ─── 카페 단건 한 줄 — 등급 · 설명 · 건당 ─── */
+function CafeTierRow({ t }: { t: CafeTier }) {
+  return (
+    <div
+      className="grid grid-cols-1 items-center gap-3 rounded-[20px] bg-white px-4 py-4 md:grid-cols-[170px_1fr_140px] md:gap-5 md:rounded-[16px] md:px-7 md:py-5"
+      style={{ border: "1px solid var(--cd-border)" }}
+    >
+      <span
+        className="inline-flex w-fit items-center justify-center rounded-[10px] px-3 py-1.5 text-[14px] font-black md:text-[15px]"
+        style={{ background: "var(--cd-tint-3)", color: "var(--cd-body)" }}
+      >
+        {t.grade}
+      </span>
+      <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+        {t.desc}
+      </p>
+      <div className="flex items-baseline gap-2 md:justify-end">
+        <span className="cd-num whitespace-nowrap text-[20px] leading-none md:text-[22px]" style={{ color: "var(--cd-ink-3)" }}>
+          {won(t.price)}
+        </span>
+        <span className="text-[12px]" style={{ color: "var(--cd-muted-2)" }}>
+          건당
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export default function CafeDistributionPage() {
-  // 회차·잔여 슬롯·배정률은 전부 날짜에서 파생된다 (lib/cafe-distribution.ts)
-  const { round, dday } = currentRound();
-  const slots = remainingSlots();
-  const rate = allocationRate();
-
   return (
     <>
       <JsonLd data={LD} />
@@ -237,7 +246,7 @@ export default function CafeDistributionPage() {
               className="inline-block rounded-full px-6 py-2.5 text-[15px] font-black text-white md:px-[34px] md:py-3 md:text-[19px]"
               style={{ background: "var(--cd-primary-lt)" }}
             >
-              하랑마케팅 최적화 블로그 · 카페 배포 상품 OPEN
+              네이버 최적화 블로그 · 카페 배포
             </span>
 
             {/* 로고 카드 — 로고가 흰 배경 JPG라 반드시 흰 카드 안에 넣는다 */}
@@ -260,11 +269,11 @@ export default function CafeDistributionPage() {
             >
               최적화 블로그 · 카페 배포
               <br />
-              <span style={{ color: "var(--cd-primary-lt3)" }}>출시 이벤트</span>
+              <span style={{ color: "var(--cd-primary-lt3)" }}>발행 뒤 노출 확인까지</span>
             </h1>
 
             <div className="mx-auto mt-8 flex max-w-[620px] flex-col gap-3 md:mt-10">
-              {["최블 / 올인원 대량 진행건 기준 참여 가능", "상품 이용 시 카페 배포 서비스 추가 제공"].map((t) => (
+              {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고"].map((t) => (
                 <span
                   key={t}
                   className="rounded-full px-5 py-3 text-[15px] font-bold text-white md:px-8 md:py-3.5 md:text-[21px]"
@@ -276,56 +285,37 @@ export default function CafeDistributionPage() {
             </div>
 
             <p className="mt-6 text-[13px] leading-relaxed md:text-[14px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              ※ 본 이벤트는 최블 / 올인원 상품 10건 · 20건 · 30건 진행 시 적용됩니다.
+              표기 금액은 부가세 별도이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.
             </p>
           </div>
         </section>
 
-        {/* ══ 2. 캠페인 지표 바 — 실제 운영값 관리 시에만 노출 ══ */}
-        {CAMPAIGN.showCampaignBar && (
-          <section className="px-5 py-8 md:px-[60px]" style={{ background: "var(--cd-dark)" }}>
-            <div className="mx-auto w-full max-w-[860px]">
-              <dl className="flex">
-                {[
-                  { label: `${round}회차 마감`, value: `D-${dday}`, unit: "", accent: true },
-                  { label: "이번 회차 잔여", value: String(slots), unit: "슬롯" },
-                  { label: "카페 배포 주간 처리", value: CAMPAIGN.weeklyVolume.toLocaleString("ko-KR"), unit: "건+" },
-                ].map((m, i) => (
-                  <div
-                    key={m.label}
-                    className="flex-1 text-center"
-                    style={i > 0 ? { borderLeft: "1px solid rgba(255,255,255,.1)" } : undefined}
-                  >
-                    <dt className="mb-1.5 text-[12px] md:text-[13px]" style={{ color: "var(--cd-on-dark-3)" }}>
-                      {m.label}
-                    </dt>
-                    <dd
-                      className="cd-num text-[22px] md:text-[30px]"
-                      style={{ color: m.accent ? "var(--cd-primary-lt3)" : "#fff" }}
-                    >
-                      {m.value}
-                      {m.unit && <span className="ml-1 text-[13px] font-bold md:text-[15px]">{m.unit}</span>}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-
-              <div className="mt-6 h-[10px] w-full overflow-hidden rounded-full" style={{ background: "rgba(255,255,255,.1)" }}>
+        {/* ══ 2. 요약 스트립 — 상품의 뼈대 네 가지 ══ */}
+        <section
+          className="px-5 py-8 md:px-[60px]"
+          style={{ background: "var(--cd-dark)", borderTop: "1px solid rgba(255,255,255,.06)" }}
+        >
+          <div className="mx-auto w-full max-w-[860px]">
+            <dl className="grid grid-cols-2 gap-y-6 md:grid-cols-4">
+              {[
+                { label: "패키지", value: "10건 · 30건" },
+                { label: "가격", value: "원고 포함 · 직접 제공" },
+                { label: "카페 단건", value: "등급별 건당 단가" },
+                { label: "결과", value: "노출 확인 · URL 보고" },
+              ].map((m, i) => (
                 <div
-                  className="cd-fillbar h-full rounded-full"
-                  style={{
-                    width: `${rate}%`,
-                    background: "linear-gradient(90deg,#1655e8,#7fa6ff)",
-                  }}
-                />
-              </div>
-              <div className="mt-2 flex justify-between text-[12px]" style={{ color: "var(--cd-on-dark-4)" }}>
-                <span>이번 회차 배정률 {rate}%</span>
-                <span>누적 진행 {CAMPAIGN.cumulativeCount.toLocaleString("ko-KR")}건 · 마감 시 다음 회차 대기</span>
-              </div>
-            </div>
-          </section>
-        )}
+                  key={m.label}
+                  className={`px-2 text-center ${i % 2 === 1 ? "border-l border-white/10" : ""} ${i === 2 ? "md:border-l md:border-white/10" : ""}`}
+                >
+                  <dt className="mb-1.5 text-[12px] md:text-[13px]" style={{ color: "var(--cd-on-dark-3)" }}>
+                    {m.label}
+                  </dt>
+                  <dd className="text-[15px] font-black text-white md:text-[17px]">{m.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
 
         {/* ══ 3. 문제 제기 — 스크롤 서사의 출발점 ══ */}
         <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-dark-2)" }}>
@@ -445,6 +435,9 @@ export default function CafeDistributionPage() {
                 아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
                 보정하지 않았고, 진행 건마다 이런 캡처와 게시 URL을 함께 드립니다.
               </p>
+              <p className="mt-3 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
+                몇 건 올렸는지보다 어디에 떴는지가 결과를 가릅니다. 그래서 발행 뒤 키워드마다 노출 위치를 확인하고 캡처와 URL을 남깁니다.
+              </p>
 
               {/* 배포 기준 — 레퍼런스 배너와 동일한 지표 */}
               <div className="mt-6 flex flex-col gap-2.5">
@@ -531,79 +524,61 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 6·7. REWARD 01 / 02 ══ */}
+        {/* ══ 6. PRICE — 구성과 가격 ══ */}
         <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-tint)" }}>
           <div className={INNER}>
-            {/* REWARD 01 */}
             <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              REWARD 01
+              PRICE
             </p>
-            <div className="mb-7 flex flex-wrap items-center gap-3">
-              <h2 className="cd-display text-[28px] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
-                혜택 안내
-              </h2>
-              <span
-                className="rounded-full px-4 py-2 text-[14px] font-bold md:text-[15px]"
-                style={{ border: "1.5px solid var(--cd-primary)", color: "var(--cd-primary)" }}
-              >
-                원고 작성 포함
-              </span>
-            </div>
-
-            <div className="flex flex-col gap-[14px]">
-              {REWARD_WITH_COPY.map((p) => <RewardCard key={p.base} p={p} />)}
-            </div>
-
-            {/* REWARD 02 */}
-            <p className="mb-3 mt-16 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              REWARD 02
-            </p>
-            <div className="mb-3 flex flex-wrap items-center gap-3">
-              <h2 className="cd-display text-[28px] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
-                혜택 안내
-              </h2>
-              <span
-                className="rounded-full px-4 py-2 text-[14px] font-bold md:text-[15px]"
-                style={{ border: "1.5px solid var(--cd-muted-3)", color: "var(--cd-body)" }}
-              >
-                원고 작성 미포함
-              </span>
-            </div>
-            <p className="mb-6 text-[15px]" style={{ color: "var(--cd-muted-2)" }}>
-              원고를 직접 제공하시는 경우 아래 단가가 적용됩니다.
+            <h2 className="cd-display text-[28px] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
+              구성과 가격
+            </h2>
+            <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
+              10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
+              원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
             </p>
 
-            <div className="flex flex-col gap-[14px]">
-              {REWARD_WITHOUT_COPY.map((p) => (
-                <div
-                  key={p.base}
-                  className="grid grid-cols-1 items-center gap-3 rounded-[20px] bg-white px-4 py-4 md:grid-cols-[auto_1fr_auto] md:gap-5 md:px-7 md:py-6"
-                  style={{ border: "1px solid var(--cd-border)" }}
-                >
-                  <span
-                    className="inline-flex w-fit min-w-[92px] items-center justify-center rounded-[10px] px-3 py-2 text-[15px] font-black md:min-w-[118px] md:text-[17px]"
-                    style={{ background: "var(--cd-tint-3)", color: "var(--cd-body)" }}
-                  >
-                    {p.base}
+            {PACKAGE_SIZES.map((size) => (
+              <div key={size} className="mt-10">
+                <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)" }}>
+                    {size}건 패키지
+                  </h3>
+                  <span className="text-[13px] md:text-[14px]" style={{ color: "var(--cd-muted-2)" }}>
+                    원고를 직접 주시면 {won(copyDiscount(size))} 내려갑니다
                   </span>
-                  <span className="text-[15px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>
-                    + {p.bonus}
-                  </span>
-                  <div className="md:text-right">
-                    <div className="flex flex-wrap items-baseline gap-3 md:justify-end">
-                      <span className="text-[14px] line-through md:text-[17px]" style={{ color: "var(--cd-muted-3)" }}>
-                        {won(p.listPrice)}
-                      </span>
-                      <span className="cd-num whitespace-nowrap text-[20px] sm:text-[22px] md:text-[28px]" style={{ color: "var(--cd-ink-3)" }}>
-                        {won(p.eventPrice)}
-                      </span>
-                    </div>
-                    <div className="mt-1 text-[13px] md:text-[14px]" style={{ color: "var(--cd-muted-2)" }}>
-                      1건당 {won(p.unitPrice)}
-                    </div>
-                  </div>
                 </div>
-              ))}
+                <div
+                  className="mb-2 hidden grid-cols-[1fr_140px_140px_110px] gap-4 px-7 text-[12px] font-bold md:grid"
+                  style={{ color: "var(--cd-muted-2)" }}
+                >
+                  <span>구성</span>
+                  <span className="text-right">원고 작성 포함</span>
+                  <span className="text-right">원고 직접 제공</span>
+                  <span className="text-right">1건당 · 원고 포함</span>
+                </div>
+                <div className="flex flex-col gap-[14px] md:gap-2.5">
+                  {PACKAGES.filter((p) => p.size === size).map((p) => (
+                    <PackageRow key={`${p.size}-${p.blog}-${p.cafe}`} p={p} />
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <div className="mt-12">
+              <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)" }}>
+                  카페만 단건으로
+                </h3>
+                <span className="text-[13px] md:text-[14px]" style={{ color: "var(--cd-muted-2)" }}>
+                  원고 작성까지 맡기시면 건당 {won(CAFE_COPY_FEE)} 추가
+                </span>
+              </div>
+              <div className="flex flex-col gap-2.5">
+                {CAFE_TIERS.map((t) => (
+                  <CafeTierRow key={t.grade} t={t} />
+                ))}
+              </div>
             </div>
 
             <p className="mt-6 text-[13px] leading-relaxed" style={{ color: "var(--cd-muted-2)" }}>
@@ -612,7 +587,7 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 8. 신뢰 보장 — 가격을 본 직후의 망설임을 받아준다 ══ */}
+        {/* ══ 7. PROMISE — 가격을 본 직후의 망설임을 받아준다 ══ */}
         <section className="bg-white py-14 md:py-[66px]">
           <div className={INNER}>
             <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
@@ -827,10 +802,10 @@ export default function CafeDistributionPage() {
             <div className="mx-auto mt-9 flex w-full max-w-[520px] flex-col gap-3">
               <Link
                 href={CTA_HREF}
-                className="cd-pulse-cta block rounded-full py-5 text-[20px] font-black text-white md:py-6 md:text-[24px]"
+                className="block rounded-full py-5 text-[20px] font-black text-white md:py-6 md:text-[24px]"
                 style={{ background: "linear-gradient(90deg,#2f6bf5,#7fa6ff)" }}
               >
-                이벤트 참여 문의 바로가기
+                구성 상담 신청하기
               </Link>
               <a
                 href={KAKAO_HREF}

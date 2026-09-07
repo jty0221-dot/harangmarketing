@@ -217,11 +217,6 @@ export const MEASURE_NOTE =
   `순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. ` +
   `방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`;
 
-export const PAGE1_NOTE =
-  `네이버 플레이스 1페이지는 광고 지면 3개와 순위 1~5위로 구성됩니다. ` +
-  `${SNAPSHOT_DATE} 기준 ${SUMMARY.page1Keywords}개 키워드가 1~5위를 지키고 있고, ` +
-  `그중 ${SUMMARY.heldAllSnapshots}개는 누적 스냅샷 ${SUMMARY.snapshots}회 내내 한 번도 1페이지를 벗어나지 않았습니다.`;
-
 /*
  * 병·의원 문장 — 화면 · JSON-LD · llms.txt 가 여기서 같은 문장을 가져간다.
  * 판정 정본 : E:\하랑\본부장\병의원\인계_SEO_GEO_AEO_병의원_2026-09-06.md 제4-C절

@@ -8,8 +8,7 @@ import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import {
-  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_HELD, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
-  PLACE_RANK_RISEN,
+  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
 } from "../lib/place-rank-cases";
 
 export const metadata: Metadata = {
@@ -58,8 +57,7 @@ export default function PortfolioPage() {
               </h2>
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
                 위가 블로그에 글로 공개한 사례라면, 여기는 순위를 매일 재서 남긴 기록입니다.
-                {" "}{PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 남겼습니다.
-                {" "}올라간 것이 {PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 {PLACE_RANK_HELD}건입니다.
+                {" "}매일 같은 시각에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나입니다. {PLACE_RANK_AS_OF} 계측분입니다.
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>
