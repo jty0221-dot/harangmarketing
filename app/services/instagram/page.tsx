@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   AtSign, ClipboardList, Layers, Camera, TrendingUp, Ban, ShieldCheck,
   Phone, ArrowRight, Search, MessageCircle, Link2, Image as ImageIcon,
@@ -12,6 +13,7 @@ import JsonLd from "../../components/JsonLd";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
 } from "../../lib/seo";
+import { HL_WORKS, HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../../lib/highlight-reference";
 
 /**
  * 인스타그램 계정 관리 랜딩.
@@ -572,6 +574,91 @@ export default function InstagramServicePage() {
                     이걸 모르고 순서대로 만들면 문의 칸이 맨 왼쪽에 서게 됩니다.
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 하이라이트 세팅 실물
+            상호는 화면 · 파일명 · alt 어디에도 넣지 않는다 (대표 지시 2026-09-07 (월)).
+            사진 안에 보이던 상호 · 로고 글자 · 주소는 납품 전에 지웠고, 가려도 화면이 남지 않는
+            컷과 인물 컷은 아예 빼서 여기 없다.
+            업종은 묶는 기준이 아니라 카드에 붙는 라벨이다. 탭 · 필터 · 업종별 페이지를 만들지 않는다.
+            커버는 720x720(1:1) 이고 스토리는 540x960(9:16) 이다. 한 틀에 몰아넣고 object-cover 로
+            자르면 커버 안의 글자가 날아가므로, 틀 높이만 고정하고 가로는 kind 가 정하게 뒀다.
+            틀 높이(h-32 sm:h-40 = 128/160px)는 lg 4칸일 때 카드 안쪽 폭 176px 보다 작게 잡은 값이다.
+            이보다 키우면 1:1 커버가 카드 밖으로 나간다.
+            곳 수와 장수는 손으로 적지 않는다. HL_SHOP_TOTAL · HL_TOTAL 이 데이터에서 온다.
+            가격은 이 페이지에 넣지 않는다 (머리 주석 참조). */}
+        <section className="py-14 md:py-20 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
+              직접 만든 하이라이트 커버입니다
+            </h2>
+            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
+              위 여섯 칸을 실제로 만들면 이렇게 나옵니다.
+              업종마다 방문자가 묻는 것이 달라서 칸 이름도 안에 넣는 장면도 같이 달라집니다.
+              지금까지 {HL_SHOP_TOTAL}곳에 {HL_TOTAL}장을 만들어 드렸습니다.
+            </p>
+
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+              {HL_WORKS.map((w, i) => {
+                const cover = HL_COVERS[i];
+                const shots = w.covers.length + w.stories.length;
+                return (
+                  <div
+                    key={w.slug}
+                    className="rounded-2xl bg-white p-2.5 md:p-3 shadow-sm"
+                    style={{ border: "1px solid var(--h-border)" }}
+                  >
+                    <div
+                      className="flex h-32 sm:h-40 items-center justify-center overflow-hidden rounded-xl"
+                      style={{ background: "var(--h-surface)" }}
+                    >
+                      <div
+                        className={`relative h-full overflow-hidden rounded-lg ${
+                          cover.kind === "cover" ? "aspect-square" : "aspect-[9/16]"
+                        }`}
+                      >
+                        <Image
+                          src={cover.src}
+                          alt={cover.alt}
+                          fill
+                          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 200px"
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm font-bold text-gray-900 leading-snug">{w.title}</p>
+                    <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                      <span className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-medium text-gray-700">
+                        {w.industry}
+                      </span>
+                      <span
+                        className="inline-flex items-center rounded-lg bg-blue-50 px-2 py-1 text-[11px] font-bold tabular-nums"
+                        style={{ color: "var(--h-blue)" }}
+                      >
+                        {shots}장
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-6 flex items-start gap-3 rounded-2xl p-4 md:p-6" style={{ background: "var(--h-surface)" }}>
+              <div className="w-9 h-9 rounded-xl bg-gray-900 shadow-sm flex items-center justify-center shrink-0">
+                <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm md:text-base font-bold text-gray-900">
+                  업체명은 저희가 먼저 공개하지 않습니다
+                </p>
+                <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                  화면에 상호가 보이던 자리는 전부 가려 두었습니다.
+                  가려도 화면이 남지 않는 컷은 아예 빼고 올렸습니다.
+                  맡겨 주신 곳의 상호는 동의를 받기 전에는 내보내지 않습니다.
+                </p>
               </div>
             </div>
           </div>
