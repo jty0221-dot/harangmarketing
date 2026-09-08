@@ -23,6 +23,9 @@ import {
   won,
   PROOF_SAMPLES,
   GUARANTEES,
+  PRICE_REVISED_AT,
+  PRICE_REVISION_REASON,
+  WHATS_NEW,
   type CafePackage,
   type CafeTier,
 } from "../../lib/cafe-distribution";
@@ -36,6 +39,7 @@ import {
  * - 대형 헤드라인·숫자는 .cd-display / .cd-num (Black Han Sans)
  * 사이트 공통 토큰(--h-*)이나 max-w-4xl 컨테이너로 바꾸지 말 것. 디자인이 무너진다.
  * 2026-09-07 (월) 가격·구성 갱신 — 이벤트·회차·잔여 슬롯 장치를 걷고 10건·30건 패키지 두 가격 체계로 바꿨다.
+ * 2026-09-08 (화) 대표 지시 — 히어로 후킹 문장 · 달라진 점(UPDATE) 섹션 · 경쟁 심화 단가 조정 안내 · FAQ 문답을 더했다.
  */
 
 const PATH = "/services/cafe-distribution";
@@ -272,7 +276,13 @@ export default function CafeDistributionPage() {
               <span style={{ color: "var(--cd-primary-lt3)" }}>발행 뒤 노출 확인까지</span>
             </h1>
 
-            <div className="mx-auto mt-8 flex max-w-[620px] flex-col gap-3 md:mt-10">
+            <p className="mx-auto mt-6 max-w-[640px] text-pretty text-[16px] leading-[1.7] md:mt-8 md:text-[19px]" style={{ color: "var(--cd-on-dark-2)" }}>
+              블로그 탭에서 멈추는 고객도, 카페 탭까지 넘어가는 고객도 있습니다.
+              <br className="hidden md:block" />
+              두 곳 모두에 우리 이야기를 두는 배포입니다.
+            </p>
+
+            <div className="mx-auto mt-7 flex max-w-[620px] flex-col gap-3 md:mt-8">
               {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고"].map((t) => (
                 <span
                   key={t}
@@ -285,7 +295,7 @@ export default function CafeDistributionPage() {
             </div>
 
             <p className="mt-6 text-[13px] leading-relaxed md:text-[14px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              표기 금액은 부가세 별도이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.
+              {PRICE_REVISED_AT} 개정 단가 기준. 표기 금액은 부가세 별도이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.
             </p>
           </div>
         </section>
@@ -524,6 +534,42 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
+        {/* ══ 5-B. UPDATE — 가격을 보기 전에 무엇이 바뀌었는지 먼저 밝힌다 (2026-09-08 (화) 대표 지시) ══ */}
+        <section className="bg-white py-14 md:py-[66px]" style={{ borderTop: "1px solid var(--cd-border)" }}>
+          <div className={INNER}>
+            <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
+              UPDATE
+            </p>
+            <h2 className="cd-display text-[28px] leading-[1.25] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
+              {PRICE_REVISED_AT},
+              <br />
+              이렇게 바뀌었습니다
+            </h2>
+            <p className="mt-5 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
+              {PRICE_REVISION_REASON} 그 김에 구성과 보고 방식도 다시 짰습니다.
+              가격표를 보기 전에 달라진 점을 먼저 밝힙니다.
+            </p>
+
+            {/* 첫 항목(단가 조정 사유)만 한 줄을 다 쓴다. 나머지는 순서가 아니라 목록이라 번호를 붙이지 않는다 */}
+            <div className="mt-9 grid grid-cols-1 gap-[14px] md:grid-cols-2">
+              {WHATS_NEW.map((w, i) => (
+                <div
+                  key={w.title}
+                  className={`rounded-[18px] px-6 py-6 md:px-7 ${i === 0 ? "md:col-span-2 md:py-8" : "md:py-7"}`}
+                  style={{ background: i === 0 ? "var(--cd-tint-2)" : "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}
+                >
+                  <h3 className="mb-2 text-[17px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
+                    {w.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+                    {w.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ══ 6. PRICE — 구성과 가격 ══ */}
         <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-tint)" }}>
           <div className={INNER}>
@@ -534,6 +580,7 @@ export default function CafeDistributionPage() {
               구성과 가격
             </h2>
             <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
+              금액을 먼저 공개합니다. 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다.
               10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
               원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
             </p>
