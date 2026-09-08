@@ -277,7 +277,7 @@ export default function CafeDistributionPage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-[640px] text-pretty text-[16px] leading-[1.7] md:mt-8 md:text-[19px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              블로그 탭에서 멈추는 고객도, 카페 탭까지 넘어가는 고객도 있습니다.
+              블로그 탭에서 멈추는 고객도, 카페 탭까지 넘어가는 고객도 있습니다.{" "}
               <br className="hidden md:block" />
               두 곳 모두에 우리 이야기를 두는 배포입니다.
             </p>
