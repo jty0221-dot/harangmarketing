@@ -29,6 +29,7 @@ import {
   MONTHLY_MIN,
   MONTHLY_GROUPS,
   MONTHLY_TERMS,
+  CAFE_HOW,
   type CafePackage,
   type CafeTier,
 } from "../../lib/cafe-distribution";
@@ -46,6 +47,7 @@ import {
  * 2026-09-08 (화) 대표 지시 — 단가 조정 사유를 경쟁 심화에서 물가 상승으로 바꿨다. 금액은 그대로다.
  * 2026-09-08 (화) 대표 지시 — 사유를 다시 물가 상승에서 네이버 로직 변화로 바꿨다. 금액은 그대로다.
  * 2026-09-08 (화) 대표 지시 — 지역 + 업종 키워드를 월 단위로 이어서 관리하는 구간(MONTHLY)을 더했다. 기존 금액은 그대로다.
+ * 2026-09-09 (수) 대표 지시 — 카페 단건의 대표 카페 설명(주제 · 고르는 기준 · 올리는 순서)을 보강했다. 금액은 그대로다.
  */
 
 const PATH = "/services/cafe-distribution";
@@ -221,9 +223,22 @@ function CafeTierRow({ t }: { t: CafeTier }) {
       >
         {t.grade}
       </span>
-      <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-        {t.desc}
-      </p>
+      <div className="min-w-0">
+        <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+          {t.desc}
+        </p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {t.topics.map((k) => (
+            <span
+              key={k}
+              className="rounded-full px-2.5 py-1 text-[12px] font-bold"
+              style={{ border: "1px solid var(--cd-border)", color: "var(--cd-muted-2)" }}
+            >
+              {k}
+            </span>
+          ))}
+        </div>
+      </div>
       <div className="flex items-baseline gap-2 md:justify-end">
         <span className="cd-num whitespace-nowrap text-[20px] leading-none md:text-[22px]" style={{ color: "var(--cd-ink-3)" }}>
           {won(t.price)}
@@ -639,6 +654,44 @@ export default function CafeDistributionPage() {
                 {CAFE_TIERS.map((t) => (
                   <CafeTierRow key={t.grade} t={t} />
                 ))}
+              </div>
+
+              {/* 대표 카페 안내 · 카페 이름은 적지 않고 고르는 기준과 올리는 순서만 밝힌다 (2026-09-09 (수) 대표 지시) */}
+              <div
+                className="mt-6 rounded-[20px] px-6 py-6 md:px-8 md:py-7"
+                style={{ background: "#fff", border: "1px solid var(--cd-border)" }}
+              >
+                <h4 className="text-[17px] font-black md:text-[20px]" style={{ color: "var(--cd-ink)", letterSpacing: "-0.5px" }}>
+                  카페는 이렇게 고르고 이렇게 올립니다
+                </h4>
+                <p className="mt-2 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+                  대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페입니다.{" "}
+                  등급마다 어떤 주제의 카페가 있는지 위 표에 적었고, 카페를 고르는 기준과 올리는 순서는 아래와 같습니다.
+                </p>
+                <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
+                  {CAFE_HOW.map((h) => (
+                    <div
+                      key={h.title}
+                      className="flex items-start gap-3 rounded-[16px] p-5"
+                      style={{ background: "var(--cd-tint-2)", border: "1px solid var(--cd-border-2)" }}
+                    >
+                      <span
+                        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                        style={{ background: "var(--cd-primary)" }}
+                      >
+                        <Check size={15} className="text-white" strokeWidth={3} />
+                      </span>
+                      <div className="min-w-0">
+                        <h5 className="mb-1 text-[15px] font-bold md:text-[16px]" style={{ color: "var(--cd-ink-2)" }}>
+                          {h.title}
+                        </h5>
+                        <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+                          {h.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
