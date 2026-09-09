@@ -424,7 +424,7 @@ const INDUSTRY_LINKS = [
 
 const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[] = [
   { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
-  { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "3만원" },
+  { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "키워드 확인 후 안내" },
   { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
   { item: "최적화 블로그 배포", unit: "1건", price: won(BLOG_UNIT_WITH_COPY), note: `원고 작성 포함 10건 패키지 기준. 원고를 직접 주시면 ${won(BLOG_UNIT_WITHOUT_COPY)}.` },
   { item: "카페 배포", unit: "1건", price: `${won(CAFE_TIER_MIN)}~`, note: `카페 등급별 ${CAFE_TIERS.map((t) => t.price.toLocaleString("ko-KR")).join(" · ")}원. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)} 추가.` },
@@ -449,11 +449,11 @@ const CALC_EXAMPLES: {
     sub: "대표키워드가 이미 3위라 순위를 밀어올리기만 하면 됐던 고깃집",
     lines: [
       { label: "플레이스 SEO 최적화", calc: "15만원 × 1회", amount: "150,000" },
-      { label: "대표키워드 상위노출 관리", calc: "3만원 × 5개", amount: "150,000" },
+      { label: "대표키워드 상위노출 관리", calc: "키워드 확인 후 안내", amount: "0" },
       { label: "리뷰 동선 · 소식/쿠폰 · 순위 모니터링", calc: "계약 포함", amount: "0" },
     ],
-    total: "300,000",
-    note: "부가세 포함 330,000원",
+    total: "150,000",
+    note: "부가세 포함 165,000원. 대표키워드 관리는 키워드를 확인한 뒤 금액을 안내드려 합계에 넣지 않았습니다.",
   },
   {
     title: "글을 퍼뜨리기만 하면 되는 경우",

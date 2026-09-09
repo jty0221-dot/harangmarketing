@@ -1,6 +1,6 @@
 import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
-import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, PRICE_MAX, CAFE_TIER_MIN, MONTHLY_MIN, won } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, PRICE_MAX, CAFE_TIER_MIN, MONTHLY_MIN, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
 import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
 import { TRACK_TOTALS } from "../lib/track-record";
@@ -68,7 +68,7 @@ export async function GET() {
 
   // 서비스 목록 — 번호를 손으로 매기지 않는다. 감춘 상품을 빼면 번호가 저절로 당겨진다.
   const services = [
-    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 10건 · 30건 패키지(최블형 · 혼합형 · 카페형) ${won(PRICE_MIN)}~${won(PRICE_MAX)}, 원고 작성 포함과 직접 제공 두 가격, 부가세 별도. 카페 단건은 등급별 ${won(CAFE_TIER_MIN)}부터이고, 최상위 등급인 대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페(결혼 준비 · 지역 맘카페 · 쇼핑 정보 · 취미 · 문화)로 여러 건을 진행할 때 대표 카페부터 올린다. 지역 + 업종 키워드를 한 달 단위로 이어서 관리하는 월 단위 진행은 월 ${won(MONTHLY_MIN)}부터이며 금액은 지역과 키워드 경쟁 정도에 따라 달라질 수 있어 진행 전 상담이 필수이고, 노출이 확인되지 않은 날은 진행 기간을 하루씩 자동으로 연장한다. 발행 뒤 키워드별 노출 위치 확인과 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
+    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 10건 · 30건 패키지(최블형 · 혼합형 · 카페형) ${won(PRICE_MIN)}~${won(PRICE_MAX)}, 원고 작성 포함과 직접 제공 두 가격, 부가세 별도. 카페 단건은 등급별 ${won(CAFE_TIER_MIN)}부터이고, 최상위 등급인 대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페(결혼 준비 · 지역 맘카페 · 쇼핑 정보 · 취미 · 문화)로 여러 건을 진행할 때 대표 카페부터 올린다. 지역 + 업종 키워드를 한 달 단위로 이어서 관리하는 월 단위 진행은 월 ${won(MONTHLY_MIN)}부터이며 금액은 지역과 키워드 경쟁 정도에 따라 달라질 수 있어 진행 전 상담이 필수이고, 노출이 확인되지 않은 날은 진행 기간을 하루씩 자동으로 연장한다. 카페 마케팅에서 월 보장이라고 부르는 방식이 이것이며, 보장하는 것은 순위가 아니라 기간이다. 몇 위까지 올린다는 약속은 하지 않는다. 발행 뒤 키워드별 노출 위치 확인과 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
     ...(SNS_STORE_ENABLED
       ? [
           `**SNS 부스트 스토어 (셀프 주문)** — 인스타그램·유튜브·스레드·틱톡·페이스북·엑스·네이버·카카오 8개 플랫폼의 팔로워·좋아요·조회수·트래픽을 회원가입 없이 건당 주문. 계정 비밀번호 불필요, 주문번호로 진행 상황 실시간 조회. 하랑마케팅 직영. (${B}/sns)`,
@@ -123,10 +123,10 @@ ${ANSWER_SENTENCES.price}
 | 항목 | 단위 | 단가 |
 | --- | --- | --- |
 | 플레이스 SEO 최적화 | 1회 세팅 | 10~15만원 |
-| 대표키워드 상위노출 관리 | 키워드 1개·월 | 3만원 |
+| 대표키워드 상위노출 관리 | 키워드 1개·월 | 키워드 확인 후 안내 |
 | 블로그 관리대행 | 1편 | 4만원 (기준 · 업종별 조정) |
-| 최적화 블로그 배포 | 1건 | 3만원 |
-| 카페 배포 | 1건 | 3만원 |
+| 최적화 블로그 배포 | 1건 | ${won(BLOG_UNIT_WITH_COPY)} (원고 포함) · ${won(BLOG_UNIT_WITHOUT_COPY)} (원고 직접 제공) |
+| 카페 배포 | 1건 | ${won(CAFE_TIER_MIN)}부터 (카페 등급별) |
 | 파워컨텐츠 원고 설계·검수 대응 | 1편 | 5만원 |
 | 홈페이지형 블로그 디자인 STANDARD | 1회 | 20만원 |
 | 네이버 광고 세팅·운영대행 | 월 | 15만원 |
