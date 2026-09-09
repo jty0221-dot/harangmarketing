@@ -26,6 +26,9 @@ import {
   PRICE_REVISED_AT,
   PRICE_REVISION_REASON,
   WHATS_NEW,
+  MONTHLY_MIN,
+  MONTHLY_GROUPS,
+  MONTHLY_TERMS,
   type CafePackage,
   type CafeTier,
 } from "../../lib/cafe-distribution";
@@ -42,6 +45,7 @@ import {
  * 2026-09-08 (화) 대표 지시 — 히어로 후킹 문장 · 달라진 점(UPDATE) 섹션 · 단가 조정 안내 · FAQ 문답을 더했다.
  * 2026-09-08 (화) 대표 지시 — 단가 조정 사유를 경쟁 심화에서 물가 상승으로 바꿨다. 금액은 그대로다.
  * 2026-09-08 (화) 대표 지시 — 사유를 다시 물가 상승에서 네이버 로직 변화로 바꿨다. 금액은 그대로다.
+ * 2026-09-08 (화) 대표 지시 — 지역 + 업종 키워드를 월 단위로 이어서 관리하는 구간(MONTHLY)을 더했다. 기존 금액은 그대로다.
  */
 
 const PATH = "/services/cafe-distribution";
@@ -75,7 +79,7 @@ const LD = [
       priceCurrency: "KRW",
       lowPrice: PRICE_MIN,
       highPrice: PRICE_MAX,
-      offerCount: PACKAGES.length * 2 + CAFE_TIERS.length,
+      offerCount: PACKAGES.length * 2 + CAFE_TIERS.length + 1,
       description: "표기 금액은 부가세 별도입니다.",
       offers: [
         ...PACKAGES.map((p) => ({
@@ -102,6 +106,14 @@ const LD = [
           description: `${t.desc} 건당 금액, 원고 작성까지 맡기면 ${CAFE_COPY_FEE.toLocaleString("ko-KR")}원 추가.`,
           availability: "https://schema.org/InStock",
         })),
+        {
+          "@type": "Offer",
+          name: "지역 + 업종 키워드 월 단위 진행",
+          price: MONTHLY_MIN,
+          priceCurrency: "KRW",
+          description: "키워드 하나를 한 달 단위로 블로그 탭과 카페 탭에 노출 관리하는 월 시작가. 지역 · 키워드에 따라 달라질 수 있어 진행 전 상담에서 확정합니다.",
+          availability: "https://schema.org/InStock",
+        },
       ],
     },
   },
@@ -285,7 +297,7 @@ export default function CafeDistributionPage() {
             </p>
 
             <div className="mx-auto mt-7 flex max-w-[620px] flex-col gap-3 md:mt-8">
-              {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고"].map((t) => (
+              {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고", `월 단위 진행 · 월 ${won(MONTHLY_MIN)}부터`].map((t) => (
                 <span
                   key={t}
                   className="rounded-full px-5 py-3 text-[15px] font-bold text-white md:px-8 md:py-3.5 md:text-[21px]"
@@ -310,7 +322,7 @@ export default function CafeDistributionPage() {
           <div className="mx-auto w-full max-w-[860px]">
             <dl className="grid grid-cols-2 gap-y-6 md:grid-cols-4">
               {[
-                { label: "패키지", value: "10건 · 30건" },
+                { label: "패키지", value: "10건 · 30건 · 월 단위" },
                 { label: "가격", value: "원고 포함 · 직접 제공" },
                 { label: "카페 단건", value: "등급별 건당 단가" },
                 { label: "결과", value: "노출 확인 · URL 보고" },
@@ -552,12 +564,12 @@ export default function CafeDistributionPage() {
               가격표를 보기 전에 달라진 점을 먼저 밝힙니다.
             </p>
 
-            {/* 첫 항목(단가 조정 사유)만 한 줄을 다 쓴다. 나머지는 순서가 아니라 목록이라 번호를 붙이지 않는다 */}
+            {/* 첫 항목(단가 조정 사유)과 짝 없이 홀로 남는 마지막 항목은 한 줄을 다 쓴다. 나머지는 순서가 아니라 목록이라 번호를 붙이지 않는다 */}
             <div className="mt-9 grid grid-cols-1 gap-[14px] md:grid-cols-2">
               {WHATS_NEW.map((w, i) => (
                 <div
                   key={w.title}
-                  className={`rounded-[18px] px-6 py-6 md:px-7 ${i === 0 ? "md:col-span-2 md:py-8" : "md:py-7"}`}
+                  className={`rounded-[18px] px-6 py-6 md:px-7 ${i === 0 || (WHATS_NEW.length % 2 === 0 && i === WHATS_NEW.length - 1) ? "md:col-span-2 md:py-8" : "md:py-7"}`}
                   style={{ background: i === 0 ? "var(--cd-tint-2)" : "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}
                 >
                   <h3 className="mb-2 text-[17px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
@@ -633,6 +645,108 @@ export default function CafeDistributionPage() {
             <p className="mt-6 text-[13px] leading-relaxed" style={{ color: "var(--cd-muted-2)" }}>
               {PRICE_NOTE.map((n) => `· ${n}`).join(" ")}
             </p>
+          </div>
+        </section>
+
+        {/* ══ 6-B. MONTHLY · 지역 + 업종 키워드를 월 단위로 이어서 관리한다 (2026-09-08 (화) 대표 지시) ══ */}
+        <section className="bg-white py-14 md:py-[66px]" style={{ borderBottom: "1px solid var(--cd-border)" }}>
+          <div className={INNER}>
+            <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
+              MONTHLY
+            </p>
+            <h2 className="cd-display text-[28px] leading-[1.25] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
+              월 단위로도 진행합니다
+            </h2>
+            <p className="mt-5 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
+              건수로 끊는 패키지와 별도로, 지역과 업종을 붙인 키워드 하나를 달마다 이어서 관리하는 방식입니다.{" "}
+              정한 키워드로 검색했을 때 블로그 탭과 카페 탭에 우리 글이 떠 있도록 한 달 단위로 관리하고,{" "}
+              매달 노출 위치를 확인해 보고드립니다.
+            </p>
+
+            {/* 시작가 카드. 숫자는 MONTHLY_MIN 한 곳에서만 온다 */}
+            <div
+              className="mt-8 flex flex-col gap-4 rounded-[20px] px-6 py-6 md:flex-row md:items-center md:justify-between md:px-8 md:py-7"
+              style={{ background: "var(--cd-dark-2)" }}
+            >
+              <div>
+                <p className="text-[13px] font-bold md:text-[14px]" style={{ color: "var(--cd-on-dark-3)" }}>
+                  지역 + 업종 키워드 1개 · 한 달
+                </p>
+                <p className="mt-1 text-[15px] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
+                  블로그 탭 · 카페 탭 노출 관리 · 매달 노출 보고
+                </p>
+              </div>
+              <div className="md:text-right">
+                <p className="text-[13px]" style={{ color: "var(--cd-on-dark-3)" }}>
+                  시작가 · 부가세 별도
+                </p>
+                <p className="cd-num mt-1 whitespace-nowrap text-[30px] leading-none text-white md:text-[36px]">
+                  월 {won(MONTHLY_MIN)}
+                  <span className="ml-1 text-[15px] font-bold md:text-[16px]">부터</span>
+                </p>
+              </div>
+            </div>
+
+            {/* 먼저 밝히는 조건 셋. 앞의 둘이 상담 전에 꼭 읽게 할 문장이다 */}
+            <div className="mt-5 flex flex-col gap-3">
+              {MONTHLY_TERMS.map((t) => (
+                <div
+                  key={t.title}
+                  className="flex items-start gap-4 rounded-[16px] p-5 md:p-6"
+                  style={{ background: "var(--cd-tint-2)", border: "1px solid var(--cd-border-2)" }}
+                >
+                  <span
+                    className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "var(--cd-primary)" }}
+                  >
+                    <Check size={15} className="text-white" strokeWidth={3} />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="mb-1 text-[16px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
+                      {t.title}
+                    </h3>
+                    <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+                      {t.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 지역 + 업종 묶음 여섯. 예시일 뿐 전부가 아니다. 없는 업종은 상담에서 확인한다 */}
+            <div className="mt-10">
+              <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)", letterSpacing: "-0.5px" }}>
+                지역 + 업종으로 잡는 키워드
+              </h3>
+              <p className="mt-2 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-muted-2)" }}>
+                동네 이름 뒤에 업종을 붙인 형태로 키워드를 정합니다. 아래는 자주 진행하는 묶음이고,{" "}
+                여기 없는 업종도 키워드를 알려주시면 진행 가능 여부와 금액을 확인해 드립니다.
+              </p>
+              <div className="mt-5 grid grid-cols-1 gap-[14px] md:grid-cols-2">
+                {MONTHLY_GROUPS.map((g) => (
+                  <div
+                    key={g.label}
+                    className="rounded-[18px] px-6 py-5 md:px-7 md:py-6"
+                    style={{ background: "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}
+                  >
+                    <h4 className="text-[16px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>
+                      지역 + {g.label}
+                    </h4>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {g.keywords.map((k) => (
+                        <span
+                          key={k}
+                          className="rounded-full px-3 py-1.5 text-[13px] font-bold"
+                          style={{ background: "#fff", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }}
+                        >
+                          {k}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
