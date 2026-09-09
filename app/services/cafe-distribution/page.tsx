@@ -740,7 +740,7 @@ export default function CafeDistributionPage() {
               </div>
             </div>
 
-            {/* 먼저 밝히는 조건 셋. 앞의 둘이 상담 전에 꼭 읽게 할 문장이다 */}
+            {/* 먼저 밝히는 조건 넷. 셋째가 노출이 확인되지 않은 날의 처리다 */}
             <div className="mt-5 flex flex-col gap-3">
               {MONTHLY_TERMS.map((t) => (
                 <div

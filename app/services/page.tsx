@@ -10,7 +10,7 @@ import {
   ScrollText,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
-import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, packageLabel, won } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import AnswerBlock from "../components/AnswerBlock";
@@ -52,13 +52,14 @@ const INDUSTRY_RECS = ([
 
 export const metadata: Metadata = {
   title: "마케팅 서비스 | 플레이스 SEO · 블로그 · 체험단 · SNS",
-  description: "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 업종별 최적 패키지와 실제 성과를 확인하세요.",
+  description: "네이버 플레이스 SEO, 최적화 블로그·카페 배포, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 카페 배포는 건당 패키지와 월 단위 진행 중에 고릅니다.",
   keywords: [
     "마케팅 서비스", "네이버 플레이스 SEO", "플레이스 상위노출",
     "블로그 마케팅", "블로그 상위노출", "키워드 SEO",
     "체험단 모집", "체험단 대행", "리뷰 마케팅",
     "인스타그램 마케팅", "릴스 마케팅", "SNS 마케팅",
     "맘카페 바이럴", "맘카페 마케팅",
+    "카페 배포", "대표 카페 배포", "카페 배포 월 단위",
     "카카오맵 마케팅", "카카오맵 상위노출",
     "소상공인 마케팅", "자영업자 마케팅", "소상공인 광고",
     "카페 마케팅", "음식점 마케팅", "미용실 마케팅",
@@ -125,12 +126,12 @@ const SERVICES = [
     tag: "배포",
     title: "최적화 블로그 · 카페 배포",
     subtitle: "블로그 탭 + 카페 탭 동시 노출",
-    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다.",
+    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다. 건수로 끊는 패키지와 지역 + 업종 키워드를 달마다 이어서 관리하는 월 단위 진행 중에 고르실 수 있습니다.",
     timeline: "게시 시작 3~7일 · 수량별 순차 진행",
     deliverables: [
-      { label: "패키지", value: "10건 · 30건", note: "원고 포함 · 직접 제공" },
-      { label: "1건당 단가", value: `${won(UNIT_MIN)}~`, note: "부가세 별도" },
-      { label: "결과 보고", value: "게시 URL 전체", note: "링크 정리 전달" },
+      { label: "패키지", value: "10건 · 30건 · 월 단위", note: "원고 포함 · 직접 제공" },
+      { label: "1건당 단가", value: `${won(UNIT_MIN)}~`, note: `월 단위는 월 ${won(MONTHLY_MIN)}부터 · 부가세 별도` },
+      { label: "결과 보고", value: "게시 URL 전체", note: "노출 위치 확인 포함" },
     ],
     features: [
       "업종·지역·목표 키워드 기준 카페 배정",
@@ -138,6 +139,8 @@ const SERVICES = [
       "카페별 게시 형식에 맞춘 편집 처리",
       "게시 완료 후 전체 URL 정리 보고",
       "수량 분할 진행 협의 가능",
+      "지역 + 업종 키워드 월 단위 진행 (노출이 확인되지 않은 날은 하루씩 연장)",
+      "회원이 많고 매일 새 글이 올라오는 대표 카페 배정",
     ],
     rec: "블로그 노출은 되는데 검색 유입이 더 필요한 매장",
     result: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,

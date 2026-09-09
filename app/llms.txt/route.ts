@@ -1,6 +1,6 @@
 import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
-import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, PRICE_MAX, CAFE_TIER_MIN, won } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, PRICE_MAX, CAFE_TIER_MIN, MONTHLY_MIN, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
 import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
 import { TRACK_TOTALS } from "../lib/track-record";
@@ -68,7 +68,7 @@ export async function GET() {
 
   // 서비스 목록 — 번호를 손으로 매기지 않는다. 감춘 상품을 빼면 번호가 저절로 당겨진다.
   const services = [
-    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 10건 · 30건 패키지(최블형 · 혼합형 · 카페형) ${won(PRICE_MIN)}~${won(PRICE_MAX)}, 원고 작성 포함과 직접 제공 두 가격, 부가세 별도. 카페 단건은 등급별 ${won(CAFE_TIER_MIN)}부터. 발행 뒤 키워드별 노출 위치 확인과 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
+    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 10건 · 30건 패키지(최블형 · 혼합형 · 카페형) ${won(PRICE_MIN)}~${won(PRICE_MAX)}, 원고 작성 포함과 직접 제공 두 가격, 부가세 별도. 카페 단건은 등급별 ${won(CAFE_TIER_MIN)}부터이고, 최상위 등급인 대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페(결혼 준비 · 지역 맘카페 · 쇼핑 정보 · 취미 · 문화)로 여러 건을 진행할 때 대표 카페부터 올린다. 지역 + 업종 키워드를 한 달 단위로 이어서 관리하는 월 단위 진행은 월 ${won(MONTHLY_MIN)}부터이며 금액은 지역과 키워드 경쟁 정도에 따라 달라질 수 있어 진행 전 상담이 필수이고, 노출이 확인되지 않은 날은 진행 기간을 하루씩 자동으로 연장한다. 발행 뒤 키워드별 노출 위치 확인과 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
     ...(SNS_STORE_ENABLED
       ? [
           `**SNS 부스트 스토어 (셀프 주문)** — 인스타그램·유튜브·스레드·틱톡·페이스북·엑스·네이버·카카오 8개 플랫폼의 팔로워·좋아요·조회수·트래픽을 회원가입 없이 건당 주문. 계정 비밀번호 불필요, 주문번호로 진행 상황 실시간 조회. 하랑마케팅 직영. (${B}/sns)`,
@@ -245,7 +245,7 @@ ${faq}
 - [홈](${B}/): 하랑마케팅 소개, 업종별 성과, 서비스 전체 요약
 - [회사 소개](${B}/about): 대표 이력, 회사 연혁, CI
 - [서비스 전체](${B}/services): 서비스 상세와 패키지 구성
-- [최적화 블로그 · 카페 배포](${B}/services/cafe-distribution): 최적화 블로그 · 카페 배포 상품 구성·가격·프로세스
+- [최적화 블로그 · 카페 배포](${B}/services/cafe-distribution): 최적화 블로그 · 카페 배포 상품 구성·가격·프로세스 · 카페 등급별 단가와 대표 카페 · 지역 + 업종 키워드 월 단위 진행
 - [카페 배포 레퍼런스](${B}/services/cafe-distribution/reference): ${REF_CATEGORIES.length}개 업종 실사 노출 캡처
 - [스마트스토어 상세페이지 제작](${B}/services/detail-page): 4등급 단가·제작 순서·수정 규정
 - [상세페이지 레퍼런스](${B}/services/detail-page/reference): ${DP_REF_CATEGORIES.length}개 종류 ${DP_REF_TOTAL}건의 상세페이지 실물을 처음부터 끝까지 공개
