@@ -5,6 +5,7 @@ import type { PlatformId } from "../lib/sns-store";
 
 import { SITE } from "../lib/seo";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
+import { PRICE_MIN, won } from "../lib/cafe-distribution";
 
 export default function Footer() {
   return (
@@ -24,7 +25,7 @@ export default function Footer() {
               최적화 블로그 · 카페 배포
             </p>
             <p className="text-[13px] text-blue-100 md:text-[14px]">
-              블로그 탭 + 카페 탭 동시 노출 · 1건당 28,600원부터
+              블로그 탭 + 카페 탭 동시 노출 · 패키지 {won(PRICE_MIN)}부터
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-black transition-transform group-hover:translate-x-0.5 md:text-[14px]"

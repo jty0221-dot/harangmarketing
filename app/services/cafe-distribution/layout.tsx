@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "../../lib/seo";
+import { PRICE_MIN, CAFE_TIER_MIN, REF_TOTAL, PRICE_REVISED_AT, won } from "../../lib/cafe-distribution";
 
 const PATH = "/services/cafe-distribution";
 const URL = `${SITE.base}${PATH}`;
@@ -8,19 +9,21 @@ export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
   title: "최적화 블로그 · 카페 배포 | 네이버 카페 상위노출 배포 대행",
   description:
-    "네이버 최적화 블로그 배포에 카페 배포를 함께 진행합니다. 블로그 탭과 카페 탭 동시 노출로 검색 유입 경로를 넓히세요. 최블 10·20·30건 기준 카페 배포 5·10·20건 추가 제공, 1건당 28,600원부터. 업종별 실사 레퍼런스 165건 공개.",
+    `네이버 최적화 블로그 배포와 카페 배포를 함께 진행합니다. 블로그 탭과 카페 탭 동시 노출로 검색 유입 경로를 넓히세요. 10건 · 30건 패키지 ${won(PRICE_MIN)}부터, 카페 단건 ${won(CAFE_TIER_MIN)}부터. 업종별 실사 레퍼런스 ${REF_TOTAL}건 공개. ${PRICE_REVISED_AT} 개정 단가 기준.`,
   keywords: [
     "카페 배포", "네이버 카페 배포", "카페 상위노출", "카페 마케팅 대행",
     "블로그 배포", "최적화 블로그 배포", "최블 배포", "블로그 카페 동시노출",
     "네이버 카페 홍보", "카페 글 배포", "바이럴 배포 대행", "키워드 상위노출",
     "블로그 배포 가격", "카페 배포 단가", "하랑마케팅 카페 배포",
+    "지역 업종 키워드 월 단위 진행", "블로그 카페 월 단위 관리",
+    "맘카페 배포", "대표 카페 배포", "카페 월 보장",
   ],
   alternates: { canonical: URL },
   openGraph: {
     type: "website",
     title: "최적화 블로그 · 카페 배포 | 하랑마케팅",
     description:
-      "블로그 탭 + 카페 탭 동시 노출. 최블 진행 시 카페 배포 최대 20건 추가 제공. 1건당 28,600원부터, 업종별 실사 레퍼런스 165건.",
+      `블로그 탭 + 카페 탭 동시 노출. 10건 · 30건 패키지 ${won(PRICE_MIN)}부터, 카페 단건 ${won(CAFE_TIER_MIN)}부터. 업종별 실사 레퍼런스 ${REF_TOTAL}건. ${PRICE_REVISED_AT} 개정 단가.`,
     url: URL,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 카페 배포" }],
   },

@@ -1,11 +1,11 @@
 import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
-import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, PRICE_MAX, CAFE_TIER_MIN, MONTHLY_MIN, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "../lib/detail-page-reference";
 import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
+import { TRACK_TOTALS } from "../lib/track-record";
 import {
-  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_HELD, PLACE_RANK_NOTE, PLACE_RANK_RISEN,
-  PLACE_RANK_TOTALS, fmtMoveDays,
+  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, fmtMoveDays,
 } from "../lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
@@ -68,7 +68,7 @@ export async function GET() {
 
   // 서비스 목록 — 번호를 손으로 매기지 않는다. 감춘 상품을 빼면 번호가 저절로 당겨진다.
   const services = [
-    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 최블 10건에 카페 5건, 20건에 10건, 30건에 20건 추가 제공. 원고 포함 총 50건 1,715,000원(1건당 34,300원), 원고 미포함 총 50건 1,430,000원(1건당 28,600원), 부가세 별도. 진행 후 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
+    `**최적화 블로그 · 카페 배포** — 최적화 블로그 배포에 네이버 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출. 10건 · 30건 패키지(최블형 · 혼합형 · 카페형) ${won(PRICE_MIN)}~${won(PRICE_MAX)}, 원고 작성 포함과 직접 제공 두 가격, 부가세 별도. 카페 단건은 등급별 ${won(CAFE_TIER_MIN)}부터이고, 최상위 등급인 대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페(결혼 준비 · 지역 맘카페 · 쇼핑 정보 · 취미 · 문화)로 여러 건을 진행할 때 대표 카페부터 올린다. 지역 + 업종 키워드를 한 달 단위로 이어서 관리하는 월 단위 진행은 월 ${won(MONTHLY_MIN)}부터이며 금액은 지역과 키워드 경쟁 정도에 따라 달라질 수 있어 진행 전 상담이 필수이고, 노출이 확인되지 않은 날은 진행 기간을 하루씩 자동으로 연장한다. 카페 마케팅에서 월 보장이라고 부르는 방식이 이것이며, 보장하는 것은 순위가 아니라 기간이다. 몇 위까지 올린다는 약속은 하지 않는다. 발행 뒤 키워드별 노출 위치 확인과 게시 URL 전체 전달. ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 실사 레퍼런스 공개. (${B}/services/cafe-distribution)`,
     ...(SNS_STORE_ENABLED
       ? [
           `**SNS 부스트 스토어 (셀프 주문)** — 인스타그램·유튜브·스레드·틱톡·페이스북·엑스·네이버·카카오 8개 플랫폼의 팔로워·좋아요·조회수·트래픽을 회원가입 없이 건당 주문. 계정 비밀번호 불필요, 주문번호로 진행 상황 실시간 조회. 하랑마케팅 직영. (${B}/sns)`,
@@ -123,10 +123,10 @@ ${ANSWER_SENTENCES.price}
 | 항목 | 단위 | 단가 |
 | --- | --- | --- |
 | 플레이스 SEO 최적화 | 1회 세팅 | 10~15만원 |
-| 대표키워드 상위노출 관리 | 키워드 1개·월 | 3만원 |
+| 대표키워드 상위노출 관리 | 키워드 1개·월 | 키워드 확인 후 안내 |
 | 블로그 관리대행 | 1편 | 4만원 (기준 · 업종별 조정) |
-| 최적화 블로그 배포 | 1건 | 3만원 |
-| 카페 배포 | 1건 | 3만원 |
+| 최적화 블로그 배포 | 1건 | ${won(BLOG_UNIT_WITH_COPY)} (원고 포함) · ${won(BLOG_UNIT_WITHOUT_COPY)} (원고 직접 제공) |
+| 카페 배포 | 1건 | ${won(CAFE_TIER_MIN)}부터 (카페 등급별) |
 | 파워컨텐츠 원고 설계·검수 대응 | 1편 | 5만원 |
 | 홈페이지형 블로그 디자인 STANDARD | 1회 | 20만원 |
 | 네이버 광고 세팅·운영대행 | 월 | 15만원 |
@@ -193,13 +193,13 @@ ${TOP_BY_INDUSTRY}
 - 1페이지에 진입한 기록 가운데 가장 큰 상승폭 — ${BIGGEST_GAIN.keyword} ${fmt(BIGGEST_GAIN)} (${BIGGEST_GAIN.days}일 계측)
 
 계측 현황 (${PLACE_RANK_AS_OF} 기준)
-- 네이버 플레이스 1페이지(1~5위) 안에 있는 키워드 기록 ${PLACE_RANK_TOTALS.works}건 · 업종 ${PLACE_RANK_TOTALS.industries}종
-- 그중 올라온 것 ${PLACE_RANK_RISEN}건 · 자리를 지키고 있는 것 ${PLACE_RANK_HELD}건
+- 네이버 플레이스 순위는 매일 같은 시각에 저장한다. 내려간 키워드는 그날 찾아 손보고, 손본 다음 날부터 다시 잰다.
+- 맡아 온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종 · 맡아서 한 일 ${TRACK_TOTALS.workKinds}종
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
 ### 매장별 순위 계측 사례 (${PLACE_RANK_AS_OF} 기준)
 
-1~5위 안에 있는 키워드 기록 ${PLACE_RANK_TOTALS.works}건 · 업종 ${PLACE_RANK_TOTALS.industries}종 · 올라온 것 ${PLACE_RANK_RISEN}건 · 자리를 지키고 있는 것 ${PLACE_RANK_HELD}건
+아래는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아니다. 여기 실린 건수를 회사가 맡은 매장 수로 읽지 않는다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종이다.
 
 ${placeRankCases}
 
@@ -245,7 +245,7 @@ ${faq}
 - [홈](${B}/): 하랑마케팅 소개, 업종별 성과, 서비스 전체 요약
 - [회사 소개](${B}/about): 대표 이력, 회사 연혁, CI
 - [서비스 전체](${B}/services): 서비스 상세와 패키지 구성
-- [최적화 블로그 · 카페 배포](${B}/services/cafe-distribution): 최적화 블로그 · 카페 배포 상품 구성·가격·프로세스
+- [최적화 블로그 · 카페 배포](${B}/services/cafe-distribution): 최적화 블로그 · 카페 배포 상품 구성·가격·프로세스 · 카페 등급별 단가와 대표 카페 · 지역 + 업종 키워드 월 단위 진행
 - [카페 배포 레퍼런스](${B}/services/cafe-distribution/reference): ${REF_CATEGORIES.length}개 업종 실사 노출 캡처
 - [스마트스토어 상세페이지 제작](${B}/services/detail-page): 4등급 단가·제작 순서·수정 규정
 - [상세페이지 레퍼런스](${B}/services/detail-page/reference): ${DP_REF_CATEGORIES.length}개 종류 ${DP_REF_TOTAL}건의 상세페이지 실물을 처음부터 끝까지 공개

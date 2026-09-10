@@ -103,7 +103,7 @@ function tickerLine(keyword: string) {
 }
 import PlaceRankCasesSection from "./components/PlaceRankCases";
 import {
-  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_HELD, PLACE_RANK_RISEN, PLACE_RANK_TOTALS,
+  byVolume, PLACE_RANK_AS_OF,
 } from "./lib/place-rank-cases";
 
 /* ─── AEO/GEO 구조화 데이터 (홈) ───────────────────
@@ -299,7 +299,7 @@ const TICKER = [
   ...tickerLine("지역 정기청소 키워드"),
   "10년+ 경력 · 업종별 맞춤 전략",
   "24시간 내 연락",
-  `플레이스 1~5위 기록 ${PLACE_RANK_TOTALS.works}개 키워드 · ${PLACE_RANK_AS_OF} 기준`,
+  `맡아온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종`,
   "네이버 플레이스 스냅샷 매일 저장",
   "성과 확약 없음 · 계측값만 보고",
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
@@ -369,12 +369,13 @@ export default function HomePage() {
         {/* ══ 매장별 순위 계측 발췌 ══ */}
         {/* 숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
             카드 하나가 키워드 하나이고, 전체 목록은 /cases/place-rank 에 있다.
-            많이 찾는 키워드부터 전부 싣는다 (2026-09-05 (토) 대표 지시). */}
+            많이 찾는 키워드부터 전부 싣는다 (2026-09-05 (토) 대표 지시).
+            몇 장을 실었는지 세는 문장은 넣지 않는다 (2026-09-07 (월) 대표 지시). */}
         <PlaceRankCasesSection
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드별 순위, 잰 그대로 적었습니다"
-          description={`${PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 실었습니다. 올라간 것이 ${PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 ${PLACE_RANK_HELD}건입니다. 많이 찾는 키워드부터 놓았습니다.`}
+          description={`매일 같은 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />

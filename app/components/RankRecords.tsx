@@ -3,7 +3,7 @@ import {
   byIndustry, SNAPSHOT_DATE, MEASURE_NOTE,
   type RankRecord,
 } from "../lib/rank-records";
-import { PLACE_RANK_HELD, PLACE_RANK_RISEN, PLACE_RANK_TOTALS } from "../lib/place-rank-cases";
+import { TRACK_TOTALS } from "../lib/track-record";
 
 /**
  * 업종별 순위 계측 기록 블록.
@@ -83,10 +83,10 @@ export default function RankRecords({
           <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 md:p-6">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5">
               {[
-                { label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
-                { label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건` },
-                { label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건` },
-                { label: "계측 업종", value: `${PLACE_RANK_TOTALS.industries}종` },
+                { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳` },
+                { label: "업종", value: `${TRACK_TOTALS.trades}종` },
+                { label: "맡아서 한 일", value: `${TRACK_TOTALS.workKinds}종` },
+                { label: "순위 계측", value: "하루 한 번" },
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <p className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--w-primary)" }}>{s.value}</p>

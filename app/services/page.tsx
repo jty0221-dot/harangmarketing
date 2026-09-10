@@ -10,7 +10,7 @@ import {
   ScrollText,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
-import { REF_TOTAL, REF_CATEGORIES } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import AnswerBlock from "../components/AnswerBlock";
@@ -52,13 +52,14 @@ const INDUSTRY_RECS = ([
 
 export const metadata: Metadata = {
   title: "마케팅 서비스 | 플레이스 SEO · 블로그 · 체험단 · SNS",
-  description: "네이버 플레이스 SEO, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 업종별 최적 패키지와 실제 성과를 확인하세요.",
+  description: "네이버 플레이스 SEO, 최적화 블로그·카페 배포, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 카페 배포는 건당 패키지와 월 단위 진행 중에 고릅니다.",
   keywords: [
     "마케팅 서비스", "네이버 플레이스 SEO", "플레이스 상위노출",
     "블로그 마케팅", "블로그 상위노출", "키워드 SEO",
     "체험단 모집", "체험단 대행", "리뷰 마케팅",
     "인스타그램 마케팅", "릴스 마케팅", "SNS 마케팅",
     "맘카페 바이럴", "맘카페 마케팅",
+    "카페 배포", "대표 카페 배포", "카페 배포 월 단위",
     "카카오맵 마케팅", "카카오맵 상위노출",
     "소상공인 마케팅", "자영업자 마케팅", "소상공인 광고",
     "카페 마케팅", "음식점 마케팅", "미용실 마케팅",
@@ -125,12 +126,12 @@ const SERVICES = [
     tag: "배포",
     title: "최적화 블로그 · 카페 배포",
     subtitle: "블로그 탭 + 카페 탭 동시 노출",
-    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다.",
+    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다. 건수로 끊는 패키지와 지역 + 업종 키워드를 달마다 이어서 관리하는 월 단위 진행 중에 고르실 수 있습니다.",
     timeline: "게시 시작 3~7일 · 수량별 순차 진행",
     deliverables: [
-      { label: "카페 배포", value: "최대 20건 추가", note: "최블 30건 진행 시" },
-      { label: "1건당 단가", value: "28,600원~", note: "부가세 별도" },
-      { label: "결과 보고", value: "게시 URL 전체", note: "링크 정리 전달" },
+      { label: "패키지", value: "10건 · 30건 · 월 단위", note: "원고 포함 · 직접 제공" },
+      { label: "1건당 단가", value: `${won(UNIT_MIN)}~`, note: `월 단위는 월 ${won(MONTHLY_MIN)}부터 · 부가세 별도` },
+      { label: "결과 보고", value: "게시 URL 전체", note: "노출 위치 확인 포함" },
     ],
     features: [
       "업종·지역·목표 키워드 기준 카페 배정",
@@ -138,6 +139,8 @@ const SERVICES = [
       "카페별 게시 형식에 맞춘 편집 처리",
       "게시 완료 후 전체 URL 정리 보고",
       "수량 분할 진행 협의 가능",
+      "지역 + 업종 키워드 월 단위 진행 (노출이 확인되지 않은 날은 하루씩 연장)",
+      "회원이 많고 매일 새 글이 올라오는 대표 카페 배정",
     ],
     rec: "블로그 노출은 되는데 검색 유입이 더 필요한 매장",
     result: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,
@@ -416,19 +419,23 @@ const INDUSTRY_LINKS = [
    가격 산출 근거 — 아래 숫자는 전부 실제로 나간 견적서에서 가져온다.
    단가를 바꾸면 CALC_EXAMPLES 의 합계도 같이 맞춘다. 월 금액 구간은 만들지 않는다 — HOW_WE_COMPOSE 참조.
    원본: E:/하랑/{미미샵|영삼이네우정소갈비|이지클린}/build_quote_hwp.py
+   배포 두 줄과 두 번째 예시는 lib/cafe-distribution.ts 에서 파생한다 (2026-09-07 (월) 매입 단가 기준 갱신).
    ──────────────────────────────────────────────────────────── */
 
 const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[] = [
   { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
-  { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "3만원" },
+  { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "키워드 확인 후 안내" },
   { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
-  { item: "최적화 블로그 배포", unit: "1건", price: "3만원" },
-  { item: "카페 배포", unit: "1건", price: "3만원" },
+  { item: "최적화 블로그 배포", unit: "1건", price: won(BLOG_UNIT_WITH_COPY), note: `원고 작성 포함 10건 패키지 기준. 원고를 직접 주시면 ${won(BLOG_UNIT_WITHOUT_COPY)}.` },
+  { item: "카페 배포", unit: "1건", price: `${won(CAFE_TIER_MIN)}~`, note: `카페 등급별 ${CAFE_TIERS.map((t) => t.price.toLocaleString("ko-KR")).join(" · ")}원. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)} 추가.` },
   { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
   { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "20만원" },
   { item: "네이버 광고 세팅·운영대행", unit: "월", price: "15만원" },
   { item: "키워드 설계 · 리뷰 동선 · 순위 모니터링", unit: "월", price: "계약 시 포함" },
 ];
+
+/** 두 번째 산출 예시의 기준 구성 — 10건 혼합형 (최블 5건 + 카페 5건) */
+const MIX10 = PACKAGES.find((p) => p.size === 10 && p.kind === "혼합형") ?? PACKAGES[0];
 
 const CALC_EXAMPLES: {
   title: string;
@@ -442,22 +449,21 @@ const CALC_EXAMPLES: {
     sub: "대표키워드가 이미 3위라 순위를 밀어올리기만 하면 됐던 고깃집",
     lines: [
       { label: "플레이스 SEO 최적화", calc: "15만원 × 1회", amount: "150,000" },
-      { label: "대표키워드 상위노출 관리", calc: "3만원 × 5개", amount: "150,000" },
+      { label: "대표키워드 상위노출 관리", calc: "키워드 확인 후 안내", amount: "0" },
       { label: "리뷰 동선 · 소식/쿠폰 · 순위 모니터링", calc: "계약 포함", amount: "0" },
     ],
-    total: "300,000",
-    note: "부가세 포함 330,000원",
+    total: "150,000",
+    note: "부가세 포함 165,000원. 대표키워드 관리는 키워드를 확인한 뒤 금액을 안내드려 합계에 넣지 않았습니다.",
   },
   {
     title: "글을 퍼뜨리기만 하면 되는 경우",
-    sub: "플레이스를 쓸 수 없어 검색 유입만 만들면 됐던 해외 매장",
+    sub: `플레이스를 쓸 수 없어 검색 유입만 만들면 되는 해외 매장 · ${MIX10.size}건 혼합형 구성 예시`,
     lines: [
-      { label: "최적화 블로그 배포", calc: "3만원 × 3건", amount: "90,000" },
-      { label: "카페 배포", calc: "3만원 × 7건", amount: "210,000" },
+      { label: "최적화 블로그 · 카페 배포 패키지", calc: `${packageLabel(MIX10)} · 원고 작성 포함`, amount: MIX10.withCopy.toLocaleString("ko-KR") },
       { label: "키워드 설계 · 촬영 가이드", calc: "계약 포함", amount: "0" },
     ],
-    total: "300,000",
-    note: "부가세 포함 330,000원",
+    total: MIX10.withCopy.toLocaleString("ko-KR"),
+    note: `부가세 포함 ${Math.round(MIX10.withCopy * 1.1).toLocaleString("ko-KR")}원`,
   },
   {
     title: "바닥부터 만들어야 하는 경우",
@@ -546,10 +552,10 @@ const SERVICES_LD = {
       "item": {
         "@type": "Service",
         "name": "최적화 블로그 · 카페 배포",
-        "description": "최적화 블로그 배포와 네이버 카페 배포를 함께 진행해 블로그 탭·카페 탭에 동시 노출. 1건당 28,600원부터(부가세 별도), 게시 URL 전체 보고.",
+        "description": `최적화 블로그 배포와 네이버 카페 배포를 함께 진행해 블로그 탭·카페 탭에 동시 노출. 10건 · 30건 패키지 ${won(PRICE_MIN)}부터(부가세 별도), 발행 뒤 노출 확인과 게시 URL 전체 보고.`,
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceCurrency": "KRW", "price": 483000 },
+        "offers": { "@type": "Offer", "priceCurrency": "KRW", "price": PRICE_MIN },
         "url": "https://www.harangmarketing.com/services/cafe-distribution",
       },
     },

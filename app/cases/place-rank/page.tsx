@@ -12,11 +12,10 @@ import {
   PLACE_RANK_CASES,
   PLACE_RANK_AS_OF,
   PLACE_RANK_GENERATED,
-  PLACE_RANK_HELD,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
-  PLACE_RANK_RISEN,
-  PLACE_RANK_TOTALS,
+  PLACE_RANK_BIGGEST_GAIN,
+  fmtArrow,
   fmtMoveDays,
 } from "../../lib/place-rank-cases";
 
@@ -113,18 +112,17 @@ export default function PlaceRankCasesPage() {
 
         <AnswerBlock
           question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
-          answer={`${PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 공개합니다. 올라간 것이 ${PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 ${PLACE_RANK_HELD}건입니다. ${PLACE_RANK_CASES.slice(0, 4)
+          answer={`매일 같은 시각에 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_AS_OF} 계측분에서는 ${PLACE_RANK_CASES.slice(0, 4)
             .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
             .join(", ")}. ${PLACE_RANK_NOTE}`}
           facts={[
-            { label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
-            { label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건` },
-            { label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건` },
-            { label: "업종", value: `${PLACE_RANK_TOTALS.industries}종` },
+            { label: "순위 계측", value: "하루 한 번" },
+            { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
+            { label: "기준일", value: PLACE_RANK_AS_OF },
           ]}
         />
 
-        {/* 재고 있는 전체 규모 — 카드는 올라간 건만 보여주므로 여기서 전체를 밝힌다 */}
+        {/* 올린 뒤에도 매일 재고 있다는 것 — 세는 값 없이 재는 방식만 보여준다 (2026-09-07 (월) 대표 지시) */}
         <PlaceRankMonitoring background="bg-white" />
 
         <section className="py-12 md:py-16 bg-gray-50">

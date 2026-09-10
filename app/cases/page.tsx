@@ -15,14 +15,11 @@ import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import {
   PLACE_RANK_AS_OF,
   PLACE_RANK_BIGGEST_GAIN,
-  PLACE_RANK_HELD,
   PLACE_RANK_CASES,
   PLACE_RANK_INDUSTRIES,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
-  PLACE_RANK_RISEN,
   PLACE_RANK_TOP_LINES,
-  PLACE_RANK_TOTALS,
   bestCase,
   fmtArrow,
   fmtMoveDays,
@@ -127,7 +124,7 @@ const CasesPage: FC = () => {
                 { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 누적", color: "text-blue-600" },
                 { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "진행 고객 기준", color: "text-blue-600" },
                 { to: 6, suffix: "개+", decimals: 0, label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
-                { to: PLACE_RANK_TOTALS.works, suffix: "건", decimals: 0, label: "순위 계측 사례", sub: `${PLACE_RANK_AS_OF} 기준 상승·유지 확인분`, color: "text-blue-700" },
+                { to: TRACK_TOTALS.stores, suffix: "곳", decimals: 0, label: "맡아온 매장", sub: "계약 서류로 확인한 것만", color: "text-blue-700" },
               ].map((s) => (
                 <div key={s.label} className="text-center py-2">
                   <div className={`text-2xl md:text-3xl font-black ${s.color} mb-0.5`}>
@@ -144,12 +141,12 @@ const CasesPage: FC = () => {
         {/* AEO — 성과 질의 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer={`하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. ${PLACE_RANK_AS_OF} 기준으로 네이버 플레이스 1페이지(1~5위) 안에 있는 키워드만 키워드마다 한 장씩 실었고, 올라간 것이 ${PLACE_RANK_RISEN}건 자리를 지키고 있는 것이 ${PLACE_RANK_HELD}건입니다. 순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
+          answer={`하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. 순위는 매일 같은 시각에 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 여기 실린 카드는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아닙니다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳, 업종은 ${TRACK_TOTALS.trades}종입니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
           facts={[
             { label: "완료 프로젝트", value: "500건+" },
             { label: "재계약률", value: SITE.stats.renewalRate },
             { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
-            { label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
+            { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종` },
           ]}
         />
 
@@ -163,8 +160,8 @@ const CasesPage: FC = () => {
               </p>
               <h2 className="text-xl md:text-2xl font-black text-gray-900">키워드마다 한 장씩 실은 계측 기록</h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-                {PLACE_RANK_AS_OF} 기준으로 1~5위 안에 있는 키워드만 키워드마다 한 장씩 실었습니다.
-                올라간 것이 {PLACE_RANK_RISEN}건, 자리를 지키고 있는 것이 {PLACE_RANK_HELD}건입니다.
+                {PLACE_RANK_AS_OF} 계측분에서 1~5위 안에 있던 키워드를 한 장에 하나씩 옮겼습니다.
+                카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 카드도 셋으로 남습니다.
               </p>
               <Link
                 href="/cases/place-rank"

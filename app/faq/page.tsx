@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
 import { SITE, ANSWER_SENTENCES, faqLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIER_MIN, won } from "../lib/cafe-distribution";
 import Link from "next/link";
 import {
   ArrowRight, MessageCircle, Phone, CheckCircle2,
@@ -39,7 +40,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "한 달에 얼마나 드나요?",
-        a: "미리 정해둔 월 금액은 없습니다. 항목별 단가를 정해두고 매장에 꼭 필요한 항목만 골라 더합니다. 플레이스 SEO 최적화 10~15만원(1회), 대표키워드 관리 3만원(키워드·월), 블로그 관리대행 4만원(편), 블로그·카페 배포 3만원(건), 파워컨텐츠 5만원(편)이 기준 단가입니다. 기준 단가는 고정가가 아닙니다. 특히 블로그 원고는 업종에 따라 손이 크게 달라져서, 물량이 많거나 원고가 단순한 업종은 4만원보다 내려가고 병의원처럼 의료광고 심의와 전문 용어 확인이 붙는 업종은 올라갑니다. 같은 업종이어도 출발점·현재 순위·상권 경쟁도에 따라 붙는 항목과 물량이 달라져 월 금액도 같이 달라집니다. 모두 부가세 별도이고 광고 집행비는 실비로 따로 나갑니다.",
+        a: `미리 정해둔 월 금액은 없습니다. 항목별 단가를 정해두고 매장에 꼭 필요한 항목만 골라 더합니다. 플레이스 SEO 최적화 10~15만원(1회), 대표키워드 관리는 키워드를 확인한 뒤 안내드리고, 블로그 관리대행 4만원(편), 최적화 블로그 배포 ${won(BLOG_UNIT_WITH_COPY)}(건 · 원고 포함) · ${won(BLOG_UNIT_WITHOUT_COPY)}(건 · 원고 직접 제공), 카페 배포 ${won(CAFE_TIER_MIN)}부터(건), 파워컨텐츠 5만원(편)이 기준 단가입니다. 기준 단가는 고정가가 아닙니다. 특히 블로그 원고는 업종에 따라 손이 크게 달라져서, 물량이 많거나 원고가 단순한 업종은 4만원보다 내려가고 병의원처럼 의료광고 심의와 전문 용어 확인이 붙는 업종은 올라갑니다. 같은 업종이어도 출발점·현재 순위·상권 경쟁도에 따라 붙는 항목과 물량이 달라져 월 금액도 같이 달라집니다. 모두 부가세 별도이고 광고 집행비는 실비로 따로 나갑니다.`,
       },
       {
         q: "블로그 포스팅 단가는 업종마다 다른가요?",

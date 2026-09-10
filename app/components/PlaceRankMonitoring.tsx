@@ -1,32 +1,23 @@
-import { ArrowUpRight, Layers, LineChart, ShieldCheck } from "lucide-react";
-import {
-  PLACE_RANK_AS_OF,
-  PLACE_RANK_HELD,
-  PLACE_RANK_NOTE,
-  PLACE_RANK_RISEN,
-  PLACE_RANK_TOTALS,
-} from "../lib/place-rank-cases";
+import { PLACE_RANK_AS_OF, PLACE_RANK_NOTE } from "../lib/place-rank-cases";
 
 /**
- * 노출 현황 · 관리 방식 — 계측하고 있는 전체 규모를 한 자리에서 보여준다.
+ * 노출 현황 · 관리 방식 — 순위를 어떻게 재고 어떻게 손보는지를 한 자리에서 보여준다.
  *
  * 왜 있나 (2026-09-04 (금) 대표 지시)
  *   「실시간으로 계속 관리 어떻게 하고 있고 노출 되는지도 체크해서 올려놔」
- *   사례 카드는 올라간 건만 보여주므로, 재고 있는 전체가 몇인지가 안 보였다.
+ *
+ * 숫자 타일을 걷었다 (2026-09-07 (월) 대표 지시)
+ *   「이런 멘트 자체를 넣지마 고객이 보았을 때 이것밖에 안하는 매장처럼 보이잖아」
+ *   여기 있던 타일 넉 장(1~5위 기록 · 올라온 키워드 · 자리를 지킨 키워드 · 업종)은 화면에 실은
+ *   카드를 센 값이었다. 발췌한 장수를 옆에 적어 두면 보는 사람이 그것을 회사가 맡은 전부로
+ *   읽는다. 그래서 세는 값은 빼고 재는 방식만 남긴다. 회사 규모를 말해야 하는 자리에는
+ *   app/lib/track-record.ts 의 값을 쓴다.
  *
  * 지키는 것
- *   숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다. 여기서 만들지 않는다.
  *   `실시간` 이라고 쓰지 않는다 — 실제로는 하루 한 번 저장한다 (C-42 · 틀린 값이 빈 값보다 나쁘다).
  *   깜빡이는 표시 · 가짜 실시간 알림을 쓰지 않는다 (WDS · 재촉형 UI 금지).
  *   앞으로 몇 위가 된다는 말을 적지 않는다 (C-36 · D-0177).
  */
-
-const STATS = [
-  { icon: LineChart, label: "1~5위 기록", value: `${PLACE_RANK_TOTALS.works}건` },
-  { icon: ArrowUpRight, label: "올라온 키워드", value: `${PLACE_RANK_RISEN}건` },
-  { icon: ShieldCheck, label: "자리를 지킨 키워드", value: `${PLACE_RANK_HELD}건` },
-  { icon: Layers, label: "업종", value: `${PLACE_RANK_TOTALS.industries}종` },
-];
 
 const STEPS = [
   {
@@ -61,31 +52,11 @@ export default function PlaceRankMonitoring({
           올린 뒤에도 매일 재고 있습니다
         </h2>
         <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-          플레이스 순위는 올린 날이 끝이 아니라 시작입니다. 올라온 것과 자리를 지키고 있는 것을
-          계측한 그대로 나눠 적었습니다.
+          플레이스 순위는 올린 날이 끝이 아니라 시작입니다. 매일 같은 시각에 재서 남기고, 내려간
+          키워드는 그날 찾아 손보고, 손본 다음 날부터 다시 잽니다.
         </p>
 
-        <div className="mt-6 md:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-          {STATS.map((s) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={s.label}
-                className="bg-white border border-gray-200 rounded-2xl p-4 md:p-5 shadow-sm min-w-0"
-              >
-                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-gray-900">
-                  <Icon size={16} className="text-white" strokeWidth={2.5} />
-                </span>
-                <p className="mt-3 text-2xl md:text-3xl font-black text-gray-900 tabular-nums">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-xs md:text-[13px] text-gray-500 leading-snug">{s.label}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-4 md:mt-6 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {STEPS.map((s, i) => (
             <div
               key={s.title}
@@ -104,7 +75,7 @@ export default function PlaceRankMonitoring({
         </div>
 
         <p className="mt-5 text-xs text-gray-500 leading-relaxed max-w-3xl">
-          위 숫자는 마지막으로 저장한 {PLACE_RANK_AS_OF} 계측값입니다. {PLACE_RANK_NOTE}
+          마지막으로 저장한 계측값은 {PLACE_RANK_AS_OF} 기준입니다. {PLACE_RANK_NOTE}
         </p>
       </div>
     </section>

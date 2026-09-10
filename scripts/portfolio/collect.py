@@ -63,6 +63,14 @@ HEADERS = {
 DELAY = 0.5  # 네이버에 부담 주지 않도록 요청 간 간격
 
 
+# 발췌를 손으로 고정하는 글 (logNo → 발췌문).
+# 2026-09-07 (월) 대표 지시 「블로그를 발췌에서는 2026년 현재까지 진행중이라 바꿔」.
+# 블로그 본문은 2025년으로 남아 있어 수집기가 매번 덮어쓰므로 여기서 잡는다.
+EXCERPT_OVERRIDES = {
+    "223951720717": "기간 : 2025년 5월 말 ~ 2026년 현재까지 진행 중",
+}
+
+
 def get(url, headers=None, timeout=30):
     req = urllib.request.Request(url, headers={**HEADERS, **(headers or {})})
     return urllib.request.urlopen(req, timeout=timeout).read()
@@ -219,7 +227,7 @@ def main():
                     "date": p["date"],
                     "url": f"{BASE}/{BLOG_ID}/{p['logNo']}",
                     "image": image_path,
-                    "excerpt": excerpt,
+                    "excerpt": EXCERPT_OVERRIDES.get(p["logNo"], excerpt),
                 }
             )
 

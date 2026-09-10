@@ -5,117 +5,185 @@
  * 가격이나 수량을 바꿀 때는 여기만 고치면 전부 따라간다.
  *
  * 출처: design_handoff_cafe_distribution (2026-08 핸드오프)
+ * 가격 갱신: 2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS
  */
 
 /* ─────────────────────────────────────────────────────────
-   캠페인 지표 — 손대지 않아도 회차가 자동으로 굴러간다.
+   패키지 가격 (2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS)
 
-   cycleAnchor 부터 cycleDays 주기로 회차가 반복된다.
-   마감일이 지나면 다음 회차 마감일로 자동 이동하고 잔여 슬롯도 리셋된다.
-   따라서 "D-14" 가 굳어버리거나 마감 이후 카운트다운이 멈추는 일이 없다.
-
-   잔여 슬롯은 회차 진행률에 따라 slotsAtStart → slotsAtEnd 로 줄어든다.
-   실제 예약 현황을 연동한 값이 아니라 회차 배정 추이를 반영한 수치이므로,
-   실측 슬롯을 관리하게 되면 remainingSlots() 를 그 값으로 교체할 것.
-   운영을 멈출 때는 showCampaignBar 를 false 로 두면 바 전체가 사라진다.
+   구성은 사는 것과 파는 것을 같게 둔다 — 10건 · 30건 × 최블형 · 혼합형 · 카페형.
+   가격은 두 열이다 : 원고 작성을 맡기는 경우(withCopy) · 원고를 직접 주는 경우(withoutCopy).
+   이벤트가 · 회차 · 잔여 슬롯 같은 장치는 두지 않는다 — 화면에 적힌 숫자는 대표가 한 약속이 된다.
    ───────────────────────────────────────────────────────── */
-export const CAMPAIGN = {
-  /** 캠페인 지표 바 노출 여부 */
-  showCampaignBar: true,
-  /** 회차 기준일 — 이 날짜를 시작점으로 cycleDays 마다 회차가 반복된다 */
-  cycleAnchor: "2026-08-06",
-  /** 한 회차 길이(일) */
-  cycleDays: 14,
-  /** 회차 총 슬롯 */
-  totalSlots: 50,
-  /** 회차 시작 시 잔여 슬롯 */
-  slotsAtStart: 42,
-  /** 마감 임박 시 남는 잔여 슬롯 */
-  slotsAtEnd: 4,
-  /** 누적 진행 건수 (실적값 — 자동 증가시키지 않는다) */
-  cumulativeCount: 1480,
-  /** 카페 배포 주간 처리량 */
-  weeklyVolume: 1000,
-} as const;
+export type PackageSize = 10 | 30;
+export type PackageKind = "최블형" | "혼합형" | "카페형";
 
-const DAY_MS = 86_400_000;
-
-/** 기준일 자정(KST)의 epoch */
-function anchorMs(): number {
-  return new Date(`${CAMPAIGN.cycleAnchor}T00:00:00+09:00`).getTime();
-}
-
-export interface CampaignRound {
-  /** 회차 번호 (1부터) */
-  round: number;
-  /** 마감까지 남은 일수 (최소 1 — 0 이면 이미 다음 회차로 넘어간다) */
-  dday: number;
-  /** 회차 진행률 0~1 */
-  progress: number;
-}
-
-/**
- * 지금 시점의 회차 정보.
- * 마감이 지나면 자동으로 다음 회차가 되므로 별도 관리가 필요 없다.
- */
-export function currentRound(now: Date = new Date()): CampaignRound {
-  const cycleMs = CAMPAIGN.cycleDays * DAY_MS;
-  const elapsed = now.getTime() - anchorMs();
-  const index = Math.floor(elapsed / cycleMs);
-  const intoCycle = elapsed - index * cycleMs;
-  const progress = Math.min(1, Math.max(0, intoCycle / cycleMs));
-  const dday = Math.max(1, Math.ceil((cycleMs - intoCycle) / DAY_MS));
-  return { round: index + 1, dday, progress };
-}
-
-/** 회차 진행률에 따라 줄어드는 잔여 슬롯 */
-export function remainingSlots(now: Date = new Date()): number {
-  const { progress } = currentRound(now);
-  const { slotsAtStart, slotsAtEnd } = CAMPAIGN;
-  return Math.max(slotsAtEnd, Math.round(slotsAtStart - (slotsAtStart - slotsAtEnd) * progress));
-}
-
-/** 이번 회차 배정률(%) — 잔여 슬롯에서 역산 */
-export function allocationRate(now: Date = new Date()): number {
-  return Math.round(((CAMPAIGN.totalSlots - remainingSlots(now)) / CAMPAIGN.totalSlots) * 100);
-}
-
-export interface RewardPlan {
-  /** 기준 상품 수량 */
-  base: string;
-  /** 추가 제공되는 카페 배포 건수 */
-  bonus: string;
-  /** 정상가 (원, 부가세 별도) */
-  listPrice: number;
-  /** 이벤트가 (원, 부가세 별도) */
-  eventPrice: number;
-  /** 할인율 (%) — 원고 미포함 플랜은 표기하지 않음 */
-  discount?: number;
+export interface CafePackage {
   /** 총 건수 */
-  totalCount: string;
-  /** 1건당 단가 (원) */
-  unitPrice: number;
-  /** 가장 많이 선택하는 플랜 강조 */
+  size: PackageSize;
+  /** 구성 유형 */
+  kind: PackageKind;
+  /** 최적화 블로그 건수 */
+  blog: number;
+  /** 카페 건수 */
+  cafe: number;
+  /** 원고 작성 포함 가격 (원, 부가세 별도) */
+  withCopy: number;
+  /** 원고를 직접 주는 경우 가격 (원, 부가세 별도) */
+  withoutCopy: number;
+  /** 상담에서 먼저 권하는 구성 */
   featured?: boolean;
 }
 
-/** REWARD 01 — 원고 작성 포함 */
-export const REWARD_WITH_COPY: RewardPlan[] = [
-  { base: "최블 10건", bonus: "카페 배포 5건 추가",  listPrice: 643000,  eventPrice: 579000,  discount: 10, totalCount: "총 15건", unitPrice: 38600 },
-  { base: "최블 20건", bonus: "카페 배포 10건 추가", listPrice: 1287000, eventPrice: 1092000, discount: 15, totalCount: "총 30건", unitPrice: 36400 },
-  { base: "최블 30건", bonus: "카페 배포 20건 추가", listPrice: 2145000, eventPrice: 1715000, discount: 20, totalCount: "총 50건", unitPrice: 34300, featured: true },
+export const PACKAGES: CafePackage[] = [
+  { size: 10, kind: "최블형", blog: 10, cafe: 0,  withCopy: 336000,  withoutCopy: 276000 },
+  { size: 10, kind: "혼합형", blog: 5,  cafe: 5,  withCopy: 456000,  withoutCopy: 396000, featured: true },
+  { size: 10, kind: "카페형", blog: 0,  cafe: 10, withCopy: 600000,  withoutCopy: 540000 },
+  { size: 30, kind: "최블형", blog: 30, cafe: 0,  withCopy: 960000,  withoutCopy: 780000 },
+  { size: 30, kind: "혼합형", blog: 20, cafe: 10, withCopy: 1200000, withoutCopy: 1020000 },
+  { size: 30, kind: "혼합형", blog: 15, cafe: 15, withCopy: 1260000, withoutCopy: 1080000 },
+  { size: 30, kind: "혼합형", blog: 10, cafe: 20, withCopy: 1440000, withoutCopy: 1260000, featured: true },
+  { size: 30, kind: "카페형", blog: 0,  cafe: 30, withCopy: 1680000, withoutCopy: 1500000 },
 ];
 
-/** REWARD 02 — 원고 작성 미포함 (원고를 직접 제공하는 경우) */
-export const REWARD_WITHOUT_COPY: RewardPlan[] = [
-  { base: "최블 10건", bonus: "카페 배포 5건",  listPrice: 536000,  eventPrice: 483000,  totalCount: "총 15건", unitPrice: 32200 },
-  { base: "최블 20건", bonus: "카페 배포 10건", listPrice: 1072000, eventPrice: 912000,  totalCount: "총 30건", unitPrice: 30400 },
-  { base: "최블 30건", bonus: "카페 배포 20건", listPrice: 1787000, eventPrice: 1430000, totalCount: "총 50건", unitPrice: 28600 },
+export const PACKAGE_SIZES: PackageSize[] = [10, 30];
+
+/** 구성 한 줄 — "최블 5건 + 카페 5건" */
+export function packageLabel(p: CafePackage): string {
+  const parts: string[] = [];
+  if (p.blog > 0) parts.push(`최블 ${p.blog}건`);
+  if (p.cafe > 0) parts.push(`카페 ${p.cafe}건`);
+  return parts.join(" + ");
+}
+
+/** 1건당 단가 (원) */
+export function unitPrice(price: number, size: number): number {
+  return Math.round(price / size);
+}
+
+/** 원고를 직접 줄 때 내려가는 금액 — 같은 건수 안에서는 구성과 무관하게 같다 */
+export function copyDiscount(size: PackageSize): number {
+  const p = PACKAGES.find((x) => x.size === size);
+  return p ? p.withCopy - p.withoutCopy : 0;
+}
+
+/** 가장 싼 패키지 (원고 직접 제공 · 10건 최블형) */
+export const PRICE_MIN = Math.min(...PACKAGES.map((p) => p.withoutCopy));
+/** 가장 비싼 패키지 (원고 포함 · 30건 카페형) */
+export const PRICE_MAX = Math.max(...PACKAGES.map((p) => p.withCopy));
+/** 패키지 기준 가장 낮은 1건당 단가 */
+export const UNIT_MIN = Math.min(...PACKAGES.map((p) => unitPrice(p.withoutCopy, p.size)));
+
+/** 최블 10건 패키지 기준 1건당 단가 — 서비스 목록의 단가표에서 쓴다 */
+const BLOG10 = PACKAGES.find((p) => p.size === 10 && p.kind === "최블형") ?? PACKAGES[0];
+export const BLOG_UNIT_WITH_COPY = unitPrice(BLOG10.withCopy, BLOG10.size);
+export const BLOG_UNIT_WITHOUT_COPY = unitPrice(BLOG10.withoutCopy, BLOG10.size);
+
+/* 카페만 단건으로 진행할 때 — 카페 등급별 건당 단가 (원, 부가세 별도) */
+export interface CafeTier {
+  grade: string;
+  desc: string;
+  price: number;
+  /** 이 등급에 드는 카페의 주제. 카페 이름은 적지 않는다 (2026-09-09 (수) 대표 지시) */
+  topics: string[];
+}
+
+export const CAFE_TIERS: CafeTier[] = [
+  { grade: "지역 · 주제 카페", desc: "지역과 관심사로 모인 카페. 동네 상권 키워드와 맞습니다.", price: 24000, topics: ["인테리어", "청소", "수리", "여행", "셀프 피부관리", "생활 정보"] },
+  { grade: "리뷰 · 문화 카페", desc: "맛집과 문화 후기가 모이는 카페. 후기형 원고와 맞습니다.", price: 36000, topics: ["맛집 후기", "카페 후기", "문화 후기"] },
+  { grade: "대형 카페", desc: "그 주제에서 회원이 많고 매일 새 글이 올라오는 대표 카페. 핵심 키워드 한 건을 크게 올릴 때 씁니다.", price: 60000, topics: ["결혼 준비", "지역 맘카페", "쇼핑 정보", "취미", "문화"] },
 ];
+
+/** 카페 단건에 원고 작성까지 맡길 때 건당 추가 */
+export const CAFE_COPY_FEE = 6000;
+
+/** 카페 단건 가장 낮은 단가 */
+export const CAFE_TIER_MIN = Math.min(...CAFE_TIERS.map((t) => t.price));
+
+/* ─────────────────────────────────────────────────────────
+   카페 단건 · 대표 카페 안내 (2026-09-09 (수) 대표 지시)
+
+   등급표 아래에서 카페를 어떻게 고르고 어떤 순서로 올리는지 밝힌다.
+   카페 이름은 적지 않는다. 주제와 기준만 적는다. 금액은 위 CAFE_TIERS 그대로다.
+   ───────────────────────────────────────────────────────── */
+
+/** 카페를 고르는 기준 둘과 올리는 순서 둘. 등급표 아래 카드 넷이 이 순서로 선다 */
+export const CAFE_HOW: { title: string; desc: string }[] = [
+  {
+    title: "회원 수보다 지금 활동을 봅니다",
+    desc: "회원이 많아도 새 글이 끊긴 카페에는 올리지 않습니다. 지금도 매일 글이 올라오는 카페만 골라 올립니다.",
+  },
+  {
+    title: "삭제를 줄이는 게시 방식",
+    desc: "카페마다 게시 규칙이 달라 원고 형식과 올리는 시간대를 맞춥니다. 홍보 티를 줄인 원고라야 글이 남고 사람이 읽습니다.",
+  },
+  {
+    title: "사진 · 원고 · 댓글을 주시면 그대로 올립니다",
+    desc: `정한 카페에 그대로 게시하고 게시 URL 을 보고합니다. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)}이 더해집니다.`,
+  },
+  {
+    title: "대표 카페부터 순서대로",
+    desc: "여러 카페를 진행할 때는 대표 카페부터 올리고 나머지를 이어서 올립니다. 어느 카페를 몇 건 할지는 상담에서 정합니다.",
+  },
+];
+
+/** 단가 개정 시점 · 사유 — 히어로 · 달라진 점 · 가격표 안내 · FAQ · 메타 설명이 같은 문장을 쓴다 (2026-09-08 (화) 대표 지시 · 같은 날 사유를 경쟁 심화 → 물가 상승 → 네이버 로직 변화 순으로 바꿈 · 금액은 그대로) */
+export const PRICE_REVISED_AT = "2026년 9월";
+export const PRICE_REVISION_REASON =
+  "네이버 로직이 바뀌면서 카페 게시 자리를 확보하고 발행 뒤 노출을 확인하는 작업이 늘었습니다. 그 작업 비용을 반영해 단가를 조정했습니다.";
 
 export const PRICE_NOTE = [
+  `${PRICE_REVISED_AT}에 개정한 단가입니다.`,
   "표기 금액은 부가세 별도입니다.",
-  "정상가는 이벤트 미적용 시 기준 단가입니다.",
+  "원고를 직접 주시면 오른쪽 금액이 적용됩니다.",
+  "카페만 진행할 때는 카페 등급별 건당 단가가 적용됩니다.",
+];
+
+/* ─────────────────────────────────────────────────────────
+   월 단위 진행 (2026-09-08 (화) 대표 지시 · 시작가 근거는 본부장 DECISIONS)
+
+   건수 패키지와 별도로 지역 + 업종 키워드 하나를 한 달 단위로 이어서 관리한다.
+   시작가만 적는다. 금액은 지역 · 키워드마다 다르므로 상담에서 확정한다.
+   ───────────────────────────────────────────────────────── */
+
+/** 월 단위 진행 시작가 (원 · 월 · 부가세 별도) */
+export const MONTHLY_MIN = 396000;
+
+export interface MonthlyGroup {
+  /** 묶음 이름. 화면에는 앞에 '지역 + ' 를 붙여 보여준다 */
+  label: string;
+  /** 지역명 뒤에 붙는 업종 예시. 전부가 아니다. 없는 업종은 상담에서 확인한다 */
+  keywords: string[];
+}
+
+/** 지역 + 업종 키워드 묶음 여섯. 의료기관 키워드는 넣지 않는다 (의료광고는 병원 명의로만 나간다) */
+export const MONTHLY_GROUPS: MonthlyGroup[] = [
+  { label: "외식 · 숙박", keywords: ["맛집", "카페", "술집", "펜션", "풀빌라", "호텔"] },
+  { label: "뷰티 · 운동", keywords: ["네일", "속눈썹", "왁싱", "미용실", "피부관리", "필라테스", "요가", "헬스", "PT", "골프"] },
+  { label: "생활 · 인테리어", keywords: ["인테리어", "도배", "줄눈", "커튼", "블라인드", "입주청소", "에어컨청소", "방충망"] },
+  { label: "교육 · 공간", keywords: ["학원", "미술학원", "보컬학원", "미용학원", "독학재수학원", "공유오피스", "스터디카페"] },
+  { label: "촬영 · 행사", keywords: ["스튜디오", "가족사진", "돌잔치", "웨딩홀", "한복", "맞춤정장"] },
+  { label: "상담 · 운세", keywords: ["타로", "사주", "철학관", "점집"] },
+];
+
+/** 월 단위 진행에서 먼저 밝히는 조건 넷. 셋째가 노출이 확인되지 않은 날의 처리다 (2026-09-09 (수) 대표 지시). 화면과 FAQ 가 같은 문장을 쓴다 */
+export const MONTHLY_TERMS: { title: string; desc: string }[] = [
+  {
+    title: "금액은 지역 · 키워드에 따라 달라질 수 있습니다",
+    desc: "같은 업종이라도 지역마다 경쟁 정도가 다릅니다. 표기 금액은 시작가이고, 키워드를 확인한 뒤 금액을 확정해 안내합니다.",
+  },
+  {
+    title: "진행 전 상담은 필수입니다",
+    desc: "키워드와 금액, 노출 확인 기준을 상담에서 먼저 정하고 시작합니다. 상담 없이 결제부터 받지 않습니다.",
+  },
+  {
+    title: "월 보장 · 노출이 확인되지 않은 날은 하루씩 연장합니다",
+    desc: "카페 마케팅에서 월 보장이라고 부르는 방식입니다. 보장하는 것은 순위가 아니라 기간입니다. 정한 키워드로 매일 검색해 노출을 확인하고, 확인되지 않은 날은 진행 기간을 하루 더합니다. 따로 말씀하지 않으셔도 자동으로 붙고, 며칠이 더해졌는지 월 보고에 적어 드립니다. 몇 위까지 올려 드린다는 약속은 하지 않습니다.",
+  },
+  {
+    title: "매달 노출 위치를 확인해 보고드립니다",
+    desc: "그 키워드로 검색해 블로그 탭과 카페 탭 어디에 떠 있는지 확인하고 캡처와 함께 전달합니다. 다음 달 진행 여부는 그 보고를 보고 정하시면 됩니다.",
+  },
 ];
 
 /** 카페 배포가 필요한 이유 */
@@ -132,17 +200,17 @@ export const WHY_CAFE = [
   },
   {
     no: "03",
-    title: "추가 비용 없음",
-    desc: "이벤트 기간 중에는 기존 상품 진행분에 배포 건이 얹혀 제공됩니다.",
+    title: "발행 뒤 노출 확인",
+    desc: "올리고 끝내지 않습니다. 키워드별로 어디에 떴는지 확인하고, 안 뜬 건은 본문과 키워드를 다시 점검합니다.",
   },
 ];
 
 /** 진행 프로세스 4단계 */
 export const PROCESS_STEPS = [
-  { no: 1, title: "상담 · 신청",     desc: "업종과 목표 키워드 확인 후 수량 확정" },
-  { no: 2, title: "원고 · 소재 준비", desc: "포함 상품은 원고 작성까지 진행" },
-  { no: 3, title: "카페 배포",       desc: "주제와 맞는 카페에 순차 게시" },
-  { no: 4, title: "URL 보고",        desc: "전체 게시 링크를 정리해 전달" },
+  { no: 1, title: "상담 · 구성 확정",     desc: "업종과 목표 키워드를 보고 10건 · 30건 구성을 정합니다" },
+  { no: 2, title: "원고 · 소재 준비",     desc: "원고 포함 구성은 초안까지 써서 확인받습니다" },
+  { no: 3, title: "카페 선별 · 발행",     desc: "주제가 맞는 활성 카페에 시간대를 나눠 순차 게시" },
+  { no: 4, title: "노출 확인 · URL 보고", desc: "키워드별 노출 위치와 게시 링크를 정리해 전달" },
 ];
 
 /** 상세페이지 FAQ — FAQPage 구조화 데이터와 공용 */
@@ -156,16 +224,88 @@ export const CAFE_FAQ = [
     a: "본문 텍스트와 사용 가능한 이미지를 전달해 주시면 됩니다. 카페별 게시 형식에 맞춘 편집은 하랑마케팅이 처리합니다.",
   },
   {
-    q: "이벤트가 종료되면 카페 배포는 못 받나요?",
-    a: "이벤트는 회차별 슬롯이 정해져 있어 마감 시 다음 회차 대기로 넘어갑니다. 종료 후에는 카페 배포가 별도 상품으로 전환됩니다.",
+    q: "원고를 직접 주면 얼마나 달라지나요?",
+    a: `같은 구성에서 10건은 ${won(copyDiscount(10))}, 30건은 ${won(copyDiscount(30))}이 내려갑니다. 초안이 이미 있거나 직접 쓰시는 사장님께 맞습니다. 카페별 게시 형식에 맞춘 편집은 그대로 하랑마케팅이 합니다.`,
+  },
+  {
+    q: "가격이 전보다 올랐는데 이유가 있나요?",
+    a: `네이버 로직이 바뀌면서 카페 게시 자리를 확보하고 발행 뒤 노출을 확인하는 작업이 늘었습니다. ${PRICE_REVISED_AT}부터 그 작업 비용을 반영해 단가를 조정했습니다. 대신 원고를 직접 주시면 10건 ${won(copyDiscount(10))}, 30건 ${won(copyDiscount(30))}이 내려가고, 카페만 필요하면 등급별 단건 단가로 진행할 수 있습니다. 표에 적힌 금액이 그대로 견적 기준입니다.`,
   },
   {
     q: "수량을 나눠서 진행할 수 있나요?",
-    a: "가능합니다. 신청 수량 기준으로 혜택이 적용되며, 실제 게시 일정은 협의해 분산 진행할 수 있습니다.",
+    a: "가능합니다. 구성은 신청할 때 정하고, 실제 게시 일정은 협의해 나눠 진행할 수 있습니다.",
   },
   {
     q: "카페 배포는 블로그 배포와 무엇이 다른가요?",
     a: "블로그 배포는 네이버 블로그 탭에, 카페 배포는 카페 탭에 노출됩니다. 카페 탭은 실사용자 후기가 모이는 영역으로 인식되어 신뢰도가 높고, 두 영역에 함께 노출되면 같은 키워드에서 고객이 유입될 경로가 늘어납니다.",
+  },
+  {
+    q: "카페만 따로 진행할 수 있나요?",
+    a: `가능합니다. 카페 등급별 건당 단가로 진행하고, 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)}이 더해집니다.`,
+  },
+  {
+    q: "월 단위로도 진행할 수 있나요?",
+    a: `가능합니다. 지역과 업종을 붙인 키워드 하나를 정해 한 달 단위로 블로그 탭과 카페 탭 노출을 관리하는 방식이고, 월 ${won(MONTHLY_MIN)}부터 시작합니다. 금액은 지역과 키워드의 경쟁 정도에 따라 달라질 수 있어, 진행 전 상담에서 키워드와 금액, 노출 확인 기준을 먼저 확정합니다. 노출이 확인되지 않은 날은 진행 기간을 하루씩 자동으로 연장하고, 매달 노출 위치를 확인해 보고드립니다.`,
+  },
+  {
+    q: "월 보장은 무슨 뜻인가요?",
+    a: "카페 마케팅에서 월 단위로 노출을 이어서 관리하는 방식을 그렇게 부릅니다. 보장하는 것은 순위가 아니라 기간입니다. 정한 키워드로 매일 검색해 블로그 탭과 카페 탭 노출을 확인하고, 확인되지 않은 날이 나오면 그만큼 진행 기간을 더해 채워 드립니다. 몇 위까지 올려 드린다거나 언제까지 몇 등이 된다는 약속이 아닙니다. 순위는 네이버가 정합니다.",
+  },
+  {
+    q: "대표 카페는 어떤 카페인가요?",
+    a: "그 주제에서 회원이 많고 매일 새 글이 올라오는 카페입니다. 결혼 준비, 지역 맘카페, 쇼핑 정보, 취미와 문화 카페가 여기에 듭니다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정하고, 게시한 뒤 노출 위치와 게시 URL 을 보고드립니다.",
+  },
+  {
+    q: "월 단위 진행 중에 노출이 안 되는 날은 어떻게 되나요?",
+    a: "그날은 진행 기간에서 빼고 하루를 더합니다. 정한 키워드로 매일 검색해 블로그 탭과 카페 탭 노출을 확인하는데, 확인되지 않은 날이 나오면 따로 말씀하지 않으셔도 그만큼 기간이 자동으로 늘어납니다. 며칠이 더해졌는지는 월 보고에 함께 적어 드립니다.",
+  },
+  {
+    q: "발행했는데 노출이 안 되면 어떻게 되나요?",
+    a: "키워드별로 어디에 떴는지 확인해 보고서에 적습니다. 안 뜬 건은 본문 구성과 키워드 배치를 다시 점검합니다. 다만 노출 순위는 네이버가 정하는 것이라 순위를 약속하지는 않습니다.",
+  },
+];
+
+/** 개정에서 달라진 점 — 가격표 앞에 먼저 밝힌다. 첫 항목이 단가 조정 사유이고, 숫자는 위 상수에서 파생한다 (2026-09-08 (화) 대표 지시) */
+export const WHATS_NEW: { title: string; desc: string }[] = [
+  {
+    title: "네이버 로직이 바뀌어 단가를 조정했습니다",
+    desc: `${PRICE_REVISION_REASON} 오른 만큼 무엇이 달라졌는지는 아래 항목에 적었습니다.`,
+  },
+  {
+    title: `${PACKAGE_SIZES.join("건 · ")}건 패키지 ${PACKAGES.length}가지 구성`,
+    desc: "최적화 블로그와 카페의 비율을 최블형 · 혼합형 · 카페형으로 나눴습니다. 업종과 목표 키워드에 맞는 비율을 고릅니다.",
+  },
+  {
+    title: "원고를 직접 주시면 금액이 내려갑니다",
+    desc: `10건은 ${won(copyDiscount(10))}, 30건은 ${won(copyDiscount(30))}이 차감됩니다. 원고 작성을 맡기는 경우와 직접 주시는 경우를 표에 나란히 적었습니다.`,
+  },
+  {
+    title: `카페 단건은 ${CAFE_TIERS.length}등급 단가`,
+    desc: `${CAFE_TIERS.map((t) => t.grade).join(", ")}로 나눠 건당 단가를 정했습니다. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)}이 더해집니다.`,
+  },
+  {
+    title: "이벤트가 없이 표기 금액 하나로",
+    desc: "회차마다 달랐던 이벤트가와 남은 자리 안내를 없애고 표기 금액 하나로 통일했습니다. 언제 문의하셔도 같은 기준입니다.",
+  },
+  {
+    title: "발행 뒤 노출 위치까지 보고합니다",
+    desc: "올린 건마다 키워드로 검색해 어디에 떴는지 확인하고, 게시 URL 과 검색 결과 캡처를 함께 드립니다.",
+  },
+  {
+    title: "게시 카페 목록은 수시로 바뀝니다",
+    desc: "카페마다 게시 규정이 달라지고 새로 열리거나 닫히는 곳이 있습니다. 상담 시점의 목록으로 안내하고, 진행 중에 바뀌면 알려드립니다.",
+  },
+  {
+    title: "월 단위 진행을 열었습니다",
+    desc: `지역과 업종을 붙인 키워드 하나를 달마다 이어서 관리하는 방식입니다. 월 ${won(MONTHLY_MIN)}부터이고, 금액은 지역과 키워드에 따라 달라질 수 있어 진행 전 상담을 거쳐 시작합니다.`,
+  },
+  {
+    title: "대표 카페 안내를 보강했습니다",
+    desc: "카페 단건의 대표 카페가 어떤 카페인지, 어떻게 고르고 어떤 순서로 올리는지 적었습니다. 금액은 그대로입니다.",
+  },
+  {
+    title: "월 보장 · 노출이 확인되지 않은 날은 하루씩 연장합니다",
+    desc: "카페 마케팅에서 월 보장이라고 부르는 방식입니다. 보장하는 것은 순위가 아니라 기간입니다. 월 단위 진행에서 매일 노출을 확인하고, 확인되지 않은 날이 나오면 진행 기간을 그만큼 자동으로 늘립니다. 따로 요청하지 않으셔도 붙습니다.",
   },
 ];
 
@@ -1067,9 +1207,10 @@ export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
     slug: c.slug,
   }));
 
-/** 상세페이지 신뢰 보장 항목 */
+/** 상세페이지 약속 항목 */
 export const GUARANTEES = [
   { title: "게시 URL 전체 전달", desc: "진행한 건마다 실제 게시 링크를 정리해 드립니다. 확인 못 하는 작업은 없습니다." },
+  { title: "발행 뒤 노출 위치 확인", desc: "올린 건마다 키워드로 검색해 어디에 떴는지 확인하고 보고서에 적습니다." },
   { title: "표기 금액 부가세 별도", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
   { title: "상담·업종 가능 여부 진단 0원", desc: "진행이 어려운 업종이면 계약 전에 솔직하게 말씀드립니다." },
 ];
