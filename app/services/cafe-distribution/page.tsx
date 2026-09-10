@@ -24,8 +24,7 @@ import {
   PROOF_SAMPLES,
   GUARANTEES,
   PRICE_REVISED_AT,
-  PRICE_REVISION_REASON,
-  WHATS_NEW,
+  PRICE_NOTICE,
   MONTHLY_MIN,
   MONTHLY_GROUPS,
   MONTHLY_TERMS,
@@ -48,6 +47,7 @@ import {
  * 2026-09-08 (화) 대표 지시 — 사유를 다시 물가 상승에서 네이버 로직 변화로 바꿨다. 금액은 그대로다.
  * 2026-09-08 (화) 대표 지시 — 지역 + 업종 키워드를 월 단위로 이어서 관리하는 구간(MONTHLY)을 더했다. 기존 금액은 그대로다.
  * 2026-09-09 (수) 대표 지시 — 카페 단건의 대표 카페 설명(주제 · 고르는 기준 · 올리는 순서)을 보강했다. 금액은 그대로다.
+ * 2026-09-10 (목) 대표 지적 · 달라진 점(UPDATE) 아홉 장을 걷었다. 고객이 보는 자리에 작업 이력이 적혀 있었다. 금액은 그대로다.
  */
 
 const PATH = "/services/cafe-distribution";
@@ -563,42 +563,6 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 5-B. UPDATE — 가격을 보기 전에 무엇이 바뀌었는지 먼저 밝힌다 (2026-09-08 (화) 대표 지시) ══ */}
-        <section className="bg-white py-14 md:py-[66px]" style={{ borderTop: "1px solid var(--cd-border)" }}>
-          <div className={INNER}>
-            <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              UPDATE
-            </p>
-            <h2 className="cd-display text-[28px] leading-[1.25] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
-              {PRICE_REVISED_AT},
-              <br />
-              이렇게 바뀌었습니다
-            </h2>
-            <p className="mt-5 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
-              {PRICE_REVISION_REASON} 그 김에 구성과 보고 방식도 다시 짰습니다.
-              가격표를 보기 전에 달라진 점을 먼저 밝힙니다.
-            </p>
-
-            {/* 첫 항목(단가 조정 사유)과 짝 없이 홀로 남는 마지막 항목은 한 줄을 다 쓴다. 나머지는 순서가 아니라 목록이라 번호를 붙이지 않는다 */}
-            <div className="mt-9 grid grid-cols-1 gap-[14px] md:grid-cols-2">
-              {WHATS_NEW.map((w, i) => (
-                <div
-                  key={w.title}
-                  className={`rounded-[18px] px-6 py-6 md:px-7 ${i === 0 || (WHATS_NEW.length % 2 === 0 && i === WHATS_NEW.length - 1) ? "md:col-span-2 md:py-8" : "md:py-7"}`}
-                  style={{ background: i === 0 ? "var(--cd-tint-2)" : "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}
-                >
-                  <h3 className="mb-2 text-[17px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
-                    {w.title}
-                  </h3>
-                  <p className="text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-                    {w.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ══ 6. PRICE — 구성과 가격 ══ */}
         <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-tint)" }}>
           <div className={INNER}>
@@ -613,6 +577,23 @@ export default function CafeDistributionPage() {
               10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
               원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
             </p>
+            <div
+              className="mt-6 rounded-[18px] px-5 py-5 md:px-7 md:py-6"
+              style={{ background: "#fff", border: "1px solid var(--cd-border-2)" }}
+            >
+              <p className="text-[15px] font-bold md:text-[16px]" style={{ color: "var(--cd-ink-2)" }}>
+                {PRICE_NOTICE.title}
+              </p>
+              {PRICE_NOTICE.lines.map((line) => (
+                <p
+                  key={line}
+                  className="mt-2 text-[14px] leading-[1.75] md:text-[15px]"
+                  style={{ color: "var(--cd-body-2)" }}
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
 
             {PACKAGE_SIZES.map((size) => (
               <div key={size} className="mt-10">
