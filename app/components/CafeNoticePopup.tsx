@@ -7,10 +7,12 @@ import { Megaphone, X, ArrowRight, Coffee } from "lucide-react";
 import {
   CAFE_NOTICE,
   NOTICE_STORAGE_KEY,
-  PARTNER_CAFES,
+  CAFE_GROUPS,
+  CAFE_GROUPS_TOTAL,
+  groupPrice,
   noticeShowsOn,
 } from "../lib/cafe-notice";
-import { CAFE_TIERS, won } from "../lib/cafe-distribution";
+import { won } from "../lib/cafe-distribution";
 
 /**
  * 대표카페 운영 공지 카드
@@ -24,8 +26,8 @@ import { CAFE_TIERS, won } from "../lib/cafe-distribution";
  *   2) 스크롤 조건이 없다. 공지는 늦게 보여 줄 이유가 없어 0.8초 뒤 바로 띄운다
  *   3) 뜨는 경로가 정해져 있다 (NOTICE_PATHS). 카페 배포를 보러 온 사람에게만 뜬다
  *
- * 문구는 전부 app/lib/cafe-notice.ts 에 있고, 단가는 cafe-distribution.ts 의
- * CAFE_TIERS 를 읽는다. 이 파일에는 문장도 숫자도 적지 않는다.
+ * 문구와 카페 명단은 전부 app/lib/cafe-notice.ts 에 있고, 단가는 groupPrice() 가
+ * cafe-distribution.ts 의 등급표에서 찾아온다. 이 파일에는 문장도 숫자도 적지 않는다.
  */
 export default function CafeNoticePopup() {
   const pathname = usePathname() || "";
@@ -136,100 +138,85 @@ export default function CafeNoticePopup() {
             ))}
           </ul>
 
-          {PARTNER_CAFES.length > 0 && (
-            <div className="mt-4">
-              <p className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
-                {CAFE_NOTICE.cafeLead}
-              </p>
-              <ul className="mt-2 grid grid-cols-2 gap-2">
-                {PARTNER_CAFES.map((c) => (
-                  <li
-                    key={c.label}
-                    className="overflow-hidden rounded-lg"
-                    style={{ border: "1px solid var(--w-line)" }}
-                  >
-                    {c.img ? (
-                      <img
-                        src={c.img}
-                        alt={`${c.label} 노출 화면`}
-                        width={320}
-                        height={240}
-                        className="block h-20 w-full object-cover object-top"
-                        style={{ background: "var(--w-fill)" }}
-                      />
-                    ) : (
-                      <div
-                        className="flex h-20 w-full items-center justify-center"
-                        style={{ background: "var(--w-fill)" }}
-                      >
-                        <Coffee
-                          size={18}
-                          strokeWidth={2}
-                          style={{ color: "var(--w-label-assistive)" }}
-                        />
-                      </div>
-                    )}
-                    <div className="p-2">
-                      <p
-                        className="w-caption-1 truncate font-semibold"
-                        style={{ color: "var(--w-label-strong)" }}
-                      >
-                        {c.label}
-                      </p>
-                      <p
-                        className="w-caption-1 mt-0.5 truncate"
-                        style={{ color: "var(--w-label-assistive)" }}
-                      >
-                        {c.kind}
-                      </p>
-                      {c.members && (
-                        <p
-                          className="w-caption-1 truncate"
-                          style={{ color: "var(--w-label-assistive)" }}
-                        >
-                          {c.members}
-                        </p>
-                      )}
-                      {c.isNew && (
-                        <span
-                          className="mt-1 inline-flex h-4 items-center rounded px-1 text-[10px] font-bold"
-                          style={{ background: "var(--w-primary)", color: "var(--w-text-inverse)" }}
-                        >
-                          신규
-                        </span>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
           <div
             className="mt-4 rounded-lg p-3"
             style={{ background: "var(--w-bg-alt)", border: "1px solid var(--w-line)" }}
           >
-            <p className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
-              {CAFE_NOTICE.tierLead}
+            <div className="flex items-baseline justify-between gap-2">
+              <p className="w-label-2 font-semibold" style={{ color: "var(--w-label-strong)" }}>
+                {CAFE_NOTICE.cafeLead}
+              </p>
+              <span
+                className="w-caption-1 shrink-0 tabular-nums"
+                style={{ color: "var(--w-label-assistive)" }}
+              >
+                {CAFE_GROUPS_TOTAL}곳
+              </span>
+            </div>
+            <p className="w-caption-1 mt-0.5" style={{ color: "var(--w-label-assistive)" }}>
+              {CAFE_NOTICE.cafeLeadSub}
             </p>
 
-            <dl className="mt-2.5 space-y-2">
-              {CAFE_TIERS.map((t) => (
-                <div key={t.grade} className="flex items-baseline justify-between gap-3">
-                  <dt className="w-caption-1 font-semibold" style={{ color: "var(--w-label-strong)" }}>
-                    {t.grade}
-                  </dt>
-                  <dd
-                    className="w-caption-1 shrink-0 font-bold tabular-nums"
-                    style={{ color: "var(--w-primary-strong)" }}
-                  >
-                    {won(t.price)}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <div className="mt-3 space-y-3">
+              {CAFE_GROUPS.map((g) => {
+                const price = groupPrice(g.grade);
+                return (
+                  <div key={g.label}>
+                    <div
+                      className="flex items-baseline justify-between gap-3 border-b pb-1.5"
+                      style={{ borderColor: "var(--w-line-strong)" }}
+                    >
+                      <p className="w-label-2 font-bold" style={{ color: "var(--w-label-strong)" }}>
+                        {g.label}
+                      </p>
+                      {price !== undefined && (
+                        <p
+                          className="w-label-2 shrink-0 font-bold tabular-nums"
+                          style={{ color: "var(--w-primary-strong)" }}
+                        >
+                          {won(price)}
+                        </p>
+                      )}
+                    </div>
 
-            <p className="w-caption-1 mt-2.5" style={{ color: "var(--w-label-assistive)" }}>
+                    {g.note && (
+                      <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-assistive)" }}>
+                        {g.note}
+                      </p>
+                    )}
+
+                    <ul className="mt-1">
+                      {g.cafes.map((c) => (
+                        <li key={c.name} className="flex items-center gap-1.5 py-1">
+                          <Coffee
+                            size={12}
+                            strokeWidth={2}
+                            className="shrink-0"
+                            style={{ color: "var(--w-label-assistive)" }}
+                          />
+                          <span
+                            className="w-caption-1 min-w-0 truncate"
+                            style={{ color: "var(--w-label-strong)" }}
+                          >
+                            {c.name}
+                          </span>
+                          {c.isNew && (
+                            <span
+                              className="shrink-0 rounded px-1 text-[10px] font-bold leading-4"
+                              style={{ background: "var(--w-primary)", color: "var(--w-text-inverse)" }}
+                            >
+                              신규
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="w-caption-1 mt-3" style={{ color: "var(--w-label-assistive)" }}>
               {CAFE_NOTICE.tierNote}
             </p>
           </div>
