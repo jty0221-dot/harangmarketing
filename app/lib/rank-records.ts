@@ -2,7 +2,7 @@
  * 플레이스 순위 계측 기록 — 홈페이지 단일 정본
  *
  * 출처: E:\하랑\순위모니터\snapshots\*.tsv (세영 · 애드랭크 일일 스냅샷)
- * 기준 스냅샷: 2026-09-05 (16회 누적 · 2026-08-21 ~ 2026-09-05)
+ * 기준 스냅샷: 2026-09-10 (21회 누적 · 2026-08-21 ~ 2026-09-10)
  * 시작 순위·시작일은 애드랭크가 보관하는 30~32일치 이력에서 가장 오래된 실측값이다.
  *
  * 규칙 (헌장 C-36 · C-42)
@@ -43,7 +43,7 @@ export type RankRecord = {
 };
 
 /** 기준 스냅샷 날짜 — 화면 표기용 */
-export const SNAPSHOT_DATE = "2026-09-05";
+export const SNAPSHOT_DATE = "2026-09-10";
 
 /**
  * 게시 가능 기록 — 기준일 순위가 1페이지(1~5위) 안이고 내려가지 않았다.
@@ -53,46 +53,47 @@ export const SNAPSHOT_DATE = "2026-09-05";
  * (2026-09-04 (금) 대표 지시 — 겹치는 게 있다면 그래도 추가해 별도의 작품이니깐).
  */
 export const RECORDS: RankRecord[] = [
-  { industry: "카페", keyword: "지역 카페 키워드", from: 21, to: 3, days: 32, heldPage1: false },
-  { industry: "카페", keyword: "지역 카페 키워드", from: 1, to: 1, days: 25, heldPage1: true },
-  { industry: "카페", keyword: "지역 카페 키워드", from: 3, to: 3, days: 25, heldPage1: true },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 49, to: 4, days: 32, heldPage1: false },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 39, to: 5, days: 32, heldPage1: true },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 26, to: 4, days: 32, heldPage1: false },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 14, to: 2, days: 32, heldPage1: false },
-  { industry: "음식점", keyword: "지역 맛집 키워드", from: 8, to: 2, days: 32, heldPage1: false },
-  { industry: "음식점", keyword: "지역 역세권 맛집 키워드", from: 4, to: 1, days: 32, heldPage1: true },
-  { industry: "피부과", keyword: "지역 피부과 키워드", from: 4, to: 4, days: 32, heldPage1: true },
-  { industry: "치과", keyword: "지역 치과 키워드", from: 7, to: 1, days: 32, heldPage1: true },
-  { industry: "치과", keyword: "지역 역세권 치과 키워드", from: 7, to: 1, days: 32, heldPage1: true },
+  { industry: "카페", keyword: "지역 카페 키워드", from: 16, to: 2, days: 32, heldPage1: false },
+  { industry: "카페", keyword: "지역 카페 키워드", from: 1, to: 1, days: 30, heldPage1: true },
+  { industry: "카페", keyword: "지역 카페 키워드", from: 3, to: 3, days: 30, heldPage1: true },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 35, to: 3, days: 32, heldPage1: false },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 13, to: 2, days: 32, heldPage1: false },
+  { industry: "음식점", keyword: "지역 맛집 키워드", from: 10, to: 2, days: 32, heldPage1: false },
+  { industry: "피부과", keyword: "지역 피부과 키워드", from: 6, to: 4, days: 32, heldPage1: true },
+  { industry: "치과", keyword: "지역 치과 키워드", from: 1, to: 1, days: 32, heldPage1: true },
+  { industry: "치과", keyword: "지역 역세권 치과 키워드", from: 1, to: 1, days: 32, heldPage1: true },
   { industry: "음식점", keyword: "지역 샤브샤브 키워드", from: 3, to: 3, days: 32, heldPage1: false },
-  { industry: "청소", keyword: "지역 청소업체 키워드", from: 49, to: 3, days: 23, heldPage1: false },
-  { industry: "카페", keyword: "지역 디저트카페 키워드", from: 3, to: 2, days: 19, heldPage1: true },
+  { industry: "네일", keyword: "지역 네일 키워드", from: 18, to: 5, days: 16, heldPage1: false },
+  { industry: "입주청소", keyword: "지역 입주청소 키워드", from: 2, to: 1, days: 32, heldPage1: false },
+  { industry: "청소", keyword: "지역 청소업체 키워드", from: 5, to: 2, days: 32, heldPage1: false },
+  { industry: "카페", keyword: "지역 디저트카페 키워드", from: 3, to: 2, days: 24, heldPage1: true },
+  { industry: "청소", keyword: "지역 후드청소 키워드", from: 9, to: 2, days: 23, heldPage1: false },
+  { industry: "청소", keyword: "지역 정기청소 키워드", from: 36, to: 4, days: 32, heldPage1: false },
+  { industry: "청소", keyword: "지역 상가청소 키워드", from: 67, to: 5, days: 32, heldPage1: false },
+  { industry: "청소", keyword: "지역 상가청소 키워드", from: 53, to: 5, days: 23, heldPage1: false },
+  { industry: "청소", keyword: "지역 병원청소 키워드", from: 22, to: 5, days: 32, heldPage1: false },
 ];
 
 /**
  * 싣지 않는 기록 — 지우지 않는다. 왜 안 실었는지가 남아 있어야
  * 다음 사람이 같은 숫자를 다시 주워 오지 않는다 (헌장 C-36 · 스냅샷 삭제 금지의 취지).
  *
- * 하락 — 지역 역세권 맛집 65위 → 76위 · 지역 입주청소 2위 → 8위 · 지역 맞춤가발 6위 → 12위 ·
- *        지역 청소업체 6위 → 11위 · 지역 입주청소 1위 → 5위 · 지역 고기집 125위 → 128위 ·
- *        지역 피부과 9위 → 11위 · 지역 가발 1위 → 2위 · 지역 카센터 7위 → 8위
- * 1페이지 밖 — 지역 누수탐지 125위 → 29위 · 지역 누수 141위 → 58위 · 지역 맛집 110위 → 36위 ·
- *        지역 입주청소 88위 → 14위 · 지역 맛집 74위 → 13위 · 지역 상가청소 67위 → 20위 ·
- *        지역 상가청소 53위 → 26위 · 지역 정기청소 36위 → 12위 · 지역 누수 30위 → 13위 ·
- *        지역 정기청소 35위 → 18위 · 지역 병원청소 22위 → 6위 · 지역 병원청소 22위 → 7위 ·
- *        지역 네일 20위 → 8위 · 지역 맛집 79위 → 67위 · 지역 카페 19위 → 7위 ·
- *        지역 네일 18위 → 7위 · 지역 고기집 31위 → 27위 · 지역 샤브샤브 43위 → 41위 ·
- *        지역 누수탐지 139위 → 137위 · 지역 정장 7위 → 6위 · 지역 정장 7위 → 6위 ·
- *        지역 청소업체 12위 → 11위 · 지역 소갈비 29위 → 28위 · 지역 후드청소 9위 → 8위 ·
- *        지역 샤브샤브 6위 → 6위
+ * 하락 — 지역 역세권 맛집 93위 → 124위 · 지역 입주청소 1위 → 5위 · 지역 카센터 4위 → 8위 ·
+ *        지역 맞춤가발 6위 → 9위 · 지역 가발 1위 → 3위
+ * 1페이지 밖 — 지역 누수탐지 125위 → 22위 · 지역 누수 141위 → 46위 · 지역 입주청소 88위 → 13위 ·
+ *        지역 청소업체 49위 → 8위 · 지역 누수탐지 142위 → 106위 · 지역 맛집 42위 → 12위 ·
+ *        지역 정기청소 35위 → 10위 · 지역 맛집 79위 → 56위 · 지역 누수 30위 → 12위 ·
+ *        지역 맛집 110위 → 94위 · 지역 병원청소 22위 → 6위 · 지역 네일 20위 → 6위 ·
+ *        지역 카페 15위 → 6위 · 지역 고기집 31위 → 28위 · 지역 피부과 13위 → 10위 ·
+ *        지역 정장 7위 → 6위 · 지역 정장 7위 → 6위 · 지역 청소업체 12위 → 11위 ·
+ *        지역 소갈비 29위 → 28위 · 지역 샤브샤브 6위 → 6위
  * 병·의원 검수 대기 — 없음
- * 데이터 부족 — 11건 (계측 시작 직후라 시작값이 없다)
+ * 데이터 부족 — 4건 (계측 시작 직후라 시작값이 없다)
  *
  * 유지(1~5위인데 그대로)는 2026-09-05 (토) 대표 지시로 RECORDS 안에 들어갔다.
  * 여기 남는 것은 하락 · 1페이지 밖 · 데이터 부족 셋뿐이다.
  */
-export const EXCLUDED_COUNT = { declined: 9, outsidePage1: 25, insufficient: 11, pendingReview: 0 };
+export const EXCLUDED_COUNT = { declined: 5, outsidePage1: 20, insufficient: 4, pendingReview: 0 };
 
 /** 올라온 기록 수 — 손으로 세지 않는다 */
 export const RISEN = RECORDS.filter((r) => r.from > r.to).length;
@@ -104,16 +105,16 @@ export const HELD = RECORDS.filter((r) => r.from === r.to).length;
 export const SUMMARY = {
   /** 매일 계측 중인 매장 수 */
   stores: 18,
-  /** 매일 계측 중인 키워드 수 (시작값이 없는 11건 제외) */
-  keywords: 49,
+  /** 매일 계측 중인 키워드 수 (시작값이 없는 4건 제외) */
+  keywords: 44,
   /** 기준일에 1페이지(1~5위)를 지키고 있는 키워드 수 */
-  page1Keywords: 17,
+  page1Keywords: 21,
   /** 기준일에 1페이지를 지키고 있는 매장 수 */
-  page1Stores: 9,
-  /** 누적 스냅샷 16회에 빠짐없이 잡히면서 한 번도 1페이지 밖으로 나가지 않은 키워드 수 */
-  heldAllSnapshots: 9,
+  page1Stores: 10,
+  /** 누적 스냅샷 21회에 빠짐없이 잡히면서 한 번도 1페이지 밖으로 나가지 않은 키워드 수 */
+  heldAllSnapshots: 7,
   /** 누적 스냅샷 회차 */
-  snapshots: 16,
+  snapshots: 21,
 };
 
 /**
@@ -214,7 +215,7 @@ export const fmtLong = (r: RankRecord) => `${fmt(r)} · ${r.days}일 계측`;
 
 /** 화면·JSON-LD·llms.txt 가 같은 문장을 쓰도록 한 곳에서 만든다 */
 export const MEASURE_NOTE =
-  `순위는 매일 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. ` +
+  `순위는 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. ` +
   `방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`;
 
 /*
