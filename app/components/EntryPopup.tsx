@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { X, ArrowRight } from "lucide-react";
+import { noticeOccupies } from "../lib/cafe-notice";
 
 /**
  * 진입 안내 카드
@@ -16,6 +18,7 @@ import { X, ArrowRight } from "lucide-react";
  *     히어로 문구와 '무료 마케팅 진단 받기' 버튼을 통째로 가린다 (375px 실측: 세로 37px)
  */
 export default function EntryPopup() {
+  const pathname = usePathname() || "";
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
 
@@ -30,6 +33,9 @@ export default function EntryPopup() {
     const tryOpen = () => {
       if (shown || !elapsed) return;
       if (window.scrollY <= window.innerHeight * 0.6) return;
+      // 공지 카드가 같은 자리에 먼저 떠 있으면 양보한다. 겹치면 뒤 카드가 앞 카드를 덮는다.
+      // 공지를 닫은 뒤 다시 스크롤하면 그때 뜬다 — 한 번에 한 장이다
+      if (noticeOccupies(pathname)) return;
       shown = true;
       setOpen(true);
       window.removeEventListener("scroll", tryOpen);
@@ -45,7 +51,7 @@ export default function EntryPopup() {
       clearTimeout(timer);
       window.removeEventListener("scroll", tryOpen);
     };
-  }, []);
+  }, [pathname]);
 
   const dismiss = () => {
     sessionStorage.setItem("harang_popup_dismissed", "1");

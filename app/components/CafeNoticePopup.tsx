@@ -3,8 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Megaphone, X, ArrowRight } from "lucide-react";
-import { CAFE_NOTICE, NOTICE_PATHS, PARTNER_CAFES } from "../lib/cafe-notice";
+import { Megaphone, X, ArrowRight, Coffee } from "lucide-react";
+import {
+  CAFE_NOTICE,
+  NOTICE_STORAGE_KEY,
+  PARTNER_CAFES,
+  noticeShowsOn,
+} from "../lib/cafe-notice";
 import { CAFE_TIERS, won } from "../lib/cafe-distribution";
 
 /**
@@ -27,8 +32,7 @@ export default function CafeNoticePopup() {
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
 
-  const onNoticePath = NOTICE_PATHS.some((p) => pathname.startsWith(p));
-  const storageKey = `harang_notice_${CAFE_NOTICE.id}`;
+  const onNoticePath = noticeShowsOn(pathname);
 
   useEffect(() => {
     if (!onNoticePath) return;
@@ -36,18 +40,18 @@ export default function CafeNoticePopup() {
     // 시크릿 창이나 저장소 차단 설정에서는 읽기 자체가 예외를 던진다.
     // 기록을 못 읽는 것과 안 읽은 것은 다르지만, 공지는 한 번 더 뜨는 쪽이 낫다.
     try {
-      if (localStorage.getItem(storageKey)) return;
+      if (localStorage.getItem(NOTICE_STORAGE_KEY)) return;
     } catch {
       /* 저장소를 못 쓰는 브라우저. 그냥 띄운다 */
     }
 
     const timer = setTimeout(() => setOpen(true), 800);
     return () => clearTimeout(timer);
-  }, [onNoticePath, storageKey]);
+  }, [onNoticePath]);
 
   const dismiss = () => {
     try {
-      localStorage.setItem(storageKey, "1");
+      localStorage.setItem(NOTICE_STORAGE_KEY, "1");
     } catch {
       /* 못 적어도 닫히기는 해야 한다 */
     }
@@ -132,6 +136,75 @@ export default function CafeNoticePopup() {
             ))}
           </ul>
 
+          {PARTNER_CAFES.length > 0 && (
+            <div className="mt-4">
+              <p className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
+                {CAFE_NOTICE.cafeLead}
+              </p>
+              <ul className="mt-2 grid grid-cols-2 gap-2">
+                {PARTNER_CAFES.map((c) => (
+                  <li
+                    key={c.label}
+                    className="overflow-hidden rounded-lg"
+                    style={{ border: "1px solid var(--w-line)" }}
+                  >
+                    {c.img ? (
+                      <img
+                        src={c.img}
+                        alt={`${c.label} 노출 화면`}
+                        width={320}
+                        height={240}
+                        className="block h-20 w-full object-cover object-top"
+                        style={{ background: "var(--w-fill)" }}
+                      />
+                    ) : (
+                      <div
+                        className="flex h-20 w-full items-center justify-center"
+                        style={{ background: "var(--w-fill)" }}
+                      >
+                        <Coffee
+                          size={18}
+                          strokeWidth={2}
+                          style={{ color: "var(--w-label-assistive)" }}
+                        />
+                      </div>
+                    )}
+                    <div className="p-2">
+                      <p
+                        className="w-caption-1 truncate font-semibold"
+                        style={{ color: "var(--w-label-strong)" }}
+                      >
+                        {c.label}
+                      </p>
+                      <p
+                        className="w-caption-1 mt-0.5 truncate"
+                        style={{ color: "var(--w-label-assistive)" }}
+                      >
+                        {c.kind}
+                      </p>
+                      {c.members && (
+                        <p
+                          className="w-caption-1 truncate"
+                          style={{ color: "var(--w-label-assistive)" }}
+                        >
+                          {c.members}
+                        </p>
+                      )}
+                      {c.isNew && (
+                        <span
+                          className="mt-1 inline-flex h-4 items-center rounded px-1 text-[10px] font-bold"
+                          style={{ background: "var(--w-primary)", color: "var(--w-text-inverse)" }}
+                        >
+                          신규
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div
             className="mt-4 rounded-lg p-3"
             style={{ background: "var(--w-bg-alt)", border: "1px solid var(--w-line)" }}
@@ -155,27 +228,6 @@ export default function CafeNoticePopup() {
                 </div>
               ))}
             </dl>
-
-            {PARTNER_CAFES.length > 0 && (
-              <ul
-                className="mt-2.5 space-y-1 border-t pt-2.5"
-                style={{ borderColor: "var(--w-line)" }}
-              >
-                {PARTNER_CAFES.map((c) => (
-                  <li key={c.name} className="flex items-center justify-between gap-3">
-                    <span className="w-caption-1 truncate" style={{ color: "var(--w-label-strong)" }}>
-                      {c.name}
-                    </span>
-                    <span
-                      className="w-caption-1 shrink-0"
-                      style={{ color: "var(--w-label-assistive)" }}
-                    >
-                      {c.isNew ? "신규 제휴" : c.kind}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
 
             <p className="w-caption-1 mt-2.5" style={{ color: "var(--w-label-assistive)" }}>
               {CAFE_NOTICE.tierNote}

@@ -10,21 +10,40 @@
  */
 
 /**
- * 제휴 카페 실명 목록.
+ * 새로 들어온 대표카페. 한 줄이 카드 한 장이 된다.
  *
- * 비워 둔다. 이유가 둘이다.
- *   1) 대표가 확정한 명단이 아직 없다. 틀린 값이 빈 값보다 나쁘다 (헌장 C-42)
- *   2) 이 저장소는 공개다. 카페 이름을 그대로 올리면 어느 매입처에서
- *      받아 오는지가 드러나고, 그쪽 공개 단가표에서 우리 원가가 바로 계산된다
- *
- * 대표가 공개해도 된다고 확정하면 여기에 채운다. 채우는 순간
- * 팝업에 표가 생기고, 비어 있으면 등급 설명만 보인다.
+ * label   화면에 뜨는 이름. 상호를 그대로 적지 않는다.
+ *         2026-09-07 (월) 대표 지시 「업체명을 오픈하지않고 00카페 이런식으로」 를 따른다.
+ *         레퍼런스 캡처 안에 카페 이름이 보이는 것과는 다른 문제다. 캡처는 "여기 한 번
+ *         올렸다" 는 증거고, 제휴처 명단은 "여기서 받아 온다" 는 지도다. 이 저장소는
+ *         공개라 지도를 그리면 원가가 같이 나간다.
+ * kind    카페 주제. cafe-distribution.ts 대형 카페 등급의 topics 와 같은 말을 쓴다.
+ * img     캡처 경로 (public 기준). 없으면 카드가 아이콘 타일로 뜬다. 레이아웃은 안 깨진다.
+ * members 회원 규모. 확인한 것만 적는다. 모르면 비워 둔다 (헌장 C-42).
  */
-export type PartnerCafe = { name: string; kind: string; isNew?: boolean };
+export type PartnerCafe = {
+  label: string;
+  kind: string;
+  img?: string;
+  members?: string;
+  isNew?: boolean;
+};
+
+/**
+ * 비워 둔다. 어느 카페 2곳인지 대표 확정이 아직 없다.
+ *
+ * 단가 안내 옆에 서는 값이라 틀리면 그대로 우리가 한 약속이 된다 (헌장 C-42 · C-35).
+ * 확정되면 여기 두 줄만 채운다. 채우는 순간 팝업에 카드가 뜬다.
+ */
 export const PARTNER_CAFES: PartnerCafe[] = [];
 
-/** 공지를 띄울 경로. 앞부분만 맞으면 뜬다. 사이트 전체로 넓히려면 ["/"] 로 둔다 */
-export const NOTICE_PATHS = ["/services/cafe-distribution"];
+/**
+ * 공지를 띄울 경로.
+ *
+ * "/" 는 메인 한 장에서만 뜬다. 앞부분 매칭으로 두면 39개 라우트 전부에 뜬다.
+ * 나머지 항목은 앞부분이 맞으면 뜬다 (하위 경로 포함).
+ */
+export const NOTICE_PATHS = ["/", "/services/cafe-distribution"];
 
 export const CAFE_NOTICE = {
   /** 이 값을 바꾸면 이미 닫은 사람에게도 다시 뜬다 */
@@ -47,6 +66,9 @@ export const CAFE_NOTICE = {
     },
   ],
 
+  /** 새 카페 카드 위에 붙는 줄. PARTNER_CAFES 가 비면 이 줄도 같이 사라진다 */
+  cafeLead: "이번에 새로 들어온 대표카페입니다.",
+
   /** 표 위에 붙는 한 줄. 대표카페가 어느 등급인지 알려 준다 */
   tierLead: "현재 카페 등급별 건당 단가입니다. 대표카페는 아래 대형 카페 등급입니다.",
   tierNote: "부가세 별도. 원고 작성을 맡기시면 건당 추가 비용이 붙습니다.",
@@ -59,3 +81,31 @@ export const CAFE_NOTICE = {
   cta: { label: "단가 문의하기", href: "/contact" },
   dismiss: "확인했습니다",
 } as const;
+
+/** 닫기 기록 저장 키. 두 컴포넌트가 각자 문자열을 조립하면 한쪽만 틀어진다 */
+export const NOTICE_STORAGE_KEY = `harang_notice_${CAFE_NOTICE.id}`;
+
+/**
+ * 이 경로에서 공지 카드가 뜨는가.
+ *
+ * "/" 만 정확히 맞춘다. 앞부분 매칭으로 두면 모든 라우트에 뜬다.
+ */
+export function noticeShowsOn(pathname: string): boolean {
+  return NOTICE_PATHS.some((p) => (p === "/" ? pathname === "/" : pathname.startsWith(p)));
+}
+
+/**
+ * 공지 카드가 지금 그 자리를 차지하고 있는가.
+ *
+ * 같은 자리(데스크톱 우하단 · 모바일 하단)에 카드를 띄우는 쪽이 물어본다.
+ * 메인에는 상담 카드가 이미 그 자리에 뜬다 — 두 장이 겹치면 뒤 카드가 앞 카드를 통째로 덮는다.
+ * 저장소를 못 읽으면 공지는 뜨는 쪽으로 동작하므로 여기서도 뜬다고 답한다.
+ */
+export function noticeOccupies(pathname: string): boolean {
+  if (!noticeShowsOn(pathname)) return false;
+  try {
+    return !localStorage.getItem(NOTICE_STORAGE_KEY);
+  } catch {
+    return true;
+  }
+}
