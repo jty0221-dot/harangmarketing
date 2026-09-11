@@ -88,6 +88,21 @@ export const CAFE_GROUPS: CafeGroup[] = [
 /** 표에 실린 카페 수. 손으로 세지 않는다 */
 export const CAFE_GROUPS_TOTAL = CAFE_GROUPS.reduce((n, g) => n + g.cafes.length, 0);
 
+/** 그중 이번에 새로 붙은 곳. 공지 문장이 이 수를 가져다 쓴다 */
+export const CAFE_NEW_TOTAL = CAFE_GROUPS.reduce(
+  (n, g) => n + g.cafes.filter((c) => c.isNew).length,
+  0,
+);
+
+/**
+ * 01 번 문장.
+ *
+ * 표 안에서 세어 쓴다. 손으로 적으면 카페를 더 붙였을 때 문장만 옛 수로 남는다
+ * (2026-09-10 (목) 실제로 공지는 두 곳 · 표는 여섯 곳으로 어긋나 있었다).
+ * 템플릿 문자열은 `as const` 객체 안에 직접 못 넣으므로 여기서 만들어 넘긴다.
+ */
+const POINT_NEW_BODY = `대표카페 제휴처 ${CAFE_NEW_TOTAL}곳을 새로 확보했습니다. 아래 표에서 신규로 표시한 곳입니다. 다른 대표카페와도 제휴 협의를 이어가고 있습니다.`;
+
 /**
  * 묶음의 건당 단가. CAFE_TIERS 에서 찾아온다.
  *
@@ -118,7 +133,7 @@ export const CAFE_NOTICE = {
     {
       no: "01",
       label: "대표카페 제휴처 추가 확보",
-      body: "대표카페 제휴처를 새로 확보했습니다. 아래 표에서 신규로 표시한 곳입니다. 다른 대표카페와도 제휴 협의를 이어가고 있습니다.",
+      body: POINT_NEW_BODY,
     },
     {
       no: "02",
@@ -127,8 +142,8 @@ export const CAFE_NOTICE = {
     },
   ],
 
-  /** 카페 표 위에 붙는 두 줄 */
-  cafeLead: "지금 배포할 수 있는 카페입니다.",
+  /** 2장 머리글. 1장은 공지 본문, 2장은 카페 표다 */
+  cafeTitle: "지금 배포할 수 있는 카페",
   cafeLeadSub: "건당 금액이며 부가세는 별도입니다.",
 
   /** 표 아래 한 줄 */
@@ -139,6 +154,8 @@ export const CAFE_NOTICE = {
     "갑작스러운 변경으로 불편을 드려 죄송합니다. 빠르게 정상화하겠습니다.",
   ],
 
+  /** 장 넘김 버튼 */
+  nav: { next: "카페 목록 보기", prev: "이전" },
   cta: { label: "단가 문의하기", href: "/contact" },
   dismiss: "확인했습니다",
 } as const;

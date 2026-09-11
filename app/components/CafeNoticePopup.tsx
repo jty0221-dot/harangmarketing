@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Megaphone, X, ArrowRight, Coffee } from "lucide-react";
+import { Megaphone, X, ArrowRight, ArrowLeft, Coffee } from "lucide-react";
 import {
   CAFE_NOTICE,
   NOTICE_STORAGE_KEY,
@@ -26,6 +26,18 @@ import { won } from "../lib/cafe-distribution";
  *   2) 스크롤 조건이 없다. 공지는 늦게 보여 줄 이유가 없어 0.8초 뒤 바로 띄운다
  *   3) 뜨는 경로가 정해져 있다 (NOTICE_PATHS). 카페 배포를 보러 온 사람에게만 뜬다
  *
+ * 2026-09-11 (금) 대표 지시 「팝업 크기 조정해 2장으로 쪼개던지」 로 두 장이 됐다.
+ * 한 장에 다 담았더니 375px 화면에서 내용 1,243px 이 창 503px 안에 들어가 740px 을 굴려야 했다.
+ * 1장은 공지 본문, 2장은 카페 표다. 머리글과 버튼 줄은 굴러가지 않고 제자리에 남는다.
+ * 카페 목록은 640px 이상에서 두 칸으로 나뉜다. 세로로 세우면 PC 에서도 창을 넘긴다.
+ *
+ * 높이를 vh 비율(52vh)로 잘랐더니 375x667 화면에서 카드 위쪽 20px 이 창 밖으로 나갔다.
+ * 화면이 줄어도 머리글 · 버튼 줄 · 바깥 여백은 같이 줄지 않아서 합이 창을 넘긴 것이다.
+ * 그래서 비율을 쓰지 않는다. top/bottom 으로 들어갈 상자를 먼저 잡고 카드를 세로 flex 로
+ * 세운 뒤 본문에만 남은 높이를 준다. 상자 밖으로 나갈 자리가 없으니 어느 화면에서도 안 잘린다.
+ * 위쪽 여백은 헤더를 피해서 잡는다. 고정 헤더가 모바일에서 103px 이라 top-16(64px)으로
+ * 두면 카드가 헤더 아래 절반을 덮었다. top-28(112px) · sm:top-32(128px) 로 내려 비켜 세운다.
+ *
  * 문구와 카페 명단은 전부 app/lib/cafe-notice.ts 에 있고, 단가는 groupPrice() 가
  * cafe-distribution.ts 의 등급표에서 찾아온다. 이 파일에는 문장도 숫자도 적지 않는다.
  */
@@ -33,6 +45,8 @@ export default function CafeNoticePopup() {
   const pathname = usePathname() || "";
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [page, setPage] = useState(1);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   const onNoticePath = noticeShowsOn(pathname);
 
@@ -61,12 +75,18 @@ export default function CafeNoticePopup() {
     setTimeout(() => setOpen(false), 180);
   };
 
+  /** 장을 넘길 때 본문을 맨 위로 되돌린다. 2장 중간에서 시작하면 첫 줄을 놓친다 */
+  const goto = (next: number) => {
+    setPage(next);
+    bodyRef.current?.scrollTo({ top: 0 });
+  };
+
   if (!open) return null;
 
   return (
     <aside
       aria-label={CAFE_NOTICE.title}
-      className="fixed z-[9998] left-4 right-4 bottom-44 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[380px]"
+      className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 sm:top-32 sm:bottom-24 sm:w-[440px]"
       style={{
         animation: closing
           ? "haNoticeOut 0.18s ease both"
@@ -79,7 +99,7 @@ export default function CafeNoticePopup() {
       `}</style>
 
       <div
-        className="relative overflow-hidden rounded-2xl"
+        className="pointer-events-auto relative flex max-h-full w-full flex-col overflow-hidden rounded-2xl"
         style={{
           background: "var(--w-bg)",
           border: "1px solid var(--w-line-strong)",
@@ -89,12 +109,13 @@ export default function CafeNoticePopup() {
         <button
           onClick={dismiss}
           aria-label="공지 닫기"
-          className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-[var(--w-fill)]"
+          className="absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-[var(--w-fill)]"
         >
           <X size={16} style={{ color: "var(--w-label-assistive)" }} />
         </button>
 
-        <div className="max-h-[62vh] overflow-y-auto p-5 pr-12">
+        {/* 머리글. 두 장 모두 같은 자리에 남는다 */}
+        <div className="shrink-0 px-4 pr-12 pt-4 sm:px-5 sm:pr-12 sm:pt-5">
           <div className="flex items-center gap-2">
             <span
               className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg"
@@ -102,146 +123,199 @@ export default function CafeNoticePopup() {
             >
               <Megaphone size={13} strokeWidth={2.5} style={{ color: "var(--w-text-inverse)" }} />
             </span>
-            <span className="w-label-2 font-bold" style={{ color: "var(--w-primary-strong)" }}>
+            <span className="w-label-2 shrink-0 font-bold" style={{ color: "var(--w-primary-strong)" }}>
               {CAFE_NOTICE.eyebrow}
             </span>
-            <span className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>
+            <span className="w-caption-1 truncate" style={{ color: "var(--w-label-assistive)" }}>
               {CAFE_NOTICE.date}
+            </span>
+            <span
+              className="w-caption-1 ml-auto shrink-0 tabular-nums"
+              style={{ color: "var(--w-label-assistive)" }}
+            >
+              {page} / 2
             </span>
           </div>
 
-          <h2 className="w-title-3 mt-2" style={{ color: "var(--w-label-strong)" }}>
-            {CAFE_NOTICE.title}
-          </h2>
-          <p className="w-caption-1 mt-1.5" style={{ color: "var(--w-label-alt)" }}>
-            {CAFE_NOTICE.intro}
-          </p>
-
-          <ul className="mt-4 space-y-3">
-            {CAFE_NOTICE.points.map((p) => (
-              <li key={p.no} className="flex gap-2.5">
-                <span
-                  className="mt-0.5 flex h-5 shrink-0 items-center rounded px-1.5 text-[10px] font-bold"
-                  style={{ background: "var(--w-primary)", color: "var(--w-text-inverse)" }}
-                >
-                  {p.no}
-                </span>
-                <div className="min-w-0">
-                  <p className="w-label-2 font-semibold" style={{ color: "var(--w-label-strong)" }}>
-                    {p.label}
-                  </p>
-                  <p className="w-caption-1 mt-0.5" style={{ color: "var(--w-label-alt)" }}>
-                    {p.body}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <div
-            className="mt-4 rounded-lg p-3"
-            style={{ background: "var(--w-bg-alt)", border: "1px solid var(--w-line)" }}
-          >
-            <div className="flex items-baseline justify-between gap-2">
-              <p className="w-label-2 font-semibold" style={{ color: "var(--w-label-strong)" }}>
-                {CAFE_NOTICE.cafeLead}
+          {page === 1 ? (
+            <>
+              <h2 className="w-title-3 mt-2" style={{ color: "var(--w-label-strong)" }}>
+                {CAFE_NOTICE.title}
+              </h2>
+              <p className="w-caption-1 mt-1.5" style={{ color: "var(--w-label-alt)" }}>
+                {CAFE_NOTICE.intro}
               </p>
-              <span
-                className="w-caption-1 shrink-0 tabular-nums"
-                style={{ color: "var(--w-label-assistive)" }}
-              >
-                {CAFE_GROUPS_TOTAL}곳
-              </span>
-            </div>
-            <p className="w-caption-1 mt-0.5" style={{ color: "var(--w-label-assistive)" }}>
-              {CAFE_NOTICE.cafeLeadSub}
-            </p>
+            </>
+          ) : (
+            <>
+              <div className="mt-2 flex items-baseline justify-between gap-2">
+                <h2 className="w-title-3" style={{ color: "var(--w-label-strong)" }}>
+                  {CAFE_NOTICE.cafeTitle}
+                </h2>
+                <span
+                  className="w-label-2 shrink-0 font-bold tabular-nums"
+                  style={{ color: "var(--w-primary-strong)" }}
+                >
+                  {CAFE_GROUPS_TOTAL}곳
+                </span>
+              </div>
+              <p className="w-caption-1 mt-1.5" style={{ color: "var(--w-label-alt)" }}>
+                {CAFE_NOTICE.cafeLeadSub}
+              </p>
+            </>
+          )}
+        </div>
 
-            <div className="mt-3 space-y-3">
-              {CAFE_GROUPS.map((g) => {
-                const price = groupPrice(g.grade);
-                return (
-                  <div key={g.label}>
-                    <div
-                      className="flex items-baseline justify-between gap-3 border-b pb-1.5"
-                      style={{ borderColor: "var(--w-line-strong)" }}
+        {/* 본문. 여기만 굴러간다 */}
+        <div
+          ref={bodyRef}
+          className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 pt-3.5 sm:px-5"
+        >
+          {page === 1 ? (
+            <>
+              <ul className="space-y-3">
+                {CAFE_NOTICE.points.map((p) => (
+                  <li key={p.no} className="flex gap-2.5">
+                    <span
+                      className="mt-0.5 flex h-5 shrink-0 items-center rounded px-1.5 text-[10px] font-bold"
+                      style={{ background: "var(--w-primary)", color: "var(--w-text-inverse)" }}
                     >
-                      <p className="w-label-2 font-bold" style={{ color: "var(--w-label-strong)" }}>
-                        {g.label}
+                      {p.no}
+                    </span>
+                    <div className="min-w-0">
+                      <p
+                        className="w-label-2 font-semibold"
+                        style={{ color: "var(--w-label-strong)" }}
+                      >
+                        {p.label}
                       </p>
-                      {price !== undefined && (
+                      <p className="w-caption-1 mt-0.5" style={{ color: "var(--w-label-alt)" }}>
+                        {p.body}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div
+                className="mt-3.5 space-y-1.5 border-t pt-3.5"
+                style={{ borderColor: "var(--w-line)" }}
+              >
+                {CAFE_NOTICE.closing.map((line) => (
+                  <p key={line} className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="space-y-3">
+                {CAFE_GROUPS.map((g) => {
+                  const price = groupPrice(g.grade);
+                  return (
+                    <div key={g.label}>
+                      <div
+                        className="flex items-baseline justify-between gap-3 border-b pb-1.5"
+                        style={{ borderColor: "var(--w-line-strong)" }}
+                      >
                         <p
-                          className="w-label-2 shrink-0 font-bold tabular-nums"
-                          style={{ color: "var(--w-primary-strong)" }}
+                          className="w-label-2 font-bold"
+                          style={{ color: "var(--w-label-strong)" }}
                         >
-                          {won(price)}
+                          {g.label}
+                        </p>
+                        {price !== undefined && (
+                          <p
+                            className="w-label-2 shrink-0 font-bold tabular-nums"
+                            style={{ color: "var(--w-primary-strong)" }}
+                          >
+                            {won(price)}
+                          </p>
+                        )}
+                      </div>
+
+                      {g.note && (
+                        <p
+                          className="w-caption-1 mt-1"
+                          style={{ color: "var(--w-label-assistive)" }}
+                        >
+                          {g.note}
                         </p>
                       )}
-                    </div>
 
-                    {g.note && (
-                      <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-assistive)" }}>
-                        {g.note}
-                      </p>
-                    )}
-
-                    <ul className="mt-1">
-                      {g.cafes.map((c) => (
-                        <li key={c.name} className="flex items-center gap-1.5 py-1">
-                          <Coffee
-                            size={12}
-                            strokeWidth={2}
-                            className="shrink-0"
-                            style={{ color: "var(--w-label-assistive)" }}
-                          />
-                          <span
-                            className="w-caption-1 min-w-0 truncate"
-                            style={{ color: "var(--w-label-strong)" }}
-                          >
-                            {c.name}
-                          </span>
-                          {c.isNew && (
+                      <ul className="mt-1 grid grid-cols-1 gap-x-3 sm:grid-cols-2">
+                        {g.cafes.map((c) => (
+                          <li key={c.name} className="flex items-center gap-1.5 py-1">
+                            <Coffee
+                              size={12}
+                              strokeWidth={2}
+                              className="shrink-0"
+                              style={{ color: "var(--w-label-assistive)" }}
+                            />
                             <span
-                              className="shrink-0 rounded px-1 text-[10px] font-bold leading-4"
-                              style={{ background: "var(--w-primary)", color: "var(--w-text-inverse)" }}
+                              className="w-caption-1 min-w-0 truncate"
+                              style={{ color: "var(--w-label-strong)" }}
                             >
-                              신규
+                              {c.name}
                             </span>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
+                            {c.isNew && (
+                              <span
+                                className="shrink-0 rounded px-1 text-[10px] font-bold leading-4"
+                                style={{
+                                  background: "var(--w-primary)",
+                                  color: "var(--w-text-inverse)",
+                                }}
+                              >
+                                신규
+                              </span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
 
-            <p className="w-caption-1 mt-3" style={{ color: "var(--w-label-assistive)" }}>
-              {CAFE_NOTICE.tierNote}
-            </p>
-          </div>
-
-          <div className="mt-3.5 space-y-1.5">
-            {CAFE_NOTICE.closing.map((line) => (
-              <p key={line} className="w-caption-1" style={{ color: "var(--w-label-alt)" }}>
-                {line}
+              <p className="w-caption-1 mt-3" style={{ color: "var(--w-label-assistive)" }}>
+                {CAFE_NOTICE.tierNote}
               </p>
-            ))}
-          </div>
+            </>
+          )}
+        </div>
 
-          <div className="mt-4 flex items-center gap-2">
-            <Link
-              href={CAFE_NOTICE.cta.href}
-              onClick={dismiss}
-              className="w-btn w-btn-primary flex-1"
-            >
-              {CAFE_NOTICE.cta.label}
-              <ArrowRight size={14} strokeWidth={2.5} />
-            </Link>
-            <button onClick={dismiss} className="w-btn w-btn-ghost">
-              {CAFE_NOTICE.dismiss}
-            </button>
-          </div>
+        {/* 버튼 줄. 굴러가지 않는다. 2장 맨 아래까지 내려가야 닫기가 보이면 안 된다 */}
+        <div
+          className="flex shrink-0 items-center gap-2 border-t px-4 py-3 sm:px-5"
+          style={{ borderColor: "var(--w-line)", background: "var(--w-bg)" }}
+        >
+          {page === 1 ? (
+            <>
+              <button onClick={() => goto(2)} className="w-btn w-btn-primary flex-1">
+                {CAFE_NOTICE.nav.next}
+                <ArrowRight size={14} strokeWidth={2.5} />
+              </button>
+              <button onClick={dismiss} className="w-btn w-btn-ghost shrink-0">
+                {CAFE_NOTICE.dismiss}
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => goto(1)} className="w-btn w-btn-ghost shrink-0">
+                <ArrowLeft size={14} strokeWidth={2.5} />
+                {CAFE_NOTICE.nav.prev}
+              </button>
+              <Link
+                href={CAFE_NOTICE.cta.href}
+                onClick={dismiss}
+                className="w-btn w-btn-primary flex-1"
+              >
+                {CAFE_NOTICE.cta.label}
+                <ArrowRight size={14} strokeWidth={2.5} />
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </aside>
