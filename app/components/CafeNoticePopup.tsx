@@ -3,12 +3,14 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Megaphone, X, ArrowRight, ArrowLeft, Coffee } from "lucide-react";
+import { Megaphone, X, ArrowRight, ArrowLeft } from "lucide-react";
 import {
   CAFE_NOTICE,
   NOTICE_STORAGE_KEY,
-  CAFE_GROUPS,
+  CAFE_PAGES,
   CAFE_GROUPS_TOTAL,
+  NOTICE_PAGES,
+  cafeLogoSrc,
   groupPrice,
   noticeShowsOn,
 } from "../lib/cafe-notice";
@@ -28,8 +30,18 @@ import { won } from "../lib/cafe-distribution";
  *
  * 2026-09-11 (금) 대표 지시 「팝업 크기 조정해 2장으로 쪼개던지」 로 두 장이 됐다.
  * 한 장에 다 담았더니 375px 화면에서 내용 1,243px 이 창 503px 안에 들어가 740px 을 굴려야 했다.
- * 1장은 공지 본문, 2장은 카페 표다. 머리글과 버튼 줄은 굴러가지 않고 제자리에 남는다.
+ * 1장은 공지 본문, 2장부터가 카페 표다. 머리글과 버튼 줄은 굴러가지 않고 제자리에 남는다.
  * 카페 목록은 640px 이상에서 두 칸으로 나뉜다. 세로로 세우면 PC 에서도 창을 넘긴다.
+ *
+ * 같은 날 다시 「팝업 자체를 조금 늘려서 이미지나 로고 까지 같이 올라갈 수 있게 해줘 ·
+ * 보면 못알아봐 고객 입장에서 항상 생각하라고」 가 왔다. 이름만 21줄 있으면 고객은
+ * 어느 카페인지 못 알아본다는 얘기다. 그래서 줄마다 카페 로고를 28px 로 올렸다.
+ * 줄 높이가 25px 에서 36px 으로 늘어 21줄이 한 장에 안 들어가 표를 다시 둘로 나눴다 —
+ * 대표카페 8곳이 한 장, 나머지 13곳이 한 장이라 전체 세 장이다. 장 수는 NOTICE_PAGES 가 센다.
+ * PC 폭은 440px 에서 520px 로 넓혔다. 로고 28px 과 신규 배지가 들어가면서 두 칸 배치에서
+ * 긴 이름이 잘렸기 때문이다. 세로는 못 늘린다 — 위는 고정 헤더, 아래는 챗봇 버튼이 막고 있다.
+ * 이미지를 늦게 받는 lazy 설정은 쓰지 않는다. 이 카드는 fixed 로 떠 있어 브라우저가 화면
+ * 밖으로 판정해 21장이 다 빈 칸으로 남는다. decoding 을 async 로 두고 width/height 로 대신한다.
  *
  * 높이를 vh 비율(52vh)로 잘랐더니 375x667 화면에서 카드 위쪽 20px 이 창 밖으로 나갔다.
  * 화면이 줄어도 머리글 · 버튼 줄 · 바깥 여백은 같이 줄지 않아서 합이 창을 넘긴 것이다.
@@ -86,7 +98,7 @@ export default function CafeNoticePopup() {
   return (
     <aside
       aria-label={CAFE_NOTICE.title}
-      className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 sm:top-32 sm:bottom-24 sm:w-[440px]"
+      className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 sm:top-32 sm:bottom-24 sm:w-[520px]"
       style={{
         animation: closing
           ? "haNoticeOut 0.18s ease both"
@@ -133,7 +145,7 @@ export default function CafeNoticePopup() {
               className="w-caption-1 ml-auto shrink-0 tabular-nums"
               style={{ color: "var(--w-label-assistive)" }}
             >
-              {page} / 2
+              {page} / {NOTICE_PAGES}
             </span>
           </div>
 
@@ -211,7 +223,7 @@ export default function CafeNoticePopup() {
           ) : (
             <>
               <div className="space-y-3">
-                {CAFE_GROUPS.map((g) => {
+                {(CAFE_PAGES[page - 2] ?? []).map((g) => {
                   const price = groupPrice(g.grade);
                   return (
                     <div key={g.label}>
@@ -246,13 +258,21 @@ export default function CafeNoticePopup() {
 
                       <ul className="mt-1 grid grid-cols-1 gap-x-3 sm:grid-cols-2">
                         {g.cafes.map((c) => (
-                          <li key={c.name} className="flex items-center gap-1.5 py-1">
-                            <Coffee
-                              size={12}
-                              strokeWidth={2}
-                              className="shrink-0"
-                              style={{ color: "var(--w-label-assistive)" }}
-                            />
+                          <li key={c.name} className="flex items-center gap-2 py-1">
+                            <span
+                              className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-lg"
+                              style={{ background: "var(--w-fill)" }}
+                            >
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={cafeLogoSrc(c.logo)}
+                                alt=""
+                                width={56}
+                                height={56}
+                                decoding="async"
+                                className="h-full w-full object-cover"
+                              />
+                            </span>
                             <span
                               className="w-caption-1 min-w-0 truncate"
                               style={{ color: "var(--w-label-strong)" }}
@@ -278,9 +298,11 @@ export default function CafeNoticePopup() {
                 })}
               </div>
 
-              <p className="w-caption-1 mt-3" style={{ color: "var(--w-label-assistive)" }}>
-                {CAFE_NOTICE.tierNote}
-              </p>
+              {page === NOTICE_PAGES && (
+                <p className="w-caption-1 mt-3" style={{ color: "var(--w-label-assistive)" }}>
+                  {CAFE_NOTICE.tierNote}
+                </p>
+              )}
             </>
           )}
         </div>
@@ -290,31 +312,34 @@ export default function CafeNoticePopup() {
           className="flex shrink-0 items-center gap-2 border-t px-4 py-3 sm:px-5"
           style={{ borderColor: "var(--w-line)", background: "var(--w-bg)" }}
         >
-          {page === 1 ? (
-            <>
-              <button onClick={() => goto(2)} className="w-btn w-btn-primary flex-1">
-                {CAFE_NOTICE.nav.next}
-                <ArrowRight size={14} strokeWidth={2.5} />
-              </button>
-              <button onClick={dismiss} className="w-btn w-btn-ghost shrink-0">
-                {CAFE_NOTICE.dismiss}
-              </button>
-            </>
+          {page > 1 && (
+            <button onClick={() => goto(page - 1)} className="w-btn w-btn-ghost shrink-0">
+              <ArrowLeft size={14} strokeWidth={2.5} />
+              {CAFE_NOTICE.nav.prev}
+            </button>
+          )}
+          {page < NOTICE_PAGES ? (
+            <button
+              onClick={() => goto(page + 1)}
+              className="w-btn w-btn-primary flex-1"
+            >
+              {page === 1 ? CAFE_NOTICE.nav.next : CAFE_NOTICE.nav.more}
+              <ArrowRight size={14} strokeWidth={2.5} />
+            </button>
           ) : (
-            <>
-              <button onClick={() => goto(1)} className="w-btn w-btn-ghost shrink-0">
-                <ArrowLeft size={14} strokeWidth={2.5} />
-                {CAFE_NOTICE.nav.prev}
-              </button>
-              <Link
-                href={CAFE_NOTICE.cta.href}
-                onClick={dismiss}
-                className="w-btn w-btn-primary flex-1"
-              >
-                {CAFE_NOTICE.cta.label}
-                <ArrowRight size={14} strokeWidth={2.5} />
-              </Link>
-            </>
+            <Link
+              href={CAFE_NOTICE.cta.href}
+              onClick={dismiss}
+              className="w-btn w-btn-primary flex-1"
+            >
+              {CAFE_NOTICE.cta.label}
+              <ArrowRight size={14} strokeWidth={2.5} />
+            </Link>
+          )}
+          {page === 1 && (
+            <button onClick={dismiss} className="w-btn w-btn-ghost shrink-0">
+              {CAFE_NOTICE.dismiss}
+            </button>
           )}
         </div>
       </div>

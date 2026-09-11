@@ -15,6 +15,8 @@ import { CAFE_TIERS } from "./cafe-distribution";
 export type CafeRow = {
   /** 카페 이름 그대로. 2026-09-10 (목) 대표 지시 「이건 카페 이름 그대로 보여도 되」 */
   name: string;
+  /** 로고 파일 이름. cafeLogoSrc() 가 public/cafe-logo/cafe-<logo>.png 로 바꾼다 */
+  logo: string;
   /** 이번에 새로 들어온 곳인가. 배포처 표의 NEW 표시를 그대로 옮긴 것이다 */
   isNew?: boolean;
 };
@@ -51,36 +53,39 @@ export const CAFE_GROUPS: CafeGroup[] = [
     grade: "대형 카페",
     note: "네이버 대표카페 배지가 붙은 곳입니다.",
     cafes: [
-      { name: "결혼준비는제이웨딩" },
-      { name: "차박은 내친구", isNew: true },
-      { name: "레드펄스바다낚시", isNew: true },
-      { name: "예카", isNew: true },
-      { name: "샤넬오픈런", isNew: true },
-      { name: "쇼핑지름신", isNew: true },
-      { name: "시계거래소", isNew: true },
-      { name: "컬처블룸" },
+      { name: "결혼준비는제이웨딩", logo: "jwedding" },
+      { name: "차박은 내친구", logo: "charbak", isNew: true },
+      { name: "레드펄스바다낚시", logo: "redpulse", isNew: true },
+      { name: "예카", logo: "yeka", isNew: true },
+      { name: "샤넬오픈런", logo: "chanel", isNew: true },
+      { name: "쇼핑지름신", logo: "shoji", isNew: true },
+      { name: "시계거래소", logo: "watch", isNew: true },
+      { name: "컬처블룸", logo: "culturebloom" },
     ],
   },
   {
     label: "리뷰 · 문화 카페",
     grade: "리뷰 · 문화 카페",
-    cafes: [{ name: "맛슐랭 코리아" }, { name: "세종시닷컴" }],
+    cafes: [
+      { name: "맛슐랭 코리아", logo: "matsulen" },
+      { name: "세종시닷컴", logo: "sejongsi" },
+    ],
   },
   {
     label: "지역 · 주제 카페",
     grade: "지역 · 주제 카페",
     cafes: [
-      { name: "현명한 소비철학" },
-      { name: "더먹자" },
-      { name: "혼결모" },
-      { name: "인테리어에 진심인 사람들" },
-      { name: "누수제로" },
-      { name: "커튼블라인드홈" },
-      { name: "청소 폐기물 119" },
-      { name: "애랑먹자" },
-      { name: "서귀포 한입여행" },
-      { name: "제주놀라갑서" },
-      { name: "모두의 셀프 스킨케어" },
+      { name: "현명한 소비철학", logo: "sobichulhak" },
+      { name: "더먹자", logo: "deomeokja" },
+      { name: "혼결모", logo: "hongyeolmo" },
+      { name: "인테리어에 진심인 사람들", logo: "interior" },
+      { name: "누수제로", logo: "nusuzero" },
+      { name: "커튼블라인드홈", logo: "curtainblind" },
+      { name: "청소 폐기물 119", logo: "cleaning119" },
+      { name: "애랑먹자", logo: "aerangmeokja" },
+      { name: "서귀포 한입여행", logo: "seogwipo" },
+      { name: "제주놀라갑서", logo: "jejunolra" },
+      { name: "모두의 셀프 스킨케어", logo: "selfskincare" },
     ],
   },
 ];
@@ -101,6 +106,35 @@ export const CAFE_NEW_TOTAL = CAFE_GROUPS.reduce(
  * (2026-09-10 (목) 실제로 공지는 두 곳 · 표는 여섯 곳으로 어긋나 있었다).
  * 템플릿 문자열은 `as const` 객체 안에 직접 못 넣으므로 여기서 만들어 넘긴다.
  */
+/**
+ * 카페 로고 파일 경로.
+ *
+ * 2026-09-11 (금) 대표 지시 「팝업 자체를 조금 늘려서 이미지나 로고 까지 같이 올라갈 수 있게
+ * 해줘 · 보면 못알아봐 고객 입장에서 항상 생각하라고」.
+ * 배포처가 넘긴 단가표 이미지에서 21곳의 로고를 실측 좌표로 잘라
+ * public/cafe-logo/ 에 56x56 PNG 로 넣었다. 폴더가 바뀌면 여기 한 줄만 고친다.
+ */
+export function cafeLogoSrc(logo: string): string {
+  return `/cafe-logo/cafe-${logo}.png`;
+}
+
+/**
+ * 팝업 한 장에 올릴 묶음.
+ *
+ * 로고가 붙으면서 줄 높이가 20px 에서 36px 으로 늘어 21줄이 한 장에 안 들어간다.
+ * 같은 지시의 「알아서 팝업 크기 조정해 2장으로 쪼개던지」 에 따라 표를 두 장으로 나눈다.
+ * 대표카페가 한 장, 나머지가 한 장이다. 묶음을 반으로 잘라 두 장에 걸치지 않는다 —
+ * 단가가 묶음 머리에 붙어 있어서 쪼개면 금액 없는 카페 줄이 생긴다.
+ * 묶음을 더 만들면 자동으로 뒷장에 붙는다.
+ */
+export const CAFE_PAGES: CafeGroup[][] = [
+  CAFE_GROUPS.filter((g) => g.label === "대표카페"),
+  CAFE_GROUPS.filter((g) => g.label !== "대표카페"),
+].filter((page) => page.length > 0);
+
+/** 팝업 장 수. 첫 장은 공지 본문이고 나머지가 카페 표다. 손으로 세지 않는다 */
+export const NOTICE_PAGES = 1 + CAFE_PAGES.length;
+
 const POINT_NEW_BODY = `대표카페 제휴처 ${CAFE_NEW_TOTAL}곳을 새로 확보했습니다. 아래 표에서 신규로 표시한 곳입니다. 다른 대표카페와도 제휴 협의를 이어가고 있습니다.`;
 
 /**
@@ -154,8 +188,8 @@ export const CAFE_NOTICE = {
     "갑작스러운 변경으로 불편을 드려 죄송합니다. 빠르게 정상화하겠습니다.",
   ],
 
-  /** 장 넘김 버튼 */
-  nav: { next: "카페 목록 보기", prev: "이전" },
+  /** 장 넘김 버튼. more 는 카페 표가 두 장으로 나뉘면서 생긴 가운데 버튼이다 */
+  nav: { next: "카페 목록 보기", more: "나머지 카페 보기", prev: "이전" },
   cta: { label: "단가 문의하기", href: "/contact" },
   dismiss: "확인했습니다",
 } as const;
