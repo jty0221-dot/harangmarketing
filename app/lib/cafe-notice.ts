@@ -21,6 +21,20 @@ export type CafeRow = {
   isNew?: boolean;
 };
 
+/**
+ * 배포처 단가표 캡처에서 잘라낸 한 장.
+ *
+ * 크기를 같이 들고 다니는 이유가 있다. img 에 width/height 를 적어 두면 그림이
+ * 도착하기 전에 브라우저가 자리를 먼저 잡는다. 안 적으면 카드가 한 번 출렁인다.
+ */
+export type CafeSheet = {
+  /** public/cafe-sheet/ 아래 파일 */
+  src: string;
+  /** 원본 크기 (px) */
+  width: number;
+  height: number;
+};
+
 export interface CafeGroup {
   /** 화면에 뜨는 묶음 이름 */
   label: string;
@@ -31,6 +45,14 @@ export interface CafeGroup {
   grade: string;
   /** 묶음 이름만으로 부족할 때 붙이는 한 마디 */
   note?: string;
+  /** 이 묶음을 찍은 캡처 조각. 화면에 뜨는 것은 이 그림이다 */
+  sheet: CafeSheet;
+  /**
+   * 그림 안에 있는 카페들.
+   *
+   * 화면에 줄로 그리지 않는다. 개수를 세고(21곳 · 신규 6곳) 그림을 못 볼 때
+   * 읽히는 대체 문구를 만드는 데 쓴다. 명단을 두 벌 적지 않으려고 여기 한 벌만 둔다.
+   */
   cafes: CafeRow[];
 }
 
@@ -41,17 +63,26 @@ export interface CafeGroup {
  * 「팝업에 이렇게 정리해서 어떤 업체가 가능한지 보이게 해놓으라고
  *   금액은 당연히 도매처 금액이니 우리 맞게 변경하고」.
  *
- * 그래서 이름과 NEW 표시만 그 표에서 가져오고 금액은 한 줄도 옮겨 적지 않았다.
+ * 처음에는 이름만 옮겨 글자 표로 다시 그렸는데 2026-09-11 (금) 대표가 되돌렸다
+ * 「아니 그냥 로고 이미지에 있는 사진 그대로 팝업으로 만들어서 띄워」.
+ * 그래서 지금 화면에 뜨는 것은 배포처 캡처 자체다 (public/cafe-sheet/).
+ *
+ * 원본에서 잘라낸 것은 두 열뿐이다.
+ *   1) 「가격」 열 — 배포처 도매가라 우리 원가다. 화면에 뜨면 안 된다
+ *   2) 「구분」 열 — 「화력보장」 배지가 성과를 약속하는 말이라 검색광고 심사에서 반려된다 (헌장 C-36)
+ * 번호 · NEW 리본 · 로고 · 카페 이름은 원본 픽셀 그대로 남겼다.
+ * 자른 좌표와 검증은 scratchpad 의 ship-sheet.py 가 들고 있다.
+ *
  * 묶음은 배포처 단가로 가른다 — 배포처 원가 20,000 · 30,000 · 50,000 이
  * 우리 등급표의 24,000 · 36,000 · 60,000 과 그대로 짝이 맞는다.
- * 배포처가 쓰는 「화력보장」 같은 등급 이름은 옮기지 않았다. 성과를 약속하는 말이라
- * 우리 화면에 적으면 검색광고 심사에서 반려된다 (헌장 C-36).
+ * 그림에는 금액이 없으므로 단가는 묶음 머리에 글자로 붙는다. 출처는 CAFE_TIERS 다.
  */
 export const CAFE_GROUPS: CafeGroup[] = [
   {
     label: "대표카페",
     grade: "대형 카페",
     note: "네이버 대표카페 배지가 붙은 곳입니다.",
+    sheet: { src: "/cafe-sheet/cafe-sheet-1.webp", width: 422, height: 606 },
     cafes: [
       { name: "결혼준비는제이웨딩", logo: "jwedding" },
       { name: "차박은 내친구", logo: "charbak", isNew: true },
@@ -66,6 +97,7 @@ export const CAFE_GROUPS: CafeGroup[] = [
   {
     label: "리뷰 · 문화 카페",
     grade: "리뷰 · 문화 카페",
+    sheet: { src: "/cafe-sheet/cafe-sheet-2.webp", width: 422, height: 152 },
     cafes: [
       { name: "맛슐랭 코리아", logo: "matsulen" },
       { name: "세종시닷컴", logo: "sejongsi" },
@@ -74,6 +106,7 @@ export const CAFE_GROUPS: CafeGroup[] = [
   {
     label: "지역 · 주제 카페",
     grade: "지역 · 주제 카페",
+    sheet: { src: "/cafe-sheet/cafe-sheet-3.webp", width: 422, height: 834 },
     cafes: [
       { name: "현명한 소비철학", logo: "sobichulhak" },
       { name: "더먹자", logo: "deomeokja" },
@@ -113,19 +146,34 @@ export const CAFE_NEW_TOTAL = CAFE_GROUPS.reduce(
  * 해줘 · 보면 못알아봐 고객 입장에서 항상 생각하라고」.
  * 배포처가 넘긴 단가표 이미지에서 21곳의 로고를 실측 좌표로 잘라
  * public/cafe-logo/ 에 56x56 PNG 로 넣었다. 폴더가 바뀌면 여기 한 줄만 고친다.
+ *
+ * 같은 날 저녁 캡처를 통째로 올리기로 바뀌면서 화면에서는 더 쓰지 않는다.
+ * 그래도 함수와 21장은 지우지 않는다 (헌장 C-24) — 배포처가 넘긴 원본에서 잘라낸
+ * 유일한 로고 자산이라, 다시 필요해지면 이것 말고 가져올 데가 없다.
  */
 export function cafeLogoSrc(logo: string): string {
   return `/cafe-logo/cafe-${logo}.png`;
 }
 
 /**
+ * 그림을 못 볼 때 대신 읽히는 문장.
+ *
+ * 카페 이름이 그림 안에 들어 있어서, 그림이 안 뜨거나 화면을 읽어 주는 기기로 보면
+ * 아무것도 안 남는다. 그래서 이름을 여기서 풀어 준다. 명단을 두 벌 적는 게 아니라
+ * 위 한 벌에서 만들어 쓴다 — 카페를 더 붙이면 이 문장도 같이 따라온다.
+ */
+export function cafeSheetAlt(group: CafeGroup): string {
+  return `${group.label} ${group.cafes.length}곳 · ${group.cafes.map((c) => c.name).join(", ")}`;
+}
+
+/**
  * 팝업 한 장에 올릴 묶음.
  *
- * 로고가 붙으면서 줄 높이가 20px 에서 36px 으로 늘어 21줄이 한 장에 안 들어간다.
- * 같은 지시의 「알아서 팝업 크기 조정해 2장으로 쪼개던지」 에 따라 표를 두 장으로 나눈다.
- * 대표카페가 한 장, 나머지가 한 장이다. 묶음을 반으로 잘라 두 장에 걸치지 않는다 —
- * 단가가 묶음 머리에 붙어 있어서 쪼개면 금액 없는 카페 줄이 생긴다.
- * 묶음을 더 만들면 자동으로 뒷장에 붙는다.
+ * 캡처 조각 세 장을 세로로 세우면 1,592px 이라 한 장에 안 들어간다.
+ * 「알아서 팝업 크기 조정해 2장으로 쪼개던지」 에 따라 표를 두 장으로 나눈다.
+ * 대표카페가 한 장(606px), 나머지 두 묶음이 한 장(152 + 834px)이다.
+ * 묶음을 반으로 잘라 두 장에 걸치지 않는다 — 단가가 묶음 머리에 글자로 붙어 있어서
+ * 쪼개면 금액 없는 그림이 생긴다. 묶음을 더 만들면 자동으로 뒷장에 붙는다.
  */
 export const CAFE_PAGES: CafeGroup[][] = [
   CAFE_GROUPS.filter((g) => g.label === "대표카페"),
