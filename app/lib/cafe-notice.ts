@@ -73,8 +73,8 @@ export interface CafeGroup {
  * 번호 · NEW 리본 · 로고 · 카페 이름은 원본 픽셀 그대로 남겼다.
  * 자른 좌표와 검증은 scratchpad 의 ship-sheet.py 가 들고 있다.
  *
- * 묶음은 배포처 단가로 가른다 — 배포처 원가 20,000 · 30,000 · 50,000 이
- * 우리 등급표의 24,000 · 36,000 · 60,000 과 그대로 짝이 맞는다.
+ * 묶음은 배포처 등급을 우리 등급표(CAFE_TIERS)의 세 등급에 하나씩 짝 지어 가른다.
+ * 배포처 단가는 여기 적지 않는다. 공개 저장소라 sns-store.ts 와 같은 규칙이다.
  * 그림에는 금액이 없으므로 단가는 묶음 머리에 글자로 붙는다. 출처는 CAFE_TIERS 다.
  */
 export const CAFE_GROUPS: CafeGroup[] = [
