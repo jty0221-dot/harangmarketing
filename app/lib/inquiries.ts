@@ -1,4 +1,5 @@
 import { getSql } from "./db";
+import { isInquiryStatus, type InquiryStatus } from "./inquiry-status";
 
 /**
  * 상담 신청 저장 (서버 전용)
@@ -75,4 +76,57 @@ export async function getRecentPublicInquiries(limit = 8): Promise<PublicInquiry
   } catch {
     return [];
   }
+}
+
+export interface InquiryRow {
+  id: number;
+  name: string;
+  phone: string;
+  industry: string | null;
+  budget: string | null;
+  goals: string | null;
+  message: string | null;
+  source: string | null;
+  status: InquiryStatus;
+  createdAt: string;
+}
+
+function toIso(v: unknown): string {
+  const d = new Date(v as string | number | Date);
+  return Number.isNaN(d.getTime()) ? String(v) : d.toISOString();
+}
+
+/**
+ * 관리자 화면용 전체 목록 (최신순). 여기서만 이름·연락처가 나간다.
+ * 호출하는 쪽(/api/admin/inquiries)이 관리자 세션을 확인한다.
+ */
+export async function listInquiries(limit = 300): Promise<InquiryRow[]> {
+  await ensureTable();
+  const rows = (await getSql()`
+    select id, name, phone, industry, budget, goals, message, source, status, created_at
+    from inquiries
+    order by created_at desc, id desc
+    limit ${limit}
+  `) as Record<string, unknown>[];
+  return rows.map((r) => ({
+    id: Number(r.id),
+    name: String(r.name ?? ""),
+    phone: String(r.phone ?? ""),
+    industry: r.industry ? String(r.industry) : null,
+    budget: r.budget ? String(r.budget) : null,
+    goals: r.goals ? String(r.goals) : null,
+    message: r.message ? String(r.message) : null,
+    source: r.source ? String(r.source) : null,
+    status: isInquiryStatus(r.status) ? r.status : "new",
+    createdAt: toIso(r.created_at),
+  }));
+}
+
+/** 상태만 바꾼다. 없는 번호면 false */
+export async function updateInquiryStatus(id: number, status: InquiryStatus): Promise<boolean> {
+  await ensureTable();
+  const rows = (await getSql()`
+    update inquiries set status = ${status} where id = ${id} returning id
+  `) as Record<string, unknown>[];
+  return rows.length > 0;
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users, Clapperboard } from "lucide-react";
+import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users, Clapperboard, MessageSquare } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -9,13 +9,20 @@ export function AdminHeader() {
           <img src="/harang-icon.svg" alt="하랑마케팅" className="w-6 h-6" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           <span className="text-white font-black text-sm">하랑 관리자</span>
         </Link>
-        <nav className="flex items-center gap-1">
+        <nav className="flex flex-wrap items-center justify-end gap-1">
           <Link
             href="/admin"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
           >
             <BookOpen size={13} />
             블로그 글
+          </Link>
+          <Link
+            href="/admin/inquiries"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <MessageSquare size={13} />
+            홈페이지 문의
           </Link>
           <Link
             href="/admin/sns"
