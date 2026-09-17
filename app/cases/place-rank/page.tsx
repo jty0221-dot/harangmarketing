@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, LineChart } from "lucide-react";
+import { ArrowRight, Filter, LineChart } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
@@ -12,6 +12,8 @@ import {
   PLACE_RANK_CASES,
   PLACE_RANK_AS_OF,
   PLACE_RANK_GENERATED,
+  PLACE_RANK_EXCLUSIONS,
+  PLACE_RANK_EXCLUSIONS_NOTE,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
   PLACE_RANK_BIGGEST_GAIN,
@@ -131,6 +133,47 @@ export default function PlaceRankCasesPage() {
             <p className="mt-6 text-xs text-gray-500 leading-relaxed max-w-3xl">
               {PLACE_RANK_NOTE}
             </p>
+          </div>
+        </section>
+
+        {/*
+          화면에 올리지 않는 것 — /cases 의 「계측 방법과 제외 기준 보기」 가 약속한 쪽.
+          문구는 전부 app/lib/place-rank-cases.ts 에서 온다. 여기서 기준을 새로 만들지 않는다.
+        */}
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <p
+              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest mb-3"
+              style={{ color: "var(--w-primary)" }}
+            >
+              <Filter size={13} strokeWidth={2.5} />
+              Exclusions
+            </p>
+            <h2 className="text-lg md:text-xl font-black text-gray-900">화면에 올리지 않는 것</h2>
+            <p className="mt-2 text-sm text-gray-600 leading-relaxed max-w-3xl">
+              {PLACE_RANK_EXCLUSIONS_NOTE}
+            </p>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+              {PLACE_RANK_EXCLUSIONS.map((x, i) => (
+                <div
+                  key={x.title}
+                  className="bg-gray-50 border border-gray-100 rounded-2xl p-4 md:p-5"
+                >
+                  <p className="flex items-start gap-2 text-sm font-bold text-gray-900">
+                    <span
+                      className="shrink-0 text-xs font-black tabular-nums"
+                      style={{ color: "var(--w-primary)" }}
+                    >
+                      {i + 1})
+                    </span>
+                    {x.title}
+                  </p>
+                  <p className="mt-2 text-xs md:text-[13px] text-gray-600 leading-relaxed">
+                    {x.body}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
