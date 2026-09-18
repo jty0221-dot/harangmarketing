@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users, Clapperboard, MessageSquare } from "lucide-react";
+import { Home, BookOpen, ExternalLink, ShoppingBag, Wallet, FileText, Users, Clapperboard, MessageSquare, Bell } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -23,6 +23,13 @@ export function AdminHeader() {
           >
             <MessageSquare size={13} />
             홈페이지 문의
+          </Link>
+          <Link
+            href="/admin/notify-test"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <Bell size={13} />
+            알림 점검
           </Link>
           <Link
             href="/admin/sns"

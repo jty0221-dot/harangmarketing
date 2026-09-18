@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveInquiry } from "../../lib/inquiries";
+import { sendKakaoNotify } from "../../lib/kakao-notify";
 
 /* 서버리스 인스턴스 단위의 가벼운 과다 요청 방지.
    /api/sns/order 와 같은 방식이다. 완전한 차단이 아니라 자동 도배를 늦추는 장치다. */
@@ -69,29 +70,38 @@ export async function POST(req: NextRequest) {
 
     const text = [
       "[하랑마케팅 상담 신청]",
+      /* 저장 실패 표시는 맨 앞이다. 카카오 알림은 200자에서 잘리는데
+         문의가 길면 뒤에 둔 이 줄부터 먼저 잘려 나간다.
+         하필 이 메시지가 그 문의의 마지막 기록인 자리라 그러면 안 된다. */
+      saved ? "" : "저장 실패 — 이 메시지를 꼭 보관하세요",
       `이름/업체명: ${name}`,
       `연락처: ${phone}`,
-      `업종: ${industry}`,
+      industry ? `업종: ${industry}` : "",
       budgetText,
       goalsText,
       msgText,
-      saved ? "" : "저장 실패 — 이 메시지를 꼭 보관하세요",
     ]
       .filter(Boolean)
       .join("\n");
 
+    /* 알림 둘을 같이 보낸다 — 웹훅과 카카오톡이다.
+       둘 다 없어도 되고 하나만 있어도 된다. 어느 쪽이 실패해도 접수는 성공으로 돌려준다.
+       카카오 환경변수가 없으면 sendKakaoNotify 가 skipped 로 다시 나온다. 로그를 더럽히지 않는다. */
     const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text }),
-        });
-      } catch (e) {
-        console.error("상담 알림 웹훅 실패:", e);
-      }
-    }
+    await Promise.all([
+      webhookUrl
+        ? fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+          }).catch((e) => {
+            console.error("상담 알림 웹훅 실패:", e);
+          })
+        : Promise.resolve(),
+      sendKakaoNotify(text).then((r) => {
+        if (!r.ok && !r.skipped) console.error("상담 카카오 알림 실패:", r.step, r.error);
+      }),
+    ]);
 
     return NextResponse.json({ ok: true });
   } catch {
