@@ -2,7 +2,8 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import { SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd } from "../../lib/seo";
+import { SITE, ORG_ID, LOCAL_ID, PAGE_UPDATED, faqLd, breadcrumbLd, webPageLd, type FaqItem } from "../../lib/seo";
+import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-notice";
 import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import {
   PACKAGES,
@@ -52,6 +53,19 @@ import {
 
 const PATH = "/services/cafe-distribution";
 const URL = `${SITE.base}${PATH}`;
+
+/*
+ * 화면 FAQ 와 FAQPage 가 같은 배열을 읽는다. 마지막 문답은 배포처 현황이고 카페 이름과 단가는 적지 않는다 -
+ * 묶음 이름과 개수만 cafe-notice.ts 에서 세어 오므로 카페가 늘면 답도 같이 바뀐다 (2026-09-20 · 요청 68).
+ * cafe-distribution.ts 가 cafe-notice.ts 를 import 하면 순환이 생겨 lib 의 CAFE_FAQ 에 넣지 않고 여기서 합친다.
+ */
+const PAGE_FAQ: FaqItem[] = [
+  ...CAFE_FAQ,
+  {
+    q: "지금 배포할 수 있는 카페는 어떤 곳인가요?",
+    a: `${CAFE_GROUPS.map((g) => `${g.label} ${g.cafes.length}곳`).join(", ")}, 모두 ${CAFE_GROUPS_TOTAL}곳입니다. 그중 ${CAFE_NEW_TOTAL}곳은 새로 더해진 카페입니다. 카페 이름은 이 페이지의 대표카페 운영 변경 안내에 표로 적어 두었습니다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정하고, 목록은 카페 규정에 따라 바뀔 수 있어 상담 시점 기준으로 안내드립니다.`,
+  },
+];
 
 const CTA_HREF = "/contact?service=cafe-distribution";
 const KAKAO_HREF = "https://pf.kakao.com/_MuUkG/chat";
@@ -124,8 +138,9 @@ const LD = [
     name: "최적화 블로그 · 카페 배포 | 하랑마케팅",
     description:
       "블로그 탭과 카페 탭에 동시 노출하는 배포 상품. 구성별 가격과 업종별 실사 레퍼런스를 공개합니다.",
+    dateModified: PAGE_UPDATED[PATH],
   }),
-  faqLd(CAFE_FAQ, URL),
+  faqLd(PAGE_FAQ, URL),
   breadcrumbLd([
     { name: "홈", path: "/" },
     { name: "서비스", path: "/services" },
@@ -934,7 +949,7 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 8. FAQ — LD 의 faqLd(CAFE_FAQ) 와 짝 ══ */}
+        {/* ══ 8. FAQ — LD 의 faqLd(PAGE_FAQ) 와 짝 ══ */}
         <section className="bg-white py-14 md:py-[66px]">
           <div className={INNER}>
             <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
@@ -948,7 +963,7 @@ export default function CafeDistributionPage() {
             </h2>
 
             <div className="flex flex-col gap-[14px]">
-              {CAFE_FAQ.map((f) => (
+              {PAGE_FAQ.map((f) => (
                 <details
                   key={f.q}
                   className="group rounded-[16px] px-5 py-5 md:px-[26px] md:py-6"

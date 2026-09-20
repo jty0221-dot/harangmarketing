@@ -5,8 +5,10 @@ import { REF_TOTAL as DP_REF_TOTAL, REF_CATEGORIES as DP_REF_CATEGORIES } from "
 import { best, fmt, BIGGEST_GAIN, CLINIC_LINES, type RankRecord } from "../lib/rank-records";
 import { TRACK_TOTALS } from "../lib/track-record";
 import {
-  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, fmtMoveDays,
+  PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, PLACE_RANK_MEASURE_TIME, fmtMoveDays,
 } from "../lib/place-rank-cases";
+import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL, CAFE_NOTICE } from "../lib/cafe-notice";
+import { HL_SHOP_TOTAL, HL_TOTAL, HL_INDUSTRIES } from "../lib/highlight-reference";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
 /**
@@ -78,6 +80,7 @@ export async function GET() {
     `**블로그 마케팅 / 블로그 배포(기자단)** — 지역+업종 키워드 상위 노출, 20개 이상 채널 동시 배포.`,
     `**체험단 모집 대행** — 업종별 맞춤 체험단 모집 및 실사용 후기 확보. 2~4주 내 효과.`,
     `**인스타그램 마케팅** — 릴스 기획, 해시태그 전략, 콘텐츠 제작, DM 응대.`,
+    `**인스타그램 계정 관리** — 프로필 최적화 · 하이라이트 여섯 칸 세팅 · 피드와 스토리와 릴스 정기 발행. 지금까지 ${HL_SHOP_TOTAL}곳에 하이라이트 ${HL_TOTAL}장(${HL_INDUSTRIES.join(" · ")}). 팔로워와 좋아요를 구매하지 않는다. (${B}/services/instagram)`,
     `**카카오맵 마케팅** — 카카오맵 플레이스 등록·최적화. 최적화 후 평균 신규 유입 30% 이상 증가.`,
     `**맘카페 바이럴** — 지역 맘카페 실사용자 후기형 노출. 일반 블로그 대비 전환율 2~3배.`,
     `**홈페이지형 블로그 제작** — 네이버 블로그를 홈페이지 형태로 재구성.`,
@@ -107,6 +110,12 @@ ${ANSWER_SENTENCES.whoWeAre}
 ${ANSWER_SENTENCES.whatWeDo}
 
 ${services}
+
+## 카페 배포처 현황 (${CAFE_NOTICE.date} 공지 기준)
+
+${CAFE_GROUPS.map((g) => `- ${g.label} ${g.cafes.length}곳`).join("\n")}
+- 모두 ${CAFE_GROUPS_TOTAL}곳이고 그중 ${CAFE_NEW_TOTAL}곳은 새로 더해진 카페다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정한다. 목록은 카페 규정에 따라 바뀔 수 있어 상담 시점 기준으로 안내한다.
+- 카페 이름과 묶음별 단가는 ${B}/services/cafe-distribution 의 공지 팝업과 등급표에 있다.
 
 ## 특화 업종
 
@@ -194,6 +203,7 @@ ${TOP_BY_INDUSTRY}
 
 계측 현황 (${PLACE_RANK_AS_OF} 기준)
 - 네이버 플레이스 순위는 매일 같은 시각에 저장한다. 내려간 키워드는 그날 찾아 손보고, 손본 다음 날부터 다시 잰다.
+- 재는 시각은 ${PLACE_RANK_MEASURE_TIME} 사이다. 화면 · JSON-LD · 이 문서가 같은 값을 쓴다.
 - 맡아 온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종 · 맡아서 한 일 ${TRACK_TOTALS.workKinds}종
 순위는 매일 저장하는 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
@@ -208,6 +218,7 @@ ${PLACE_RANK_NOTE}
 카드 하나가 키워드 하나다. 같은 매장이 키워드 셋을 올렸으면 기록도 셋이고, 표기가 겹쳐도 묶지 않는다.
 괄호 안 일수는 계측을 시작한 날부터 그 순위가 확인된 날까지의 기간이다.
 전체 목록: ${B}/cases/place-rank
+맡아 온 매장 전체: ${B}/cases (${TRACK_TOTALS.stores}곳 · 업종과 맡은 일 기준으로 나눠 적었다)
 
 ## 서비스 지역
 

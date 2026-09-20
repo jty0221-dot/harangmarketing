@@ -7,7 +7,8 @@ import JsonLd from "../../components/JsonLd";
 import AnswerBlock from "../../components/AnswerBlock";
 import PlaceRankExplorer from "./PlaceRankExplorer";
 import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
-import { breadcrumbLd, itemListLd, webPageLd } from "../../lib/seo";
+import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, type FaqItem } from "../../lib/seo";
+import FaqAccordion from "../../components/FaqAccordion";
 import {
   PLACE_RANK_CASES,
   PLACE_RANK_AS_OF,
@@ -16,6 +17,7 @@ import {
   PLACE_RANK_EXCLUSIONS_NOTE,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
+  PLACE_RANK_MEASURE_TIME,
   PLACE_RANK_BIGGEST_GAIN,
   fmtArrow,
   fmtMoveDays,
@@ -29,6 +31,22 @@ import {
  */
 
 const PATH = "/cases/place-rank";
+/**
+ * 순위 기록을 볼 때 자주 묻는 것 — 화면 FAQ 와 FAQPage JSON-LD 가 같은 배열을 쓴다 (seo.ts 원칙 1 · 3).
+ * 답은 이 페이지에 이미 있는 문장(제외 기준 · 재는 시각)을 그대로 옮긴 것이라 손으로 적은 숫자가 없다.
+ * 질문형 소제목과 직답 한 문단이 AI 검색 · 답변 엔진에 인용되는 단위다 (2026-09-20 · D-0290 · 요청 68).
+ */
+const RANK_FAQ: FaqItem[] = [
+  {
+    q: "순위는 언제 재나요?",
+    a: `${PLACE_RANK_MEASURE_TIME} 사이에 재서 그날 값으로 남깁니다. 하루 한 번 저장하고, 내려간 키워드는 그날 찾아 손보고 손본 다음 날부터 다시 잽니다.`,
+  },
+  { q: "여기 적힌 순위는 최고 기록인가요?", a: PLACE_RANK_EXCLUSIONS[2].body },
+  { q: "상호와 지역명은 왜 없나요?", a: PLACE_RANK_EXCLUSIONS[1].body },
+  { q: "1페이지는 어디까지인가요?", a: PLACE_RANK_EXCLUSIONS[0].body },
+  { q: "방문객이나 매출도 보여 주시나요?", a: PLACE_RANK_EXCLUSIONS[3].body },
+  { q: "몇 위까지 올려 주시나요?", a: PLACE_RANK_EXCLUSIONS[4].body },
+];
 const DESCRIPTION =
   "꽃집 · 음식점 · 청소 업체 · 네일숍 · 카페 · 가발 전문점의 네이버 플레이스 순위 계측 기록입니다. 상호와 지역명은 적지 않고, 시작 순위와 확인된 순위와 걸린 일수만 그대로 적었습니다.";
 
@@ -176,6 +194,14 @@ export default function PlaceRankCasesPage() {
             </div>
           </div>
         </section>
+
+        <JsonLd data={faqLd(RANK_FAQ, `${SITE.base}${PATH}`)} />
+        <FaqAccordion
+          items={RANK_FAQ}
+          title="순위 기록을 보실 때 자주 묻는 것"
+          subtitle="여기 적힌 답은 위 카드와 제외 기준의 문장을 그대로 옮긴 것입니다."
+          showMoreHref="/faq"
+        />
 
         <section className="py-12 md:py-16 bg-white border-t border-gray-100">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">

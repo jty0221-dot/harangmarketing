@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED } from "../../lib/seo";
 import { byIndustry, byKeyword, fmt, fmtSentence, gap } from "../../lib/rank-records";
 
 /*
@@ -42,6 +42,18 @@ const FOOD_FACTS = [
   { label: "순위 계측", value: "매일 스냅샷" },
   { label: "상담·진단", value: "0원" },
 ];
+
+/*
+ * WebPage 구조화 데이터 - 이 페이지가 무엇인지 · 언제 바뀌었는지 · 어느 문장을 소리 내 읽어도 되는지(speakable) 를
+ * AI 검색과 답변 엔진에 알린다 (2026-09-20 · 요청 68 · D-0290). 문장은 layout metadata 와 FOOD_STORY(순위 정본이
+ * 찍은 문장) 를 그대로 재사용해 손으로 적은 숫자가 없다.
+ */
+const FOOD_PAGE_LD = webPageLd({
+  path: "/services/restaurant",
+  name: "음식점·식당 마케팅 대행 | 네이버 플레이스 상위노출 전문",
+  description: `음식점·식당 전문 마케팅. 플레이스 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_STORY} 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
+  dateModified: PAGE_UPDATED["/services/restaurant"],
+});
 import Link from "next/link";
 import { ArrowRight, UtensilsCrossed, TrendingUp, Star, Users, CheckCircle2 } from "lucide-react";
 
@@ -196,6 +208,7 @@ export default function RestaurantPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={FOOD_PAGE_LD} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/restaurant`)} />
         <FaqAccordion
           items={SERVICE_FAQ}

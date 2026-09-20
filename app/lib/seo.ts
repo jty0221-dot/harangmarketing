@@ -65,6 +65,45 @@ export const ORG_ID = `${SITE.base}/#organization`;
 export const SITE_ID = `${SITE.base}/#website`;
 export const LOCAL_ID = `${SITE.base}/#localbusiness`;
 
+/**
+ * 페이지가 마지막으로 바뀐 날 (ISO 날짜). sitemap 의 lastModified 와 각 페이지 WebPage 의 dateModified 가
+ * 이 표 한 곳을 읽는다 (2026-09-20 · 요청 68). 표에 없는 경로는 sitemap 이 오늘 날짜를 쓴다.
+ * 값은 git 의 마지막 커밋일이고, 이번에 구조를 올린 일곱 페이지만 오늘로 적었다. 손으로 앞당기지 않는다.
+ */
+export const PAGE_UPDATED: Record<string, string> = {
+  "/": "2026-09-20",
+  "/about": "2026-09-05",
+  "/services": "2026-09-10",
+  "/services/cafe": "2026-09-05",
+  "/services/clinic": "2026-09-20",
+  "/services/clinic/medical-ad-guide": "2026-09-07",
+  "/services/beauty": "2026-09-05",
+  "/services/restaurant": "2026-09-20",
+  "/services/academy": "2026-09-07",
+  "/services/shopping": "2026-09-07",
+  "/services/review": "2026-09-05",
+  "/services/place": "2026-09-07",
+  "/services/instagram": "2026-09-20",
+  "/services/detail-page": "2026-09-05",
+  "/services/detail-page/reference": "2026-09-05",
+  "/services/cafe-distribution": "2026-09-20",
+  "/services/cafe-distribution/reference": "2026-09-05",
+  "/studio": "2026-09-05",
+  "/sns": "2026-09-05",
+  "/portfolio": "2026-09-07",
+  "/cases": "2026-09-10",
+  "/cases/place-rank": "2026-09-20",
+  "/contact": "2026-09-07",
+  "/free-check": "2026-09-05",
+  "/process": "2026-09-05",
+  "/faq": "2026-09-20",
+  "/blog": "2026-09-05",
+  "/location": "2026-09-05",
+  "/location/gyeonggi": "2026-09-05",
+  "/location/seoul": "2026-09-05",
+  "/location/incheon": "2026-09-04",
+};
+
 /* ────────────────────────────────────────────────────────────
    AEO 핵심 — 한 줄 정답 문장 (Answer-first sentences)
    AI 답변 엔진이 그대로 인용하도록 설계된 자기완결형 문장.

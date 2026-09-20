@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getBlogIndex } from "./lib/blog-index";
-import { SITE } from "./lib/seo";
+import { PAGE_UPDATED, SITE } from "./lib/seo";
 import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 
 const BASE = SITE.base;
@@ -8,39 +8,42 @@ const BASE = SITE.base;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  // 바뀐 날을 아는 페이지는 그 날을, 모르는 페이지는 오늘을 적는다 (app/lib/seo.ts PAGE_UPDATED).
+  // 전부 오늘로 적으면 검색엔진이 어느 페이지가 진짜 바뀌었는지 구분하지 못한다.
+  const lm = (path: string): Date => (PAGE_UPDATED[path] ? new Date(PAGE_UPDATED[path]) : now);
 
   const allStaticPages: MetadataRoute.Sitemap = [
-    { url: BASE,                              lastModified: now, changeFrequency: "weekly",  priority: 1.0 },
-    { url: `${BASE}/about`,                   lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services`,                lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/services/cafe`,           lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/clinic`,         lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/clinic/medical-ad-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/beauty`,         lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/restaurant`,     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/academy`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/shopping`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/review`,         lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/services/place`,          lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/services/instagram`,      lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/detail-page`,     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/services/detail-page/reference`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/services/cafe-distribution`,           lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${BASE}/services/cafe-distribution/reference`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/studio`,                  lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${BASE}/sns`,                     lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${BASE}/portfolio`,               lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${BASE}/cases`,                   lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
-    { url: `${BASE}/cases/place-rank`,        lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
-    { url: `${BASE}/contact`,                 lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/free-check`,              lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/process`,                 lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/faq`,                     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/blog`,                    lastModified: now, changeFrequency: "weekly",  priority: 0.7 },
-    { url: `${BASE}/location`,                lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/location/gyeonggi`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/location/seoul`,          lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/location/incheon`,        lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: BASE,                              lastModified: lm("/"), changeFrequency: "weekly",  priority: 1.0 },
+    { url: `${BASE}/about`,                   lastModified: lm("/about"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services`,                lastModified: lm("/services"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/services/cafe`,           lastModified: lm("/services/cafe"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/clinic`,         lastModified: lm("/services/clinic"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/clinic/medical-ad-guide`, lastModified: lm("/services/clinic/medical-ad-guide"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/beauty`,         lastModified: lm("/services/beauty"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/restaurant`,     lastModified: lm("/services/restaurant"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/academy`,        lastModified: lm("/services/academy"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/shopping`,       lastModified: lm("/services/shopping"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/review`,         lastModified: lm("/services/review"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/services/place`,          lastModified: lm("/services/place"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/services/instagram`,      lastModified: lm("/services/instagram"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/detail-page`,     lastModified: lm("/services/detail-page"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/detail-page/reference`,       lastModified: lm("/services/detail-page/reference"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/services/cafe-distribution`,           lastModified: lm("/services/cafe-distribution"), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE}/services/cafe-distribution/reference`, lastModified: lm("/services/cafe-distribution/reference"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/studio`,                  lastModified: lm("/studio"), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE}/sns`,                     lastModified: lm("/sns"), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE}/portfolio`,               lastModified: lm("/portfolio"), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE}/cases`,                   lastModified: lm("/cases"), changeFrequency: "weekly",  priority: 0.8 },
+    { url: `${BASE}/cases/place-rank`,        lastModified: lm("/cases/place-rank"), changeFrequency: "weekly",  priority: 0.8 },
+    { url: `${BASE}/contact`,                 lastModified: lm("/contact"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/free-check`,              lastModified: lm("/free-check"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/process`,                 lastModified: lm("/process"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/faq`,                     lastModified: lm("/faq"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/blog`,                    lastModified: lm("/blog"), changeFrequency: "weekly",  priority: 0.7 },
+    { url: `${BASE}/location`,                lastModified: lm("/location"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/location/gyeonggi`,       lastModified: lm("/location/gyeonggi"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/location/seoul`,          lastModified: lm("/location/seoul"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/location/incheon`,        lastModified: lm("/location/incheon"), changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // SNS 부스트 스토어를 감춘 동안에는 사이트맵에서도 뺀다 (app/lib/feature-flags.ts).

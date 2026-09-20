@@ -11,7 +11,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import {
-  SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
+  SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, itemListLd, type FaqItem, PAGE_UPDATED,
 } from "../../lib/seo";
 import { HL_WORKS, HL_TOTAL, HL_SHOP_TOTAL } from "../../lib/highlight-reference";
 
@@ -300,6 +300,7 @@ const LD = [
     name: "인스타그램 계정 관리 · 하이라이트 세팅 · 릴스 발행",
     description:
       "인스타그램 계정을 30개 항목으로 실측해 막힌 곳부터 고칩니다. 하이라이트 여섯 칸 세팅, 피드와 스토리와 릴스 정기 발행, 반응이 난 게시물의 초기 확산까지 진행합니다.",
+    dateModified: PAGE_UPDATED[PATH],
   }),
   {
     "@context": "https://schema.org",
@@ -336,6 +337,17 @@ const LD = [
         name: `${s.name} 칸 만들기`,
         text: `${s.ask} 에 답하는 칸입니다. ${s.fill} 을 스토리로 올린 뒤 이 이름의 하이라이트로 담습니다. 역순으로 올리므로 이 칸을 먼저 만듭니다.`,
       })),
+  }),
+  // 실제로 세팅한 곳 여덟 - 카드마다 id 를 달아 ItemList 가 화면의 그 카드를 가리킨다. 제목은 업종만이라 상호가 없다
+  // (2026-09-07 대표 지시 · 업체명은 어떤 업체든 적지 않는다). 장수는 데이터에서 세므로 손으로 적은 숫자가 없다.
+  itemListLd({
+    path: PATH,
+    name: "실제로 세팅한 곳",
+    items: HL_WORKS.map((w) => ({
+      name: w.title,
+      path: `${PATH}#hl-${w.slug}`,
+      description: `${w.industry} · 하이라이트 ${w.covers.length + w.stories.length}장`,
+    })),
   }),
   faqLd(FAQS, URL),
   breadcrumbLd([
@@ -682,6 +694,7 @@ export default function InstagramServicePage() {
                 return (
                   <div
                     key={w.slug}
+                    id={`hl-${w.slug}`}
                     className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
                     style={{ border: "1px solid var(--h-border)" }}
                   >

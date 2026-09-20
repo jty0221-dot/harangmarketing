@@ -3,13 +3,13 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, ANSWER_SENTENCES, faqLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, ANSWER_SENTENCES, CORE_FAQ, PAGE_UPDATED, faqLd, webPageLd, breadcrumbLd, type FaqItem } from "../lib/seo";
 import { BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIER_MIN, won } from "../lib/cafe-distribution";
 import Link from "next/link";
 import {
   ArrowRight, MessageCircle, Phone, CheckCircle2,
   Clock, DollarSign, Users, TrendingUp, FileText,
-  MapPin, HelpCircle, ShieldCheck, Calculator,
+  MapPin, HelpCircle, ShieldCheck, Calculator, Stethoscope,
 } from "lucide-react";
 
 // FAQ JSON-LD will be injected in the component for rich results
@@ -26,6 +26,20 @@ export const metadata: Metadata = {
     images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
   },
 };
+
+/*
+ * 병원·치과·피부과 문답은 seo.ts 의 CORE_FAQ 에 있는 세 문답을 그대로 가져온다 (2026-09-20 · 요청 68 · D-0290).
+ * 진우가 의료법(제56조) 기준으로 판정한 원문이라 여기서 글자를 새로 쓰지 않는다. 질문이 CORE_FAQ 에서 빠지면
+ * 이 분류도 같이 비어 화면과 FAQPage 가 어긋나지 않는다.
+ */
+const CLINIC_FAQ_QS = [
+  "하랑마케팅은 병원·치과·피부과 마케팅도 하나요?",
+  "병원 순위를 몇 위까지 올려 주시나요?",
+  "병원에 체험단을 쓸 수 있나요?",
+];
+const CLINIC_FAQ = CLINIC_FAQ_QS
+  .map((q) => CORE_FAQ.find((f) => f.q === q))
+  .filter((f): f is FaqItem => !!f);
 
 const FAQ_CATEGORIES = [
   {
@@ -137,6 +151,13 @@ const FAQ_CATEGORIES = [
     ],
   },
   {
+    id: "clinic",
+    icon: Stethoscope,
+    label: "병원·치과·피부과",
+    color: "from-blue-600 to-blue-800",
+    questions: CLINIC_FAQ,
+  },
+  {
     id: "process",
     icon: Clock,
     label: "상담·진행 방식",
@@ -228,6 +249,7 @@ const FAQ_LD = [
     name: "자주 묻는 질문 | 하랑마케팅",
     description:
       "하랑마케팅 상담 전 가장 많이 물어보시는 질문과 답변. 비용, 계약 기간, 성과, 지역, 업종별 궁금증을 정리했습니다.",
+    dateModified: PAGE_UPDATED["/faq"],
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

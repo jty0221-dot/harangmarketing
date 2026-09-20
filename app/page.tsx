@@ -29,7 +29,7 @@ import AnswerBlock from "./components/AnswerBlock";
 import FaqAccordion from "./components/FaqAccordion";
 import GlossarySection from "./components/GlossarySection";
 import {
-  SITE, CORE_FAQ, ANSWER_SENTENCES,
+  SITE, CORE_FAQ, ANSWER_SENTENCES, PAGE_UPDATED,
   faqLd, webPageLd, breadcrumbLd, definitionsLd,
 } from "./lib/seo";
 import type { LucideIcon } from "lucide-react";
@@ -115,6 +115,7 @@ const HOME_LD = [
     path: "/",
     name: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description: ANSWER_SENTENCES.whoWeAre,
+    dateModified: PAGE_UPDATED["/"],
   }),
   breadcrumbLd([{ name: "홈", path: "/" }]),
   faqLd(CORE_FAQ, `${SITE.base}/`),

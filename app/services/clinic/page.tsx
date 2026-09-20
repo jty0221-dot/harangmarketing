@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED } from "../../lib/seo";
 import {
   byKeyword, fmt,
   CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE, CLINIC_RISE_DURATIONS,
@@ -28,6 +28,19 @@ const DERMA = byKeyword("지역 피부과 키워드");
 
 /** 병·의원 서술문 — 공통 한 줄 뒤에 업종 줄이 붙는다 */
 const CLINIC_STORY = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
+
+/*
+ * WebPage 구조화 데이터 - 이 페이지가 무엇인지 · 언제 바뀌었는지 · 어느 문장을 소리 내 읽어도 되는지(speakable) 를
+ * AI 검색과 답변 엔진에 알린다 (2026-09-20 · 요청 68 · D-0290). 문장은 layout metadata 와 CLINIC_ 상수를 그대로
+ * 재사용해 손으로 적은 숫자가 없다. 타입은 WebPage 하나다 - 의료기관 타입(MedicalBusiness 류)은 우리 도메인에
+ * 쓰지 않는다 (진우 판정 제8절 · 의료법 제56조 제1항 · C-50).
+ */
+const CLINIC_PAGE_LD = webPageLd({
+  path: "/services/clinic",
+  name: "의원·한의원·피부과 마케팅 대행 | 의료법 준수 · 플레이스 SEO",
+  description: `의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위노출, 리뷰 관리. ${CLINIC_STORY} 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
+  dateModified: PAGE_UPDATED["/services/clinic"],
+});
 
 /*
  * 순위 문답 답변.
@@ -394,6 +407,7 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={CLINIC_PAGE_LD} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/clinic`)} />
         <FaqAccordion
           items={SERVICE_FAQ}

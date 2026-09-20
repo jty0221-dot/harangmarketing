@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     "서울마케팅대행사", "경기마케팅대행사", "전국마케팅대행사",
     "소상공인플레이스", "담당자직접관리마케팅", "재계약률97",
     "카페플레이스상위노출", "음식점플레이스", "학원블로그마케팅",
+    "치과마케팅", "병원플레이스순위", "카페배포", "인스타그램계정관리", "상세페이지제작",
   ],
   authors: [{ name: "하랑마케팅", url: "https://www.harangmarketing.com/about" }],
   creator: "하랑마케팅",
@@ -279,6 +280,13 @@ gtag('config', '${GA_ID}');`,
                 "맘카페 바이럴",
                 "홈페이지형 블로그 제작",
                 "지역 기반 로컬 마케팅",
+                "병·의원 마케팅",
+                "피부과 마케팅",
+                "치과 마케팅",
+                "네이버 플레이스 순위 계측",
+                "최적화 블로그 · 카페 배포",
+                "인스타그램 계정 관리",
+                "스마트스토어 상세페이지 제작",
               ],
               knowsLanguage: ["ko"],
               sameAs: [SITE.naverBlog, SITE.instagram, SITE.kakao],
@@ -389,6 +397,50 @@ gtag('config', '${GA_ID}');`,
                         "지역 맘카페를 활용한 실사용자 후기형 바이럴. 일반 블로그 대비 전환율 2~3배.",
                     },
                   },
+                  /*
+                    아래 넷은 각 페이지의 Service JSON-LD 와 같은 문장이다 (2026-09-20 · D-0290 · 요청 68).
+                    가격과 성과 숫자는 여기 적지 않는다 — 단가는 각 페이지가 말하고 (C-35),
+                    병·의원 항목은 의료기관 타입이 아니라 Service 로만 적는다 (진우 판정 제8절 · C-50).
+                  */
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "최적화 블로그 · 카페 배포",
+                      url: `${SITE.base}/services/cafe-distribution`,
+                      description:
+                        "네이버 최적화 블로그 배포와 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출시키는 서비스입니다. 업종·지역·목표 키워드에 맞는 카페에 순차 게시하고 전체 게시 URL을 정리해 전달합니다.",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "인스타그램 계정 관리 대행",
+                      url: `${SITE.base}/services/instagram`,
+                      description:
+                        "인스타그램 프로필 최적화, 하이라이트 여섯 칸 세팅, 피드와 스토리와 릴스 정기 발행, 반응이 난 게시물의 초기 확산. 팔로워와 좋아요를 구매하지 않고 몇 번째로 올려 드린다는 말을 하지 않습니다.",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "의원·한의원·피부과 마케팅 대행",
+                      url: `${SITE.base}/services/clinic`,
+                      description: "의원·한의원·피부과 전문 네이버 블로그 마케팅, 플레이스 SEO, 리뷰 관리 대행",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "스마트스토어 상세페이지 제작",
+                      url: `${SITE.base}/services/detail-page`,
+                      description:
+                        "스마트스토어 상세페이지를 9단 구성으로 기획하고 제작합니다. 기획 없이 이미지를 만들지 않고, 이미지가 확정되기 전에 영상을 만들지 않습니다. 실물 사진에서 출발한 컷만 사용합니다.",
+                    },
+                  },
                 ],
               },
               areaServed: [
@@ -413,6 +465,10 @@ gtag('config', '${GA_ID}');`,
                 { name: "진행 과정", path: "/process" },
                 { name: "자주 묻는 질문", path: "/faq" },
                 { name: "마케팅 인사이트", path: "/blog" },
+                { name: "최적화 블로그 · 카페 배포", path: "/services/cafe-distribution" },
+                { name: "인스타그램 계정 관리", path: "/services/instagram" },
+                { name: "의원·한의원·피부과 마케팅", path: "/services/clinic" },
+                { name: "플레이스 순위 계측 사례", path: "/cases/place-rank" },
                 { name: "무료 상담", path: "/contact" },
               ].map((n, i) => ({
                 "@type": "SiteNavigationElement",
