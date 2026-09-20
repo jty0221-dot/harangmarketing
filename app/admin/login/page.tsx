@@ -26,7 +26,9 @@ export default function AdminLoginPage() {
 
       if (data.ok) {
         // 전체 페이지 이동 — 쿠키가 확실히 전송돼 proxy 를 통과한다
-        window.location.href = "/admin";
+        // proxy 가 넘긴 next 가 관리자 화면 안이면 거기로 돌아간다. 밖으로 나가는 주소는 받지 않는다
+        const next = new URLSearchParams(window.location.search).get("next") || "";
+        window.location.href = /^\/admin(\/|\?|$)/.test(next) ? next : "/admin";
         return;
       }
       setError(data.error ?? "로그인에 실패했습니다");

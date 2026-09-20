@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveInquiry } from "../../lib/inquiries";
-import { sendKakaoNotify } from "../../lib/kakao-notify";
+import { sendKakaoNotify, inquiryAdminLink } from "../../lib/kakao-notify";
 
 /* 서버리스 인스턴스 단위의 가벼운 과다 요청 방지.
    /api/sns/order 와 같은 방식이다. 완전한 차단이 아니라 자동 도배를 늦추는 장치다. */
@@ -49,8 +49,10 @@ export async function POST(req: NextRequest) {
        예전에는 웹훅만 쐈다. 알림을 놓치거나 웹훅이 실패하면 문의가 그대로 사라졌다.
        저장에 실패해도 접수 자체는 막지 않는다(알림이라도 가야 한다). */
     let saved = false;
+    // 저장된 문의 번호. 카카오 알림 링크가 이 번호로 그 문의를 바로 펼친다
+    let inquiryId: number | null = null;
     try {
-      await saveInquiry({
+      inquiryId = await saveInquiry({
         name: capped(name, LIMIT.name),
         phone: capped(phone, LIMIT.phone),
         industry: industry ? capped(industry, LIMIT.industry) : undefined,
@@ -76,6 +78,8 @@ export async function POST(req: NextRequest) {
       saved ? "" : "저장 실패 — 이 메시지를 꼭 보관하세요",
       `이름/업체명: ${name}`,
       `연락처: ${phone}`,
+      // 답장 문안은 관리자 화면이 만든다. 알림은 200자라 문안을 싣지 못하고 길만 알려준다
+      inquiryId ? "답장 문안은 링크를 눌러 복사" : "",
       industry ? `업종: ${industry}` : "",
       budgetText,
       goalsText,
@@ -98,7 +102,10 @@ export async function POST(req: NextRequest) {
             console.error("상담 알림 웹훅 실패:", e);
           })
         : Promise.resolve(),
-      sendKakaoNotify(text).then((r) => {
+      sendKakaoNotify(
+        text,
+        inquiryId ? inquiryAdminLink(inquiryId) : undefined,
+      ).then((r) => {
         if (!r.ok && !r.skipped) console.error("상담 카카오 알림 실패:", r.step, r.error);
       }),
     ]);

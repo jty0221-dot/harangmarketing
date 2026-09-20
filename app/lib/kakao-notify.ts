@@ -16,6 +16,10 @@
  * 리프레시 토큰은 두 달마다 갱신된다. 카카오가 만료 한 달 전부터 새 토큰을 같이 내려주는데
  * 이 파일에는 그것을 저장할 곳이 없다(환경변수는 읽기 전용이다).
  * 그래서 만료되면 토큰 단계에서 떨어지고, /admin/notify-test 화면이 그 사실을 보여 준다.
+ *
+ * 2026-09-20 민수 : 알림 링크에 문의 번호를 붙이는 inquiryAdminLink 를 더했다.
+ *   알림 본문은 200자라 답장 문안을 실을 수 없다. 대신 링크가 그 문의를 바로 펼쳐서
+ *   화면의 문안을 복사하거나 문자로 보내게 한다.
  */
 
 const TOKEN_URL = "https://kauth.kakao.com/oauth/token";
@@ -27,6 +31,11 @@ const TEXT_MAX = 200;
 const TIMEOUT_MS = 5_000;
 /** 알림을 눌렀을 때 열리는 곳 — 문의 목록 화면이다 */
 const ADMIN_LINK = "https://harangmarketing.com/admin/inquiries";
+
+/** 문의 한 건으로 바로 가는 링크 · 문의 화면이 ?id= 를 읽어 그 카드를 펼친다 */
+export function inquiryAdminLink(id: number): string {
+  return `${ADMIN_LINK}?id=${id}`;
+}
 
 export type KakaoStep = "env" | "token" | "send";
 

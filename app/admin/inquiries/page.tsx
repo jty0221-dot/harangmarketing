@@ -1,18 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   RefreshCw, Loader2, Check, CheckCircle2, RotateCcw, Phone, MessageSquare, ChevronDown,
+  Copy, ClipboardCheck, Send, Smartphone,
 } from "lucide-react";
 import { AdminHeader, AdminFooter } from "../AdminNav";
 import { INQUIRY_STATUS_LABEL, inquirySourceLabel, type InquiryStatus } from "../../lib/inquiry-status";
+import { buildInquiryReply, smsHref } from "../../lib/inquiry-reply";
 
 /**
  * 홈페이지 문의 목록 (관리자)
  * /contact 상담 신청 폼과 /free-check 무료 진단에서 들어온 문의를 본다.
  * 데이터는 /api/admin/inquiries 에서만 받는다. 이름·연락처는 관리자 세션이 있을 때만 나간다.
  * 상태는 셋뿐이다 : 새 문의 → 확인함 → 응대 완료. 메모 칸은 두지 않았다.
+ * 펼치면 그 문의에 맞춘 첫 답 문안(카톡용 · 문자용)이 같이 나온다. 문안은 lib/inquiry-reply.ts 가 만든다.
+ * 화면은 복사와 문자 앱 열기까지만 한다. 보내는 것은 사람이고, 상태도 자동으로 바꾸지 않는다.
+ * 카카오 알림의 링크(/admin/inquiries?id=N)로 들어오면 그 문의를 펼쳐서 보여준다.
  */
 
 interface Inquiry {
@@ -29,6 +34,7 @@ interface Inquiry {
 }
 
 type Filter = InquiryStatus | "all";
+type ReplyChannel = "kakao" | "sms";
 
 const STATUS_CHIP: Record<InquiryStatus, string> = {
   new: "bg-blue-50 text-blue-700 ring-blue-200",
@@ -56,6 +62,10 @@ export default function AdminInquiriesPage() {
   const [filter, setFilter] = useState<Filter>("all");
   const [message, setMessage] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
+  const [replyChannel, setReplyChannel] = useState<ReplyChannel>("kakao");
+  const [copied, setCopied] = useState<string | null>(null);
+  // 링크로 들어온 문의 번호 · 목록이 오면 그 카드로 한 번 스크롤한다
+  const scrollTo = useRef<number | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -78,10 +88,23 @@ export default function AdminInquiriesPage() {
   useEffect(() => {
     // 첫 불러오기 · effect 안에서 바로 setState 하지 않도록 한 틱 미룬다
     const t = setTimeout(() => {
+      const raw = new URLSearchParams(window.location.search).get("id");
+      const id = raw ? Number(raw) : NaN;
+      if (Number.isInteger(id) && id > 0) {
+        setOpenId(id);
+        scrollTo.current = id;
+      }
       void load();
     }, 0);
     return () => clearTimeout(t);
   }, [load]);
+
+  useEffect(() => {
+    if (loading || scrollTo.current == null) return;
+    const el = document.getElementById(`inq-${scrollTo.current}`);
+    scrollTo.current = null;
+    el?.scrollIntoView({ block: "center" });
+  }, [loading, inquiries]);
 
   async function setStatus(id: number, status: InquiryStatus) {
     setBusy(id);
@@ -103,6 +126,17 @@ export default function AdminInquiriesPage() {
       setMessage(e instanceof Error ? e.message : String(e));
     } finally {
       setBusy(null);
+    }
+  }
+
+  async function copyReply(id: number, channel: ReplyChannel, text: string) {
+    const key = `${id}:${channel}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(key);
+      setTimeout(() => setCopied((cur) => (cur === key ? null : cur)), 2000);
+    } catch {
+      setMessage("복사하지 못했습니다. 문안을 길게 눌러 직접 복사해 주세요.");
     }
   }
 
@@ -169,8 +203,11 @@ export default function AdminInquiriesPage() {
             {shown.map((q) => {
               const open = openId === q.id;
               const working = busy === q.id;
+              const reply = open ? buildInquiryReply(q) : null;
+              const replyText = reply ? (replyChannel === "kakao" ? reply.kakao : reply.sms) : "";
+              const copiedThis = copied === `${q.id}:${replyChannel}`;
               return (
-                <div key={q.id} className="bg-white rounded-2xl ring-1 ring-gray-100 overflow-hidden">
+                <div key={q.id} id={`inq-${q.id}`} className="bg-white rounded-2xl ring-1 ring-gray-100 overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setOpenId(open ? null : q.id)}
@@ -226,6 +263,58 @@ export default function AdminInquiriesPage() {
                           {q.message ? q.message : <span className="text-gray-400">문의 내용 없이 연락처만 남겼습니다.</span>}
                         </div>
                       </div>
+                      {reply && (
+                        <div className="rounded-xl bg-white ring-1 ring-gray-100 p-3 space-y-2">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <div className="flex items-center gap-1.5 text-xs font-black text-gray-700">
+                              <Send size={13} className="text-gray-400" />
+                              보낼 문안
+                              <span className="font-bold text-gray-400">{reply.kindLabel}</span>
+                            </div>
+                            <div className="flex gap-1">
+                              {(["kakao", "sms"] as const).map((ch) => (
+                                <button
+                                  key={ch}
+                                  type="button"
+                                  onClick={() => setReplyChannel(ch)}
+                                  className={`rounded-lg px-3 py-2 text-xs font-black ring-1 ${
+                                    replyChannel === ch
+                                      ? "bg-gray-900 text-white ring-gray-900"
+                                      : "bg-white text-gray-500 ring-gray-200 hover:bg-gray-100"
+                                  }`}
+                                >
+                                  {ch === "kakao" ? "카톡용" : "문자용"}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="text-sm text-gray-800 whitespace-pre-wrap break-words bg-gray-50 rounded-lg ring-1 ring-gray-100 p-3">
+                            {replyText}
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            <button
+                              type="button"
+                              onClick={() => copyReply(q.id, replyChannel, replyText)}
+                              className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-black text-white hover:bg-blue-700"
+                            >
+                              {copiedThis ? <ClipboardCheck size={13} /> : <Copy size={13} />}
+                              {copiedThis ? "복사했습니다" : "문안 복사"}
+                            </button>
+                            {q.phone && (
+                              <a
+                                href={smsHref(q.phone, reply.sms)}
+                                className="flex items-center gap-1.5 rounded-xl bg-white ring-1 ring-gray-200 px-4 py-2.5 text-xs font-black text-gray-600 hover:bg-gray-100"
+                              >
+                                <Smartphone size={13} />
+                                문자로 보내기
+                              </a>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-gray-400">
+                            카톡은 복사해서 붙여 넣고, 문자는 버튼을 누르면 문자 앱이 열립니다. 보내기 전에 한 번 읽고 고쳐 보내도 됩니다.
+                          </p>
+                        </div>
+                      )}
                       <div className="flex flex-wrap gap-2 pt-1">
                         {q.status === "new" && (
                           <button

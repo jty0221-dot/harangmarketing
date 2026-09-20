@@ -12,6 +12,8 @@ export function proxy(req: NextRequest) {
   const token = req.cookies.get(ADMIN_COOKIE_NAME)?.value;
   if (!verifySessionToken(token)) {
     const loginUrl = new URL("/admin/login", req.url);
+    // 로그인 뒤 원래 가려던 화면으로 돌아가게 경로를 같이 넘긴다 (카카오 알림 링크 → 문의 한 건)
+    loginUrl.searchParams.set("next", pathname + req.nextUrl.search);
     return NextResponse.redirect(loginUrl);
   }
   return NextResponse.next();
