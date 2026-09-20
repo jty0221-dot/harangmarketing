@@ -12,7 +12,7 @@ import JsonLd from "../../components/JsonLd";
 import PlaceRankCasesSection from "../../components/PlaceRankCases";
 import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
 import {
-  SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
+  SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, updatedAt, type FaqItem,
 } from "../../lib/seo";
 import {
   RECORDS, EXCLUDED_COUNT, SNAPSHOT_DATE, BIGGEST_GAIN,
@@ -186,7 +186,7 @@ const LD = [
     name: "네이버 플레이스 상위노출 · 지도 등록 대행",
     description:
       "네이버 지도 등록은 무료이고 사장님이 직접 하실 수 있습니다. 저희는 그다음을 합니다. 키워드를 골라 넣고 매일 순위를 재서 밀린 자리를 되찾습니다.",
-    dateModified: SNAPSHOT_DATE,
+    dateModified: updatedAt(PATH, SNAPSHOT_DATE),
   }),
   {
     "@context": "https://schema.org",

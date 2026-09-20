@@ -7,6 +7,7 @@ import { Megaphone, X, ArrowRight, ArrowLeft } from "lucide-react";
 import {
   CAFE_NOTICE,
   NOTICE_STORAGE_KEY,
+  NOTICE_OPEN_EVENT,
   CAFE_PAGES,
   CAFE_GROUPS_TOTAL,
   NOTICE_PAGES,
@@ -21,6 +22,8 @@ import { won } from "../lib/cafe-distribution";
  *
  * EntryPopup 과 같은 문법을 쓴다. 화면을 덮지 않고 구석에 붙는 카드다.
  * 배경을 어둡게 깔지 않아 뒤 내용을 계속 볼 수 있고, 닫으면 다시 뜨지 않는다.
+ * 다만 카페 배포 페이지의 버튼(CafeNoticeReopen)이 NOTICE_OPEN_EVENT 를 보내면 다시 연다.
+ * 직접 눌러서 여는 것이라 닫기 기록은 그대로 두고, 첫 장부터 다시 보여 준다.
  *
  * EntryPopup 과 다른 점이 셋이다.
  *   1) sessionStorage 가 아니라 localStorage 다. 공지는 브라우저를 닫았다 열어도
@@ -80,6 +83,17 @@ export default function CafeNoticePopup() {
     const timer = setTimeout(() => setOpen(true), 800);
     return () => clearTimeout(timer);
   }, [onNoticePath]);
+
+  // 페이지의 카페 목록 다시 보기 버튼(CafeNoticeReopen). 닫기 기록과 상관없이 첫 장부터 연다.
+  useEffect(() => {
+    const reopen = () => {
+      setClosing(false);
+      setPage(1);
+      setOpen(true);
+    };
+    window.addEventListener(NOTICE_OPEN_EVENT, reopen);
+    return () => window.removeEventListener(NOTICE_OPEN_EVENT, reopen);
+  }, []);
 
   const dismiss = () => {
     try {

@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getBlogIndex } from "./lib/blog-index";
-import { PAGE_UPDATED, SITE } from "./lib/seo";
+import { PAGE_UPDATED, SITE, updatedAt } from "./lib/seo";
+import { SNAPSHOT_DATE } from "./lib/rank-records";
+import { PLACE_RANK_GENERATED } from "./lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 
 const BASE = SITE.base;
@@ -11,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 바뀐 날을 아는 페이지는 그 날을, 모르는 페이지는 오늘을 적는다 (app/lib/seo.ts PAGE_UPDATED).
   // 전부 오늘로 적으면 검색엔진이 어느 페이지가 진짜 바뀌었는지 구분하지 못한다.
   const lm = (path: string): Date => (PAGE_UPDATED[path] ? new Date(PAGE_UPDATED[path]) : now);
+  // 순위 데이터가 따로 갱신되는 두 페이지는 그 데이터 날짜까지 같이 본다 (updatedAt · 2026-09-20 · 요청 69).
 
   const allStaticPages: MetadataRoute.Sitemap = [
     { url: BASE,                              lastModified: lm("/"), changeFrequency: "weekly",  priority: 1.0 },
@@ -24,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/academy`,        lastModified: lm("/services/academy"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/shopping`,       lastModified: lm("/services/shopping"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/review`,         lastModified: lm("/services/review"), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/services/place`,          lastModified: lm("/services/place"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/services/place`,          lastModified: new Date(updatedAt("/services/place", SNAPSHOT_DATE)), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/services/instagram`,      lastModified: lm("/services/instagram"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/detail-page`,     lastModified: lm("/services/detail-page"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/detail-page/reference`,       lastModified: lm("/services/detail-page/reference"), changeFrequency: "monthly", priority: 0.7 },
@@ -34,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sns`,                     lastModified: lm("/sns"), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/portfolio`,               lastModified: lm("/portfolio"), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/cases`,                   lastModified: lm("/cases"), changeFrequency: "weekly",  priority: 0.8 },
-    { url: `${BASE}/cases/place-rank`,        lastModified: lm("/cases/place-rank"), changeFrequency: "weekly",  priority: 0.8 },
+    { url: `${BASE}/cases/place-rank`,        lastModified: new Date(updatedAt("/cases/place-rank", PLACE_RANK_GENERATED)), changeFrequency: "weekly",  priority: 0.8 },
     { url: `${BASE}/contact`,                 lastModified: lm("/contact"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/free-check`,              lastModified: lm("/free-check"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/process`,                 lastModified: lm("/process"), changeFrequency: "monthly", priority: 0.7 },

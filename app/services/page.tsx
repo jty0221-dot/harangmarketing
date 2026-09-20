@@ -618,7 +618,7 @@ const SERVICES_LD = {
       "item": {
         "@type": "Service",
         "name": "맘카페 바이럴 마케팅",
-        "description": "지역 맘카페 커뮤니티 바이럴 마케팅. 학원·카페·음식점·네일 업종에 특화. 일반 블로그 대비 전환율 2~3배.",
+        "description": "지역 맘카페 커뮤니티 바이럴 마케팅. 학원·카페·음식점·네일 업종에 특화.",
         "provider": { "@id": ORG_ID },
         "areaServed": "대한민국",
       },

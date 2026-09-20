@@ -244,6 +244,9 @@ export const CAFE_NOTICE = {
 /** 닫기 기록 저장 키. 두 컴포넌트가 각자 문자열을 조립하면 한쪽만 틀어진다 */
 export const NOTICE_STORAGE_KEY = `harang_notice_${CAFE_NOTICE.id}`;
 
+/** 닫은 뒤 다시 열어 달라는 신호. 카페 배포 페이지의 버튼(CafeNoticeReopen)이 보내고 팝업이 받는다. 닫기 기록은 지우지 않는다 */
+export const NOTICE_OPEN_EVENT = "harang:cafe-notice-open";
+
 /**
  * 이 경로에서 공지 카드가 뜨는가.
  *

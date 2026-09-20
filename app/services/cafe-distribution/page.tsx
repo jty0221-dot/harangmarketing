@@ -5,6 +5,7 @@ import JsonLd from "../../components/JsonLd";
 import { SITE, ORG_ID, LOCAL_ID, PAGE_UPDATED, faqLd, breadcrumbLd, webPageLd, type FaqItem } from "../../lib/seo";
 import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-notice";
 import { ArrowLeft, Check, ChevronDown } from "lucide-react";
+import CafeNoticeReopen from "../../components/CafeNoticeReopen";
 import {
   PACKAGES,
   PACKAGE_SIZES,
@@ -63,7 +64,7 @@ const PAGE_FAQ: FaqItem[] = [
   ...CAFE_FAQ,
   {
     q: "지금 배포할 수 있는 카페는 어떤 곳인가요?",
-    a: `${CAFE_GROUPS.map((g) => `${g.label} ${g.cafes.length}곳`).join(", ")}, 모두 ${CAFE_GROUPS_TOTAL}곳입니다. 그중 ${CAFE_NEW_TOTAL}곳은 새로 더해진 카페입니다. 카페 이름은 이 페이지의 대표카페 운영 변경 안내에 표로 적어 두었습니다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정하고, 목록은 카페 규정에 따라 바뀔 수 있어 상담 시점 기준으로 안내드립니다.`,
+    a: `${CAFE_GROUPS.map((g) => `${g.label} ${g.cafes.length}곳`).join(", ")}, 모두 ${CAFE_GROUPS_TOTAL}곳입니다. 그중 ${CAFE_NEW_TOTAL}곳은 새로 더해진 카페입니다. 카페 이름은 이 페이지의 대표카페 운영 변경 안내에 표로 적어 두었고, 이 페이지의 카페 목록 다시 보기 버튼으로 언제든 다시 열 수 있습니다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정하고, 목록은 카페 규정에 따라 바뀔 수 있어 상담 시점 기준으로 안내드립니다.`,
   },
 ];
 
@@ -688,6 +689,10 @@ export default function CafeDistributionPage() {
                     </div>
                   ))}
                 </div>
+                <p className="mt-5 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+                  지금 올릴 수 있는 카페 목록은 대표카페 운영 변경 안내에 있습니다. 닫았던 안내는 아래 버튼으로 다시 열 수 있습니다.
+                </p>
+                <CafeNoticeReopen />
               </div>
             </div>
 

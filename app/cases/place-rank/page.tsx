@@ -7,7 +7,7 @@ import JsonLd from "../../components/JsonLd";
 import AnswerBlock from "../../components/AnswerBlock";
 import PlaceRankExplorer from "./PlaceRankExplorer";
 import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
-import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, type FaqItem } from "../../lib/seo";
+import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
 import FaqAccordion from "../../components/FaqAccordion";
 import {
   PLACE_RANK_CASES,
@@ -85,7 +85,8 @@ const PAGE_LD = webPageLd({
   name: "네이버 플레이스 순위 계측 사례",
   description: DESCRIPTION,
   type: "CollectionPage",
-  dateModified: PLACE_RANK_GENERATED,
+  // 페이지 코드가 바뀐 날(PAGE_UPDATED)과 순위 데이터를 다시 만든 날 중 늦은 쪽. sitemap 도 같은 값을 쓴다 (2026-09-20 · 요청 69)
+  dateModified: updatedAt(PATH, PLACE_RANK_GENERATED),
 });
 
 const CRUMB_LD = breadcrumbLd([
