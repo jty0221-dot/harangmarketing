@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
-import { SITE, ORG_ID, SITE_ID, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, SITE_ID, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "마케팅 인사이트 블로그 | 소상공인 마케팅 노하우",
@@ -41,6 +41,7 @@ const BLOG_LD = [
     type: "CollectionPage",
     name: "마케팅 인사이트 | 하랑마케팅",
     description: "소상공인이 바로 적용할 수 있는 실전 마케팅 노하우 모음.",
+    dateModified: updatedAt("/blog"),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

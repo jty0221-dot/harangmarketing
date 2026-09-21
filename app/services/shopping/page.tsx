@@ -5,14 +5,17 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
 import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
+const PAGE_TITLE = "쇼핑몰·소매점 마케팅 대행사 | 온·오프라인 매출 증대";
+const PAGE_DESCRIPTION = "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온·오프라인 동시 매출 증대 실제 성과.";
+
 export const metadata: Metadata = {
-  title: "쇼핑몰·소매점 마케팅 대행사 | 온·오프라인 매출 증대",
-  description: "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온·오프라인 동시 매출 증대 실제 성과.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   keywords: ["쇼핑몰 마케팅", "소매점 마케팅", "의류 마케팅 대행사", "스마트스토어 마케팅", "인스타 쇼핑 마케팅"],
   openGraph: {
     title: "쇼핑몰·소매점 마케팅 대행사 | 하랑마케팅",
@@ -165,6 +168,7 @@ export default function ShoppingPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={webPageLd({ path: "/services/shopping", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/shopping") })} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/shopping`)} />
         <FaqAccordion
           items={SERVICE_FAQ}

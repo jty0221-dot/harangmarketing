@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, howToLd, webPageLd, breadcrumbLd, faqLd } from "../lib/seo";
+import { SITE, howToLd, webPageLd, updatedAt, breadcrumbLd, faqLd } from "../lib/seo";
 import {
   Phone, MessageCircle, ArrowRight, CheckCircle2, Clock,
   Search, FileText, TrendingUp, BarChart3, Handshake,
@@ -148,6 +148,7 @@ const PROCESS_LD = [
     path: "/process",
     name: "진행 과정 | 하랑마케팅",
     description: "상담 신청부터 월간 성과 리포트까지 6단계 마케팅 대행 진행 과정.",
+    dateModified: updatedAt("/process"),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

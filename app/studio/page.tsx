@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import FaqAccordion from "../components/FaqAccordion";
-import { SITE, ORG_ID, faqLd, breadcrumbLd, webPageLd } from "../lib/seo";
+import { SITE, ORG_ID, faqLd, breadcrumbLd, webPageLd, updatedAt } from "../lib/seo";
 import {
   STUDIO, PLANS, CHEAPEST, YEARLY, PRICIEST, won,
   FEATURES, MEASURED, VS_ONLINE, FOR_WHOM, STUDIO_FAQ, SPECS,
@@ -75,6 +75,7 @@ const LD = [
     description:
       `현장 사진 ${STUDIO.trialCount}장을 1분 안에 정리하고 영상을 움짤로 바꾸는 윈도우 프로그램. ` +
       `업로드 없이 내 컴퓨터에서 처리합니다. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
+    dateModified: updatedAt(PATH),
   }),
   faqLd(STUDIO_FAQ, URL),
   breadcrumbLd([

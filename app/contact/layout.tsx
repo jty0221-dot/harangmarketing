@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "무료 상담 신청 | 24시간 내 연락",
@@ -22,6 +22,7 @@ const CONTACT_LD = [
     type: "ContactPage",
     name: "무료 상담 신청 | 하랑마케팅",
     description: ANSWER_SENTENCES.contact,
+    dateModified: updatedAt("/contact"),
   }),
   {
     "@context": "https://schema.org",

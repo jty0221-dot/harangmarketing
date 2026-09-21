@@ -15,7 +15,7 @@ import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGO
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd, definitionsLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
 
 /*
@@ -648,6 +648,7 @@ const SERVICES_PAGE_LD = [
     type: "CollectionPage",
     name: "서비스 | 하랑마케팅",
     description: ANSWER_SENTENCES.whatWeDo,
+    dateModified: updatedAt("/services"),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

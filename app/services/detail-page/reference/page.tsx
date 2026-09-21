@@ -4,7 +4,7 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import ReferenceClient from "./ReferenceClient";
-import { SITE, ORG_ID, breadcrumbLd, webPageLd } from "../../../lib/seo";
+import { SITE, ORG_ID, breadcrumbLd, webPageLd, updatedAt } from "../../../lib/seo";
 import {
   REF_TABS, REF_CATEGORIES, REF_TOTAL, REF_ALL, REF_CUTS, REF_GENRE,
 } from "../../../lib/detail-page-reference";
@@ -51,6 +51,7 @@ const LD = [
     type: "CollectionPage",
     name: "상세페이지 레퍼런스 | 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 스마트스토어 상세페이지 실물 모음. 하랑마케팅이 만든 상세페이지.`,
+    dateModified: updatedAt(PATH),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

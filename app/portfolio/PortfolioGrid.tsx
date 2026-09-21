@@ -96,7 +96,7 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={c.image}
-                  alt=""
+                  alt={`${c.industry} 마케팅 사례 대표 이미지`}
                   loading="lazy"
                   className="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                   style={{ background: "var(--w-cn-98)" }}

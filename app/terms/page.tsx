@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "이용약관",
   description: "하랑마케팅 이용약관입니다.",
   robots: { index: false, follow: false },
+  alternates: { canonical: "https://www.harangmarketing.com/terms" },
 };
 
 const SECTIONS = [

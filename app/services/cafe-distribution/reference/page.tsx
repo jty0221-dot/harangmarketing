@@ -4,7 +4,7 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import ReferenceClient from "./ReferenceClient";
-import { SITE, ORG_ID, breadcrumbLd, webPageLd } from "../../../lib/seo";
+import { SITE, ORG_ID, breadcrumbLd, webPageLd, updatedAt } from "../../../lib/seo";
 import { REF_CATEGORIES, REF_TOTAL } from "../../../lib/cafe-distribution";
 import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 
@@ -37,6 +37,7 @@ const LD = [
     type: "CollectionPage",
     name: "카페 배포 레퍼런스 | 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음.`,
+    dateModified: updatedAt(PATH),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

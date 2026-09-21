@@ -7,16 +7,43 @@ import { getPortfolio } from "../lib/portfolio";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
+import JsonLd from "../components/JsonLd";
+import { breadcrumbLd, webPageLd, updatedAt } from "../lib/seo";
 import {
-  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
+  byVolume, PLACE_RANK_AS_OF, PLACE_RANK_GENERATED, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
 } from "../lib/place-rank-cases";
 
+const PORTFOLIO_TITLE = "업종별 마케팅 사례";
+const PORTFOLIO_DESCRIPTION =
+  "음식점·카페·병원·미용실·학원부터 인테리어·여행까지, 하랑마케팅이 직접 진행한 업종별 마케팅 사례를 모았습니다.";
+const PORTFOLIO_URL = "https://www.harangmarketing.com/portfolio";
+
 export const metadata: Metadata = {
-  title: "업종별 마케팅 사례",
-  description:
-    "음식점·카페·병원·미용실·학원부터 인테리어·여행까지, 하랑마케팅이 직접 진행한 업종별 마케팅 사례를 모았습니다.",
-  alternates: { canonical: "https://www.harangmarketing.com/portfolio" },
+  title: PORTFOLIO_TITLE,
+  description: PORTFOLIO_DESCRIPTION,
+  alternates: { canonical: PORTFOLIO_URL },
+  openGraph: {
+    title: `${PORTFOLIO_TITLE} | 하랑마케팅`,
+    description: PORTFOLIO_DESCRIPTION,
+    url: PORTFOLIO_URL,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 업종별 마케팅 사례" }],
+  },
 };
+
+/* WebPage · 빵부스러기 JSON-LD (2026-09-21 · 요청 70) · 순위 데이터 날짜까지 같이 본다 */
+const PORTFOLIO_LD = [
+  webPageLd({
+    path: "/portfolio",
+    type: "CollectionPage",
+    name: `${PORTFOLIO_TITLE} | 하랑마케팅`,
+    description: PORTFOLIO_DESCRIPTION,
+    dateModified: updatedAt("/portfolio", PLACE_RANK_GENERATED),
+  }),
+  breadcrumbLd([
+    { name: "홈", path: "/" },
+    { name: "업종별 사례", path: "/portfolio" },
+  ]),
+];
 
 export default function PortfolioPage() {
   const { industries, total, generatedAt } = getPortfolio();
@@ -25,6 +52,7 @@ export default function PortfolioPage() {
     <>
       <Header />
       <main className="min-h-screen pt-[104px] md:pt-[108px]" style={{ background: "var(--w-bg-alt)" }}>
+        <JsonLd data={PORTFOLIO_LD} />
         <div className="mx-auto max-w-[1100px] px-5 py-12 md:py-16">
           <div className="mb-8">
             <span className="w-chip w-chip-blue">

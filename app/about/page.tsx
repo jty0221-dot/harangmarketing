@@ -10,7 +10,7 @@ import {
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 
 const BASE = SITE.base;
 
@@ -27,6 +27,7 @@ const ABOUT_LD = [
     name: "회사소개 | 하랑마케팅",
     description:
       "해병대 장교 출신 전태영 대표가 직접 운영하는 소상공인 전문 마케팅 대행사. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 이야기.",
+    dateModified: updatedAt("/about"),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

@@ -73,10 +73,8 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
+    /* 제목·설명·이미지는 페이지마다 openGraph 에서 채운다 (2026-09-21 · 요청 70) */
     card: "summary_large_image",
-    title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
-    description: `10년 경력 · 플레이스 SEO · 블로그 · 체험단 · 인스타그램 · 재계약률 ${SITE.stats.renewalRate}`,
-    images: ["/og-image.png"],
   },
   icons: {
     icon: [
@@ -192,14 +190,6 @@ gtag('config', '${GA_ID}');`,
               inLanguage: "ko-KR",
               publisher: { "@id": ORG_ID },
               copyrightHolder: { "@id": ORG_ID },
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: `${SITE.base}/blog?q={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-              },
             },
 
             /* ── Organization: AI 검색 엔티티 신뢰도의 뿌리 ── */
@@ -289,7 +279,7 @@ gtag('config', '${GA_ID}');`,
                 "스마트스토어 상세페이지 제작",
               ],
               knowsLanguage: ["ko"],
-              sameAs: [SITE.naverBlog, SITE.instagram, SITE.kakao],
+              sameAs: [SITE.naverBlog, SITE.instagram, SITE.youtube, SITE.kakao],
               numberOfEmployees: { "@type": "QuantitativeValue", value: 5 },
               subjectOf: {
                 "@type": "WebContent",
@@ -449,7 +439,7 @@ gtag('config', '${GA_ID}');`,
                 { "@type": "AdministrativeArea", name: "경기도" },
                 { "@type": "City", name: "인천광역시" },
               ],
-              sameAs: [SITE.naverBlog, SITE.instagram, SITE.kakao],
+              sameAs: [SITE.naverBlog, SITE.instagram, SITE.youtube, SITE.kakao],
             },
 
             /* ── SiteNavigationElement: AI 크롤러에 사이트 구조 전달 ── */

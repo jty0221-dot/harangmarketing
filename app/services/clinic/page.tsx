@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED } from "../../lib/seo";
+import { SITE, ORG_ID, LOCAL_ID, faqLd, webPageLd, breadcrumbLd, type FaqItem, PAGE_UPDATED } from "../../lib/seo";
 import {
   byKeyword, fmt,
   CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE, CLINIC_RISE_DURATIONS,
@@ -41,6 +41,33 @@ const CLINIC_PAGE_LD = webPageLd({
   description: `의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위노출, 리뷰 관리. ${CLINIC_STORY} 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
   dateModified: PAGE_UPDATED["/services/clinic"],
 });
+
+/* Service · 빵부스러기 JSON-LD (2026-09-21 · 요청 70 · layout.tsx 에서 옮김)
+   레이아웃에 두면 하위 경로 medical-ad-guide 까지 Service 와 빵부스러기가 두 벌 실렸다.
+   문구는 옮기기 전과 글자까지 같다 (진우 판정 제4-C절 · 제8절 · 의료기관 타입 금지). */
+const CLINIC_SERVICE_LD = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "의원·한의원·피부과 마케팅 대행",
+  provider: { "@id": LOCAL_ID },
+  brand: { "@id": ORG_ID },
+  inLanguage: "ko-KR",
+  serviceOutput: {
+    "@type": "Thing",
+    name: "플레이스 순위 계측 기록",
+    description: `의원·한의원·피부과 전문 마케팅. ${CLINIC_STORY} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.`,
+  },
+  offers: { "@type": "Offer", description: "의원·한의원 전문 마케팅. 진료 과목·진행 범위에 따라 견적 산정, 상담·진단 0원." },
+  description: "의원·한의원·피부과 전문 네이버 블로그 마케팅, 플레이스 SEO, 리뷰 관리 대행",
+  areaServed: "대한민국",
+  serviceType: "의료기관 마케팅 대행",
+  url: "https://www.harangmarketing.com/services/clinic",
+};
+const CLINIC_CRUMB_LD = breadcrumbLd([
+  { name: "홈", path: "/" },
+  { name: "서비스", path: "/services" },
+  { name: "의원·한의원·피부과 마케팅", path: "/services/clinic" },
+]);
 
 /*
  * 순위 문답 답변.
@@ -407,6 +434,8 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={CLINIC_SERVICE_LD} />
+        <JsonLd data={CLINIC_CRUMB_LD} />
         <JsonLd data={CLINIC_PAGE_LD} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/clinic`)} />
         <FaqAccordion

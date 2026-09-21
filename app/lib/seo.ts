@@ -32,6 +32,7 @@ export const SITE = {
   kakaoChat: "https://pf.kakao.com/_MuUkG/chat",
   naverBlog: "https://blog.naver.com/harangmarketing",
   instagram: "https://www.instagram.com/jty0221/",
+  youtube: "https://www.youtube.com/@madaenam",
   address: {
     street: "장백로19 더루벤투스카운티 501호",
     locality: "고양시 일산동구",

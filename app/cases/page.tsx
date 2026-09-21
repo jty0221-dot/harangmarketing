@@ -9,7 +9,7 @@ import { ArrowRight, MessageCircle, Filter, Search, X, Handshake, Store } from "
 import AnimatedCounter from "../components/AnimatedCounter";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, itemListLd, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, itemListLd, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import {
@@ -19,6 +19,7 @@ import {
   PLACE_RANK_INDUSTRIES,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
+  PLACE_RANK_GENERATED,
   PLACE_RANK_TOP_LINES,
   bestCase,
   fmtArrow,
@@ -69,6 +70,7 @@ const CASES_LD = [
     name: "순위 계측 기록 · 하랑마케팅",
     description:
       "하랑마케팅이 매일 잰 네이버 플레이스 순위 기록. 키워드마다 시작 순위 · 현재 순위 · 계측 일수만 적었습니다.",
+    dateModified: updatedAt("/cases", PLACE_RANK_GENERATED),
   }),
   breadcrumbLd([
     { name: "홈", path: "/" },

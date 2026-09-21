@@ -10,7 +10,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import {
-  SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem,
+  SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, updatedAt, howToLd, type FaqItem,
 } from "../../lib/seo";
 import { TRACK_RECORD } from "../../lib/track-record";
 
@@ -150,6 +150,7 @@ const LD = [
     name: "블로그 체험단 · 인플루언서 체험단 모집 대행",
     description:
       "매장에 방문할 블로거와 인플루언서를 모집하고 후기가 올라오는 것까지 대표가 직접 진행하는 체험단 대행입니다.",
+    dateModified: updatedAt(PATH),
   }),
   {
     "@context": "https://schema.org",

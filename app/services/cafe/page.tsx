@@ -6,7 +6,7 @@ import RankRecords from "../../components/RankRecords";
 import PlaceRankCasesSection from "../../components/PlaceRankCases";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
 import { byIndustry, PLACE_RANK_AS_OF } from "../../lib/place-rank-cases";
 import { byKeyword, fmt, fmtSentence } from "../../lib/rank-records";
 import Link from "next/link";
@@ -48,9 +48,12 @@ const CAFE_FACTS = [
   { label: "상담·진단", value: "0원" },
 ];
 
+const PAGE_TITLE = "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그";
+const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 상위 노출, 포토리뷰 확보, 블로그·인스타 바이럴로 방문객을 늘립니다. 무료 상담 가능.";
+
 export const metadata: Metadata = {
-  title: "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그",
-  description: "카페·베이커리 전문 마케팅. 네이버 플레이스 상위 노출, 포토리뷰 확보, 블로그·인스타 바이럴로 방문객을 늘립니다. 무료 상담 가능.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   keywords: ["카페 마케팅", "카페 플레이스 SEO", "카페 리뷰 마케팅", "베이커리 마케팅", "네이버 플레이스 카페"],
   openGraph: {
     title: "카페·베이커리 마케팅 | 하랑마케팅",
@@ -224,6 +227,7 @@ export default function CafeLandingPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={webPageLd({ path: "/services/cafe", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/cafe") })} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/cafe`)} />
         <FaqAccordion
           items={SERVICE_FAQ}

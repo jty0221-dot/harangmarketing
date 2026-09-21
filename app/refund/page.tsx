@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "환불·취소 정책",
   description: "하랑마케팅 환불 및 취소 정책입니다.",
   robots: { index: false, follow: false },
+  alternates: { canonical: "https://www.harangmarketing.com/refund" },
 };
 
 const SECTIONS = [

@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import JsonLd from "../../components/JsonLd";
-import { SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, type FaqItem } from "../../lib/seo";
+import { SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, updatedAt, howToLd, type FaqItem } from "../../lib/seo";
 import { getDetailPageCases, INDUSTRY_LABEL } from "../../lib/detail-page-cases";
 import { REF_TOTAL, REF_CATEGORIES } from "../../lib/detail-page-reference";
 import {
@@ -250,6 +250,7 @@ const LD = [
     path: PATH,
     name: "하랑마케팅 스마트스토어 상세페이지 제작",
     description: "이미지를 파는 게 아니라 순서를 팝니다. 9단 구성 · 게이트 2개 · 공정 전체 공개. 150,000원부터.",
+    dateModified: updatedAt(PATH),
   }),
   howToLd({
     path: PATH,

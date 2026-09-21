@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import {
-  byKeyword, fmtLong,
-  CLINIC_LINES, CLINIC_NOTE,
-} from "../../lib/rank-records";
+import { byKeyword, fmtLong } from "../../lib/rank-records";
 
 /*
  * 순위 문구는 정본에서 만든다. 기록이 없으면 문장에서 빠진다 (C-42 · C-50).
@@ -11,7 +8,7 @@ import {
  * 자리를 지킨 기록이 올라간 기록처럼 읽혔다. 지킨 것과 오른 것을 갈라 쓰는 일은
  * app/lib/rank-records.ts 의 fmt 계열과 CLINIC_ 상수들이 한다 (진우 판정 제4-C절 · 제5절).
  *
- * 스키마 타입도 여기서 정한다. 우리는 의료기관이 아니라 마케팅 대행사다.
+ * 스키마 타입은 page.tsx 의 CLINIC_SERVICE_LD 가 정한다 (2026-09-21 · 요청 70 · 레이아웃에서 옮김). 우리는 의료기관이 아니라 마케팅 대행사다.
  * MedicalBusiness · MedicalClinic · Physician · Dentist · MedicalWebPage · MedicalOrganization 을
  * 우리 도메인에 쓰지 않는다. 우리가 쓰는 것은 Service · ProfessionalService · Organization 뿐이다.
  * 우리 문서에 의료기관 타입을 붙이면 검색엔진과 AI 가 하랑마케팅을 의료기관으로 읽는다
@@ -19,11 +16,6 @@ import {
  */
 const DENTAL = byKeyword("지역 치과 키워드");
 const DENTAL_LINE = DENTAL ? `지역 치과 키워드 ${fmtLong(DENTAL)} 기록.` : "";
-
-/* JSON-LD 의 계측 기록 절 — 화면에 뜨는 문장과 글자까지 같은 것을 쓴다 */
-const CLINIC_LD_LINE = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
-import JsonLd from "../../components/JsonLd";
-import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "의원·한의원·피부과 마케팅 대행 | 의료법 준수 · 플레이스 SEO",
@@ -39,35 +31,5 @@ export const metadata: Metadata = {
 };
 
 export default function ClinicLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": "의원·한의원·피부과 마케팅 대행",
-            "provider": { "@id": LOCAL_ID },
-            "brand": { "@id": ORG_ID },
-            "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": `의원·한의원·피부과 전문 마케팅. ${CLINIC_LD_LINE} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.` },
-            "offers": { "@type": "Offer", "description": "의원·한의원 전문 마케팅. 진료 과목·진행 범위에 따라 견적 산정, 상담·진단 0원." },
-            "description": "의원·한의원·피부과 전문 네이버 블로그 마케팅, 플레이스 SEO, 리뷰 관리 대행",
-            "areaServed": "대한민국",
-            "serviceType": "의료기관 마케팅 대행",
-            "url": "https://www.harangmarketing.com/services/clinic",
-          }),
-        }}
-      />
-      <JsonLd
-        data={breadcrumbLd([
-          { name: "홈", path: "/" },
-          { name: "서비스", path: "/services" },
-          { name: "의원·한의원·피부과 마케팅", path: "/services/clinic" },
-        ])}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

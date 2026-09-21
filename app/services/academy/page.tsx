@@ -5,14 +5,17 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
 import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
 
+const PAGE_TITLE = "학원·교육 마케팅 대행사 | 수강생 증대 전문";
+const PAGE_DESCRIPTION = "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 수강생 증대 실제 성과. 무료 상담.";
+
 export const metadata: Metadata = {
-  title: "학원·교육 마케팅 대행사 | 수강생 증대 전문",
-  description: "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 수강생 증대 실제 성과. 무료 상담.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   keywords: ["학원 마케팅", "교육 마케팅 대행사", "학원 수강생 늘리기", "학원 플레이스 SEO", "공부방 마케팅"],
   openGraph: {
     title: "학원·교육 마케팅 대행사 | 하랑마케팅",
@@ -165,6 +168,7 @@ export default function AcademyPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={webPageLd({ path: "/services/academy", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/academy") })} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/academy`)} />
         <FaqAccordion
           items={SERVICE_FAQ}

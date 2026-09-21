@@ -5,16 +5,19 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Scissors, MessageSquare, Camera,
 } from "lucide-react";
 
+const PAGE_TITLE = "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단";
+const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 팔로워 증가, 플레이스 상위 노출, 포토리뷰 확보로 예약을 꽉 채웁니다. 무료 상담 가능.";
+
 export const metadata: Metadata = {
-  title: "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단",
-  description: "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 팔로워 증가, 플레이스 상위 노출, 포토리뷰 확보로 예약을 꽉 채웁니다. 무료 상담 가능.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   keywords: ["미용실 마케팅", "네일샵 마케팅", "피부샵 마케팅", "뷰티샵 플레이스 SEO", "헤어샵 인스타그램"],
   openGraph: {
     title: "미용·네일·피부샵 마케팅 | 하랑마케팅",
@@ -182,6 +185,7 @@ export default function BeautyLandingPage() {
         </section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <JsonLd data={webPageLd({ path: "/services/beauty", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/beauty") })} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/beauty`)} />
         <FaqAccordion
           items={SERVICE_FAQ}

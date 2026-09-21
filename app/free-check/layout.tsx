@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
-import { SITE, ORG_ID, webPageLd, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "무료 플레이스 진단 | 지금 내 매장 순위 확인",
@@ -20,6 +20,7 @@ const FREE_CHECK_LD = [
     name: "무료 플레이스 진단 | 하랑마케팅",
     description:
       "내 매장의 네이버 플레이스 순위, 리뷰 현황, 콘텐츠 포화도, 경쟁사 3곳을 무료로 진단해 1영업일 내 리포트로 보내드립니다. 비용 0원, 계약 강요 없음.",
+    dateModified: updatedAt("/free-check"),
   }),
   {
     "@context": "https://schema.org",
