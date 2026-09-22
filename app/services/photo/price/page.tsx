@@ -1,24 +1,66 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Building2, Camera, Check, UtensilsCrossed } from "lucide-react";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import JsonLd from "../../../components/JsonLd";
-import { breadcrumbLd, webPageLd } from "../../../lib/seo";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Building2, Camera, Check, UtensilsCrossed } from 'lucide-react';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import JsonLd from '../../../components/JsonLd';
+import { breadcrumbLd, webPageLd, PAGE_UPDATED } from '../../../lib/seo';
+import { FOOD_PLANS, STAY_PLANS, type PhotoPlan } from '../../../lib/photo-pricing';
 
-export const metadata: Metadata = { title: "매장 사진촬영 가격표 | 음식점 · 공간 촬영", description: "음식점과 공간·펜션을 위한 매장 사진촬영 가격표입니다. 기본, 고급, 프리미엄 구성과 촬영 범위를 확인할 수 있습니다.", alternates: { canonical: "https://www.harangmarketing.com/services/photo/price" } };
-const PLANS = [
-  { name: "기본", price: "700,000", time: "180분", days: "5일", revisions: "2회", food: "메뉴 A컷 30장 · B컷 30장", stay: "시설 A컷 30장 · B컷 30장", note: "60평 이하 기준" },
-  { name: "고급", price: "1,000,000", time: "210분", days: "7일", revisions: "2회", food: "메뉴 A컷 50장 · B컷 50장", stay: "시설 A컷 50장 · B컷 50장", note: "60평 이하 기준" },
-  { name: "프리미엄", price: "1,200,000", time: "300분", days: "9일", revisions: "2회", food: "메뉴 A컷 60장 · B컷 60장", stay: "시설 A컷 60장 · B컷 60장", note: "넓은 공간 포함 기준" },
-] as const;
-const VERSIONS = [
-  { title: "음식점·요식업", description: "메뉴, 상차림, 매장 동선을 중심으로 촬영합니다.", icon: UtensilsCrossed, href: "/services/photo/food", image: "/photo-partner/restaurant/62/01.jpg", alt: "연이만두 음식점 촬영 예시" },
-  { title: "공간·펜션", description: "객실, 공용공간, 외부 동선과 머무는 장면을 중심으로 촬영합니다.", icon: Building2, href: "/services/photo/stay", image: "/photo-partner/stay/25/01.jpg", alt: "향운 공간 촬영 예시" },
-] as const;
+export const metadata: Metadata = {
+  title: '매장 사진촬영 가격표 | 음식점 · 시설 촬영',
+  description: '음식점 촬영 30만·60만·100만 원, 시설 촬영 70만·100만·120만 원. 부가세 별도. 상품별 사진과 촬영 조건을 확인하세요.',
+  alternates: { canonical: 'https://www.harangmarketing.com/services/photo/price' },
+};
+const container = 'mx-auto max-w-6xl px-4 md:px-6 lg:px-8';
+const button = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white hover:bg-[var(--w-primary-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]';
+const outline = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--w-line)] bg-[var(--w-bg)] px-5 py-3 w-label1 font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]';
 
-export default function PhotoPricePage() { return <><Header /><main className="pt-[104px] md:pt-[108px] bg-gray-50"><JsonLd data={webPageLd({ path: "/services/photo/price", name: "매장 사진촬영 가격표", description: "음식점과 공간·펜션 사진촬영의 기본, 고급, 프리미엄 가격표" })} /><JsonLd data={breadcrumbLd([{ name: "홈", path: "/" }, { name: "서비스", path: "/services" }, { name: "매장 사진촬영", path: "/services/photo" }, { name: "가격표", path: "/services/photo/price" }])} />
-  <section className="bg-gray-950 py-14 md:py-20"><div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"><div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-blue-300 mb-5"><Camera size={14} /> 매장 사진촬영 가격표</div><h1 className="max-w-3xl text-3xl md:text-5xl font-black leading-tight text-white">찍을 범위와 남길 컷을<br />처음부터 정합니다</h1><p className="max-w-2xl mt-5 text-base md:text-lg leading-relaxed text-gray-300">음식점과 공간 촬영은 같은 가격 구성을 사용하되, 촬영 전 확인하는 컷 목록과 진행 순서는 다르게 잡습니다.</p></div></section>
-  <section className="py-12 md:py-16 bg-white"><div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"><div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">{VERSIONS.map(({ title, description, icon: Icon, href, image, alt }) => <Link key={title} href={href} className="group overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm transition-colors hover:border-blue-300"><div className="relative aspect-[16/9] overflow-hidden"><Image src={image} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" /></div><div className="flex items-start justify-between gap-4 p-5 md:p-6"><div><div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-4"><Icon size={19} /></div><h2 className="text-lg font-black text-gray-900">{title}</h2><p className="mt-2 text-sm leading-relaxed text-gray-600">{description}</p><p className="mt-4 text-sm font-bold text-blue-700">포트폴리오와 업체별 전체 사진 보기</p></div><ArrowRight size={18} className="mt-1 shrink-0 text-blue-600 group-hover:translate-x-0.5 transition-transform" /></div></Link>)}</div><div className="flex items-end justify-between gap-4 mb-6"><div><p className="text-xs font-bold tracking-[0.16em] text-blue-600 mb-3">PRICE GUIDE</p><h2 className="text-2xl md:text-3xl font-black text-gray-900">촬영 구성별 가격</h2></div><p className="hidden sm:block text-sm text-gray-500">부가세 별도</p></div><div className="grid grid-cols-1 md:grid-cols-3 gap-4">{PLANS.map((plan, index) => <article key={plan.name} className={`rounded-2xl border bg-white p-5 md:p-6 shadow-sm ${index === 1 ? "border-blue-500 ring-1 ring-blue-500" : "border-gray-200"}`}>{index === 1 && <p className="text-xs font-bold text-blue-600 mb-4">가장 많이 고르는 구성</p>}<h3 className="text-xl font-black text-gray-900">{plan.name}</h3><p className="mt-4 text-3xl font-black text-gray-900">{plan.price}<span className="ml-1 text-base font-bold">원</span></p><p className="mt-1 text-xs text-gray-500">부가세 별도</p><div className="my-6 h-px bg-gray-100" /><ul className="space-y-3 text-sm text-gray-700"><li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-blue-600" />보정 작업은 A컷 기준</li><li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-blue-600" />음식점 {plan.food}</li><li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-blue-600" />공간·펜션 {plan.stay}</li><li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-blue-600" />촬영 {plan.time} · 작업 {plan.days}</li><li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-blue-600" />수정 {plan.revisions} · {plan.note}</li></ul><Link href={`/contact?industry=사진촬영&plan=${encodeURIComponent(plan.name)}`} className="mt-7 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gray-900 px-4 py-3 text-sm font-bold text-white hover:bg-gray-800">{plan.name} 상담 신청 <ArrowRight size={15} /></Link></article>)}</div><p className="mt-6 text-xs leading-relaxed text-gray-500">표에 적힌 촬영 시간, 컷 수, 작업일은 기본 구성입니다. 이동 거리, 추가 촬영 공간, 모델 섭외, 채널별 등록 작업은 사전 협의한 범위에 따라 별도로 안내합니다.</p></div></section>
-</main><Footer /></>; }
+function PlanCard({ plan, type }: { plan: PhotoPlan; type: 'food' | 'stay' }) {
+  const rows = [
+    ...(plan.model ? [['모델', plan.model], ['시설 면적', plan.area!]] : []),
+    ['작업 기간', plan.days], ['수정 횟수', '2회'], ['촬영 시간', plan.time],
+    ['보정 작업', plan.retouch], ['제공 컷', plan.cuts],
+  ];
+  return <article className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-[var(--w-line)] bg-[var(--w-bg)] shadow-sm">
+    <div className={type === 'food' ? 'flex aspect-[4/5] items-center justify-center bg-[var(--w-bg-alt)]' : 'aspect-[3/2] bg-[var(--w-bg-alt)]'}>
+      <Image src={plan.image} alt={plan.alt} width={plan.width} height={plan.height} sizes="(max-width: 1023px) 100vw, 360px" className="h-full w-full object-contain" />
+    </div>
+    <div className="flex flex-1 flex-col p-5 md:p-6">
+      <p className="w-caption1 font-semibold tracking-widest text-[var(--w-primary)]">{plan.code}</p>
+      <h3 className="mt-2 w-heading1 text-[var(--w-label-strong)]">{plan.name}</h3>
+      <p className="mt-4 w-body2 text-[var(--w-label-alt)]">{plan.description}</p>
+      <ul className="mt-5 space-y-3 w-label1">{plan.includes.map((item) => <li key={item} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[var(--w-primary)]" /><span>{item}</span></li>)}</ul>
+      {plan.extra && <p className="mt-3 w-caption1 text-[var(--w-label-alt)]">{plan.extra}</p>}
+      <div className="mt-auto pt-8">
+        <p className="w-display3 font-bold tabular-nums text-[var(--w-label-strong)]">{plan.price.toLocaleString('ko-KR')}<span className="ml-1 w-body1 font-semibold">원</span></p>
+        <p className="mt-1 w-caption1 text-[var(--w-label-alt)]">부가세 별도</p>
+        <div className="my-6 border-t border-[var(--w-line)]" />
+        <dl className="space-y-3 w-label1">{rows.map(([label, value]) => <div key={label} className="flex items-start justify-between gap-3"><dt className="shrink-0 text-[var(--w-label-alt)]">{label}</dt><dd className="text-right font-medium">{value}</dd></div>)}</dl>
+        <Link href={'/contact?industry=' + encodeURIComponent(type === 'food' ? '음식점 사진촬영' : '시설·숙박 사진촬영') + '&plan=' + encodeURIComponent(plan.name)} className={button + ' mt-7 w-full'}>{plan.name} 상담<ArrowRight size={16} /></Link>
+      </div>
+    </div>
+  </article>;
+}
+
+export default function PhotoPricePage() {
+  return <><Header /><main className="bg-[var(--w-bg)] pt-[104px] text-[var(--w-label)] md:pt-[108px]">
+    <JsonLd data={webPageLd({ path: '/services/photo/price', name: '매장 사진촬영 가격표', description: metadata.description as string, dateModified: PAGE_UPDATED['/services/photo/price'] })} />
+    <JsonLd data={breadcrumbLd([{ name: '홈', path: '/' }, { name: '서비스', path: '/services' }, { name: '매장 사진촬영', path: '/services/photo' }, { name: '가격표', path: '/services/photo/price' }])} />
+    <section className="border-b border-[var(--w-line)] bg-[var(--w-bg-alt)] py-12 md:py-20"><div className={container}>
+      <div className="mb-6 flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--w-primary)] shadow-sm"><Camera size={16} className="text-white" strokeWidth={2.5} /></span><p className="w-label1 font-semibold text-[var(--w-primary)]">매장 사진촬영 가격표</p></div>
+      <h1 className="w-display2 max-w-4xl font-bold text-[var(--w-label-strong)]">메뉴와 공간에 맞는<br />촬영 구성을 선택하세요</h1>
+      <p className="mt-5 max-w-2xl w-body1 text-[var(--w-label-alt)]">음식점은 메뉴와 인테리어를, 시설·숙박은 공간과 머무는 장면을 중심으로 촬영합니다. 상품별 사진과 제공 범위를 확인해 주세요.</p>
+      <nav aria-label="촬영 가격 구분" className="mt-8 flex flex-wrap gap-3"><a href="#food" className={button}><UtensilsCrossed size={16} />음식점 촬영</a><a href="#stay" className={outline}><Building2 size={16} />시설·숙박 촬영</a></nav>
+    </div></section>
+    {([{ type: 'food', title: '음식점 촬영', english: 'PLACE PHOTOGRAPHY', plans: FOOD_PLANS, description: '메뉴 사진부터 플레이스에 사용할 사진까지, 세 가지 구성으로 안내합니다.' }, { type: 'stay', title: '시설·숙박 촬영', english: 'STAY PHOTOGRAPHY', plans: STAY_PLANS, description: '모델 유무와 시설 면적에 맞춰 촬영 구성을 선택할 수 있습니다.' }] as const).map((section) =>
+      <section key={section.type} id={section.type} aria-labelledby={section.type + '-title'} className={'scroll-mt-32 py-12 md:py-20 ' + (section.type === 'stay' ? 'border-t border-[var(--w-line)] bg-[var(--w-bg-alt)]' : '')}>
+        <div className={container}><div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="mb-3 w-caption1 font-semibold tracking-widest text-[var(--w-primary)]">{section.english}</p><h2 id={section.type + '-title'} className="w-display3 font-bold text-[var(--w-label-strong)]">{section.title}</h2><p className="mt-3 w-body2 text-[var(--w-label-alt)]">{section.description}</p></div><Link href={'/services/photo/' + section.type} className={outline}>업체별 촬영 사례 보기<ArrowRight size={16} /></Link></div>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">{section.plans.map((plan) => <PlanCard key={plan.code} plan={plan} type={section.type} />)}</div>
+          {section.type === 'food' && <p className="mt-6 w-caption1 text-[var(--w-label-alt)]">사진은 촬영 구성에 대한 이해를 돕는 협력사 작업 예시입니다. 블로그 기자단 배포용 사진 촬영은 사진 제작 범위를 뜻합니다.</p>}
+        </div>
+      </section>
+    )}
+  </main><Footer /></>;
+}

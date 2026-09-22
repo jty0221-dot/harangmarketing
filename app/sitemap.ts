@@ -4,6 +4,7 @@ import { PAGE_UPDATED, SITE, updatedAt } from "./lib/seo";
 import { SNAPSHOT_DATE } from "./lib/rank-records";
 import { PLACE_RANK_GENERATED } from "./lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "./lib/feature-flags";
+import { PHOTO_PORTFOLIOS } from "./lib/photo-portfolios";
 
 const BASE = SITE.base;
 
@@ -68,5 +69,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...blogPages];
+  const photoPages: MetadataRoute.Sitemap = PHOTO_PORTFOLIOS.map((item) => ({
+    url: `${BASE}/services/photo/${item.type}/${item.id}`,
+    lastModified: new Date('2026-09-22'),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+  return [...staticPages, ...blogPages, ...photoPages];
 }

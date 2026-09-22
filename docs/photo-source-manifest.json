@@ -1,0 +1,570 @@
+{
+  "checkedAt": "2026-09-22",
+  "priceSources": [
+    "https://bornu.kr/42",
+    "https://bornu.kr/40"
+  ],
+  "portfolios": [
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "25",
+      "name": "향운",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/25",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20240906/9f3a691484763.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20240906/027b0937e29af.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/b1f309bf8ea8d.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/5a8ee69798f9c.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/92695d7947b1a.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/5a96c6b179e93.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/874272cffa66d.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/13467d6065cc6.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/e47bd1b526142.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/2809a67e52884.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/c4b9a747713a0.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "107",
+      "name": "지은정스테이",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/107",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260715/547798bbc6fa0.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260715/0e3c27d317331.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/2c8f707783a85.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/0d5066c6dde68.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/908e2abbe1c75.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/782a7357dd0f6.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/d09c877518f79.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/55a533a3aa3a1.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/e2e0e3470b296.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/9ebb6c36e8251.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "65",
+      "name": "연운",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/65",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250620/f4b24efd6dc15.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250620/607c8f1a4f1d1.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/c37f06e42668b.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/12162469f904b.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/394ccad5b8fed.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/cd124bf3f3141.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/5678d8f26f631.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/939529a53d245.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/7c98d601205cf.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/e75e4efc72705.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/bc64c60a29707.jpg",
+        "https://cdn.imweb.me/thumbnail/20250620/d68b7047dfb0f.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "28",
+      "name": "화운",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/28",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20240910/99aae2f0909cd.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250807/7e225721eaa1e.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/00a0a7c1e82aa.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/59c5df1fc3b27.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/67f027397eceb.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/01c12c4595a49.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/d411afdfd4547.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/c486384cf49c4.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/5f2f4a8272b1e.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "82",
+      "name": "유운",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/82",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20251028/45d6b1ff2241a.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20251028/254efc3492a26.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/6445a1b938c4a.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/b816e65f07bee.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/94ba32c55cae7.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/172ca0a770b9a.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/e5e0c35c508d3.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/040ba1fb3b990.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "83",
+      "name": "자하",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/83",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20251028/0c470064089d8.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20251028/7093168a54d04.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/2fbbeef644eb3.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/de6cacb489e0f.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/1af9d0e911952.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/c873554c5af81.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/c2317d2565da4.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/3bdfb147707fa.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "101",
+      "name": "에스티르",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/101",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260105/6e3e060d35a14.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260105/30bf6ce540b96.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/986a688c0a0a4.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/868c8796d27fc.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/41a1dc7af7ea5.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/63f74511567d0.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "49",
+      "name": "저동하녹",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/49",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20241223/22b503ad85c6d.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20241223/5d66f20e37469.jpg",
+        "https://cdn.imweb.me/thumbnail/20241223/5e9fd238ef228.jpg",
+        "https://cdn.imweb.me/thumbnail/20241223/9deadda7c16f0.jpg",
+        "https://cdn.imweb.me/thumbnail/20241223/1a3d080522eb8.jpg",
+        "https://cdn.imweb.me/thumbnail/20241223/9030a24c6b931.jpg",
+        "https://cdn.imweb.me/thumbnail/20241223/ac01c2dfb3267.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "69",
+      "name": "송현다미",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/69",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250807/faafbc78153c3.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250807/9dfa172c65bd6.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/3c3aa00e45a9b.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/6515b8b291a60.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/5f09220872dbd.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/50b399aa4ba67.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/c263261a0ffc7.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/f3b3a34a02f61.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/d10fdfad2b8c5.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/975d9f6b0de78.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/3d7ebb93e8bcb.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "73",
+      "name": "북촌다미",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/73",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250909/800a029131274.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250901/00c74ff6c065f.jpg",
+        "https://cdn.imweb.me/thumbnail/20250901/7cae9f4c3e213.jpg",
+        "https://cdn.imweb.me/thumbnail/20250901/afa9e6b317861.jpg",
+        "https://cdn.imweb.me/thumbnail/20250901/6c144c8ea919f.jpg",
+        "https://cdn.imweb.me/thumbnail/20250901/9e95aefb090f1.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "39",
+      "name": "소소유유",
+      "description": "스테이폴리오 입점 프로젝트 by 본유",
+      "source": "https://bornu.kr/39",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250620/6734eabc21edd.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20241128/860712698b8b2.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/c06f4d1f0d2f1.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/4ac7d15d91409.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/780fcadfc8575.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/8a2948ceb4b71.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/710c4e0e72aef.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/cf88c96ede74e.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/5f299380ad9e8.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/a520039f8a44d.jpg",
+        "https://cdn.imweb.me/thumbnail/20241128/7d0456a4dc79a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/79a208b01b913.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/dc20910483e4f.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/0b0a14b943273.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/d28a4da5c6cb3.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/b2d4c66406e0a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/284a943946a89.jpg",
+        "https://cdn.imweb.me/thumbnail/20250602/5cb481c765909.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "67",
+      "name": "서향",
+      "description": "양평 독채 펜션",
+      "source": "https://bornu.kr/67",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250807/0f9f0f045226f.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250708/f9ad4fd18417e.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/167e3b773c669.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/58b4f570f702f.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/10f996a0a6635.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/2ba9b451f16dc.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/36822c8bef6d5.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/4458a81aeb121.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "77",
+      "name": "꿈같은날",
+      "description": "고성 독채 펜션",
+      "source": "https://bornu.kr/77",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250910/4028c703a9060.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250910/1769ab851f649.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/2c0cc232a6bcb.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/18256e88eb28c.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/db5607058b153.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/df9831a2f0618.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/fe6fbf46b56f2.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/7f090b37520af.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/2734e7ec7c52a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/b133f25a63a14.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/a6c814fb3cd88.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/7d94dd97ca453.jpg",
+        "https://cdn.imweb.me/thumbnail/20250910/f4a6c8f5209de.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "26",
+      "name": "시간토끼",
+      "description": "강화도 독채 펜션",
+      "source": "https://bornu.kr/26",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250307/ceabd79c8e4cf.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20241217/b0c290f9252b0.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/f75742ff80d9a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/2ef2088aefca8.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/fd99eaff6e767.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/eab29b02b389a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/708a950ebf261.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "66",
+      "name": "구공스테이 숲결",
+      "description": "경주 독채 풀빌라",
+      "source": "https://bornu.kr/66",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250708/495a9772c5106.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250708/b45c5e6aaa969.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/aec44c5eda1ca.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/fcd473ceb0ef7.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/a7bae3e74fe20.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/7b19a6ae3e3c6.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/d82e9f9d5f7ac.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/bf4066a80a749.jpg",
+        "https://cdn.imweb.me/thumbnail/20250708/ad0d2b26a642c.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "yongin-pyeonjip",
+      "name": "용인 편집",
+      "description": "용인 풀빌라 펜션",
+      "source": "https://bornu.kr/24",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260520/c93ba59616243.jpg",
+      "detail": false,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260520/c93ba59616243.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "68",
+      "name": "라운스테이",
+      "description": "청도 독채 풀빌라",
+      "source": "https://bornu.kr/68",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250807/de4198b5ef5d5.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250807/7bff8b5d50c56.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/88c9412fdfc31.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/567cc18659916.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/cb049fe55bd7d.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/6854539b08420.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/f623781fcf30a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/751512f041e88.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/1a613c1e7e2b9.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/a929857f6c657.jpg",
+        "https://cdn.imweb.me/thumbnail/20250807/ac9f017b078d3.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "60",
+      "name": "소선",
+      "description": "삼척 독채 풀빌라",
+      "source": "https://bornu.kr/60",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250410/5f2e1fb79f55e.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250410/27f63e25392a3.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/e27e94e908776.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/8dd84927bf192.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/585c195d8512e.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/3f0f32f97143e.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/09483c6b83472.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/28663fdb2f39b.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "100",
+      "name": "바인트리 호텔",
+      "description": "신림 호텔",
+      "source": "https://bornu.kr/100",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260105/49b3e6f85d5d4.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260105/9a9e15c25c4b0.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/9f9542377975d.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/612c2c7181379.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/69880d116af51.jpg",
+        "https://cdn.imweb.me/thumbnail/20260105/9b4c772655a89.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "108",
+      "name": "봉덕",
+      "description": "전북고창독채한옥",
+      "source": "https://bornu.kr/108",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260715/82434f9400bbc.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260715/a5733c0c21905.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/120d30a633c40.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/7607237cba990.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/2bf001ec22ab4.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/44e0d2cd03b1d.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/0fefed72a6609.jpg",
+        "https://cdn.imweb.me/thumbnail/20260715/29dba8c65d26e.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "music-forest",
+      "name": "음악의 숲",
+      "description": "애견 동반 독채 펜션",
+      "source": "https://bornu.kr/24",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260520/fefccf4bc0182.jpg",
+      "detail": false,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260520/fefccf4bc0182.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "33",
+      "name": "벨 37",
+      "description": "연천 독채 풀빌라",
+      "source": "https://bornu.kr/33",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20241016/6efd39cb6748d.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20241112/5c49a11a16d56.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/2192b663559cc.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/20dce24630c70.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/915d38df43164.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/9121b2c43621f.jpg",
+        "https://cdn.imweb.me/thumbnail/20250307/26898a30958f1.jpg",
+        "https://cdn.imweb.me/thumbnail/20241112/d8b2e843dbb22.jpg",
+        "https://cdn.imweb.me/thumbnail/20241112/e0cd590829a7a.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "37",
+      "name": "힐조인 광안",
+      "description": "광안 독채 펜션",
+      "source": "https://bornu.kr/37",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20241028/4f1563e8b98e7.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20241028/a7133c40780b7.jpg",
+        "https://cdn.imweb.me/thumbnail/20241028/818682a152ca4.jpg",
+        "https://cdn.imweb.me/thumbnail/20241028/c7b00680bdd2f.jpg",
+        "https://cdn.imweb.me/thumbnail/20241028/5202513cde555.jpg",
+        "https://cdn.imweb.me/thumbnail/20241028/4ab527c1cbc75.jpg"
+      ]
+    },
+    {
+      "type": "stay",
+      "prefix": "stay",
+      "id": "27",
+      "name": "스테이 춘몽",
+      "description": "찬란한 봄 가장 편안한 쉽터가 될 수 있길,",
+      "source": "https://bornu.kr/27",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20240906/be44607bd8742.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20240913/a06c0a1092d14.jpg",
+        "https://cdn.imweb.me/thumbnail/20240913/1a797ba130172.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/da40c028e0564.jpg",
+        "https://cdn.imweb.me/thumbnail/20240930/fa814aa95a213.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/bba7723a97e77.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/1eb2e15b50ab8.jpg",
+        "https://cdn.imweb.me/thumbnail/20240906/6c934839600e6.jpg"
+      ]
+    },
+    {
+      "type": "food",
+      "prefix": "restaurant",
+      "id": "62",
+      "name": "연이만두",
+      "description": "",
+      "source": "https://bornu.kr/62",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250410/856a8033cb1c0.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250410/26f0865ea5e3a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/0b5bc365b3b57.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/096ea2850e6bb.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/7f5bd56292f02.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/b625c707556f9.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/5e7900a911c03.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/99e573006f1e1.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/6d45a7ff25359.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/62c12b01c155d.jpg"
+      ]
+    },
+    {
+      "type": "food",
+      "prefix": "restaurant",
+      "id": "63",
+      "name": "삼심육",
+      "description": "",
+      "source": "https://bornu.kr/63",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20250410/321042e1b041e.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20250410/0b74f86297e5d.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/dc74e582a5d40.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/9732fae086609.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/a164c77eace65.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/085cf35724e29.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/a1f2a775a2d9a.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/5ada655cdc157.jpg",
+        "https://cdn.imweb.me/thumbnail/20250410/4a73a2d029a90.jpg"
+      ]
+    },
+    {
+      "type": "food",
+      "prefix": "restaurant",
+      "id": "84",
+      "name": "춘남식당",
+      "description": "",
+      "source": "https://bornu.kr/84",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20251028/12e189ac3d3c3.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20251028/a26ad30b0ec16.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/7888c0fadb35f.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/16f9ded711fd4.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/8ade8fd1c4e46.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/3fa16404726f0.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/8ed30346b97ea.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/8092b614952bc.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/84b516f7755dc.jpg",
+        "https://cdn.imweb.me/thumbnail/20251028/a7caef3f3271e.jpg"
+      ]
+    },
+    {
+      "type": "food",
+      "prefix": "restaurant",
+      "id": "104",
+      "name": "훈이네 랭삼",
+      "description": "",
+      "source": "https://bornu.kr/104",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260520/3c09c3d419a84.jpg",
+      "detail": true,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260520/c4395eeddb290.jpg",
+        "https://cdn.imweb.me/thumbnail/20260520/5b63337ca46ad.jpg",
+        "https://cdn.imweb.me/thumbnail/20260520/d05dc2294d7cc.jpg",
+        "https://cdn.imweb.me/thumbnail/20260520/54a28ba3264ed.jpg",
+        "https://cdn.imweb.me/thumbnail/20260520/b348922b78cf9.jpg",
+        "https://cdn.imweb.me/thumbnail/20260520/5aa811fc3017d.jpg",
+        "https://cdn.imweb.me/thumbnail/20260520/468bc21fee0bb.jpg"
+      ]
+    },
+    {
+      "type": "food",
+      "prefix": "restaurant",
+      "id": "jingalmaegal",
+      "name": "진갈매갈",
+      "description": "",
+      "source": "https://bornu.kr/61",
+      "coverSource": "https://cdn.imweb.me/thumbnail/20260715/b37d42e39db2a.jpg",
+      "detail": false,
+      "imageSources": [
+        "https://cdn.imweb.me/thumbnail/20260715/b37d42e39db2a.jpg"
+      ]
+    }
+  ]
+}

@@ -1,32 +1,42 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowLeft, ArrowRight, Building2, Images, UtensilsCrossed } from "lucide-react";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import JsonLd from "../../../components/JsonLd";
-import { breadcrumbLd, webPageLd } from "../../../lib/seo";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import JsonLd from '../../../components/JsonLd';
+import { breadcrumbLd, webPageLd } from '../../../lib/seo';
+import { isPhotoType, PHOTO_TYPES, portfoliosFor } from '../../../lib/photo-portfolios';
 
-type Group = { id: string; name: string; description: string; count: number };
-const STAYS: Group[] = [
-  ["25","향운","스테이폴리오 입점 프로젝트",10],["107","지은정스테이","스테이폴리오 입점 프로젝트",9],["65","연운","스테이폴리오 입점 프로젝트",11],["28","화운","스테이폴리오 입점 프로젝트",8],["82","유운","스테이폴리오 입점 프로젝트",7],["83","자하","스테이폴리오 입점 프로젝트",7],["101","에스티르","스테이폴리오 입점 프로젝트",5],["49","저동하녹","스테이폴리오 입점 프로젝트",6],["69","송현다미","스테이폴리오 입점 프로젝트",10],["73","북촌다미","스테이폴리오 입점 프로젝트",5],["39","소소유유","스테이폴리오 입점 프로젝트",17],["67","서향","양평 독채 펜션",7],["77","꿈같은날","고성 독채 펜션",12],["26","시간 토끼","강화도 독채 펜션",6],["66","구공스테이 숲결","경주 독채 풀빌라",8],["68","라운스테이","청도 독채 풀빌라",10],["60","소선","삼척 독채 풀빌라",7],["100","바인트리 호텔","신림 호텔",5],["108","봉덕","전북 고창 독채 한옥",7],["33","벨 37","연천 독채 풀빌라",8],["37","힐조인 광안","광안 독채 펜션",5],["27","스테이 춘몽","독채 스테이",7],
-].map(([id,name,description,count]) => ({ id: String(id), name: String(name), description: String(description), count: Number(count) }));
-const FOODS: Group[] = [["62","연이만두","음식점 촬영 프로젝트",9],["63","삼심육","음식점 촬영 프로젝트",8],["84","춘남식당","음식점 촬영 프로젝트",9],["104","훈이네 랭삼","음식점 촬영 프로젝트",7]].map(([id,name,description,count]) => ({ id: String(id), name: String(name), description: String(description), count: Number(count) }));
-const DATA = {
-  food: { label: "음식점·요식업", title: "메뉴가 가장 맛있어 보이는 순간을 남깁니다", description: "음식점, 카페, 주점처럼 메뉴와 상차림이 손님의 선택을 만드는 매장을 위한 촬영 구성입니다.", prefix: "restaurant", icon: UtensilsCrossed, alt: "음식점 메뉴와 상차림", groups: FOODS, checklist: ["대표 메뉴 단품과 상차림을 분리해 촬영", "메뉴판과 배달 앱에 맞는 가로·세로 컷 준비", "플레이스 대표 사진과 사진 리뷰 자리를 함께 점검"] },
-  stay: { label: "공간·펜션", title: "머무는 시간을 먼저 상상하게 만드는 공간 사진", description: "펜션, 숙소, 스테이, 대관 공간처럼 객실과 공용공간의 분위기가 예약 전환에 중요한 곳을 위한 촬영 구성입니다.", prefix: "stay", icon: Building2, alt: "펜션과 숙소 공간", groups: STAYS, checklist: ["객실, 공용공간, 외부 동선을 나눠 촬영", "낮과 저녁의 빛이 다른 자리를 구분해 기록", "예약 페이지와 플레이스에서 먼저 보일 컷을 우선 선정"] },
-} as const;
-type PortfolioType = keyof typeof DATA;
-const getType = (type: string): PortfolioType => type === "stay" ? "stay" : "food";
-const src = (prefix: string, id: string, number: number) => `/photo-partner/${prefix}/${id}/${String(number).padStart(2, "0")}.jpg`;
-export function generateStaticParams() { return [{ type: "food" }, { type: "stay" }]; }
-export async function generateMetadata({ params }: { params: Promise<{ type: string }> }): Promise<Metadata> { const { type } = await params; const data = DATA[getType(type)]; return { title: `${data.label} 촬영 포트폴리오 | 하랑마케팅`, description: `${data.label} 매장을 위한 사진촬영 포트폴리오입니다. 메뉴와 공간의 쓰임에 맞춰 촬영한 예시를 확인할 수 있습니다.`, alternates: { canonical: `https://www.harangmarketing.com/services/photo/${getType(type)}` } }; }
-
+export function generateStaticParams() { return [{ type: 'food' }, { type: 'stay' }]; }
+export async function generateMetadata({ params }: { params: Promise<{ type: string }> }): Promise<Metadata> {
+  const { type } = await params;
+  if (!isPhotoType(type)) notFound();
+  const data = PHOTO_TYPES[type];
+  return { title: data.title + ' | 하랑마케팅', description: data.description, alternates: { canonical: 'https://www.harangmarketing.com/services/photo/' + type } };
+}
 export default async function PhotoPortfolioPage({ params }: { params: Promise<{ type: string }> }) {
-  const { type } = await params; const portfolioType = getType(type); const data = DATA[portfolioType]; const Icon = data.icon; const path = `/services/photo/${portfolioType}`; const total = data.groups.reduce((sum, group) => sum + group.count, 0);
-  return <><Header /><main className="pt-[104px] md:pt-[108px] bg-gray-50"><JsonLd data={webPageLd({ path, name: `${data.label} 촬영 포트폴리오`, description: data.description })} /><JsonLd data={breadcrumbLd([{ name: "홈", path: "/" }, { name: "서비스", path: "/services" }, { name: "매장 사진촬영", path: "/services/photo" }, { name: data.label, path }])} />
-    <section className="bg-gray-950 py-14 md:py-20"><div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"><Link href="/services/photo" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gray-300 hover:text-white mb-8"><ArrowLeft size={16} /> 촬영 서비스로 돌아가기</Link><div className="max-w-3xl"><div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-blue-300 mb-5"><Icon size={14} /> {data.label} 버전</div><h1 className="text-3xl md:text-5xl font-black leading-tight text-white mb-5">{data.title}</h1><p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-300">{data.description}</p></div></div></section>
-    <section className="py-12 md:py-16 bg-white"><div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"><div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8"><div><p className="text-xs font-bold tracking-[0.16em] text-blue-600 mb-3">PARTNER PORTFOLIO</p><h2 className="text-2xl md:text-3xl font-black text-gray-900">{data.groups.length}개 업체 · {total}장</h2><p className="text-sm text-gray-500 mt-2">업체별 대표 컷을 먼저 보고, 카드를 열면 해당 업체의 전체 촬영 컷을 확인할 수 있습니다.</p></div><Link href="/services/photo/price" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white hover:bg-blue-700">{data.label} 가격표 보기 <ArrowRight size={16} /></Link></div><div className="space-y-5">{data.groups.map((group) => { const images = Array.from({ length: group.count }, (_, index) => index + 1); return <details key={group.id} className="group rounded-2xl border border-gray-200 bg-gray-50 p-4 md:p-5 shadow-sm"><summary className="cursor-pointer list-none"><div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"><div><p className="text-lg font-black text-gray-900">{group.name}</p><p className="mt-1 text-sm text-gray-600">{group.description}</p></div><span className="inline-flex min-h-10 items-center gap-2 self-start rounded-xl border border-gray-200 bg-white px-4 text-sm font-bold text-gray-800 group-open:hidden"><Images size={16} /> 사진 {group.count}장 보기</span><span className="hidden min-h-10 items-center gap-2 self-start rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-bold text-blue-700 group-open:inline-flex">접기</span></div><div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">{images.slice(0, 4).map((number) => <div key={number} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-200"><Image src={src(data.prefix, group.id, number)} alt={`${group.name} ${data.alt} 대표 사진 ${number}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" /></div>)}</div></summary><div className="mt-4 border-t border-gray-200 pt-4"><p className="mb-3 text-sm font-semibold text-gray-700">{group.name} 전체 촬영 컷</p><ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">{images.map((number) => <li key={number} className="relative aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-gray-100"><Image src={src(data.prefix, group.id, number)} alt={`${group.name} ${data.alt} ${number}`} fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 264px" className="object-cover transition-transform duration-300 hover:scale-[1.03]" /></li>)}</ul></div></details>; })}</div></div></section>
-    <section className="py-12 md:py-16 bg-gray-50"><div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"><h2 className="text-2xl font-black text-gray-900 mb-6">이 버전에서 먼저 맞추는 것</h2><div className="grid grid-cols-1 md:grid-cols-3 gap-4">{data.checklist.map((item, index) => <div key={item} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"><span className="text-xs font-black text-blue-600">0{index + 1}</span><p className="mt-3 text-sm font-semibold leading-relaxed text-gray-900">{item}</p></div>)}</div></div></section>
+  const { type } = await params;
+  if (!isPhotoType(type)) notFound();
+  const data = PHOTO_TYPES[type];
+  const groups = portfoliosFor(type);
+  const path = '/services/photo/' + type;
+  return <><Header /><main className="bg-[var(--w-bg)] pt-[104px] text-[var(--w-label)] md:pt-[108px]">
+    <JsonLd data={webPageLd({ path, name: data.title, description: data.description, dateModified: '2026-09-22' })} />
+    <JsonLd data={breadcrumbLd([{ name: '홈', path: '/' }, { name: '매장 사진촬영', path: '/services/photo' }, { name: data.label, path }])} />
+    <section className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:px-6 md:pt-16 lg:px-8">
+      <Link href="/services/photo" className="mb-8 inline-flex min-h-11 items-center gap-2 w-label1 text-[var(--w-label-alt)]"><ArrowLeft size={16} />촬영 서비스</Link>
+      <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><p className="mb-3 w-caption1 font-semibold tracking-widest text-[var(--w-primary)]">PARTNER PORTFOLIO</p><h1 className="w-display3 font-bold text-[var(--w-label-strong)]">{data.title}</h1><p className="mt-4 max-w-2xl w-body2 text-[var(--w-label-alt)]">{data.description}</p><p className="mt-2 w-caption1 text-[var(--w-label-alt)]">촬영 및 디렉팅: 본유 스튜디오</p></div><Link href={'/services/photo/price#' + type} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white">촬영 가격 보기<ArrowRight size={16} /></Link></div>
+      <nav aria-label="촬영 포트폴리오 구분" className="mt-8 flex gap-2">{(['stay', 'food'] as const).map((key) => <Link key={key} href={'/services/photo/' + key} aria-current={key === type ? 'page' : undefined} className={'inline-flex min-h-11 items-center rounded-xl border px-4 w-label1 ' + (key === type ? 'border-[var(--w-primary)] bg-[var(--w-primary-bg)] font-semibold text-[var(--w-primary)]' : 'border-[var(--w-line)]')}>{PHOTO_TYPES[key].label}</Link>)}</nav>
+    </section>
+    <section aria-label="업체별 촬영 포트폴리오" className="mx-auto max-w-6xl px-4 pb-16 md:px-6 lg:px-8">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        {groups.map((group) => <Link key={group.id} href={path + '/' + group.id} className="group min-w-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[var(--w-bg-alt)]"><Image src={group.cover} alt={group.name + ' 촬영 대표 사진'} fill sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 360px" className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none" /></div>
+          <div className="mt-4 flex items-start justify-between gap-3"><div><h2 className="w-headline1 font-semibold text-[var(--w-label-strong)]">{group.name}</h2>{group.description && <p className="mt-1 w-label1 text-[var(--w-label-alt)]">{group.description}</p>}</div><ArrowRight size={18} className="mt-1 shrink-0 text-[var(--w-primary)]" /></div><p className="mt-2 w-caption1 text-[var(--w-label-alt)]">사진 {group.images.length}장 보기</p>
+        </Link>)}
+      </div>
+    </section>
   </main><Footer /></>;
 }
