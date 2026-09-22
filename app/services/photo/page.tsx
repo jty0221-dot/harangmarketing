@@ -10,6 +10,7 @@ import {
   Aperture,
   Wand2,
   Upload,
+  ReceiptText,
 } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -17,11 +18,7 @@ import JsonLd from "../../components/JsonLd";
 import { webPageLd, PAGE_UPDATED } from "../../lib/seo";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../../lib/photo-reference";
 
-/*
- * 이 페이지에는 가격이 없다 (C-35). 촬영 범위 · 컷 수 · 이동 거리가 매장마다 달라
- * 화면에 숫자를 두면 그게 대표가 한 약속이 된다.
- * 성과 확약 문구도 쓰지 않는다 — 사진은 노출을 만드는 재료이지 순위를 보장하지 않는다.
- */
+/* 가격 구성은 /services/photo/price 정본에만 둔다. 사진은 노출을 만드는 재료이지 순위를 보장하지 않는다. */
 const PHOTO_PAGE_LD = webPageLd({
   path: "/services/photo",
   name: "매장 사진촬영 | 음식 사진 · 매장 공간 촬영",
@@ -139,12 +136,19 @@ export default function PhotoPage() {
                 촬영 상담 신청 <ArrowRight size={15} />
               </Link>
               <Link
-                href="/services"
+                href="/services/photo/price"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-colors"
               >
-                전체 서비스 보기
+                가격표 보기 <ReceiptText size={15} />
               </Link>
             </div>
+          </div>
+        </section>
+
+        <section className="py-14 md:py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-7"><div><h2 className="text-2xl font-black text-gray-900 mb-2">매장에 맞춰 보는 두 가지 버전</h2><p className="text-sm text-gray-500">메뉴가 중심인 매장과 공간 자체가 상품인 곳은 촬영 순서가 다릅니다.</p></div><Link href="/services/photo/price" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white hover:bg-blue-700">촬영 가격표 보기 <ReceiptText size={16} /></Link></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Link href="/services/photo/food" className="group rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-sm hover:border-blue-300 hover:bg-blue-50"><UtensilsCrossed size={20} className="text-blue-600 mb-4" /><h3 className="text-lg font-black text-gray-900">음식점·요식업 촬영</h3><p className="mt-2 text-sm text-gray-600 leading-relaxed">메뉴, 상차림, 매장 동선을 중심으로 잡아 배달 앱과 플레이스에 나눠 쓸 컷을 만듭니다.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600">음식점 포트폴리오 10장 보기 <ArrowRight size={15} /></span></Link><Link href="/services/photo/stay" className="group rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-sm hover:border-blue-300 hover:bg-blue-50"><Building2 size={20} className="text-blue-600 mb-4" /><h3 className="text-lg font-black text-gray-900">공간·펜션 촬영</h3><p className="mt-2 text-sm text-gray-600 leading-relaxed">객실, 공용공간, 외부 동선을 나눠 예약 전에 머무는 장면이 그려지는 컷을 만듭니다.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600">공간 포트폴리오 48장 보기 <ArrowRight size={15} /></span></Link></div>
           </div>
         </section>
 

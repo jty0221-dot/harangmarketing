@@ -387,7 +387,6 @@ const SERVICES = [
   },
   {
     // 2026-09-21 대표 지시로 신설. 촬영 협력사와 함께 진행한다.
-    // 촬영 범위·컷 수·이동 거리가 매장마다 달라 금액을 적지 않는다 (C-35).
     id: "photo",
     icon: Camera,
     color: "from-blue-600 to-blue-800",
@@ -414,8 +413,7 @@ const SERVICES = [
     href: "/services/photo",
     covers: PHOTO_CARD_COVERS,
     coverBadge: "실제 촬영 컷",
-    // 촬영 랜딩에는 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
-    hrefLabel: "촬영 안내 보기",
+    hrefLabel: "촬영 안내 · 가격표 보기",
   },
 ];
 

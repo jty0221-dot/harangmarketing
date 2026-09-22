@@ -19,7 +19,6 @@ export const metadata: Metadata = {
 export default function PhotoLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* 가격은 적지 않는다. 촬영 범위가 매장마다 달라 화면에 숫자를 두면 그게 약속이 된다 (C-35) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -33,10 +32,7 @@ export default function PhotoLayout({ children }: { children: React.ReactNode })
             provider: { "@id": LOCAL_ID },
             brand: { "@id": ORG_ID },
             inLanguage: "ko-KR",
-            offers: {
-              "@type": "Offer",
-              description: "촬영 범위와 컷 수에 따라 달라집니다. 상담 후 안내합니다.",
-            },
+            offers: { "@type": "Offer", url: "https://www.harangmarketing.com/services/photo/price" },
             areaServed: "대한민국",
             url: "https://www.harangmarketing.com/services/photo",
           }),
