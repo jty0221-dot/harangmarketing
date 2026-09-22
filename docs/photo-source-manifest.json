@@ -564,6 +564,701 @@
       "detail": false,
       "imageSources": [
         "https://cdn.imweb.me/thumbnail/20260715/b37d42e39db2a.jpg"
+      ],
+      "userProvidedSupplement": {
+        "addedAt": "2026-09-22",
+        "source": "User-supplied Jingalmaegal menu photographs",
+        "files": [
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-01.jpg",
+            "sha256": "2a233e5302c54d2525b59379e076b03c5c1d741221e27f97f5af2f9cea39005f"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_01.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-02.jpg",
+            "sha256": "9e61e4013e9493ebb7383d6f0c4ff0c3a19cdfe76f94e27c062bf4df45470200"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_02.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-03.jpg",
+            "sha256": "5cf0baf508af79de2775b6ee3936beaadfc87a6a94dbf50716c134c90df0e4ad"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_03.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-04.jpg",
+            "sha256": "b2b554da149fde0f785cebd06b19139b6d1091d936b95db94744ee1e97b81223"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_04.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-05.jpg",
+            "sha256": "0bdd09a30af2fbc7f0f93ffc4d3563fd4e62095764a4a4fe90b445c6d663f052"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_05.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-06.jpg",
+            "sha256": "af0e4a3c19d4074f3904c5bbf0a369f5630af9d4f8a7fd234a5ebdef3c040503"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_06.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-07.jpg",
+            "sha256": "659e13fa28534ec12664c7d3e27ea3e8f1649b2120bfc390495e8d4766956cd9"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_07.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-08.jpg",
+            "sha256": "76d76e256b1aecea220f54638113232ce155b483ee47a7d8c164dc1f428ca316"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_08.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-09.jpg",
+            "sha256": "c0eaec3a5977ecb7dddc9454dd426679de096e70a4d89bceb8b0286e46fe1e9c"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_09.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-10.jpg",
+            "sha256": "e595ad654dd30104befe715d94b194201b959bb52a767cd3ee0af0d8538af127"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_10.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-11.jpg",
+            "sha256": "ba21c112627f7fe3baad0f37730d98d9225a4da42281da23f81e8702cfe10363"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_11.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-12.jpg",
+            "sha256": "e19a014de37644119901c4572f1b9b392d7b32c2f69c9e5ab4ba735afa3f931f"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_12.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-13.jpg",
+            "sha256": "ed9f55b84cc115a6fe3e6b3dbe3183220a0006a51b98fa571a5579e69070a12b"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_13.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-14.jpg",
+            "sha256": "10c35cb8434a577ee554707c8c954f0045509d443d201b444817d274dbdbcf47"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_14.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-15.jpg",
+            "sha256": "550a32620a0d608086c12e85710d307ad920687a1fcc721506d7c7c643818cbb"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_15.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-16.jpg",
+            "sha256": "76f3e8c48995ecf294a04f49e7f662b8b68ea724b0e7bdf48a3300866835c79f"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_16.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-17.jpg",
+            "sha256": "06aa0f6f931d753476e57e2e306b58ad931995ef222aa43c1887166e9e6f9b35"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_17.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-18.jpg",
+            "sha256": "28bb6c6f02b96ad8c19c7d51b77aeb5d4f0873d203701eadce8e3f0fb9f63a30"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_18.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-19.jpg",
+            "sha256": "c92d63ef843c16077338ec2531d2f8d71e61fa7dd7860f526ce944c22c0715a4"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_19.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-20.jpg",
+            "sha256": "cb70a375554535439e2db5a1dbeb7e66d6e76357b89a13b26f4e1fcd45b8420a"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260702_202751322_20.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-21.jpg",
+            "sha256": "b30829ec101c0eea2429d9ca1c00041fd2382d8ad763fcebe18fb98eea67a895"
+          },
+          {
+            "sourceFile": "KakaoTalk_20260708_204241335.jpg",
+            "src": "/photo-partner/restaurant/jingalmaegal/menu-22.jpg",
+            "sha256": "26576321e91012da550f6c3713d20b059e4b0468cccbec3fc1d01570ecf72b52"
+          }
+        ]
+      }
+    },
+    {
+      "type": "food",
+      "id": "chungmuro-2cheungjip",
+      "name": "충무로 2층집",
+      "source": "User-supplied photographs",
+      "addedAt": "2026-09-22",
+      "files": [
+        {
+          "sourceFile": "단체샷.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-01.jpg",
+          "sha256": "3d06278d5713aac1ea3c06e372093b544523e3d72697cdc84813697aef9f8f7e"
+        },
+        {
+          "sourceFile": "찌개류 단체샷.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-02.jpg",
+          "sha256": "c9f13ce48b60f6876a6624f168a00478a7a34e79bb2bb5711200e1f4adab4bb2"
+        },
+        {
+          "sourceFile": "대패삼겹 (2).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-03.jpg",
+          "sha256": "d21b3bc454ec26eec03a9cbc086c8bfae856aca35e01ccdb1df20b06b44de3c0"
+        },
+        {
+          "sourceFile": "목살 (2).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-04.jpg",
+          "sha256": "8cdf8632397bbabec696a54b9a80ab470efc4d2d2aa1b17f95b835522bd24ce6"
+        },
+        {
+          "sourceFile": "삼겹살.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-05.jpg",
+          "sha256": "32a0fa054ff4c7aa20a4d7392139ef246db52015433c0ee94109373469b3dd40"
+        },
+        {
+          "sourceFile": "차돌숙주.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-06.jpg",
+          "sha256": "ba150f0e5cf98367da6feea30921d617e4e58e33ca8bace4b0d5decabbd3373a"
+        },
+        {
+          "sourceFile": "찌개류 단체샷 (3).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-07.jpg",
+          "sha256": "907fb7d0922351be74e194849bab408679defa193c609f374904c14b7dcbd6c5"
+        },
+        {
+          "sourceFile": "목살.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-08.jpg",
+          "sha256": "76a966d5d1faec29705a081470811406fdb4bb343c96e1b49d41890c29774a29"
+        },
+        {
+          "sourceFile": "찌개류 단체샷2.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-09.jpg",
+          "sha256": "4d50404f19f0a4bca46bb87e654209b6c4673072444697ec97f2ca5459c6cb76"
+        },
+        {
+          "sourceFile": "차돌숙주 (3).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-10.jpg",
+          "sha256": "150c73eec168848df3e29bcd8e0a72f58dd7435a585d62bd27076be965d25ea6"
+        },
+        {
+          "sourceFile": "밑반찬 단체.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-11.jpg",
+          "sha256": "d0c691ed42db92d138e006b30a3d916cd8ab3ccb5edcc55f00e8cf91c4835e80"
+        },
+        {
+          "sourceFile": "차돌숙주 (2).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-12.jpg",
+          "sha256": "17c1c708d0062cd99425797aabbc1ab2d36f4344acda09fec803d304971e169e"
+        },
+        {
+          "sourceFile": "대패삼겹.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-13.jpg",
+          "sha256": "69c1fa668ae5f7de44bfffccfa91b4fb4431464c43e9c7c23f18d623790c496e"
+        },
+        {
+          "sourceFile": "찌개류 단체샷 (2).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-14.jpg",
+          "sha256": "e55801f16976fffaa9bf4afef9f817a2dad56935b9051d4e43809d605fd4d89c"
+        },
+        {
+          "sourceFile": "삼겹살 (2).jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-15.jpg",
+          "sha256": "93a47d12c8a15cbd47e2b092e33a6f99acf7fd41d25fc31e92683f05fd868da8"
+        },
+        {
+          "sourceFile": "단일메뉴\\계란찜.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-16.jpg",
+          "sha256": "30113fb62444d5295dfe58cfb5e6e439314ff83f1f15119376a38a0386dc72c5"
+        },
+        {
+          "sourceFile": "단일메뉴\\고등어조림.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-17.jpg",
+          "sha256": "7dc8ef28191a4619b0bd0b8488294f133d68c7e542db7c29306824855224c369"
+        },
+        {
+          "sourceFile": "단일메뉴\\김치전.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-18.jpg",
+          "sha256": "1a6f298cfa7b0527e5246b7b434925ec31d6d2c6d6373994ac0b44b4c226b8e0"
+        },
+        {
+          "sourceFile": "단일메뉴\\김치전골.png",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-19.png",
+          "sha256": "3f04bb84d7da2958998105cad4579f66748cc0d66855cd37d66c69481642f3a6"
+        },
+        {
+          "sourceFile": "단일메뉴\\김치찌개.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-20.jpg",
+          "sha256": "45afa069928be8adecc846e2852871b38679b4f1c555ae817c00485bcb9dd545"
+        },
+        {
+          "sourceFile": "단일메뉴\\동태탕.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-21.jpg",
+          "sha256": "5bedd9035544e2bf29074d8752b581f7110ab69b8c80cf48185d9f126c204379"
+        },
+        {
+          "sourceFile": "단일메뉴\\두부김치.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-22.jpg",
+          "sha256": "b6b43f6ab6797f825f03fc774ebb0563e0b9022a404aee5afff1bd900cf83a14"
+        },
+        {
+          "sourceFile": "단일메뉴\\매운갈비찜 전골.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-23.jpg",
+          "sha256": "068f3a2e551b979a18a7cee6df1b503a2629e34392c9e78d753bc8a7637ad257"
+        },
+        {
+          "sourceFile": "단일메뉴\\매운갈비찜 전골2.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-24.jpg",
+          "sha256": "e4878c4541ccd8135f7515b96665c4df8a8f32804738c91dce16537a0f2a3345"
+        },
+        {
+          "sourceFile": "단일메뉴\\매운갈비찜.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-25.jpg",
+          "sha256": "8d11bf2ce62331b4c9a2231dd7bb59352625a71b4e20d1a6c617d06b47056987"
+        },
+        {
+          "sourceFile": "단일메뉴\\매운갈비찜2.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-26.jpg",
+          "sha256": "10eec0a370b4783bc61ac296ee1840c1964799a73cb4a913eeda55ada60a1aec"
+        },
+        {
+          "sourceFile": "단일메뉴\\물냉면.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-27.jpg",
+          "sha256": "6f2f08aedbb78f2350f12af70492a3d69d1c840f1a5d011d767c7a5d0be48fd2"
+        },
+        {
+          "sourceFile": "단일메뉴\\부대찌개.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-28.jpg",
+          "sha256": "88dba9ee0c74f204474ee5da84d7bf32e1c738cbb8985117dd8f0a5003f16a45"
+        },
+        {
+          "sourceFile": "단일메뉴\\비빔냉면.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-29.jpg",
+          "sha256": "30ee8a94dc4f2356ffb966be00cf7af7aa6bfebd91af9498d6018053c397183f"
+        },
+        {
+          "sourceFile": "단일메뉴\\생선구이.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-30.jpg",
+          "sha256": "d2302088a4a2d395dd9d36b5cc3b1bd9efae0b0100c5ae533c5973794f1f2a1b"
+        },
+        {
+          "sourceFile": "단일메뉴\\순두부찌개.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-31.jpg",
+          "sha256": "bf15af1f22ed1e4b0eb3299f14c87786a9a0f0243b4c0cb64a903bdd318d5230"
+        },
+        {
+          "sourceFile": "단일메뉴\\알탕.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-32.jpg",
+          "sha256": "6697428dbbe5858f405b2e8b8dfc5cae2648ca7a163bf0ebd53af9aea34e478f"
+        },
+        {
+          "sourceFile": "단일메뉴\\애호박전.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-33.jpg",
+          "sha256": "fe6b50b3f8c659a8f9130873b197281134583312abd087f58a1bd13574fb9cd1"
+        },
+        {
+          "sourceFile": "단일메뉴\\우렁된장.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-34.jpg",
+          "sha256": "cf4abda028586503f5b22d421b30e09ba0fa0ea6d33f08ead1effa8cb70ece84"
+        },
+        {
+          "sourceFile": "단일메뉴\\육회.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-35.jpg",
+          "sha256": "088eb63be379515eda150b001252d0ed1c6ef72af6610ba89da4450e7cdebfa7"
+        },
+        {
+          "sourceFile": "단일메뉴\\육회비빔밥.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-36.jpg",
+          "sha256": "fc6e6948a51e220afd6e3a8a68cab138e4a384817e3c895cbed8a9fda416b3fe"
+        },
+        {
+          "sourceFile": "단일메뉴\\제육볶음.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-37.jpg",
+          "sha256": "57ba368533987a34e34f1b149f99fee9cd645f5efc46f3376109da79d6263616"
+        },
+        {
+          "sourceFile": "단일메뉴\\쭈꾸미볶음.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-38.jpg",
+          "sha256": "af3fb99cee533786535ff3bfcf6e91ef66acebe0fdb760ac68f0a42db6679f95"
+        },
+        {
+          "sourceFile": "단일메뉴\\차돌된장.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-39.jpg",
+          "sha256": "e3fb321a9e88925294f1c433cccaf33dfaffa29b989bb0279676535a157edd2e"
+        },
+        {
+          "sourceFile": "단일메뉴\\청국장.jpg",
+          "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-40.jpg",
+          "sha256": "f089fdd7d7651123ff2881919de7b4b4646a9e85ff9341df2e919bf9947fa24d"
+        }
+      ]
+    },
+    {
+      "type": "food",
+      "id": "yoon-galbi",
+      "name": "윤갈비",
+      "source": "User-supplied photographs",
+      "addedAt": "2026-09-22",
+      "files": [
+        {
+          "sourceFile": "윤갈비 단체메뉴.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-01.jpg",
+          "sha256": "52d54a0924901280f35efee75e92d37988ea8a539542d41df890b09aff3eb90c"
+        },
+        {
+          "sourceFile": "윤갈비 단체메뉴-2.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-02.jpg",
+          "sha256": "bde60b63ad7c103e466236601d216ed8cfd60cfa7df80f5a84850dabc3c7cbe3"
+        },
+        {
+          "sourceFile": "윤갈비 단체메뉴-3.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-03.jpg",
+          "sha256": "c120f33a13642e0487f3e87e091b24183d24129ae44fb12832ae20ee6e9e8fb0"
+        },
+        {
+          "sourceFile": "윤갈비 단체메뉴-4.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-04.jpg",
+          "sha256": "4ab5dd9e057062ac8b11c4df35bb899b7ed9949998164e31647abe2c5065a72d"
+        },
+        {
+          "sourceFile": "소생갈비살.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-05.jpg",
+          "sha256": "63f6200bc4d0e5028b201e7756cb7e5a3f7d1773276d7df434dc3d1354589bd4"
+        },
+        {
+          "sourceFile": "비빔냉면.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-06.jpg",
+          "sha256": "23a8cf66a59cfea2c55344e76fe74e8873de9b32f8db6b3a34a166a543c4182f"
+        },
+        {
+          "sourceFile": "돼지모듬한판.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-07.jpg",
+          "sha256": "e81422bbd93ac5226572f6645d8ff807cd8807352bba7a58b49c1da32c8204e1"
+        },
+        {
+          "sourceFile": "소생갈비살 숯.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-08.jpg",
+          "sha256": "072b1c516862654bdb2564e8b95ff43c3f03a446fd57de5097afae310cb24894"
+        },
+        {
+          "sourceFile": "삼겹살.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-09.jpg",
+          "sha256": "eedcdff5ad709c4df2a596bda8cde7b0cfe887949c10daff35b50172c61b3410"
+        },
+        {
+          "sourceFile": "물냉면.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-10.jpg",
+          "sha256": "1fc742805c8679c41a9e82bb04b72c549c5071ec2855d8674ffd3e40184e5b99"
+        },
+        {
+          "sourceFile": "양념닭목살.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-11.jpg",
+          "sha256": "ea133853c03e89df17fc4d5fa15f970cb78228df000a0e33f736bf1a747825d6"
+        },
+        {
+          "sourceFile": "수제돼지갈비.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-12.jpg",
+          "sha256": "87671ca016c401bb716c7e351bc23cb447233695b31c8912944fd016365361de"
+        },
+        {
+          "sourceFile": "닭곰탕.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-13.jpg",
+          "sha256": "c26e5aff65c76e4747d3e7767afbe8d88cea4a1f112b53f962e38867e8e16657"
+        },
+        {
+          "sourceFile": "돼지족구이 양념.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-14.jpg",
+          "sha256": "7b7dea61e4a0f4e3b371db3e354de7e02567e0b09eaf8df5be05fd4f5539be79"
+        },
+        {
+          "sourceFile": "돼지족구이 간장.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-15.jpg",
+          "sha256": "5a224fe776c57720f79416975ee0e3500c8afdfaa7e46d801b3d5e5ebcc9bf7e"
+        },
+        {
+          "sourceFile": "뚝배기불고기.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-16.jpg",
+          "sha256": "9ae1a14a47fceed228277f7c0ce8bacf95f7aaf55e90b9d143c88ec558a8b75c"
+        },
+        {
+          "sourceFile": "소생갈비살 (2).jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-17.jpg",
+          "sha256": "a7a19095839a06c4b2a1b278e307fa8f97c8cdd458436e06ed8fe3461dbdd1f5"
+        },
+        {
+          "sourceFile": "계란찜.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-18.jpg",
+          "sha256": "ff1a0ff88f803aa7299240893ef6eed036f7687acfa6150ce8053ce54784d055"
+        },
+        {
+          "sourceFile": "돼지김치찌개.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-19.jpg",
+          "sha256": "8f88967699346083168f81d30a08bb508596c463d3f2ca2a3799de54dba66d38"
+        },
+        {
+          "sourceFile": "뒷고기.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-20.jpg",
+          "sha256": "23fd550b3923b707c512b70ed033138c66b959f01717a0f1ebcb0ca133485736"
+        },
+        {
+          "sourceFile": "목살.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-21.jpg",
+          "sha256": "9476e844f725a77b8814faaa898f932eda66d6dcb3f9f029ffacd8a23e6573a3"
+        },
+        {
+          "sourceFile": "수제돼지갈비 숯.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-22.jpg",
+          "sha256": "d8d01ea52257727782fa6a35120a144ad7b2ba585321d3a266a3b111f63d27f8"
+        },
+        {
+          "sourceFile": "돼지껍데기.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-23.jpg",
+          "sha256": "6d3e3f5734d69a63960a2688337eb340d9c1ae32e131c2f36410a9d3058b39ad"
+        },
+        {
+          "sourceFile": "한우육회.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-24.jpg",
+          "sha256": "0ee8ce1d55972cd53f84490740c6ad3929e64846bf0ab043fc058260e8321004"
+        },
+        {
+          "sourceFile": "양선지국.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-25.jpg",
+          "sha256": "6b1725e4228cd1439bd0335b5df1d38352db3846f04a7d0293e61007acb8ac69"
+        },
+        {
+          "sourceFile": "순두부찌개.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-26.jpg",
+          "sha256": "f7bd39ef4aac4dfee0b6ad4641d6d0882642991af87f5f91565ffea64a39d116"
+        },
+        {
+          "sourceFile": "가브리살.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-27.jpg",
+          "sha256": "ccb17a7c2a1558a8b185aae8cd7a9dd55c1361211910d69d6f3472d92f547bcb"
+        },
+        {
+          "sourceFile": "갈매기살.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-28.jpg",
+          "sha256": "61ee56328428421a192db2d4972327e6169277095afde3e5fbc7ad47445eac9c"
+        },
+        {
+          "sourceFile": "갈비탕.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-29.jpg",
+          "sha256": "306507cea1ed21eb86a8e66ebadcc70881ac068265f230e8b2657a1860e24036"
+        },
+        {
+          "sourceFile": "닭개장.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-30.jpg",
+          "sha256": "ac513c3bf0283e04c10c9f1820005f069d05ac9b4c83924184452915ed9cc13b"
+        },
+        {
+          "sourceFile": "돌솥비빔밥.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-31.jpg",
+          "sha256": "1782368f0d5944e6a5a1cb8e501e82e48af7e8a5d79f16afcbafe2e8ffad2b23"
+        },
+        {
+          "sourceFile": "버섯불고기.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-32.jpg",
+          "sha256": "5a83a3f1723c3136bc9ad05866711c4cf4ff547ead6c5282f79c0ac795bc73e5"
+        },
+        {
+          "sourceFile": "오징어.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-33.jpg",
+          "sha256": "d604becf5f62dc0a51b125c5e0c7f9df9ea6b3cfe5cb34128a8096dea59a7419"
+        },
+        {
+          "sourceFile": "양념닭목살 (2).jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-34.jpg",
+          "sha256": "df7be7476b667f3507d1584fce1a717831140af991bbd112d2f0f2696ee5b1fe"
+        },
+        {
+          "sourceFile": "오삼불고기.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-35.jpg",
+          "sha256": "9abb7ecde8ad13ee74803ff4a94bd7560450f51a0bab7363e6bf05be3245e327"
+        },
+        {
+          "sourceFile": "LA양념갈비.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-36.jpg",
+          "sha256": "fef727f3f7f9893527e7170507ae14f7e2571e59fd1a805d64fa9500bd99afbf"
+        },
+        {
+          "sourceFile": "제육쌈밥.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-37.jpg",
+          "sha256": "5240f9a48a1c8dd4d5cacccc5ac0ed14eda79f460aaa738ac6fcaf6bd5e7f0ba"
+        },
+        {
+          "sourceFile": "LA생갈비.jpg",
+          "src": "/photo-partner/restaurant/yoon-galbi/menu-38.jpg",
+          "sha256": "f350fc2b7bd60ca907283e1a2009249f919a8dff1ee8501253bbe241f895b242"
+        }
+      ]
+    },
+    {
+      "type": "food",
+      "id": "chunnam-gangnam",
+      "name": "춘남식당 강남역점",
+      "source": "User-supplied photographs",
+      "addedAt": "2026-09-22",
+      "files": [
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-01.jpg",
+          "sha256": "91063f3b2f16f7f675331ba01d6cf63a6fe28556a29e4e7b2d51bb77242de1d6",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_01.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-02.jpg",
+          "sha256": "afa8cd605b2818ec1506b598ef0fbe68c4ed751520afc7d95134b69f735f1cd8",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_02.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-03.jpg",
+          "sha256": "04cf4c3406735848d052c387418c54da0cf2c70ffca0b650e021e4c1f36c1f13",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_03.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-04.jpg",
+          "sha256": "b822cbd39b8b9f2609e994b46cb5632a1c6bb7d72b6b4de3aeec7eb510dfa9a8",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_04.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-05.jpg",
+          "sha256": "fd8703bf829dcbd07d356c8b8887cde07cab5a243fe3cd58e7f6045beb869d5a",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_05.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-06.jpg",
+          "sha256": "c8b3eac30f45101f5ddd28113467a09114b5add00631b8548f538e56d771fc15",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_06.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-07.jpg",
+          "sha256": "7b927c75cba6a845ed26ea6136c5d4fe063ce66d319ca468910eab85f8e5aee6",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_07.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-08.jpg",
+          "sha256": "337eb30c0747a1173b5ff5b823a7276f291de9c896ab1e56359887645b82cc52",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_08.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-09.jpg",
+          "sha256": "ec58382e62f277dab260e80e9070185f283e2ed9fc597b029ece66de3a87077d",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_09.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-10.jpg",
+          "sha256": "afca526d2e97ece640766762a5139ce96bcb479eafbb1bae10739984efd6a6ac",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_10.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-11.jpg",
+          "sha256": "a188054c9fc4d3d233bd4b1b55e9e7ebdb354d40f95fdb52723b5d6506397750",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_11.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-12.jpg",
+          "sha256": "e040929e9fff05e8de3f7a70d996c2b8a183c7702f16421e3cbc1266201b306b",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_12.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-13.jpg",
+          "sha256": "6f5e718d5c52f84de394234f7fa46e6f372e7e3bf117109def55e93ce71cb7b6",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_13.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-14.jpg",
+          "sha256": "76770db5e15468be78b088f88a0ef2eab36b5e065b28e12d53afea475574e1a4",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_14.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-15.jpg",
+          "sha256": "060bc6ebadc912d1f86eb66bcbed2bb3ee6957d5d624d28e2744735a3e3193f4",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_15.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-16.jpg",
+          "sha256": "2c4fdfea3108b9d6645ef902c1f3c464e13819aa8389f9bac9884122dd1ae217",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_16.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-17.jpg",
+          "sha256": "7c271805cb7b4f6c097b118b52de83b24aec9c456144d3e9ea8de4ae31684b08",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_17.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-18.jpg",
+          "sha256": "f66f217aa61f17415760442cc2ff9cda5b8fe5a60ad1bfc3b8b90a7f75489b79",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_18.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-19.jpg",
+          "sha256": "175a8834f9aba57ea586a16185419430ab049cb340f894c40d25518fcad2c851",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_19.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-20.jpg",
+          "sha256": "1d39ff468ffa5ba996dfc4236ce66f884b7fbed890e345574630cf16c593711c",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_182412275_20.jpg",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-21.jpg",
+          "sha256": "0a17afd870f4d003bd10753a295f847617ec9b2b5117ecb433ce9dce91913efe",
+          "frames": 1
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_173506297.gif",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-22.gif",
+          "sha256": "b71d28584e40fa3d7b1ddcba0ce34ad8a9b439e23fdc0529ff14a9eee25b8647",
+          "frames": 31
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_173506297_01.gif",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-23.gif",
+          "sha256": "081f3a265e8153fc3a825ce67c228ee5b90d041e88d665d744753938a4e702d1",
+          "frames": 31
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_173506297_02.gif",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-24.gif",
+          "sha256": "31b51e0be0cde6ad3dcff5b435212517823427daa1ee88af3a712e88ba35a4fb",
+          "frames": 30
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_173506297_03.gif",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-25.gif",
+          "sha256": "cf4b2de6a3823bc0b804e32f52bf1b11e6775677bad3a1d869a97e4e83163a09",
+          "frames": 26
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_173506297_04.gif",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-26.gif",
+          "sha256": "fb07feb613eed21c143fcf1aaef04ebeecfe66d7a515e7c2f8a4c37c2d242bc2",
+          "frames": 31
+        },
+        {
+          "sourceFile": "KakaoTalk_20251014_174211325.gif",
+          "src": "/photo-partner/restaurant/chunnam-gangnam/menu-27.gif",
+          "sha256": "c773d447b2cd512282c62ad736fbb04917d64d5eb36872aa4b2069b4d5caa332",
+          "frames": 32
+        }
       ]
     }
   ]

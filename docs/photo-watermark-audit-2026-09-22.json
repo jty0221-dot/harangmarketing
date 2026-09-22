@@ -1,0 +1,50 @@
+{
+  "scope": "photo-partner, photo-pricing, photo-ref and user-provided additions",
+  "watermarkedPhotos": 7,
+  "watermarkedCovers": 1,
+  "edits": [
+    {
+      "original": "/photo-partner/stay/108/01.jpg",
+      "edited": "/photo-partner/stay/108/01-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "a46a370ca46d39a49a9a37be5ff63065c6352a1725f5043c70d7f7f7c8ee6cbc"
+    },
+    {
+      "original": "/photo-partner/stay/108/02.jpg",
+      "edited": "/photo-partner/stay/108/02-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "8557527fcbe1c635726767940584ed24f3c57427ad9f3fec3ff053fac6ff44b1"
+    },
+    {
+      "original": "/photo-partner/stay/108/03.jpg",
+      "edited": "/photo-partner/stay/108/03-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "4a6cbb1239be61b492ebaf9bd7077e7133cee8321ce1c32f87a97bbf592d48d0"
+    },
+    {
+      "original": "/photo-partner/stay/108/04.jpg",
+      "edited": "/photo-partner/stay/108/04-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "d073b5b8aaf9709ce95fa201db262ac611b02b57abb1ebf8320f9dd201f3ac1e"
+    },
+    {
+      "original": "/photo-partner/stay/108/05.jpg",
+      "edited": "/photo-partner/stay/108/05-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "df770ab5da5ce1ce8a1528d8b207e75054b2d46d5c921cb8bf9afd72ecc9e911"
+    },
+    {
+      "original": "/photo-partner/stay/108/06.jpg",
+      "edited": "/photo-partner/stay/108/06-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "5d2b225e950c0ca379028c31114895899bd6c01cab9c062a27f8b59a07e468de"
+    },
+    {
+      "original": "/photo-partner/stay/108/07.jpg",
+      "edited": "/photo-partner/stay/108/07-clean.jpg",
+      "operation": "BORN:U watermark removal with imagegen",
+      "sha256": "73adcaa80432fa0fcb1281b34898eea8e390bdd32b76c0bfcf637c997e6d9b98"
+    }
+  ],
+  "cover": "/photo-pricing/covers/stay-108-clean.jpg"
+}
