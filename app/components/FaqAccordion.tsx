@@ -17,38 +17,18 @@ export default function FaqAccordion({
   title = "자주 묻는 질문",
   subtitle,
   showMoreHref,
+  groups,
 }: {
   items: FaqItem[];
   title?: string;
   subtitle?: string;
   showMoreHref?: string;
+  groups?: { label: string; items: FaqItem[] }[];
 }) {
-  return (
-    <section className="py-10 md:py-16 bg-white" aria-labelledby="faq-heading">
-      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-800/20">
-            <HelpCircle size={16} className="text-white" strokeWidth={2.5} />
-          </div>
-          <h2
-            id="faq-heading"
-            className="text-2xl md:text-3xl font-black"
-            style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}
-          >
-            {title}
-          </h2>
-        </div>
-
-        {subtitle && (
-          <p className="text-sm md:text-[15px] mb-6 leading-relaxed" style={{ color: "var(--h-muted)" }}>
-            {subtitle}
-          </p>
-        )}
-
-        <div className="space-y-2 md:space-y-3">
-          {items.map((f) => (
+  const renderQuestion = (f: FaqItem) => (
             <details
               key={f.q}
+              name={groups ? "faq-question" : undefined}
               className="group rounded-2xl bg-white shadow-sm overflow-hidden"
               style={{ border: "1px solid var(--h-border)" }}
             >
@@ -77,7 +57,41 @@ export default function FaqAccordion({
                 </p>
               </div>
             </details>
-          ))}
+
+  );
+
+  return (
+    <section className="py-10 md:py-16 bg-white" aria-labelledby="faq-heading">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0 ring-1 ring-blue-800/20">
+            <HelpCircle size={16} className="text-white" strokeWidth={2.5} />
+          </div>
+          <h2
+            id="faq-heading"
+            className="text-2xl md:text-3xl font-black"
+            style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}
+          >
+            {title}
+          </h2>
+        </div>
+
+        {subtitle && (
+          <p className="text-sm md:text-[15px] mb-6 leading-relaxed" style={{ color: "var(--h-muted)" }}>
+            {subtitle}
+          </p>
+        )}
+
+        <div className="space-y-2 md:space-y-3">
+          {groups ? groups.map(category => (
+            <details key={category.label} name="faq-category" className="rounded-2xl border border-[var(--w-line)] bg-[var(--w-bg)] shadow-sm">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 py-4 font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)] [&::-webkit-details-marker]:hidden">
+                <span>{category.label}<span className="ml-2 text-xs font-normal text-[var(--w-label-alt)]">{category.items.length}개</span></span>
+                <ChevronDown size={18} className="shrink-0 [[open]>summary>&]:rotate-180" />
+              </summary>
+              <div className="space-y-2 border-t border-[var(--w-line)] bg-[var(--w-bg-alt)] p-3 rounded-b-2xl">{category.items.map(renderQuestion)}</div>
+            </details>
+          )) : items.map(renderQuestion)}
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 mt-6 md:mt-8">

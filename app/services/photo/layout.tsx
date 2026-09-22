@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import JsonLd from "../../components/JsonLd";
-import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 
 export const metadata: Metadata = {
+  twitter: { card: "summary_large_image", title: "매장 사진촬영 | 하랑마케팅", description: "음식점 메뉴와 매장 공간 촬영 구성 및 가격, 업체별 촬영 사례를 확인하세요.", images: ["/photo-pricing/standard.jpg"] },
   title: "매장 사진촬영 | 음식 사진 · 매장 공간 촬영",
   description:
     "음식점 메뉴 사진과 매장 공간 사진을 촬영합니다. 촬영한 컷은 네이버 플레이스와 블로그, 인스타그램, 상세페이지에 그대로 씁니다. 촬영 협력사와 함께 진행합니다.",
@@ -17,35 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function PhotoLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: "매장 사진촬영",
-            description:
-              "음식점 메뉴 사진과 매장 공간 사진을 촬영하고 보정해 네이버 플레이스와 블로그, 인스타그램, 상세페이지에 등록합니다.",
-            serviceType: "상업 사진 촬영",
-            provider: { "@id": LOCAL_ID },
-            brand: { "@id": ORG_ID },
-            inLanguage: "ko-KR",
-            offers: { "@type": "Offer", url: "https://www.harangmarketing.com/services/photo/price" },
-            areaServed: "대한민국",
-            url: "https://www.harangmarketing.com/services/photo",
-          }),
-        }}
-      />
-      <JsonLd
-        data={breadcrumbLd([
-          { name: "홈", path: "/" },
-          { name: "서비스", path: "/services" },
-          { name: "매장 사진촬영", path: "/services/photo" },
-        ])}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

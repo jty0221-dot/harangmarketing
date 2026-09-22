@@ -1,3 +1,4 @@
+import { PUBLIC_SERVICES } from "./service-catalog";
 /**
  * 하랑마케팅 SEO · AEO · GEO 공용 모듈
  *
@@ -73,18 +74,18 @@ export const LOCAL_ID = `${SITE.base}/#localbusiness`;
  * 새로 재는 페이지는 아래 updatedAt 으로 데이터 날짜까지 같이 본다 (2026-09-20 · 요청 69).
  */
 export const PAGE_UPDATED: Record<string, string> = {
-  "/": "2026-09-20",
+  "/": "2026-09-23",
   "/about": "2026-09-05",
-  "/services": "2026-09-20",
+  "/services": "2026-09-23",
   "/services/cafe": "2026-09-05",
   "/services/clinic": "2026-09-20",
   "/services/clinic/medical-ad-guide": "2026-09-07",
   "/services/beauty": "2026-09-05",
   "/services/restaurant": "2026-09-20",
-  "/services/photo": "2026-09-22",
-  "/services/photo/price": "2026-09-22",
-  "/services/photo/food": "2026-09-22",
-  "/services/photo/stay": "2026-09-22",
+  "/services/photo": "2026-09-23",
+  "/services/photo/price": "2026-09-23",
+  "/services/photo/food": "2026-09-23",
+  "/services/photo/stay": "2026-09-23",
   "/services/academy": "2026-09-07",
   "/services/shopping": "2026-09-07",
   "/services/review": "2026-09-05",
@@ -125,18 +126,7 @@ export function updatedAt(path: string, ...dataDates: (string | undefined)[]): s
  * 개수는 세어 두지 않고 배열 길이에서 만든다. 여섯 개일 때 적은 '6가지' 가 열 개가 된 뒤에도 남아 있었다.
  * 항목을 더하거나 빼면 layout.tsx 의 Offer 도 같이 맞춘다.
  */
-export const SERVICE_NAMES = [
-  "네이버 플레이스 SEO",
-  "블로그 마케팅",
-  "체험단 모집 대행",
-  "인스타그램 마케팅",
-  "카카오맵 마케팅",
-  "맘카페 바이럴 마케팅",
-  "최적화 블로그 · 카페 배포",
-  "인스타그램 계정 관리 대행",
-  "의원·한의원·피부과 마케팅 대행",
-  "스마트스토어 상세페이지 제작",
-] as const;
+export const SERVICE_NAMES = PUBLIC_SERVICES.filter(service => service.id !== 'studio').map(service => service.title);
 
 /* ────────────────────────────────────────────────────────────
    AEO 핵심 — 한 줄 정답 문장 (Answer-first sentences)
@@ -148,7 +138,7 @@ export const ANSWER_SENTENCES = {
   whoWeAre:
     `하랑마케팅은 네이버 플레이스·블로그·인스타그램을 다루는 소상공인·자영업자 전문 마케팅 대행사입니다. 2020년 4월 설립 이후 500건 이상의 프로젝트를 완료했고 재계약률은 ${SITE.stats.renewalRate}입니다.`,
   whatWeDo:
-    `하랑마케팅의 서비스는 ${SERVICE_NAMES.join(", ")} ${SERVICE_NAMES.length}가지입니다. 전국 어디서나 비대면으로 진행하며 경기·서울·인천은 방문 상담도 가능합니다.`,
+    `하랑마케팅의 서비스는 ${SERVICE_NAMES.join(", ")} ${SERVICE_NAMES.length}가지입니다. 온라인 마케팅은 비대면으로 진행하며 사진촬영과 방문 상담은 지역과 일정을 협의합니다.`,
   price:
     `하랑마케팅은 패키지 정찰제가 아니라 항목별 단가를 조합해 견적을 냅니다. 플레이스 SEO 최적화 10~15만원(1회), 대표키워드 관리는 키워드를 확인한 뒤 안내드리고, 블로그 관리대행 4만원(편), 최적화 블로그 배포 ${won(BLOG_UNIT_WITH_COPY)}(건 · 원고 포함) · ${won(BLOG_UNIT_WITHOUT_COPY)}(건 · 원고 직접 제공), 카페 배포 ${won(CAFE_TIER_MIN)}부터(건), 파워컨텐츠 5만원(편)이 기준 단가이며 모두 부가세 별도입니다. 기준 단가는 고정가가 아니라 업종과 난이도에 따라 오르내립니다. 블로그 원고는 물량이 많거나 내용이 단순한 업종이면 4만원보다 낮아지고, 병의원처럼 의료광고 심의와 전문 용어 확인이 필요한 업종은 4만원보다 높아집니다. 월 계약 금액은 미리 정해두지 않습니다. 현황을 진단해 꼭 필요한 항목만 고르고 상권 경쟁도에 맞춰 물량을 정한 뒤 그 항목만 더해 산출하므로 업체마다 달라집니다. 광고 집행비는 실비로 별도이고 상담과 진단은 0원입니다.`,
   timeline:

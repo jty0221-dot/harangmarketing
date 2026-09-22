@@ -1,3 +1,6 @@
+import ServiceFinder from "../components/ServiceFinder";
+import { PUBLIC_SERVICES } from "../lib/service-catalog";
+import { FOOD_PLANS, STAY_PLANS } from "../lib/photo-pricing";
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -10,13 +13,13 @@ import {
   ScrollText, Camera,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
-import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
+import { REF_TOTAL, REF_CATEGORIES, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd } from "../lib/seo";
+import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
 
 /*
@@ -52,8 +55,9 @@ const INDUSTRY_RECS = ([
 });
 
 export const metadata: Metadata = {
-  title: "마케팅 서비스 | 플레이스 SEO · 블로그 · 체험단 · SNS",
-  description: "네이버 플레이스 SEO, 최적화 블로그·카페 배포, 블로그 마케팅, 리뷰·체험단, SNS(인스타그램·맘카페) 등 소상공인 맞춤 마케팅 서비스. 카페 배포는 건당 패키지와 월 단위 진행 중에 고릅니다.",
+  title: "마케팅 서비스 | 검색광고·콘텐츠·사진촬영·디자인",
+  twitter: { card: "summary_large_image", title: "하랑마케팅 서비스", description: "마케팅 운영부터 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지 품목별 구성과 사례를 확인하세요.", images: ["/og-image.png"] },
+  description: "플레이스 SEO, 블로그·카페 배포, 체험단, 인스타그램, 파워컨텐츠, 네이버 광고, 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작. 품목별 구성과 가격, 작업 사례를 확인하세요.",
   keywords: [
     "마케팅 서비스", "네이버 플레이스 SEO", "플레이스 상위노출",
     "블로그 마케팅", "블로그 상위노출", "키워드 SEO",
@@ -135,6 +139,24 @@ const PHOTO_CARD_COVERS: ServiceCover[] = [
 ].map((s) => ({ src: s.src, alt: s.alt, w: s.w, h: s.h }));
 
 const SERVICES = [
+  {
+    id: "powercontents", icon: ScrollText, color: "from-blue-600 to-blue-800", tag: "광고 원고",
+    title: "파워컨텐츠 원고 설계·검수", subtitle: "원고 설계와 검수 대응",
+    desc: "파워컨텐츠 광고에 사용할 원고를 설계하고 검수 대응을 준비합니다.",
+    timeline: "키워드와 원고 범위를 확인한 뒤 일정 협의",
+    deliverables: [{ label: "기준 단가", value: "1편 5만원", note: "부가세 별도" }, { label: "진행 범위", value: "원고 설계·검수 대응", note: "광고 집행은 별도 협의" }],
+    features: ["광고에 사용할 원고 설계", "검수 대응을 위한 문구 확인"],
+    rec: "파워컨텐츠 광고에 사용할 원고가 필요한 매장", result: "작업 범위를 정한 뒤 진행합니다",
+  },
+  {
+    id: "naver-ads", icon: BarChart3, color: "from-blue-600 to-blue-800", tag: "광고 운영",
+    title: "네이버 광고 세팅·운영대행", subtitle: "광고 설정과 운영 관리",
+    desc: "네이버 광고 세팅과 운영을 대행합니다. 운영대행비와 광고 집행비를 구분해 안내합니다.",
+    timeline: "광고 계정과 진행 범위를 확인한 뒤 일정 협의",
+    deliverables: [{ label: "운영대행 기준", value: "월 15만원", note: "부가세 별도" }, { label: "광고 집행비", value: "실비 별도", note: "집행 예산은 상담 시 협의" }],
+    features: ["네이버 광고 세팅", "광고 운영대행", "집행비와 운영대행비 구분 안내"],
+    rec: "광고 설정과 운영 관리가 필요한 매장", result: "광고비와 대행비를 구분해 견적을 안내합니다",
+  },
   {
     id: "cafe-distribution",
     icon: Layers,
@@ -344,7 +366,7 @@ const SERVICES = [
     tag: "카카오맵",
     title: "카카오맵 매장 관리",
     subtitle: "카카오 검색 노출 → 지도 상단 진입",
-    desc: "국내 최다 사용 지도 앱 카카오맵에서 매장을 발견하는 고객을 잡습니다. 매장 관리 등록부터 트렌드 랭킹 상위 노출까지.",
+    desc: "카카오맵에서 매장을 찾는 고객이 정보를 확인할 수 있도록 매장 등록과 정보, 사진을 관리합니다.",
     timeline: "등록·최적화 1~2주 · 이후 월간 리포트",
     deliverables: [
       { label: "매장 관리 등록", value: "대행 처리", note: "등록·최적화 1~2주" },
@@ -366,7 +388,7 @@ const SERVICES = [
     icon: Palette,
     color: "from-blue-700 to-indigo-800",
     tag: "창업지원",
-    title: "창업 지원 · 브랜딩",
+    title: "창업 지원 · 홈페이지형 블로그",
     subtitle: "개업 전 온라인 세팅 → 오픈 첫날부터 효과",
     desc: "개업 준비부터 브랜딩까지. 홈페이지형 블로그 제작, 로고·명함 디자인, 메뉴판 제작을 원스텝으로 해결합니다.",
     timeline: "제작 기간 1~2주 · 오픈 전 완성 가능",
@@ -393,12 +415,12 @@ const SERVICES = [
     tag: "촬영",
     title: "매장 사진촬영",
     subtitle: "음식 사진 · 매장 공간 촬영",
-    desc: "음식점 메뉴 사진과 매장 공간 사진을 찍습니다. 찍고 넘겨 드리는 것으로 끝내지 않고 네이버 플레이스와 블로그, 인스타그램, 상세페이지에 맞는 규격으로 올리는 것까지 같이 진행합니다.",
-    timeline: "일정 협의 후 촬영 · 보정본 전달까지 3~7일",
+    desc: "음식점 메뉴와 시설 공간을 촬영합니다. 상품별 제공 컷과 촬영 시간, 모델 유무를 비교하고 실제 촬영 사례를 확인할 수 있습니다.",
+    timeline: "상품별 작업 기간 5~9일 · 촬영 일정 협의",
     deliverables: [
-      { label: "촬영 갈래", value: "메뉴 · 공간 · 플레이스용", note: "쓸 자리를 먼저 정하고 찍습니다" },
-      { label: "보정", value: "밝기 · 색온도 정리", note: "실물과 다르게 만들지 않습니다" },
-      { label: "채널 등록", value: "규격별 재단 후 반영", note: "플레이스 · 블로그 · 인스타 · 상세" },
+      { label: "음식점 촬영", value: FOOD_PLANS.map(p => `${p.price / 10000}만원`).join(" · "), note: "상품별 구성 · 부가세 별도" },
+      { label: "시설·숙박 촬영", value: STAY_PLANS.map(p => `${p.price / 10000}만원`).join(" · "), note: "모델 유무·면적별 구성 · 부가세 별도" },
+      { label: "보정·수정", value: "상품별 보정 · 수정 2회", note: "시설 촬영은 A컷 보정" },
     ],
     features: [
       "대표 메뉴 단품 컷과 상차림 컷을 나눠 촬영",
@@ -413,7 +435,7 @@ const SERVICES = [
     href: "/services/photo",
     covers: PHOTO_CARD_COVERS,
     coverBadge: "실제 촬영 컷",
-    hrefLabel: "촬영 안내 · 가격표 보기",
+    hrefLabel: "촬영 서비스 안내",
   },
 ];
 
@@ -432,7 +454,7 @@ const FAQS = [
   },
   {
     q: "여러 서비스를 함께 하면 할인되나요?",
-    a: "네, 2개 이상 묶음 계약 시 할인이 적용됩니다. 풀패키지(4개 서비스)는 개별 합산 대비 최대 30% 절감됩니다. 무료 상담 시 맞춤 견적을 제안해드립니다.",
+    a: "여러 서비스를 함께 진행할 때는 필요한 채널과 물량을 조합해 견적을 안내합니다. 서비스별 비용과 포함 범위를 상담에서 확인하실 수 있습니다.",
   },
   {
     q: "지역 제한이 있나요?",
@@ -444,7 +466,7 @@ const FAQS = [
   },
   {
     q: "작은 매장도 효과가 있나요?",
-    a: "오히려 소규모 매장일수록 효과가 빠릅니다. 대형 체인보다 지역 키워드 경쟁이 낮기 때문입니다. 월 100만 원 이하 예산으로도 성과를 낸 사례가 많습니다.",
+    a: "매장 규모보다 업종, 상권 경쟁, 현재 노출 상태에 따라 필요한 작업이 달라집니다. 진단 후 예산 안에서 우선 진행할 채널과 확인할 지표를 제안합니다.",
   },
   {
     q: "지금 마케팅이 잘 되고 있는지 모르겠어요.",
@@ -586,109 +608,19 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
 ];
 
 const SERVICES_LD = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "하랑마케팅 마케팅 서비스와 프로그램",
-  "description": "소상공인·자영업자 전문 마케팅 대행 서비스와 자체 제작 사진·영상 정리 프로그램 목록",
-  "url": "https://www.harangmarketing.com/services",
-  "numberOfItems": 8,
-  "itemListElement": [
-    {
-      "@type": "ListItem", "position": 1,
-      "item": {
-        "@type": "Service",
-        "name": "최적화 블로그 · 카페 배포",
-        "description": `최적화 블로그 배포와 네이버 카페 배포를 함께 진행해 블로그 탭·카페 탭에 동시 노출. 10건 · 30건 패키지 ${won(PRICE_MIN)}부터(부가세 별도), 발행 뒤 노출 확인과 게시 URL 전체 보고.`,
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-        "offers": { "@type": "Offer", "priceCurrency": "KRW", "price": PRICE_MIN },
-        "url": "https://www.harangmarketing.com/services/cafe-distribution",
-      },
+  '@context': 'https://schema.org', '@type': 'ItemList', numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((service, index) => ({
+    '@type': 'ListItem', position: index + 1,
+    item: { '@type': service.id === 'studio' ? 'SoftwareApplication' : 'Service',
+      name: service.title, description: service.desc,
+      url: SITE.base + (PUBLIC_SERVICES.find(item => item.id === service.id)?.href ?? '/services#' + service.id),
     },
-    {
-      "@type": "ListItem", "position": 2,
-      "item": {
-        "@type": "Service",
-        "name": "블로그 마케팅",
-        "description": "네이버 블로그 상위 노출 최적화. 키워드 SEO, 콘텐츠 제작, 블로그 배포 대행. 게시 URL 전체 공개.",
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-        "url": "https://www.harangmarketing.com/services#blog",
-      },
-    },
-    {
-      "@type": "ListItem", "position": 3,
-      "item": {
-        "@type": "Service",
-        "name": "네이버 플레이스 SEO",
-        "description": "네이버 지도·플레이스 상위 노출 최적화. 리뷰 관리, 키워드 세팅, 사진 최적화. 순위는 매일 계측해 리포트로 공개.",
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-        "url": "https://www.harangmarketing.com/services#place",
-      },
-    },
-    {
-      "@type": "ListItem", "position": 4,
-      "item": {
-        "@type": "Service",
-        "name": "체험단 모집 대행",
-        "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행. 네이버 플레이스·블로그 리뷰 확보.",
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-        "url": "https://www.harangmarketing.com/services#review",
-      },
-    },
-    {
-      "@type": "ListItem", "position": 5,
-      "item": {
-        "@type": "Service",
-        "name": "인스타그램·SNS 마케팅",
-        "description": "인스타그램 콘텐츠 기획, 릴스 제작, 팔로워 증가, DM 자동화. 카페·미용·네일 업종에 특화.",
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-        "url": "https://www.harangmarketing.com/services#sns",
-      },
-    },
-    {
-      "@type": "ListItem", "position": 6,
-      "item": {
-        "@type": "Service",
-        "name": "카카오맵 마케팅",
-        "description": "카카오맵 플레이스 등록 및 상위 노출 최적화, 트렌드 랭킹 진입 전략. 네이버에서 놓친 검색을 카카오에서 받습니다.",
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-      },
-    },
-    {
-      "@type": "ListItem", "position": 7,
-      "item": {
-        "@type": "Service",
-        "name": "맘카페 바이럴 마케팅",
-        "description": "지역 맘카페 커뮤니티 바이럴 마케팅. 학원·카페·음식점·네일 업종에 특화.",
-        "provider": { "@id": ORG_ID },
-        "areaServed": "대한민국",
-      },
-    },
-    {
-      // 대행 서비스가 아니라 자사 소프트웨어라 Service 가 아닌 SoftwareApplication 으로 넣는다.
-      // 상세 마크업은 /studio 페이지에 있고 여기서는 목록 항목으로만 선언한다.
-      "@type": "ListItem", "position": 8,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": "하랑 스튜디오",
-        "description": "현장 사진 100장을 1분 안에 정리하고 영상을 GIF로 바꾸는 윈도우 프로그램. 파일을 외부에 올리지 않고 내 컴퓨터에서 처리합니다. 무료 100장 체험 후 한 달 4,900원.",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Windows 10, Windows 11",
-        "author": { "@id": ORG_ID },
-        "offers": { "@type": "Offer", "price": 4900, "priceCurrency": "KRW" },
-        "url": "https://www.harangmarketing.com/studio",
-      },
-    },
-  ],
+  })),
 };
 
 const SERVICES_PAGE_LD = [
   SERVICES_LD,
+  faqLd(FAQS, SITE.base + "/services"),
   webPageLd({
     path: "/services",
     type: "CollectionPage",
@@ -783,6 +715,13 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        <section className="bg-white py-10 md:py-14" aria-labelledby="service-finder-title">
+          <div className="mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
+            <h2 id="service-finder-title" className="mb-5 w-title2 text-[var(--w-label-strong)]">필요한 목적부터 찾아보세요</h2>
+            <ServiceFinder />
+          </div>
+        </section>
+
         {/* Service cards */}
         <section className="py-10 md:py-14 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 space-y-8">
@@ -792,7 +731,7 @@ export default function ServicesPage() {
                 <div
                   key={s.id}
                   id={s.id}
-                  className="scroll-mt-20 overflow-hidden rounded-2xl bg-white shadow-sm"
+                  className="scroll-mt-32 overflow-hidden rounded-2xl bg-white shadow-sm"
                   style={
                     "href" in s && s.href
                       ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(22,85,232,.14)" }
@@ -932,6 +871,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
 
+                    {s.id === 'photo' && <nav aria-label="사진촬영 상세 안내" className="mt-6 flex flex-wrap gap-3">{[['가격표', '/services/photo/price'], ['음식점 촬영 사례', '/services/photo/food'], ['시설·숙박 촬영 사례', '/services/photo/stay']].map(([label, href]) => <Link key={href} href={href} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--w-line)] px-4 py-2 text-sm font-semibold text-[var(--w-primary)]">{label}<ArrowRight size={14} /></Link>)}</nav>}
                     {/* 별도 상세페이지가 있는 서비스만 노출 */}
                     {"href" in s && s.href && (
                       <Link
@@ -988,7 +928,7 @@ export default function ServicesPage() {
 
 
         {/* ══ 가격 산출 근거 ══ */}
-        <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-20">
+        <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-32">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-12">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">가격 산출 근거</p>
@@ -1445,7 +1385,7 @@ export default function ServicesPage() {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="py-14 md:py-20 bg-white scroll-mt-20">
+        <section id="faq" className="py-14 md:py-20 bg-white scroll-mt-32">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 items-start">
               <div className="lg:sticky lg:top-24">

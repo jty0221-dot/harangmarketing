@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { PUBLIC_SERVICES } from "../lib/service-catalog";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock } from "lucide-react";
@@ -52,15 +53,7 @@ const ALL_NAV_ITEMS: NavItem[] = [
     label: "서비스",
     href: "/services",
     sub: [
-      // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로 연결한다
-      { label: "하랑 스튜디오 · 사진·영상 프로그램", href: "/studio" },
-      { label: "최적화 블로그 · 카페 배포", href: "/services/cafe-distribution" },
-      { label: "스마트스토어 상세페이지 제작", href: "/services/detail-page" },
-      { label: "SNS 부스트 스토어 · 셀프 주문", href: "/sns" },
-      { label: "블로그·기자단", href: "/services#blog" },
-      { label: "플레이스 SEO", href: "/services#place" },
-      { label: "SNS 마케팅", href: "/services#sns" },
-      { label: "체험단·리뷰", href: "/services#review" },
+      ...PUBLIC_SERVICES.map(service => ({ label: service.title, href: service.href })),
       { label: "진행 과정", href: "/process" },
     ],
   },
@@ -86,6 +79,8 @@ const NAV_ITEMS: NavItem[] = SNS_STORE_ENABLED
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   /**
@@ -112,7 +107,8 @@ export default function Header() {
 
   useEffect(() => {
     const saved = localStorage.getItem(ANN_KEY);
-    if (saved !== "closed") setAnnClosed(false);
+    const frame = requestAnimationFrame(() => { if (saved !== "closed") setAnnClosed(false); });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -133,15 +129,25 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    setOpen(false);
-    setDropdownOpen(false);
+    const frame = requestAnimationFrame(() => { setOpen(false); setDropdownOpen(false); });
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => { desktop.removeEventListener('change', closeOnDesktop); document.body.style.overflow = previous; };
+  }, [open]);
 
   const isHome = pathname === "/";
   const msg = ANN_MESSAGES[annIdx];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header className={`fixed top-0 left-0 right-0 ${open || dropdownOpen ? "z-[10000]" : "z-50"}`} onKeyDown={event => { if (event.key === 'Escape') { setOpen(false); setDropdownOpen(false); if (open) menuButton.current?.focus(); } }}>
       {/* Announcement Bar */}
       {!annClosed && (
         <div className="relative bg-gray-950 border-b border-white/5">
@@ -186,7 +192,7 @@ export default function Header() {
 
       {/* Nav Bar */}
       <div className={`transition-all duration-300 ${
-        scrolled || !isHome
+        scrolled || !isHome || open
           ? "bg-white/96 backdrop-blur-md shadow-sm border-b border-gray-100"
           : "bg-transparent"
       }`}>
@@ -198,7 +204,7 @@ export default function Header() {
               <div>
                 <span
                   className={`font-black text-[17px] tracking-tight transition-colors ${
-                    scrolled || !isHome ? "text-gray-900" : "text-white"
+                    scrolled || !isHome || open ? "text-gray-900" : "text-white"
                   }`}
                 >
                   {/* '마케팅'은 배경에 따라 색을 바꾼다.
@@ -206,13 +212,13 @@ export default function Header() {
                   하랑
                   <span
                     style={{
-                      color: scrolled || !isHome ? "var(--w-blue-40)" : "var(--w-blue-70)",
+                      color: scrolled || !isHome || open ? "var(--w-blue-40)" : "var(--w-blue-70)",
                     }}
                   >
                     마케팅
                   </span>
                 </span>
-                {(scrolled || !isHome) && (
+                {(scrolled || !isHome || open) && (
                   <div className="text-[11px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
                     10년 경력 · 대표가 직접 관리
                   </div>
@@ -240,10 +246,10 @@ export default function Header() {
                       href={item.href}
                       className={`flex items-center gap-1 whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                         pathname.startsWith(item.href)
-                          ? scrolled || !isHome
+                          ? scrolled || !isHome || open
                             ? "text-[#0C2351]"
                             : "text-blue-200"
-                          : scrolled || !isHome
+                          : scrolled || !isHome || open
                           ? "text-gray-600 hover:text-gray-900"
                           : "text-gray-300 hover:text-white"
                       }`}
@@ -255,17 +261,17 @@ export default function Header() {
                       /* pt-2 는 트리거와 메뉴 사이를 잇는 투명 브릿지다.
                          여기에 여백을 margin 으로 주면 그 틈에서 hover 가 끊겨
                          메뉴로 내려가는 도중 닫힌다. 반드시 padding 으로 둘 것. */
-                      <div className="absolute left-0 top-full z-50 pt-2">
+                      <div className="absolute left-1/2 top-full z-50 w-[min(640px,calc(100vw-32px))] -translate-x-1/2 pt-2">
                         {/* w-64 — 가장 긴 항목이 한 줄에 들어가는 폭 */}
-                        <div className="w-64 overflow-hidden rounded-xl border border-gray-100 bg-white py-1 shadow-lg">
+                        <div className="grid max-h-[calc(100dvh-140px)] grid-cols-2 gap-1 overflow-y-auto rounded-2xl border border-[var(--w-line)] bg-[var(--w-bg)] p-3 shadow-lg">
                           {item.sub.map((s) => (
                             <Link
                               key={s.href}
                               href={s.href}
                               onClick={() => setDropdownOpen(false)}
-                              className="flex min-h-[44px] items-center whitespace-nowrap px-4 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+                              className="flex min-h-12 items-center justify-between gap-3 rounded-xl px-4 py-3 w-label1 text-[var(--w-label)] transition-colors hover:bg-[var(--w-primary-bg)] hover:text-[var(--w-primary)]"
                             >
-                              {s.label}
+                              {s.label}<ArrowRight size={14} className="shrink-0 text-[var(--w-label-assistive)]" />
                             </Link>
                           ))}
                         </div>
@@ -278,14 +284,14 @@ export default function Header() {
                     href={item.href}
                     className={`relative whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       pathname === item.href
-                        ? scrolled || !isHome
+                        ? scrolled || !isHome || open
                           ? ""
                           : "bg-white/10 text-white"
                         : item.accent
-                        ? scrolled || !isHome
+                        ? scrolled || !isHome || open
                           ? "font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-50"
                           : "font-bold text-blue-300 hover:text-blue-200 hover:bg-white/8"
-                        : scrolled || !isHome
+                        : scrolled || !isHome || open
                         ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                         : "text-gray-300 hover:text-white hover:bg-white/8"
                     }`}
@@ -298,7 +304,7 @@ export default function Header() {
                   번호는 상단 공지·카카오 버튼·푸터에도 있어 2xl 부터만 보인다. */}
               <a
                 href="tel:010-7541-9054"
-                className={`hidden 2xl:flex items-center gap-1.5 whitespace-nowrap px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
+                className={`hidden 2xl:flex items-center gap-1.5 whitespace-nowrap px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome || open ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
               >
                 <Phone size={13} strokeWidth={2} />
                 <span className="font-semibold text-xs">010-7541-9054</span>
@@ -307,7 +313,7 @@ export default function Header() {
                 href="https://pf.kakao.com/_MuUkG/chat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
+                className={`ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome || open ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
               >
                 <MessageCircle size={13} strokeWidth={2.5} />
                 <span className="hidden lg:inline">카카오 상담</span>
@@ -323,13 +329,16 @@ export default function Header() {
 
             {/* Mobile button */}
             <button
-              onClick={() => setOpen(!open)}
+              onClick={() => { setOpen(!open); setMobileServicesOpen(false); }}
               className={`lg:hidden inline-flex items-center justify-center min-w-11 min-h-11 rounded-lg transition-colors ${
-                scrolled || !isHome
+                scrolled || !isHome || open
                   ? "text-gray-700 hover:bg-gray-100"
                   : "text-white hover:bg-white/10"
               }`}
-              aria-label="메뉴 열기"
+              ref={menuButton}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
             >
               {open ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -338,7 +347,7 @@ export default function Header() {
 
         {/* Mobile drawer */}
         {open && (
-          <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+          <div id="mobile-navigation" className="lg:hidden max-h-[calc(100dvh-128px)] overflow-y-auto overscroll-contain bg-[var(--w-bg)] border-t border-[var(--w-line)] shadow-lg" onClick={event => { if ((event.target as HTMLElement).closest("a")) setOpen(false); }}>
             <div className="px-4 pt-4 pb-3 border-b border-gray-100">
               <div className="text-xs font-black text-gray-900">하랑마케팅</div>
               <div className="text-[11px] text-gray-600">10년 경력 · 소상공인 전문 · 대표가 직접 관리</div>
@@ -346,25 +355,23 @@ export default function Header() {
             <div className="px-4 py-3 space-y-0.5">
               {NAV_ITEMS.map((item) => (
                 <div key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                      pathname === item.href || pathname.startsWith(item.href)
-                        ? "bg-gray-100 text-gray-900 font-black"
-                        : "text-gray-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                  {item.sub && (
-                    <div className="ml-4 mt-0.5 space-y-0.5 mb-1">
+                  {item.sub ? (
+                    <button type="button" onClick={() => setMobileServicesOpen(value => !value)} aria-expanded={mobileServicesOpen} aria-controls="mobile-services" className="flex min-h-11 w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]">
+                      {item.label}<ChevronDown size={18} className={mobileServicesOpen ? 'rotate-180' : ''} />
+                    </button>
+                  ) : (
+                    <Link href={item.href} className={`block min-h-11 rounded-xl px-4 py-3 text-sm font-semibold ${pathname === item.href ? 'bg-[var(--w-primary-bg)] text-[var(--w-primary)]' : 'text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]'}`}>{item.label}</Link>
+                  )}
+                  {item.sub && mobileServicesOpen && (
+                    <div id="mobile-services" className="ml-4 mt-0.5 space-y-0.5 mb-1 border-l border-[var(--w-line)]">
+                      <Link href="/services" className="flex min-h-11 items-center rounded-xl px-4 py-2 text-sm font-semibold text-[var(--w-primary)]">전체 서비스 · 목적별 찾기</Link>
                       {item.sub.map((s) => (
                         <Link
                           key={s.href}
                           href={s.href}
-                          className="flex min-h-[44px] items-center rounded-lg px-4 text-xs text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-700"
+                          className="flex min-h-11 items-center rounded-xl px-4 py-2 w-label1 text-[var(--w-label-alt)] transition-colors hover:bg-[var(--w-primary-bg)] hover:text-[var(--w-primary)]"
                         >
-                          · {s.label}
+                          {s.label}
                         </Link>
                       ))}
                     </div>

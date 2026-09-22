@@ -6,7 +6,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import JsonLd from '../../../components/JsonLd';
-import { breadcrumbLd, webPageLd } from '../../../lib/seo';
+import { photoMetadata, PHOTO_UPDATED } from '../../../lib/photo-seo';
+import { breadcrumbLd, webPageLd, SITE } from '../../../lib/seo';
 import { isPhotoType, PHOTO_TYPES, portfoliosFor } from '../../../lib/photo-portfolios';
 
 export function generateStaticParams() { return [{ type: 'food' }, { type: 'stay' }]; }
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
   const { type } = await params;
   if (!isPhotoType(type)) notFound();
   const data = PHOTO_TYPES[type];
-  return { title: data.title + ' | 하랑마케팅', description: data.description, alternates: { canonical: 'https://www.harangmarketing.com/services/photo/' + type } };
+  return photoMetadata('/services/photo/' + type, data.title, data.description, portfoliosFor(type)[0].cover);
 }
 export default async function PhotoPortfolioPage({ params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
@@ -23,8 +24,9 @@ export default async function PhotoPortfolioPage({ params }: { params: Promise<{
   const groups = portfoliosFor(type);
   const path = '/services/photo/' + type;
   return <><Header /><main className="bg-[var(--w-bg)] pt-[104px] text-[var(--w-label)] md:pt-[108px]">
-    <JsonLd data={webPageLd({ path, name: data.title, description: data.description, dateModified: '2026-09-22' })} />
+    <JsonLd data={webPageLd({ path, name: data.title, description: data.description, type: 'CollectionPage', dateModified: PHOTO_UPDATED })} />
     <JsonLd data={breadcrumbLd([{ name: '홈', path: '/' }, { name: '매장 사진촬영', path: '/services/photo' }, { name: data.label, path }])} />
+    <JsonLd data={{ '@context': 'https://schema.org', '@type': 'ItemList', '@id': SITE.base + path + '#list', numberOfItems: groups.length, itemListElement: groups.map((group, index) => ({ '@type': 'ListItem', position: index + 1, name: group.name, url: SITE.base + path + '/' + group.id })) }} />
     <section className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:px-6 md:pt-16 lg:px-8">
       <Link href="/services/photo" className="mb-8 inline-flex min-h-11 items-center gap-2 w-label1 text-[var(--w-label-alt)]"><ArrowLeft size={16} />촬영 서비스</Link>
       <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><p className="mb-3 w-caption1 font-semibold tracking-widest text-[var(--w-primary)]">PARTNER PORTFOLIO</p><h1 className="w-display3 font-bold text-[var(--w-label-strong)]">{data.title}</h1><p className="mt-4 max-w-2xl w-body2 text-[var(--w-label-alt)]">{data.description}</p><p className="mt-2 w-caption1 text-[var(--w-label-alt)]">업체별 메뉴와 공간 사진을 확인하세요.</p></div><Link href={'/services/photo/price#' + type} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white">촬영 가격 보기<ArrowRight size={16} /></Link></div>

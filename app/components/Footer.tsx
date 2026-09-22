@@ -1,3 +1,4 @@
+import { PUBLIC_SERVICES } from "../lib/service-catalog";
 import Link from "next/link";
 import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Handshake } from "lucide-react";
 import { PlatformLogo } from "../sns/PlatformLogo";
@@ -107,16 +108,8 @@ export default function Footer() {
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">서비스</h4>
               <ul className="space-y-0.5 md:space-y-2.5 text-sm">
                 {[
-                  // 단독 상세페이지가 있는 상품은 해시가 아닌 실제 경로로
                   ["SNS 부스트 스토어 (셀프 주문)", "/sns", true],
-                  ["하랑 스튜디오 (사진·영상 프로그램)", "/studio", true],
-                  ["최적화 블로그 · 카페 배포", "/services/cafe-distribution", true],
-                  ["카페 배포 레퍼런스", "/services/cafe-distribution/reference"],
-                  ["블로그 마케팅", "/services#blog"],
-                  ["플레이스 SEO", "/services#place"],
-                  ["체험단·리뷰", "/services#review"],
-                  ["인스타그램", "/services#sns"],
-                  ["맘카페 바이럴", "/services"],
+                  ...PUBLIC_SERVICES.map(service => [service.title, service.href]),
                   ["무료 플레이스 진단", "/free-check"],
                 ]
                   // SNS 부스트 스토어를 감춘 동안에는 이 줄도 뺀다 (app/lib/feature-flags.ts)

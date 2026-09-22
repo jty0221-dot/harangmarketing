@@ -15,7 +15,7 @@ import {
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import { webPageLd, PAGE_UPDATED } from "../../lib/seo";
+import { webPageLd, PAGE_UPDATED, ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../../lib/photo-reference";
 
 /* 가격 구성은 /services/photo/price 정본에만 둔다. 사진은 노출을 만드는 재료이지 순위를 보장하지 않는다. */
@@ -102,6 +102,33 @@ function Gallery({
 export default function PhotoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "@id": "https://www.harangmarketing.com/services/photo#service",
+            name: "매장 사진촬영",
+            description:
+              "음식점 메뉴 사진과 매장 공간 사진을 촬영하고 보정해 네이버 플레이스와 블로그, 인스타그램, 상세페이지에 등록합니다.",
+            serviceType: "상업 사진 촬영",
+            provider: { "@id": LOCAL_ID },
+            brand: { "@id": ORG_ID },
+            inLanguage: "ko-KR",
+            offers: { "@type": "Offer", url: "https://www.harangmarketing.com/services/photo/price" },
+            areaServed: "대한민국",
+            url: "https://www.harangmarketing.com/services/photo",
+          }),
+        }}
+      />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "홈", path: "/" },
+          { name: "서비스", path: "/services" },
+          { name: "매장 사진촬영", path: "/services/photo" },
+        ])}
+      />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         <section className="bg-gray-950 py-16 md:py-24 relative overflow-hidden">

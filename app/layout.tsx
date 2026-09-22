@@ -1,3 +1,4 @@
+import { PUBLIC_SERVICES } from "./lib/service-catalog";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | 하랑마케팅",
   },
   description:
-    `10년 경력 대표가 처음부터 끝까지. 네이버 플레이스·블로그·체험단·인스타그램으로 매출 상승. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
+    `플레이스 SEO, 블로그·체험단·인스타그램, 네이버 광고, 매장 사진촬영과 상세페이지 제작. 10년 경력 대표가 상담부터 관리까지 맡습니다. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
   keywords: [
     "마케팅대행사", "소상공인마케팅", "자영업자마케팅",
     "네이버플레이스", "플레이스SEO", "플레이스상위노출",
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     siteName: "하랑마케팅",
     title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
-      `플레이스·블로그·체험단·인스타그램 마케팅. 네이버 플레이스 순위를 매일 계측합니다. 상담 무료, 재계약률 ${SITE.stats.renewalRate}, 전국 어디든 진행합니다.`,
+      `검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
     images: [
       {
         url: "https://www.harangmarketing.com/og-image.png",
@@ -335,103 +336,10 @@ gtag('config', '${GA_ID}');`,
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "하랑마케팅 서비스",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "네이버 플레이스 SEO",
-                      description:
-                        "네이버 플레이스 상위 노출 최적화. 키워드 설정, 사진 최적화, 리뷰·답글 관리, 저장 수 개선을 통합 관리합니다.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "블로그 마케팅",
-                      description:
-                        "네이버 블로그 SEO 최적화 및 지역 키워드 상위 노출. 블로그 배포와 홈페이지형 블로그 제작을 포함합니다.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "체험단 모집 대행",
-                      description: "업종별 맞춤 체험단 모집 및 실사용 후기 확보 대행. 모집부터 네이버 예약, 방문 확인과 리뷰 링크 회수까지 맡습니다.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "인스타그램 마케팅",
-                      description: "인스타그램 콘텐츠 제작, 릴스 기획, 해시태그 전략, 팔로워 증대.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "카카오맵 마케팅",
-                      description: "카카오맵 플레이스 등록 및 상위 노출 최적화. 카카오맵으로 가게를 찾는 손님까지 받습니다.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "맘카페 바이럴 마케팅",
-                      description:
-                        "지역 맘카페를 활용한 실사용자 후기형 바이럴. 학원·카페·음식점·네일 업종에 특화.",
-                    },
-                  },
-                  /*
-                    아래 넷은 각 페이지의 Service JSON-LD 와 같은 문장이다 (2026-09-20 · D-0290 · 요청 68).
-                    가격과 성과 숫자는 여기 적지 않는다 — 단가는 각 페이지가 말하고 (C-35),
-                    병·의원 항목은 의료기관 타입이 아니라 Service 로만 적는다 (진우 판정 제8절 · C-50).
-                  */
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "최적화 블로그 · 카페 배포",
-                      url: `${SITE.base}/services/cafe-distribution`,
-                      description:
-                        "네이버 최적화 블로그 배포와 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출시키는 서비스입니다. 업종·지역·목표 키워드에 맞는 카페에 순차 게시하고 전체 게시 URL을 정리해 전달합니다.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "인스타그램 계정 관리 대행",
-                      url: `${SITE.base}/services/instagram`,
-                      description:
-                        "인스타그램 프로필 최적화, 하이라이트 여섯 칸 세팅, 피드와 스토리와 릴스 정기 발행, 반응이 난 게시물의 초기 확산. 팔로워와 좋아요를 구매하지 않고 몇 번째로 올려 드린다는 말을 하지 않습니다.",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "의원·한의원·피부과 마케팅 대행",
-                      url: `${SITE.base}/services/clinic`,
-                      description: "의원·한의원·피부과 전문 네이버 블로그 마케팅, 플레이스 SEO, 리뷰 관리 대행",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "스마트스토어 상세페이지 제작",
-                      url: `${SITE.base}/services/detail-page`,
-                      description:
-                        "스마트스토어 상세페이지를 9단 구성으로 기획하고 제작합니다. 기획 없이 이미지를 만들지 않고, 이미지가 확정되기 전에 영상을 만들지 않습니다. 실물 사진에서 출발한 컷만 사용합니다.",
-                    },
-                  },
-                ],
+                itemListElement: PUBLIC_SERVICES.filter(service => service.id !== 'studio').map(service => ({
+                  '@type': 'Offer', url: SITE.base + service.href,
+                  itemOffered: { '@type': 'Service', name: service.title, description: service.desc, url: SITE.base + service.href },
+                })),
               },
               areaServed: [
                 { "@type": "Country", name: "대한민국" },

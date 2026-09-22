@@ -9,7 +9,7 @@ import { SNS_STORE_ENABLED } from "./lib/feature-flags";
  * 정적 파일이 이 라우트를 덮어써서 아래 설정이 전부 무시된다.
  *
  * GEO 정책: AI 학습·검색 크롤러를 전면 허용한다.
- * 차단하면 ChatGPT·Claude·Perplexity·Gemini 답변에서 하랑마케팅이 아예 인용되지 않는다.
+ * 수집 허용과 실제 검색 노출·답변 인용 여부는 별개다.
  */
 
 // 관리자·API·디자인 미리보기·클라이언트 보고서·SNS 기능 화면은 인덱스에서 뺀다 (메타 noindex 와 이중 방어).
@@ -33,7 +33,7 @@ const AI_BOTS = [
   "anthropic-ai",
   "PerplexityBot",     // Perplexity 인덱스
   "Perplexity-User",   // Perplexity 사용자 실시간 열람
-  "Google-Extended",   // Gemini / AI 개요
+  "Google-Extended",   // Gemini 관련 수집 제어. Google 검색의 AI 기능은 Googlebot 기준.
   "Applebot-Extended", // Apple Intelligence
   "meta-externalagent",// Meta AI
   "Amazonbot",         // Alexa / Rufus

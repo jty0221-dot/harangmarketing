@@ -65,7 +65,7 @@ export default function EntryPopup() {
     <div
       /* 모바일 하단은 이미 붐빈다 — 챗봇 버튼이 bottom-[104px] 에 56px 로 떠 있어
              bottom-4 로 두면 팝업이 그 버튼을 통째로 덮는다. 그 위로 올린다. */
-      className="fixed z-[9998] left-4 right-4 bottom-44 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[340px]"
+      className="hidden sm:block fixed z-[9998] left-4 right-4 bottom-44 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[340px]"
       style={{
         animation: closing
           ? "haCardOut 0.18s ease both"
@@ -88,19 +88,19 @@ export default function EntryPopup() {
         <button
           onClick={dismiss}
           aria-label="닫기"
-          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-lg transition-colors hover:bg-[var(--w-fill)]"
+          className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-[var(--w-fill)]"
         >
           <X size={14} style={{ color: "var(--w-label-assistive)" }} />
         </button>
 
-        <div className="p-5">
-          <p className="w-label-2 font-bold" style={{ color: "var(--w-primary)" }}>
+        <div className="p-5 pr-14">
+          <p className="w-label2 font-bold" style={{ color: "var(--w-primary)" }}>
             상담 0원 · 24시간 내 연락
           </p>
-          <p className="w-title-3 mt-1.5" style={{ color: "var(--w-label-strong)" }}>
+          <p className="w-heading2 mt-1.5" style={{ color: "var(--w-label-strong)" }}>
             매장을 보고 맞춤으로 제안드립니다
           </p>
-          <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-alt)" }}>
+          <p className="w-caption1 mt-2" style={{ color: "var(--w-label-alt)" }}>
             대표가 직접 관리해서 한 달에 받는 신규 상담이 많지 않습니다.
             지금 신청하시면 경쟁사 분석 리포트도 함께 드립니다.
           </p>

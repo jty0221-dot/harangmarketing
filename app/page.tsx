@@ -4,12 +4,14 @@ import React from "react";
 import Link from "next/link";
 import {
   ArrowRight, CheckCircle2, X, Phone, MessageCircle,
-  TrendingUp, Users, Star, BarChart3, FileText, MapPin,
-  Search, BookOpen, Megaphone, AtSign, ChevronRight,
+  TrendingUp, Star, BarChart3, FileText,
+  Search, BookOpen, ChevronRight,
   ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
   UtensilsCrossed, ShoppingBag, Sparkles, Store,
 } from "lucide-react";
+import ServiceFinder from "./components/ServiceFinder";
+import PhotoServicePreview from "./components/PhotoServicePreview";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -217,19 +219,6 @@ const INDUSTRIES: Industry[] = [
     duration: "월 리포트",
     location: "전 지역",
   },
-];
-
-const SERVICES = [
-  { icon: Search, title: "플레이스 SEO 최적화", desc: "업종별 주요 키워드를 분석해 네이버 플레이스 검색 상위에 올려드립니다.", color: "from-blue-600 to-blue-700", popular: true },
-  { icon: Star, title: "리뷰 마케팅", desc: "좋은 리뷰를 꾸준히 쌓아 처음 찾아오는 손님의 선택을 이끌어냅니다.", color: "from-blue-500 to-blue-700", popular: true },
-  { icon: AtSign, title: "인스타그램 마케팅", desc: "콘텐츠 기획부터 릴스·광고 운영까지 인스타그램 채널 성장을 전담합니다.", color: "from-blue-600 to-indigo-700", popular: true },
-  { icon: FileText, title: "블로그 배포(기자단)", desc: "전문 작가가 매장 맞춤 글을 작성하고 20개 이상의 채널에 동시에 올립니다.", color: "from-blue-500 to-blue-700" },
-  { icon: BookOpen, title: "홈페이지형 블로그 제작", desc: "네이버 블로그를 전문 홈페이지처럼 꾸며 신뢰도와 검색 노출을 높입니다.", color: "from-blue-600 to-blue-800" },
-  { icon: MapPin, title: "카카오맵 마케팅", desc: "카카오맵 플레이스 정보·사진·리뷰를 정리해 지역 검색 노출을 관리합니다.", color: "from-blue-500 to-blue-700" },
-  { icon: Users, title: "체험단 모집 대행", desc: "실제 방문 후기를 남길 체험단을 모집해 믿을 수 있는 리뷰를 만들어드립니다.", color: "from-blue-600 to-indigo-700" },
-  { icon: TrendingUp, title: "플레이스 순위상승", desc: "방문자·저장·리뷰 등 여러 항목을 함께 관리해 플레이스 순위를 올려드립니다.", color: "from-blue-600 to-blue-800" },
-  { icon: BarChart3, title: "블로그 관리 대행", desc: "꾸준한 글쓰기와 검색 최적화로 블로그 노출을 높이고 방문자를 유지합니다.", color: "from-blue-500 to-blue-700" },
-  { icon: Megaphone, title: "맘카페 바이럴", desc: "지역 맘카페·육아 커뮤니티를 통해 주요 고객층에 입소문을 만들어드립니다.", color: "from-blue-600 to-blue-800" },
 ];
 
 const COMPARE_ITEMS = [
@@ -1188,36 +1177,7 @@ export default function HomePage() {
             </div>
             </RevealOnScroll>
 
-            {/* Editorial numbered service list */}
-            <div style={{ borderTop: "1px solid var(--h-border)" }}>
-              {SERVICES.map((service, idx) => {
-                const Icon = service.icon;
-                const num = String(idx + 1).padStart(2, "0");
-                return (
-                  <Link key={service.title} href="/services"
-                    className="svc-row group flex items-center gap-4 md:gap-8 py-4 md:py-5 px-2 -mx-2">
-                    {/* Number */}
-                    <span className="text-[11px] font-black tabular-nums w-6 shrink-0" style={{ color: "var(--w-label-assistive)" }}>{num}</span>
-                    {/* Icon */}
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
-                      <Icon size={15} strokeWidth={2} style={{ color: "var(--h-navy)" }} />
-                    </div>
-                    {/* Title + badge */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-black text-sm md:text-base" style={{ color: "var(--h-dark)" }}>{service.title}</h3>
-                        {service.popular && (
-                          <span className="text-[11px] font-black px-1.5 py-0.5 rounded" style={{ background: "var(--h-amber)", color: "white" }}>인기</span>
-                        )}
-                      </div>
-                      <p className="text-xs md:text-sm mt-0.5 line-clamp-1 hidden sm:block" style={{ color: "var(--h-muted)" }}>{service.desc}</p>
-                    </div>
-                    {/* Arrow */}
-                    <ArrowRight size={14} strokeWidth={2} className="shrink-0 transition-transform group-hover:translate-x-1" style={{ color: "var(--w-label-assistive)" }} />
-                  </Link>
-                );
-              })}
-            </div>
+            <ServiceFinder />
 
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
               <Link href="/contact"
@@ -1233,6 +1193,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+        <PhotoServicePreview />
 
         {/* ══ 네이버 플레이스 원리 ══ */}
         <section className="py-8 md:py-12 bg-gray-50 border-t border-gray-100">
@@ -1636,8 +1597,15 @@ export default function HomePage() {
         {/* ══ FAQ 섹션 — 화면 노출 + FAQPage 구조화 데이터 (HOME_LD 와 짝) ══ */}
         <FaqAccordion
           items={CORE_FAQ}
+          groups={[
+            { label: '비용 · 계약', items: [1, 4, 7, 19, 20].map(index => CORE_FAQ[index]) },
+            { label: '상담 · 진행 · 개업 준비', items: [0, 8, 14, 15, 18].map(index => CORE_FAQ[index]) },
+            { label: '검색 노출 · 성과', items: [2, 3, 5, 6, 16, 21].map(index => CORE_FAQ[index]) },
+            { label: '채널별 마케팅', items: [9, 10, 11, 12, 13, 17].map(index => CORE_FAQ[index]) },
+            { label: '병원 · 치과 마케팅', items: [22, 23, 24].map(index => CORE_FAQ[index]) },
+          ]}
           title="사장님들이 가장 많이 묻는 질문"
-          subtitle="10년간 상담하며 가장 많이 받은 질문을 그대로 정리했습니다. 상담 전에 미리 확인해보세요."
+          subtitle="궁금한 주제를 선택해 질문을 확인하세요."
           showMoreHref="/faq"
         />
 

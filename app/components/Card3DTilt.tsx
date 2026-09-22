@@ -21,6 +21,7 @@ export default function Card3DTilt({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = cardRef.current;
     if (!card) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches) { card.style.transform = "none"; return; }
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -41,6 +42,7 @@ export default function Card3DTilt({
   const handleMouseLeave = () => {
     const card = cardRef.current;
     if (!card) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches) { card.style.transform = "none"; return; }
     card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
     if (glowRef.current) {
       glowRef.current.style.background = "transparent";

@@ -5,14 +5,11 @@ import { ArrowRight, Building2, Camera, Check, UtensilsCrossed } from 'lucide-re
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import JsonLd from '../../../components/JsonLd';
-import { breadcrumbLd, webPageLd, PAGE_UPDATED } from '../../../lib/seo';
+import { breadcrumbLd, webPageLd, faqLd, PAGE_UPDATED } from '../../../lib/seo';
+import { photoMetadata, photoOffersLd, PHOTO_FAQ } from '../../../lib/photo-seo';
 import { FOOD_PLANS, STAY_PLANS, type PhotoPlan } from '../../../lib/photo-pricing';
 
-export const metadata: Metadata = {
-  title: '매장 사진촬영 가격표 | 음식점 · 시설 촬영',
-  description: '음식점 촬영 30만·60만·100만 원, 시설 촬영 70만·100만·120만 원. 부가세 별도. 상품별 사진과 촬영 조건을 확인하세요.',
-  alternates: { canonical: 'https://www.harangmarketing.com/services/photo/price' },
-};
+export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '음식점 촬영 30만·60만·100만 원, 시설 촬영 70만·100만·120만 원. 부가세 별도. 상품별 사진과 촬영 조건을 확인하세요.', '/photo-pricing/standard.jpg');
 const container = 'mx-auto max-w-6xl px-4 md:px-6 lg:px-8';
 const button = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white hover:bg-[var(--w-primary-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]';
 const outline = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--w-line)] bg-[var(--w-bg)] px-5 py-3 w-label1 font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]';
@@ -23,7 +20,7 @@ function PlanCard({ plan, type }: { plan: PhotoPlan; type: 'food' | 'stay' }) {
     ['작업 기간', plan.days], ['수정 횟수', '2회'], ['촬영 시간', plan.time],
     ['보정 작업', plan.retouch], ['제공 컷', plan.cuts],
   ];
-  return <article className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-[var(--w-line)] bg-[var(--w-bg)] shadow-sm">
+  return <article id={type + '-' + plan.code.toLowerCase()} className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-[var(--w-line)] bg-[var(--w-bg)] shadow-sm">
     <div className={type === 'food' ? 'flex aspect-[4/5] items-center justify-center bg-[var(--w-bg-alt)]' : 'aspect-[3/2] bg-[var(--w-bg-alt)]'}>
       <Image src={plan.image} alt={plan.alt} width={plan.width} height={plan.height} sizes="(max-width: 1023px) 100vw, 360px" className="h-full w-full object-contain" />
     </div>
@@ -46,6 +43,8 @@ function PlanCard({ plan, type }: { plan: PhotoPlan; type: 'food' | 'stay' }) {
 
 export default function PhotoPricePage() {
   return <><Header /><main className="bg-[var(--w-bg)] pt-[104px] text-[var(--w-label)] md:pt-[108px]">
+    <JsonLd data={photoOffersLd()} />
+    <JsonLd data={faqLd(PHOTO_FAQ, 'https://www.harangmarketing.com/services/photo/price')} />
     <JsonLd data={webPageLd({ path: '/services/photo/price', name: '매장 사진촬영 가격표', description: metadata.description as string, dateModified: PAGE_UPDATED['/services/photo/price'] })} />
     <JsonLd data={breadcrumbLd([{ name: '홈', path: '/' }, { name: '서비스', path: '/services' }, { name: '매장 사진촬영', path: '/services/photo' }, { name: '가격표', path: '/services/photo/price' }])} />
     <section className="border-b border-[var(--w-line)] bg-[var(--w-bg-alt)] py-12 md:py-20"><div className={container}>
@@ -62,5 +61,9 @@ export default function PhotoPricePage() {
         </div>
       </section>
     )}
+    <section aria-labelledby="photo-faq" className={container + ' py-12 md:py-16'}>
+      <h2 id="photo-faq" className="w-heading1 font-semibold">사진촬영 자주 묻는 질문</h2>
+      <div className="mt-6 grid gap-4 md:grid-cols-2">{PHOTO_FAQ.map(({ q, a }) => <article key={q} className="min-w-0 rounded-2xl border border-[var(--w-line)] p-5"><h3 className="w-headline1 font-semibold">{q}</h3><p className="mt-3 w-body2 text-[var(--w-label-alt)]">{a}</p></article>)}</div>
+    </section>
   </main><Footer /></>;
 }

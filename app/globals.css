@@ -951,3 +951,15 @@ body { overflow-x: hidden; }
 .w-label2    { font-size: var(--w-label2);    line-height: 1.5;  letter-spacing: var(--w-tracking); }
 .w-caption1  { font-size: var(--w-caption1);  line-height: 1.4;  letter-spacing: var(--w-tracking); }
 .w-caption2  { font-size: var(--w-caption2);  line-height: 1.4;  letter-spacing: var(--w-tracking); }
+
+/* Respect system motion preferences across all public components. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
