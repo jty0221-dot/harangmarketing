@@ -81,6 +81,7 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/clinic/medical-ad-guide": "2026-09-07",
   "/services/beauty": "2026-09-05",
   "/services/restaurant": "2026-09-20",
+  "/services/photo": "2026-09-22",
   "/services/academy": "2026-09-07",
   "/services/shopping": "2026-09-07",
   "/services/review": "2026-09-05",

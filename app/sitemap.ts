@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/clinic/medical-ad-guide`, lastModified: lm("/services/clinic/medical-ad-guide"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/beauty`,         lastModified: lm("/services/beauty"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/restaurant`,     lastModified: lm("/services/restaurant"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/photo`,          lastModified: lm("/services/photo"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/academy`,        lastModified: lm("/services/academy"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/shopping`,       lastModified: lm("/services/shopping"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/review`,         lastModified: lm("/services/review"), changeFrequency: "monthly", priority: 0.9 },

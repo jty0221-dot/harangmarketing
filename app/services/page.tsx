@@ -7,12 +7,13 @@ import {
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare,
   Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
-  ScrollText,
+  ScrollText, Camera,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES, PRICE_MIN, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
+import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd } from "../lib/seo";
@@ -117,6 +118,21 @@ const HL_CARD_COVERS: ServiceCover[] = HL_COVERS.slice(0, 5).map((c) => ({
   w: c.w,
   h: c.h,
 }));
+
+/**
+ * 사진촬영 카드 커버 — 음식 셋 · 공간 둘.
+ *
+ * 가로로 담기는 자리라 세로 컷은 넣지 않았다. 세로를 눕히면 위아래가 잘려
+ * 무엇을 찍은 컷인지 알아볼 수 없게 된다.
+ * 업체명은 화면에 올리지 않는다. alt 도 데이터가 가진 문장을 그대로 쓴다.
+ */
+const PHOTO_CARD_COVERS: ServiceCover[] = [
+  FOOD_SHOTS[0],
+  FOOD_SHOTS[1],
+  FOOD_SHOTS[2],
+  SPACE_SHOTS[0],
+  SPACE_SHOTS[7],
+].map((s) => ({ src: s.src, alt: s.alt, w: s.w, h: s.h }));
 
 const SERVICES = [
   {
@@ -368,6 +384,38 @@ const SERVICES = [
     ],
     rec: "개업 예정이거나 브랜드를 새로 만들고 싶은 사장님",
     result: "개업 첫날부터 온라인에서 발견되는 매장 세팅",
+  },
+  {
+    // 2026-09-21 대표 지시로 신설. 촬영 협력사와 함께 진행한다.
+    // 촬영 범위·컷 수·이동 거리가 매장마다 달라 금액을 적지 않는다 (C-35).
+    id: "photo",
+    icon: Camera,
+    color: "from-blue-600 to-blue-800",
+    tag: "촬영",
+    title: "매장 사진촬영",
+    subtitle: "음식 사진 · 매장 공간 촬영",
+    desc: "음식점 메뉴 사진과 매장 공간 사진을 찍습니다. 찍고 넘겨 드리는 것으로 끝내지 않고 네이버 플레이스와 블로그, 인스타그램, 상세페이지에 맞는 규격으로 올리는 것까지 같이 진행합니다.",
+    timeline: "일정 협의 후 촬영 · 보정본 전달까지 3~7일",
+    deliverables: [
+      { label: "촬영 갈래", value: "메뉴 · 공간 · 플레이스용", note: "쓸 자리를 먼저 정하고 찍습니다" },
+      { label: "보정", value: "밝기 · 색온도 정리", note: "실물과 다르게 만들지 않습니다" },
+      { label: "채널 등록", value: "규격별 재단 후 반영", note: "플레이스 · 블로그 · 인스타 · 상세" },
+    ],
+    features: [
+      "대표 메뉴 단품 컷과 상차림 컷을 나눠 촬영",
+      "가로 컷과 세로 컷을 같이 확보해 채널마다 재단",
+      "매장 외관 · 홀 · 창가 자리 · 저녁 조명 분리 촬영",
+      "네이버 플레이스 등록 항목에 맞춘 컷 목록 사전 확인",
+      "영업에 지장이 없는 시간대로 일정 협의",
+      "촬영 협력사와 함께 진행",
+    ],
+    rec: "휴대폰으로 찍어 메신저로 넘긴 사진만 가지고 계신 매장",
+    result: "채널마다 다시 찍지 않고 한 번 촬영으로 나눠 쓰는 구조",
+    href: "/services/photo",
+    covers: PHOTO_CARD_COVERS,
+    coverBadge: "실제 촬영 컷",
+    // 촬영 랜딩에는 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
+    hrefLabel: "촬영 안내 보기",
   },
 ];
 
