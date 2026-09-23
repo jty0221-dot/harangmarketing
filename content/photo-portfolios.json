@@ -1112,6 +1112,266 @@
   },
   {
     "type": "food",
+    "id": "salt-garden-ganghwa",
+    "name": "소금정원 강화점",
+    "description": "강화도 카페 음료·커피·디저트·베이커리 흰 배경 메뉴 촬영",
+    "cover": "/photo-partner/restaurant/salt-garden-ganghwa/menu-39.webp",
+    "images": [
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-39.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-26.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-50.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-20.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-23.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-27.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-43.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-30.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-01.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-02.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-03.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-04.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-05.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-06.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-07.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-08.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-09.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-10.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-11.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-12.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-13.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-14.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-15.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-16.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-17.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-18.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-19.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-21.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-22.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-24.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-25.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-28.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-29.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-31.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-32.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-33.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-34.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-35.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-36.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-37.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-38.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-40.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-41.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-42.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-44.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-45.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-46.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-47.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-48.webp",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photo-partner/restaurant/salt-garden-ganghwa/menu-49.webp",
+        "width": 1600,
+        "height": 1600
+      }
+    ]
+  }
+  ,
+  {
+    "type": "food",
     "id": "62",
     "name": "연이만두",
     "description": "",

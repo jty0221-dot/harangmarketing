@@ -15,8 +15,10 @@ export function photoMetadata(path: string, title: string, description: string, 
 
 export function portfolioSummary(portfolio: PhotoPortfolio) {
   const gifs = portfolio.images.filter((image) => image.src.endsWith('.gif')).length;
-  const media = `사진 ${portfolio.images.length - gifs}장` + (gifs ? `과 GIF ${gifs}개` : '');
-  return `${portfolio.name}의 ${PHOTO_TYPES[portfolio.type as PhotoType].label} 촬영 사례입니다. ${media}를 확인하고 촬영 구성과 가격을 비교할 수 있습니다.`;
+  const photos = portfolio.images.length - gifs;
+  const media = gifs ? `사진 ${photos}장과 GIF ${gifs}개를` : `사진 ${photos}장을`;
+  const subject = portfolio.description || `${PHOTO_TYPES[portfolio.type as PhotoType].label} 촬영`;
+  return `${portfolio.name}의 ${subject} 사례입니다. ${media} 확인하고 촬영 구성과 가격을 비교할 수 있습니다.`;
 }
 
 export function photoGalleryLd(portfolio: PhotoPortfolio) {
@@ -33,7 +35,7 @@ export function photoGalleryLd(portfolio: PhotoPortfolio) {
           contentUrl: SITE.base + image.src, url: SITE.base + image.src,
           name: portfolio.name + ' 촬영 사진 ' + (index + 1),
           width: image.width, height: image.height,
-          encodingFormat: image.src.endsWith('.gif') ? 'image/gif' : image.src.endsWith('.png') ? 'image/png' : 'image/jpeg',
+          encodingFormat: image.src.endsWith('.gif') ? 'image/gif' : image.src.endsWith('.png') ? 'image/png' : image.src.endsWith('.webp') ? 'image/webp' : 'image/jpeg',
         },
       })),
     },
