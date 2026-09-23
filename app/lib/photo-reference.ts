@@ -44,13 +44,18 @@ export const FOOD_SHOTS: PhotoShot[] = [
 
 /** 공간 촬영 예시 */
 export const SPACE_SHOTS: PhotoShot[] = [
+  { src: "/photo-partner/restaurant/salt-garden-ganghwa/space-symmetry.webp", alt: "수변 전망과 조형 조명을 담은 카페 전경 촬영 예시", w: 1920, h: 1280 },
   { src: "/photo-ref/space-01.jpg", alt: "한옥 마당과 연못 촬영 예시", w: 1600, h: 1067 },
   { src: "/photo-ref/space-02.jpg", alt: "실내 수영 공간 촬영 예시", w: 1600, h: 1067 },
+  { src: "/photo-partner/restaurant/salt-garden-ganghwa/space-window.webp", alt: "넓은 창과 수변 전망을 담은 카페 공간 촬영 예시", w: 1920, h: 1280 },
   { src: "/photo-ref/space-03.jpg", alt: "김이 오르는 야외 온수 공간 촬영 예시", w: 1600, h: 1067 },
   { src: "/photo-ref/space-04.jpg", alt: "해 질 무렵 마당 촬영 예시", w: 1600, h: 1067 },
+  { src: "/photo-partner/restaurant/salt-garden-ganghwa/space-garden.webp", alt: "식물과 좌석 동선을 담은 카페 실내 촬영 예시", w: 1920, h: 1280 },
   { src: "/photo-ref/space-05.jpg", alt: "담장과 정원수 촬영 예시", w: 1600, h: 1067 },
   { src: "/photo-ref/space-06.jpg", alt: "커튼을 두른 침실 촬영 예시", w: 1600, h: 1067 },
+  { src: "/photo-partner/restaurant/salt-garden-ganghwa/space-stair-view.webp", alt: "계단에서 좌석과 창을 넓게 담은 카페 공간 촬영 예시", w: 1920, h: 1280 },
   { src: "/photo-ref/space-07.jpg", alt: "서까래가 드러난 객실 촬영 예시", w: 1600, h: 1067 },
   { src: "/photo-ref/space-08.jpg", alt: "창가 다이닝 공간 촬영 예시", w: 1600, h: 1067 },
+  { src: "/photo-partner/restaurant/salt-garden-ganghwa/space-wide-angle.webp", alt: "좌석 규모와 창 면적을 함께 담은 카페 전경 촬영 예시", w: 1920, h: 1280 },
   { src: "/photo-ref/space-09.jpg", alt: "정원 쉼터 공간 촬영 예시", w: 1600, h: 1067 },
 ];

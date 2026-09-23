@@ -247,7 +247,7 @@ export default function HeroSection({
                 letterSpacing: "0.14em",
               }}
             >
-              데이터 기반 마케팅 파트너
+              현재 상태부터 확인하는 마케팅
             </span>
           </div>
 
@@ -264,7 +264,8 @@ export default function HeroSection({
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .28s both",
             }}
           >
-            광고비 아까운 대표님은 나가주세요.
+            광고비를 더 쓰기 전에,<br />
+            고객을 놓치는 곳부터 확인하세요.
           </h1>
 
           {/* 서브 1 */}
@@ -281,18 +282,7 @@ export default function HeroSection({
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .44s both",
             }}
           >
-            영업 전화 한 통 없이, 이번 달에만 대표님 같은 분{" "}
-            <span
-              style={{
-                color: "#fff",
-                fontWeight: 800,
-                borderBottom: "3px solid rgba(255,255,255,0.85)",
-                paddingBottom: 1,
-              }}
-            >
-              12명
-            </span>
-            이 찾아왔습니다.
+            지금 어디에 있고, 무엇부터 해야 하는지 함께 정리합니다.
           </p>
 
           {/* 서브 2 */}
@@ -309,7 +299,7 @@ export default function HeroSection({
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .58s both",
             }}
           >
-            말 보단 결과! 지금 저희를 알게 되셨다면 절반은 성공입니다.
+            현재 상태와 먼저 할 일, 다음에 확인할 숫자를 하랑 대표가 직접 설명합니다.
           </p>
 
           {/* CTA 버튼 */}
@@ -341,7 +331,7 @@ export default function HeroSection({
                   whiteSpace: "nowrap",
                 }}
               >
-                무료 마케팅 진단 받기
+                내 매장 현재 상태 확인하기
                 <span style={{ fontSize: "1.1em", lineHeight: 1 }}>→</span>
               </Link>
               <Link
@@ -359,7 +349,7 @@ export default function HeroSection({
                   whiteSpace: "nowrap",
                 }}
               >
-                성공사례 보기
+                실제 계측 사례 보기
               </Link>
             </div>
           )}
@@ -380,8 +370,8 @@ export default function HeroSection({
           className="hidden lg:flex"
         >
           {[
-            { value: "500+", label: "누적 클라이언트", sub: "10년 누적", delay: "1s", anim: "haFloat0" },
-            { value: SITE.stats.renewalRate, label: "재계약률", sub: "성과가 증명한 신뢰", delay: "1.15s", anim: "haFloat1" },
+            { value: "500+", label: "누적 프로젝트", sub: "10년 경력 동안", delay: "1s", anim: "haFloat0" },
+            { value: SITE.stats.renewalRate, label: "재계약률", sub: "6개월 이상 계약 기준", delay: "1.15s", anim: "haFloat1" },
             { value: "10년+", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
           ].map((stat) => (
             <div

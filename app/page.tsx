@@ -27,6 +27,7 @@ import DifferenceSection from "./components/DifferenceSection";
 import Card3DTilt from "./components/Card3DTilt";
 import JsonLd from "./components/JsonLd";
 import AnswerBlock from "./components/AnswerBlock";
+import CustomerConfidenceSection from "./components/CustomerConfidenceSection";
 import FaqAccordion from "./components/FaqAccordion";
 import GlossarySection from "./components/GlossarySection";
 import {
@@ -320,6 +321,8 @@ export default function HomePage() {
             { label: "상담·진단", value: "0원" },
           ]}
         />
+
+        <CustomerConfidenceSection />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
         <div className="py-3 overflow-hidden" style={{ background: "var(--h-navy)" }}>
@@ -784,7 +787,7 @@ export default function HomePage() {
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
                     { label: "결과 미달 시 조정", sub: "다음 달 비용" },
-                    { label: "외주 없음", sub: "대표가 직접 관리" },
+                    { label: "대표 책임 관리", sub: "상담부터 결과 설명까지" },
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
                       <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
@@ -1686,19 +1689,19 @@ export default function HomePage() {
             </div>
 
             <h2 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
-              오늘 상담하면,<br />
-              <span className="text-blue-400">내일 전략 리포트</span>가 옵니다
+              계약 전에,<br />
+              <span className="text-blue-400">지금 무엇부터 볼지</span> 확인하세요
             </h2>
 
             <p className="text-gray-400 text-base md:text-lg mb-10 leading-relaxed max-w-xl mx-auto">
-              업종·경쟁사·현재 순위를 분석해<br className="hidden md:block" />
-              무엇을 먼저 해야 할지 정확히 알려드립니다. 비용 0원.
+              업종과 지역을 남겨주시면 현재 상태를 확인한 뒤<br className="hidden md:block" />
+              먼저 할 일과 다음에 확인할 숫자를 하랑 대표가 설명합니다.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
               <Link href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-[18px] rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-base transition-all shadow-2xl shadow-blue-600/30 hover:-translate-y-0.5">
-                <FileText size={16} /> 무료 상담 신청 (0원)
+                <FileText size={16} /> 내 매장 현재 상태 확인하기
               </Link>
               <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-base transition-all">
