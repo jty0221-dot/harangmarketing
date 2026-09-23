@@ -24,7 +24,6 @@ import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 import { PlatformLogo, brandTextColor } from "./sns/PlatformLogo";
 import type { PlatformId } from "./lib/sns-store";
 import DifferenceSection from "./components/DifferenceSection";
-import EntryPopup from "./components/EntryPopup";
 import Card3DTilt from "./components/Card3DTilt";
 import JsonLd from "./components/JsonLd";
 import AnswerBlock from "./components/AnswerBlock";
@@ -295,12 +294,15 @@ const TICKER = [
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
 ];
 
+// 메인은 서비스 선택과 검증에 집중한다. 회사 소개·진행 과정·채널 콘텐츠처럼
+// 전용 페이지가 있는 보조 내용은 해당 페이지에서 제공한다.
+const SHOW_SECONDARY_HOME_CONTENT = false;
+
 
 export default function HomePage() {
   return (
     <>
       <JsonLd data={HOME_LD} />
-      <EntryPopup />
       <Header />
       <main>
 
@@ -747,6 +749,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        {SHOW_SECONDARY_HOME_CONTENT && (<>
         {/* ══ 대표 소개 ══ */}
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1157,6 +1160,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        </>)}
+
         {/* ══ 서비스 ══ */}
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1195,6 +1200,7 @@ export default function HomePage() {
         </section>
         <PhotoServicePreview />
 
+        {SHOW_SECONDARY_HOME_CONTENT && (<>
         {/* ══ 네이버 플레이스 원리 ══ */}
         <section className="py-8 md:py-12 bg-gray-50 border-t border-gray-100">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1270,6 +1276,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        </>)}
 
         {/* ══ 패키지 가격대 ══ */}
         <section className="py-10 md:py-16 bg-white">
@@ -1347,6 +1355,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        {SHOW_SECONDARY_HOME_CONTENT && (<>
         {/* ══ 비교표 ══ */}
         <section className="py-10 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1438,6 +1447,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        </>)}
+
         {/* ══ 성공 사례 미리보기 ══ */}
         <section className="py-8 md:py-12 bg-white border-t border-gray-100">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1502,6 +1513,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        {SHOW_SECONDARY_HOME_CONTENT && (<>
         {/* ══ 후기 — editorial format ══ */}
         <section style={{ background: "var(--h-surface)" }}>
           {/* Section header */}
@@ -1556,6 +1568,8 @@ export default function HomePage() {
         {/* ══ 유튜브 채널 섹션 ══ */}
         <YouTubeSectionNew />
 
+        </>)}
+
         {/* ══ 지역 커버리지 ══ */}
         <section className="py-12 md:py-16 bg-gray-950 border-t border-white/5">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1609,6 +1623,7 @@ export default function HomePage() {
           showMoreHref="/faq"
         />
 
+        {SHOW_SECONDARY_HOME_CONTENT && (<>
         {/* ══ 무료 가이드 리드 마그넷 ══ */}
         <section className="py-8 md:py-12 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
@@ -1652,6 +1667,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        </>)}
 
         {/* ══ 최종 CTA ══ */}
         <section className="py-12 md:py-20 bg-gray-950 relative overflow-hidden">

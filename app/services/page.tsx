@@ -666,12 +666,12 @@ export default function ServicesPage() {
               <br />
               모든 서비스는 대표가 직접 관리합니다.
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 md:flex md:flex-wrap">
               {SERVICES.map((s) => {
                 const Icon = s.icon;
                 return (
                   <a key={s.id} href={`#${s.id}`}
-                    className="flex min-h-[44px] items-center gap-1.5 rounded-xl border border-blue-400/30 bg-white/5 px-3.5 text-xs font-semibold text-blue-100 transition-colors hover:bg-white/10">
+                    className="flex min-h-[44px] w-full items-center gap-1.5 rounded-xl border border-blue-400/30 bg-white/5 px-3.5 text-xs font-semibold text-blue-100 transition-colors hover:bg-white/10 md:w-auto">
                     <Icon size={12} />
                     {s.title}
                   </a>
@@ -699,7 +699,7 @@ export default function ServicesPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { icon: Users, val: "500+", label: "완료 프로젝트", color: "text-blue-600" },
-                { icon: TrendingUp, val: "3배", label: "최대 매출 상승", color: "text-blue-600" },
+                { icon: TrendingUp, val: "매일", label: "순위 계측", color: "text-blue-600" },
                 { icon: Star, val: SITE.stats.renewalRate, label: "재계약률", color: "text-blue-700" },
                 { icon: Clock, val: "10년+", label: "전문 경력", color: "text-indigo-600" },
               ].map(({ icon: Icon, val, label, color }) => (
@@ -1354,7 +1354,7 @@ export default function ServicesPage() {
                 {
                   label: "소통",
                   other: "이메일·티켓 시스템",
-                  harang: "카카오 직통 · 10분 내 응답",
+                  harang: "카카오 직통 · 확인 후 순차 답변",
                   highlight: false,
                 },
                 {
@@ -1380,7 +1380,7 @@ export default function ServicesPage() {
             </div>
 
             </div>
-            <p className="text-center text-xs text-gray-500 mt-5">실제 대행사 전환 클라이언트 40% 경험 기반</p>
+            <p className="text-center text-xs text-gray-500 mt-5">기존 작업 내역을 먼저 확인한 뒤 필요한 항목만 제안합니다.</p>
           </div>
         </section>
 

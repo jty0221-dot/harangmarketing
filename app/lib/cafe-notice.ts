@@ -201,7 +201,7 @@ export function groupPrice(grade: string): number | undefined {
  * "/" 는 메인 한 장에서만 뜬다. 앞부분 매칭으로 두면 39개 라우트 전부에 뜬다.
  * 나머지 항목은 앞부분이 맞으면 뜬다 (하위 경로 포함).
  */
-export const NOTICE_PATHS = ["/", "/services/cafe-distribution"];
+export const NOTICE_PATHS = ["/services/cafe-distribution"];
 
 export const CAFE_NOTICE = {
   /** 이 값을 바꾸면 이미 닫은 사람에게도 다시 뜬다 */

@@ -126,7 +126,7 @@ export default function FloatingCTA() {
               >
                 <MessageCircle size={14} strokeWidth={2.5} />
                 <span className="flex-1">카카오톡 바로 상담</span>
-                <span className="text-[11px] text-gray-600">10분 내</span>
+                <span className="text-[11px] text-gray-600">문의 접수</span>
               </a>
               <a
                 href="tel:010-7541-9054"
@@ -168,35 +168,20 @@ export default function FloatingCTA() {
       </div>
 
       {/* Mobile: 하단 고정 바 */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 shadow-2xl">
-        <div className={`px-3 py-1.5 border-b text-center flex items-center justify-center gap-2 ${
-          bizStatus === "open" ? "bg-green-50 border-green-100" : "bg-gray-50 border-gray-100"
-        }`}>
-          <span className={`w-1.5 h-1.5 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
-          <p className={`text-[11px] font-black ${bizStatus === "open" ? "text-green-700" : "text-gray-600"}`}>
-            {statusConfig.text} · {statusConfig.sub}
-          </p>
-        </div>
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] pb-[env(safe-area-inset-bottom)]">
         <div className="px-3 py-2.5 flex gap-2">
           <a
             href="https://pf.kakao.com/_MuUkG/chat"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm"
+            className="flex-1 flex items-center justify-center gap-1.5 min-h-12 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm"
           >
             <MessageCircle size={15} />
-            카카오
-          </a>
-          <a
-            href="tel:010-7541-9054"
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gray-900 text-white font-black text-sm"
-          >
-            <Phone size={15} />
-            전화
+            카카오 상담
           </a>
           <Link
             href="/free-check"
-            className="flex-[1.4] flex items-center justify-center gap-1 py-3 rounded-xl bg-blue-600 text-white font-black text-sm"
+            className="flex-1 flex items-center justify-center gap-1 min-h-12 rounded-xl bg-blue-600 text-white font-black text-sm"
           >
             무료 진단
             <ArrowRight size={13} />
@@ -205,7 +190,7 @@ export default function FloatingCTA() {
       </div>
 
       {/* Mobile 하단 바 공간 확보 */}
-      <div className="md:hidden h-[88px]" />
+      <div className="md:hidden h-[68px]" />
     </>
   );
 }

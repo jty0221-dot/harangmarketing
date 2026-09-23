@@ -13,6 +13,7 @@ import AnswerBlock from "../components/AnswerBlock";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 
 const BASE = SITE.base;
+const SHOW_CI_GUIDE = false;
 
 /* 회사소개 구조화 데이터
 
@@ -95,7 +96,7 @@ const PROMISES = [
     icon: Target,
     color: "from-blue-600 to-blue-800",
     title: "묶음 패키지 강요 없이, 꼭 필요한 것만",
-    desc: "음식점과 학원, 쇼핑몰은 필요한 마케팅이 전혀 다릅니다. 불필요한 서비스를 끼워 넣지 않고, 업종에 딱 맞는 것만 골라 적은 비용으로 최대 효과를 만들어 드립니다.",
+    desc: "음식점과 학원, 쇼핑몰은 필요한 마케팅이 전혀 다릅니다. 불필요한 서비스를 끼워 넣지 않고 현재 상태와 예산에 맞는 항목만 제안합니다.",
     badge: "업종별 맞춤 설계",
   },
   {
@@ -103,7 +104,7 @@ const PROMISES = [
     icon: TrendingUp,
     color: "from-blue-500 to-blue-700",
     title: "반짝 노출 NO, 지속 가능한 성장",
-    desc: "단순 광고가 아닌 브랜드 신뢰도를 높이는 콘텐츠를 만듭니다. 지속적인 순위 체크, 키워드 최적화, 플랫폼 다각화로 시간이 지날수록 우상향하는 매출 그래프를 만들어냅니다.",
+    desc: "단순 광고보다 검색 기록과 콘텐츠가 함께 쌓이는 구조를 만듭니다. 순위를 계속 확인하고 변화가 없으면 실행 항목을 다시 조정합니다.",
     badge: "장기 성장 설계",
   },
   {
@@ -111,8 +112,8 @@ const PROMISES = [
     icon: MessageCircle,
     color: "from-blue-700 to-indigo-700",
     title: "대표님을 귀찮게 하는 파트너",
-    desc: "계약하고 나면 연락 두절되는 대행사에 지치셨나요? 하랑은 반대입니다. 24시간, 주말 없이 끊임없이 소통하고 피드백을 드립니다. 대표님과 저희가 한 팀이 될 때 결과가 달라집니다.",
-    badge: "24시간 소통",
+    desc: "계약 뒤에도 진행 내역과 결과를 같은 기준으로 공유합니다. 문의는 언제든 남기실 수 있고, 확인한 내용을 순서대로 답변드립니다.",
+    badge: "문의 상시 접수",
   },
   {
     num: "05",
@@ -553,6 +554,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {SHOW_CI_GUIDE && (<>
         {/* ══ CI 섹션 ══ */}
         <section className="py-16 md:py-24 bg-white border-t border-gray-100" id="ci">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
@@ -699,6 +701,7 @@ export default function AboutPage() {
 
           </div>
         </section>
+        </>)}
 
       </main>
       <Footer />
