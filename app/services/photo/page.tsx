@@ -16,7 +16,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import { webPageLd, PAGE_UPDATED, ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
-import { FOOD_SHOTS, SPACE_SHOTS } from "../../lib/photo-reference";
+import { FOOD_SHOTS, MENU_SHOTS, SPACE_SHOTS } from "../../lib/photo-reference";
 
 /* 가격 구성은 /services/photo/price 정본에만 둔다. 사진은 노출을 만드는 재료이지 순위를 보장하지 않는다. */
 const PHOTO_PAGE_LD = webPageLd({
@@ -75,21 +75,29 @@ const FLOW = [
 function Gallery({
   shots,
   label,
+  card = "bg-gray-100",
+  ratio = "aspect-[4/3]",
+  cols = "grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+  sizes = "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 264px",
 }: {
   shots: { src: string; alt: string; w: number; h: number }[];
   label: string;
+  card?: string;
+  ratio?: string;
+  cols?: string;
+  sizes?: string;
 }) {
   return (
-    <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" aria-label={label}>
+    <ul className={`grid ${cols} gap-3`} aria-label={label}>
       {shots.map((s) => (
-        <li key={s.src} className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm">
-          <span className="block relative aspect-[4/3]">
+        <li key={s.src} className={`overflow-hidden rounded-2xl border border-gray-200 ${card} shadow-sm`}>
+          <span className={`block relative ${ratio}`}>
             <Image
               src={s.src}
               alt={s.alt}
               width={s.w}
               height={s.h}
-              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 264px"
+              sizes={sizes}
               className="h-full w-full object-cover"
             />
           </span>
@@ -235,6 +243,23 @@ export default function PhotoPage() {
 
         <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 className="text-2xl font-black text-gray-900 mb-2">메뉴 컷 촬영 예시</h2>
+            <p className="text-gray-500 text-sm mb-6">
+              배경을 지우고 메뉴 하나만 남긴 컷입니다. 주문 화면과 메뉴판, 상세페이지에 그대로 올라갑니다.
+            </p>
+            <Gallery
+              shots={MENU_SHOTS}
+              label="메뉴 컷 촬영 예시"
+              card="bg-white"
+              ratio="aspect-square"
+              cols="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 208px"
+            />
+          </div>
+        </section>
+
+        <section className="py-14 md:py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-gray-900 mb-2">공간 촬영 예시</h2>
             <p className="text-gray-500 text-sm mb-6">
               머무는 곳과 마당, 객실처럼 넓은 공간을 담은 컷입니다. 같은 자리라도 낮과 저녁을 나눠 찍습니다.
@@ -243,13 +268,13 @@ export default function PhotoPage() {
           </div>
         </section>
 
-        <section className="py-14 md:py-20 bg-white">
+        <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-gray-900 mb-2">촬영 흐름</h2>
             <p className="text-gray-500 text-sm mb-6">연락부터 채널 등록까지 네 단계로 진행합니다</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {FLOW.map((f) => (
-                <div key={f.step} className="bg-gray-50 rounded-2xl border border-gray-100 p-4 md:p-6">
+                <div key={f.step} className="bg-white rounded-2xl border border-gray-100 p-4 md:p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
