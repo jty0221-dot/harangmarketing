@@ -104,9 +104,9 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
     key: "clinic",
     name: "병원·의원",
     items: [
-      { trade: "치과", region: "경기", work: ["플레이스 상위노출"], status: "완료" },
+      { trade: "치과", region: "경기", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "치과", region: "경기", work: ["플레이스 순위 관리"], status: "진행 중" },
-      { trade: "치과", region: "경남", work: ["블로그 상위노출"], status: "진행 중" },
+      { trade: "치과", region: "경남", work: ["블로그 관리"], status: "진행 중" },
       { trade: "의원", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "보청기 전문점", region: "대구", work: ["블로그 상위노출", "플레이스 상위노출"], status: "완료" },
       { trade: "의원", work: ["플레이스 SEO 최적화", "예약자 리뷰 관리"], status: "완료" },

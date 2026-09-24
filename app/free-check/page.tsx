@@ -8,7 +8,6 @@ import {
   MapPin, BarChart3, AlertCircle, Handshake,
 } from "lucide-react";
 
-import { SITE } from "../lib/seo";
 import { best, fmt } from "../lib/rank-records";
 const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
@@ -238,7 +237,7 @@ export default function FreeCheckPage() {
                   <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
                 </div>
                 <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>
-                <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />24시간 내 연락드립니다.</p>
+                <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />접수는 24시간 받고, 하랑 대표가 직접 확인해 연락드립니다.</p>
                 <Link
                   href="/"
                   className="inline-flex items-center gap-2 min-h-11 md:min-h-0 text-blue-600 font-bold text-sm hover:underline"
@@ -252,7 +251,7 @@ export default function FreeCheckPage() {
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-5">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Handshake size={12} className="text-yellow-300" strokeWidth={2.5} />
-                    <span className="text-blue-200 text-[11px]">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
+                    <span className="text-blue-200 text-[11px]">10년 경력 누적 500건 프로젝트</span>
                   </div>
                   <h2 className="text-white font-black text-lg leading-tight">무료 플레이스 진단 신청</h2>
                   <p className="text-blue-200 text-xs mt-1">비용 0원 · 계약 강요 없음 · 1영업일 내 결과</p>
@@ -318,7 +317,7 @@ export default function FreeCheckPage() {
                   <div className="flex flex-col gap-1.5 py-1">
                     {[
                       { icon: Shield, text: "개인정보는 상담 목적으로만 사용됩니다" },
-                      { icon: Clock, text: "24시간 내 연락" },
+                      { icon: Clock, text: "카카오톡 24시간 접수" },
                       { icon: AlertCircle, text: "계약·비용 강요 일절 없음" },
                     ].map(({ icon: Icon, text }) => (
                       <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-500">

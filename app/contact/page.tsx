@@ -12,8 +12,9 @@ import {
 } from "lucide-react";
 import { GA_EVENTS } from "../components/Analytics";
 
-import { SITE } from "../lib/seo";
-import { best, fmt } from "../lib/rank-records";
+import { best, fmt, clinicFact, SNAPSHOT_DATE } from "../lib/rank-records";
+
+const [, SNAP_M, SNAP_D] = SNAPSHOT_DATE.split("-").map(Number);
 
 /*
  * 업종별 순위 문구 — 손으로 적지 않는다.
@@ -32,7 +33,7 @@ const INDUSTRY_ICONS = [
   { id: "food", icon: UtensilsCrossed, label: "음식점·식당", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점"), color: "from-blue-600 to-indigo-700" },
   { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소"), color: "from-blue-600 to-blue-800" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], ...rank("치과"), color: "from-blue-600 to-blue-800" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "의료법 검수 후 진행", case: "게시 전 의료광고 심의 대상 확인", color: "from-blue-600 to-blue-800" },
   { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정", color: "from-blue-700 to-indigo-800" },
   { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-indigo-600" },
   { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
@@ -51,7 +52,7 @@ const GOALS = [
 ];
 
 const PROCESS_STEPS = [
-  { step: "01", title: "상담 신청", desc: "24시간 내 연락" },
+  { step: "01", title: "상담 신청", desc: "신청 24시간 접수" },
   { step: "02", title: "현황 무료 분석", desc: "업종·경쟁사 분석" },
   { step: "03", title: "전략 제안", desc: "맞춤 견적 제안" },
   { step: "04", title: "즉시 시작", desc: "계약 당일 착수" },
@@ -179,8 +180,8 @@ export default function ContactPage() {
               {[
                 { icon: CheckCircle2, text: "상담 비용 0원" },
                 { icon: CheckCircle2, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 대표가 직접 연락" },
-                { icon: CheckCircle2, text: "작업 내역 100% 공개" },
+                { icon: Clock, text: "신청 24시간 접수 · 하랑 대표 직접 연락" },
+                { icon: CheckCircle2, text: "게시 URL 전체 전달" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-gray-300">
                   <Icon size={14} className="text-blue-400" strokeWidth={2.5} /> {text}
@@ -312,7 +313,7 @@ export default function ContactPage() {
                     </div>
 
                     <h2 className="text-lg font-black text-gray-900 mb-1">어디로 연락드릴까요?</h2>
-                    <p className="text-xs text-gray-500 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
+                    <p className="text-xs text-gray-500 mb-6">신청은 24시간 접수하고 하랑 대표가 직접 연락드립니다 · 상담 비용 0원</p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <input
@@ -401,7 +402,7 @@ export default function ContactPage() {
                     <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4">
                       <span className="font-black text-gray-800">{form.name || "사장님"}</span>, 소중한 신청 감사합니다.<br />
-                      대표가 직접 <span className="font-semibold text-blue-600">24시간 이내</span>에 연락드립니다.
+                      신청은 24시간 접수되며, <span className="font-semibold text-blue-600">하랑 대표가 직접</span> 확인하고 연락드립니다.
                     </p>
 
                     {/* 다음 단계 안내 */}
@@ -429,7 +430,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex justify-center items-center gap-1.5">
                       <Handshake size={13} className="text-blue-400" strokeWidth={2.5} />
-                      <p className="text-xs text-gray-500">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</p>
+                      <p className="text-xs text-gray-500">10년 경력 누적 500건 프로젝트</p>
                     </div>
                   </div>
                 )}
@@ -530,7 +531,7 @@ export default function ContactPage() {
                       { ind: "음식점·식당", industry: "음식점" },
                       { ind: "청소·시설관리", industry: "청소" },
                       { ind: "카페·베이커리", industry: "카페" },
-                      { ind: "의원·치과", industry: "치과" },
+                      { ind: "의원·치과", industry: "치과", clinic: true },
                     ].flatMap((row) => {
                       const r = best(row.industry);
                       if (!r) return [];
@@ -541,7 +542,9 @@ export default function ContactPage() {
                             <div className="text-[11px] text-gray-600">{r.keyword}</div>
                           </div>
                           <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
-                            {r.days}일 계측 {fmt(r)}
+                            {row.clinic
+                              ? (r.heldPage1 ? `${r.days}일 계측 동안 1페이지 · ${SNAP_M}월 ${SNAP_D}일 ${r.to}위` : clinicFact(r))
+                              : `${r.days}일 계측 ${fmt(r)}`}
                           </div>
                         </div>,
                       ];

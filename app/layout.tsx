@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | 하랑마케팅",
   },
   description:
-    `플레이스 SEO, 블로그·체험단·인스타그램, 네이버 광고, 매장 사진촬영과 상세페이지 제작. 10년 경력 대표가 상담부터 관리까지 맡습니다. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
+    "플레이스 SEO, 블로그·체험단·인스타그램, 네이버 광고, 매장 사진촬영과 상세페이지 제작. 10년 경력 대표가 상담부터 관리까지 맡습니다. 상담 무료.",
   keywords: [
     "마케팅대행사", "소상공인마케팅", "자영업자마케팅",
     "네이버플레이스", "플레이스SEO", "플레이스상위노출",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "카카오맵마케팅", "지역마케팅", "소상공인광고",
     "네이버플레이스순위올리기", "플레이스마케팅", "소상공인블로그",
     "서울마케팅대행사", "경기마케팅대행사", "전국마케팅대행사",
-    "소상공인플레이스", "담당자직접관리마케팅", "재계약률97",
+    "소상공인플레이스", "담당자직접관리마케팅",
     "카페플레이스상위노출", "음식점플레이스", "학원블로그마케팅",
     "치과마케팅", "병원플레이스순위", "카페배포", "인스타그램계정관리", "상세페이지제작",
   ],
@@ -62,14 +62,14 @@ export const metadata: Metadata = {
     siteName: "하랑마케팅",
     title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
-      `검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 상담 무료, 재계약률 ${SITE.stats.renewalRate}.`,
+      "검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 2020년 개업 7년차, 상담 무료.",
     images: [
       {
         url: "https://www.harangmarketing.com/og-image.png",
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: `하랑마케팅 · 소상공인 전문 마케팅 대행사 | 재계약률 ${SITE.stats.renewalRate} · 10년 경력`,
+        alt: "하랑마케팅 · 소상공인 전문 마케팅 대행사. 2020년 개업 · 대표 10년 경력",
       },
     ],
   },
@@ -212,7 +212,7 @@ gtag('config', '${GA_ID}');`,
               alternateName: SITE.nameEn,
               legalName: SITE.legalName,
               url: SITE.base,
-              slogan: "소상공인의 매출을 올리는 가장 확실한 방법",
+              slogan: "상담한 대표가 끝까지 맡는 소상공인 마케팅",
               logo: {
                 "@type": "ImageObject",
                 url: `${SITE.base}/favicon.svg`,

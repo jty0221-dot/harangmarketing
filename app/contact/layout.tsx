@@ -3,8 +3,8 @@ import JsonLd from "../components/JsonLd";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, ogImage } from "../lib/seo";
 
 export const metadata: Metadata = {
-  title: "무료 상담 신청 | 24시간 내 연락",
-  description: "업종·지역·예산을 알려주시면 10년 경력 대표가 24시간 내 직접 연락드립니다. 상담 비용 0원, 부담 없이 신청하세요.",
+  title: "무료 상담 신청 | 카카오톡 24시간 접수",
+  description: "업종·지역·예산을 알려주시면 10년 경력 하랑 대표가 직접 연락드립니다. 카카오톡 문의는 24시간 접수합니다. 상담 비용 0원, 부담 없이 신청하세요.",
   keywords: ["마케팅 무료 상담", "소상공인 마케팅 상담", "하랑마케팅 상담", "마케팅 대행사 문의", "플레이스 SEO 상담"],
   alternates: { canonical: `${SITE.base}/contact` },
   openGraph: {

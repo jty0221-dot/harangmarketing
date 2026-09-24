@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ArrowRight, MessageCircle, Home, Search, Phone } from "lucide-react";
+import { getPortfolio } from "./lib/portfolio";
 
-import { SITE } from "./lib/seo";
 export const metadata: Metadata = {
   title: "페이지를 찾을 수 없습니다",
   description: "요청하신 페이지가 존재하지 않습니다. 하랑마케팅 홈으로 돌아가세요.",
@@ -42,7 +42,7 @@ export default function NotFound() {
               {[
                 { label: "서비스 소개", href: "/services", sub: "블로그·플레이스·SNS" },
                 { label: "진행 사례", href: "/cases", sub: "업종별 성과 확인" },
-                { label: "업종별 사례", href: "/portfolio", sub: "공개 사례 119건" },
+                { label: "업종별 사례", href: "/portfolio", sub: `공개 사례 ${getPortfolio().total}건` },
                 { label: "상담 신청", href: "/contact", sub: "무료 · 0원" },
               ].map((link) => (
                 <Link
@@ -89,8 +89,8 @@ export default function NotFound() {
                 010-7541-9054
               </span>
               <span>상담 비용 0원</span>
-              <span>24시간 내 연락</span>
-              <span>재계약률 {SITE.stats.renewalRate}</span>
+              <span>카카오톡 24시간 접수</span>
+              <span>10년 경력 누적 500건</span>
             </div>
           </div>
         </div>

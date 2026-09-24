@@ -1,8 +1,7 @@
 "use client";
 
-import { Star, MessageCircle, Clock, ShieldCheck } from "lucide-react";
+import { Calendar, MessageCircle, Clock, ShieldCheck } from "lucide-react";
 
-import { SITE } from "../lib/seo";
 export default function ReviewsSection() {
   return (
     <section className="py-16 md:py-24 bg-white overflow-hidden">
@@ -42,7 +41,7 @@ export default function ReviewsSection() {
             {/* Trust stats */}
             <div className="grid grid-cols-3 gap-4 w-full mt-2">
               {[
-                { icon: Star, val: SITE.stats.renewalRate, sub: "재계약률" },
+                { icon: Calendar, val: "7년차", sub: "2020년 개업" },
                 { icon: ShieldCheck, val: "10년+", sub: "마케팅 경력" },
                 { icon: Clock, val: "500+", sub: "완료 프로젝트" },
               ].map(({ icon: Icon, val, sub }) => (

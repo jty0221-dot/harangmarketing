@@ -9,7 +9,7 @@ import { ArrowRight, MessageCircle, Filter, Search, X, Handshake, Store } from "
 import AnimatedCounter from "../components/AnimatedCounter";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, itemListLd, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
+import { companyYear, itemListLd, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import {
@@ -51,6 +51,12 @@ import {
  */
 const CATEGORIES = ["전체", ...PLACE_RANK_INDUSTRIES];
 
+/*
+ * 회사 연차 타일은 app/lib/seo.ts 의 companyYear() 를 쓴다 — 개업한 해를 1년차로 센다 (2020년 개업 → 2026년 7년차 · 전역 규칙 1-C).
+ * 대표 경력 10년과 다른 숫자다. 해가 바뀌면 저절로 는다.
+ * 재계약률 타일이 서던 자리다 (2026-09-25 결재 · 기준일과 분모를 확인하기 전까지 화면에서 뺀다).
+ */
+
 /* ─── 구조화 데이터 ───────────────────────────────
    ItemList 로 사례 목록을 노출하면 AI 가 "어떤 성과 사례가 있나" 질의에
    개별 사례를 항목 단위로 인용할 수 있다. */
@@ -69,7 +75,7 @@ const CASES_LD = [
     type: "CollectionPage",
     name: "순위 계측 기록 · 하랑마케팅",
     description:
-      "하랑마케팅이 매일 잰 네이버 플레이스 순위 기록. 키워드마다 시작 순위 · 현재 순위 · 계측 일수만 적었습니다.",
+      "하랑마케팅이 직접 잰 네이버 플레이스 순위 기록. 키워드마다 시작 순위 · 현재 순위 · 계측 일수만 적었습니다.",
     dateModified: updatedAt("/cases", PLACE_RANK_GENERATED),
   }),
   breadcrumbLd([
@@ -106,7 +112,7 @@ const CasesPage: FC = () => {
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Cases</p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
-              매일 잰 순위를<br /><span className="text-blue-400">그대로 옮긴 기록</span>
+              직접 잰 순위를<br /><span className="text-blue-400">그대로 옮긴 기록</span>
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
               키워드 하나가 몇 위에서 몇 위가 됐는지, 며칠 걸렸는지만 적었습니다.
@@ -124,7 +130,7 @@ const CasesPage: FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 누적", color: "text-blue-600" },
-                { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "진행 고객 기준", color: "text-blue-600" },
+                { to: companyYear(), suffix: "년차", decimals: 0, label: "개업", sub: "2020년 4월 개업", color: "text-blue-600" },
                 { to: 6, suffix: "개+", decimals: 0, label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
                 { to: TRACK_TOTALS.stores, suffix: "곳", decimals: 0, label: "맡아온 매장", sub: "계약 서류로 확인한 것만", color: "text-blue-700" },
               ].map((s) => (
@@ -143,10 +149,10 @@ const CasesPage: FC = () => {
         {/* AEO — 성과 질의 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer={`하랑마케팅이 매일 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. 순위는 매일 같은 시각에 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 여기 실린 카드는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아닙니다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳, 업종은 ${TRACK_TOTALS.trades}종입니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
+          answer={`하랑마케팅이 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. 순위는 정해진 시각에 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 여기 실린 카드는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아닙니다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳, 업종은 ${TRACK_TOTALS.trades}종입니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
           facts={[
             { label: "완료 프로젝트", value: "500건+" },
-            { label: "재계약률", value: SITE.stats.renewalRate },
+            { label: "개업", value: "2020년 4월" },
             { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
             { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종` },
           ]}
@@ -374,14 +380,14 @@ const CasesPage: FC = () => {
             <div className="text-center mb-10">
               <div className="flex items-center justify-center gap-1.5 mb-4">
                 <Handshake size={15} className="text-yellow-300" strokeWidth={2.5} />
-                <span className="text-gray-400 text-xs">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
+                <span className="text-gray-400 text-xs">10년 경력 누적 500건 프로젝트</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-snug">
                 다음 성공 사례의 주인공이 되세요
               </h2>
               <p className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto">
-                위 사례들은 모두 무료 상담 한 번으로 시작됐습니다.<br />
-                지금 신청하시면 24시간 내에 연락드립니다.
+                상담과 진단은 0원입니다.<br />
+                카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 연락드립니다.
               </p>
             </div>
 
@@ -411,7 +417,7 @@ const CasesPage: FC = () => {
                 상담 신청 <ArrowRight size={15} />
               </Link>
             </div>
-            <p className="text-center text-[11px] text-gray-400 mt-4">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+            <p className="text-center text-[11px] text-gray-400 mt-4">상담 비용 0원 · 계약 강요 없음 · 카카오톡 24시간 접수</p>
 
           </div>
         </section>

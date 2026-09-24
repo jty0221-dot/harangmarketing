@@ -107,7 +107,7 @@ export default async function ReferencePage({
                 className="mx-auto mb-7 w-full max-w-[560px] rounded-full px-5 py-3 text-[14px] font-bold text-white md:text-[17px]"
                 style={{ background: "rgba(255,255,255,.14)", border: "1px solid rgba(255,255,255,.35)" }}
               >
-                카페배포 상위 노출 · 주간 1000건 이상
+                카페배포 상위 노출 캡처 모음
               </p>
 
               <h1
@@ -122,7 +122,7 @@ export default async function ReferencePage({
               <div className="mx-auto mt-8 flex w-full max-w-[620px] flex-col gap-3">
                 {[
                   "모바일 통합검색 카페 영역 노출",
-                  "실제 대행사에 전달된 실사 증빙 자료",
+                  "실제 게시 화면을 캡처한 자료",
                   "지역맘 카페 · 대형 카페 커뮤니티 배포",
                 ].map((t) => (
                   <span

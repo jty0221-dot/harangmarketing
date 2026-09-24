@@ -10,8 +10,8 @@ import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
-const PAGE_TITLE = "쇼핑몰·소매점 마케팅 대행사 | 온·오프라인 매출 증대";
-const PAGE_DESCRIPTION = "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온·오프라인 동시 매출 증대 실제 성과.";
+const PAGE_TITLE = "쇼핑몰·소매점 마케팅 대행사 | 스마트스토어 · 인스타 · 플레이스";
+const PAGE_DESCRIPTION = "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온라인 스토어와 오프라인 매장을 한 흐름으로 묶어 설계합니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   keywords: ["쇼핑몰 마케팅", "소매점 마케팅", "의류 마케팅 대행사", "스마트스토어 마케팅", "인스타 쇼핑 마케팅"],
   openGraph: {
     title: "쇼핑몰·소매점 마케팅 대행사 | 하랑마케팅",
-    description: "온·오프라인 매출을 동시에 올리는 쇼핑몰 마케팅.",
+    description: "스마트스토어부터 매장 집객까지 온·오프라인을 함께 챙기는 쇼핑몰 마케팅.",
     url: "https://www.harangmarketing.com/services/shopping",
     images: [ogImage("쇼핑몰 마케팅 하랑마케팅")],
   },
@@ -82,7 +82,7 @@ export default function ShoppingPage() {
               <span className="text-purple-400">온·오프라인 동시에</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              스마트스토어·인스타그램 쇼핑부터 오프라인 매장 집객까지, 쇼핑몰과 소매점의 두 채널을 동시에 살립니다.
+              스마트스토어·인스타그램 쇼핑부터 오프라인 매장 집객까지, 쇼핑몰과 소매점의 두 채널을 한 흐름으로 묶습니다.
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {RESULTS.map(r => (
@@ -108,11 +108,11 @@ export default function ShoppingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="온라인 쇼핑몰 마케팅은 무엇부터 시작해야 하나요?"
-          answer="온라인 쇼핑몰은 오프라인 매장과 달리 지역 키워드가 없으므로 상품 키워드 블로그 SEO와 체험단 후기 확보가 출발점입니다. 검색으로 유입된 고객이 후기를 보고 구매를 결정하기 때문입니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 쇼핑몰 마케팅은 전국 어디서나 비대면으로 진행되며, 비용은 상품군과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
+          answer="온라인 쇼핑몰은 오프라인 매장과 달리 지역 키워드가 없으므로 상품 키워드 블로그 SEO와 체험단 후기 확보가 출발점입니다. 검색으로 유입된 고객이 후기를 보고 구매를 결정하기 때문입니다. 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 쇼핑몰 마케팅은 전국 어디서나 비대면으로 진행되며, 비용은 상품군과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
           facts={[
             { label: "주력 채널", value: "상품 키워드 블로그 SEO" },
             { label: "보조 채널", value: "체험단 후기" },
-            { label: "순위 계측", value: "매일 스냅샷" },
+            { label: "순위 계측", value: "스냅샷 저장" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -151,9 +151,9 @@ export default function ShoppingPage() {
             <p className="text-gray-500 text-sm text-center mb-10">온라인과 오프라인을 연결하는 통합 마케팅</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
-                { icon: Package, color: "from-purple-500 to-purple-700", title: "스마트스토어 최적화", desc: "상품 태그, 상세페이지 카피, 리뷰 관리, 스토어 SEO. 검색 유입부터 구매 전환율까지 끌어올립니다." },
-                { icon: TrendingUp, color: "from-pink-500 to-rose-500", title: "인스타그램 쇼핑 운영", desc: "제품 사진 기획, 릴스 콘텐츠, 쇼핑 태그 설정, 팔로워 기반 매출 전환. 브랜드 이미지와 매출을 동시에 쌓습니다." },
-                { icon: Star, color: "from-blue-600 to-orange-500", title: "오프라인 집객 마케팅", desc: "네이버 플레이스·카카오맵 최적화로 '근처 검색' 유입을 늘립니다. 오프라인 방문 고객이 온라인 구매로도 이어집니다." },
+                { icon: Package, color: "from-purple-500 to-purple-700", title: "스마트스토어 최적화", desc: "상품 태그, 상세페이지 카피, 리뷰 관리, 스토어 SEO. 검색 유입부터 결제 버튼까지 가는 흐름을 손봅니다." },
+                { icon: TrendingUp, color: "from-pink-500 to-rose-500", title: "인스타그램 쇼핑 운영", desc: "제품 사진 기획, 릴스 콘텐츠, 쇼핑 태그 설정, 팔로워가 상품 페이지로 넘어가는 동선 세팅. 브랜드 이미지와 구매 동선을 함께 쌓습니다." },
+                { icon: Star, color: "from-blue-600 to-orange-500", title: "오프라인 집객 마케팅", desc: "네이버 플레이스·카카오맵 최적화로 근처 검색에 매장이 보이도록 세팅합니다. 오프라인 손님이 온라인 스토어도 찾을 수 있게 연결합니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
                   <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
@@ -180,7 +180,7 @@ export default function ShoppingPage() {
         <section className="py-14 bg-gray-950">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">쇼핑몰 무료 진단 받기</h2>
-            <p className="text-gray-400 text-sm mb-7">온·오프라인 채널 분석부터 매출 증대 전략까지 0원.</p>
+            <p className="text-gray-400 text-sm mb-7">온·오프라인 채널 분석부터 판매 동선 전략까지 0원.</p>
             <Link href="/contact?industry=쇼핑몰"
               className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm">
               무료 상담 신청 <ArrowRight size={15} />

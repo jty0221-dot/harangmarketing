@@ -3,7 +3,6 @@ import Link from "next/link";
 import {
   ArrowRight, Check, Star, TrendingUp, Users, Phone, Search, Sparkles, ShieldCheck,
 } from "lucide-react";
-import { SITE } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "디자인 미리보기",
@@ -197,7 +196,7 @@ export default function WdsPreviewPage() {
                 style={{ background: "rgba(255,255,255,0.14)", color: "#fff" }}
               >
                 <Sparkles size={12} strokeWidth={2.5} />
-                재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트
+                2020년 개업 · 500+ 프로젝트
               </span>
               <h3 className="w-display-2 mt-4 max-w-[560px]" style={{ color: "#fff" }}>
                 사장님 매장, 검색되게 만들어 드립니다
@@ -223,9 +222,9 @@ export default function WdsPreviewPage() {
           {/* 지표 */}
           <div className="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
-              [TrendingUp, "재계약률", SITE.stats.renewalRate],
+              [TrendingUp, "2020년 개업", "7년차"],
               [Users, "누적 프로젝트", "500+"],
-              [Star, "상담 답변", "24시간 내"],
+              [Star, "카카오톡 문의", "24시간 접수"],
               [ShieldCheck, "대표 경력", "10년+"],
             ].map(([Icon, label, value], i) => {
               const I = Icon as typeof TrendingUp;
@@ -242,7 +241,7 @@ export default function WdsPreviewPage() {
           {/* 서비스 카드 */}
           <div className="mb-4 grid gap-4 md:grid-cols-3">
             {[
-              ["블로그 마케팅", "검색 상위 노출까지 책임지는 원고·발행 대행", "편당 4만원 기준~"],
+              ["블로그 마케팅", "검색 상위 노출을 목표로 하는 원고·발행 대행", "편당 4만원 기준~"],
               ["플레이스 SEO", "지도 노출·리뷰·저장까지 한 번에 관리", "맞춤 견적"],
               ["SNS 부스트", "팔로워·조회수를 원하는 만큼 셀프 주문", "건당 300원~"],
             ].map(([title, desc, price]) => (
@@ -254,7 +253,7 @@ export default function WdsPreviewPage() {
                 <p className="w-body-2 mt-2" style={{ color: "var(--w-text-muted)" }}>{desc}</p>
                 <p className="w-label-1 mt-4 font-bold" style={{ color: "var(--w-primary)" }}>{price}</p>
                 <ul className="mt-4 space-y-1.5">
-                  {["계약 강요 없음", "24시간 내 연락"].map((f) => (
+                  {["계약 강요 없음", "카카오톡 24시간 접수"].map((f) => (
                     <li key={f} className="flex items-center gap-1.5">
                       <Check size={13} strokeWidth={3} style={{ color: "var(--w-success)" }} />
                       <span className="w-caption-1" style={{ color: "var(--w-text-sub)" }}>{f}</span>
@@ -270,7 +269,7 @@ export default function WdsPreviewPage() {
             <div>
               <p className="w-title-2" style={{ color: "var(--w-text)" }}>지금 무료 전략 진단을 받아보세요</p>
               <p className="w-body-2 mt-1" style={{ color: "var(--w-text-muted)" }}>
-                상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락
+                상담 비용 없음 · 계약 강요 없음 · 카카오톡 24시간 접수
               </p>
             </div>
             <span className="w-btn w-btn-primary">진단 신청<ArrowRight size={16} strokeWidth={2.5} /></span>

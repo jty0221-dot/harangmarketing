@@ -25,10 +25,10 @@ export async function GET() {
   // 순위 계측 사례는 글이 아니라 기록이라 블로그 색인에 없다.
   // 갱신을 구독으로 받아볼 수 있게 맨 앞에 한 건만 싣는다 (숫자는 lib 에서만 온다).
   const rankItem = `    <item>
-      <title>${escapeXml(`네이버 플레이스 순위 계측 사례 · 매일 같은 시각에 잰 기록`)}</title>
+      <title>${escapeXml(`네이버 플레이스 순위 계측 사례 · 오후 2~3시에 잰 기록`)}</title>
       <link>${BASE}/cases/place-rank</link>
       <description>${escapeXml(
-        `매일 같은 시각에 잰 네이버 플레이스 순위를 키워드마다 한 장씩 적었습니다. 시작 순위와 확인된 순위와 걸린 일수만 적고, 상호와 지역명은 적지 않습니다.`
+        `오후 2~3시에 잰 네이버 플레이스 순위를 키워드마다 한 장씩 적었습니다. 시작 순위와 확인된 순위와 걸린 일수만 적고, 상호와 지역명은 적지 않습니다.`
       )}</description>
       <pubDate>${toRfc822(PLACE_RANK_GENERATED)}</pubDate>
       <guid isPermaLink="false">${BASE}/cases/place-rank?d=${PLACE_RANK_GENERATED}</guid>

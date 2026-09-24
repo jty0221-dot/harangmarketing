@@ -100,7 +100,7 @@ const TRUST: { icon: typeof Zap; title: string; desc: string }[] = [
   {
     icon: BadgeCheck,
     title: "마케팅 대행사 직영",
-    desc: `재계약률 ${SITE.stats.renewalRate}의 하랑마케팅이 실제 고객사 캠페인에 쓰는 프로그램을 같은 라인으로 공급합니다. 판매만 하는 업체와 출발점이 다릅니다.`,
+    desc: "하랑마케팅이 실제 고객사 캠페인에 쓰는 프로그램을 같은 라인으로 공급합니다. 판매만 하는 업체와 출발점이 다릅니다.",
   },
   {
     icon: Scale,
@@ -362,7 +362,7 @@ export default function SnsStorePage() {
               <ShieldCheck size={18} className="text-blue-600 shrink-0" strokeWidth={2.2} />
               <p className="text-[13px] leading-relaxed text-gray-600">
                 <strong className="font-black text-gray-800">정직 고지.</strong>{" "}
-                이 스토어가 보장하는 것은 주문하신 수치가 채워지는 것까지입니다. 검색 순위나
+                이 스토어의 작업 범위는 주문하신 수치가 채워지는 것까지입니다. 검색 순위나
                 알고리즘 노출은 플랫폼이 결정하는 영역이라 약속드리지 않습니다. 계정 육성과
                 콘텐츠 전략까지 필요하시면{" "}
                 <Link href="/services#sns" className="font-bold text-blue-600 underline underline-offset-2">

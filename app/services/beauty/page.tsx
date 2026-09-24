@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 const PAGE_TITLE = "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단";
-const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 팔로워 증가, 플레이스 상위 노출, 포토리뷰 확보로 예약을 꽉 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 상위 노출, 포토리뷰 확보로 손님이 예약 전에 보는 자리를 채웁니다. 무료 상담 가능.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords: ["미용실 마케팅", "네일샵 마케팅", "피부샵 마케팅", "뷰티샵 플레이스 SEO", "헤어샵 인스타그램"],
   openGraph: {
     title: "미용·네일·피부샵 마케팅 | 하랑마케팅",
-    description: "인스타그램·플레이스 동시 상승으로 예약을 꽉 채우는 뷰티샵 마케팅.",
+    description: "손님이 예약 전에 보는 인스타그램·플레이스를 함께 채우는 뷰티샵 마케팅.",
     url: "https://www.harangmarketing.com/services/beauty",
     images: [ogImage()],
   },
@@ -74,7 +74,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "네일샵도 네이버 플레이스가 중요한가요?",
     a:
-      "중요합니다. 네일과 속눈썹은 집이나 직장 가까운 곳을 지도에서 찾아 예약하는 경우가 많아서, 지도에서 몇 번째에 보이는지가 문의 수를 그대로 바꿉니다. 저희는 플레이스 정보와 사진 · 메뉴 · 예약 버튼까지 정리한 다음 순위를 매일 저장해 변화를 봅니다. 다만 미용 업종은 아직 공개할 순위 기록이 없어서 다른 업종 숫자를 대신 보여드리지 않습니다.",
+      "중요합니다. 네일과 속눈썹은 집이나 직장 가까운 곳을 지도에서 찾아 예약하는 경우가 많아서, 지도에서 몇 번째에 보이는지가 문의 수를 그대로 바꿉니다. 저희는 플레이스 정보와 사진 · 메뉴 · 예약 버튼까지 정리한 다음 순위를 스냅샷으로 기록해 변화를 봅니다. 다만 미용 업종은 아직 공개할 순위 기록이 없어서 다른 업종 숫자를 대신 보여드리지 않습니다.",
   },
   {
     q: "체험단은 꼭 해야 하나요?",
@@ -107,11 +107,11 @@ export default function BeautyLandingPage() {
             </div>
             <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
               뷰티샵 예약을<br />
-              <span className="text-pink-400">인스타·플레이스로 채우세요</span>
+              <span className="text-pink-400">인스타·플레이스로 받으세요</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
               헤어·네일·피부 업종 특화 콘텐츠 전략.<br />
-              인스타그램 · 네이버 플레이스 동시 상승.
+              인스타그램 · 네이버 플레이스 한 번에 관리.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
@@ -133,11 +133,11 @@ export default function BeautyLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="미용실·네일샵 마케팅은 어떤 채널이 가장 효과적인가요?"
-          answer="미용·네일·뷰티 업종은 인스타그램 릴스와 비포애프터 포트폴리오가 가장 효과적입니다. 시술 결과를 눈으로 확인해야 예약으로 이어지는 업종이기 때문입니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 뷰티 마케팅 비용은 시술 구성과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="미용·네일·뷰티 업종은 인스타그램 릴스와 비포애프터 포트폴리오가 가장 효과적입니다. 시술 결과를 눈으로 확인해야 예약으로 이어지는 업종이기 때문입니다. 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 뷰티 마케팅 비용은 시술 구성과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
             { label: "주력 채널", value: "인스타 릴스" },
             { label: "보조 채널", value: "비포애프터 포트폴리오" },
-            { label: "순위 계측", value: "매일 스냅샷" },
+            { label: "순위 계측", value: "스냅샷 저장" },
             { label: "상담·진단", value: "0원" },
           ]}
         />

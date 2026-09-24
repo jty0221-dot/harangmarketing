@@ -95,7 +95,7 @@ export default function EntryPopup() {
 
         <div className="p-5 pr-14">
           <p className="w-label2 font-bold" style={{ color: "var(--w-primary)" }}>
-            상담 0원 · 24시간 내 연락
+            상담 0원 · 카카오톡 문의 24시간 접수
           </p>
           <p className="w-heading2 mt-1.5" style={{ color: "var(--w-label-strong)" }}>
             매장을 보고 맞춤으로 제안드립니다

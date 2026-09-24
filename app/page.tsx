@@ -32,10 +32,13 @@ import FaqAccordion from "./components/FaqAccordion";
 import GlossarySection from "./components/GlossarySection";
 import {
   SITE, CORE_FAQ, ANSWER_SENTENCES, PAGE_UPDATED,
-  faqLd, webPageLd, breadcrumbLd, definitionsLd,
+  faqLd, webPageLd, breadcrumbLd, definitionsLd, companyYear,
 } from "./lib/seo";
 import type { LucideIcon } from "lucide-react";
-import { fmt, byKeyword, BIGGEST_GAIN } from "./lib/rank-records";
+import {
+  fmt, byKeyword, BIGGEST_GAIN,
+  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES,
+} from "./lib/rank-records";
 import { TRACK_RECORD, TRACK_TOTALS } from "./lib/track-record";
 
 /*
@@ -71,16 +74,43 @@ function rankExtra(keyword: string) {
 }
 
 /*
+ * 병·의원 업종 카드 칸 (진우 2026-09-24 (목) 판정 · D-0177 · C-50).
+ * 결과 칸에 기준일을 붙이고 기간은 닫아서 적는다. 날짜 없는 1페이지는 지금도 그렇다는 현재형으로 읽힌다.
+ * BEFORE · AFTER 칸은 두지 않는다. 두면 몇 위까지 올렸다로 읽힌다. 같은 업종 두 번째 기록 줄도 달지 않는다.
+ * 첫 스냅샷 날짜는 rank-records.ts 의 FIRST_SNAPSHOT_DATE 를 그대로 쓴다. 스냅샷은 지우지 않으므로 바뀌지 않는다.
+ */
+const koMonthDay = (iso: string) => {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${m}월 ${d}일`;
+};
+function clinicCells() {
+  const asOf = koMonthDay(SNAPSHOT_DATE);
+  const result = CLINIC_ALL_PAGE1
+    ? `${asOf} 기준 1페이지`
+    : CLINIC_SUMMARY.page1 > 0
+      ? `${asOf} 기준 ${CLINIC_SUMMARY.page1}개 1페이지`
+      : "계측 중";
+  return {
+    result,
+    resultLabel: `계약 키워드 ${CLINIC_SUMMARY.keywords}개`,
+    duration: `${koMonthDay(FIRST_SNAPSHOT_DATE)}부터 ${asOf}까지 스냅샷 ${SUMMARY.snapshots}회 계측`,
+    ...(CLINIC_NOTE ? { note: CLINIC_NOTE } : {}),
+  };
+}
+
+/*
  * 사례 카드 넉 장 — Before · After · 걸린 일수를 손으로 적지 않는다.
  * 여기 넉 장을 직접 써 뒀더니 셋이 틀린 값이 됐다 (치과 5위 → 1위는 아예 없는 기록이고,
  * 청소는 67위 → 3위 · 22일, 카페는 25일이다). 기록이 없으면 카드가 통째로 빠진다 (C-42).
  * 1위 달성 · 1페이지 진입 배지도 계측값이 정한다 — 2위를 1위라고 적지 않게.
+ * 배지는 순위가 오른 기록에만 단다. 자리를 지킨 기록, 1페이지 안에서만 움직인 기록,
+ * 병·의원 업종 카드에는 달지 않는다 (진우 2026-09-24 (목) 판정 · 진행형 1위 유지 배지 금지).
  */
 const CASE_CARDS = [
   { industry: "음식점", keyword: "지역 맛집 키워드", service: "플레이스 SEO + 리뷰", icon: UtensilsCrossed },
   { industry: "청소", keyword: "지역 상가청소 키워드", service: "플레이스 SEO + 블로그", icon: Sparkles },
   { industry: "카페", keyword: "지역 카페 키워드", service: "플레이스 SEO + 블로그", icon: Coffee },
-  { industry: "치과", keyword: "지역 치과 키워드", service: "블로그 + 플레이스 SEO", icon: Stethoscope },
+  { industry: "네일", keyword: "지역 네일 키워드", service: "플레이스 순위 관리", icon: Scissors },
 ].flatMap((c) => {
   const r = byKeyword(c.keyword);
   if (!r) return [];
@@ -93,7 +123,14 @@ const CASE_CARDS = [
       before: { label: "플레이스 순위", value: `${r.from}위` },
       after: { label: "플레이스 순위", value: `${r.to}위` },
       period: `${r.days}일 계측`,
-      highlight: r.to === 1 ? "플레이스 1위 달성" : "플레이스 1페이지 진입",
+      highlight:
+        CLINIC_INDUSTRIES.includes(c.industry) || r.from <= r.to
+          ? null
+          : r.to === 1
+            ? "플레이스 1위 달성"
+            : r.from > 5 && r.to <= 5
+              ? "플레이스 1페이지 진입"
+              : null,
     },
   ];
 });
@@ -135,12 +172,15 @@ type Industry = {
   points: string[];
   result: string;
   resultLabel: string;
-  before: string;
-  after: string;
+  /** 병·의원 카드에는 두지 않는다 (몇 위까지 올렸다로 읽힌다) */
+  before?: string;
+  after?: string;
   duration: string;
   location: string;
   /** 같은 업종에서 계측된 두 번째 기록 — 없는 업종에는 붙이지 않는다 */
   extra?: string;
+  /** 병·의원 카드의 기준일 한 줄 — BEFORE · AFTER 칸 자리에 둔다 */
+  note?: string;
 };
 
 const INDUSTRIES: Industry[] = [
@@ -187,8 +227,7 @@ const INDUSTRIES: Industry[] = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["블로그 신뢰도 강화", "의료광고 심의 확인", "플레이스 SEO"],
-    ...rankCells("지역 치과 키워드"),
-    ...rankExtra("지역 피부과 키워드"),
+    ...clinicCells(),
     location: "플레이스 순위",
   },
   {
@@ -221,20 +260,20 @@ const INDUSTRIES: Industry[] = [
   },
 ];
 
-const COMPARE_ITEMS = [
+const COMPARE_ITEMS: { category: string; harang: string; general?: string }[] = [
   { category: "전략 설계", harang: "업종별 맞춤형 전략 (카페·병원·쇼핑몰 특화)", general: "일괄 패키지, 템플릿 기반" },
-  { category: "분석 방식", harang: "플레이스 순위 매일 스냅샷 계측", general: "노출·클릭 수 위주, 감각 운영" },
-  { category: "보고 체계", harang: "월 2회 상세 리포트 + 주간 최적화", general: "월 1회 간단 보고, 설정 후 방치" },
+  { category: "분석 방식", harang: "플레이스 순위 스냅샷 계측" },
+  { category: "보고 체계", harang: "구성별 정기 리포트" },
   { category: "담당자", harang: "10년 경력 대표가 1:1 관리", general: "신입 담당자 수시 교체" },
   { category: "성과 기준", harang: "계측 가능한 순위·리뷰 수치 기준", general: "노출 수·팔로워 수 등 허수 지표" },
-  { category: "소통 방식", harang: "카카오·전화 24시간 응대, 직접 연락", general: "이메일·업무시스템, 응답 지연 빈번" },
+  { category: "소통 방식", harang: "카카오톡 24시간 접수 · 하랑 대표 직접 연락" },
 ];
 
 const PROCESS_STEPS = [
   { step: "01", title: "무료 상담 신청", desc: "전화·카카오·폼 중 편한 방법으로 연락해주세요. 부담 없습니다.", icon: MessageCircle, color: "from-blue-500 to-blue-700" },
   { step: "02", title: "현황 무료 분석", desc: "업종·경쟁사·현재 순위를 분석해 문제점과 기회를 정리합니다.", icon: Search, color: "from-blue-600 to-blue-800" },
   { step: "03", title: "맞춤 전략 제안", desc: "분석 결과를 바탕으로 업종에 맞는 전략과 견적을 제안합니다.", icon: FileText, color: "from-blue-700 to-indigo-700" },
-  { step: "04", title: "계약 후 즉시 시작", desc: "계약 당일부터 작업이 시작됩니다. 월 2회 상세 리포트로 성과를 확인합니다.", icon: TrendingUp, color: "from-blue-600 to-blue-800" },
+  { step: "04", title: "계약 후 즉시 시작", desc: "계약 당일부터 작업이 시작됩니다. 정기 리포트로 성과를 확인합니다.", icon: TrendingUp, color: "from-blue-600 to-blue-800" },
 ];
 
 const PACKAGES = [
@@ -248,14 +287,14 @@ const PACKAGES = [
   {
     name: "두세 채널 묶음",
     desc: "검색 유입부터 만들어야 하는 매장",
-    roi: "검색 유입 만들고 문의로 전환",
+    roi: "검색 유입부터 문의 동선까지 한 번에 세팅",
     features: ["플레이스 SEO 최적화", "블로그 관리대행 월 10~15편", "파워컨텐츠 원고 설계·검수", "네이버 광고 운영대행", "월 리포트 2회"],
     popular: true,
   },
   {
     name: "전 채널 통합",
     desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
-    roi: "지역 키워드 전 구간 점유",
+    roi: "지역 키워드 여러 구간 동시 공략",
     features: ["블로그·카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
     popular: false,
   },
@@ -264,9 +303,9 @@ const PACKAGES = [
 
 const TRUST_ITEMS = [
   { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
-  { icon: Handshake, title: `${SITE.stats.renewalRate} 재계약률`, desc: "성과로 증명. 고객이 먼저 다시 찾는 대행사", color: "from-blue-500 to-blue-700" },
-  { icon: Clock, title: "24시간 내 응답", desc: "문의 후 24시간 이내 연락, 평일 항상 대응", color: "from-blue-600 to-indigo-700" },
-  { icon: TrendingUp, title: "매출 중심 관리", desc: "노출 수가 아닌 실제 매출 증대를 목표로 운영", color: "from-blue-700 to-indigo-800" },
+  { icon: Handshake, title: "하랑 대표 직접 관리", desc: "상담한 사람이 계약부터 끝까지 그대로 맡습니다.", color: "from-blue-500 to-blue-700" },
+  { icon: Clock, title: "카카오톡 24시간 접수", desc: "남겨 주신 문의는 하랑 대표가 직접 확인하고 연락합니다.", color: "from-blue-600 to-indigo-700" },
+  { icon: TrendingUp, title: "손님 동선 중심 관리", desc: "노출 수보다 손님이 검색하고 고르는 동선을 기준으로 운영", color: "from-blue-700 to-indigo-800" },
 ];
 
 /**
@@ -276,21 +315,19 @@ const TRUST_ITEMS = [
  */
 const TICKER = [
   ...tickerLine("지역 카페 키워드"),
-  `재계약률 ${SITE.stats.renewalRate} · 500+ 프로젝트`,
-  ...tickerLine("지역 치과 키워드"),
+  "10년 경력 누적 500건 프로젝트",
   "대표가 직접 관리 · 상담 비용 0원",
   ...tickerLine("지역 맛집 키워드"),
   ...tickerLine("지역 상가청소 키워드"),
   ...tickerLine("지역 꽃집 키워드"),
   "업종별 맞춤 설계 · 묶음 강요 없음",
-  ...tickerLine("지역 피부과 키워드"),
-  "매일 순위 계측 · 월 리포트 제공",
+  "정해진 시각 순위 계측 · 월 리포트 제공",
   "상담 비용 0원 · 계약 강요 없음",
   ...tickerLine("지역 정기청소 키워드"),
   "10년+ 경력 · 업종별 맞춤 전략",
-  "24시간 내 연락",
+  "카카오톡 문의 24시간 접수",
   `맡아온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종`,
-  "네이버 플레이스 스냅샷 매일 저장",
+  "네이버 플레이스 순위 스냅샷 기록",
   "성과 확약 없음 · 계측값만 보고",
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
 ];
@@ -317,7 +354,7 @@ export default function HomePage() {
           facts={[
             { label: "설립", value: "2020년" },
             { label: "누적 프로젝트", value: "500건+" },
-            { label: "재계약률", value: SITE.stats.renewalRate },
+            { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳` },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -370,7 +407,7 @@ export default function HomePage() {
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드별 순위, 잰 그대로 적었습니다"
-          description={`매일 같은 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
+          description={`정해진 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />
@@ -484,7 +521,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
-                <p className="text-[11px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>상담 0원 · 24시간 내 연락</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.18em] mb-1" style={{ color: "var(--h-blue)" }}>상담 0원 · 카카오톡 문의 24시간 접수</p>
                 <p className="text-base md:text-lg font-black" style={{ color: "var(--h-dark)" }}>
                   우리 매장엔 뭐가 필요한지 궁금하신가요?
                 </p>
@@ -520,7 +557,7 @@ export default function HomePage() {
                     <p className="mt-2.5 text-sm md:text-[15px] leading-relaxed text-gray-300 max-w-xl">
                       인스타·유튜브·틱톡·네이버 등 8개 플랫폼의 팔로워·좋아요·조회수를
                       대행 계약 없이 필요한 만큼만 주문하세요. 비밀번호 없이 링크만으로 진행되고,
-                      주문번호로 진행 상황을 실시간 확인할 수 있습니다.
+                      주문번호로 진행 상황을 조회할 수 있습니다.
                     </p>
                     <div className="mt-5 flex items-center gap-2.5 flex-wrap">
                       {(["instagram", "youtube", "tiktok", "threads", "naver", "x", "facebook", "telegram", "kakao"] as PlatformId[]).map((id) => (
@@ -578,7 +615,7 @@ export default function HomePage() {
                   </h2>
                 </div>
                 <p className="text-sm max-w-xs leading-relaxed" style={{ color: "var(--h-muted)" }}>
-                  같은 업종 실제 클라이언트의 before·after 수치입니다.<br />
+                  같은 업종 실제 진행 기록입니다. before·after 수치는 계측이 쌓인 카드에만 적었습니다.<br />
                   카드를 클릭하면 해당 업종 무료 진단을 신청할 수 있습니다.
                 </p>
               </div>
@@ -604,25 +641,35 @@ export default function HomePage() {
                           <p className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>{ind.location} · {ind.duration}</p>
                         </div>
                       </div>
-                      <div className="text-right shrink-0">
-                        <div className="text-lg font-black leading-none tabular-nums" style={{ color: "var(--h-amber)" }}>{ind.result}</div>
+                      <div className="text-right shrink-0 max-w-[50%] break-keep">
+                        <div className="text-lg font-black leading-tight tabular-nums" style={{ color: "var(--h-amber)" }}>{ind.result}</div>
                         <div className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>{ind.resultLabel}</div>
                       </div>
                     </div>
 
                     <div className="p-5">
-                      {/* before / after */}
-                      <div className="flex items-center gap-2 mb-4 rounded-xl p-3" style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)" }}>
-                        <div className="flex-1 text-center">
-                          <div className="text-[11px] font-bold text-red-700 mb-1">BEFORE</div>
-                          <div className="text-xs font-semibold" style={{ color: "var(--h-muted)" }}>{ind.before}</div>
+                      {/* before / after · 병·의원 카드에는 두지 않는다 */}
+                      {ind.before && ind.after && (
+                        <div className="flex items-center gap-2 mb-4 rounded-xl p-3" style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)" }}>
+                          <div className="flex-1 text-center">
+                            <div className="text-[11px] font-bold text-red-700 mb-1">BEFORE</div>
+                            <div className="text-xs font-semibold" style={{ color: "var(--h-muted)" }}>{ind.before}</div>
+                          </div>
+                          <ChevronRight size={14} strokeWidth={1.5} style={{ color: "var(--w-label-assistive)" }} className="shrink-0" />
+                          <div className="flex-1 text-center">
+                            <div className="text-[11px] font-bold mb-1" style={{ color: "var(--h-blue)" }}>AFTER</div>
+                            <div className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{ind.after}</div>
+                          </div>
                         </div>
-                        <ChevronRight size={14} strokeWidth={1.5} style={{ color: "var(--w-label-assistive)" }} className="shrink-0" />
-                        <div className="flex-1 text-center">
-                          <div className="text-[11px] font-bold mb-1" style={{ color: "var(--h-blue)" }}>AFTER</div>
-                          <div className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{ind.after}</div>
+                      )}
+
+                      {/* 병·의원 기준일 한 줄 */}
+                      {ind.note && (
+                        <div className="mb-4 rounded-lg px-3 py-2 text-[11px] leading-relaxed"
+                          style={{ background: "var(--h-bg)", border: "1px solid var(--h-border)", color: "var(--h-muted)" }}>
+                          {ind.note}
                         </div>
-                      </div>
+                      )}
 
                       {/* 같은 업종 추가 계측 기록 */}
                       {ind.extra && (
@@ -685,7 +732,7 @@ export default function HomePage() {
                   q: "광고비는 쓰는데 매출이 안 늘어요",
                   a: "업종 특성을 무시한 일괄 마케팅이 원인입니다. 하랑은 카페·병원·학원 등 업종별 맞춤 전략만 설계합니다. 다만 매출은 저희가 계측할 수 있는 값이 아니라 수치로 약속드리지 않습니다.",
                   result: "플레이스 순위로 계측",
-                  period: "매일 스냅샷 · 월 리포트",
+                  period: "순위 스냅샷 · 월 리포트",
                   icon: TrendingUp,
                   iconColor: "from-blue-500 to-blue-700",
                   cardBorder: "border-blue-100",
@@ -695,8 +742,8 @@ export default function HomePage() {
                 {
                   q: "보고서를 봐도 뭔지 모르겠어요",
                   a: "복잡한 마케팅 용어 없이 플레이스 순위·리뷰 변화를 숫자로만 보고드립니다. 대표가 직접 카카오톡으로 설명합니다.",
-                  result: `재계약률 ${SITE.stats.renewalRate}`,
-                  period: "6개월 이상 계약 기준",
+                  result: "순위·리뷰 숫자로 보고",
+                  period: "마케팅 용어 없이",
                   icon: BarChart3,
                   iconColor: "from-blue-600 to-blue-800",
                   cardBorder: "border-blue-100",
@@ -716,9 +763,9 @@ export default function HomePage() {
                 },
                 {
                   q: "마케팅이 효과 있는지 도통 모르겠어요",
-                  a: "플레이스 순위·리뷰 증감을 매월 2회 수치로 정리해 공유합니다. '감'이 아닌 숫자로 성과를 확인하실 수 있습니다.",
-                  result: "월 2회 성과 리포트",
-                  period: "전 클라이언트 공통 적용",
+                  a: "플레이스 순위·리뷰 증감을 구성에 따라 월 1회에서 주 1회까지 수치로 정리해 공유합니다. 감이 아닌 숫자로 성과를 확인하실 수 있습니다.",
+                  result: "구성별 정기 성과 리포트",
+                  period: "모든 구성에 리포트 포함",
                   icon: BarChart3,
                   iconColor: "from-blue-700 to-indigo-800",
                   cardBorder: "border-blue-100",
@@ -777,7 +824,7 @@ export default function HomePage() {
                   2018년 해병대 장교로 전역 후 카페를 창업했다가 실패했습니다. 이후 마케팅 대행사에 취업해 팀장까지 올라갔지만,
                   고객을 대충 대하고 성과도 없이 돈만 받는 방식에 혐오감을 느껴 2020년 직접 창업했습니다.
                   <strong className="text-gray-800">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
-                  현재까지 소상공인 500곳 이상과 함께 성장해왔습니다.
+                  창업 전 경력까지 합쳐 10년 동안 500건 넘는 프로젝트를 맡아 왔습니다.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-7">
@@ -785,8 +832,8 @@ export default function HomePage() {
                     { label: "해병대 장교 출신", sub: "책임감·원칙" },
                     { label: "카페 창업 실패", sub: "현장 공감" },
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
-                    { label: "500+ 클라이언트", sub: "검증된 성과" },
-                    { label: "결과 미달 시 조정", sub: "다음 달 비용" },
+                    { label: "500+ 프로젝트", sub: "10년 경력 누적" },
+                    { label: "매달 계측 보고", sub: "순위 그대로 공유" },
                     { label: "대표 책임 관리", sub: "상담부터 결과 설명까지" },
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
@@ -816,7 +863,7 @@ export default function HomePage() {
                 <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                   {[
                     { val: "10년+", label: "마케팅 경력" },
-                    { val: SITE.stats.renewalRate, label: "재계약률" },
+                    { val: "2020년", label: "개업" },
                     { val: "500+", label: "완료 프로젝트" },
                   ].map(s => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
@@ -836,7 +883,7 @@ export default function HomePage() {
             <RevealOnScroll>
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-8 h-[3px]" style={{ background: "var(--h-amber)" }} />
-                <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>10년 운영 데이터</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--w-primary-strong)" }}>하랑 대표 10년 경력 기록</p>
               </div>
             </RevealOnScroll>
 
@@ -846,10 +893,10 @@ export default function HomePage() {
                 모바일 2x2 에서는 3·4번째 칸에 가로선을 넣어 행을 나눈다. */}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
-                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "2020년~현재" },
-                { to: SITE.stats.renewalRateNum, suffix: "%", decimals: 1, label: "재계약률", sub: "6개월 이상 계약 기준" },
+                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 경력 누적" },
+                { to: TRACK_TOTALS.stores, suffix: "곳", decimals: 0, label: "맡아온 매장", sub: "계약 서류로 확인한 것만" },
                 { to: 10, suffix: "년+", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
-                { to: 89, suffix: "%", decimals: 0, label: "평균 매출 상승", sub: "3개월 계약 실측치" },
+                { to: companyYear(), suffix: "년차", decimals: 0, label: "회사 운영", sub: "2020년 4월 개업" },
               ].map((item, i) => (
                 <RevealOnScroll
                   key={item.label}
@@ -910,9 +957,9 @@ export default function HomePage() {
             {/* 3-column split — each promise as a full editorial block */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0" style={{ border: "1px solid var(--h-border)", borderRadius: "16px", overflow: "hidden" }}>
               {[
-                { icon: ShieldCheck, num: "01", title: "무결과 시 비용 조정", desc: "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 눈속임 없이." },
+                { icon: ShieldCheck, num: "01", title: "매달 계측 보고", desc: "매달 잰 순위를 그대로 보고드리고, 변화가 없으면 다음 달 실행 항목을 다시 짭니다." },
                 { icon: Handshake, num: "02", title: "대표가 직접 관리", desc: "외주·인턴 없이 대표가 직접 매장을 분석하고 전략을 세웁니다. 담당자가 바뀌는 일이 없습니다." },
-                { icon: Clock, num: "03", title: "24시간 내 연락", desc: "상담 신청 후 24시간 이내에 반드시 연락드립니다. 응답이 늦으면 먼저 연락드립니다." },
+                { icon: Clock, num: "03", title: "카카오톡 24시간 접수", desc: "상담 신청은 언제든 남기실 수 있고, 하랑 대표가 확인해 직접 연락드립니다." },
               ].map((item, idx) => {
                 const Icon = item.icon;
                 return (
@@ -1038,18 +1085,16 @@ export default function HomePage() {
                   tag: "플레이스 SEO",
                   headerBg: "var(--h-navy)",
                   title: "네이버 플레이스 순위 올리는 핵심 3가지",
-                  desc: "리뷰 수, 키워드 세팅, 저장수. 이 세 가지만 잡아도 경쟁 매장보다 2배 빠르게 상위에 오릅니다.",
+                  desc: "리뷰 수, 키워드 세팅, 저장수. 플레이스 순위를 볼 때 이 세 가지부터 점검하는 이유를 정리했습니다.",
                   readTime: "3분",
-                  views: "12,400",
                   icon: Search,
                 },
                 {
                   tag: "리뷰 마케팅",
                   headerBg: "var(--h-navy-mid)",
-                  title: "리뷰 하나가 신규 고객 10명을 데려오는 이유",
+                  title: "손님이 방문 전에 리뷰부터 읽는 이유",
                   desc: "리뷰는 단순 평점이 아닙니다. 검색 알고리즘과 신뢰도를 동시에 올리는 방법을 소개합니다.",
                   readTime: "4분",
-                  views: "8,730",
                   icon: Star,
                 },
                 {
@@ -1058,7 +1103,6 @@ export default function HomePage() {
                   title: "카페·의원·학원, 마케팅 채널이 달라야 하는 이유",
                   desc: "같은 비용을 써도 업종에 맞는 채널을 선택해야 ROI가 나옵니다. 업종별 최적 채널 선택 가이드.",
                   readTime: "5분",
-                  views: "6,210",
                   icon: BarChart3,
                 },
               ].map((post) => {
@@ -1071,7 +1115,6 @@ export default function HomePage() {
                         <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
                           <PostIcon size={16} className="text-white" strokeWidth={2} />
                         </div>
-                        <span className="text-[11px] text-white/70 font-semibold">{post.views} 조회</span>
                       </div>
                       <span className="text-[11px] font-black text-white/90 uppercase tracking-wider">{post.tag}</span>
                     </div>
@@ -1115,17 +1158,16 @@ export default function HomePage() {
               {[
                 {
                   label: "네이버 블로그",
-                  sub: "누적 조회 120만+",
                   desc: "마케팅 팁·성공 사례·업종별 전략 무료 공개",
-                  preview: "최근 글: 네이버 플레이스 3개월 만에 1위 올린 방법",
+                  preview: "플레이스 순위 기록과 업종별 전략을 올립니다",
                   href: "https://blog.naver.com/harangmarketing",
                   logo: "naver" as PlatformId,
                 },
                 {
                   label: "카카오톡 채널",
-                  sub: "평균 응답 10분 이내",
+                  sub: "상담은 하랑 대표가 직접",
                   desc: "지금 바로 무료 상담 연결",
-                  preview: "현재 상담 가능 · 24시간 운영",
+                  preview: "카카오톡 문의 24시간 접수",
                   href: "https://pf.kakao.com/_MuUkG/chat",
                   logo: "kakao" as PlatformId,
                 },
@@ -1148,7 +1190,9 @@ export default function HomePage() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
                         <div className="font-bold text-gray-900 text-sm">{s.label}</div>
-                        <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandTextColor(s.logo) }}>{s.sub}</span>
+                        {s.sub && (
+                          <span className="text-[11px] font-black px-2 py-0.5 rounded-full bg-gray-50" style={{ color: brandTextColor(s.logo) }}>{s.sub}</span>
+                        )}
                       </div>
                       <div className="text-xs text-gray-500">{s.desc}</div>
                     </div>
@@ -1217,13 +1261,13 @@ export default function HomePage() {
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   많은 분들이 &lsquo;사진만 예쁘게 올리면 되는 거 아닌가요?&rsquo;라고 물어보세요.
-                  하랑 대표가 10년 동안 500개 매장을 분석한 결과는 다릅니다.
+                  하랑 대표가 10년 동안 500건 넘는 프로젝트를 맡으며 본 결과는 다릅니다.
                 </p>
                 <div className="space-y-4">
                   {[
-                    { rank: "1위", factor: "리뷰 수 · 최신성", weight: "40%", desc: "리뷰가 많고 최근에 달린 매장이 알고리즘에서 우선순위를 가집니다. 답글 달린 리뷰는 추가 가점.", bar: "w-[80%]", color: "bg-[#0C2351]" },
-                    { rank: "2위", factor: "키워드 일치도", weight: "35%", desc: "업체명·카테고리·소개글의 키워드가 검색어와 얼마나 맞는지 분석합니다. 숨겨진 태그도 포함.", bar: "w-[70%]", color: "bg-[#1A3A6E]" },
-                    { rank: "3위", factor: "저장수 · 클릭률", weight: "25%", desc: "플레이스 저장 및 클릭이 많을수록 인기 매장으로 인식됩니다. 체험단·SNS 연동이 여기를 올립니다.", bar: "w-[50%]", color: "bg-[#1860D5]" },
+                    { rank: "1위", factor: "리뷰 수 · 최신성", desc: "리뷰가 많고 최근에 달린 매장이 위에 자주 보입니다. 답글까지 함께 챙깁니다." },
+                    { rank: "2위", factor: "키워드 일치도", desc: "업체명 · 카테고리 · 소개글에 검색어와 맞는 키워드가 들어 있는지 봅니다." },
+                    { rank: "3위", factor: "저장수 · 클릭률", desc: "저장과 클릭이 쌓인 매장이 위에 자주 보입니다." },
                   ].map((f) => (
                     <div key={f.rank} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                       <div className="flex items-center justify-between mb-2">
@@ -1231,10 +1275,6 @@ export default function HomePage() {
                           <span className="text-xs font-black text-white rounded-full w-5 h-5 flex items-center justify-center" style={{ background: "var(--h-navy)" }}>{f.rank.charAt(0)}</span>
                           <span className="text-sm font-bold text-gray-900">{f.factor}</span>
                         </div>
-                        <span className="text-xs font-black" style={{ color: "var(--h-navy)" }}>{f.weight}</span>
-                      </div>
-                      <div className="h-1.5 bg-gray-200 rounded-full mb-2">
-                        <div className={`h-full rounded-full ${f.color} ${f.bar}`} />
                       </div>
                       <p className="text-xs text-gray-500 leading-relaxed">{f.desc}</p>
                     </div>
@@ -1289,7 +1329,7 @@ export default function HomePage() {
               <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--h-navy)" }}>구성</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">매장에 필요한 것만 골라 조합합니다</h2>
               <p className="text-gray-500 text-base max-w-xl mx-auto">
-                정해둔 패키지 금액에 매장을 맞추지 않습니다.<br />
+                필요 없는 항목까지 묶은 패키지를 권하지 않습니다.<br />
                 아래는 실제로 나간 구성이고, 여기서 필요 없는 항목은 빼고 부족한 항목은 더해 다시 짜드립니다.
               </p>
             </div>
@@ -1298,7 +1338,7 @@ export default function HomePage() {
             <div className="rounded-2xl p-5 md:p-6 mb-8" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
-                  { label: "견적 방식", value: "항목 조합", note: "정찰제 패키지 없습니다" },
+                  { label: "견적 방식", value: "항목 조합", note: "필요한 항목만 합산" },
                   { label: "기준 단가", value: "블로그 4만원", note: "1편 기준 · 업종별 조정 · 부가세 별도" },
                   { label: "상담 · 현황 진단", value: "0원", note: "견적 받고 안 하셔도 됩니다" },
                 ].map((item) => (
@@ -1320,7 +1360,7 @@ export default function HomePage() {
                   style={{ border: pkg.popular ? "2px solid var(--h-navy)" : "1px solid var(--h-border)" }}>
                   {pkg.popular && (
                     <div className="text-white text-xs font-black text-center py-2 tracking-wider uppercase" style={{ background: "var(--h-navy)" }}>
-                      가장 많이 선택
+                      하랑 대표 추천
                     </div>
                   )}
                   <div className="p-6">
@@ -1395,12 +1435,14 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="p-4 md:p-5">
-                    <div className="flex items-start gap-2">
-                      <div className="w-4 h-4 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
-                        <X size={9} className="text-red-400" strokeWidth={3} />
+                    {item.general && (
+                      <div className="flex items-start gap-2">
+                        <div className="w-4 h-4 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
+                          <X size={9} className="text-red-400" strokeWidth={3} />
+                        </div>
+                        <span className="text-gray-500 text-xs md:text-sm leading-relaxed">{item.general}</span>
                       </div>
-                      <span className="text-gray-500 text-xs md:text-sm leading-relaxed">{item.general}</span>
-                    </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -1430,15 +1472,17 @@ export default function HomePage() {
                         <span className="text-gray-800 text-xs leading-relaxed font-medium">{item.harang}</span>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-4">
-                      <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
-                        <X size={10} className="text-red-400" strokeWidth={3} />
+                    {item.general && (
+                      <div className="flex items-start gap-3 p-4">
+                        <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
+                          <X size={10} className="text-red-400" strokeWidth={3} />
+                        </div>
+                        <div>
+                          <div className="text-[11px] font-black text-gray-500 mb-0.5">일반 대행사</div>
+                          <span className="text-gray-500 text-xs leading-relaxed">{item.general}</span>
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-[11px] font-black text-gray-500 mb-0.5">일반 대행사</div>
-                        <span className="text-gray-500 text-xs leading-relaxed">{item.general}</span>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -1500,7 +1544,9 @@ export default function HomePage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] text-gray-600">{c.period}</span>
-                        <span className="text-[11px] font-black px-2 py-0.5 rounded-full" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{c.highlight}</span>
+                        {c.highlight && (
+                          <span className="text-[11px] font-black px-2 py-0.5 rounded-full" style={{ color: "var(--h-navy)", background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>{c.highlight}</span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -1539,8 +1585,8 @@ export default function HomePage() {
               <div className="flex items-center gap-8 shrink-0">
                 {[
                   { val: "10년+", label: "대표 경력" },
-                  { val: SITE.stats.renewalRate, label: "재계약률" },
-                  { val: "500+", label: "누적 고객사" },
+                  { val: "2020년", label: "개업" },
+                  { val: "500+", label: "누적 프로젝트" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div className="text-2xl md:text-3xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>
@@ -1643,14 +1689,14 @@ export default function HomePage() {
                     플레이스 순위를 올리는<br />7가지 체크리스트
                   </h2>
                   <p className="text-blue-50 text-sm leading-relaxed mb-6">
-                    10년 누적 500개 매장 데이터에서 추출한 플레이스 SEO 핵심 포인트.
+                    10년 누적 500건 프로젝트에서 뽑은 플레이스 SEO 핵심 포인트.
                     지금 무료 상담 신청하면 PDF로 바로 보내드립니다.
                   </p>
                   <div className="space-y-2">
                     {[
                       "리뷰 수·답글률·사진 수 최적 기준표",
                       "경쟁사 분석 방법 3단계",
-                      "한 달 만에 순위 오르는 우선순위 액션 7가지",
+                      "플레이스 순위 점검, 우선순위 액션 7가지",
                     ].map(item => (
                       <div key={item} className="flex items-center gap-2">
                         <CheckCircle2 size={14} className="text-blue-200 shrink-0" strokeWidth={2.5} />
@@ -1718,8 +1764,8 @@ export default function HomePage() {
               {[
                 { icon: ShieldCheck, text: "상담 비용 0원" },
                 { icon: Handshake, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 대표가 직접 연락" },
-                { icon: Star, text: `재계약률 ${SITE.stats.renewalRate}` },
+                { icon: Clock, text: "카카오톡 문의 24시간 접수 · 하랑 대표 직접 연락" },
+                { icon: Star, text: "10년 경력 누적 500건" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs text-gray-400">
                   <Icon size={12} className="text-blue-500" strokeWidth={2} />

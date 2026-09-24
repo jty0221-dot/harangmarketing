@@ -81,11 +81,11 @@ export default function PortfolioPage() {
                 PLACE RANK
               </span>
               <h2 className="w-heading-2 mt-3" style={{ color: "var(--w-label-strong)" }}>
-                매일 잰 네이버 플레이스 순위
+                정해진 시각에 잰 네이버 플레이스 순위
               </h2>
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
-                위가 블로그에 글로 공개한 사례라면, 여기는 순위를 매일 재서 남긴 기록입니다.
-                {" "}매일 같은 시각에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나입니다. {PLACE_RANK_AS_OF} 계측분입니다.
+                위가 블로그에 글로 공개한 사례라면, 여기는 순위를 재서 스냅샷으로 남긴 기록입니다.
+                {" "}오후 2~3시에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나입니다. {PLACE_RANK_AS_OF} 계측분입니다.
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>
@@ -201,7 +201,7 @@ export default function PortfolioPage() {
                 우리 매장은 어떻게 될지 궁금하세요?
               </p>
               <p className="w-body-2 mt-1.5" style={{ color: "var(--w-label-disable)" }}>
-                상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락
+                상담 비용 없음 · 계약 강요 없음 · 카카오톡 24시간 접수
               </p>
             </div>
             <Link href="/contact" className="w-btn w-btn-primary">

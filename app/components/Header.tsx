@@ -21,11 +21,11 @@ const ANN_MESSAGES = [
     ctaHref: "/contact",
   },
   {
-    badge: "성과",
+    badge: "경력",
     badgeColor: "text-green-400",
     dot: "bg-green-400",
-    text: <>누적 <span className="text-white font-black">{SITE.stats.projects}</span> 프로젝트 · <span className="text-blue-300 font-bold">재계약률 {SITE.stats.renewalRate}</span></>,
-    mobileText: <>누적 <span className="text-white font-black">{SITE.stats.projects}</span> · <span className="text-blue-300 font-bold">재계약률 {SITE.stats.renewalRate}</span></>,
+    text: <>10년 경력 누적 <span className="text-white font-black">{SITE.stats.projects}</span> 프로젝트</>,
+    mobileText: <>10년 경력 누적 <span className="text-white font-black">{SITE.stats.projects}</span></>,
     ctaLabel: "진단 신청",
     ctaHref: "/contact",
   },
@@ -159,7 +159,7 @@ export default function Header() {
             <div className="hidden sm:block w-px h-3 bg-white/10" />
             <div className="flex items-center gap-2 text-xs min-w-0">
               {/* 375px 에서 이 자리에 쓸 수 있는 폭이 215px 뿐이다 (닫기 버튼 44px + CTA 버튼이 나머지를 먹는다).
-                  전체 문구를 그대로 넣으면 말줄임표가 마지막 글자를 먹어 재계약률 97.4% 가 97.4... 로 나온다.
+                  전체 문구를 그대로 넣으면 말줄임표가 마지막 글자를 먹어 끝의 숫자가 잘려 나온다.
                   숫자는 그대로 두고 좁은 화면에서만 서술어를 줄인다 (2026-09-03 (목) 실측 후 수정). */}
               <span className="text-gray-300 truncate sm:hidden">{msg.mobileText}</span>
               <span className="text-gray-300 truncate hidden sm:block">{msg.text}</span>
@@ -403,7 +403,7 @@ export default function Header() {
                   <Phone size={13} strokeWidth={2.5} />전화 상담
                 </a>
               </div>
-              <p className="text-center text-[11px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+              <p className="text-center text-[11px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 카카오톡 24시간 접수</p>
             </div>
           </div>
         )}

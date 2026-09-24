@@ -29,7 +29,7 @@ const POSTS: Record<string, {
     sections: [
       {
         heading: "플레이스 알고리즘, 어떻게 작동하나요?",
-        body: "네이버 플레이스는 단순히 '오래된 매장'이나 '광고비를 많이 쓴 매장'을 상위에 올려주지 않습니다. 검색어와의 연관성, 사용자 반응, 콘텐츠 품질을 종합적으로 평가합니다. 하랑마케팅이 10년간 누적 500건 프로젝트를 통해 정리한 핵심 지표는 다음과 같습니다.",
+        body: "네이버 플레이스는 단순히 '오래된 매장'이나 '광고비를 많이 쓴 매장'을 상위에 올려주지 않습니다. 검색어와의 연관성, 사용자 반응, 콘텐츠 품질을 종합적으로 평가합니다. 하랑 대표가 10년 경력 동안 누적 500건 프로젝트를 통해 정리한 핵심 지표는 다음과 같습니다.",
         tips: [
           "리뷰 수 및 평점 · 별점 4.0 이상, 리뷰 50개 이상이 Top 10 진입의 기본 조건",
           "사장님 답글률 · 최근 30일 답글률 70% 이상이면 가산점",
@@ -122,7 +122,7 @@ const POSTS: Record<string, {
       },
       {
         heading: "업종별 최적 조합",
-        body: "10년간의 데이터로 업종별로 어느 방식이 더 효과적인지 분석했습니다. 정답은 '둘 다 필요하지만 비중이 다르다'입니다.",
+        body: "10년 경력 동안 쌓은 데이터로 업종별로 어느 방식이 더 효과적인지 분석했습니다. 정답은 '둘 다 필요하지만 비중이 다르다'입니다.",
         tips: [
           "카페·베이커리 · 체험단 60% + 리뷰 유도 40% (비주얼 콘텐츠 중요)",
           "음식점·배달 · 리뷰 유도 70% + 체험단 30% (배달앱 자발 리뷰 가중치 큼)",
@@ -231,7 +231,7 @@ const POSTS: Record<string, {
     tagColor: "bg-blue-50 text-blue-600",
     readTime: "6분",
     result: "예산 구간별 채널 조합 · 우선순위",
-    summary: "작은 예산으로 가장 효과적인 조합을 찾는 방법. 10년간 누적 500건 프로젝트 데이터를 바탕으로 예산별 최적 전략을 제시합니다.",
+    summary: "작은 예산으로 가장 효과적인 조합을 찾는 방법. 대표 10년 경력 누적 500건 프로젝트 데이터를 바탕으로 예산별 최적 전략을 제시합니다.",
     sections: [
       {
         heading: "월 30만원으로 할 수 있는 것",
@@ -300,7 +300,7 @@ const POSTS: Record<string, {
           "카페 · '아이 데리고 가기 좋아요' + 키즈 공간 사진. 주차 정보 필수 포함",
           "음식점 · '가족 외식으로 갔는데' 스토리 + 아이 메뉴 언급. 반찬 넉넉함·위생 강조",
           "네일·뷰티 · '빠른 예약 가능', '아이 맡기고 다녀올 수 있는 시간' 등 엄마 입장의 편의성 강조",
-          "피부과·한의원 · 의학 정보+경험 후기 조합. 원장 친절도가 핵심",
+          "피부과·한의원 · 맘카페 바이럴을 권하지 않습니다. 병원 명의 블로그와 플레이스에서 진료 정보를 안내합니다",
         ],
       },
       {
@@ -366,7 +366,7 @@ const POSTS: Record<string, {
       },
       {
         heading: "피해야 할 실수 3가지",
-        body: "리뷰를 빠르게 늘리다 보면 역효과가 나는 실수를 범하기 쉽습니다. 10년간 클라이언트가 겪은 실패 패턴을 정리했습니다.",
+        body: "리뷰를 빠르게 늘리다 보면 역효과가 나는 실수를 범하기 쉽습니다. 하랑 대표가 10년 동안 본 실패 패턴을 정리했습니다.",
         tips: [
           "가족·지인 리뷰 집중 · IP·패턴 감지로 삭제될 수 있음, 실제 고객 위주로 진행",
           "단기 집중 (일주일 안에 50개) · 비정상 패턴으로 분류, 분산이 안전",
@@ -468,13 +468,13 @@ const POSTS: Record<string, {
       },
       {
         heading: "후기 관리 · 의료법 테두리 안에서",
-        body: "의료·한의원은 과장 광고·허위 사실 기재가 의료법으로 엄격히 규제됩니다. 대가를 주고 후기를 쓰게 하면 소개·알선·유인을 사주한 것이 될 수 있어 병원에는 체험단을 권하지 않습니다. 하랑마케팅은 10년 경험으로 의료법 안에서 할 수 있는 것만 씁니다.",
+        body: "의료·한의원은 과장 광고·허위 사실 기재가 의료법으로 엄격히 규제됩니다. 대가를 주고 후기를 쓰게 하면 소개·알선·유인을 사주한 것이 될 수 있어 병원에는 체험단을 권하지 않습니다. 하랑 대표의 10년 경력을 바탕으로 의료법 안에서 할 수 있는 것만 씁니다.",
         tips: [
           "금지: 효능·효과 과장, 완치 보장, '최고' '1등' 표현",
-          "허용: 실제 방문 후기, 친절한 원장님 인상, 시설·분위기 묘사",
-          "방문 후기는 경험 중심, 의학적 판단·결과 단정은 제외",
-          "리뷰 작성 전 담당자가 사전 안내 필수 · 문제 리뷰 방지",
-          "대가를 받고 쓴 글에는 그 사실을 표시할 의무 · 미표시 시 공정거래법 위반",
+          "허용: 원장님 명의 진료 정보, 주차·대기시간·진료 시간 같은 비진료 안내, 시설 사진",
+          "환자 후기를 광고에 옮겨 싣지 않습니다. 의학적 판단·결과 단정도 쓰지 않습니다",
+          "리뷰 작성 내용은 병원이 정하지 않습니다 · 문제 리뷰는 답글과 플랫폼 신고 절차로 대응",
+          "병원 후기는 대가를 표시해도 쓰지 않습니다 · 대가 표시 의무의 근거는 표시광고법 추천·보증 심사지침",
         ],
       },
       {
@@ -483,7 +483,7 @@ const POSTS: Record<string, {
         tips: [
           "1개월: 플레이스 정보 완성 (사진 15장 이상, 진료과목, 주차, 예약 방법 포함)",
           "2개월: 블로그 개설 + 주 2회 정기 포스팅 (지역 키워드 포함)",
-          "3개월: 실제 방문 환자에게 후기 요청 안내 · 대가를 건 체험단은 병원에서 쓰지 않습니다",
+          "3개월: 자연 발생 리뷰 답글 기준 정리 · 대가를 건 체험단과 후기 요청은 병원에서 쓰지 않습니다",
           "4개월: 리뷰 답글 전수 작성 + 환자 재방문 유도 콘텐츠 제작",
           "5개월: 인스타그램 계정 정비 + 전문성 콘텐츠 릴스 3개 이상",
           "6개월: 전체 지표 분석 + 다음 분기 전략 재수립",
@@ -658,7 +658,7 @@ const POSTS: Record<string, {
     tagColor: "bg-indigo-50 text-indigo-700",
     readTime: "8분",
     result: "학부모 채널 3곳 · 원장 블로그 운영법",
-    summary: "학원 마케팅은 학부모를 설득하는 일입니다. 학부모가 가는 채널(맘카페, 네이버 플레이스, 블로그)에 집중하면 수강생이 늘어납니다. 3개월 실전 과정을 공개합니다.",
+    summary: "학원 마케팅은 학부모를 설득하는 일입니다. 학부모가 가는 채널(맘카페, 네이버 플레이스, 블로그)에 집중해 상담 문의로 잇는 3개월 실전 과정을 공개합니다.",
     sections: [
       {
         heading: "학원 마케팅의 결정적 채널 3가지",
@@ -832,7 +832,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div>
                   <p className="font-black text-gray-900 text-sm mb-0.5">하랑마케팅 콘텐츠팀</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    10년간 현장에서 쌓은 마케팅 경험과 누적 500건 프로젝트 데이터를 업종별로 정리해 공유합니다.
+                    10년 경력 동안 현장에서 쌓은 마케팅 경험과 누적 500건 프로젝트 데이터를 업종별로 정리해 공유합니다.
                   </p>
                 </div>
               </div>
@@ -841,7 +841,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
             <div className="max-w-2xl mx-auto px-4 text-center">
               <h2 className="text-xl md:text-2xl font-black text-white mb-3">글을 읽고 직접 적용이 어려우신가요?</h2>
-              <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 24시간 내 연락</p>
+              <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 카카오톡 24시간 접수</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/contact"
@@ -939,7 +939,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div>
                 <p className="font-black text-gray-900 text-sm mb-0.5">하랑마케팅 콘텐츠팀</p>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  10년간 현장에서 쌓은 마케팅 경험과 누적 500건 프로젝트 데이터를 업종별로 정리해 공유합니다.
+                  10년 경력 동안 현장에서 쌓은 마케팅 경험과 누적 500건 프로젝트 데이터를 업종별로 정리해 공유합니다.
                 </p>
               </div>
             </div>
@@ -950,7 +950,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h2 className="text-xl md:text-2xl font-black text-white mb-3">{post.cta}</h2>
-            <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 24시간 내 연락</p>
+            <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 카카오톡 24시간 접수</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/contact"

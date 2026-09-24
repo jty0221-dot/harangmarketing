@@ -41,7 +41,7 @@ const FOOD_STORY_SP = FOOD_STORY ? `${FOOD_STORY} ` : "";
 
 const FOOD_FACTS = [
   ...(FOOD_1 ? [{ label: FOOD_1.keyword, value: fmt(FOOD_1) }, { label: "계측 기간", value: `${FOOD_1.days}일` }] : []),
-  { label: "순위 계측", value: "매일 스냅샷" },
+  { label: "순위 계측", value: "순위 스냅샷" },
   { label: "상담·진단", value: "0원" },
 ];
 
@@ -100,7 +100,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "음식점 플레이스 순위는 얼마나 올라가나요?",
     a: FOOD_DURATIONS
-      ? `매일 저장한 스냅샷 기준으로 ${FOOD_DURATIONS} 걸린 기록이 있습니다. 같은 기간에 순위가 내려간 곳도 있고 첫 페이지에 못 올라간 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.`
+      ? `저장해 둔 스냅샷 기준으로 ${FOOD_DURATIONS} 걸린 기록이 있습니다. 같은 기간에 순위가 내려간 곳도 있고 첫 페이지에 못 올라간 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.`
       : "오르는 속도는 매장과 키워드마다 달라 한 숫자로 말씀드리기 어렵습니다. 순위가 내려가는 곳도 있고 첫 페이지에 못 올라가는 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.",
   },
   {
@@ -137,7 +137,7 @@ export default function RestaurantPage() {
               <span className="text-orange-400">네이버부터</span> 제대로 합니다
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              네이버 플레이스 SEO부터 블로그 체험단, 지역 맘카페 바이럴까지, 음식점 매출에 직접 연결되는 마케팅만 합니다.
+              네이버 플레이스 SEO부터 블로그 체험단, 지역 맘카페 바이럴까지, 손님이 가게를 고르는 자리에 집중하는 마케팅만 합니다.
             </p>
             {RESULTS.length > 0 && (
               <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
@@ -165,7 +165,7 @@ export default function RestaurantPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="음식점·식당 마케팅은 무엇부터 해야 하나요?"
-          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY_SP}네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY_SP}네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
           facts={FOOD_FACTS}
         />
 
@@ -193,7 +193,7 @@ export default function RestaurantPage() {
                 <div className="space-y-4">
                   {[
                     { icon: TrendingUp, color: "from-blue-500 to-indigo-600", title: "네이버 플레이스 SEO", desc: "지역 키워드 '맛집', '역세권 맛집' 등 롱테일 키워드 공략. 리뷰 수·답글률·사진 수를 알고리즘 기준에 맞춰 최적화합니다." },
-                    { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아닌 지속적인 콘텐츠 누적으로 검색 노출을 늘립니다." },
+                    { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아니라 콘텐츠를 꾸준히 쌓아 검색에 걸릴 글을 늘립니다." },
                     { icon: Users, color: "from-blue-500 to-blue-700", title: "지역 맘카페 바이럴", desc: "동네 맘카페와 지역 커뮤니티에 매장 소식을 배포합니다. 게시 URL 과 매체사 전달 내역을 그대로 드립니다." },
                   ].map(s => (
                     <div key={s.title} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
@@ -218,7 +218,7 @@ export default function RestaurantPage() {
         <FaqAccordion
           items={SERVICE_FAQ}
           title="음식점 사장님들이 가장 많이 묻는 질문"
-          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 매일 저장한 스냅샷 실측값입니다."
+          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
           showMoreHref="/faq"
         />
 

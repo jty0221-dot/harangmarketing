@@ -7,8 +7,8 @@ import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
 import { SITE, ORG_ID, LOCAL_ID, faqLd, webPageLd, breadcrumbLd, type FaqItem, PAGE_UPDATED, ogImage } from "../../lib/seo";
 import {
-  byKeyword, fmt,
-  CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE, CLINIC_RISE_DURATIONS,
+  byKeyword, clinicFact,
+  CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE,
   CLINIC_KEYWORDS, CLINIC_SUMMARY, CLINIC_STATUS_LINES, CLINIC_STATUS_CAPTION,
 } from "../../lib/rank-records";
 
@@ -71,25 +71,31 @@ const CLINIC_CRUMB_LD = breadcrumbLd([
 
 /*
  * 순위 문답 답변.
- * 자리를 지킨 기록은 기간을 말하지 않는다. 「4위에서 4위까지 32일 걸렸다」는 말이 안 된다.
- * 오른 기록이 하나도 없는 날에는 그 문장이 통째로 빠지고 공통 한 줄만 남는다.
+ * 병·의원 순위 답변은 CLINIC_NOTE 와 CLINIC_LINES 의 과거형 문장만 쓴다 (app/lib/rank-records.ts · 진우 2026-09-24 (목) 판정 · D-0177 · C-50).
+ * 「A위에서 B위까지 N일」 상승 기간 문장은 몇 위까지 며칠이라는 금지 형식이라 뺐다 (2026-09-25 (금)).
  */
 const CLINIC_RANK_ANSWER = [
   CLINIC_NOTE,
-  CLINIC_RISE_DURATIONS && `저장한 스냅샷 기준으로 ${CLINIC_RISE_DURATIONS} 걸린 기록이 있습니다.`,
+  ...CLINIC_LINES,
   "다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 앞으로 몇 위가 될지는 말씀드리지 않습니다.",
 ]
   .filter(Boolean)
   .join(" ");
 
 /*
+ * 병·의원 순위 칸 표기 : `32일 계측 · 시작 1위 · 9월 23일 1위` (rank-records.ts 의 clinicFact).
+ * fmt 는 `1위 유지` · `7위 → 1위` 로 찍는데, 병·의원 화면에서는 유지 · 지켰다 · 화살표가 앞으로도 지킨다는 말이나
+ * 몇 위까지 올렸다는 말로 읽힌다 (D-0177 · C-50). 계측 일수 · 시작 순위 · 기준일 순위를 따로 적어 닫힌 기록으로 둔다.
+ */
+
+/*
  * 「계측 기간」 칸은 뺐다. 진료과가 둘이 되면서 두 기간 중 큰 값을 적게 되는데,
  * 그러면 한 진료과의 기간이 다른 진료과의 기간처럼 읽힌다.
  */
 const CLINIC_FACTS = [
-  ...(DENTAL ? [{ label: DENTAL.keyword, value: fmt(DENTAL) }] : []),
-  ...(DERMA ? [{ label: DERMA.keyword, value: fmt(DERMA) }] : []),
-  { label: "순위 계측", value: "매일 스냅샷" },
+  ...(DENTAL ? [{ label: DENTAL.keyword, value: clinicFact(DENTAL) }] : []),
+  ...(DERMA ? [{ label: DERMA.keyword, value: clinicFact(DERMA) }] : []),
+  { label: "순위 계측", value: "스냅샷 기록" },
   { label: "상담·진단", value: "0원" },
 ];
 import Link from "next/link";
@@ -132,9 +138,9 @@ const MEDICAL_PROCESS = [
 ];
 
 export const metadata: Metadata = {
-  title: "의원·한의원·피부과 마케팅 | 신환 유입 · 플레이스 SEO · 블로그",
+  title: "의원·한의원·피부과 마케팅 | 의료법 준수 · 플레이스 SEO · 블로그",
   description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 무료 상담이 가능합니다.",
-  keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "신환 유입 마케팅"],
+  keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행"],
   openGraph: {
     title: "의원·한의원·피부과 마케팅 | 하랑마케팅",
     description: "의료법을 준수하며 진행하는 병원 마케팅 전략입니다.",
@@ -148,7 +154,7 @@ const SERVICES = [
     icon: MapPin,
     color: "from-blue-500 to-blue-700",
     title: "플레이스 SEO",
-    desc: "진료과목 키워드 최적화 · 지역+과목 상위 노출",
+    desc: "진료과목 키워드 최적화 · 지역+과목 검색어 세팅",
   },
   {
     icon: Star,
@@ -160,20 +166,20 @@ const SERVICES = [
     icon: MessageSquare,
     color: "from-purple-500 to-purple-700",
     title: "의료법 준수 블로그",
-    desc: "의료광고 심의 기준 충족 · 증례 콘텐츠 기획",
+    desc: "의료광고 심의 대상 판정 · 원장님 명의 진료 정보 글 기획",
   },
   {
     icon: ShieldCheck,
     color: "from-green-500 to-green-700",
     title: "신뢰도 콘텐츠",
-    desc: "원장 전문성 강조 · 치료 과정 스토리텔링",
+    desc: "원장님 진료 원칙 소개 · 진료 과정 안내 콘텐츠",
   },
 ];
 
 const CHECKLIST = [
-  "네이버 플레이스 순위가 5위 밖인가요?",
-  "신환 예약이 월 30명 미만인가요?",
-  "리뷰 응답률이 50% 미만인가요?",
+  "네이버 플레이스에서 우리 의원이 어디에 나오는지 모르시나요?",
+  "진료 시간·주차·예약 방법이 플레이스에 비어 있나요?",
+  "리뷰에 답글이 달리지 않은 채 쌓여 있나요?",
   "블로그 포스팅이 불규칙하거나 월 4개 미만인가요?",
   "근처에 같은 과목 경쟁 의원이 3곳 이상인가요?",
 ];
@@ -219,7 +225,7 @@ export default function ClinicLandingPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Stethoscope size={12} strokeWidth={2.5} />
-              의원 · 한의원 전문
+              의원 · 한의원 마케팅
             </div>
             <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
               병원 검색 마케팅은<br />
@@ -227,7 +233,7 @@ export default function ClinicLandingPage() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
               의료법 제56조와 제57조를 기준으로 원고를 검수합니다.<br />
-              순위는 매일 저장해 월 리포트로 그대로 보여드립니다.
+              순위는 저장해 둔 스냅샷 그대로 월 리포트로 보여드립니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
@@ -249,7 +255,7 @@ export default function ClinicLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="병원·의원 마케팅은 무엇이 중요한가요?"
-          answer={`의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장님의 이력과 진료 과목을 사실대로 정리한 블로그 콘텐츠가 가장 중요합니다. 치료경험담은 의료법 제56조 제2항이 금지하는 항목이라 후기를 만들어 내는 방식은 쓰지 않습니다. ${CLINIC_STORY} 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료법 제56조와 제57조를 기준으로 원고를 검수한 뒤 병원 명의 채널에 올립니다. 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다.`}
+          answer={`의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장님의 이력과 진료 과목을 사실대로 정리한 블로그 콘텐츠가 가장 중요합니다. 치료경험담은 의료법 제56조 제2항이 금지하는 항목이라 후기를 만들어 내는 방식은 쓰지 않습니다. ${CLINIC_STORY} 네이버 플레이스 순위는 저장한 스냅샷 그대로 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료법 제56조와 제57조를 기준으로 원고를 검수한 뒤 병원 명의 채널에 올립니다. 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다.`}
           facts={CLINIC_FACTS}
         />
 
@@ -258,9 +264,9 @@ export default function ClinicLandingPage() {
         <section className="py-12 md:py-16 bg-gray-50">
           <div className="max-w-3xl mx-auto px-4 md:px-6">
             <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
-              이 중 하나라도 해당되면 신환 유입에 문제가 있습니다
+              이 중 하나라도 해당되면 플레이스 정보부터 점검해 보세요
             </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">방치할수록 주변 경쟁 의원에 환자를 뺏깁니다</p>
+            <p className="text-gray-500 text-sm text-center mb-8">플레이스에 비어 있는 칸부터 무료로 확인해 드립니다</p>
             <div className="space-y-3">
               {CHECKLIST.map((item, i) => (
                 <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">

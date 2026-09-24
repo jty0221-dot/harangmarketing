@@ -100,7 +100,7 @@ export default function SeoulPage() {
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {[
                 { val: "월 단위", label: "계약 기간" },
-                { val: SITE.stats.renewalRate, label: "재계약률" },
+                { val: "7년차", label: "2020년 개업" },
                 { val: "10년+", label: "경력" },
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">

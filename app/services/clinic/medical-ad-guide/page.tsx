@@ -98,6 +98,15 @@ const EXEMPT_PLACES: { where: string; verdict: string }[] = [
 /* ── 매체 축 : 채널 16곳 판정 ──────────────────────────────── */
 type Verdict = "심의 대상" | "대상 아님" | "확인 불가" | "광고 자체 금지" | "시행 전";
 
+/*
+ * 비대면진료 중개매체(법 제57조 제1항 제4호의2)는 2026년 12월 24일 시행이다.
+ * 판정은 빌드 날짜로 정한다. 정적 페이지라 12월 24일(목) 이후 첫 배포에서 「시행 전」이 「심의 대상」으로 바뀐다.
+ * 그날 이후 배포 한 번을 대장에 걸어 둔다 (2026-09-25 (금) 대표 승인).
+ */
+const TELEMED_EFFECTIVE = "2026-12-24";
+const TELEMED_VERDICT: Verdict =
+  Date.now() >= Date.parse(`${TELEMED_EFFECTIVE}T00:00:00+09:00`) ? "심의 대상" : "시행 전";
+
 const CHANNELS: { channel: string; verdict: Verdict; basis: string; note: string }[] = [
   {
     channel: "현수막과 벽보와 전단",
@@ -191,11 +200,23 @@ const CHANNELS: { channel: string; verdict: Verdict; basis: string; note: string
   },
   {
     channel: "비대면진료 중개매체",
-    verdict: "시행 전",
+    verdict: TELEMED_VERDICT,
     basis: "법 제57조 제1항 제4호의2",
-    note: "2026년 12월 24일 시행 예정입니다. 시행일을 대장에 걸어 두고 미리 준비합니다",
+    note: "2026년 12월 24일부터 시행되고 그날부터 심의 대상에 들어갑니다",
   },
 ];
+
+/* 판정별 개수는 위 배열에서 센다. 손으로 적으면 판정이 바뀌는 날 문장만 남는다. 0 인 판정은 문장에서 뺀다 */
+const VERDICT_ORDER: Verdict[] = ["심의 대상", "대상 아님", "확인 불가", "광고 자체 금지", "시행 전"];
+const VERDICT_COUNTS = VERDICT_ORDER.map((verdict) => ({
+  verdict,
+  count: CHANNELS.filter((c) => c.verdict === verdict).length,
+})).filter((v) => v.count > 0);
+/** 숫자 뒤 조사. 끝자리가 영 · 삼 · 육(받침 ㅇ · ㅁ · ㄱ)이면 으로, 나머지(ㄹ 받침 포함)는 로 */
+const roAfter = (n: number) => ([0, 3, 6].includes(n % 10) ? "으로" : "로");
+const VERDICT_COUNT_LINE = `세어 보면 ${VERDICT_COUNTS.map((v) => `${v.verdict} ${v.count}`).join(", ")}${roAfter(
+  VERDICT_COUNTS[VERDICT_COUNTS.length - 1]?.count ?? 0,
+)} 합이 ${CHANNELS.length}입니다.`;
 
 const VERDICT_STYLE: Record<Verdict, string> = {
   "심의 대상": "bg-blue-600 text-white",
@@ -434,7 +455,7 @@ export default function MedicalAdGuidePage() {
                   <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
                     법령 조회일은 2026년 9월 2일입니다. 법이 개정되면 판정도 바뀝니다. 제57조 제1항
                     제4호의2 비대면진료 중개매체는 2025년 12월 23일 신설돼 2026년 12월 24일에 시행됩니다.
-                    이 자료를 조회한 2026년 9월 2일 기준으로는 아직 심의 의무가 없고, 시행일부터는 판정이
+                    2026년 12월 24일 전까지는 심의 의무가 없고, 시행일부터는 판정이
                     하나 늘어납니다.
                   </p>
                   <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
@@ -546,7 +567,7 @@ export default function MedicalAdGuidePage() {
             </div>
 
             <p className="mt-6 text-sm text-gray-500 leading-relaxed">
-              세어 보면 심의 대상 5, 대상 아님 1, 확인 불가 8, 광고 자체 금지 1, 시행 전 1로 합이 16입니다.
+              {VERDICT_COUNT_LINE}
             </p>
           </div>
         </section>

@@ -634,7 +634,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
                   value={comments}
                   onChange={(e) => setComments(e.target.value)}
                   rows={5}
-                  placeholder={"사장님 여기 진짜 맛있어요\n분위기 최고네요 재방문 의사 100%"}
+                  placeholder="댓글 문구를 한 줄에 하나씩 적어 주세요"
                   className="w-input"
                   style={{ height: "auto", padding: "12px 16px", lineHeight: 1.6 }}
                 />

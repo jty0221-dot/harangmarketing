@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Shield, Handshake } from "lucide-react";
 
-import { SITE } from "../lib/seo";
 function useBusinessHours() {
   const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
   useEffect(() => {
     const check = () => {
-      // 24시간 소통 가능 (블로그 기준: 주말 포함 언제든지 연락 가능)
+      // 카카오톡 문의는 24시간 접수한다. 응답 시각은 약속하지 않는다 (2026-09-25 결재 문구)
       const h = new Date().getHours();
       if (h >= 23 || h < 7) setStatus("closed");
       else if (h >= 21) setStatus("closing");
@@ -50,7 +49,7 @@ export default function FloatingCTA() {
   if (!visible) return null;
 
   const statusConfig = {
-    open: { dot: "bg-green-400", text: "지금 상담 가능", sub: "24시간 · 주말 포함 소통 가능" },
+    open: { dot: "bg-green-400", text: "지금 문의 가능", sub: "카카오톡 문의 24시간 접수" },
     closing: { dot: "bg-blue-400", text: "야간 상담 가능", sub: "늦은 시간도 카카오로 문의 주세요" },
     closed: { dot: "bg-gray-400", text: "새벽 시간대", sub: "문의 접수 후 오전 7시 이후 연락" },
   }[bizStatus];
@@ -100,7 +99,7 @@ export default function FloatingCTA() {
               </div>
               <div className="flex items-center gap-1.5 mb-1">
                 <Handshake size={10} className="text-blue-400" strokeWidth={2.5} />
-                <span className="text-[11px] text-gray-600">재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
+                <span className="text-[11px] text-gray-600">10년 경력 누적 500건 프로젝트</span>
               </div>
               {/* Business hours status */}
               <div className="flex items-center gap-1.5 mt-1.5">
@@ -113,7 +112,7 @@ export default function FloatingCTA() {
             {/* Trust badge */}
             <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2 mb-2 flex items-center gap-2">
               <Shield size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
-              <p className="text-[11px] font-bold text-blue-700">게시 URL · 매체사 전달 내역 100% 공개</p>
+              <p className="text-[11px] font-bold text-blue-700">게시 URL 전체 전달 · 작업 내역 공개</p>
             </div>
 
             {/* Buttons */}

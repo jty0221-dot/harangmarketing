@@ -10,7 +10,7 @@ import {
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare,
   Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
-  ScrollText, Camera,
+  ScrollText, Camera, Calendar,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { REF_TOTAL, REF_CATEGORIES, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
@@ -164,7 +164,7 @@ const SERVICES = [
     tag: "배포",
     title: "최적화 블로그 · 카페 배포",
     subtitle: "블로그 탭 + 카페 탭 동시 노출",
-    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드에서 고객이 들어올 경로를 두 배로 넓힙니다. 건수로 끊는 패키지와 지역 + 업종 키워드를 달마다 이어서 관리하는 월 단위 진행 중에 고르실 수 있습니다.",
+    desc: "최적화 블로그 배포에 카페 배포를 함께 진행해, 같은 키워드로 블로그 탭과 카페 탭 두 곳에 손님이 들어올 자리를 만듭니다. 건수로 끊는 패키지와 지역 + 업종 키워드를 달마다 이어서 관리하는 월 단위 진행 중에 고르실 수 있습니다.",
     timeline: "게시 시작 3~7일 · 수량별 순차 진행",
     deliverables: [
       { label: "패키지", value: "10건 · 30건 · 월 단위", note: "원고 포함 · 직접 제공" },
@@ -254,8 +254,8 @@ const SERVICES = [
     color: "from-blue-500 to-blue-700",
     tag: "SEO",
     title: "블로그 마케팅",
-    subtitle: "검색 상단 노출 → 방문 고객 증대",
-    desc: "네이버 블로그 상위 노출로 잠재 고객이 직접 찾아오게 만드는 콘텐츠 마케팅입니다.",
+    subtitle: "키워드 원고 → 검색 상단 노출 관리",
+    desc: "네이버 블로그 상위 노출을 목표로 지역 키워드에 맞춰 글을 쌓는 콘텐츠 마케팅입니다.",
     timeline: "첫 발행 1주 이내 · 이후 계약 물량대로 정기 발행",
     deliverables: [
       { label: "월 콘텐츠", value: "4~8건", note: "키워드 분석 기반" },
@@ -278,23 +278,23 @@ const SERVICES = [
     color: "from-blue-600 to-blue-800",
     tag: "플레이스",
     title: "네이버 플레이스 SEO",
-    subtitle: "지도 상단 노출 → 당일 방문 증가",
-    desc: "네이버 지도·플레이스 상위 노출로 '지금 근처 맛집 찾는 고객'을 매장으로 안내합니다.",
-    timeline: "정보 최적화 1~2주 · 이후 순위 매일 계측",
+    subtitle: "플레이스 정보 정비 → 지도 상단 노출 관리",
+    desc: "지금 근처 맛집을 찾는 손님이 보는 네이버 지도·플레이스에서 상위 노출을 목표로 정보와 키워드를 세팅하고, 잰 순위를 매월 리포트로 보고합니다.",
+    timeline: "정보 최적화 1~2주 · 이후 오후 2~3시 순위 계측",
     deliverables: [
       { label: "플레이스 최적화", value: "초기 완성", note: "정보·사진·카테고리" },
       { label: "키워드 세팅", value: "20개 이상", note: "지역·업종·특징" },
       { label: "순위 모니터링", value: "주 1회", note: "상위 노출 유지 관리" },
     ],
     features: [
-      "플레이스 정보 완성도 100% 최적화",
+      "플레이스 정보 빈칸 없이 채우는 최적화",
       "업종·지역·특징 키워드 세팅",
       "경쟁 분석 기반 차별화 전략",
       "사진 구성 및 업로드 가이드",
       "주간 순위 모니터링 및 조정",
     ],
     rec: "근처 검색으로 당장 찾아오는 고객이 필요한 매장",
-    result: "매일 순위 계측 · 밀린 날 원인까지 보고",
+    result: "오후 2~3시 순위 계측 · 밀린 날 원인까지 보고",
     href: "/services/place",
     // 플레이스 랜딩에도 가격이 없다. 기본 라벨(가격 보기)을 쓰면 없는 것을 약속하게 된다.
     hrefLabel: "플레이스 안내 보기",
@@ -305,7 +305,7 @@ const SERVICES = [
     color: "from-blue-500 to-blue-700",
     tag: "리뷰",
     title: "리뷰 마케팅 · 체험단",
-    subtitle: "리뷰 축적 → 신뢰도 · 재방문율 상승",
+    subtitle: "리뷰 요청 동선 → 리뷰 축적 · 답글 관리",
     desc: "체험단 모집부터 리뷰 관리까지. 진짜 방문 후기로 신규 고객의 결정을 돕습니다.",
     timeline: "체험단 시작 1~2주 · 리뷰 쌓기 1개월",
     deliverables: [
@@ -332,8 +332,8 @@ const SERVICES = [
     color: "from-blue-600 to-indigo-700",
     tag: "SNS",
     title: "SNS · 인스타그램 마케팅",
-    subtitle: "팔로워 증가 → 예약·방문 연결",
-    desc: "인스타그램 계정 육성부터 맘카페 입소문 마케팅까지. 온라인 인지도를 높여 실제 방문·예약으로 전환합니다.",
+    subtitle: "릴스 · 피드 운영 → 예약 동선 연결",
+    desc: "인스타그램 계정 육성부터 맘카페 입소문 마케팅까지. 손님이 방문 전에 확인하는 채널을 꾸준히 채웁니다.",
     timeline: "콘텐츠 세팅 1~2주 · 이후 정기 발행",
     deliverables: [
       { label: "콘텐츠 제작", value: "월 12~16건", note: "피드·스토리·릴스" },
@@ -365,13 +365,13 @@ const SERVICES = [
     color: "from-blue-500 to-blue-700",
     tag: "카카오맵",
     title: "카카오맵 매장 관리",
-    subtitle: "카카오 검색 노출 → 지도 상단 진입",
+    subtitle: "카카오맵 정보 정비 → 카카오 검색 노출 관리",
     desc: "카카오맵에서 매장을 찾는 고객이 정보를 확인할 수 있도록 매장 등록과 정보, 사진을 관리합니다.",
     timeline: "등록·최적화 1~2주 · 이후 월간 리포트",
     deliverables: [
       { label: "매장 관리 등록", value: "대행 처리", note: "등록·최적화 1~2주" },
       { label: "카카오맵 리뷰", value: "실유저 기반", note: "실사용자 후기" },
-      { label: "트렌드 랭킹", value: "상위 노출", note: "카카오맵 알고리즘 최적화" },
+      { label: "트렌드 랭킹", value: "상위 노출 관리", note: "카카오맵 알고리즘 최적화" },
     ],
     features: [
       "카카오맵 매장 관리 등록 대행",
@@ -389,7 +389,7 @@ const SERVICES = [
     color: "from-blue-700 to-indigo-800",
     tag: "창업지원",
     title: "창업 지원 · 홈페이지형 블로그",
-    subtitle: "개업 전 온라인 세팅 → 오픈 첫날부터 효과",
+    subtitle: "개업 전 온라인 세팅 → 오픈 첫날 정보 준비 완료",
     desc: "개업 준비부터 브랜딩까지. 홈페이지형 블로그 제작, 로고·명함 디자인, 메뉴판 제작을 원스텝으로 해결합니다.",
     timeline: "제작 기간 1~2주 · 오픈 전 완성 가능",
     deliverables: [
@@ -405,7 +405,7 @@ const SERVICES = [
       "개업 전 온라인 인지도 빌드업",
     ],
     rec: "개업 예정이거나 브랜드를 새로 만들고 싶은 사장님",
-    result: "개업 첫날부터 온라인에서 발견되는 매장 세팅",
+    result: "개업 첫날 온라인 정보가 다 갖춰진 매장 세팅",
   },
   {
     // 2026-09-21 대표 지시로 신설. 촬영 협력사와 함께 진행한다.
@@ -442,7 +442,7 @@ const SERVICES = [
 const FAQS = [
   {
     q: "계약 기간은 최소 얼마나 되나요?",
-    a: "월 단위 계약이 기본이라 1개월부터 시작하실 수 있고 중도 해지 위약금이 없습니다. 다만 마케팅 효과는 단기보다 꾸준한 누적이 핵심이라, 대부분의 성과는 2~3개월차에 본격적으로 나타납니다. 3개월 이상 필요한 업종이면 진단 단계에서 먼저 말씀드립니다.",
+    a: "월 단위 계약이 기본이라 1개월부터 시작하실 수 있고 중도 해지 위약금이 없습니다. 다만 마케팅은 단기보다 꾸준한 누적이 핵심이라 결과는 최소 2~3개월을 두고 함께 보시기를 권합니다. 3개월 이상 필요한 업종이면 진단 단계에서 먼저 말씀드립니다.",
   },
   {
     q: "계약하면 바로 시작하나요?",
@@ -450,7 +450,7 @@ const FAQS = [
   },
   {
     q: "결과가 안 나오면 어떻게 되나요?",
-    a: `매월 성과 리포트를 함께 검토하며, 목표 미달 시 전략을 즉시 조정합니다. ${SITE.stats.renewalRate} 재계약률이 그 이유입니다. 단, 초기 기대치는 현실적으로 맞춰드립니다.`,
+    a: "매월 성과 리포트를 함께 검토하며, 목표 미달 시 전략을 즉시 조정합니다. 단, 초기 기대치는 현실적으로 맞춰드립니다.",
   },
   {
     q: "여러 서비스를 함께 하면 할인되나요?",
@@ -497,7 +497,8 @@ const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[
   { item: "최적화 블로그 배포", unit: "1건", price: won(BLOG_UNIT_WITH_COPY), note: `원고 작성 포함 10건 패키지 기준. 원고를 직접 주시면 ${won(BLOG_UNIT_WITHOUT_COPY)}.` },
   { item: "카페 배포", unit: "1건", price: `${won(CAFE_TIER_MIN)}~`, note: `카페 등급별 ${CAFE_TIERS.map((t) => t.price.toLocaleString("ko-KR")).join(" · ")}원. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)} 추가.` },
   { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
-  { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "20만원" },
+  { item: "홈페이지형 블로그 디자인 STANDARD · DELUXE", unit: "1회", price: "20만원", note: "STANDARD는 PC 전용, DELUXE는 PC와 모바일입니다." },
+  { item: "홈페이지형 블로그 디자인 PREMIUM", unit: "1회", price: "30만원", note: "섹션과 위젯 수에 제한이 없습니다." },
   { item: "네이버 광고 세팅·운영대행", unit: "월", price: "15만원" },
   { item: "키워드 설계 · 리뷰 동선 · 순위 모니터링", unit: "월", price: "계약 시 포함" },
 ];
@@ -572,7 +573,7 @@ const HOW_WE_COMPOSE: { step: string; title: string; body: string }[] = [
   {
     step: "견적 산출",
     title: "고른 항목만 더합니다",
-    body: "정해둔 패키지 금액에 매장을 끼워 맞추지 않습니다. 항목과 물량이 정해지면 금액은 그 계산의 결과로 나옵니다.",
+    body: "필요 없는 항목까지 묶은 패키지를 권하지 않습니다. 항목과 물량이 정해지면 금액은 그 계산의 결과로 나옵니다.",
   },
 ];
 
@@ -690,8 +691,8 @@ export default function ServicesPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { icon: Users, val: "500+", label: "완료 프로젝트", color: "text-blue-600" },
-                { icon: TrendingUp, val: "매일", label: "순위 계측", color: "text-blue-600" },
-                { icon: Star, val: SITE.stats.renewalRate, label: "재계약률", color: "text-blue-700" },
+                { icon: TrendingUp, val: "오후 2~3시", label: "순위 계측", color: "text-blue-600" },
+                { icon: Calendar, val: "7년차", label: "2020년 개업", color: "text-blue-700" },
                 { icon: Clock, val: "10년+", label: "전문 경력", color: "text-indigo-600" },
               ].map(({ icon: Icon, val, label, color }) => (
                 <div key={label} className="flex items-center gap-3">
@@ -923,7 +924,7 @@ export default function ServicesPage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-12">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">가격 산출 근거</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">가격을 먼저 정해두고 일을 맞추지 않습니다</h2>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">필요한 일을 먼저 고르고, 금액은 그 합으로 정합니다</h2>
               <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
                 항목별 단가를 정해두고 매장에 필요한 항목만 더해 견적을 냅니다.
                 아래 단가는 실제로 나간 견적서에 쓰인 금액 그대로이고, 계산 과정도 그대로 공개합니다.
@@ -1091,7 +1092,7 @@ export default function ServicesPage() {
 
               <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
                 <p className="text-sm text-blue-900 leading-relaxed flex-1">
-                  그래서 홈페이지에 정찰제 금액을 걸어두지 않습니다. 현황을 먼저 보고 필요한 항목만 골라 견적을 냅니다.
+                  그래서 홈페이지에는 항목별 기준 단가를 공개하고, 월 금액은 현황을 먼저 본 뒤 필요한 항목만 골라 견적을 냅니다.
                   진단과 견적은 0원이고, 견적을 받고 안 하셔도 됩니다.
                 </p>
                 <Link
@@ -1112,10 +1113,10 @@ export default function ServicesPage() {
             <div className="text-center mb-10">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">하랑의 약속</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
-                결과에 책임지는 대행사입니다
+                결과를 숫자로 말하는 대행사입니다
               </h2>
               <p className="text-gray-500 text-sm max-w-xl mx-auto">
-                {SITE.stats.renewalRate} 재계약률은 단순 숫자가 아닙니다. 결과가 없으면 전략을 바꾸고, 실패하면 솔직히 말하는 것이 하랑의 방식입니다.
+                결과가 없으면 전략을 바꾸고, 실패하면 솔직히 말하는 것이 하랑의 방식입니다.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -1123,13 +1124,13 @@ export default function ServicesPage() {
                 {
                   icon: "01",
                   title: "월 1회 성과 리포트",
-                  desc: "순위·방문객·예약 수 등 실제 수치를 매월 투명하게 공유합니다. 좋은 숫자만 보여드리지 않습니다.",
+                  desc: "순위 · 리뷰 수 · 게시 URL 처럼 직접 잰 숫자를 매월 그대로 공유합니다. 좋은 숫자만 보여드리지 않습니다.",
                   color: "from-blue-500 to-blue-700",
                 },
                 {
                   icon: "02",
                   title: "목표 미달 시 전략 즉시 조정",
-                  desc: "2개월 이내 가시적 성과가 없으면 추가 비용 없이 전략을 전면 재설계합니다.",
+                  desc: "매월 순위 기록을 함께 보고, 목표에 못 미치는 부분은 다음 달 작업 계획에서 바로 고칩니다.",
                   color: "from-blue-600 to-indigo-700",
                 },
                 {
@@ -1152,10 +1153,10 @@ export default function ServicesPage() {
             <div className="bg-gray-950 rounded-2xl p-6 md:p-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 {[
-                  { val: SITE.stats.renewalRate, label: "재계약률", sub: "누적 기준" },
-                  { val: "500+", label: "완료 프로젝트", sub: "2020년~현재" },
+                  { val: "7년차", label: "업력", sub: "2020년 개업" },
+                  { val: "500+", label: "완료 프로젝트", sub: "10년 경력 누적" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24h", label: "이내 연락", sub: "대표가 직접 응대" },
+                  { val: "24시간", label: "카카오톡 접수", sub: "하랑 대표가 직접 응대" },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
@@ -1203,8 +1204,8 @@ export default function ServicesPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {[
                 { period: "1주차", title: "분석 완료", desc: "업종·키워드·경쟁사 분석 리포트 + 전략 미팅", color: "bg-gray-900", dot: "bg-gray-400" },
-                { period: "2~4주", title: "첫 콘텐츠 발행", desc: "블로그·플레이스 초기 콘텐츠 세팅, 노출 시작", color: "bg-blue-600", dot: "bg-blue-400" },
-                { period: "1~2개월", title: "순위 계측 공개", desc: "키워드별 순위를 매일 저장해 월간 리포트로 확인", color: "bg-indigo-600", dot: "bg-indigo-400" },
+                { period: "2~4주", title: "첫 콘텐츠 발행", desc: "블로그·플레이스 초기 콘텐츠 세팅, 첫 글 발행과 노출 위치 확인 시작", color: "bg-blue-600", dot: "bg-blue-400" },
+                { period: "1~2개월", title: "순위 계측 공개", desc: "키워드별 순위를 정해진 시각에 재서 저장하고 월간 리포트로 확인", color: "bg-indigo-600", dot: "bg-indigo-400" },
                 { period: "3개월+", title: "누적 콘텐츠 관리", desc: "발행물이 쌓이며 검색 유입 경로가 늘어나는 구간", color: "bg-blue-800", dot: "bg-blue-600" },
               ].map((step, i) => (
                 <div key={i} className="relative bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
@@ -1246,14 +1247,14 @@ export default function ServicesPage() {
                   desc: "검색 유입부터 만들어야 하는 매장 · 가장 많이 선택하는 구성",
                   highlight: true,
                   services: ["플레이스 SEO 최적화", "블로그 관리대행", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"],
-                  result: "검색 유입 만들고 문의 전환 붙이기",
+                  result: "검색 유입부터 문의 동선까지 한 번에 세팅",
                 },
                 {
                   tier: "전 채널 통합",
                   desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
                   highlight: false,
                   services: ["블로그 · 카페 배포", "파워컨텐츠 원고", "플레이스 SEO · 트래픽 · 길찾기", "인스타 피드 · 릴스", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
-                  result: "지역 키워드 전 구간 점유",
+                  result: "지역 키워드 여러 구간 동시 공략",
                 },
               ].map((pkg) => (
                 <div
@@ -1339,7 +1340,7 @@ export default function ServicesPage() {
                 {
                   label: "성과 보고",
                   other: "월 1회 수치 리포트",
-                  harang: "매출 연동 지표 + 실시간 공유",
+                  harang: "직접 잰 순위 기록 + 게시 URL 전체 전달",
                   highlight: true,
                 },
                 {
@@ -1433,8 +1434,8 @@ export default function ServicesPage() {
               {[
                 { label: "상담 비용", value: "0원" },
                 { label: "계약 강요", value: "없음" },
-                { label: "응답 시간", value: "24h 이내" },
-                { label: "재계약률", value: SITE.stats.renewalRate },
+                { label: "카카오톡 문의", value: "24시간 접수" },
+                { label: "대표 경력", value: "10년" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/8 border border-white/12 text-xs">
                   <CheckCircle2 size={11} className="text-blue-400" strokeWidth={2.5} />
@@ -1460,7 +1461,7 @@ export default function ServicesPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
               <div className="flex-1">
-                <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-2">상담 0원 · 24시간 내 연락</p>
+                <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-2">상담 0원 · 카카오톡 문의 24시간 접수</p>
                 <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1">
                   우리 매장엔 뭐가 필요한지 모르겠다면?
                 </h3>

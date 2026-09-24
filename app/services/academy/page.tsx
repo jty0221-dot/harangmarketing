@@ -10,8 +10,8 @@ import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
 
-const PAGE_TITLE = "학원·교육 마케팅 대행사 | 수강생 증대 전문";
-const PAGE_DESCRIPTION = "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 수강생 증대 실제 성과. 무료 상담.";
+const PAGE_TITLE = "학원·교육 마케팅 대행사 | 학원 플레이스 · 블로그 전문";
+const PAGE_DESCRIPTION = "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 학부모가 학원을 찾는 검색 자리부터 채웁니다. 무료 상담.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   keywords: ["학원 마케팅", "교육 마케팅 대행사", "학원 수강생 늘리기", "학원 플레이스 SEO", "공부방 마케팅"],
   openGraph: {
     title: "학원·교육 마케팅 대행사 | 하랑마케팅",
-    description: "수강생을 늘리는 학원 마케팅 전략. 실제 성과 보유.",
+    description: "학부모가 검색하는 자리를 채우는 학원 마케팅 전략. 하랑 대표가 직접 상담합니다.",
     url: "https://www.harangmarketing.com/services/academy",
     images: [ogImage("학원 마케팅 하랑마케팅")],
   },
@@ -51,7 +51,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "학원도 네이버 플레이스 순위가 올라가나요?",
     a:
-      "플레이스 최적화 자체는 업종을 가리지 않습니다. 다만 저희가 매일 저장한 스냅샷 가운데 학원 업종의 순위 기록은 아직 공개할 것이 없어서, 다른 업종의 숫자를 학원 성과처럼 말씀드리지 않습니다. 지금 학원에서 확인할 수 있는 것은 현재 순위와 경쟁 업체 수까지이고, 계측이 쌓이면 그 숫자로 다시 보고드립니다. 순위를 미리 약속드리지 않는 이유도 같습니다.",
+      "플레이스 최적화 자체는 업종을 가리지 않습니다. 다만 저희가 저장해 둔 스냅샷 가운데 학원 업종의 순위 기록은 아직 공개할 것이 없어서, 다른 업종의 숫자를 학원 성과처럼 말씀드리지 않습니다. 지금 학원에서 확인할 수 있는 것은 현재 순위와 경쟁 업체 수까지이고, 계측이 쌓이면 그 숫자로 다시 보고드립니다. 순위를 미리 약속드리지 않는 이유도 같습니다.",
   },
   {
     q: "블로그는 원장님이 직접 써야 하나요?",
@@ -79,7 +79,7 @@ export default function AcademyPage() {
             </div>
             <h1 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
               학원 수강생,<br />
-              <span className="text-green-400">마케팅으로 채웁니다</span>
+              <span className="text-green-400">학부모 검색에서 시작합니다</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
               학원·공부방·교습소·과외 등 교육 업종에 특화된 마케팅. 학부모가 검색하는 키워드와 플랫폼에 집중합니다.
@@ -108,11 +108,11 @@ export default function AcademyPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="학원 마케팅은 어떻게 수강생을 늘리나요?"
-          answer="학원·교육 마케팅은 지역 맘카페 바이럴과 홈페이지형 블로그가 핵심입니다. 학부모가 학원을 고를 때 광고보다 동네 엄마들의 실제 후기를 먼저 찾아보기 때문입니다. 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 학원 마케팅 비용은 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
+          answer="학원·교육 마케팅은 지역 맘카페 바이럴과 홈페이지형 블로그가 핵심입니다. 학부모가 학원을 고를 때 광고보다 동네 엄마들의 실제 후기를 먼저 찾아보기 때문입니다. 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 학원 마케팅 비용은 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
           facts={[
             { label: "주력 채널", value: "맘카페 바이럴" },
             { label: "보조 채널", value: "홈페이지형 블로그" },
-            { label: "순위 계측", value: "매일 스냅샷" },
+            { label: "순위 계측", value: "스냅샷 저장" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
@@ -127,7 +127,7 @@ export default function AcademyPage() {
             <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
               이 중 하나라도 해당되면 지금 바로 시작하세요
             </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">방치할수록 주변 경쟁 학원에 학부모를 뺏깁니다</p>
+            <p className="text-gray-500 text-sm text-center mb-8">학부모가 검색하는 자리에서 지금 어디쯤인지 무료로 확인해 드립니다</p>
             <div className="space-y-3">
               {[
                 "네이버 플레이스 순위가 5위 밖인가요?",
@@ -153,7 +153,7 @@ export default function AcademyPage() {
               {[
                 { icon: TrendingUp, color: "from-green-500 to-emerald-600", title: "학부모 검색 키워드 공략", desc: "'지역명+학원', '지역명+과외' 등 학부모가 실제로 검색하는 키워드를 네이버 플레이스와 블로그에 집중 배치합니다." },
                 { icon: Users, color: "from-blue-500 to-blue-700", title: "맘카페·지역 커뮤니티 입소문", desc: "지역 맘카페와 학부모 커뮤니티에서 자연스럽게 회자되도록 합니다. 강요하지 않고 자연스럽게." },
-                { icon: Star, color: "from-blue-600 to-orange-500", title: "성과 리뷰·수강 후기 관리", desc: "수강생 학부모 후기를 전략적으로 쌓습니다. 긍정적 후기가 신뢰를 만들고 신규 문의로 이어집니다." },
+                { icon: Star, color: "from-blue-600 to-orange-500", title: "성과 리뷰·수강 후기 관리", desc: "수강생 학부모 후기를 꾸준히 쌓고 답글까지 관리합니다. 새 학부모가 상담 전에 먼저 읽는 글입니다." },
               ].map(s => (
                 <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
                   <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>

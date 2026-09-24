@@ -255,6 +255,10 @@ const koMonthDay = (iso: string) => {
   return `${m}월 ${d}일`;
 };
 
+/** `32일 계측 · 시작 1위 · 9월 23일 1위` · 병·의원 순위 표기. 화살표 · 지켰다 · 올렸다를 쓰지 않는다 (D-0177 · C-50) */
+export const clinicFact = (r: RankRecord) =>
+  `${r.days}일 계측 · 시작 ${r.from}위 · ${koMonthDay(SNAPSHOT_DATE)} ${r.to}위`;
+
 const KO_COUNT = ["", "", "두 개", "세 개", "네 개", "다섯 개"];
 const koCount = (n: number) => KO_COUNT[n] || `${n}개`;
 
@@ -266,7 +270,7 @@ const koNum = (n: number) => (n >= 1 && n <= 10 ? KO_NUM[n] : String(n));
  * 첫 스냅샷 날짜. 스냅샷은 지우지 않으므로(D 금지) 이 값은 바뀌지 않는다.
  * E:\하랑\순위모니터\snapshots 의 가장 오래된 파일명이다 (2026-09-24 (목) 확인 · 그날 파일 40개).
  */
-const FIRST_SNAPSHOT_DATE = "2026-08-13";
+export const FIRST_SNAPSHOT_DATE = "2026-08-13";
 
 /** `2026년 8월 13일부터 9월 23일까지 스냅샷 40회` — 병·의원 문장은 기간을 닫아서 말한다 */
 const SNAPSHOT_SPAN = `${koDate(FIRST_SNAPSHOT_DATE)}부터 ${
@@ -317,13 +321,11 @@ export const CLINIC_NOTE =
         : `${koNum(CLINIC_SUMMARY.keywords)}개 중 ${koNum(CLINIC_SUMMARY.page1)}개가 `) +
       `네이버 플레이스 1페이지에 있었습니다.`;
 
-/**
- * 올라온 기록만 기간을 말한다.
- * 자리를 지킨 기록에 「4위에서 4위까지 32일」이라고 적으면 읽는 사람이 뜻을 못 잡는다.
+/*
+ * 병·의원 상승 기간 문장(CLINIC_RISE_DURATIONS)은 2026-09-25 (금) 뺐다 (진우 2026-09-24 (목) 판정 · D-0177 · C-50).
+ * 「키워드가 A위에서 B위까지 N일」은 몇 위까지 며칠이라는 금지 형식이고 계약 키워드 표기도 드러낸다.
+ * 병·의원 순위 답변은 위 CLINIC_LINES 과거형 문장만 쓴다.
  */
-export const CLINIC_RISE_DURATIONS = CLINIC_RECORDS.filter((r) => r.from > r.to)
-  .map((r) => `${r.keyword}가 ${r.from}위에서 ${r.to}위까지 ${r.days}일`)
-  .join(", ");
 
 /*
  * 병·의원 순위 현황 문장 — 진우 인계서 3-C 절 다섯 문장 (D-0280 · D-0282 · 2026-09-06 (일) 대표 지시).

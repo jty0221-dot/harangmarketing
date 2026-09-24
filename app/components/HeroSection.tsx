@@ -3,7 +3,16 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 
-import { SITE } from "../lib/seo";
+import { SITE, companyYear } from "../lib/seo";
+
+/**
+ * 개업 연차. 한국 시간 기준 올해에서 개업 연도를 빼고 1을 더한다 (2020년 개업 → 2026년 7년차).
+ * 계산은 app/lib/seo.ts 의 companyYear 한 곳이다. 해가 바뀌면 저절로 한 해 늘어난다.
+ */
+function companyYearText(): string {
+  return `${companyYear()}년차`;
+}
+
 interface HeroSectionProps {
   videoSpeed?: number;
   showCta?: boolean;
@@ -371,7 +380,7 @@ export default function HeroSection({
         >
           {[
             { value: "500+", label: "누적 프로젝트", sub: "10년 경력 동안", delay: "1s", anim: "haFloat0" },
-            { value: SITE.stats.renewalRate, label: "재계약률", sub: "6개월 이상 계약 기준", delay: "1.15s", anim: "haFloat1" },
+            { value: `${SITE.foundingDate.slice(0, 4)}년`, label: "개업", sub: companyYearText(), delay: "1.15s", anim: "haFloat1" },
             { value: "10년+", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
           ].map((stat) => (
             <div

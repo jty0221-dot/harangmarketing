@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   ArrowRight, Check, Phone, Star, TrendingUp, Users, ShieldCheck, Quote,
 } from "lucide-react";
-import { SITE } from "../../lib/seo";
 
 /**
  * 홈페이지 리디자인 A/B 비교 (비공개 · 검색 제외)
@@ -18,21 +17,20 @@ import { SITE } from "../../lib/seo";
  */
 
 const STATS = [
-  [Users, "누적 클라이언트", "500+"],
-  [TrendingUp, "재계약률", SITE.stats.renewalRate],
-  [ShieldCheck, "직접 관리", "10년+"],
-  [Star, "상담 답변", "24시간 내"],
+  [Users, "누적 프로젝트", "500+"],
+  [TrendingUp, "2020년 개업", "7년차"],
+  [ShieldCheck, "대표 경력", "10년+"],
+  [Star, "카카오톡 문의", "24시간 접수"],
 ] as const;
 
 const SERVICES = [
-  ["블로그 마케팅", "검색 상위 노출까지 책임지는 원고·발행 대행", "편당 4만원 기준~", ["계약 강요 없음", "대표가 직접 검수"]],
-  ["플레이스 SEO", "지도 노출·리뷰·저장까지 한 번에 관리", "맞춤 견적", ["순위 리포트 제공", "24시간 내 연락"]],
+  ["블로그 마케팅", "검색 상위 노출을 목표로 하는 원고·발행 대행", "편당 4만원 기준~", ["계약 강요 없음", "대표가 직접 검수"]],
+  ["플레이스 SEO", "지도 노출·리뷰·저장까지 한 번에 관리", "맞춤 견적", ["순위 리포트 제공", "카카오톡 24시간 접수"]],
   ["SNS 부스트", "팔로워·조회수를 원하는 만큼 셀프 주문", "건당 300원~", ["회원 예치금 결제", "즉시 시작"]],
 ] as const;
 
 const REVIEWS = [
   ["부천 · 진갈매갈", "매장 검색이 안 되던 게 제일 답답했는데, 이제 '부천 고깃집' 치면 저희가 나옵니다."],
-  ["수원 · 미소나무치과", "리뷰 관리까지 알아서 해주시니 저는 진료만 보면 됩니다."],
 ] as const;
 
 export default function HomeComparePage() {
@@ -181,7 +179,7 @@ export default function HomeComparePage() {
           <div>
             <p className="w-title-1" style={{ color: "#fff" }}>지금 무료 전략 진단을 받아보세요</p>
             <p className="w-body-2 mt-1.5" style={{ color: "var(--pv-on-hero-dim)" }}>
-              상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락
+              상담 비용 없음 · 계약 강요 없음 · 카카오톡 24시간 접수
             </p>
           </div>
           <span className="w-btn" style={{ background: "var(--pv-accent)", color: "#fff" }}>

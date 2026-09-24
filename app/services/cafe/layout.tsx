@@ -43,7 +43,7 @@ export default function CafeLayout({ children }: { children: React.ReactNode }) 
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": `카페·베이커리 전문 마케팅. ${CAFE_LD_LINE} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.` },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": `카페·베이커리 전문 마케팅. ${CAFE_LD_LINE} 순위는 저장해 둔 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.` },
             "description": "카페·베이커리 전문 네이버 플레이스 SEO, 포토리뷰 전략, 인스타그램 마케팅 대행 서비스",
             "areaServed": "대한민국",
             "serviceType": "마케팅 대행",

@@ -63,13 +63,13 @@ export default function Footer() {
             <div>
               <div className="flex items-center gap-1.5 mb-2">
                 <Handshake size={13} className="text-yellow-300" strokeWidth={2.5} />
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.62)" }}>재계약률 {SITE.stats.renewalRate} · 500+ 프로젝트</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.62)" }}>10년 경력 누적 500건 프로젝트</span>
               </div>
               <h3 className="text-lg md:text-xl font-black text-white mb-1">
                 지금 바로 무료 전략 진단을 받아보세요
               </h3>
               <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-                상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락
+                상담 비용 없음 · 계약 강요 없음 · 카카오톡 24시간 접수
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
@@ -302,10 +302,10 @@ export default function Footer() {
         </div>
         <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-400">
           {[
-            [`재계약률 ${SITE.stats.renewalRate}`, "2020년 개업 · 7년차"],
+            ["2020년 개업", "7년차"],
             ["상담 비용 0원", "계약 강요 없음"],
             ["500+ 프로젝트", "실무 경력 10년+"],
-            ["24시간 내 연락", "대표가 직접 응답"],
+            ["카카오톡 24시간 접수", "하랑 대표가 직접 응답"],
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">
               <span className="font-black" style={{ color: "var(--h-blue-light)" }}>{val}</span>

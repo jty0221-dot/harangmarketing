@@ -49,7 +49,7 @@ export default function RestaurantLayout({ children }: { children: React.ReactNo
             "provider": { "@id": LOCAL_ID },
             "brand": { "@id": ORG_ID },
             "inLanguage": "ko-KR",
-            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": joinSentences("음식점·식당 전문 마케팅.", FOOD_LD_LINE, "순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.") },
+            "serviceOutput": { "@type": "Thing", "name": "플레이스 순위 계측 기록", "description": joinSentences("음식점·식당 전문 마케팅.", FOOD_LD_LINE, "순위는 저장해 둔 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.") },
             "offers": { "@type": "Offer", "description": "음식점·식당 전문 마케팅. 진행 범위에 따라 견적 산정, 상담·진단 0원." },
             "description": "음식점·식당 전문 플레이스 리뷰, 맘카페 바이럴, 블로그 맛집 마케팅 대행",
             "areaServed": "대한민국",

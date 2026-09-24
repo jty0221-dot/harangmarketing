@@ -86,7 +86,7 @@ export default function RankRecords({
                 { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳` },
                 { label: "업종", value: `${TRACK_TOTALS.trades}종` },
                 { label: "맡아서 한 일", value: `${TRACK_TOTALS.workKinds}종` },
-                { label: "순위 계측", value: "하루 한 번" },
+                { label: "순위 계측", value: "정해진 시각" },
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <p className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--w-primary)" }}>{s.value}</p>

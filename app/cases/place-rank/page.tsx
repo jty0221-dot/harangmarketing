@@ -40,7 +40,7 @@ const PATH = "/cases/place-rank";
 const RANK_FAQ: FaqItem[] = [
   {
     q: "순위는 언제 재나요?",
-    a: `${PLACE_RANK_MEASURE_TIME} 사이에 재서 그날 값으로 남깁니다. 하루 한 번 저장하고, 내려간 키워드는 그날 찾아 손보고 손본 다음 날부터 다시 잽니다.`,
+    a: `${PLACE_RANK_MEASURE_TIME} 사이에 재서 그날 값으로 남깁니다. 재지 못한 날은 빈칸으로 두고, 내려간 키워드는 원인을 찾아 손본 뒤 다시 잽니다.`,
   },
   { q: "여기 적힌 순위는 최고 기록인가요?", a: PLACE_RANK_EXCLUSIONS[2].body },
   { q: "상호와 지역명은 왜 없나요?", a: PLACE_RANK_EXCLUSIONS[1].body },
@@ -98,7 +98,7 @@ const CRUMB_LD = breadcrumbLd([
 
 const LINKS = [
   { href: "/services/place", label: "네이버 플레이스 SEO", desc: "이 기록을 만든 작업이 무엇인지 봅니다" },
-  { href: "/cases", label: "전체 성공 사례", desc: "과정까지 적은 심층 리포트" },
+  { href: "/cases", label: "전체 성공 사례", desc: "업종별 순위 기록과 맡아 온 매장 수" },
   { href: "/portfolio", label: "업종별 마케팅 사례", desc: "블로그에 공개한 사례와 관리 매장 이력" },
   { href: "/free-check", label: "무료 진단 신청", desc: "지금 우리 매장 순위부터 재 봅니다" },
 ];
@@ -123,7 +123,7 @@ export default function PlaceRankCasesPage() {
               잰 그대로 적었습니다
             </h1>
             <p className="mt-5 text-sm md:text-base text-gray-300 leading-relaxed max-w-2xl">
-              하랑마케팅이 관리하는 매장의 네이버 플레이스 순위를 매일 재서 남긴 기록입니다.
+              하랑마케팅이 관리하는 매장의 네이버 플레이스 순위를 정해진 시각에 재서 남긴 기록입니다.
               시작 순위와 확인된 순위, 걸린 일수만 적었습니다.
             </p>
             <p className="mt-3 text-xs md:text-sm text-gray-400 leading-relaxed max-w-2xl">
@@ -134,17 +134,17 @@ export default function PlaceRankCasesPage() {
 
         <AnswerBlock
           question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
-          answer={`매일 같은 시각에 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_AS_OF} 계측분에서는 ${PLACE_RANK_CASES.slice(0, 4)
+          answer={`직접 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_AS_OF} 계측분에서는 ${PLACE_RANK_CASES.slice(0, 4)
             .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
             .join(", ")}. ${PLACE_RANK_NOTE}`}
           facts={[
-            { label: "순위 계측", value: "하루 한 번" },
+            { label: "순위 계측", value: "정해진 시각" },
             { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
             { label: "기준일", value: PLACE_RANK_AS_OF },
           ]}
         />
 
-        {/* 올린 뒤에도 매일 재고 있다는 것 — 세는 값 없이 재는 방식만 보여준다 (2026-09-07 (월) 대표 지시) */}
+        {/* 올린 뒤에도 계속 재고 있다는 것 — 세는 값 없이 재는 방식만 보여준다 (2026-09-07 (월) 대표 지시) */}
         <PlaceRankMonitoring background="bg-white" />
 
         <section className="py-12 md:py-16 bg-gray-50">
