@@ -17,7 +17,7 @@ import { REF_TOTAL, REF_CATEGORIES, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLO
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
-import AnswerBlock from "../components/AnswerBlock";
+import ServicePriceAnswer from "../components/ServicePriceAnswer";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
@@ -681,17 +681,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* AEO — 서비스·가격 한 줄 정답 */}
-        <AnswerBlock
-          question="하랑마케팅은 어떤 서비스를 얼마에 제공하나요?"
-          answer={`${ANSWER_SENTENCES.whatWeDo} ${ANSWER_SENTENCES.price}`}
-          facts={[
-            { label: "견적 방식", value: "항목 조합형" },
-            { label: "기준 단가", value: "블로그 4만원/편 기준 · 업종별 조정" },
-            { label: "구성", value: "업체별 맞춤" },
-            { label: "상담·진단", value: "0원" },
-          ]}
-        />
+        {/* AEO — 서비스·가격 정답 (단가표로 나눠 보여 준다 · 원문 문단은 /faq · llms.txt) */}
+        <ServicePriceAnswer />
 
         {/* Key numbers */}
         <section className="py-6 bg-white border-b border-gray-100">
