@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "학원·교육 마케팅 대행사 | 하랑마케팅",
     description: "수강생을 늘리는 학원 마케팅 전략. 실제 성과 보유.",
     url: "https://www.harangmarketing.com/services/academy",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "학원 마케팅 하랑마케팅" }],
+    images: [ogImage("학원 마케팅 하랑마케팅")],
   },
 };
 

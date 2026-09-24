@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users } from "lucide-react";
-import { SITE } from "../../lib/seo";
+import { SITE, ogImage } from "../../lib/seo";
 import { byKeyword, fmt } from "../../lib/rank-records";
 
 /*
@@ -69,7 +69,7 @@ const GYEONGGI_LD = {
 
 export const metadata: Metadata = {
   title: "경기도 소상공인 마케팅 대행사 | 네이버 플레이스 SEO 전문",
-  description: "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 플레이스 상위 노출, 리뷰 확보, SNS 운영까지. 무료 상담.",
+  description: "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅입니다. 일산·분당·수원·고양·성남·화성 상권에 맞춰 플레이스, 리뷰, SNS를 관리합니다.",
   keywords: [
     "경기도 마케팅 대행사", "경기 소상공인 마케팅", "경기도 플레이스 SEO",
     "일산 마케팅", "분당 마케팅", "수원 마케팅", "고양 마케팅", "성남 마케팅",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     title: "경기도 소상공인 마케팅 대행사 | 하랑마케팅",
     description: "경기도 지역 특화 마케팅. 일산·분당·수원·고양 등 전 지역 담당.",
     url: `${BASE}/location/gyeonggi`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
+    images: [ogImage("경기도 마케팅 대행사 하랑마케팅")],
   },
 };
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { ExternalLink, BookOpen, ArrowRight, Lightbulb, FileText, MapPin, Camera, LayoutGrid } from "lucide-react";
+import { ExternalLink, BookOpen, ArrowRight, Lightbulb, FileText, MapPin, Camera, LayoutGrid, Search, X } from "lucide-react";
 
 interface StaticPost {
   tag: string;
@@ -49,6 +49,50 @@ const TABS: { key: Tab; label: string; icon: React.ReactNode; desc: string }[] =
   { key: "인스타", label: "인스타", icon: <Camera     size={14} strokeWidth={2.5} />, desc: "인스타그램 & SNS 마케팅" },
   { key: "그외",   label: "그외",   icon: <BookOpen    size={14} strokeWidth={2.5} />, desc: "업종별 마케팅 사례 모음" },
 ];
+
+/*
+  검색어 ↔ 주소창 ?q= 동기화
+
+  /blog 는 정적으로 굽는다. useSearchParams 를 쓰면 정적 프리렌더에서 가장 가까운
+  Suspense 경계까지 클라이언트 렌더로 빠져 첫 HTML 에서 글 목록이 통째로 사라진다.
+  그래서 주소창은 useSyncExternalStore 로 직접 읽는다. 서버 스냅샷은 빈 문자열이라
+  구운 HTML 에는 전체 목록이 실리고, 하이드레이션 직후 ?q= 값으로 한 번 다시 그린다.
+  layout.tsx 의 WebSite SearchAction(urlTemplate /blog?q=) 이 이 동작을 전제로 한다.
+*/
+function subscribeUrl(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  return () => window.removeEventListener("popstate", onChange);
+}
+
+function readUrlQuery() {
+  return new URLSearchParams(window.location.search).get("q") ?? "";
+}
+
+function readServerQuery() {
+  return "";
+}
+
+/** 이동 없이 주소창만 바꾼다. data 를 null 로 넘겨야 Next 라우터가 새 주소를 같이 안다 */
+function writeUrlQuery(value: string) {
+  const url = new URL(window.location.href);
+  const q = value.trim();
+  if (q) url.searchParams.set("q", q);
+  else url.searchParams.delete("q");
+  const next = `${url.pathname}${url.search}${url.hash}`;
+  const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  if (next !== current) window.history.replaceState(null, "", next);
+}
+
+/** 공백으로 나눈 단어가 모두 들어 있어야 맞는 글로 본다 (대소문자 무시) */
+function toTerms(query: string) {
+  return query.normalize("NFC").toLowerCase().split(/\s+/).filter(Boolean);
+}
+
+function matchesTerms(terms: string[], ...fields: string[]) {
+  if (terms.length === 0) return true;
+  const haystack = fields.join(" ").normalize("NFC").toLowerCase();
+  return terms.every((term) => haystack.includes(term));
+}
 
 function NaverPostCard({ post }: { post: NaverPost }) {
   return (
@@ -101,6 +145,24 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
   const [extraPosts, setExtraPosts] = useState<NaverPost[]>([]);
   const fetched = useRef(false);
 
+  // 검색어 : 입력 전에는 주소창 ?q= 를, 한 번이라도 입력하면 입력값을 따른다
+  const urlQuery = useSyncExternalStore(subscribeUrl, readUrlQuery, readServerQuery);
+  const [draft, setDraft] = useState<string | null>(null);
+  const query = draft ?? urlQuery;
+  const terms = toTerms(query);
+  const hasQuery = terms.length > 0;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const changeQuery = (value: string) => {
+    setDraft(value);
+    writeUrlQuery(value);
+  };
+
+  const clearQuery = () => {
+    changeQuery("");
+    inputRef.current?.focus();
+  };
+
   // SSR posts의 logNo 집합 — 중복 제거용
   const sseLogNos = new Set(
     naverPosts.map((p) => {
@@ -127,7 +189,10 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const allNaverPosts = [...naverPosts, ...extraPosts];
+  // 검색어로 먼저 거른 뒤 탭으로 한 번 더 거른다 (제목 + 요약)
+  const allNaverPosts = [...naverPosts, ...extraPosts].filter((p) => matchesTerms(terms, p.title, p.excerpt));
+  const searchedStatic = staticPosts.filter((p) => matchesTerms(terms, p.title, p.preview));
+  const searchedDynamic = dynamicPosts.filter((p) => matchesTerms(terms, p.title, p.excerpt));
 
   // 네이버 포스트 필터
   const filteredNaver = activeTab === "전체"
@@ -137,24 +202,27 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
   // 정적 포스트 (칼럼/블로그/플레이스/인스타 탭에선 숨김, 전체/그외에서만 노출)
   const showStatic = activeTab === "전체" || activeTab === "그외";
   const visibleStatic = showStatic
-    ? (activeTab === "전체" ? staticPosts : staticPosts.filter((_, i) => i < 6))
+    ? (activeTab === "전체" ? searchedStatic : searchedStatic.filter((_, i) => i < 6))
     : [];
 
   // 관리자 작성 (전체에서만)
-  const visibleDynamic = activeTab === "전체" ? dynamicPosts : [];
+  const visibleDynamic = activeTab === "전체" ? searchedDynamic : [];
 
   // 현재 탭 정보
   const currentTab = TABS.find((t) => t.key === activeTab)!;
 
-  // 탭별 카운트
+  // 탭별 카운트 (검색 중이면 탭마다 맞는 글 수)
   const countMap: Record<Tab, number> = {
-    전체: allNaverPosts.length + dynamicPosts.length + staticPosts.length,
+    전체: allNaverPosts.length + searchedDynamic.length + searchedStatic.length,
     칼럼: allNaverPosts.filter((p) => p.group === "칼럼").length,
     블로그: allNaverPosts.filter((p) => p.group === "블로그").length,
     플레이스: allNaverPosts.filter((p) => p.group === "플레이스").length,
     인스타: allNaverPosts.filter((p) => p.group === "인스타").length,
-    그외: allNaverPosts.filter((p) => p.group === "그외").length + staticPosts.length,
+    그외: allNaverPosts.filter((p) => p.group === "그외").length + searchedStatic.length,
   };
+
+  // 지금 탭에 보이는 글 수
+  const shownCount = filteredNaver.length + visibleDynamic.length + visibleStatic.length;
 
   return (
     <>
@@ -171,6 +239,65 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
         </h2>
         <p className="text-sm text-gray-500">{currentTab.desc}</p>
       </div>
+
+      {/* ── 글 검색 (제목 + 요약 · 주소창 ?q= 와 동기화) ── */}
+      <form
+        role="search"
+        aria-label="블로그 글 검색"
+        className="mb-5"
+        onSubmit={(e) => {
+          e.preventDefault();
+          inputRef.current?.blur();
+        }}
+      >
+        <label htmlFor="blog-search" className="sr-only">블로그 글 검색</label>
+        <div className="relative w-full sm:max-w-md">
+          <Search
+            size={16}
+            strokeWidth={2.5}
+            aria-hidden="true"
+            className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+            style={{ color: "var(--w-label-assistive)" }}
+          />
+          <input
+            ref={inputRef}
+            id="blog-search"
+            type="search"
+            value={query}
+            onChange={(e) => changeQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Escape" && query) {
+                e.preventDefault();
+                clearQuery();
+              }
+            }}
+            placeholder="제목이나 내용으로 찾기 (예: 플레이스, 리뷰)"
+            autoComplete="off"
+            spellCheck={false}
+            enterKeyHint="search"
+            aria-controls="blog-results"
+            className="w-full h-12 pl-11 pr-12 rounded-xl border border-gray-200 bg-white text-base text-gray-900 placeholder:text-gray-400 shadow-sm transition-colors focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] [&::-webkit-search-cancel-button]:appearance-none"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={clearQuery}
+              aria-label="검색어 지우기"
+              className="absolute right-0.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-lg text-gray-400 hover:text-gray-700 transition-colors"
+            >
+              <X size={16} strokeWidth={2.5} />
+            </button>
+          )}
+        </div>
+        <p role="status" aria-live="polite" className="text-xs md:text-[13px] text-gray-500 mt-2 min-h-[1.25rem]">
+          {hasQuery && (
+            <>
+              {activeTab === "전체" ? "" : `${currentTab.label} 탭 `}검색 결과{" "}
+              <span className="font-semibold text-gray-900">{shownCount}건</span>
+            </>
+          )}
+        </p>
+      </form>
 
       {/* ── 폴더형 카테고리 탭 ── */}
       <div className="mb-8">
@@ -208,13 +335,13 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
         </div>
 
         {/* 탭 컨텐츠 박스 */}
-        <div className="border border-t-0 border-gray-200 rounded-b-2xl rounded-tr-2xl bg-white p-5 md:p-6">
+        <div id="blog-results" className="border border-t-0 border-gray-200 rounded-b-2xl rounded-tr-2xl bg-white p-5 md:p-6">
 
           {/* 네이버 RSS 포스트 — 카드 그리드 */}
           {filteredNaver.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-              {filteredNaver.map((post, i) => (
-                <NaverPostCard key={i} post={post} />
+              {filteredNaver.map((post) => (
+                <NaverPostCard key={post.link} post={post} />
               ))}
             </div>
           )}
@@ -242,8 +369,39 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
             </div>
           )}
 
+          {/* 검색 결과 없음 */}
+          {shownCount === 0 && hasQuery && (
+            <div className="text-center py-12">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
+                <Search size={20} className="text-gray-400" />
+              </div>
+              <p className="text-sm text-gray-600 break-keep [overflow-wrap:anywhere]">
+                <span className="font-semibold text-gray-900">{query.trim()}</span>에 맞는 글을 찾지 못했습니다.
+              </p>
+              <p className="text-xs text-gray-500 mt-1">다른 단어로 다시 찾아보세요.</p>
+              <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+                {activeTab !== "전체" && countMap["전체"] > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("전체")}
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[var(--w-primary)] text-white text-sm font-bold hover:bg-[var(--w-blue-45)] transition-colors"
+                  >
+                    전체 탭 결과 {countMap["전체"]}건 보기 <ArrowRight size={13} />
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={clearQuery}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-700 text-sm font-bold hover:border-gray-300 transition-colors"
+                >
+                  <X size={13} /> 검색어 지우기
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* 빈 상태 */}
-          {filteredNaver.length === 0 && visibleDynamic.length === 0 && visibleStatic.length === 0 && (
+          {shownCount === 0 && !hasQuery && (
             <div className="text-center py-12">
               <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
                 <BookOpen size={20} className="text-gray-300" />

@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 import { TRACK_TOTALS } from "../../lib/track-record";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "쇼핑몰·소매점 마케팅 대행사 | 하랑마케팅",
     description: "온·오프라인 매출을 동시에 올리는 쇼핑몰 마케팅.",
     url: "https://www.harangmarketing.com/services/shopping",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "쇼핑몰 마케팅 하랑마케팅" }],
+    images: [ogImage("쇼핑몰 마케팅 하랑마케팅")],
   },
 };
 

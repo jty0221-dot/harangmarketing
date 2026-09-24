@@ -191,6 +191,16 @@ gtag('config', '${GA_ID}');`,
               inLanguage: "ko-KR",
               publisher: { "@id": ORG_ID },
               copyrightHolder: { "@id": ORG_ID },
+              // 2026-09-24 복구 : /blog 목록이 ?q= 로 제목·요약을 거르게 됐다 (app/blog/BlogListClient.tsx).
+              // 검색이 없던 동안에는 거짓 표시라 뺐었다 (커밋 8634341). 검색을 걷으면 이것도 같이 뺀다.
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: `${SITE.base}/blog?q={search_term_string}`,
+                },
+                "query-input": "required name=search_term_string",
+              },
             },
 
             /* ── Organization: AI 검색 엔티티 신뢰도의 뿌리 ── */

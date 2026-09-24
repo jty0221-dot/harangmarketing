@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 import Link from "next/link";
 import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "미용·네일·피부샵 마케팅 | 하랑마케팅",
     description: "인스타그램·플레이스 동시 상승으로 예약을 꽉 채우는 뷰티샵 마케팅.",
     url: "https://www.harangmarketing.com/services/beauty",
-    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
+    images: [ogImage()],
   },
 };
 

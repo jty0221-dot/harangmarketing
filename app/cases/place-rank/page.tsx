@@ -7,7 +7,7 @@ import JsonLd from "../../components/JsonLd";
 import AnswerBlock from "../../components/AnswerBlock";
 import PlaceRankExplorer from "./PlaceRankExplorer";
 import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
-import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
+import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 import FaqAccordion from "../../components/FaqAccordion";
 import {
   PLACE_RANK_CASES,
@@ -19,6 +19,7 @@ import {
   PLACE_RANK_NOTE,
   PLACE_RANK_MEASURE_TIME,
   PLACE_RANK_BIGGEST_GAIN,
+  PLACE_RANK_INDUSTRIES,
   fmtArrow,
   fmtMoveDays,
 } from "../../lib/place-rank-cases";
@@ -47,8 +48,8 @@ const RANK_FAQ: FaqItem[] = [
   { q: "방문객이나 매출도 보여 주시나요?", a: PLACE_RANK_EXCLUSIONS[3].body },
   { q: "몇 위까지 올려 주시나요?", a: PLACE_RANK_EXCLUSIONS[4].body },
 ];
-const DESCRIPTION =
-  "꽃집 · 음식점 · 청소 업체 · 네일숍 · 카페 · 가발 전문점의 네이버 플레이스 순위 계측 기록입니다. 상호와 지역명은 적지 않고, 시작 순위와 확인된 순위와 걸린 일수만 그대로 적었습니다.";
+/** 업종은 기록에서 뽑는다. 손으로 적으면 기록이 빠진 업종이 설명에 남는다 */
+const DESCRIPTION = `네이버 플레이스 순위 계측 기록입니다. ${PLACE_RANK_INDUSTRIES.join("·")}의 시작 순위와 확인된 순위, 걸린 일수만 적었습니다.`;
 
 export const metadata: Metadata = {
   title: "네이버 플레이스 순위 계측 사례 | 업종·지역별 기록",
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     title: "네이버 플레이스 순위 계측 사례 | 하랑마케팅",
     description: DESCRIPTION,
     url: `https://www.harangmarketing.com${PATH}`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 순위 계측 사례" }],
+    images: [ogImage("하랑마케팅 순위 계측 사례")],
   },
 };
 

@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, ORG_ID, LOCAL_ID, faqLd, webPageLd, breadcrumbLd, type FaqItem, PAGE_UPDATED } from "../../lib/seo";
+import { SITE, ORG_ID, LOCAL_ID, faqLd, webPageLd, breadcrumbLd, type FaqItem, PAGE_UPDATED, ogImage } from "../../lib/seo";
 import {
   byKeyword, fmt,
   CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE, CLINIC_RISE_DURATIONS,
@@ -38,7 +38,7 @@ const CLINIC_STORY = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
 const CLINIC_PAGE_LD = webPageLd({
   path: "/services/clinic",
   name: "의원·한의원·피부과 마케팅 대행 | 의료법 준수 · 플레이스 SEO",
-  description: `의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위노출, 리뷰 관리. ${CLINIC_STORY} 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
+  description: `의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 SEO, 리뷰 답글 관리. ${CLINIC_STORY} 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
   dateModified: PAGE_UPDATED["/services/clinic"],
 });
 
@@ -55,10 +55,10 @@ const CLINIC_SERVICE_LD = {
   serviceOutput: {
     "@type": "Thing",
     name: "플레이스 순위 계측 기록",
-    description: `의원·한의원·피부과 전문 마케팅. ${CLINIC_STORY} 순위는 매일 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.`,
+    description: `의원·한의원·피부과 전문 마케팅. ${CLINIC_STORY} 순위는 저장한 스냅샷 실측값이며 방문객·매출은 계측 대상이 아니다.`,
   },
   offers: { "@type": "Offer", description: "의원·한의원 전문 마케팅. 진료 과목·진행 범위에 따라 견적 산정, 상담·진단 0원." },
-  description: "의원·한의원·피부과 전문 네이버 블로그 마케팅, 플레이스 SEO, 리뷰 관리 대행",
+  description: "의원·한의원·피부과 전문 네이버 블로그 마케팅, 플레이스 SEO, 리뷰 답글 관리 대행",
   areaServed: "대한민국",
   serviceType: "의료기관 마케팅 대행",
   url: "https://www.harangmarketing.com/services/clinic",
@@ -76,7 +76,7 @@ const CLINIC_CRUMB_LD = breadcrumbLd([
  */
 const CLINIC_RANK_ANSWER = [
   CLINIC_NOTE,
-  CLINIC_RISE_DURATIONS && `매일 저장한 스냅샷 기준으로 ${CLINIC_RISE_DURATIONS} 걸린 기록이 있습니다.`,
+  CLINIC_RISE_DURATIONS && `저장한 스냅샷 기준으로 ${CLINIC_RISE_DURATIONS} 걸린 기록이 있습니다.`,
   "다만 이 숫자는 순위이지 환자 수가 아닙니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다. 앞으로 몇 위가 될지는 말씀드리지 않습니다.",
 ]
   .filter(Boolean)
@@ -133,13 +133,13 @@ const MEDICAL_PROCESS = [
 
 export const metadata: Metadata = {
   title: "의원·한의원·피부과 마케팅 | 신환 유입 · 플레이스 SEO · 블로그",
-  description: "의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위 노출, 리뷰 관리로 신환 예약을 늘립니다. 무료 상담 가능.",
+  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 무료 상담이 가능합니다.",
   keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "신환 유입 마케팅"],
   openGraph: {
     title: "의원·한의원·피부과 마케팅 | 하랑마케팅",
-    description: "의료법을 준수하면서 신환이 늘어나는 병원 마케팅 전략.",
+    description: "의료법을 준수하며 진행하는 병원 마케팅 전략입니다.",
     url: "https://www.harangmarketing.com/services/clinic",
-    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
+    images: [ogImage()],
   },
 };
 
@@ -153,8 +153,8 @@ const SERVICES = [
   {
     icon: Star,
     color: "from-blue-600 to-orange-600",
-    title: "리뷰 관리",
-    desc: "긍정 리뷰 확보 · 부정 리뷰 대응 전략",
+    title: "리뷰 답글 관리",
+    desc: "리뷰 답글 작성 · 부정 리뷰 대응 전략",
   },
   {
     icon: MessageSquare,

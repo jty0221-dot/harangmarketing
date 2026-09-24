@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../../components/JsonLd";
-import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
+import { ORG_ID, LOCAL_ID, breadcrumbLd, ogImage } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "학원·교육 마케팅 대행 | 맘카페 · 블로그 · 플레이스 SEO",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "학원·교육 마케팅 대행 | 하랑마케팅",
     description: "맘카페 입소문 · 홈페이지형 블로그 · 지역 키워드 SEO. 대표가 직접 관리 · 상담 0원.",
     url: "https://www.harangmarketing.com/services/academy",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "학원 마케팅 대행 하랑마케팅" }],
+    images: [ogImage("학원 마케팅 대행 하랑마케팅")],
   },
 };
 

@@ -19,7 +19,7 @@ import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
 import AnswerBlock from "../components/AnswerBlock";
 import GlossarySection from "../components/GlossarySection";
-import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd } from "../lib/seo";
+import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
 
 /*
@@ -56,8 +56,8 @@ const INDUSTRY_RECS = ([
 
 export const metadata: Metadata = {
   title: "마케팅 서비스 | 검색광고·콘텐츠·사진촬영·디자인",
-  twitter: { card: "summary_large_image", title: "하랑마케팅 서비스", description: "마케팅 운영부터 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지 품목별 구성과 사례를 확인하세요.", images: ["/og-image.png"] },
-  description: "플레이스 SEO, 블로그·카페 배포, 체험단, 인스타그램, 파워컨텐츠, 네이버 광고, 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작. 품목별 구성과 가격, 작업 사례를 확인하세요.",
+  twitter: { card: "summary_large_image", title: "하랑마케팅 서비스", description: "마케팅 운영부터 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지 품목별 구성과 사례를 확인하세요.", images: [OG_IMAGE.url] },
+  description: "플레이스 SEO, 블로그·카페 배포, 체험단, 인스타그램, 파워컨텐츠, 네이버 광고, 사진촬영, 상세페이지·홈페이지형 블로그 제작을 합니다.",
   keywords: [
     "마케팅 서비스", "네이버 플레이스 SEO", "플레이스 상위노출",
     "블로그 마케팅", "블로그 상위노출", "키워드 SEO",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 서비스 | 소상공인 맞춤 마케팅",
     description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 견적은 진단 후 산정, 상담 무료.",
     url: "https://www.harangmarketing.com/services",
-    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
+    images: [ogImage()],
   },
 };
 

@@ -73,8 +73,10 @@ export async function GET(req: NextRequest) {
     const sinceMs = since.getTime();
     const inquiries = rows
       .filter((r) => new Date(r.createdAt).getTime() >= sinceMs)
+      // 메모는 관리자 화면 안에서만 보는 내부 기록이라 피드로 내보내지 않는다
       .map((r) => ({
         ...r,
+        memo: undefined,
         sourceLabel: inquirySourceLabel(r.source),
         statusLabel: INQUIRY_STATUS_LABEL[r.status],
         // 관리자 화면과 같은 문안. 같은 문의면 같은 글이 나온다

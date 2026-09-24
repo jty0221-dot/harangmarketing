@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, ANSWER_SENTENCES, CORE_FAQ, PAGE_UPDATED, faqLd, webPageLd, breadcrumbLd, type FaqItem } from "../lib/seo";
+import { SITE, ANSWER_SENTENCES, CORE_FAQ, PAGE_UPDATED, faqLd, webPageLd, breadcrumbLd, type FaqItem, ogImage } from "../lib/seo";
 import { BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIER_MIN, won } from "../lib/cafe-distribution";
 import Link from "next/link";
 import {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 FAQ | 상담 전 미리 확인하세요",
     description: "비용, 계약, 효과, 업종별 질문 등 상담 전에 궁금한 것들을 정리했습니다.",
     url: "https://www.harangmarketing.com/faq",
-    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
+    images: [ogImage()],
   },
 };
 

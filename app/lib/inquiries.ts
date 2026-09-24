@@ -1,5 +1,5 @@
 import { getSql } from "./db";
-import { isInquiryStatus, type InquiryStatus } from "./inquiry-status";
+import { INQUIRY_MEMO_MAX, isInquiryStatus, type InquiryStatus } from "./inquiry-status";
 
 /**
  * 상담 신청 저장 (서버 전용)
@@ -37,9 +37,18 @@ async function ensureTable() {
       message    text,
       source     text,
       status     text not null default 'new',
+      memo       text,
       created_at timestamptz not null default now()
     )
   `;
+  // 관리자 메모 (2026-09-24 추가). 이미 있는 테이블에도 붙도록 따로 한 번 더 건다.
+  // 기본값 없는 nullable 열이라 기존 행을 다시 쓰지 않는다.
+  // 여기서 실패해도 상담 신청 저장은 막지 않는다 (저장이 먼저다). 메모 화면만 오류를 본다.
+  try {
+    await getSql()`alter table inquiries add column if not exists memo text`;
+  } catch (e) {
+    console.error("inquiries memo 열 추가 실패:", e);
+  }
   await getSql()`create index if not exists inquiries_created_idx on inquiries(created_at desc)`;
   tableReady = true;
 }
@@ -88,6 +97,8 @@ export interface InquiryRow {
   message: string | null;
   source: string | null;
   status: InquiryStatus;
+  /** 관리자 내부 메모. 없으면 null */
+  memo: string | null;
   createdAt: string;
 }
 
@@ -103,7 +114,7 @@ function toIso(v: unknown): string {
 export async function listInquiries(limit = 300): Promise<InquiryRow[]> {
   await ensureTable();
   const rows = (await getSql()`
-    select id, name, phone, industry, budget, goals, message, source, status, created_at
+    select id, name, phone, industry, budget, goals, message, source, status, memo, created_at
     from inquiries
     order by created_at desc, id desc
     limit ${limit}
@@ -118,6 +129,7 @@ export async function listInquiries(limit = 300): Promise<InquiryRow[]> {
     message: r.message ? String(r.message) : null,
     source: r.source ? String(r.source) : null,
     status: isInquiryStatus(r.status) ? r.status : "new",
+    memo: r.memo ? String(r.memo) : null,
     createdAt: toIso(r.created_at),
   }));
 }
@@ -127,6 +139,22 @@ export async function updateInquiryStatus(id: number, status: InquiryStatus): Pr
   await ensureTable();
   const rows = (await getSql()`
     update inquiries set status = ${status} where id = ${id} returning id
+  `) as Record<string, unknown>[];
+  return rows.length > 0;
+}
+
+/**
+ * 메모만 바꾼다. null 이나 빈 문자열이면 메모를 지운다. 없는 번호면 false.
+ * 길이 검사는 API 가 먼저 하지만, 여기서도 상한을 넘으면 저장하지 않는다.
+ */
+export async function updateInquiryMemo(id: number, memo: string | null): Promise<boolean> {
+  const value = memo ? memo : null;
+  if (value && value.length > INQUIRY_MEMO_MAX) {
+    throw new Error(`메모는 ${INQUIRY_MEMO_MAX}자까지 저장합니다`);
+  }
+  await ensureTable();
+  const rows = (await getSql()`
+    update inquiries set memo = ${value} where id = ${id} returning id
   `) as Record<string, unknown>[];
   return rows.length > 0;
 }

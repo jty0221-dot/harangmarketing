@@ -5,7 +5,7 @@ import AnswerBlock from "../../components/AnswerBlock";
 import RankRecords from "../../components/RankRecords";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED, ogImage } from "../../lib/seo";
 import { byIndustry, byKeyword, fmt, fmtSentence, gap } from "../../lib/rank-records";
 
 /*
@@ -36,6 +36,8 @@ const FOOD_STORY = [
 ]
   .filter(Boolean)
   .join(" ");
+/* 기록이 없으면 FOOD_STORY 가 비어 문장 사이에 빈칸이 두 번 남는다. 끼울 때는 뒤 칸까지 같이 붙인다 */
+const FOOD_STORY_SP = FOOD_STORY ? `${FOOD_STORY} ` : "";
 
 const FOOD_FACTS = [
   ...(FOOD_1 ? [{ label: FOOD_1.keyword, value: fmt(FOOD_1) }, { label: "계측 기간", value: `${FOOD_1.days}일` }] : []),
@@ -51,7 +53,7 @@ const FOOD_FACTS = [
 const FOOD_PAGE_LD = webPageLd({
   path: "/services/restaurant",
   name: "음식점·식당 마케팅 대행 | 네이버 플레이스 상위노출 전문",
-  description: `음식점·식당 전문 마케팅. 플레이스 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_STORY} 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
+  description: `음식점·식당 전문 마케팅. 플레이스 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_STORY_SP}방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
   dateModified: PAGE_UPDATED["/services/restaurant"],
 });
 import Link from "next/link";
@@ -59,13 +61,13 @@ import { ArrowRight, UtensilsCrossed, TrendingUp, Star, Users, CheckCircle2 } fr
 
 export const metadata: Metadata = {
   title: "음식점·식당 마케팅 대행사 | 네이버 플레이스 상위노출 전문",
-  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅. 네이버 플레이스 SEO, 블로그 체험단, 지역 맘카페 바이럴 전문. 상권 진단부터 0원으로 시작합니다.",
+  description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅입니다. 네이버 플레이스 SEO, 블로그 체험단, 맘카페 바이럴을 하며 상권 진단은 0원입니다.",
   keywords: ["음식점 마케팅", "식당 마케팅 대행사", "맛집 마케팅", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {
     title: "음식점·식당 마케팅 대행사 | 하랑마케팅",
     description: "네이버 플레이스와 블로그로 음식점 검색 노출을 만듭니다.",
     url: "https://www.harangmarketing.com/services/restaurant",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "음식점 마케팅 하랑마케팅" }],
+    images: [ogImage("음식점 마케팅 하랑마케팅")],
   },
 };
 
@@ -97,8 +99,9 @@ const SERVICE_FAQ: FaqItem[] = [
   },
   {
     q: "음식점 플레이스 순위는 얼마나 올라가나요?",
-    a:
-      `매일 저장한 스냅샷 기준으로 ${FOOD_DURATIONS} 걸린 기록이 있습니다. 같은 기간에 순위가 내려간 곳도 있고 첫 페이지에 못 올라간 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.`,
+    a: FOOD_DURATIONS
+      ? `매일 저장한 스냅샷 기준으로 ${FOOD_DURATIONS} 걸린 기록이 있습니다. 같은 기간에 순위가 내려간 곳도 있고 첫 페이지에 못 올라간 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.`
+      : "오르는 속도는 매장과 키워드마다 달라 한 숫자로 말씀드리기 어렵습니다. 순위가 내려가는 곳도 있고 첫 페이지에 못 올라가는 키워드도 있습니다. 그래서 몇 위까지 올려드린다는 약속은 하지 않습니다. 시작 전에 현재 순위를 재서 그 숫자부터 보여드립니다.",
   },
   {
     q: "리뷰에 악평이 달렸는데 지울 수 있나요?",
@@ -136,14 +139,16 @@ export default function RestaurantPage() {
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
               네이버 플레이스 SEO부터 블로그 체험단, 지역 맘카페 바이럴까지, 음식점 매출에 직접 연결되는 마케팅만 합니다.
             </p>
-            <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
-              {RESULTS.map(r => (
-                <div key={r.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
-                  <div className="text-xl font-black text-orange-400 mb-0.5">{r.value}</div>
-                  <div className="text-[11px] text-gray-400 leading-tight">{r.sub}</div>
-                </div>
-              ))}
-            </div>
+            {RESULTS.length > 0 && (
+              <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
+                {RESULTS.map(r => (
+                  <div key={r.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
+                    <div className="text-xl font-black text-orange-400 mb-0.5">{r.value}</div>
+                    <div className="text-[11px] text-gray-400 leading-tight">{r.sub}</div>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/contact?industry=음식점"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition-colors">
@@ -160,7 +165,7 @@ export default function RestaurantPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="음식점·식당 마케팅은 무엇부터 해야 하나요?"
-          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY} 네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY_SP}네이버 플레이스 순위는 매일 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
           facts={FOOD_FACTS}
         />
 

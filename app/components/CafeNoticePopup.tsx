@@ -113,10 +113,11 @@ export default function CafeNoticePopup() {
 
   if (!open) return null;
 
+  // md 이상에서는 오른쪽 아래 플로팅 버튼 줄(right-6 · 폭 56px)을 덮지 않도록 그 왼쪽(right-24)에 붙인다
   return (
     <aside
       aria-label={CAFE_NOTICE.title}
-      className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 sm:top-32 sm:bottom-24 sm:w-[520px]"
+      className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 md:right-24 sm:top-32 sm:bottom-24 sm:w-[520px]"
       style={{
         animation: closing
           ? "haNoticeOut 0.18s ease both"

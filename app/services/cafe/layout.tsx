@@ -15,18 +15,18 @@ const CAFE_LD_LINE = (() => {
   return parts.length > 0 ? `계측 기록: ${parts.join(", ")}.` : "";
 })();
 import JsonLd from "../../components/JsonLd";
-import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
+import { ORG_ID, LOCAL_ID, breadcrumbLd, ogImage } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "카페·베이커리 마케팅 대행 | 네이버 플레이스 상위노출 전문",
-  description: `카페·베이커리 전문 마케팅. 네이버 플레이스 상위노출, 포토리뷰 전략, 인스타그램 비주얼 마케팅. ${CAFE_LINE} 전국 무료 상담.`,
+  description: `카페·베이커리 마케팅으로 네이버 플레이스 상위노출, 포토리뷰, 인스타그램을 운영합니다. ${CAFE_LINE}`,
   keywords: ["카페 마케팅", "베이커리 마케팅", "카페 플레이스 상위노출", "카페 네이버 마케팅", "카페 인스타그램 마케팅", "카페 리뷰 마케팅", "카페 체험단", "베이커리 플레이스"],
   alternates: { canonical: "https://www.harangmarketing.com/services/cafe" },
   openGraph: {
     title: "카페·베이커리 마케팅 대행 | 하랑마케팅",
     description: `네이버 플레이스 상위노출 · 포토리뷰 전략 · 인스타 비주얼. ${CAFE_LINE}`,
     url: "https://www.harangmarketing.com/services/cafe",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "카페 마케팅 대행 하랑마케팅" }],
+    images: [ogImage("카페 마케팅 대행 하랑마케팅")],
   },
 };
 

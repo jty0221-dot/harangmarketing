@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, howToLd, webPageLd, updatedAt, breadcrumbLd, faqLd } from "../lib/seo";
+import { SITE, howToLd, webPageLd, updatedAt, breadcrumbLd, faqLd, ogImage } from "../lib/seo";
 import {
   Phone, MessageCircle, ArrowRight, CheckCircle2, Clock,
   Search, FileText, TrendingUp, BarChart3, Handshake,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 진행 과정 | 상담부터 성과까지 6단계",
     description: "투명하게 공개하는 6단계 마케팅 진행 과정. 상담 비용 0원.",
     url: "https://www.harangmarketing.com/process",
-    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
+    images: [ogImage()],
   },
 };
 

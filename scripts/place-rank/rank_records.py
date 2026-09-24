@@ -222,6 +222,29 @@ def contract_keywords():
     return out
 
 
+EXCLUDE_TSV = "E:/하랑/순위모니터/exclude.tsv"    # 매장 · 키워드(* 는 매장 전체) · 사유
+
+
+def publishable():
+    """스냅샷 한 줄을 화면에 실어도 되는지 가르는 함수. 계약구분.tsv 를 못 읽으면 None.
+    직계약 · 자사 매장만 싣는다 — 대대행 · 미확인은 자사 채널 · 포트폴리오로 안 간다
+    (대표 확인 2026-08-30 (일) · build_cases.py 의 DEAL_OK 와 같은 선).
+    2026-09-24 (목) 이 줄이 없어서 계약 여부를 모르는 치과 한 곳이 병·의원 문장에 섞였다.
+    수집대상.tsv 넷째 열 별칭으로 올라온 스냅샷 행도 같은 매장으로 본다. exclude.tsv 도 따른다."""
+    roster, deal = load_plain(ROSTER_TSV), load_plain(DEAL_TSV)
+    if deal is None:
+        return None
+    names = {c[0].strip() for c in deal if len(c) >= 2 and c[1].strip() in OURS}
+    for c in roster or []:
+        if len(c) >= 4 and c[0].strip() in names:
+            names |= {a.strip() for a in c[3].split(",") if a.strip()}
+    excl = collections.defaultdict(set)
+    for c in load_plain(EXCLUDE_TSV) or []:
+        if len(c) >= 2:
+            excl[c[0].strip()].add(c[1].strip())
+    return lambda r: r["매장"] in names and not ({"*", r["키워드"]} & excl[r["매장"]])
+
+
 # rank-records.ts 안에서 갈아 끼울 여덟 자리. 정규식은 각각 딱 한 번만 맞아야 한다.
 # 두 번 맞거나 한 번도 못 맞으면 파일 구조가 바뀐 것이라 아무것도 쓰지 않고 멈춘다.
 TS_ANCHORS = [
@@ -271,6 +294,15 @@ def main():
 
     snaps = [(p[-14:-4], load(p)) for p in paths]  # 파일 이름 YYYY-MM-DD
     last_date, last = snaps[-1]
+
+    keep = publishable()
+    if keep is None:
+        print("[중단] 계약 대장을 못 읽었다 (%s). 계약 여부를 모른 채 싣지 않는다" % DEAL_TSV)
+        return 2
+    dropped = len(last)
+    last = [r for r in last if keep(r)]
+    dropped -= len(last)
+    print("계약구분 · 제외 명단으로 뺀 줄: %d (대대행 · 미확인 · exclude.tsv)\n" % dropped)
 
     # (매장, 키워드) → 회차별 순위. 매장명은 여기서만 쓰고 출력에는 나가지 않는다.
     hist = collections.defaultdict(list)

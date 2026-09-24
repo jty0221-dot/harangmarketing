@@ -9,9 +9,8 @@ export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
   title: "동영상 GIF 변환 · 사진 세탁 프로그램 | 하랑 스튜디오",
   description:
-    `현장 사진 100장을 1분 안에 정리하고, 영상은 끌어다 놓으면 움짤이 되는 윈도우 프로그램입니다. ` +
-    `파일을 외부에 올리지 않고 내 컴퓨터에서 처리합니다. 사진 세탁·워터마크·비포애프터·영상 압축까지 하나로. ` +
-    `무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
+    `사진 세탁·동영상 GIF 변환 윈도우 프로그램입니다. 현장 사진 100장을 1분 안에 정리하며 ` +
+    `무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원입니다.`,
   keywords: [
     "동영상 gif 변환", "동영상 gif 변환 프로그램", "gif 변환 프로그램",
     "움짤 만들기", "움짤 만들기 프로그램", "영상 움짤 변환",

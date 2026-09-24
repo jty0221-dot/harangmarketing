@@ -6,7 +6,7 @@ import RankRecords from "../../components/RankRecords";
 import PlaceRankCasesSection from "../../components/PlaceRankCases";
 import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, updatedAt, type FaqItem } from "../../lib/seo";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 import { byIndustry, PLACE_RANK_AS_OF } from "../../lib/place-rank-cases";
 import { byKeyword, fmt, fmtSentence } from "../../lib/rank-records";
 import Link from "next/link";
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: "카페·베이커리 마케팅 | 하랑마케팅",
     description: "플레이스 상위 노출부터 포토리뷰 확보까지. 카페 전문 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/cafe",
-    images: [{ url: "https://www.harangmarketing.com/og-image.png", width: 1200, height: 630 }],
+    images: [ogImage()],
   },
 };
 

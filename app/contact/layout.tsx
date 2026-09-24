@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, ogImage } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "무료 상담 신청 | 24시간 내 연락",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 무료 상담 신청 | 10년 경력 대표 직접 응대",
     description: "카카오·전화·폼 중 편한 방법으로 신청하세요. 업종 분석부터 맞춤 전략까지 0원에 제공합니다.",
     url: "https://www.harangmarketing.com/contact",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 무료 상담 신청" }],
+    images: [ogImage("하랑마케팅 무료 상담 신청")],
   },
 };
 

@@ -778,7 +778,7 @@ export default function OrderForm({ initialSlug }: { initialSlug: string | null 
                 className="mt-px w-5 h-5 shrink-0 accent-[color:var(--w-primary)]"
               />
               <span>
-                주문 유의사항에 동의합니다 — 작업 시작 전 전액 환불, 시작 후 미진행 수량 환불.
+                주문 유의사항에 동의합니다. 작업 시작 전 전액 환불, 시작 후 미진행 수량 환불.
                 검색 순위·알고리즘 노출은 저희가 손댈 수 있는 범위가 아닙니다. 연락처는 주문 확인·조회에만 사용됩니다.{" "}
                 <Link
                   href="/refund"

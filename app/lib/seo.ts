@@ -68,6 +68,19 @@ export const SITE_ID = `${SITE.base}/#website`;
 export const LOCAL_ID = `${SITE.base}/#localbusiness`;
 
 /**
+ * 공유 카드 이미지 (2026-09-24). 카톡 · 페이스북 · X 에 링크를 붙이면 뜨는 1200×630 카드 한 장이다.
+ * 페이지마다 같은 줄을 손으로 적던 것을 여기 한 곳으로 모았다. 대체 문구(alt)만 페이지가 넘긴다.
+ * 주소는 상대 경로다. app/layout.tsx 의 metadataBase 가 https://www.harangmarketing.com/og-image.png 로 바꿔 준다.
+ * openGraph.images 에는 ogImage(alt) 를, 문자열 배열을 받는 twitter.images 에는 OG_IMAGE.url 을 넣는다.
+ * alt 를 안 넘기면 alt 없이 나간다. 예전에 alt 를 적지 않던 페이지는 그대로 ogImage() 로 둔다.
+ */
+export const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630 } as const;
+
+export function ogImage(alt?: string): { url: string; width: number; height: number; alt?: string } {
+  return alt === undefined ? { ...OG_IMAGE } : { ...OG_IMAGE, alt };
+}
+
+/**
  * 페이지가 마지막으로 바뀐 날 (ISO 날짜). sitemap 의 lastModified 와 각 페이지 WebPage 의 dateModified 가
  * 이 표 한 곳을 읽는다 (2026-09-20 · 요청 68). 표에 없는 경로는 sitemap 이 오늘 날짜를 쓴다.
  * 값은 git 의 마지막 커밋일이다. 손으로 앞당기지 않는다. 순위 사례처럼 코드는 그대로인데 데이터 파일만
@@ -75,38 +88,38 @@ export const LOCAL_ID = `${SITE.base}/#localbusiness`;
  */
 export const PAGE_UPDATED: Record<string, string> = {
   "/": "2026-09-23",
-  "/about": "2026-09-05",
-  "/services": "2026-09-23",
-  "/services/cafe": "2026-09-05",
+  "/about": "2026-09-23",
+  "/services": "2026-09-24",
+  "/services/cafe": "2026-09-18",
   "/services/clinic": "2026-09-20",
   "/services/clinic/medical-ad-guide": "2026-09-07",
   "/services/beauty": "2026-09-05",
   "/services/restaurant": "2026-09-20",
-  "/services/photo": "2026-09-23",
-  "/services/photo/price": "2026-09-23",
+  "/services/photo": "2026-09-24",
+  "/services/photo/price": "2026-09-24",
   "/services/photo/food": "2026-09-23",
-  "/services/photo/stay": "2026-09-23",
+  "/services/photo/stay": "2026-09-24",
   "/services/academy": "2026-09-07",
   "/services/shopping": "2026-09-07",
-  "/services/review": "2026-09-05",
-  "/services/place": "2026-09-20",
-  "/services/instagram": "2026-09-20",
-  "/services/detail-page": "2026-09-05",
+  "/services/review": "2026-09-24",
+  "/services/place": "2026-09-24",
+  "/services/instagram": "2026-09-24",
+  "/services/detail-page": "2026-09-24",
   "/services/detail-page/reference": "2026-09-05",
-  "/services/cafe-distribution": "2026-09-20",
-  "/services/cafe-distribution/reference": "2026-09-05",
+  "/services/cafe-distribution": "2026-09-24",
+  "/services/cafe-distribution/reference": "2026-09-21",
   "/studio": "2026-09-05",
-  "/sns": "2026-09-05",
-  "/portfolio": "2026-09-07",
-  "/cases": "2026-09-10",
+  "/sns": "2026-09-07",
+  "/portfolio": "2026-09-18",
+  "/cases": "2026-09-18",
   "/cases/place-rank": "2026-09-20",
-  "/contact": "2026-09-07",
-  "/free-check": "2026-09-05",
+  "/contact": "2026-09-10",
+  "/free-check": "2026-09-10",
   "/process": "2026-09-05",
-  "/faq": "2026-09-20",
+  "/faq": "2026-09-23",
   "/blog": "2026-09-05",
   "/location": "2026-09-05",
-  "/location/gyeonggi": "2026-09-05",
+  "/location/gyeonggi": "2026-09-10",
   "/location/seoul": "2026-09-05",
   "/location/incheon": "2026-09-04",
 };
@@ -136,7 +149,7 @@ export const SERVICE_NAMES = PUBLIC_SERVICES.filter(service => service.id !== 's
 
 export const ANSWER_SENTENCES = {
   whoWeAre:
-    `하랑마케팅은 네이버 플레이스·블로그·인스타그램을 다루는 소상공인·자영업자 전문 마케팅 대행사입니다. 2020년 4월 설립 이후 500건 이상의 프로젝트를 완료했고 재계약률은 ${SITE.stats.renewalRate}입니다.`,
+    `하랑마케팅은 네이버 플레이스·블로그·인스타그램을 다루는 소상공인·자영업자 전문 마케팅 대행사입니다. 2020년 4월에 문을 열었고, 대표가 10년 경력 동안 500건 이상의 프로젝트를 맡아 왔으며 재계약률은 ${SITE.stats.renewalRate}입니다.`,
   whatWeDo:
     `하랑마케팅의 서비스는 ${SERVICE_NAMES.join(", ")} ${SERVICE_NAMES.length}가지입니다. 온라인 마케팅은 비대면으로 진행하며 사진촬영과 방문 상담은 지역과 일정을 협의합니다.`,
   price:
@@ -249,7 +262,7 @@ export const CORE_FAQ: FaqItem[] = [
   },
   {
     q: "어떤 업종에 마케팅 효과가 좋나요?",
-    a: "카페·베이커리, 음식점·식당, 미용·네일·뷰티, 의원·한의원·피부과, 학원·교육, 온라인 쇼핑몰 6개 업종에 특화되어 있습니다. 지역 기반 소상공인 대상으로 10년간 500건 이상의 실전 프로젝트를 완료했습니다.",
+    a: "카페·베이커리, 음식점·식당, 미용·네일·뷰티, 의원·한의원·피부과, 학원·교육, 온라인 쇼핑몰 6개 업종에 특화되어 있습니다. 대표가 10년 경력 동안 지역 소상공인 프로젝트 500건 이상을 맡아 왔습니다.",
   },
   {
     q: "성과가 없으면 어떻게 되나요?",

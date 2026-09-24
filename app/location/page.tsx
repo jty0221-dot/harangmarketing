@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AnswerBlock from "../components/AnswerBlock";
 import { MapPin, ArrowRight, Building2, Train, Store } from "lucide-react";
-import { SITE } from "../lib/seo";
+import { SITE, ogImage } from "../lib/seo";
 
 const BASE = SITE.base;
 
@@ -43,7 +43,7 @@ const LOCATION_LD = {
 export const metadata: Metadata = {
   title: "지역별 마케팅 서비스 · 전국 소상공인 마케팅 대행사",
   description:
-    "하랑마케팅은 전국 소상공인을 지원하고, 경기·서울·인천은 방문 상담도 가능합니다. 지역별 상권 특성에 맞춘 플레이스 SEO·블로그·체험단 전략을 확인하세요.",
+    "전국 소상공인 마케팅을 지원하며 경기·서울·인천은 방문 상담도 가능합니다. 지역 상권에 맞춘 플레이스 SEO·블로그·체험단 전략을 정리했습니다.",
   keywords: [
     "전국 마케팅 대행사", "지역별 마케팅 대행사", "경기 마케팅 대행사", "서울 마케팅 대행사", "인천 마케팅 대행사",
     "고양 마케팅 대행사", "일산 마케팅 대행사", "파주 마케팅", "김포 마케팅", "부천 마케팅",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "지역별 마케팅 서비스 · 하랑마케팅",
     description: "전국 소상공인 마케팅. 경기·서울·인천은 방문 상담.",
     url: `${BASE}/location`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 지역별 서비스" }],
+    images: [ogImage("하랑마케팅 지역별 서비스")],
   },
 };
 

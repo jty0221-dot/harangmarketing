@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { best, fmt } from "../lib/rank-records";
+import { ogImage } from "../lib/seo";
 
 /* OG 문구의 순위도 손으로 적지 않는다. 대표 두 업종을 RECORDS 에서 뽑는다. */
 const OG_LINE = ["음식점", "청소"]
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 사례 | 업종별 플레이스 순위 상승 기록",
     description: `${OG_LINE} · 하랑마케팅이 직접 계측한 업종별 순위 기록입니다.`,
     url: "https://www.harangmarketing.com/cases",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 성공 사례" }],
+    images: [ogImage("하랑마케팅 성공 사례")],
   },
 };
 

@@ -146,7 +146,9 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
     keywordType: c.keywordType,
   };
 })
-  .filter((c) => c.best.to <= SHOW_WITHIN);
+  // 가장 최근 계측에 없는 키워드도 대장에는 남기고 화면에서만 뺀다.
+  // 안내 문구가 카드 순위를 PLACE_RANK_AS_OF 계측분이라고 말하기 때문이다 (2026-09-24 (목) 코드 리뷰)
+  .filter((c) => c.best.to <= SHOW_WITHIN && c.asOf === PLACE_RANK_AS_OF);
 
 /** 검색수를 잰 날 */
 export const PLACE_RANK_VOLUME_AS_OF = FILE.volumeAsOf;

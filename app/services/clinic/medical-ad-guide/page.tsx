@@ -5,7 +5,7 @@ import Footer from "../../../components/Footer";
 import AnswerBlock from "../../../components/AnswerBlock";
 import FaqAccordion from "../../../components/FaqAccordion";
 import JsonLd from "../../../components/JsonLd";
-import { SITE, faqLd, breadcrumbLd, webPageLd, type FaqItem } from "../../../lib/seo";
+import { SITE, faqLd, breadcrumbLd, webPageLd, type FaqItem, ogImage } from "../../../lib/seo";
 import {
   ArrowRight,
   BadgeCheck,
@@ -42,7 +42,7 @@ import {
 const PATH = "/services/clinic/medical-ad-guide";
 
 const DESCRIPTION =
-  "의료광고 사전심의가 필요한 매체와 심의 없이 쓸 수 있는 아홉 가지 항목을 의료법 제57조와 시행령 제24조 순서대로 정리했습니다. 채널 16곳 판정과 확인 불가로 남긴 항목까지 그대로 적었습니다.";
+  "의료광고 사전심의가 필요한 매체와 심의 없이 쓸 수 있는 아홉 가지 항목을 의료법 제57조와 시행령 제24조 순서로 정리했습니다.";
 
 export const metadata: Metadata = {
   title: "의료광고 심의 대상 판정 자료 | 병원 · 치과 · 한의원 마케팅",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "의료광고 심의 대상 판정 자료 | 하랑마케팅",
     description: DESCRIPTION,
     url: `${SITE.base}${PATH}`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 의료광고 심의 판정 자료" }],
+    images: [ogImage("하랑마케팅 의료광고 심의 판정 자료")],
   },
 };
 

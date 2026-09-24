@@ -4,17 +4,20 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   RefreshCw, Loader2, Check, CheckCircle2, RotateCcw, Phone, MessageSquare, ChevronDown,
-  Copy, ClipboardCheck, Send, Smartphone,
+  Copy, ClipboardCheck, Send, Smartphone, StickyNote, Save,
 } from "lucide-react";
 import { AdminHeader, AdminFooter } from "../AdminNav";
-import { INQUIRY_STATUS_LABEL, inquirySourceLabel, type InquiryStatus } from "../../lib/inquiry-status";
+import {
+  INQUIRY_MEMO_MAX, INQUIRY_STATUS_LABEL, inquirySourceLabel, type InquiryStatus,
+} from "../../lib/inquiry-status";
 import { buildInquiryReply, smsHref } from "../../lib/inquiry-reply";
 
 /**
  * 홈페이지 문의 목록 (관리자)
  * /contact 상담 신청 폼과 /free-check 무료 진단에서 들어온 문의를 본다.
  * 데이터는 /api/admin/inquiries 에서만 받는다. 이름·연락처는 관리자 세션이 있을 때만 나간다.
- * 상태는 셋뿐이다 : 새 문의 → 확인함 → 응대 완료. 메모 칸은 두지 않았다.
+ * 상태는 셋뿐이다 : 새 문의 → 확인함 → 응대 완료.
+ * 펼치면 관리자 메모 칸이 있다 (최대 2000자 · 저장 버튼을 눌러야 남는다). 메모는 이 화면에서만 보는 내부 기록이다.
  * 펼치면 그 문의에 맞춘 첫 답 문안(카톡용 · 문자용)이 같이 나온다. 문안은 lib/inquiry-reply.ts 가 만든다.
  * 화면은 복사와 문자 앱 열기까지만 한다. 보내는 것은 사람이고, 상태도 자동으로 바꾸지 않는다.
  * 카카오 알림의 링크(/admin/inquiries?id=N)로 들어오면 그 문의를 펼쳐서 보여준다.
@@ -30,6 +33,7 @@ interface Inquiry {
   message: string | null;
   source: string | null;
   status: InquiryStatus;
+  memo: string | null;
   createdAt: string;
 }
 
@@ -64,6 +68,10 @@ export default function AdminInquiriesPage() {
   const [openId, setOpenId] = useState<number | null>(null);
   const [replyChannel, setReplyChannel] = useState<ReplyChannel>("kakao");
   const [copied, setCopied] = useState<string | null>(null);
+  // 저장 전 메모 입력값 (문의 번호별). 저장하면 지운다
+  const [memoDrafts, setMemoDrafts] = useState<Record<number, string>>({});
+  const [memoBusy, setMemoBusy] = useState<number | null>(null);
+  const [memoSaved, setMemoSaved] = useState<number | null>(null);
   // 링크로 들어온 문의 번호 · 목록이 오면 그 카드로 한 번 스크롤한다
   const scrollTo = useRef<number | null>(null);
 
@@ -140,6 +148,41 @@ export default function AdminInquiriesPage() {
     }
   }
 
+  async function saveMemo(id: number, text: string) {
+    if (text.length > INQUIRY_MEMO_MAX) {
+      setMessage(`메모는 ${INQUIRY_MEMO_MAX}자까지 적을 수 있습니다.`);
+      return;
+    }
+    setMemoBusy(id);
+    setMessage("");
+    try {
+      const res = await fetch("/api/admin/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ op: "memo", id, memo: text }),
+      });
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || "메모를 저장하지 못했습니다");
+      const saved = typeof data.memo === "string" ? data.memo : null;
+      setInquiries((prev) => prev.map((q) => (q.id === id ? { ...q, memo: saved } : q)));
+      setMemoDrafts((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+      setMemoSaved(id);
+      setTimeout(() => setMemoSaved((cur) => (cur === id ? null : cur)), 2000);
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : String(e));
+    } finally {
+      setMemoBusy(null);
+    }
+  }
+
   const counts: Record<Filter, number> = { all: inquiries.length, new: 0, checked: 0, done: 0 };
   for (const q of inquiries) counts[q.status] += 1;
   const shown = filter === "all" ? inquiries : inquiries.filter((q) => q.status === filter);
@@ -206,6 +249,9 @@ export default function AdminInquiriesPage() {
               const reply = open ? buildInquiryReply(q) : null;
               const replyText = reply ? (replyChannel === "kakao" ? reply.kakao : reply.sms) : "";
               const copiedThis = copied === `${q.id}:${replyChannel}`;
+              const memoText = memoDrafts[q.id] ?? q.memo ?? "";
+              const memoDirty = memoText.trim() !== (q.memo ?? "");
+              const memoWorking = memoBusy === q.id;
               return (
                 <div key={q.id} id={`inq-${q.id}`} className="bg-white rounded-2xl ring-1 ring-gray-100 overflow-hidden">
                   <button
@@ -232,6 +278,12 @@ export default function AdminInquiriesPage() {
                       <div className="mt-1 text-[11px] text-gray-400">
                         {fmt(q.createdAt)} · 접수 번호 {q.id}
                       </div>
+                      {q.memo && !open && (
+                        <div className="mt-1.5 flex items-center gap-1 text-xs text-gray-600 min-w-0" title={q.memo}>
+                          <StickyNote size={12} className="shrink-0 text-gray-400" />
+                          <span className="truncate min-w-0">{q.memo}</span>
+                        </div>
+                      )}
                     </div>
                     <ChevronDown
                       size={16}
@@ -315,6 +367,56 @@ export default function AdminInquiriesPage() {
                           </p>
                         </div>
                       )}
+                      <div className="rounded-xl bg-white ring-1 ring-gray-100 p-3 space-y-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <label
+                            htmlFor={`inq-memo-${q.id}`}
+                            className="flex items-center gap-1.5 text-xs font-black text-gray-700"
+                          >
+                            <StickyNote size={13} className="text-gray-400" />
+                            관리자 메모
+                          </label>
+                          <span
+                            className={`text-[11px] font-bold ${
+                              memoText.length > INQUIRY_MEMO_MAX ? "text-red-600" : "text-gray-400"
+                            }`}
+                          >
+                            {memoText.length.toLocaleString("ko-KR")} / {INQUIRY_MEMO_MAX.toLocaleString("ko-KR")}
+                          </span>
+                        </div>
+                        <textarea
+                          id={`inq-memo-${q.id}`}
+                          value={memoText}
+                          onChange={(e) => {
+                            const v = e.target.value;
+                            setMemoDrafts((prev) => ({ ...prev, [q.id]: v }));
+                          }}
+                          maxLength={INQUIRY_MEMO_MAX}
+                          rows={3}
+                          placeholder="통화 결과나 다음에 할 일을 적어 두세요. 고객에게는 보이지 않습니다."
+                          className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-base md:text-sm text-gray-800 outline-none focus:border-blue-400 resize-y"
+                        />
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <button
+                            type="button"
+                            disabled={memoWorking || !memoDirty}
+                            onClick={() => saveMemo(q.id, memoText)}
+                            className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-black text-white hover:bg-blue-700 disabled:opacity-50"
+                          >
+                            {memoWorking ? (
+                              <Loader2 size={13} className="animate-spin" />
+                            ) : memoSaved === q.id && !memoDirty ? (
+                              <Check size={13} />
+                            ) : (
+                              <Save size={13} />
+                            )}
+                            {memoSaved === q.id && !memoDirty ? "저장했습니다" : "메모 저장"}
+                          </button>
+                          {memoDirty && !memoWorking && (
+                            <span className="text-[11px] text-gray-400">저장하지 않은 내용이 있습니다.</span>
+                          )}
+                        </div>
+                      </div>
                       <div className="flex flex-wrap gap-2 pt-1">
                         {q.status === "new" && (
                           <button

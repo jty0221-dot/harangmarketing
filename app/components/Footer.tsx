@@ -8,7 +8,20 @@ import { SITE } from "../lib/seo";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 import { PRICE_MIN, won } from "../lib/cafe-distribution";
 
+// 신규 출시 배지 만료일 · 도입(2026-08-07 · bcd085a) 60일 뒤이며 이 날이 지나면 배지를 감춘다
+const NEW_BADGE_UNTIL = "2026-10-06";
+
+/**
+ * 한국 시간 기준 오늘이 만료일 이하인가.
+ * 정적으로 만들어지는 페이지는 빌드 시점에 한 번 판정한다. 만료일 뒤에 다시 빌드해야 화면에서 빠진다.
+ */
+function isNewBadgeActive(): boolean {
+  const todayKst = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return todayKst <= NEW_BADGE_UNTIL;
+}
+
 export default function Footer() {
+  const showNewBadge = isNewBadgeActive();
   return (
     <footer className="bg-gray-950 text-gray-400">
       {/* 배포 상품 띠배너 — 모든 페이지 하단에서 상세페이지로 보내는 진입점 */}
@@ -19,7 +32,14 @@ export default function Footer() {
       >
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between md:px-6 md:py-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-            <span className="rounded-full bg-white px-2.5 py-1 text-[11px] font-black" style={{ color: "#1449c8" }}>
+            {/* 요소를 빼지 않고 hidden 으로 감춘다. 이 푸터는 use client 페이지(홈 · 사례 · 상담)에서도
+                그려지는데, 빌드 때 만든 HTML 과 브라우저 첫 렌더가 날짜 때문에 갈리면 하이드레이션 오류가 난다 */}
+            <span
+              hidden={!showNewBadge}
+              suppressHydrationWarning
+              className="rounded-full bg-white px-2.5 py-1 text-[11px] font-black"
+              style={{ color: "#1449c8" }}
+            >
               신규 출시
             </span>
             <p className="text-[15px] font-black text-white md:text-[17px]">
@@ -86,7 +106,7 @@ export default function Footer() {
                   { label: "네이버 블로그", href: "https://blog.naver.com/harangmarketing", logo: "naver" },
                   { label: "카카오톡 채널", href: "https://pf.kakao.com/_MuUkG/chat", logo: "kakao" },
                   { label: "인스타그램", href: "https://www.instagram.com/jty0221/", logo: "instagram" },
-                  { label: "유튜브", href: "https://www.youtube.com/@madaenam", logo: "youtube" },
+                  { label: "유튜브", href: SITE.youtube, logo: "youtube" },
                 ] as { label: string; href: string; logo: PlatformId }[]).map((s) => (
                   <a
                     key={s.label}

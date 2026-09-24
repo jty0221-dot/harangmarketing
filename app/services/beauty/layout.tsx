@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../../components/JsonLd";
-import { ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
+import { ORG_ID, LOCAL_ID, breadcrumbLd, ogImage } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "미용·네일·뷰티 마케팅 대행 | 인스타그램 · 체험단 · 예약 전환",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "미용·네일·뷰티 마케팅 대행 | 하랑마케팅",
     description: "인스타그램 포트폴리오 · 체험단 · 예약 전환 최적화. 대표가 직접 관리 · 상담 0원.",
     url: "https://www.harangmarketing.com/services/beauty",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "미용 마케팅 대행 하랑마케팅" }],
+    images: [ogImage("미용 마케팅 대행 하랑마케팅")],
   },
 };
 

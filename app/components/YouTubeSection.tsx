@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import YouTubeCard from "./YouTubeCard";
 import { FALLBACK_LATEST, type YTVideo } from "../lib/youtube-rss";
+import { SITE } from "../lib/seo";
 
-const CHANNEL_URL = "https://www.youtube.com/@madaenam";
-const SUBSCRIBE_URL = "https://www.youtube.com/@madaenam?sub_confirmation=1";
+// 채널 주소는 app/lib/seo.ts 의 SITE.youtube 한 곳에서만 온다. 구독 버튼은 거기에 확인 창 파라미터만 붙인다.
+const CHANNEL_URL = SITE.youtube;
+const SUBSCRIBE_URL = `${SITE.youtube}?sub_confirmation=1`;
 
 const YT_ICON = (
   <svg viewBox="0 0 24 24" className="fill-current">

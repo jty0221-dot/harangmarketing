@@ -1217,7 +1217,7 @@ export default function HomePage() {
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   많은 분들이 &lsquo;사진만 예쁘게 올리면 되는 거 아닌가요?&rsquo;라고 물어보세요.
-                  하랑이 10년간 500개 매장을 분석한 결과는 다릅니다.
+                  하랑 대표가 10년 동안 500개 매장을 분석한 결과는 다릅니다.
                 </p>
                 <div className="space-y-4">
                   {[
@@ -1643,7 +1643,7 @@ export default function HomePage() {
                     플레이스 순위를 올리는<br />7가지 체크리스트
                   </h2>
                   <p className="text-blue-50 text-sm leading-relaxed mb-6">
-                    10년간 500개 매장 데이터에서 추출한 플레이스 SEO 핵심 포인트.
+                    10년 누적 500개 매장 데이터에서 추출한 플레이스 SEO 핵심 포인트.
                     지금 무료 상담 신청하면 PDF로 바로 보내드립니다.
                   </p>
                   <div className="space-y-2">

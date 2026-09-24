@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { byKeyword, fmtLong } from "../../lib/rank-records";
+import { ogImage } from "../../lib/seo";
 
 /*
  * 순위 문구는 정본에서 만든다. 기록이 없으면 문장에서 빠진다 (C-42 · C-50).
@@ -19,14 +20,14 @@ const DENTAL_LINE = DENTAL ? `지역 치과 키워드 ${fmtLong(DENTAL)} 기록.
 
 export const metadata: Metadata = {
   title: "의원·한의원·피부과 마케팅 대행 | 의료법 준수 · 플레이스 SEO",
-  description: `의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위노출, 리뷰 관리. ${DENTAL_LINE} 무료 상담 0원.`,
+  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 상담은 0원입니다.",
   keywords: ["병원 마케팅", "의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 네이버 플레이스", "한의원 블로그 마케팅", "의료광고 심의", "의원 상위노출"],
   alternates: { canonical: "https://www.harangmarketing.com/services/clinic" },
   openGraph: {
     title: "의원·한의원·피부과 마케팅 대행 | 하랑마케팅",
-    description: `의료법 준수 블로그 · 플레이스 SEO · 리뷰 관리. ${DENTAL_LINE}`,
+    description: `의료법 준수 블로그 · 플레이스 SEO · 리뷰 답글 관리. ${DENTAL_LINE}`,
     url: "https://www.harangmarketing.com/services/clinic",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "병원 마케팅 대행 하랑마케팅" }],
+    images: [ogImage("병원 마케팅 대행 하랑마케팅")],
   },
 };
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
-import { SITE, ORG_ID, SITE_ID, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, SITE_ID, webPageLd, updatedAt, breadcrumbLd, ogImage } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "마케팅 인사이트 블로그 | 소상공인 마케팅 노하우",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 블로그 | 소상공인 마케팅 노하우",
     description: "10년 경력 실무진이 직접 쓰는 소상공인 마케팅 인사이트",
     url: "https://www.harangmarketing.com/blog",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 블로그 | 소상공인 마케팅 노하우" }],
+    images: [ogImage("하랑마케팅 블로그 | 소상공인 마케팅 노하우")],
   },
 };
 

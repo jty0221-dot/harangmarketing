@@ -7,6 +7,7 @@ import ScrollProgressBar from "../../components/ScrollProgressBar";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "../../lib/blog-posts";
 import { BLOG_META } from "../../lib/blog-meta";
+import { ogImage } from "../../lib/seo";
 
 const POSTS: Record<string, {
   title: string;
@@ -718,7 +719,7 @@ export async function generateMetadata(
         publishedTime: dynamicPost.date,
         authors: ["하랑마케팅"],
         tags: ["소상공인 마케팅", "네이버 플레이스", "블로그 마케팅"],
-        images: [{ url: "/og-image.png", width: 1200, height: 630, alt: dynamicPost.title }],
+        images: [ogImage(dynamicPost.title)],
       },
     };
   }
@@ -741,7 +742,7 @@ export async function generateMetadata(
       publishedTime: meta?.date,
       authors: ["하랑마케팅"],
       tags: ["소상공인 마케팅", post.tag, "네이버 마케팅"],
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
+      images: [ogImage(post.title)],
     },
   };
 }

@@ -8,7 +8,7 @@ import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import JsonLd from "../components/JsonLd";
-import { breadcrumbLd, webPageLd, updatedAt } from "../lib/seo";
+import { breadcrumbLd, webPageLd, updatedAt, ogImage } from "../lib/seo";
 import {
   byVolume, PLACE_RANK_AS_OF, PLACE_RANK_GENERATED, PLACE_RANK_LABEL_NOTE, PLACE_RANK_NOTE,
 } from "../lib/place-rank-cases";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: `${PORTFOLIO_TITLE} | 하랑마케팅`,
     description: PORTFOLIO_DESCRIPTION,
     url: PORTFOLIO_URL,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 업종별 마케팅 사례" }],
+    images: [ogImage("하랑마케팅 업종별 마케팅 사례")],
   },
 };
 
