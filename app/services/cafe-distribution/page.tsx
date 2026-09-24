@@ -388,9 +388,7 @@ export default function CafeDistributionPage() {
             </h2>
 
             <p className="mt-6 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
-              블로그 탭에서 내 글을 본 사람은 이미 봤습니다.
-              문제는 <strong className="font-bold text-white">블로그를 건너뛰고 카페 탭부터 여는 사람들</strong>입니다.
-              광고 같지 않은 후기를 찾으려는 사람일수록 그렇습니다. 이쪽에는 우리 이야기가 아예 없습니다.
+              블로그 탭에서 본 사람은 이미 봤습니다. 문제는 <strong className="font-bold text-white">블로그를 건너뛰고 카페 탭부터 여는 사람들</strong>입니다. 후기를 찾는 그 자리에 우리 이야기가 없습니다.
             </p>
 
             {/* 있음 / 없음 대비 */}
@@ -446,9 +444,7 @@ export default function CafeDistributionPage() {
               className="mt-6 text-[16px] leading-[1.8] md:text-[18px]"
               style={{ color: "var(--cd-body-2)", textWrap: "pretty" }}
             >
-              같은 키워드를 검색해도 블로그 탭에서 멈추는 사람과 카페 탭까지 넘어가는 사람이 나뉩니다.
-              카페 탭은 실사용자의 후기가 모이는 영역으로 인식되기 때문에, 여기에서 한 번 더 언급되는 것과
-              그렇지 않은 것의 신뢰 차이가 큽니다.
+              같은 키워드라도 카페 탭까지 넘어가 보는 사람이 따로 있습니다. 실사용자 후기가 모이는 자리라 여기서 한 번 더 보이면 신뢰가 달라집니다.
             </p>
 
             <div className="mt-9 grid grid-cols-1 gap-[18px] md:grid-cols-3">

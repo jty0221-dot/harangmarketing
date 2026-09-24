@@ -208,9 +208,7 @@ export default function ReviewServicePage() {
             </h1>
 
             <p className="speakable text-base md:text-lg text-gray-300 leading-relaxed mb-8 max-w-3xl">
-              실제로 방문한 사람이 실제로 쓴 글만 남깁니다. 매장에 맞는 블로거와 인플루언서를
-              찾아 섭외하고, 방문 일정을 나눠 잡고, 올라온 글까지 확인하는 것을 하랑 대표가
-              직접 합니다. 리뷰를 사지 않습니다.
+              실제로 방문한 사람이 쓴 글만 남깁니다. 블로거·인플루언서 섭외부터 방문 일정, 올라온 글 확인까지 하랑 대표가 직접 하고, 리뷰를 사지 않습니다.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">

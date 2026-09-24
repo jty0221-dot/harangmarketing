@@ -251,10 +251,7 @@ export default function PlaceServicePage() {
             </h1>
 
             <p className="speakable mt-5 text-sm md:text-base leading-relaxed text-gray-300 max-w-2xl">
-              네이버 지도에 가게를 등록하는 것까지는 무료이고 사장님이 직접 하실 수 있습니다.
-              아래에 절차를 그대로 적어 두었습니다. 저희가 하는 일은 그다음입니다.
-              키워드를 골라 넣고 매일 순위를 재서 밀린 자리를 되찾습니다.
-              순위는 매일 저장한 스냅샷 실측값으로만 말씀드리고 몇 위까지 올려 드린다는 말을 하지 않습니다.
+              네이버 지도 등록은 무료라 사장님이 직접 하실 수 있고, 절차는 아래에 적어 두었습니다. 저희는 그다음 키워드를 넣고 매일 순위를 재서 밀린 자리를 되찾습니다. 몇 위까지 올려 드린다는 말 대신 매일 잰 순위로만 말씀드립니다.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -338,8 +335,7 @@ export default function PlaceServicePage() {
               </h2>
             </div>
             <p className="text-sm md:text-[15px] leading-relaxed text-gray-600 mb-8">
-              절차를 그대로 적어 두었습니다. 비용은 0원이고 40분이면 끝납니다.
-              이걸 대행비를 받고 해 드리는 곳이 있는데, 저희는 여기에 값을 매기지 않습니다.
+              절차를 그대로 적어 두었습니다. 비용은 0원이고 40분이면 끝나서 저희는 여기에 값을 매기지 않습니다.
             </p>
 
             <ol className="space-y-3">

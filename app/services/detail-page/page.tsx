@@ -296,8 +296,7 @@ export default function DetailPageServicePage() {
               <span className="text-blue-400">순서를 팝니다</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              같은 상품도 어떤 불안을 몇 번째 화면에서 지우느냐에 따라 결과가 달라집니다.
-              그래서 저희는 예쁘게 만들기 전에 순서부터 정합니다. 그 순서를 이 페이지에 전부 공개합니다.
+              같은 상품도 어떤 불안을 몇 번째 화면에서 지우느냐로 결과가 갈립니다. 그래서 예쁘게 만들기 전에 순서부터 정합니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
@@ -661,9 +660,7 @@ export default function DetailPageServicePage() {
                 </div>
                 <h3 className="font-black text-gray-900 text-sm mb-2">상호를 밝힌 사례는 아직 없습니다</h3>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed mb-4">
-                  만든 상세페이지는 맨 위에 {REF_TOTAL}건을 종류별로 펼쳐 뒀습니다.
-                  다만 상호와 브랜드명까지 적으려면 사장님의 서면 동의가 필요해서, 이 자리에는
-                  동의를 받은 건부터 하나씩 올립니다. 동의 없이 상호를 적거나 성과를 지어내지 않습니다.
+                  만든 상세페이지 {REF_TOTAL}건은 맨 위에 종류별로 펼쳐 뒀습니다. 상호와 브랜드명은 서면 동의를 받은 건만 적고, 성과를 지어내지 않습니다.
                 </p>
                 <p className="text-xs md:text-[13px] text-gray-500 leading-relaxed">
                   대신 위에 공정을 전부 적어 두었습니다.{" "}
