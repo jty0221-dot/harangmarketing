@@ -231,7 +231,7 @@ export default function PhotoPage() {
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-gray-900 mb-2">음식점 촬영 예시</h2>
             <p className="text-gray-500 text-sm mb-6">
-              촬영 협력사와 함께 작업한 컷입니다. 상호 노출 동의를 받은 범위가 사진까지라 업체명은 적지 않습니다.
+              촬영 협력사와 함께 작업한 컷입니다. 업체별 전체 사진은 위쪽 포트폴리오에서 보실 수 있습니다.
             </p>
             <Gallery shots={FOOD_SHOTS} label="음식점 촬영 예시" />
           </div>

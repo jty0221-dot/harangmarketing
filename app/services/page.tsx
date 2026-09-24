@@ -128,7 +128,7 @@ const HL_CARD_COVERS: ServiceCover[] = HL_COVERS.slice(0, 5).map((c) => ({
  *
  * 가로로 담기는 자리라 세로 컷은 넣지 않았다. 세로를 눕히면 위아래가 잘려
  * 무엇을 찍은 컷인지 알아볼 수 없게 된다.
- * 업체명은 화면에 올리지 않는다. alt 도 데이터가 가진 문장을 그대로 쓴다.
+ * alt 는 데이터가 가진 장면 문장을 그대로 쓴다 (협력사 상호는 쓰지 않는다).
  */
 const PHOTO_CARD_COVERS: ServiceCover[] = [
   FOOD_SHOTS[0],

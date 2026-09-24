@@ -63,8 +63,13 @@
     "id": "107",
     "name": "지은정스테이",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-107.jpg",
+    "cover": "/photo-partner/stay/107/09.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/107/09.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/107/01.jpg",
         "width": 1537,
@@ -102,11 +107,6 @@
       },
       {
         "src": "/photo-partner/stay/107/08.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
-        "src": "/photo-partner/stay/107/09.jpg",
         "width": 1920,
         "height": 1280
       }
@@ -181,7 +181,7 @@
     "id": "28",
     "name": "화운",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-28.jpg",
+    "cover": "/photo-partner/stay/28/01.jpg",
     "images": [
       {
         "src": "/photo-partner/stay/28/01.jpg",
@@ -230,8 +230,13 @@
     "id": "82",
     "name": "유운",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-82.jpg",
+    "cover": "/photo-partner/stay/82/04.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/82/04.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/82/01.jpg",
         "width": 1920,
@@ -244,11 +249,6 @@
       },
       {
         "src": "/photo-partner/stay/82/03.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
-        "src": "/photo-partner/stay/82/04.jpg",
         "width": 1920,
         "height": 1280
       },
@@ -274,8 +274,13 @@
     "id": "83",
     "name": "자하",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-83.jpg",
+    "cover": "/photo-partner/stay/83/04.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/83/04.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/83/01.jpg",
         "width": 1920,
@@ -288,11 +293,6 @@
       },
       {
         "src": "/photo-partner/stay/83/03.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
-        "src": "/photo-partner/stay/83/04.jpg",
         "width": 1920,
         "height": 1280
       },
@@ -318,8 +318,13 @@
     "id": "101",
     "name": "에스티르",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-101.jpg",
+    "cover": "/photo-partner/stay/101/03.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/101/03.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/101/01.jpg",
         "width": 1920,
@@ -327,11 +332,6 @@
       },
       {
         "src": "/photo-partner/stay/101/02.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
-        "src": "/photo-partner/stay/101/03.jpg",
         "width": 1920,
         "height": 1280
       },
@@ -484,8 +484,13 @@
     "id": "39",
     "name": "소소유유",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-39.jpg",
+    "cover": "/photo-partner/stay/39/14.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/39/14.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/39/01.jpg",
         "width": 1920,
@@ -552,11 +557,6 @@
         "height": 1280
       },
       {
-        "src": "/photo-partner/stay/39/14.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
         "src": "/photo-partner/stay/39/15.jpg",
         "width": 1920,
         "height": 1280
@@ -578,8 +578,13 @@
     "id": "67",
     "name": "서향",
     "description": "양평 독채 펜션",
-    "cover": "/photo-pricing/covers/stay-67.jpg",
+    "cover": "/photo-partner/stay/67/04.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/67/04.jpg",
+        "width": 1920,
+        "height": 1080
+      },
       {
         "src": "/photo-partner/stay/67/01.jpg",
         "width": 1920,
@@ -594,11 +599,6 @@
         "src": "/photo-partner/stay/67/03.jpg",
         "width": 1920,
         "height": 1280
-      },
-      {
-        "src": "/photo-partner/stay/67/04.jpg",
-        "width": 1920,
-        "height": 1080
       },
       {
         "src": "/photo-partner/stay/67/05.jpg",
@@ -691,8 +691,13 @@
     "id": "26",
     "name": "시간토끼",
     "description": "강화도 독채 펜션",
-    "cover": "/photo-pricing/covers/stay-26.jpg",
+    "cover": "/photo-partner/stay/26/05.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/26/05.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/26/01.jpg",
         "width": 1920,
@@ -714,11 +719,6 @@
         "height": 1280
       },
       {
-        "src": "/photo-partner/stay/26/05.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
         "src": "/photo-partner/stay/26/06.jpg",
         "width": 1920,
         "height": 1280
@@ -730,7 +730,7 @@
     "id": "66",
     "name": "구공스테이 숲결",
     "description": "경주 독채 풀빌라",
-    "cover": "/photo-pricing/covers/stay-66.jpg",
+    "cover": "/photo-partner/stay/66/01.jpg",
     "images": [
       {
         "src": "/photo-partner/stay/66/01.jpg",
@@ -852,17 +852,17 @@
     "id": "60",
     "name": "소선",
     "description": "삼척 독채 풀빌라",
-    "cover": "/photo-pricing/covers/stay-60.jpg",
+    "cover": "/photo-partner/stay/60/02.jpg",
     "images": [
-      {
-        "src": "/photo-partner/stay/60/01.jpg",
-        "width": 1920,
-        "height": 2880
-      },
       {
         "src": "/photo-partner/stay/60/02.jpg",
         "width": 1920,
         "height": 1280
+      },
+      {
+        "src": "/photo-partner/stay/60/01.jpg",
+        "width": 1920,
+        "height": 2880
       },
       {
         "src": "/photo-partner/stay/60/03.jpg",
@@ -896,8 +896,13 @@
     "id": "100",
     "name": "바인트리 호텔",
     "description": "신림 호텔",
-    "cover": "/photo-pricing/covers/stay-100.jpg",
+    "cover": "/photo-partner/stay/100/04.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/100/04.jpg",
+        "width": 1920,
+        "height": 1280
+      },
       {
         "src": "/photo-partner/stay/100/01.jpg",
         "width": 1920,
@@ -914,11 +919,6 @@
         "height": 1280
       },
       {
-        "src": "/photo-partner/stay/100/04.jpg",
-        "width": 1920,
-        "height": 1280
-      },
-      {
         "src": "/photo-partner/stay/100/05.jpg",
         "width": 1920,
         "height": 1281
@@ -930,8 +930,13 @@
     "id": "108",
     "name": "봉덕",
     "description": "전북고창독채한옥",
-    "cover": "/photo-pricing/covers/stay-108-clean.jpg",
+    "cover": "/photo-partner/stay/108/05-clean.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/108/05-clean.jpg",
+        "width": 1536,
+        "height": 1024
+      },
       {
         "src": "/photo-partner/stay/108/01-clean.jpg",
         "width": 1536,
@@ -949,11 +954,6 @@
       },
       {
         "src": "/photo-partner/stay/108/04-clean.jpg",
-        "width": 1536,
-        "height": 1024
-      },
-      {
-        "src": "/photo-partner/stay/108/05-clean.jpg",
         "width": 1536,
         "height": 1024
       },
@@ -988,8 +988,13 @@
     "id": "33",
     "name": "벨 37",
     "description": "연천 독채 풀빌라",
-    "cover": "/photo-pricing/covers/stay-33.jpg",
+    "cover": "/photo-partner/stay/33/03.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/33/03.jpg",
+        "width": 1920,
+        "height": 1440
+      },
       {
         "src": "/photo-partner/stay/33/01.jpg",
         "width": 1920,
@@ -999,11 +1004,6 @@
         "src": "/photo-partner/stay/33/02.jpg",
         "width": 1920,
         "height": 1612
-      },
-      {
-        "src": "/photo-partner/stay/33/03.jpg",
-        "width": 1920,
-        "height": 1440
       },
       {
         "src": "/photo-partner/stay/33/04.jpg",
@@ -1037,7 +1037,7 @@
     "id": "37",
     "name": "힐조인 광안",
     "description": "광안 독채 펜션",
-    "cover": "/photo-pricing/covers/stay-37.jpg",
+    "cover": "/photo-partner/stay/37/01.jpg",
     "images": [
       {
         "src": "/photo-partner/stay/37/01.jpg",
@@ -1071,8 +1071,13 @@
     "id": "27",
     "name": "스테이 춘몽",
     "description": "독채 스테이 공간 촬영",
-    "cover": "/photo-pricing/covers/stay-27.jpg",
+    "cover": "/photo-partner/stay/27/05.jpg",
     "images": [
+      {
+        "src": "/photo-partner/stay/27/05.jpg",
+        "width": 1920,
+        "height": 2880
+      },
       {
         "src": "/photo-partner/stay/27/01.jpg",
         "width": 1920,
@@ -1090,11 +1095,6 @@
       },
       {
         "src": "/photo-partner/stay/27/04.jpg",
-        "width": 1920,
-        "height": 2880
-      },
-      {
-        "src": "/photo-partner/stay/27/05.jpg",
         "width": 1920,
         "height": 2880
       },
@@ -1413,8 +1413,7 @@
         "height": 1600
       }
     ]
-  }
-  ,
+  },
   {
     "type": "food",
     "id": "62",
@@ -1577,8 +1576,13 @@
     "id": "104",
     "name": "훈이네 랭삼",
     "description": "",
-    "cover": "/photo-pricing/covers/food-104.jpg",
+    "cover": "/photo-partner/restaurant/104/07.jpg",
     "images": [
+      {
+        "src": "/photo-partner/restaurant/104/07.jpg",
+        "width": 1920,
+        "height": 1920
+      },
       {
         "src": "/photo-partner/restaurant/104/01.jpg",
         "width": 1920,
@@ -1606,11 +1610,6 @@
       },
       {
         "src": "/photo-partner/restaurant/104/06.jpg",
-        "width": 1920,
-        "height": 1920
-      },
-      {
-        "src": "/photo-partner/restaurant/104/07.jpg",
         "width": 1920,
         "height": 1920
       }
@@ -1745,8 +1744,13 @@
     "id": "chungmuro-2cheungjip",
     "name": "충무로 2층집",
     "description": "한식 메뉴와 상차림 촬영",
-    "cover": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-01.jpg",
+    "cover": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-08.jpg",
     "images": [
+      {
+        "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-08.jpg",
+        "width": 3000,
+        "height": 2260
+      },
       {
         "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-01.jpg",
         "width": 3000,
@@ -1779,11 +1783,6 @@
       },
       {
         "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-07.jpg",
-        "width": 3000,
-        "height": 2260
-      },
-      {
-        "src": "/photo-partner/restaurant/chungmuro-2cheungjip/menu-08.jpg",
         "width": 3000,
         "height": 2260
       },
@@ -1954,8 +1953,13 @@
     "id": "yoon-galbi",
     "name": "윤갈비",
     "description": "고기 메뉴와 상차림 촬영",
-    "cover": "/photo-partner/restaurant/yoon-galbi/menu-01.jpg",
+    "cover": "/photo-partner/restaurant/yoon-galbi/menu-03.jpg",
     "images": [
+      {
+        "src": "/photo-partner/restaurant/yoon-galbi/menu-03.jpg",
+        "width": 1024,
+        "height": 771
+      },
       {
         "src": "/photo-partner/restaurant/yoon-galbi/menu-01.jpg",
         "width": 1024,
@@ -1963,11 +1967,6 @@
       },
       {
         "src": "/photo-partner/restaurant/yoon-galbi/menu-02.jpg",
-        "width": 1024,
-        "height": 771
-      },
-      {
-        "src": "/photo-partner/restaurant/yoon-galbi/menu-03.jpg",
         "width": 1024,
         "height": 771
       },
@@ -2153,15 +2152,15 @@
     "id": "chunnam-gangnam",
     "name": "춘남식당 강남역점",
     "description": "해산물 메뉴와 매장 촬영",
-    "cover": "/photo-partner/restaurant/chunnam-gangnam/menu-01.jpg",
+    "cover": "/photo-partner/restaurant/chunnam-gangnam/menu-02.jpg",
     "images": [
       {
-        "src": "/photo-partner/restaurant/chunnam-gangnam/menu-01.jpg",
+        "src": "/photo-partner/restaurant/chunnam-gangnam/menu-02.jpg",
         "width": 2048,
         "height": 2048
       },
       {
-        "src": "/photo-partner/restaurant/chunnam-gangnam/menu-02.jpg",
+        "src": "/photo-partner/restaurant/chunnam-gangnam/menu-01.jpg",
         "width": 2048,
         "height": 2048
       },
