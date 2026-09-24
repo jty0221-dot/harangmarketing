@@ -31,7 +31,7 @@ const KINDS = [
   {
     icon: UtensilsCrossed,
     title: "음식점 메뉴 촬영",
-    desc: "대표 메뉴를 한 컷씩 남깁니다. 김이 오르는 순간과 단면이 보이는 각도를 같이 찍어 메뉴판과 배달 앱, 플레이스에 나눠 씁니다.",
+    desc: "대표 메뉴를 한 컷씩 남깁니다. 김이 오르는 순간과 단면이 보이는 각도를 같이 찍어 메뉴판과 플레이스, 블로그에 나눠 씁니다.",
   },
   {
     icon: Building2,
@@ -175,7 +175,7 @@ export default function PhotoPage() {
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-7"><div><h2 className="text-2xl font-black text-gray-900 mb-2">매장에 맞춰 보는 두 가지 버전</h2><p className="text-sm text-gray-500">메뉴가 중심인 매장과 공간 자체가 상품인 곳은 촬영 순서가 다릅니다.</p></div><Link href="/services/photo/price" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white hover:bg-blue-700">촬영 가격표 보기 <ReceiptText size={16} /></Link></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Link href="/services/photo/food" className="group rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-sm hover:border-blue-300 hover:bg-blue-50"><UtensilsCrossed size={20} className="text-blue-600 mb-4" /><h3 className="text-lg font-black text-gray-900">음식점·요식업 촬영</h3><p className="mt-2 text-sm text-gray-600 leading-relaxed">메뉴, 상차림, 매장 동선을 중심으로 잡아 배달 앱과 플레이스에 나눠 쓸 컷을 만듭니다.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600">음식점 포트폴리오 보기 <ArrowRight size={15} /></span></Link><Link href="/services/photo/stay" className="group rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-sm hover:border-blue-300 hover:bg-blue-50"><Building2 size={20} className="text-blue-600 mb-4" /><h3 className="text-lg font-black text-gray-900">공간·펜션 촬영</h3><p className="mt-2 text-sm text-gray-600 leading-relaxed">객실, 공용공간, 외부 동선을 나눠 예약 전에 머무는 장면이 그려지는 컷을 만듭니다.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600">공간 포트폴리오 보기 <ArrowRight size={15} /></span></Link></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Link href="/services/photo/food" className="group rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-sm hover:border-blue-300 hover:bg-blue-50"><UtensilsCrossed size={20} className="text-blue-600 mb-4" /><h3 className="text-lg font-black text-gray-900">음식점·요식업 촬영</h3><p className="mt-2 text-sm text-gray-600 leading-relaxed">메뉴, 상차림, 매장 동선을 중심으로 잡아 플레이스와 블로그에 나눠 쓸 컷을 만듭니다.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600">음식점 포트폴리오 보기 <ArrowRight size={15} /></span></Link><Link href="/services/photo/stay" className="group rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-sm hover:border-blue-300 hover:bg-blue-50"><Building2 size={20} className="text-blue-600 mb-4" /><h3 className="text-lg font-black text-gray-900">공간·펜션 촬영</h3><p className="mt-2 text-sm text-gray-600 leading-relaxed">객실, 공용공간, 외부 동선을 나눠 예약 전에 머무는 장면이 그려지는 컷을 만듭니다.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600">공간 포트폴리오 보기 <ArrowRight size={15} /></span></Link></div>
           </div>
         </section>
 
@@ -186,7 +186,7 @@ export default function PhotoPage() {
             <h2 className="text-2xl font-black text-gray-900 mb-4">사진이 먼저 걸립니다</h2>
             <div className="space-y-4 text-sm md:text-[15px] text-gray-600 leading-relaxed">
               <p>
-                네이버 플레이스를 열면 상호보다 사진이 먼저 보입니다. 배달 앱도, 인스타그램도, 상세페이지도 순서가
+                네이버 플레이스를 열면 상호보다 사진이 먼저 보입니다. 인스타그램도, 상세페이지도 순서가
                 같습니다. 글을 아무리 잘 써 두어도 목록에서 넘어가 버리면 읽히지 않습니다.
               </p>
               <p>
