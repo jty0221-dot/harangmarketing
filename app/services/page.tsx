@@ -21,6 +21,7 @@ import ServicePriceAnswer from "../components/ServicePriceAnswer";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
+import PlaceRankTable from "../components/PlaceRankTable";
 
 /*
  * 업종별 추천 — 순위 칸은 손으로 적지 않는다.
@@ -918,6 +919,15 @@ export default function ServicesPage() {
           </div>
         </section>
 
+
+        {/* ══ 순위표 ══ 2026-09-17 (목) 대표 지시 : 진행사례뿐 아니라 서비스에도 보이게 */}
+        <PlaceRankTable
+          align="center"
+          width="5xl"
+          tone="gray"
+          limit={10}
+          more={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
+        />
 
         {/* ══ 가격 산출 근거 ══ */}
         <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-32">

@@ -15,7 +15,7 @@ import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, updatedAt, type FaqItem,
 } from "../../lib/seo";
 import {
-  RECORDS, EXCLUDED_COUNT, SNAPSHOT_DATE, BIGGEST_GAIN,
+  RECORDS, SNAPSHOT_DATE, BIGGEST_GAIN,
   gap, fmt, MEASURE_NOTE,
 } from "../../lib/rank-records";
 import {
@@ -55,11 +55,6 @@ const TOP_RECORDS = [...RECORDS].sort((a, b) => gap(b) - gap(a)).slice(0, 6);
 const RISEN_RECORDS = RECORDS.filter((r) => r.from > r.to);
 const FASTEST = RISEN_RECORDS.reduce((a, b) => (b.days < a.days ? b : a));
 const INDUSTRY_COUNT = new Set(RECORDS.map((r) => r.industry)).size;
-const EXCLUDED_TOTAL =
-  EXCLUDED_COUNT.declined +
-  EXCLUDED_COUNT.outsidePage1 +
-  EXCLUDED_COUNT.insufficient +
-  EXCLUDED_COUNT.pendingReview;
 
 /* 1페이지에 있는 자리는 두 종류다. 이 구분이 이 페이지의 뼈대다. */
 const PAGE1_SLOTS = [
@@ -517,24 +512,14 @@ export default function PlaceServicePage() {
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl bg-gray-900 p-5 md:p-6">
-              <p className="text-sm leading-relaxed text-gray-200">
-                <span className="font-semibold text-white">
-                  싣지 않은 기록도 {EXCLUDED_TOTAL}건 있습니다.
-                </span>
-                {" "}순위가 내려간 것 {EXCLUDED_COUNT.declined}건,
-                1페이지 밖에 머문 것 {EXCLUDED_COUNT.outsidePage1}건,
-                계측을 막 시작해 시작값이 없는 것 {EXCLUDED_COUNT.insufficient}건
-                {/* 검수 대기가 0건인 날에는 절을 통째로 뺀다. 「0건입니다」 는 세어 본 적이 없다는 말로도 읽힌다 */}
-                {EXCLUDED_COUNT.pendingReview > 0
-                  ? `, 병·의원이라 의료법 검수를 거치기 전까지 올리지 않는 것 ${EXCLUDED_COUNT.pendingReview}건입니다.`
-                  : "입니다."}
-                {" "}지우지 않고 남겨 둡니다. 올라간 것만 보여 드리면 이 표를 믿을 이유가 없어집니다.
-              </p>
-              <p className="text-xs md:text-[13px] leading-relaxed text-gray-400 mt-4">
-                {MEASURE_NOTE} 지금까지 {INDUSTRY_COUNT}개 업종에서 계측했습니다.
-              </p>
-            </div>
+            {/*
+              순위가 내려간 건 · 1페이지 밖 건수를 적던 상자는 2026-09-17 (목) 대표 지시로 걷었다.
+              「쓸때없이 고객들이 필요없는 정보 부분은 굳이 안보여줘도 될것 같음」
+              거르는 동작은 rank-records.ts 에서 그대로 돈다. 화면에 적지 않을 뿐이다.
+            */}
+            <p className="mt-6 text-xs md:text-[13px] leading-relaxed text-gray-500">
+              {MEASURE_NOTE} 지금까지 {INDUSTRY_COUNT}개 업종에서 계측했습니다.
+            </p>
           </div>
         </section>
 

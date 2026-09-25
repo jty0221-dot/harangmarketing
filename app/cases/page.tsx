@@ -11,6 +11,7 @@ import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
 import { companyYear, itemListLd, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
+import PlaceRankTable from "../components/PlaceRankTable";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import {
   PLACE_RANK_AS_OF,
@@ -157,6 +158,9 @@ const CasesPage: FC = () => {
             { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종` },
           ]}
         />
+
+        {/* 순위표 : 아래 카드와 같은 계측값을 한 표로 먼저 보여 준다 (2026-09-17 (목) 대표 지시) */}
+        <PlaceRankTable />
 
         {/* Filter + Cases */}
         <section className="py-12 md:py-20 bg-gray-50">
