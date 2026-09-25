@@ -177,8 +177,8 @@ export const MONTHLY_TERMS: { title: string; desc: string }[] = [
     desc: "키워드와 금액, 노출 확인 기준을 상담에서 먼저 정하고 시작합니다. 상담 없이 결제부터 받지 않습니다.",
   },
   {
-    title: "월 단위 관리 · 노출이 확인되지 않은 날은 하루씩 연장합니다",
-    desc: "카페 마케팅에서 흔히 월 보장이라고 부르는 방식을 하랑은 월 단위 관리로 운영합니다. 채우는 것은 순위가 아니라 진행 기간입니다. 정한 키워드로 매일 검색해 노출을 확인하고, 확인되지 않은 날은 진행 기간을 하루 더합니다. 따로 말씀하지 않으셔도 자동으로 붙고, 며칠이 더해졌는지 월 보고에 적어 드립니다. 몇 위까지 올려 드린다는 약속은 하지 않습니다.",
+    title: "월 보장 · 노출이 확인되지 않은 날은 하루씩 연장합니다",
+    desc: "카페 마케팅에서 월 보장이라고 부르는 방식입니다. 보장하는 것은 순위가 아니라 기간입니다. 정한 키워드로 매일 검색해 노출을 확인하고, 확인되지 않은 날은 진행 기간을 하루 더합니다. 따로 말씀하지 않으셔도 자동으로 붙고, 며칠이 더해졌는지 월 보고에 적어 드립니다. 몇 위까지 올려 드린다는 약속은 하지 않습니다.",
   },
   {
     title: "매달 노출 위치를 확인해 보고드립니다",
@@ -249,7 +249,7 @@ export const CAFE_FAQ = [
   },
   {
     q: "월 보장은 무슨 뜻인가요?",
-    a: "카페 마케팅에서 월 단위로 노출을 이어서 관리하는 방식을 흔히 그렇게 부릅니다. 하랑이 채우는 것은 순위가 아니라 진행 기간입니다. 정한 키워드로 매일 검색해 블로그 탭과 카페 탭 노출을 확인하고, 확인되지 않은 날이 나오면 그만큼 진행 기간을 더해 채워 드립니다. 몇 위까지 올려 드린다거나 언제까지 몇 등이 된다는 약속이 아닙니다. 순위는 네이버가 정합니다.",
+    a: "카페 마케팅에서 월 단위로 노출을 이어서 관리하는 방식을 그렇게 부릅니다. 보장하는 것은 순위가 아니라 기간입니다. 정한 키워드로 매일 검색해 블로그 탭과 카페 탭 노출을 확인하고, 확인되지 않은 날이 나오면 그만큼 진행 기간을 더해 채워 드립니다. 몇 위까지 올려 드린다거나 언제까지 몇 등이 된다는 약속이 아닙니다. 순위는 네이버가 정합니다.",
   },
   {
     q: "대표 카페는 어떤 카페인가요?",
@@ -283,7 +283,7 @@ export const PRICE_NOTICE = {
   title: "표에 적힌 금액이 최신입니다",
   lines: [
     `${PRICE_REVISION_REASON} ${PRICE_REVISED_AT}부터 적용된 금액입니다.`,
-    "이벤트가나 남은 자리 안내는 두지 않습니다. 언제 문의하셔도 표에 적힌 금액이 그대로 견적 기준입니다. 월 단위 관리는 표기 금액이 시작가이고 키워드를 확인한 뒤 확정합니다.",
+    "이벤트가나 남은 자리 안내는 두지 않습니다. 언제 문의하셔도 표에 적힌 금액이 그대로 견적 기준입니다. 월 보장은 표기 금액이 시작가이고 키워드를 확인한 뒤 확정합니다.",
   ],
 } as const;
 
@@ -294,14 +294,7 @@ export interface RefCategory {
   short: string;
   crumb: string;
   imagePrefix: string;
-  /** 키워드 순서대로의 캡처 파일 번호. 없으면 1부터 차례로 센다 (키워드를 뺀 업종만 적는다) */
-  imageNumbers?: number[];
   keywords: string[];
-}
-
-/** from 부터 to 까지 (양끝 포함) */
-function range(from: number, to: number): number[] {
-  return Array.from({ length: to - from + 1 }, (_, i) => from + i);
 }
 
 /**
@@ -1081,8 +1074,6 @@ export const REF_CATEGORIES: RefCategory[] = [
     label: "장례 / 생활 서비스",
     crumb: "장례/생활 서비스",
     imagePrefix: "/cafe-ref/ref-h-",
-    /* 발톱무좀 계열 키워드 셋(캡처 02 · 21 · 27)을 뺐다. 남은 키워드는 원래 캡처 번호를 그대로 가리킨다 */
-    imageNumbers: [1, ...range(3, 20), ...range(22, 26), ...range(28, 31)],
     keywords: [
       "보청기 교체",
       "은평구보청기",
@@ -1425,8 +1416,7 @@ export const REF_TOTAL = REF_CATEGORIES.reduce((n, c) => n + c.keywords.length, 
 
 /** 인덱스 → 캡처 이미지 경로 */
 export function refImage(cat: RefCategory, index: number): string {
-  const n = cat.imageNumbers?.[index] ?? index + 1;
-  return `${cat.imagePrefix}${String(n).padStart(2, "0")}.png`;
+  return `${cat.imagePrefix}${String(index + 1).padStart(2, "0")}.png`;
 }
 
 /** 금액 표기 — 1234000 → "1,234,000원" */
