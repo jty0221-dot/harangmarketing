@@ -43,6 +43,25 @@ function fmtDate(iso: string | null): string {
 }
 
 /**
+ * 받는 분 호칭.
+ *
+ * 기본은 업체명 뒤에 '대표님' 을 붙인다. 그런데 벤츠 딜러처럼 가게가 아니라 사람이 고객이면
+ * 업체명 칸에 '신형섭 부장' 처럼 직함까지 적는다. 그대로 붙이면 '신형섭 부장 대표님' 이 되므로
+ * 끝이 직함이면 그 직함에 '님' 만 붙인다. 요청 섹션 제목도 같은 호칭을 쓴다.
+ *
+ * 직함 앞에 띄어쓰기가 있어야 직함으로 본다. '청주용달이사' 처럼 업체명이 직함 글자로
+ * 끝나는 경우가 실제 고객 명단에 있다. 같은 이유로 '이사' 는 목록에 넣지 않는다.
+ */
+const JOB_TITLE = /\s(대표|원장|부장|차장|과장|팀장|실장|점장|매니저)$/;
+
+function addresseeOf(clientName: string): { full: string; title: string } {
+  const name = clientName.trim();
+  const m = name.match(JOB_TITLE);
+  if (m) return { full: `${name}님`, title: `${m[1]}님` };
+  return { full: `${name} 대표님`, title: "대표님" };
+}
+
+/**
  * 숫자가 좋아졌는지 판단한다.
  *
  * 대부분은 커지는 게 좋지만(방문자·리뷰·클릭), 두 부류는 작아지는 게 좋다.
@@ -181,6 +200,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
   if (report.body) sections.push("body");
   if (report.requests) sections.push("requests");
   const no = (key: string) => String(sections.indexOf(key) + 1).padStart(2, "0");
+  const to = addresseeOf(report.clientName);
 
   return (
     <div className="min-h-screen" style={{ background: "var(--w-bg-alt)" }}>
@@ -207,7 +227,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           </div>
 
           <p className="w-label2 mt-7 font-bold" style={{ color: "var(--w-blue-90)" }}>
-            {report.clientName} 대표님
+            {to.full}
           </p>
           <h1
             className="mt-1.5 font-black text-white"
@@ -285,7 +305,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
 
         {/* ── 요청사항 ── */}
         {report.requests && (
-          <Section number={no("requests")} title="대표님께 요청드릴 것">
+          <Section number={no("requests")} title={`${to.title}께 요청드릴 것`}>
             <div
               className="p-5 md:p-6"
               style={{
@@ -344,7 +364,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
           style={{ color: "var(--w-label-assistive)", lineHeight: 1.7 }}
         >
           하랑마케팅 · {written} 작성
-          <br />이 페이지는 {report.clientName} 대표님께만 전달된 링크입니다.
+          <br />이 페이지는 {to.full}께만 전달된 링크입니다.
         </p>
       </main>
     </div>
