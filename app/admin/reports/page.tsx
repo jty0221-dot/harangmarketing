@@ -329,7 +329,7 @@ export default function AdminReportsPage() {
             )}
 
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-              <Field label="업체명" hint="보고서 상단에 'OOO 대표님' 으로 표시됩니다">
+              <Field label="업체명" hint="보고서 상단에 'OOO 대표님' 으로 표시됩니다. 끝에 직함을 띄어 적으면(신형섭 부장) 'OOO 부장님' 으로 바뀝니다">
                 <input
                   type="text"
                   value={form.clientName}
