@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   FileText, Plus, Save, Trash2, Copy, ExternalLink, Eye, Loader2,
-  TrendingUp, X, Check, PencilLine, RotateCcw,
+  TrendingUp, X, Check, PencilLine, RotateCcw, FileUp,
 } from "lucide-react";
 import { AdminHeader, AdminFooter } from "../AdminNav";
 import RichTextEditor from "../RichTextEditor";
@@ -116,6 +116,7 @@ export default function AdminReportsPage() {
    * 그래서 본문을 밖에서 갈아끼울 때(새 보고서·다른 보고서 수정·기본 틀 넣기) 이 키를 올려 다시 마운트시킨다.
    */
   const [editorKey, setEditorKey] = useState(0);
+  const jsonInputRef = useRef<HTMLInputElement>(null);
 
   /** 목록 새로고침. 첫 줄이 await 라서 effect 안에서 불러도 동기 setState 가 일어나지 않는다. */
   const load = useCallback(async () => {
@@ -168,6 +169,56 @@ export default function AdminReportsPage() {
     setEditorKey((k) => k + 1);
     setEditing(true);
     setMessage("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  /**
+   * scripts/report.js 와 같은 형식의 JSON 파일을 읽어 작성 폼을 채운다.
+   * 바로 저장하지 않고 폼을 열어 보여주므로, 확인한 뒤 [공개하고 링크 받기] 를 누르면 된다.
+   * code 가 목록에 있는 보고서면 그 보고서 수정으로, 아니면 새 보고서로 연다.
+   */
+  const importJson = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    let raw: Record<string, unknown>;
+    try {
+      const parsed: unknown = JSON.parse(await file.text());
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error();
+      raw = parsed as Record<string, unknown>;
+    } catch {
+      return setMessage("JSON 파일을 읽지 못했습니다. 보고서 JSON 파일이 맞는지 확인해주세요.");
+    }
+    const str = (v: unknown) => (typeof v === "string" ? v : "");
+    const clientName = str(raw.clientName).trim();
+    const title = str(raw.title).trim();
+    if (!clientName || !title) return setMessage("JSON 에 clientName 과 title 이 있어야 합니다.");
+    const code = str(raw.code);
+    const existing = reports.find((r) => r.code === code);
+    setForm({
+      code: existing ? code : "",
+      clientId: existing ? existing.clientId : null,
+      clientName,
+      title,
+      period: str(raw.period),
+      summary: str(raw.summary),
+      metrics: Array.isArray(raw.metrics)
+        ? raw.metrics.map((m: Record<string, unknown>) => ({
+            label: str(m?.label),
+            before: str(m?.before),
+            after: str(m?.after),
+          }))
+        : [],
+      body: str(raw.body),
+      requests: str(raw.requests),
+      status: existing ? existing.status : "draft",
+    });
+    setEditorKey((k) => k + 1);
+    setEditing(true);
+    setMessage(
+      `${file.name} 내용을 채웠습니다. 확인하고 아래 [공개하고 링크 받기] 를 누르세요.` +
+        (existing ? " 같은 코드의 보고서가 있어 그 보고서를 고칩니다." : ""),
+    );
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -238,13 +289,30 @@ export default function AdminReportsPage() {
             </div>
           </div>
           {!editing && (
-            <button
-              onClick={startNew}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-[13px] font-bold text-white hover:bg-blue-700 transition-colors"
-            >
-              <Plus size={15} strokeWidth={2.5} />
-              새 보고서
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => jsonInputRef.current?.click()}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[13px] font-bold text-gray-700 hover:bg-gray-50 transition-colors"
+                title="보고서 JSON 파일로 작성 폼 채우기"
+              >
+                <FileUp size={15} strokeWidth={2.5} />
+                JSON 불러오기
+              </button>
+              <button
+                onClick={startNew}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-[13px] font-bold text-white hover:bg-blue-700 transition-colors"
+              >
+                <Plus size={15} strokeWidth={2.5} />
+                새 보고서
+              </button>
+              <input
+                ref={jsonInputRef}
+                type="file"
+                accept=".json,application/json"
+                className="hidden"
+                onChange={importJson}
+              />
+            </div>
           )}
         </div>
 
