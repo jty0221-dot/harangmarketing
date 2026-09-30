@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Handshake
 import { PlatformLogo } from "../sns/PlatformLogo";
 import type { PlatformId } from "../lib/sns-store";
 
-import { SITE } from "../lib/seo";
+import { SITE, companyYear, kstYear } from "../lib/seo";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 import { PRICE_MIN, won } from "../lib/cafe-distribution";
 
@@ -302,19 +302,20 @@ export default function Footer() {
         </div>
         <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-400">
           {[
-            ["2020년 개업", "7년차"],
+            ["2020년 개업", `${companyYear()}년차`],
             ["상담 비용 0원", "계약 강요 없음"],
-            ["500+ 프로젝트", "실무 경력 10년+"],
-            ["카카오톡 24시간 접수", "하랑 대표가 직접 응답"],
+            ["누적 500건", "마케터 경력 10년"],
+            ["카카오톡 24시간 접수", "하루 이내 답변"],
           ].map(([val, sub]) => (
             <div key={val} className="flex items-center gap-1">
               <span className="font-black" style={{ color: "var(--h-blue-light)" }}>{val}</span>
               <span aria-hidden="true">·</span>
-              <span>{sub}</span>
+              {/* 연차는 해가 바뀌면 빌드 때 값과 달라진다. 재배포 전까지 수화 오류 대신 빌드 값을 그대로 둔다 */}
+              <span suppressHydrationWarning>{sub}</span>
             </div>
           ))}
         </div>
-        <p className="text-[11px] text-gray-400 mt-3">© 2026 하랑마케팅. All rights reserved.</p>
+        <p className="text-[11px] text-gray-400 mt-3" suppressHydrationWarning>© {kstYear()} 하랑마케팅. All rights reserved.</p>
       </div>
     </footer>
   );

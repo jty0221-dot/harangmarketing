@@ -71,7 +71,7 @@ export default async function BlogPage() {
               {[
                 { icon: BookOpen, text: "실무진 직접 집필" },
                 { icon: TrendingUp, text: "실제 성과 기반" },
-                { icon: Star, text: "500+ 프로젝트 경험" },
+                { icon: Star, text: "누적 500건 프로젝트 경험" },
                 { icon: MapPin, text: "소상공인 전문" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs text-gray-500">

@@ -61,7 +61,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>하랑마케팅 — 소상공인 마케팅 인사이트</title>
+    <title>하랑마케팅 · 소상공인 마케팅 인사이트</title>
     <link>${BASE}/blog</link>
     <description>10년 경력 실무진이 직접 쓰는 네이버 플레이스·블로그·SNS 마케팅 실전 노하우</description>
     <language>ko</language>

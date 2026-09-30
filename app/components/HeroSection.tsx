@@ -1,9 +1,23 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { Pause, Play } from "lucide-react";
 
 import { SITE, companyYear } from "../lib/seo";
+
+/**
+ * 동작 줄이기 설정. 켜 둔 방문자에게는 배경 영상을 처음부터 멈춘 채로 보여준다 (WCAG 2.2.2).
+ * 서버에서는 설정을 알 수 없으니 false 로 그리고, 브라우저에서 값을 읽어 맞춘다.
+ */
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+function subscribeReducedMotion(onChange: () => void) {
+  const mq = window.matchMedia(REDUCED_MOTION_QUERY);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+const getReducedMotion = () => window.matchMedia(REDUCED_MOTION_QUERY).matches;
+const getReducedMotionOnServer = () => false;
 
 /**
  * 개업 연차. 한국 시간 기준 올해에서 개업 연도를 빼고 1을 더한다 (2020년 개업 → 2026년 7년차).
@@ -25,6 +39,21 @@ export default function HeroSection({
   filmGrain = true,
 }: HeroSectionProps) {
   const vidRef = useRef<HTMLVideoElement>(null);
+  const reduceMotion = useSyncExternalStore(subscribeReducedMotion, getReducedMotion, getReducedMotionOnServer);
+  // null 이면 방문자가 아직 버튼을 누르지 않은 것이다. 그때는 동작 줄이기 설정을 따른다
+  const [pauseChoice, setPauseChoice] = useState<boolean | null>(null);
+  const paused = pauseChoice ?? reduceMotion;
+  // 아래 재생 재시도 효과는 videoSpeed 가 바뀔 때만 다시 걸리므로, 멈춤 여부는 ref 로 읽는다
+  const pausedRef = useRef(paused);
+
+  // 이 효과가 재생 재시도 효과보다 먼저 선언돼야 첫 렌더에서 pausedRef 가 먼저 맞춰진다
+  useEffect(() => {
+    pausedRef.current = paused;
+    const v = vidRef.current;
+    if (!v) return;
+    if (paused) v.pause();
+    else v.play().catch(() => {});
+  }, [paused]);
 
   useEffect(() => {
     const v = vidRef.current;
@@ -38,10 +67,12 @@ export default function HeroSection({
     v.load();
 
     const tryPlay = () => {
+      // 방문자가 멈췄거나 동작 줄이기를 켰으면 다시 틀지 않는다
+      if (pausedRef.current) return;
       // 데이터 미로드 상태면 load() 재호출 후 canplay 이벤트에서 재시도
       if (v.readyState === 0) {
         v.load();
-        v.addEventListener("canplay", () => v.play().catch(() => {}), { once: true });
+        v.addEventListener("canplay", () => { if (!pausedRef.current) v.play().catch(() => {}); }, { once: true });
       } else {
         v.play().catch(() => {});
       }
@@ -76,6 +107,11 @@ export default function HeroSection({
         .ha-hero-copy { bottom: clamp(40px,7vh,86px); }
         @media (max-width: 1023px) {
           .ha-hero-copy { bottom: 176px; }
+        }
+        /* 배경 영상 멈춤 단추. 아래쪽은 상담 위젯과 문구가 차지하므로 고정 헤더 바로 아래 오른쪽에 둔다 */
+        .ha-hero-pause { position: absolute; top: 116px; right: clamp(16px,4vw,72px); z-index: 6; }
+        @media (min-width: 768px) {
+          .ha-hero-pause { top: 124px; }
         }
         @keyframes haFadeUp {
           from { opacity: 0; transform: translateY(26px); }
@@ -129,14 +165,16 @@ export default function HeroSection({
           WebkitFontSmoothing: "antialiased",
         }}
       >
-        {/* ── 배경 동영상 ── */}
+        {/* ── 배경 동영상 ──
+            autoPlay 속성은 두지 않는다. load() 가 자동 재생 표시를 다시 켜서, 멈춘 뒤에도 영상이 저절로 다시 돈다.
+            재생은 위 효과의 tryPlay 가 멈춤 여부를 확인하고 맡는다 */}
         <video
           ref={vidRef}
-          autoPlay
           muted
           loop
           playsInline
           preload="auto"
+          poster="/hero-v4-poster.jpg"
           style={{
             position: "absolute",
             inset: 0,
@@ -146,10 +184,26 @@ export default function HeroSection({
             objectPosition: "50% 46%",
             willChange: "transform",
             animation: "haZoom 34s ease-in-out infinite alternate",
+            animationPlayState: paused ? "paused" : "running",
           }}
         >
           <source src="/hero-v4.mp4" type="video/mp4" />
         </video>
+
+        {/* ── 배경 움직임 멈춤·재생 (5초 넘게 움직이는 화면은 멈출 수 있어야 한다 · WCAG 2.2.2) ──
+            키보드 초점이 CTA 보다 먼저 닿도록 영상 바로 뒤에 둔다. 영상과 함께 확대·그레인·통계 카드·스크롤 표시도 멈춘다 */}
+        <button
+          type="button"
+          onClick={() => setPauseChoice(!paused)}
+          aria-label={paused ? "배경 영상 재생" : "배경 영상 멈춤"}
+          className="ha-hero-pause inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-black/35 text-white shadow-sm backdrop-blur-sm transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          {paused ? (
+            <Play size={16} strokeWidth={2.5} aria-hidden="true" />
+          ) : (
+            <Pause size={16} strokeWidth={2.5} aria-hidden="true" />
+          )}
+        </button>
 
         {/* ── 우하단 블러 코너 ── */}
         <div
@@ -211,6 +265,7 @@ export default function HeroSection({
               opacity: 0.09,
               mixBlendMode: "overlay",
               animation: "haGrainShift 1.6s steps(2) infinite",
+              animationPlayState: paused ? "paused" : "running",
               backgroundImage:
                 "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22140%22 height=%22140%22 filter=%22url(%23n)%22/></svg>')",
             }}
@@ -379,9 +434,9 @@ export default function HeroSection({
           className="hidden lg:flex"
         >
           {[
-            { value: "500+", label: "누적 프로젝트", sub: "10년 경력 동안", delay: "1s", anim: "haFloat0" },
+            { value: "500건", label: "누적 프로젝트", sub: "10년 경력 동안", delay: "1s", anim: "haFloat0" },
             { value: `${SITE.foundingDate.slice(0, 4)}년`, label: "개업", sub: companyYearText(), delay: "1.15s", anim: "haFloat1" },
-            { value: "10년+", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
+            { value: "10년", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -395,6 +450,8 @@ export default function HeroSection({
                 minWidth: 160,
                 boxShadow: "0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15)",
                 animation: `haStatIn .9s cubic-bezier(.2,.7,.2,1) ${stat.delay} both, ${stat.anim} 5s ease-in-out ${stat.delay} infinite`,
+                // 등장(haStatIn)은 끝까지 보내고 떠다니는 반복만 멈춘다
+                animationPlayState: paused ? "running, paused" : "running, running",
                 transformStyle: "preserve-3d",
               }}
             >
@@ -452,6 +509,7 @@ export default function HeroSection({
               fontSize: 16,
               lineHeight: 1,
               animation: "haCue 1.8s ease-in-out infinite",
+              animationPlayState: paused ? "paused" : "running",
             }}
           >
             ↓

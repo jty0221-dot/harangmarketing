@@ -295,17 +295,17 @@ const PACKAGES = [
     name: "전 채널 통합",
     desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
     roi: "지역 키워드 여러 구간 동시 공략",
-    features: ["블로그·카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
+    features: ["블로그·카페 배포 월 10~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
     popular: false,
   },
 ];
 
 
 const TRUST_ITEMS = [
-  { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
-  { icon: Handshake, title: "하랑 대표 직접 관리", desc: "상담한 사람이 계약부터 끝까지 그대로 맡습니다.", color: "from-blue-500 to-blue-700" },
-  { icon: Clock, title: "카카오톡 24시간 접수", desc: "남겨 주신 문의는 하랑 대표가 직접 확인하고 연락합니다.", color: "from-blue-600 to-indigo-700" },
-  { icon: TrendingUp, title: "손님 동선 중심 관리", desc: "노출 수보다 손님이 검색하고 고르는 동선을 기준으로 운영", color: "from-blue-700 to-indigo-800" },
+  { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 누적 500건 프로젝트 직접 진행" },
+  { icon: Handshake, title: "하랑 대표 직접 관리", desc: "상담한 사람이 계약부터 끝까지 그대로 맡습니다." },
+  { icon: Clock, title: "카카오톡 24시간 접수", desc: "남겨 주신 문의는 하랑 대표가 직접 확인하고 하루 이내 연락합니다." },
+  { icon: TrendingUp, title: "손님 동선 중심 관리", desc: "노출 수보다 손님이 검색하고 고르는 동선을 기준으로 운영" },
 ];
 
 /**
@@ -324,7 +324,7 @@ const TICKER = [
   "정해진 시각 순위 계측 · 월 리포트 제공",
   "상담 비용 0원 · 계약 강요 없음",
   ...tickerLine("지역 정기청소 키워드"),
-  "10년+ 경력 · 업종별 맞춤 전략",
+  "10년 경력 · 업종별 맞춤 전략",
   "카카오톡 문의 24시간 접수",
   `맡아온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종`,
   "네이버 플레이스 순위 스냅샷 기록",
@@ -335,6 +335,8 @@ const TICKER = [
 // 메인은 서비스 선택과 검증에 집중한다. 회사 소개·진행 과정·채널 콘텐츠처럼
 // 전용 페이지가 있는 보조 내용은 해당 페이지에서 제공한다.
 const SHOW_SECONDARY_HOME_CONTENT = false;
+/** 대표 사진이 아직 없다 (2026-09-30 대표 확인) · 사진이 들어오면 true 로 바꾼다 */
+const SHOW_PHOTO = false;
 
 
 export default function HomePage() {
@@ -832,7 +834,7 @@ export default function HomePage() {
                     { label: "해병대 장교 출신", sub: "책임감·원칙" },
                     { label: "카페 창업 실패", sub: "현장 공감" },
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
-                    { label: "500+ 프로젝트", sub: "10년 경력 누적" },
+                    { label: "누적 500건", sub: "10년 경력 합산" },
                     { label: "매달 계측 보고", sub: "순위 그대로 공유" },
                     { label: "대표 책임 관리", sub: "상담부터 결과 설명까지" },
                   ].map((b) => (
@@ -853,6 +855,7 @@ export default function HomePage() {
 
               {/* Photo */}
               <RevealOnScroll from="right"><div>
+                {SHOW_PHOTO && (
                 <PhotoPlaceholder
                   label="대표 프로필 사진"
                   hint="실제 사진으로 교체 예정 · 세로 비율 (3:4) 권장"
@@ -860,11 +863,12 @@ export default function HomePage() {
                   height="h-[440px]"
                   className="rounded-2xl shadow-lg"
                 />
+                )}
                 <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                   {[
-                    { val: "10년+", label: "마케팅 경력" },
+                    { val: "10년", label: "마케팅 경력" },
                     { val: "2020년", label: "개업" },
-                    { val: "500+", label: "완료 프로젝트" },
+                    { val: "500건", label: "누적 프로젝트" },
                   ].map(s => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
                       <div className="text-base font-black text-gray-900">{s.val}</div>
@@ -893,9 +897,9 @@ export default function HomePage() {
                 모바일 2x2 에서는 3·4번째 칸에 가로선을 넣어 행을 나눈다. */}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
-                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 경력 누적" },
+                { to: 500, suffix: "건", decimals: 0, label: "누적 프로젝트", sub: "10년 경력 합산" },
                 { to: TRACK_TOTALS.stores, suffix: "곳", decimals: 0, label: "맡아온 매장", sub: "계약 서류로 확인한 것만" },
-                { to: 10, suffix: "년+", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
+                { to: 10, suffix: "년", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
                 { to: companyYear(), suffix: "년차", decimals: 0, label: "회사 운영", sub: "2020년 4월 개업" },
               ].map((item, i) => (
                 <RevealOnScroll
@@ -1584,9 +1588,9 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-8 shrink-0">
                 {[
-                  { val: "10년+", label: "대표 경력" },
+                  { val: "10년", label: "대표 경력" },
                   { val: "2020년", label: "개업" },
-                  { val: "500+", label: "누적 프로젝트" },
+                  { val: "500건", label: "누적 프로젝트" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div className="text-2xl md:text-3xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>
@@ -1730,7 +1734,6 @@ export default function HomePage() {
 
           <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               <span className="text-gray-400 text-xs font-medium">상담 신청 24시간 접수</span>
             </div>
 

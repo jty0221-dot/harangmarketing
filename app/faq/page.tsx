@@ -82,7 +82,7 @@ const FAQ_CATEGORIES = [
     questions: [
       {
         q: "계약 기간은 최소 얼마나 되나요?",
-        a: "월 단위 계약이 기본이라 1개월부터 시작하실 수 있습니다. 묶어두는 최소 기간은 없습니다. 다만 업종에 따라 3개월 이상 쌓아야 순위가 자리를 잡는 경우가 있어, 그 업종에 해당하면 진단 단계에서 미리 말씀드립니다.",
+        a: "월 단위 계약이 기본입니다. 다만 마케팅을 처음 하시는 분은 기초공사와 인테리어 같은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다.",
       },
       {
         q: "계약하면 바로 시작하나요?",
@@ -372,7 +372,7 @@ export default function FAQPage() {
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-md mx-auto">
               위 내용으로 해결이 안 된 경우 바로 물어보세요.<br />
-              카카오톡 문의 접수 · 확인 후 순차 답변
+              카카오톡 24시간 접수 · 하루 이내 답변
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a

@@ -5,14 +5,14 @@ import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users, Star, Building2 } from "lucide-react";
 
-import { SITE, ogImage } from "../../lib/seo";
+import { SITE, ogImage, companyYear } from "../../lib/seo";
 const BASE = "https://www.harangmarketing.com";
 
 const SEOUL_LD = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${BASE}/location/seoul`,
-  "name": "하랑마케팅 — 서울 소상공인 마케팅",
+  "name": "하랑마케팅 · 서울 소상공인 마케팅",
   "url": `${BASE}/location/seoul`,
   "logo": `${BASE}/favicon.svg`,
   "image": `${BASE}/og-image.png`,
@@ -100,8 +100,8 @@ export default function SeoulPage() {
             <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
               {[
                 { val: "월 단위", label: "계약 기간" },
-                { val: "7년차", label: "2020년 개업" },
-                { val: "10년+", label: "경력" },
+                { val: `${companyYear()}년차`, label: "2020년 개업" },
+                { val: "10년", label: "경력" },
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
                   <div className="text-xl font-black text-white mb-0.5">{s.val}</div>
@@ -125,10 +125,10 @@ export default function SeoulPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="서울 소상공인 마케팅 대행사, 어디에 맡겨야 하나요?"
-          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열해 플레이스 상위 노출까지 보통 1~2개월이 걸립니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 서울 전 지역 방문 상담과 비대면 상담 모두 가능하며 상담 비용은 0원입니다."
+          answer="하랑마케팅은 서울 전 지역 소상공인을 지원하는 마케팅 대행사입니다. 강남·강서·마포·성수·홍대·종로·송파·영등포 등 상권별 경쟁 강도가 다르기 때문에 지역마다 다른 키워드 전략을 씁니다. 서울은 경쟁이 치열한 상권이 많아 몇 달 안에 몇 위라고 미리 약속드리지 않고, 상담 때 지금 순위부터 재서 어느 정도 걸리는 자리인지 말씀드립니다. 계약은 월 단위가 기본이고 중도 해지 위약금이 없습니다. 다만 마케팅을 처음 하시는 분은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다. 서울 전 지역 방문 상담과 비대면 상담 모두 가능하며 상담 비용은 0원입니다."
           facts={[
-            { label: "계약 기간", value: "월 단위 · 1개월부터" },
-            { label: "상위 노출 기간", value: "1~2개월" },
+            { label: "계약 기간", value: "월 단위 · 처음이면 2~3개월 이상" },
+            { label: "순위 보고", value: "계측 기록 · 월 리포트" },
             { label: "중도 해지", value: "위약금 없음" },
             { label: "상담 비용", value: "0원" },
           ]}

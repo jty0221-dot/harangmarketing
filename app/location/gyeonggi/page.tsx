@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
 import Link from "next/link";
 import { ArrowRight, MapPin, TrendingUp, Users } from "lucide-react";
-import { SITE, ogImage } from "../../lib/seo";
+import { SITE, ogImage, companyYear } from "../../lib/seo";
 import { byKeyword, fmt } from "../../lib/rank-records";
 
 /*
@@ -28,7 +28,7 @@ const GYEONGGI_LD = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${BASE}/location/gyeonggi`,
-  "name": "하랑마케팅 — 경기도 소상공인 마케팅",
+  "name": "하랑마케팅 · 경기도 소상공인 마케팅",
   "url": `${BASE}/location/gyeonggi`,
   "logo": `${BASE}/favicon.svg`,
   "image": `${BASE}/og-image.png`,
@@ -97,9 +97,9 @@ const REGIONS = [
 ];
 
 const RESULTS = [
-  { label: "계약 기간", value: "월 단위", sub: "1개월부터 · 위약금 없음" },
+  { label: "계약 기간", value: "월 단위", sub: "처음이면 2~3개월 이상 · 위약금 없음" },
   { label: "상담 비용", value: "0원", sub: "진단 리포트 포함" },
-  { label: "업력", value: "7년차", sub: "2020년 개업" },
+  { label: "업력", value: `${companyYear()}년차`, sub: "2020년 개업" },
 ];
 
 export default function GyeonggiPage() {
@@ -140,11 +140,11 @@ export default function GyeonggiPage() {
         {/* AEO — 지역 질의 한 줄 정답 */}
         <AnswerBlock
           question="경기도 마케팅 대행사를 찾고 있습니다"
-          answer={`하랑마케팅은 전국 소상공인을 맡는 마케팅 대행사이고, 경기도는 사무실이 가까워 방문 상담까지 되는 지역입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴을 함께 씁니다. 네이버 플레이스 순위는 정해진 시각에 재서 스냅샷으로 저장해 월 리포트로 공유하며, 경기 지역에서는 ${GG_LINES}가 된 기록이 있습니다. 계약은 월 단위가 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 전화 010-7541-9054로 무료 상담이 가능합니다.`}
+          answer={`하랑마케팅은 전국 소상공인을 맡는 마케팅 대행사이고, 경기도는 사무실이 가까워 방문 상담까지 되는 지역입니다. 포천·파주·김포·의정부 등 경기북부는 물론 수원·성남·안양·부천·용인 등 경기 전 지역을 지원합니다. 경기도는 지역 맘카페 영향력이 커서 맘카페 바이럴을 함께 씁니다. 네이버 플레이스 순위는 정해진 시각에 재서 스냅샷으로 저장해 월 리포트로 공유하며, 경기 지역에서는 ${GG_LINES}가 된 기록이 있습니다. 계약은 월 단위가 기본이고 중도 해지 위약금이 없습니다. 다만 마케팅을 처음 하시는 분은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다. 전화 010-7541-9054로 무료 상담이 가능합니다.`}
           facts={[
             { label: "방문 상담", value: "경기 전 지역" },
             ...(GG_FOOD ? [{ label: "경기 계측 기록", value: fmt(GG_FOOD) }] : []),
-            { label: "계약 기간", value: "월 단위 · 1개월부터" },
+            { label: "계약 기간", value: "월 단위 · 처음이면 2~3개월 이상" },
             { label: "상담 비용", value: "0원" },
           ]}
         />

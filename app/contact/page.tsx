@@ -29,14 +29,14 @@ const rank = (industry: string) => {
 };
 
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], ...rank("카페"), color: "from-blue-500 to-blue-700" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·식당", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점"), color: "from-blue-600 to-indigo-700" },
-  { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소"), color: "from-blue-600 to-blue-800" },
-  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "의료법 검수 후 진행", case: "게시 전 의료광고 심의 대상 확인", color: "from-blue-600 to-blue-800" },
-  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정", color: "from-blue-700 to-indigo-800" },
-  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-indigo-600" },
-  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], ...rank("카페") },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·식당", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점") },
+  { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소") },
+  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "의료법 검수 후 진행", case: "게시 전 의료광고 심의 대상 확인" },
+  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정" },
+  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정" },
+  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립" },
 ];
 
 const BUDGETS = [
@@ -231,6 +231,8 @@ export default function ContactPage() {
                         return (
                           <button
                             key={ind.id}
+                            type="button"
+                            aria-pressed={selectedIndustry === ind.id}
                             onClick={() => setSelectedIndustry(ind.id)}
                             className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all text-center ${
                               selectedIndustry === ind.id
@@ -249,9 +251,9 @@ export default function ContactPage() {
 
                     {selectedInd && (
                       <div className="rounded-xl border border-blue-100 overflow-hidden mb-6">
-                        <div className={`bg-gradient-to-r ${selectedInd.color} px-4 py-3 flex items-center justify-between`}>
+                        <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
                           <div>
-                            <p className="text-[11px] font-black text-white/70 uppercase tracking-wider">유사 사례 실적</p>
+                            <p className="text-[11px] font-black text-white/70 uppercase tracking-wider">업종별 진행 방향</p>
                             <p className="text-white font-black text-base">{selectedInd.result}</p>
                           </div>
                           <p className="text-white/70 text-[11px] text-right">{selectedInd.case}</p>
@@ -268,13 +270,15 @@ export default function ContactPage() {
                     )}
 
                     <div className="mb-6">
-                      <h3 className="text-sm font-black text-gray-700 mb-3">마케팅 목표를 선택해주세요 (복수 선택 가능)</h3>
-                      <div className="flex flex-wrap gap-2">
+                      <h3 id="contact-goal-label" className="text-sm font-black text-gray-700 mb-3">마케팅 목표를 선택해주세요 (복수 선택 가능)</h3>
+                      <div role="group" aria-labelledby="contact-goal-label" className="flex flex-wrap gap-2">
                         {GOALS.map((g) => (
                           <button
                             key={g}
+                            type="button"
+                            aria-pressed={selectedGoals.includes(g)}
                             onClick={() => toggleGoal(g)}
-                            className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                            className={`inline-flex items-center gap-1 min-h-11 px-3 py-2 rounded-xl border text-xs font-medium transition-all ${
                               selectedGoals.includes(g)
                                 ? "border-blue-500 bg-blue-50 text-blue-700 font-bold"
                                 : "border-gray-200 text-gray-500 hover:border-blue-200"
@@ -287,6 +291,7 @@ export default function ContactPage() {
                     </div>
 
                     <button
+                      type="button"
                       onClick={() => setStep("form")}
                       disabled={!selectedIndustry}
                       className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold text-base transition-colors"
@@ -302,7 +307,7 @@ export default function ContactPage() {
                 {step === "form" && (
                   <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                     <div className="flex items-center gap-3 mb-5">
-                      <button onClick={() => setStep("industry")} className="text-xs text-blue-600 font-bold hover:underline">
+                      <button type="button" onClick={() => setStep("industry")} className="inline-flex items-center min-h-11 text-xs text-blue-600 font-bold hover:underline">
                         ← 업종 다시 선택
                       </button>
                       {selectedInd && (
@@ -329,14 +334,14 @@ export default function ContactPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="contact-name" className="block text-xs font-bold text-gray-700 mb-1.5">이름 / 업체명 <span className="text-blue-500">*</span></label>
-                          <input id="contact-name" type="text" required value={form.name}
+                          <input id="contact-name" type="text" required autoComplete="name" value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             placeholder="홍길동 / 하랑카페"
                             className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
                         </div>
                         <div>
                           <label htmlFor="contact-phone" className="block text-xs font-bold text-gray-700 mb-1.5">연락처 <span className="text-blue-500">*</span></label>
-                          <input id="contact-phone" type="tel" required value={form.phone}
+                          <input id="contact-phone" type="tel" required autoComplete="tel" inputMode="tel" value={form.phone}
                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
                             placeholder="010-0000-0000"
                             className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
@@ -347,8 +352,8 @@ export default function ContactPage() {
                         <span id="contact-budget-label" className="block text-xs font-bold text-gray-700 mb-2">예상 월 예산</span>
                         <div role="group" aria-labelledby="contact-budget-label" className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {BUDGETS.map((b) => (
-                            <button key={b} type="button" onClick={() => setForm({ ...form, budget: b })}
-                              className={`px-3 py-2 rounded-xl border text-xs font-medium transition-all ${form.budget === b ? "border-blue-500 bg-blue-50 text-blue-700 font-bold" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
+                            <button key={b} type="button" aria-pressed={form.budget === b} onClick={() => setForm({ ...form, budget: b })}
+                              className={`min-h-11 px-3 py-2 rounded-xl border text-xs font-medium transition-all ${form.budget === b ? "border-blue-500 bg-blue-50 text-blue-700 font-bold" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
                               {b}
                             </button>
                           ))}
@@ -479,7 +484,7 @@ export default function ContactPage() {
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">카카오톡 채널</div>
-                        <div className="text-xs text-gray-500">평균 응답 10분 이내</div>
+                        <div className="text-xs text-gray-500">하루 이내 답변</div>
                       </div>
                       <ArrowRight size={13} className="text-gray-500 group-hover:text-yellow-500 transition-colors" />
                     </a>

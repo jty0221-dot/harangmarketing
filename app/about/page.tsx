@@ -4,16 +4,18 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import {
   Shield, Target, TrendingUp, MessageCircle, Heart,
-  CheckCircle2, ArrowRight, Quote, Star,
+  CheckCircle2, ArrowRight, Quote,
   Phone, BookOpen, MapPin, AtSign, Coffee, Users,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, companyYear } from "../lib/seo";
 
 const BASE = SITE.base;
 const SHOW_CI_GUIDE = false;
+/** 대표 사진이 아직 없다 (2026-09-30 대표 확인) · 사진이 들어오면 true 로 바꾼다 */
+const SHOW_PHOTO = false;
 
 /* 회사소개 구조화 데이터
 
@@ -78,7 +80,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 | 대표가 직접 관리, 결과 없으면 솔직히 말씀드립니다",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: `${BASE}/about`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
+    images: [{ url: "/og-image.png?v=20260930", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
   },
 };
 
@@ -149,11 +151,11 @@ const FAQS = [
   },
   {
     q: "광고비가 비싸지는 않나요?",
-    a: "싼 것이 늘 좋은 것은 아닙니다. 1년 계약에 120만원(월 10만원)처럼 금액만 보고 고르면 필요한 작업이 빠지거나 필요 없는 작업이 들어가기 쉽습니다. 하랑은 불필요한 서비스를 빼고 필요한 항목에만 비용을 쓰도록 구성합니다.",
+    a: "싼 것이 늘 좋은 것은 아닙니다. 금액만 보고 고르면 필요한 작업이 빠지거나 필요 없는 작업이 들어가기 쉽습니다. 하랑은 불필요한 서비스를 빼고 필요한 항목에만 비용을 쓰도록 구성합니다.",
   },
   {
     q: "계약 기간은 어떻게 되나요?",
-    a: "월 단위 계약이 기본이라 1개월부터 가능하고 중도 해지 위약금도 없습니다. 다만 마케팅도 다이어트처럼 꾸준한 관리가 핵심이라, 3개월 이상 쌓아야 결과가 보이는 업종이면 미리 말씀드립니다.",
+    a: "월 단위 계약이 기본이고 중도 해지 위약금도 없습니다. 다만 마케팅을 처음 하시는 분은 기초공사와 인테리어 같은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다.",
   },
 ];
 
@@ -182,9 +184,9 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-md">
               {[
-                { val: "500+", label: "누적 프로젝트" },
-                { val: "7년차", label: "2020년 개업" },
-                { val: "10년+", label: "경력" },
+                { val: "500건", label: "누적 프로젝트" },
+                { val: `${companyYear()}년차`, label: "2020년 개업" },
+                { val: "10년", label: "경력" },
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 text-center">
                   {/* 375px 3칸에서 칸 안쪽이 71px 뿐이라 '97.4%' 의 % 가 둘째 줄로 떨어졌다.
@@ -235,6 +237,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 md:gap-14 items-start">
               {/* Photo */}
               <div className="flex flex-col items-center gap-4">
+                {SHOW_PHOTO && (
                 <PhotoPlaceholder
                   label="대표 전태영 프로필 사진"
                   hint="정장 또는 캐주얼 정장 / 밝은 배경 / 세로형 인물 사진"
@@ -242,15 +245,11 @@ export default function AboutPage() {
                   height="h-64"
                   className="rounded-2xl"
                 />
+                )}
                 <div className="w-full bg-blue-50 border border-blue-100 rounded-2xl p-4 text-center">
                   <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
                   <div className="text-xs text-blue-600 font-bold">하랑마케팅 대표</div>
-                  <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년+ · 7년차 대표</div>
-                  <div className="flex gap-0.5 justify-center mt-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={11} className="text-blue-600 fill-blue-600" />
-                    ))}
-                  </div>
+                  <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년 · {companyYear()}년차 대표</div>
                 </div>
               </div>
 
@@ -264,6 +263,7 @@ export default function AboutPage() {
                   <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="text-gray-900">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
                   <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="text-gray-900">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, &lsquo;내가 직접 제대로 된 대행사를 만들자&rsquo;는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
                   <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 <strong className="text-gray-900">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
+                  <p>하랑이라는 이름은 순우리말로 <strong className="text-gray-900">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 뜻입니다.</p>
                 </div>
 
                 <div className="mt-7 p-5 rounded-2xl bg-blue-50 border border-blue-100">
@@ -278,9 +278,9 @@ export default function AboutPage() {
 
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
-                    { val: "10년+", label: "마케팅 경력" },
-                    { val: "500+", label: "누적 프로젝트" },
-                    { val: "7년차", label: "2020년 개업" },
+                    { val: "10년", label: "마케팅 경력" },
+                    { val: "500건", label: "누적 프로젝트" },
+                    { val: `${companyYear()}년차`, label: "2020년 개업" },
                     { val: "24시간", label: "카카오톡 접수" },
                   ].map((s) => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
@@ -370,7 +370,7 @@ export default function AboutPage() {
         </section>
 
         {/* CEO Letter */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 relative overflow-hidden">
+        <section className="py-16 md:py-20 bg-blue-600 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
             <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
@@ -412,9 +412,9 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { value: "10년+", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
-                { value: "500+", label: "누적 프로젝트", sub: "대표 경력 10년 합산" },
-                { value: "7년차", label: "업력", sub: "2020년 4월 개업" },
+                { value: "10년", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
+                { value: "500건", label: "누적 프로젝트", sub: "대표 경력 10년 합산" },
+                { value: `${companyYear()}년차`, label: "업력", sub: "2020년 4월 개업" },
                 { value: "0원", label: "상담 비용", sub: "계약 강요 없음" },
               ].map((s) => (
                 <div key={s.label} className="bg-white rounded-2xl p-4 md:p-5 text-center border border-gray-100 shadow-sm">
@@ -443,7 +443,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mb-1">
                   <div className="py-3 px-4 text-xs font-black text-gray-500 uppercase tracking-widest">항목</div>
                   <div className="py-3 px-4 rounded-t-2xl bg-gray-100 text-center text-xs font-black text-gray-600 uppercase tracking-widest">일반 대행사</div>
-                  <div className="py-3 px-4 rounded-t-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
+                  <div className="py-3 px-4 rounded-t-2xl bg-blue-600 text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
                 </div>
                 {[
                   { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "대표가 직접 관리 (처음부터 끝까지)" },
@@ -452,7 +452,7 @@ export default function AboutPage() {
                   { item: "작업 투명성", general: "게시 위치를 확인하기 어려운 경우가 있음", harang: "게시 URL 전체 전달" },
                   { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정 · 중도 해지 위약금 없음" },
                   { item: "순위 약속", general: "몇 위까지 올려준다고 약속", harang: "약속 대신 정해진 시각 계측 · 잰 숫자 그대로 공개" },
-                  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 1개월부터 가능" },
+                  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 처음이면 2~3개월 이상" },
                 ].map((row, i) => (
                   <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] gap-0 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"}`}>
                     <div className="py-4 px-4 text-sm font-bold text-gray-700 flex items-center border-b border-gray-100">{row.item}</div>
@@ -470,7 +470,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mt-1">
                   <div />
                   <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-600 font-semibold">일반 대행사</div>
-                  <div className="rounded-b-2xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
+                  <div className="rounded-b-2xl bg-blue-600 py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
                 </div>
               </div>
             </div>

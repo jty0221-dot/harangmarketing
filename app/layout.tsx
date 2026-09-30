@@ -4,7 +4,7 @@ import "./globals.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
 import SiteChrome from "./components/SiteChrome";
 import JsonLd from "./components/JsonLd";
-import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES } from "./lib/seo";
+import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES, companyYear } from "./lib/seo";
 
 /**
  * GA4 측정 ID.
@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     siteName: "하랑마케팅",
     title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
-      "검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 2020년 개업 7년차, 상담 무료.",
+      `검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 2020년 개업 ${companyYear()}년차, 상담 무료.`,
     images: [
       {
-        url: "https://www.harangmarketing.com/og-image.png",
+        url: "https://www.harangmarketing.com/og-image.png?v=20260930",
         width: 1200,
         height: 630,
         type: "image/png",
@@ -112,7 +112,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#2563EB",
+  themeColor: "#0066FF",
 };
 
 export default function RootLayout({
@@ -257,7 +257,6 @@ gtag('config', '${GA_ID}');`,
                   email: SITE.email,
                   availableLanguage: ["ko"],
                   areaServed: "KR",
-                  contactOption: "TollFree",
                   hoursAvailable: {
                     "@type": "OpeningHoursSpecification",
                     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -291,7 +290,6 @@ gtag('config', '${GA_ID}');`,
               ],
               knowsLanguage: ["ko"],
               sameAs: [SITE.naverBlog, SITE.instagram, SITE.youtube, SITE.kakao],
-              numberOfEmployees: { "@type": "QuantitativeValue", value: 5 },
               subjectOf: {
                 "@type": "WebContent",
                 name: "하랑마케팅 AI 요약본 (llms.txt)",

@@ -266,6 +266,7 @@ export default function FreeCheckPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="홍길동"
+                      autoComplete="name"
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
@@ -278,6 +279,7 @@ export default function FreeCheckPage() {
                       value={business}
                       onChange={(e) => setBusiness(e.target.value)}
                       placeholder="예: 하랑카페 / 카페"
+                      autoComplete="organization"
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
@@ -290,6 +292,8 @@ export default function FreeCheckPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="010-0000-0000"
+                      autoComplete="tel"
+                      inputMode="tel"
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />
@@ -306,6 +310,7 @@ export default function FreeCheckPage() {
                         onChange={(e) => setRank(e.target.value)}
                         placeholder="예: 15"
                         min="1"
+                        inputMode="numeric"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500">위</span>
@@ -362,7 +367,7 @@ export default function FreeCheckPage() {
                     전국 어디든
                   </span>
                   <span className="text-[11px] text-gray-600">10년 경력</span>
-                  <span className="text-[11px] text-gray-600">500+ 프로젝트</span>
+                  <span className="text-[11px] text-gray-600">누적 500건</span>
                 </div>
               </div>
             )}

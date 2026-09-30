@@ -2,24 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Shield, Handshake } from "lucide-react";
-
-function useBusinessHours() {
-  const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
-  useEffect(() => {
-    const check = () => {
-      // 카카오톡 문의는 24시간 접수한다. 응답 시각은 약속하지 않는다 (2026-09-25 결재 문구)
-      const h = new Date().getHours();
-      if (h >= 23 || h < 7) setStatus("closed");
-      else if (h >= 21) setStatus("closing");
-      else setStatus("open");
-    };
-    check();
-    const id = setInterval(check, 60000);
-    return () => clearInterval(id);
-  }, []);
-  return status;
-}
+import { Phone, MessageCircle, X, ChevronUp, ChevronDown, ArrowRight, Shield, Handshake, Clock } from "lucide-react";
 
 export default function FloatingCTA() {
   const [visible, setVisible] = useState(false);
@@ -27,7 +10,6 @@ export default function FloatingCTA() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   /** 아직 아래로 더 내려갈 여지가 있을 때만 '맨 아래로' 를 노출한다 */
   const [showScrollBottom, setShowScrollBottom] = useState(false);
-  const bizStatus = useBusinessHours();
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,12 +29,6 @@ export default function FloatingCTA() {
   }, []);
 
   if (!visible) return null;
-
-  const statusConfig = {
-    open: { dot: "bg-green-400", text: "지금 문의 가능", sub: "카카오톡 문의 24시간 접수" },
-    closing: { dot: "bg-blue-400", text: "야간 상담 가능", sub: "늦은 시간도 카카오로 문의 주세요" },
-    closed: { dot: "bg-gray-400", text: "새벽 시간대", sub: "문의 접수 후 오전 7시 이후 연락" },
-  }[bizStatus];
 
   return (
     <>
@@ -93,7 +69,7 @@ export default function FloatingCTA() {
             <div className="mb-3">
               <div className="flex items-center justify-between mb-1.5">
                 <p className="text-sm font-black text-gray-900">하랑마케팅 빠른 상담</p>
-                <button onClick={() => setExpanded(false)} className="p-0.5 rounded hover:bg-gray-100 text-gray-500">
+                <button type="button" onClick={() => setExpanded(false)} aria-label="닫기" className="inline-flex items-center justify-center w-8 h-8 -mr-1.5 rounded-lg hover:bg-gray-100 text-gray-500">
                   <X size={14} />
                 </button>
               </div>
@@ -101,12 +77,11 @@ export default function FloatingCTA() {
                 <Handshake size={10} className="text-blue-400" strokeWidth={2.5} />
                 <span className="text-[11px] text-gray-600">10년 경력 누적 500건 프로젝트</span>
               </div>
-              {/* Business hours status */}
+              {/* 응답 약속 · 2026-09-30 대표 결정 (하루 이내) */}
               <div className="flex items-center gap-1.5 mt-1.5">
-                <span className={`w-2 h-2 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
-                <span className="text-[11px] font-bold text-gray-700">{statusConfig.text}</span>
+                <Clock size={10} className="text-blue-400" strokeWidth={2.5} />
+                <span className="text-[11px] text-gray-600">카카오톡 24시간 접수 · 하루 이내 답변</span>
               </div>
-              <p className="text-[11px] text-gray-400 ml-3.5">{statusConfig.sub}</p>
             </div>
 
             {/* Trust badge */}
@@ -154,15 +129,9 @@ export default function FloatingCTA() {
               : "bg-blue-600 hover:bg-blue-700 hover:shadow-blue-600/30 hover:shadow-2xl hover:-translate-y-0.5"
           }`}
           aria-label="상담 메뉴"
+          aria-expanded={expanded}
         >
           {expanded ? <X size={20} /> : <MessageCircle size={22} />}
-          {!expanded && (
-            <>
-              {bizStatus === "open" && (
-                <span className="absolute -bottom-1 -left-1 w-3 h-3 rounded-full bg-green-400 border-2 border-white" />
-              )}
-            </>
-          )}
         </button>
       </div>
 

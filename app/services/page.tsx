@@ -19,7 +19,7 @@ import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
 import ServicePriceAnswer from "../components/ServicePriceAnswer";
 import GlossarySection from "../components/GlossarySection";
-import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage } from "../lib/seo";
+import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage, companyYear } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
 import PlaceRankTable from "../components/PlaceRankTable";
 
@@ -310,7 +310,7 @@ const SERVICES = [
     desc: "체험단 모집부터 리뷰 관리까지. 진짜 방문 후기로 신규 고객의 결정을 돕습니다.",
     timeline: "체험단 시작 1~2주 · 리뷰 쌓기 1개월",
     deliverables: [
-      { label: "체험단 모집", value: "월 10~30명", note: "업종별 맞춤 규모" },
+      { label: "체험단 모집", value: "회차당 5~30명", note: "원하시는 규모로 구성" },
       { label: "리뷰 포스팅", value: "체험단 전원", note: "블로그·플레이스" },
       { label: "리뷰 관리", value: "월 2회 점검", note: "답글 가이드 포함" },
     ],
@@ -443,7 +443,7 @@ const SERVICES = [
 const FAQS = [
   {
     q: "계약 기간은 최소 얼마나 되나요?",
-    a: "월 단위 계약이 기본이라 1개월부터 시작하실 수 있고 중도 해지 위약금이 없습니다. 다만 마케팅은 단기보다 꾸준한 누적이 핵심이라 결과는 최소 2~3개월을 두고 함께 보시기를 권합니다. 3개월 이상 필요한 업종이면 진단 단계에서 먼저 말씀드립니다.",
+    a: "월 단위 계약이 기본이고 중도 해지 위약금이 없습니다. 다만 마케팅을 처음 하시는 분은 기초공사와 인테리어 같은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다.",
   },
   {
     q: "계약하면 바로 시작하나요?",
@@ -691,10 +691,10 @@ export default function ServicesPage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { icon: Users, val: "500+", label: "완료 프로젝트", color: "text-blue-600" },
+                { icon: Users, val: "500건", label: "누적 프로젝트", color: "text-blue-600" },
                 { icon: TrendingUp, val: "오후 2~3시", label: "순위 계측", color: "text-blue-600" },
-                { icon: Calendar, val: "7년차", label: "2020년 개업", color: "text-blue-700" },
-                { icon: Clock, val: "10년+", label: "전문 경력", color: "text-indigo-600" },
+                { icon: Calendar, val: `${companyYear()}년차`, label: "2020년 개업", color: "text-blue-700" },
+                { icon: Clock, val: "10년", label: "마케터 경력", color: "text-indigo-600" },
               ].map(({ icon: Icon, val, label, color }) => (
                 <div key={label} className="flex items-center gap-3">
                   <Icon size={18} className={color} strokeWidth={1.5} />
@@ -1163,10 +1163,10 @@ export default function ServicesPage() {
             <div className="bg-gray-950 rounded-2xl p-6 md:p-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 {[
-                  { val: "7년차", label: "업력", sub: "2020년 개업" },
-                  { val: "500+", label: "완료 프로젝트", sub: "10년 경력 누적" },
+                  { val: `${companyYear()}년차`, label: "업력", sub: "2020년 개업" },
+                  { val: "500건", label: "누적 프로젝트", sub: "10년 경력 누적" },
                   { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24시간", label: "카카오톡 접수", sub: "하랑 대표가 직접 응대" },
+                  { val: "24시간", label: "카카오톡 접수", sub: "하루 이내 답변" },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
@@ -1338,7 +1338,7 @@ export default function ServicesPage() {
                 {
                   label: "담당자",
                   other: "신입·인턴 가능, 자주 교체",
-                  harang: "대표가 직접 관리 · 500+ 경험",
+                  harang: "대표가 직접 관리 · 누적 500건",
                   highlight: true,
                 },
                 {
@@ -1356,13 +1356,13 @@ export default function ServicesPage() {
                 {
                   label: "소통",
                   other: "이메일·티켓 시스템",
-                  harang: "카카오 직통 · 확인 후 순차 답변",
+                  harang: "카카오 직통 · 하루 이내 답변",
                   highlight: false,
                 },
                 {
                   label: "계약",
                   other: "6개월~1년 장기 의무",
-                  harang: "3개월 단위 · 성과 후 연장",
+                  harang: "월 단위 · 처음이면 2~3개월 이상",
                   highlight: true,
                 },
               ].map((row, i) => (

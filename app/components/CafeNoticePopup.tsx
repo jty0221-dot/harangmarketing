@@ -20,12 +20,12 @@ import { won } from "../lib/cafe-distribution";
 /**
  * 대표카페 운영 공지 카드
  *
- * EntryPopup 과 같은 문법을 쓴다. 화면을 덮지 않고 구석에 붙는 카드다.
+ * 예전 진입 팝업(EntryPopup · 2026-09-30 삭제)과 같은 문법을 쓴다. 화면을 덮지 않고 구석에 붙는 카드다.
  * 배경을 어둡게 깔지 않아 뒤 내용을 계속 볼 수 있고, 닫으면 다시 뜨지 않는다.
  * 다만 카페 배포 페이지의 버튼(CafeNoticeReopen)이 NOTICE_OPEN_EVENT 를 보내면 다시 연다.
  * 직접 눌러서 여는 것이라 닫기 기록은 그대로 두고, 첫 장부터 다시 보여 준다.
  *
- * EntryPopup 과 다른 점이 셋이다.
+ * 예전 진입 팝업(EntryPopup · 2026-09-30 삭제)과 다른 점이 셋이다.
  *   1) sessionStorage 가 아니라 localStorage 다. 공지는 브라우저를 닫았다 열어도
  *      한 번 읽었으면 끝이어야 한다. 상담 권유 카드와 성격이 다르다
  *   2) 스크롤 조건이 없다. 공지는 늦게 보여 줄 이유가 없어 0.8초 뒤 바로 띄운다
@@ -114,9 +114,14 @@ export default function CafeNoticePopup() {
   if (!open) return null;
 
   // md 이상에서는 오른쪽 아래 플로팅 버튼 줄(right-6 · 폭 56px)을 덮지 않도록 그 왼쪽(right-24)에 붙인다
+  // Escape 는 카드 안에 초점이 있을 때만 닫는다. 창 전체에 걸면 헤더 메뉴를 닫으려고 누른 Escape 에
+  // 공지까지 닫혀 다시는 안 뜬다 (닫기는 localStorage 에 남는다)
   return (
     <aside
       aria-label={CAFE_NOTICE.title}
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && !e.nativeEvent.isComposing) dismiss();
+      }}
       className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 md:right-24 sm:top-32 sm:bottom-24 sm:w-[520px]"
       style={{
         animation: closing

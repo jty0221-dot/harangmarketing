@@ -64,10 +64,14 @@ export const SITE = {
   },
 } as const;
 
+/** 한국 시간 기준 올해 · 저작권 연도와 업력이 같은 시계를 쓴다 (2026-09-30) */
+export function kstYear(): number {
+  return Number(new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 4));
+}
+
 /** 회사 연차 · KST 연도 - 개업 연도 + 1 (2026년 = 7년차 · 1-C) */
 export function companyYear(): number {
-  const year = Number(new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 4));
-  return year - Number(SITE.foundingDate.slice(0, 4)) + 1;
+  return kstYear() - Number(SITE.foundingDate.slice(0, 4)) + 1;
 }
 
 export const ORG_ID = `${SITE.base}/#organization`;
@@ -81,7 +85,9 @@ export const LOCAL_ID = `${SITE.base}/#localbusiness`;
  * openGraph.images 에는 ogImage(alt) 를, 문자열 배열을 받는 twitter.images 에는 OG_IMAGE.url 을 넣는다.
  * alt 를 안 넘기면 alt 없이 나간다. 예전에 alt 를 적지 않던 페이지는 그대로 ogImage() 로 둔다.
  */
-export const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630 } as const;
+// ?v= 는 공유 미리보기(카카오톡 · 문자 · 페이스북)가 예전 그림을 붙잡지 않게 하는 표시다. 그림을 바꾸면 날짜도 같이 바꾼다.
+// app/layout.tsx 와 app/about/page.tsx 의 openGraph 주소도 같은 날짜를 쓴다.
+export const OG_IMAGE = { url: "/og-image.png?v=20260930", width: 1200, height: 630 } as const;
 
 export function ogImage(alt?: string): { url: string; width: number; height: number; alt?: string } {
   return alt === undefined ? { ...OG_IMAGE } : { ...OG_IMAGE, alt };
@@ -94,10 +100,10 @@ export function ogImage(alt?: string): { url: string; width: number; height: num
  * 새로 재는 페이지는 아래 updatedAt 으로 데이터 날짜까지 같이 본다 (2026-09-20 · 요청 69).
  */
 export const PAGE_UPDATED: Record<string, string> = {
-  "/": "2026-09-23",
-  "/about": "2026-09-23",
-  "/services": "2026-09-24",
-  "/services/cafe": "2026-09-18",
+  "/": "2026-09-30",
+  "/about": "2026-09-30",
+  "/services": "2026-09-30",
+  "/services/cafe": "2026-09-30",
   "/services/clinic": "2026-09-20",
   "/services/clinic/medical-ad-guide": "2026-09-07",
   "/services/beauty": "2026-09-05",
@@ -108,11 +114,11 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/photo/stay": "2026-09-24",
   "/services/academy": "2026-09-07",
   "/services/shopping": "2026-09-07",
-  "/services/review": "2026-09-24",
+  "/services/review": "2026-09-30",
   "/services/place": "2026-09-24",
   "/services/instagram": "2026-09-24",
   "/services/detail-page": "2026-09-24",
-  "/services/detail-page/reference": "2026-09-05",
+  "/services/detail-page/reference": "2026-09-30",
   "/services/cafe-distribution": "2026-09-24",
   "/services/cafe-distribution/reference": "2026-09-21",
   "/studio": "2026-09-05",
@@ -120,15 +126,15 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/portfolio": "2026-09-18",
   "/cases": "2026-09-18",
   "/cases/place-rank": "2026-09-20",
-  "/contact": "2026-09-10",
-  "/free-check": "2026-09-10",
-  "/process": "2026-09-05",
-  "/faq": "2026-09-23",
-  "/blog": "2026-09-05",
+  "/contact": "2026-09-30",
+  "/free-check": "2026-09-30",
+  "/process": "2026-09-30",
+  "/faq": "2026-09-30",
+  "/blog": "2026-09-30",
   "/location": "2026-09-05",
-  "/location/gyeonggi": "2026-09-10",
-  "/location/seoul": "2026-09-05",
-  "/location/incheon": "2026-09-04",
+  "/location/gyeonggi": "2026-09-30",
+  "/location/seoul": "2026-09-30",
+  "/location/incheon": "2026-09-30",
 };
 
 /**
@@ -277,7 +283,7 @@ export const CORE_FAQ: FaqItem[] = [
   },
   {
     q: "최소 계약 기간이 얼마인가요?",
-    a: "월 단위 계약이 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 다만 업종에 따라 3개월 이상 쌓아야 순위가 자리를 잡는 경우가 있어, 해당하면 진단 단계에서 미리 안내드립니다. 장기 계약을 강요하지 않으며, 이어 갈지는 매달 리포트를 보고 정하시면 됩니다.",
+    a: "월 단위 계약이 기본이고 중도 해지 위약금이 없습니다. 다만 마케팅을 처음 하시는 분은 기초공사와 인테리어 같은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다. 이어 갈지는 매달 리포트를 보고 정하시면 됩니다.",
   },
   {
     q: "지방에서도 마케팅 상담이 가능한가요?",
