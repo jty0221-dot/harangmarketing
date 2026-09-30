@@ -192,7 +192,7 @@ const CasesPage: FC = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="업종, 지역, 서비스로 검색..."
-                className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white text-base md:text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition-colors"
+                className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white text-base md:text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
               />
               {query && (
                 <button

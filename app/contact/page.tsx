@@ -337,14 +337,14 @@ export default function ContactPage() {
                           <input id="contact-name" type="text" required autoComplete="name" value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             placeholder="홍길동 / 하랑카페"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition placeholder:text-gray-300" />
                         </div>
                         <div>
                           <label htmlFor="contact-phone" className="block text-xs font-bold text-gray-700 mb-1.5">연락처 <span className="text-blue-500">*</span></label>
                           <input id="contact-phone" type="tel" required autoComplete="tel" inputMode="tel" value={form.phone}
                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
                             placeholder="010-0000-0000"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition placeholder:text-gray-300" />
                         </div>
                       </div>
 
@@ -365,7 +365,7 @@ export default function ContactPage() {
                         <textarea id="contact-message" rows={3} value={form.message}
                           onChange={(e) => setForm({ ...form, message: e.target.value })}
                           placeholder="현재 상황, 가장 큰 고민, 기대하는 결과 등을 자유롭게 적어주세요"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none placeholder:text-gray-300" />
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition resize-none placeholder:text-gray-300" />
                       </div>
 
                       {selectedGoals.length > 0 && (

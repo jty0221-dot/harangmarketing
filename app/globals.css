@@ -69,10 +69,12 @@ details summary::-webkit-details-marker { display: none; }
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--w-primary, #0066FF);
   outline-offset: 2px;
   border-radius: 6px;
 }
+/* The ticker pause button sits on navy, where the blue ring disappears. */
+.ticker-toggle:focus-visible { outline-color: #fff; outline-offset: -4px; }
 
 /* 새 창으로 열리는 링크는 화면낭독기에 「새 창」 을 덧붙여 읽힌다.
    화면에는 보이지 않는다 (Tailwind sr-only 와 같은 방식). aria-label 이 있는 링크는 그 이름이 우선한다. */
@@ -362,13 +364,6 @@ body { overflow-x: hidden; }
 ═══════════════════════════════════════ */
 .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
-
-.gradient-text {
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 /* ═══════════════════════════════════════
    MOTION ENHANCEMENTS

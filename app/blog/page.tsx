@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.harangmarketing.com/blog" },
   openGraph: {
     title: "하랑마케팅 블로그 | 소상공인 실전 마케팅 인사이트",
-    description: "플레이스 SEO, 블로그, 리뷰 관리 등 실제 성과로 검증된 소상공인 마케팅 노하우를 무료로 공유합니다.",
+    description: "플레이스 SEO, 블로그, 리뷰 관리 등 실제 진행하며 확인한 소상공인 마케팅 노하우를 무료로 공유합니다.",
     url: "https://www.harangmarketing.com/blog",
     images: [ogImage("하랑마케팅 블로그")],
   },
@@ -41,7 +41,7 @@ export default async function BlogPage() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
               10년 경력 실무진이 직접 쓰는 소상공인 마케팅 노하우.
-              이론이 아닌 실제 성과로 검증된 방법만 담습니다.
+              이론이 아니라 실제 진행하며 확인한 방법만 정리합니다.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -70,7 +70,7 @@ export default async function BlogPage() {
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               {[
                 { icon: BookOpen, text: "실무진 직접 집필" },
-                { icon: TrendingUp, text: "실제 성과 기반" },
+                { icon: TrendingUp, text: "진행 기록 기반" },
                 { icon: Star, text: "누적 500건 프로젝트 경험" },
                 { icon: MapPin, text: "소상공인 전문" },
               ].map(({ icon: Icon, text }) => (

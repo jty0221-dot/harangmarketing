@@ -147,7 +147,7 @@ export default function CafeLandingPage() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
               네이버 플레이스 상위 노출부터 포토리뷰 확보까지.<br />
-              전국 카페 30곳 이상 실제 성과로 검증된 전략.
+              전국 카페 30곳 이상을 직접 진행하며 정리한 전략.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link

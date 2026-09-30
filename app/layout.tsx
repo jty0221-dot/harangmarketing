@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: "https://www.harangmarketing.com",
     siteName: "하랑마케팅",
-    title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
+    title: "하랑마케팅 | 직접 확인하고 솔직하게 설명하는 소상공인 마케팅",
     description:
       `검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 2020년 개업 ${companyYear()}년차, 상담 무료.`,
     images: [

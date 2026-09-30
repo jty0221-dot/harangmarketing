@@ -24,7 +24,7 @@ export const SITE = {
   name: "하랑마케팅",
   nameEn: "Harang Marketing",
   legalName: "하랑마케팅",
-  tagline: "소상공인 전문 마케팅 대행사",
+  tagline: "직접 확인하고 솔직하게 설명하는 소상공인 마케팅",
   founder: "전태영",
   foundingDate: "2020-04-15",
   phone: "010-7541-9054",

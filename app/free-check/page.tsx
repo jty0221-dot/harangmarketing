@@ -192,7 +192,7 @@ export default function FreeCheckPage() {
 
             {/* Cases */}
             <div>
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 실제 성과</p>
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 진행 기록</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {CASES.map((c) => (
                   <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
@@ -268,7 +268,7 @@ export default function FreeCheckPage() {
                       placeholder="홍길동"
                       autoComplete="name"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                     />
                   </div>
                   <div>
@@ -281,7 +281,7 @@ export default function FreeCheckPage() {
                       placeholder="예: 하랑카페 / 카페"
                       autoComplete="organization"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                     />
                   </div>
                   <div>
@@ -295,7 +295,7 @@ export default function FreeCheckPage() {
                       autoComplete="tel"
                       inputMode="tel"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                     />
                   </div>
                   <div>
@@ -311,7 +311,7 @@ export default function FreeCheckPage() {
                         placeholder="예: 15"
                         min="1"
                         inputMode="numeric"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500">위</span>
                     </div>

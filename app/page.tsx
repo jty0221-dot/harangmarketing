@@ -9,6 +9,7 @@ import {
   ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
   UtensilsCrossed, ShoppingBag, Sparkles, Store,
+  Pause, Play,
 } from "lucide-react";
 import ServiceFinder from "./components/ServiceFinder";
 import PhotoServicePreview from "./components/PhotoServicePreview";
@@ -152,7 +153,7 @@ import {
 const HOME_LD = [
   webPageLd({
     path: "/",
-    name: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
+    name: "하랑마케팅 | 소상공인 마케팅 대행사",
     description: ANSWER_SENTENCES.whoWeAre,
     dateModified: PAGE_UPDATED["/"],
   }),
@@ -295,7 +296,7 @@ const PACKAGES = [
     name: "전 채널 통합",
     desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
     roi: "지역 키워드 여러 구간 동시 공략",
-    features: ["블로그·카페 배포 월 10~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
+    features: ["블로그·카페 배포 월 10~30건", "파워컨텐츠 월 5편", "플레이스 SEO·주간 순위 관리", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
     popular: false,
   },
 ];
@@ -332,6 +333,46 @@ const TICKER = [
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
 ];
 
+/**
+ * 흐르는 신뢰 띠. 5초 넘게 움직이는 문구에는 멈출 수단이 있어야 한다 (WCAG 2.2.2).
+ * 움직임 줄이기를 켠 방문자에게는 globals.css 가 애니메이션을 끄므로 단추도 숨긴다.
+ * 끊김 없이 흐르게 두 벌 그리는 뒤쪽 한 벌은 화면 낭독기가 두 번 읽지 않게 가린다.
+ */
+function TrustTicker() {
+  const [paused, setPaused] = React.useState(false);
+  return (
+    <div className="flex items-stretch" style={{ background: "var(--h-navy)" }}>
+      <div className="flex-1 min-w-0 overflow-hidden py-3">
+        <div
+          className="flex animate-marquee whitespace-nowrap"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
+          {[...TICKER, ...TICKER].map((text, i) => (
+            <span
+              key={i}
+              aria-hidden={i >= TICKER.length ? true : undefined}
+              className="flex items-center gap-3 px-6 text-xs text-white font-semibold"
+            >
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${i % 2 ? "bg-blue-200" : "bg-white/60"}`} />
+              {text}
+            </span>
+          ))}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        aria-label="흐르는 문구 멈추기"
+        title={paused ? "다시 흐르게 하기" : "흐르는 문구 멈추기"}
+        className="ticker-toggle shrink-0 w-11 min-h-11 flex items-center justify-center border-l border-white/15 text-white/80 hover:text-white transition-colors motion-reduce:hidden"
+      >
+        {paused ? <Play size={16} strokeWidth={2.5} /> : <Pause size={16} strokeWidth={2.5} />}
+      </button>
+    </div>
+  );
+}
+
 // 메인은 서비스 선택과 검증에 집중한다. 회사 소개·진행 과정·채널 콘텐츠처럼
 // 전용 페이지가 있는 보조 내용은 해당 페이지에서 제공한다.
 const SHOW_SECONDARY_HOME_CONTENT = false;
@@ -364,16 +405,7 @@ export default function HomePage() {
         <CustomerConfidenceSection />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
-        <div className="py-3 overflow-hidden" style={{ background: "var(--h-navy)" }}>
-          <div className="flex animate-marquee whitespace-nowrap">
-            {[...TICKER, ...TICKER].map((text, i) => (
-              <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
-                <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${i % 2 ? "bg-blue-200" : "bg-white/60"}`} />
-                {text}
-              </span>
-            ))}
-          </div>
-        </div>
+        <TrustTicker />
 
         {/* ══ 플랫폼 신뢰 스트립 ══ */}
         <section className="py-7 bg-white border-b" style={{ borderColor: "var(--h-border)" }}>
@@ -610,7 +642,7 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-[2px]" style={{ background: "var(--h-navy)" }} />
-                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>실제 성과 데이터</p>
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>업종별 진행 기록</p>
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                     내 업종에도<br />효과가 있을까요?

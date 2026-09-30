@@ -201,7 +201,7 @@ const SERVICES = [
     timeline: "기획형 3영업일 · 제작형 7영업일",
     deliverables: [
       { label: "기획형", value: "150,000원", note: "구성표·카피·프롬프트" },
-      { label: "제작형", value: "350,000원", note: "상세 이미지까지 · 가장 많이 하십니다" },
+      { label: "제작형", value: "350,000원", note: "상세 이미지까지 · 기본 추천" },
       { label: "제작+영상형", value: "550,000원", note: "첫 화면 GIF·숏폼 포함" },
     ],
     features: [
@@ -1267,7 +1267,7 @@ export default function ServicesPage() {
                   tier: "전 채널 통합",
                   desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
                   highlight: false,
-                  services: ["블로그 · 카페 배포", "파워컨텐츠 원고", "플레이스 SEO · 트래픽 · 길찾기", "인스타 피드 · 릴스", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
+                  services: ["블로그 · 카페 배포", "파워컨텐츠 원고", "플레이스 SEO · 주간 순위 관리", "인스타 피드 · 릴스", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
                   result: "지역 키워드 여러 구간 동시 공략",
                 },
               ].map((pkg) => (

@@ -76,7 +76,7 @@ export default function TrackForm() {
             value={no}
             onChange={(e) => setNo(e.target.value.toUpperCase())}
             placeholder="HB260821-XXXX"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base font-bold tracking-wide focus:border-blue-400 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base font-bold tracking-wide focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
           />
         </div>
         <div>
@@ -86,7 +86,7 @@ export default function TrackForm() {
             value={contact}
             onChange={(e) => setContact(e.target.value)}
             placeholder="010-0000-0000"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:border-blue-400 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
           />
         </div>
 
