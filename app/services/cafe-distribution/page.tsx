@@ -634,6 +634,10 @@ export default function CafeDistributionPage() {
               </div>
             ))}
 
+            <p className="mt-6 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+              표에 없는 건수도 상담에서 조합해 드립니다.
+            </p>
+
             <div className="mt-12">
               <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
                 <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)" }}>

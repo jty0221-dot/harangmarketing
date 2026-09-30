@@ -26,7 +26,7 @@ const ROWS: Row[] = [
       { unit: "원고 직접 제공 건당", price: won(BLOG_UNIT_WITHOUT_COPY) },
     ],
   },
-  { name: "카페 배포", href: "#cafe-distribution", lines: [{ unit: "건당", price: `${won(CAFE_TIER_MIN)}부터` }] },
+  { name: "카페 단건 배포 (등급별)", href: "#cafe-distribution", lines: [{ unit: "건당", price: `${won(CAFE_TIER_MIN)}부터` }] },
   { name: "파워컨텐츠", href: "#powercontents", lines: [{ unit: "편당", price: "5만원" }] },
 ];
 
