@@ -215,7 +215,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
         <div className="mx-auto w-full max-w-3xl px-5 pb-12 pt-6 md:px-8 md:pb-14 md:pt-8">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <img src="/harang-icon.svg" alt="" className="h-5 w-5 brightness-0 invert" />
+              <img src="/harang-icon-on-dark.svg" alt="" className="h-5 w-5" />
               <span className="w-label2 font-black text-white">하랑마케팅</span>
             </div>
             <span

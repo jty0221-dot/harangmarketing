@@ -87,7 +87,7 @@ export const LOCAL_ID = `${SITE.base}/#localbusiness`;
  */
 // ?v= 는 공유 미리보기(카카오톡 · 문자 · 페이스북)가 예전 그림을 붙잡지 않게 하는 표시다. 그림을 바꾸면 날짜도 같이 바꾼다.
 // app/layout.tsx 와 app/about/page.tsx 의 openGraph 주소도 같은 날짜를 쓴다.
-export const OG_IMAGE = { url: "/og-image.png?v=20260930", width: 1200, height: 630 } as const;
+export const OG_IMAGE = { url: "/og-image.png?v=20261001", width: 1200, height: 630 } as const;
 
 export function ogImage(alt?: string): { url: string; width: number; height: number; alt?: string } {
   return alt === undefined ? { ...OG_IMAGE } : { ...OG_IMAGE, alt };

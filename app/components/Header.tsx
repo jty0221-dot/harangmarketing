@@ -200,7 +200,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 md:h-[68px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group min-h-11">
-              <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
+              <img src={scrolled || !isHome || open ? "/harang-icon.svg" : "/harang-icon-on-dark.svg"} alt="하랑마케팅 로고" className="w-8 h-8" />
               <div>
                 <span
                   className={`font-black text-[17px] tracking-tight transition-colors ${

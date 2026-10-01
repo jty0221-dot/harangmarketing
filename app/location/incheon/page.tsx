@@ -14,7 +14,7 @@ const INCHEON_LD = {
   "@id": `${BASE}/location/incheon`,
   "name": "하랑마케팅 · 인천 소상공인 마케팅",
   "url": `${BASE}/location/incheon`,
-  "logo": `${BASE}/favicon.svg`,
+  "logo": `${BASE}/harang-logo-square.png`,
   "image": `${BASE}/og-image.png`,
   "telephone": SITE.phone,
   "address": {

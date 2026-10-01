@@ -30,7 +30,7 @@ const GYEONGGI_LD = {
   "@id": `${BASE}/location/gyeonggi`,
   "name": "하랑마케팅 · 경기도 소상공인 마케팅",
   "url": `${BASE}/location/gyeonggi`,
-  "logo": `${BASE}/favicon.svg`,
+  "logo": `${BASE}/harang-logo-square.png`,
   "image": `${BASE}/og-image.png`,
   "telephone": SITE.phone,
   "address": {

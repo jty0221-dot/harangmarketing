@@ -767,7 +767,7 @@ function blogPostingLd(slug: string, title: string, excerpt: string, tag: string
       "@type": "Organization",
       "name": "하랑마케팅",
       "url": BASE,
-      "logo": { "@type": "ImageObject", "url": `${BASE}/favicon.svg` },
+      "logo": { "@type": "ImageObject", "url": `${BASE}/harang-logo-square.png`, "width": 512, "height": 512 },
     },
     "image": `${BASE}/og-image.png`,
     "inLanguage": "ko-KR",

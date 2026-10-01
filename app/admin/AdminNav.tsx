@@ -6,7 +6,7 @@ export function AdminHeader() {
     <header className="bg-gray-950 border-b border-white/5">
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/harang-icon.svg" alt="하랑마케팅" className="w-6 h-6" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          <img src="/harang-icon-on-dark.svg" alt="하랑마케팅" className="w-6 h-6" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           <span className="text-white font-black text-sm">하랑 관리자</span>
         </Link>
         <nav className="flex flex-wrap items-center justify-end gap-1">

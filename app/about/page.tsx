@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 | 대표가 직접 관리, 결과 없으면 솔직히 말씀드립니다",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: `${BASE}/about`,
-    images: [{ url: "/og-image.png?v=20260930", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
+    images: [{ url: "/og-image.png?v=20261001", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
   },
 };
 
@@ -657,28 +657,29 @@ export default function AboutPage() {
               <p className="text-sm text-gray-500 mb-8">하랑마케팅의 공식 브랜드 컬러입니다. CI 적용 시 아래 색상 규정을 준수해야 합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* CMYK 는 화면 색을 단순 환산한 참고값이다. 인쇄하거나 SHOW_CI_GUIDE 를 켜기 전에 인쇄소 기준으로 다시 확인한다. */}
                 {[
                   {
                     name: "Harang Blue",
-                    hex: "#1A56FF",
-                    rgb: "RGB 26, 86, 255",
-                    cmyk: "CMYK 90, 66, 0, 0",
+                    hex: "#0066FF",
+                    rgb: "RGB 0, 102, 255",
+                    cmyk: "CMYK 100, 60, 0, 0",
                     desc: "신뢰, 전문성, 성장, 안정감",
                     dark: true,
                   },
                   {
-                    name: "Harang Light Blue",
-                    hex: "#7BA8FF",
-                    rgb: "RGB 123, 168, 255",
-                    cmyk: "CMYK 52, 34, 0, 0",
+                    name: "Harang Light Blue · 표식 띠 전용",
+                    hex: "#69A5FF",
+                    rgb: "RGB 105, 165, 255",
+                    cmyk: "CMYK 59, 35, 0, 0",
                     desc: "따뜻함, 동반, 함께, 부드러움",
                     dark: false,
                   },
                   {
                     name: "Harang Dark",
                     hex: "#001536",
-                    rgb: "RGB 26, 26, 46",
-                    cmyk: "CMYK 43, 43, 0, 82",
+                    rgb: "RGB 0, 21, 54",
+                    cmyk: "CMYK 100, 61, 0, 79",
                     desc: "권위, 전문성, 신중함, 무게감",
                     dark: true,
                   },

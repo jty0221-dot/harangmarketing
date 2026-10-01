@@ -99,7 +99,7 @@ export default async function ReferencePage({
                 className="mx-auto mb-6 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-[14px] font-black transition-opacity hover:opacity-90 md:text-[15px]"
                 style={{ color: "var(--cd-primary-deep)" }}
               >
-                <img src="/harang-icon.svg" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
+                <img src="/harang-icon-solid.svg" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
                 하랑마케팅
               </Link>
 

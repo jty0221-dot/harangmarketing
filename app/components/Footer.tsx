@@ -28,7 +28,7 @@ export default function Footer() {
       <Link
         href="/services/cafe-distribution"
         className="group block transition-opacity hover:opacity-95"
-        style={{ background: "linear-gradient(90deg,#1655e8,#2f6bf5 55%,#5b8dfa)" }}
+        style={{ background: "var(--w-primary)" }}
       >
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between md:px-6 md:py-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
@@ -38,19 +38,19 @@ export default function Footer() {
               hidden={!showNewBadge}
               suppressHydrationWarning
               className="rounded-full bg-white px-2.5 py-1 text-[11px] font-black"
-              style={{ color: "#1449c8" }}
+              style={{ color: "var(--w-primary)" }}
             >
               신규 출시
             </span>
             <p className="text-[15px] font-black text-white md:text-[17px]">
               최적화 블로그 · 카페 배포
             </p>
-            <p className="text-[13px] text-blue-100 md:text-[14px]">
+            <p className="text-[13px] text-white md:text-[14px]">
               블로그 탭 + 카페 탭 동시 노출 · 패키지 {won(PRICE_MIN)}부터
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-black transition-transform group-hover:translate-x-0.5 md:text-[14px]"
-            style={{ color: "#1449c8" }}>
+            style={{ color: "var(--w-primary)" }}>
             상품 보기 <ArrowRight size={14} />
           </span>
         </div>
@@ -94,7 +94,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="md:col-span-1">
               <Link href="/" className="flex items-center gap-2.5 mb-4 w-fit min-h-11">
-                <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
+                <img src="/harang-icon-on-dark.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
                 <span className="font-black text-white text-[17px]">하랑마케팅</span>
               </Link>
               <p className="text-sm text-gray-400 leading-relaxed mb-5">

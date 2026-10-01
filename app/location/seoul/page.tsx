@@ -14,7 +14,7 @@ const SEOUL_LD = {
   "@id": `${BASE}/location/seoul`,
   "name": "하랑마케팅 · 서울 소상공인 마케팅",
   "url": `${BASE}/location/seoul`,
-  "logo": `${BASE}/favicon.svg`,
+  "logo": `${BASE}/harang-logo-square.png`,
   "image": `${BASE}/og-image.png`,
   "telephone": SITE.phone,
   "address": {
