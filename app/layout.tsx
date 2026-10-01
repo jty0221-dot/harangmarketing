@@ -213,7 +213,7 @@ gtag('config', '${GA_ID}');`,
               alternateName: SITE.nameEn,
               legalName: SITE.legalName,
               url: SITE.base,
-              slogan: "상담한 대표가 끝까지 맡는 소상공인 마케팅",
+              slogan: "직접 확인하고 솔직하게 설명하는 소상공인 마케팅",
               logo: {
                 "@type": "ImageObject",
                 url: `${SITE.base}/harang-logo-square.png`,

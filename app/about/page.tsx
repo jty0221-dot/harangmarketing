@@ -591,7 +591,7 @@ export default function AboutPage() {
                 </div>
                 {/* 블루 배경 */}
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="flex items-center justify-center h-44 px-10 py-6" style={{ background: "#1A56FF" }}>
+                  <div className="flex items-center justify-center h-44 px-10 py-6" style={{ background: "var(--w-primary)" }}>
                     <img src="/ci/ci-logo-h-blue.jpg" alt="하랑마케팅 가로형 로고 블루배경" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
@@ -645,7 +645,7 @@ export default function AboutPage() {
               <p className="text-sm text-gray-500 mb-8">하랑마케팅의 핵심 가치를 담은 브랜드 슬로건입니다.</p>
               <div className="rounded-2xl border border-gray-100 bg-gray-50 flex items-center justify-center py-12 px-6">
                 <div className="text-center">
-                  <p className="text-3xl md:text-5xl font-black text-blue-600 tracking-tight mb-3">하랑, 함께 더 높이</p>
+                  <p className="text-3xl md:text-5xl font-black text-[var(--w-primary)] tracking-tight mb-3">하랑, 함께 더 높이</p>
                   <p className="text-sm text-gray-500">사장님과 함께, 더 높은 곳을 향해 성장합니다</p>
                 </div>
               </div>
