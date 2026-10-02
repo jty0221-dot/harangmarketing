@@ -7,11 +7,12 @@ import { SITE, ORG_ID, faqLd, breadcrumbLd, webPageLd, updatedAt } from "../lib/
 import {
   KS, KS_PLANS, KS_CHEAPEST, KS_PRICIEST, won,
   KS_FEATURES, KS_SAFETY, KS_FOR_WHOM, KS_SHOTS, KS_BUY_STEPS, KS_SMARTSCREEN_STEPS, KS_SPECS, KS_FAQ,
+  KS_REFERRAL, KS_REFERRAL_STEPS, KS_REFERRAL_RULES,
 } from "../lib/kakao-sender";
 import {
   Download, ArrowRight, MessageCircle, Phone, MonitorSmartphone, Users, Send,
   CalendarClock, PencilLine, Paperclip, Search, FolderOpen, ShieldCheck, ListChecks,
-  Star, ShoppingCart, Info, ExternalLink, Clock,
+  Star, ShoppingCart, Info, ExternalLink, Clock, Gift, CalendarPlus, Coins,
 } from "lucide-react";
 
 /**
@@ -21,6 +22,7 @@ import {
  * 문구는 '내 거래처 · 고객 · 회원 방' 중심이다. 오픈채팅 홍보 도구로 읽히는 말,
  * 발송 보장 · 계정 안전 보장 · 카카오 공식 같은 말은 쓰지 않는다 (카카오 제휴가 아니다).
  * 입금계좌는 페이지에 싣지 않는다. 노출 여부는 대표 결재 대기다. 지금은 카카오톡 채널 문의만.
+ * 추천 포인트 숫자는 lib 의 KS_REFERRAL 한 곳에서만 가져온다 (판매설정.json 추천포인트와 같다).
  * 화면 이미지는 실제 프로그램 캡처만 쓴다 (예시 방 이름 · 실제 고객 이름 없음 · 가짜 화면 금지).
  * 캡처는 프로그램 색(노랑) 그대로다. 페이지 색은 WDS 를 유지하고 카카오 로고 · 브랜드 이미지는 쓰지 않는다.
  */
@@ -411,8 +413,69 @@ export default function KakaoSenderPage() {
           </div>
         </section>
 
+        {/* 추천 포인트 (1.7.0 부터) */}
+        <section id="referral" className="scroll-mt-28 bg-gray-50 py-10 md:py-16">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="mb-2 flex items-center gap-3">
+              <IconBox icon={Gift} />
+              <h2 className="text-xl font-black text-gray-900 md:text-2xl">소개해 주시면 포인트가 쌓입니다</h2>
+            </div>
+            <p className="mb-6 text-sm text-gray-600">
+              버전 1.7.0 부터 구매 · 문의 창에 내 추천 코드와 소개 문구 복사 단추가 있습니다. 소개받은 분이
+              결제하시면 결제액의 {KS_REFERRAL.rewardPercent}% 가 포인트로 쌓이고, 1점은 1원입니다.
+            </p>
+
+            <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {KS_REFERRAL_STEPS.map((s, i) => (
+                <li key={s.step} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200 md:p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--w-primary)] text-xs font-black text-white">
+                      {i + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-sm font-bold text-gray-900">{s.step}</div>
+                      <p className="mt-1 text-xs leading-relaxed text-gray-500">{s.detail}</p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 md:p-6">
+                <div className="flex items-center gap-2.5">
+                  <CalendarPlus size={20} className="text-[var(--w-primary)]" strokeWidth={2} aria-hidden />
+                  <h3 className="text-base font-bold text-gray-900 md:text-lg">정품 기간 연장</h3>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                  포인트 {won(KS_REFERRAL.extendPoints)}점마다 정품 기간을 {KS_REFERRAL.extendDays}일씩 늘려 드립니다.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 md:p-6">
+                <div className="flex items-center gap-2.5">
+                  <Coins size={20} className="text-[var(--w-primary)]" strokeWidth={2} aria-hidden />
+                  <h3 className="text-base font-bold text-gray-900 md:text-lg">돈으로 바꾸기</h3>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                  {won(KS_REFERRAL.cashoutMin)}점 이상이면 수수료 {KS_REFERRAL.cashoutFeePercent}% 를 빼고 돈으로
+                  바꿔 드립니다. 환전 때는 세금 처리에 필요한 정보를 따로 여쭙니다.
+                </p>
+              </div>
+            </div>
+
+            <ul className="mt-4 space-y-2 rounded-2xl bg-white p-4 text-xs leading-relaxed text-gray-600 ring-1 ring-gray-200 md:p-5 md:text-[13px]">
+              {KS_REFERRAL_RULES.map((r) => (
+                <li key={r} className="flex items-start gap-2">
+                  <Info size={14} className="mt-0.5 shrink-0 text-[var(--w-primary)]" strokeWidth={2.2} aria-hidden />
+                  <span>{r}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* 필요한 것 · 윈도우 경고창 */}
-        <section id="smartscreen" className="scroll-mt-28 bg-gray-50 py-10 md:py-16">
+        <section id="smartscreen" className="scroll-mt-28 border-t border-gray-200 bg-gray-50 py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-6 flex items-center gap-3">
               <IconBox icon={Info} />
