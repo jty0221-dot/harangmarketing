@@ -16,7 +16,7 @@ import type { FaqItem } from "./seo";
 export const KS = {
   name: "카톡 예약 발송",
   maker: "하랑마케팅",
-  version: "1.7.0",
+  version: "1.7.1",
   /** 무료 체험 건수. 방 1곳에 한 번 보낸 것이 1건이다 (판매설정.json 무료체험.건수) */
   trialCount: 10,
   /** 항상 최신판을 받는 주소 (GitHub Releases latest) */
