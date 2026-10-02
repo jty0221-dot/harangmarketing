@@ -32,7 +32,7 @@ export type SiteNotice = {
   mobileText: string;
   /** 오른쪽 버튼 글자 */
   ctaLabel: string;
-  /** 버튼이 여는 곳. 홈페이지 안 주소만 쓴다 (띠의 버튼은 같은 창에서 연다) */
+  /** 버튼이 여는 곳. 홈페이지 안 주소는 같은 창에서, http 로 시작하는 바깥 주소는 새 창에서 연다 (components/Header.tsx · 2026-10-02 대표 「전부 진행」) */
   ctaHref: string;
 };
 

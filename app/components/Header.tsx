@@ -204,6 +204,9 @@ export default function Header() {
             </div>
             <Link
               href={msg.ctaHref}
+              /* 바깥 주소 (http 로 시작) 는 새 창으로 연다 · 홈페이지 안 주소는 같은 창 (lib/site-notice.ts) */
+              target={/^https?:\/\//.test(msg.ctaHref) ? "_blank" : undefined}
+              rel={/^https?:\/\//.test(msg.ctaHref) ? "noopener noreferrer" : undefined}
               /* 공지 바가 거의 검정이라 짙은 남색 버튼은 묻힌다 — 시그니처 블루로 띄운다 */
               className="shrink-0 inline-flex items-center gap-1 px-3 py-2 rounded-lg text-white font-black text-[11px] transition-colors"
               style={{ background: "var(--w-blue-50)" }}

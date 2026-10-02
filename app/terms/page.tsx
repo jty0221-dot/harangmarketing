@@ -51,7 +51,7 @@ const SECTIONS = [
   },
   {
     title: "제10조 (회사의 의무)",
-    content: `회사는 다음 의무를 이행합니다.\n· 계약된 서비스의 성실한 수행\n· 월별 성과 리포트 제공\n· 이용자 개인정보의 안전한 관리\n· 서비스 관련 문의에 영업일 기준 24시간 내 응답\n· 서비스 내용이나 요금이 변경되는 경우 사전 안내`,
+    content: `회사는 다음 의무를 이행합니다.\n· 계약된 서비스의 성실한 수행\n· 월별 성과 리포트 제공\n· 이용자 개인정보의 안전한 관리\n· 서비스 관련 문의에 하루 이내 답변\n· 서비스 내용이나 요금이 변경되는 경우 사전 안내`,
   },
   {
     /*
@@ -82,7 +82,7 @@ const SECTIONS = [
   {
     // 날짜는 lib/terms-revision.ts 한 곳에서 읽는다. 공지 띠의 약관 개정 공지도 같은 값을 쓴다.
     title: "부칙",
-    content: `· 본 약관은 ${koDateLong(TERMS_REVISION.effective)}부터 시행됩니다.\n· ${koDateLong(TERMS_PREVIOUS.effective)}부터 시행된 종전 약관은 본 약관의 시행과 동시에 대체됩니다.\n· 공고일 : ${koDateLong(TERMS_REVISION.announced)}\n· 이번 개정 : 제11조에서 이용자 귀책 중도 해지 위약금 조항을 삭제했습니다. 이용자에게 유리한 변경이라 회사는 공고일부터 개정된 내용대로 처리합니다.\n· 개정 이력 : ${koDateLong(TERMS_PREVIOUS.announced)} 공고 · ${koDateLong(TERMS_PREVIOUS.effective)} 시행`,
+    content: `· 본 약관은 ${koDateLong(TERMS_REVISION.effective)}부터 시행됩니다.\n· ${koDateLong(TERMS_PREVIOUS.effective)}부터 시행된 종전 약관은 본 약관의 시행과 동시에 대체됩니다.\n· 공고일 : ${koDateLong(TERMS_REVISION.announced)}\n· 이번 개정 : 제10조의 문의 답변 기한을 영업일 기준 24시간에서 하루 이내로 바꾸고, 제11조에서 이용자 귀책 중도 해지 위약금 조항을 삭제했습니다. 이용자에게 유리한 변경이라 회사는 공고일부터 개정된 내용대로 처리합니다.\n· 개정 이력 : ${koDateLong(TERMS_PREVIOUS.announced)} 공고 · ${koDateLong(TERMS_PREVIOUS.effective)} 시행`,
   },
 ];
 
