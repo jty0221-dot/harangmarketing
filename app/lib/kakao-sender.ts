@@ -34,7 +34,9 @@ export const won = (n: number) => n.toLocaleString("ko-KR");
  * 추천 포인트 (1.7.0 부터 · 판매설정.json 추천포인트 그대로).
  * 2026-10-03 (토) 대표 확정 '정한 값 괜찮은 거 같음'. 숫자를 바꾸는 것은 대표 결재(C-35)다.
  * 쓰지 않는 말: 큰돈 · 부업 · 수익 보장 · 하위 · 레벨 · 등급 · 팀. 추천은 한 단계뿐이다.
- * 환전 세금 처리(원천징수 · 계산서)는 미정이라 세율 숫자를 화면에 적지 않는다.
+ * 환전은 1점당 0.8원 비율로 쓴다. 수수료라는 말을 환전 설명에 쓰지 않는다
+ * (그 20% 가 하랑 매출로 읽히면 부가세 문제 · 정아 판단 본부장\세무6-10-03_추천포인트_환전_세무처리.md 5 · 6절).
+ * 세율 숫자는 화면에 적지 않는다.
  */
 export const KS_REFERRAL = {
   /** 소개받은 분 결제액 가운데 추천인에게 쌓이는 비율 (적립_퍼센트) */
@@ -45,8 +47,8 @@ export const KS_REFERRAL = {
   extendDays: 30,
   /** 이 점수 이상부터 환전 (환전_최소) */
   cashoutMin: 30000,
-  /** 환전 수수료 (환전_수수료_퍼센트) */
-  cashoutFeePercent: 20,
+  /** 환전 비율 · 1점당 원 (판매설정.json 환전_수수료_퍼센트 20 과 같은 값 · 30,000점 → 24,000원) */
+  cashoutRate: 0.8,
 } as const;
 
 export type KsPlan = {
@@ -234,7 +236,7 @@ export const KS_FAQ: FaqItem[] = [
   },
   {
     q: "추천 포인트는 어떻게 쓰나요?",
-    a: `포인트 ${won(KS_REFERRAL.extendPoints)}점마다 정품 기간을 ${KS_REFERRAL.extendDays}일 늘려 드리고, ${won(KS_REFERRAL.cashoutMin)}점 이상이면 수수료 ${KS_REFERRAL.cashoutFeePercent}% 를 빼고 돈으로 바꿔 드립니다. 하랑마케팅 카카오톡 채널에 내 추천 코드를 보내 주시면 잔액 확인과 함께 처리해 드립니다. 환전 때는 세금 처리에 필요한 정보를 따로 여쭙니다.`,
+    a: `포인트 ${won(KS_REFERRAL.extendPoints)}점마다 정품 기간을 ${KS_REFERRAL.extendDays}일 늘려 드리고, ${won(KS_REFERRAL.cashoutMin)}점부터 1점당 ${KS_REFERRAL.cashoutRate}원으로 현금 환전해 드립니다. 하랑마케팅 카카오톡 채널에 내 추천 코드를 보내 주시면 잔액 확인과 함께 처리해 드립니다. 사업자등록이 있으시면 세금계산서로, 아니시면 관련 세금을 떼고 보내 드립니다. 필요한 정보는 환전 때 따로 여쭙니다.`,
   },
   {
     q: "새 버전은 어떻게 받나요?",

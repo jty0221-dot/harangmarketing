@@ -454,11 +454,12 @@ export default function KakaoSenderPage() {
               <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 md:p-6">
                 <div className="flex items-center gap-2.5">
                   <Coins size={20} className="text-[var(--w-primary)]" strokeWidth={2} aria-hidden />
-                  <h3 className="text-base font-bold text-gray-900 md:text-lg">돈으로 바꾸기</h3>
+                  <h3 className="text-base font-bold text-gray-900 md:text-lg">현금 환전</h3>
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                  {won(KS_REFERRAL.cashoutMin)}점 이상이면 수수료 {KS_REFERRAL.cashoutFeePercent}% 를 빼고 돈으로
-                  바꿔 드립니다. 환전 때는 세금 처리에 필요한 정보를 따로 여쭙니다.
+                  {won(KS_REFERRAL.cashoutMin)}점부터 1점당 {KS_REFERRAL.cashoutRate}원으로 현금 환전해 드립니다.
+                  사업자등록이 있으시면 세금계산서로, 아니시면 관련 세금을 떼고 보내 드립니다. 필요한 정보는 환전
+                  때 따로 여쭙니다.
                 </p>
               </div>
             </div>
