@@ -1,0 +1,58 @@
+{
+ "place": {
+  "ads": {
+   "A": "ad_497a8b78d64081979c7a5f61d2710b13",
+   "B": "ad_4a7e01bc400481a09670836b4cfaf363"
+  },
+  "group": "adgrp_e28e1df51c64819ca37bbbc8de9fb9a3"
+ },
+ "blog": {
+  "ads": {
+   "A": "ad_a75174332be0819d8423c8df325fc681",
+   "B": "ad_5b723e423980819c97c458c53c8df255"
+  },
+  "group": "adgrp_527f0ffc0d0c819c99e092dc3ec29696"
+ },
+ "cafe": {
+  "ads": {
+   "A": "ad_aca0b1f8c9dc819d93194ff62f539ce6",
+   "B": "ad_f2cee2be1ec881909913e1fa4f7e975b"
+  },
+  "group": "adgrp_b9fb9468b6c0819ca81e557342312e81"
+ },
+ "review": {
+  "ads": {
+   "A": "ad_0fa9425aa12c819c9b66e32c6569bfe7",
+   "B": "ad_17e85cf31e588195be92424bb7d1c2e8"
+  },
+  "group": "adgrp_aa3e721187dc819c83bf13da80eab948"
+ },
+ "instagram": {
+  "ads": {
+   "A": "ad_90f9a2d22c3481918914883a6aa854a0",
+   "B": "ad_8d56c72001f481a38aff3f31bf29cd67"
+  },
+  "group": "adgrp_feda34f774f0819cb45165d425919e00"
+ },
+ "photo": {
+  "ads": {
+   "A": "ad_0397c92d311c8199b9132634c6fe8ec9",
+   "B": "ad_7d2adee01dfc8192ae8fed9d78c6aefd"
+  },
+  "group": "adgrp_efcf43d79158819ca6b40067584c301a"
+ },
+ "detail": {
+  "ads": {
+   "A": "ad_1168fffbdd348191b2a2f0286a9cf93b",
+   "B": "ad_83917ede99ac8197b2d9894e63729cac"
+  },
+  "group": "adgrp_92d8546731ec819c8534a7ecbf727593"
+ },
+ "naver-ads": {
+  "ads": {
+   "A": "ad_4aeaace2b2f48196946846be71321204",
+   "B": "ad_471c0782f4448199b4fa4b5d10f1616e"
+  },
+  "group": "adgrp_07d300ad28b8819c9f8f3f5a4fb2ef42"
+ }
+}

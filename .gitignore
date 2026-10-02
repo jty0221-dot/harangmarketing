@@ -59,3 +59,7 @@ scripts/sns/
 # python 빌드 찌꺼기 (스크립트 실행하면 자동 생성된다)
 __pycache__/
 *.pyc
+
+# ChatGPT 광고 점검 스크립트 실행 상태 (실행마다 바뀜)
+scripts/chatgpt-ads/review_state.json
+scripts/chatgpt-ads/__pycache__/
