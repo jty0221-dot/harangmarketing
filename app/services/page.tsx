@@ -1,5 +1,5 @@
 import ServiceFinder from "../components/ServiceFinder";
-import { PUBLIC_SERVICES } from "../lib/service-catalog";
+import { PUBLIC_SERVICES, isProgram } from "../lib/service-catalog";
 import { FOOD_PLANS, STAY_PLANS } from "../lib/photo-pricing";
 import type { Metadata } from "next";
 import Header from "../components/Header";
@@ -18,6 +18,7 @@ import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGO
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
 import ServicePriceAnswer from "../components/ServicePriceAnswer";
+import { KS, KS_PLANS, won as ksWon } from "../lib/kakao-sender";
 import GlossarySection from "../components/GlossarySection";
 import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage, companyYear } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
@@ -248,6 +249,36 @@ const SERVICES = [
     cover: "/studio/shot-files.png",
     coverAlt: "하랑 스튜디오 사진 선택 화면",
     coverBadge: "프로그램 화면",
+  },
+  {
+    // 대행 서비스가 아니라 자사 프로그램. 상세는 /kakao-sender 에 따로 있다.
+    // 가격 숫자는 app/lib/kakao-sender.ts (판매설정.json 옮김) 에서 가져온다. 여기에 박지 않는다.
+    // 커버 캡처가 아직 없어 브랜드 밴드로 나온다. 밴드는 s.color 로 그라데이션을 그리므로
+    // 같은 색 두 개를 줘서 단색으로 만든다 (WDS · 그라데이션 금지).
+    id: "kakao-sender",
+    icon: MessageSquare,
+    color: "from-slate-800 to-slate-800",
+    tag: "프로그램",
+    title: "카톡 예약 발송 · 단체 · 예약 발송 프로그램",
+    subtitle: "거래처 · 고객 · 회원 카톡방에 한 번에, 원하는 시각에",
+    desc: "PC 카카오톡 채팅방 여러 곳에 같은 글을 한 번에 보내거나 원하는 시각에 예약해 보내는 윈도우 프로그램입니다. 명절 인사와 공지를 방마다 붙여 넣지 않아도 됩니다. 휴대폰에서는 쓸 수 없고 PC 에서 내려받습니다.",
+    timeline: "PC 에서 내려받아 바로 사용",
+    deliverables: [
+      { label: "무료 체험", value: `${KS.trialCount}건`, note: "방 1곳에 한 번이 1건" },
+      { label: "명절 한 달권", value: `${ksWon(KS_PLANS[0].price)}원`, note: `1년 ${ksWon(KS_PLANS[2].price)}원 · 부가세 포함` },
+      { label: "사무실 PC 3대", value: `${ksWon(KS_PLANS[3].price)}원`, note: "1년 기준" },
+    ],
+    features: [
+      "여러 방에 같은 글 한 번에 보내기",
+      "예약 발송 (한 번 · 매일 · 매주)",
+      "예약 목록에서 시각 · 방 · 글 바로 고치기",
+      "사진 · 동영상 · 파일 같이 보내기",
+      "방 목록 저장 · 그룹으로 묶기",
+      "보내기 전 확인 · 예약은 승인해야 발송",
+    ],
+    rec: "설 · 추석 · 연말에 거래처 방 여러 곳으로 인사를 보내는 보험 · 딜러 · 대행사",
+    result: `정품키 없이 ${KS.trialCount}건 무료 체험 · 자동 결제 없음`,
+    href: "/kakao-sender",
   },
   {
     id: "blog",
@@ -617,7 +648,7 @@ const SERVICES_LD = {
   '@context': 'https://schema.org', '@type': 'ItemList', numberOfItems: SERVICES.length,
   itemListElement: SERVICES.map((service, index) => ({
     '@type': 'ListItem', position: index + 1,
-    item: { '@type': service.id === 'studio' ? 'SoftwareApplication' : 'Service',
+    item: { '@type': isProgram(service.id) ? 'SoftwareApplication' : 'Service',
       name: service.title, description: service.desc,
       url: SITE.base + (PUBLIC_SERVICES.find(item => item.id === service.id)?.href ?? '/services#' + service.id),
     },

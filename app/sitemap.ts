@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/cafe-distribution`,           lastModified: lm("/services/cafe-distribution"), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/services/cafe-distribution/reference`, lastModified: lm("/services/cafe-distribution/reference"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/studio`,                  lastModified: lm("/studio"), changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${BASE}/kakao-sender`,            lastModified: lm("/kakao-sender"), changeFrequency: "weekly",  priority: 0.8 },
     { url: `${BASE}/sns`,                     lastModified: lm("/sns"), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/portfolio`,               lastModified: new Date(updatedAt("/portfolio", PLACE_RANK_GENERATED)), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/cases`,                   lastModified: new Date(updatedAt("/cases", PLACE_RANK_GENERATED)), changeFrequency: "weekly",  priority: 0.8 },

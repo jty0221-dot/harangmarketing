@@ -12,4 +12,9 @@ export const PUBLIC_SERVICES = [
   { id: 'kakaomap', title: '카카오맵 매장 관리', href: '/services#kakaomap', icon: 'MapPin', desc: '카카오맵의 매장 정보와 사진을 정리합니다.' },
   { id: 'startup', title: '창업 지원 · 홈페이지형 블로그', href: '/services#startup', icon: 'Palette', desc: '홈페이지형 블로그와 로고, 명함, 메뉴판 등 개업에 필요한 디자인을 안내합니다.' },
   { id: 'studio', title: '하랑 스튜디오', href: '/studio', icon: 'Camera', desc: '사진 정리와 동영상 GIF 변환을 위한 윈도우 프로그램입니다.' },
+  { id: 'kakao-sender', title: '카톡 예약 발송', href: '/kakao-sender', icon: 'MessageSquare', desc: '거래처 · 고객 · 회원 카톡방 여러 곳에 공지와 인사를 한 번에, 원하는 시각에 보내는 윈도우 프로그램입니다.' },
 ] as const;
+
+/** 대행 서비스가 아니라 자사 프로그램인 품목. 서비스 개수 · OfferCatalog(Service) 에서는 뺀다 */
+export const PROGRAM_IDS: readonly string[] = ['studio', 'kakao-sender'];
+export const isProgram = (id: string) => PROGRAM_IDS.includes(id);

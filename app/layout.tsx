@@ -1,4 +1,4 @@
-import { PUBLIC_SERVICES } from "./lib/service-catalog";
+import { PUBLIC_SERVICES, isProgram } from "./lib/service-catalog";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
@@ -366,7 +366,7 @@ gtag('config', '${GA_ID}');`,
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "하랑마케팅 서비스",
-                itemListElement: PUBLIC_SERVICES.filter(service => service.id !== 'studio').map(service => ({
+                itemListElement: PUBLIC_SERVICES.filter(service => !isProgram(service.id)).map(service => ({
                   '@type': 'Offer', url: SITE.base + service.href,
                   itemOffered: { '@type': 'Service', name: service.title, description: service.desc, url: SITE.base + service.href },
                 })),

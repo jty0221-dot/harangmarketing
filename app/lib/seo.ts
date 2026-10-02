@@ -1,4 +1,4 @@
-import { PUBLIC_SERVICES } from "./service-catalog";
+import { PUBLIC_SERVICES, isProgram } from "./service-catalog";
 /**
  * 하랑마케팅 SEO · AEO · GEO 공용 모듈
  *
@@ -122,6 +122,7 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/cafe-distribution": "2026-10-02",
   "/services/cafe-distribution/reference": "2026-10-01",
   "/studio": "2026-10-02",
+  "/kakao-sender": "2026-10-03",
   "/sns": "2026-09-25",
   "/portfolio": "2026-09-25",
   "/cases": "2026-10-01",
@@ -152,7 +153,7 @@ export function updatedAt(path: string, ...dataDates: (string | undefined)[]): s
  * 개수는 세어 두지 않고 배열 길이에서 만든다. 여섯 개일 때 적은 '6가지' 가 열 개가 된 뒤에도 남아 있었다.
  * 항목을 더하거나 빼면 layout.tsx 의 Offer 도 같이 맞춘다.
  */
-export const SERVICE_NAMES = PUBLIC_SERVICES.filter(service => service.id !== 'studio').map(service => service.title);
+export const SERVICE_NAMES = PUBLIC_SERVICES.filter(service => !isProgram(service.id)).map(service => service.title);
 
 /* ────────────────────────────────────────────────────────────
    AEO 핵심 — 한 줄 정답 문장 (Answer-first sentences)
