@@ -11,6 +11,7 @@ import {
   Handshake,
 } from "lucide-react";
 import { GA_EVENTS } from "../components/Analytics";
+import { attributionLabel } from "../lib/attribution";
 
 import { best, fmt, clinicFact, SNAPSHOT_DATE } from "../lib/rank-records";
 
@@ -138,10 +139,13 @@ export default function ContactPage() {
           budget: form.budget,
           goals: selectedGoals,
           message: form.message,
+          // 광고 유입 경로. 없으면 서버가 'web' 으로 둔다
+          source: attributionLabel() ? `web · ${attributionLabel()}` : "web",
           website,
         }),
       });
       saved = res.ok;
+      if (saved) GA_EVENTS.leadSaved("contact", attributionLabel() || "direct");
     } catch {
       saved = false;
     }

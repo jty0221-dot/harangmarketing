@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import FloatingCTA from "./FloatingCTA";
 import CafeNoticePopup from "./CafeNoticePopup";
+import AttributionTracker from "./AttributionTracker";
 
 /**
  * 화면에 떠 있는 요소들(하단 CTA 바 · 운영 공지)을 한곳에서 관리한다.
@@ -28,6 +29,8 @@ export default function SiteChrome() {
     <>
       <FloatingCTA />
       <CafeNoticePopup />
+      {/* 광고 유입 경로 저장 + 카카오·전화 클릭 측정. 고객 전용 화면에서는 잴 이유가 없어 위 조건 뒤에 둔다 */}
+      <AttributionTracker />
     </>
   );
 }

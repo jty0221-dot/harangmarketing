@@ -17,6 +17,17 @@ import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES, companyYear } from "
  */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-L1NX7TPP9Z";
 
+/**
+ * ChatGPT 광고 측정 픽셀 ID.
+ * 광고관리자(ads.openai.com) > 도구 > 전환 > 데이터 소스에서 만든 값을
+ * Vercel 환경변수 NEXT_PUBLIC_OPENAI_PIXEL_ID 에 넣으면 그때부터 심긴다. 비어 있으면 아무것도 넣지 않는다.
+ * 브라우저에 그대로 보이는 공개 식별자다 (API 키와 다르다).
+ * 형식이 아닌 값이 들어가 스크립트 문자열이 깨지지 않게 영문·숫자·_- 만 통과시킨다.
+ */
+const OPENAI_PIXEL_ID = /^[A-Za-z0-9_-]{4,80}$/.test(process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID ?? "")
+  ? process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID
+  : undefined;
+
 /** Bing Webmaster Tools 소유권 확인 코드 (구글 서치콘솔 Import 로 인증했다면 불필요) */
 const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 
@@ -124,6 +135,16 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full">
       <head>
+        {/* ChatGPT 광고 측정 픽셀 — 문서 권고대로 head 맨 위. 랜딩 URL 의 oppref 를 __oppref 쿠키로 받아 둔다.
+            코드 출처: developers.openai.com/ads/measurement-pixel (2026-10-02 확인) */}
+        {OPENAI_PIXEL_ID && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var js=d.createElement(s);js.async=true;js.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(js,f);})(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}"});`,
+            }}
+          />
+        )}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         <link

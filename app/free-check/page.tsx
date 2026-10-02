@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 
 import { best, fmt } from "../lib/rank-records";
+import { GA_EVENTS } from "../components/Analytics";
+import { attributionLabel } from "../lib/attribution";
 const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
@@ -84,10 +86,11 @@ export default function FreeCheckPage() {
           phone,
           industry: business,
           message: rank ? `현재 플레이스 순위: ${rank}위권` : "",
-          source: "free-check",
+          source: attributionLabel() ? `free-check · ${attributionLabel()}` : "free-check",
         }),
       });
       saved = res.ok;
+      if (saved) GA_EVENTS.leadSaved("free-check", attributionLabel() || "direct");
     } catch {
       saved = false;
     }

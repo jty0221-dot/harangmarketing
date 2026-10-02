@@ -14,7 +14,7 @@ function tooMany(ip: string): boolean {
 }
 
 /** 길이 상한 — DB 와 알림 웹훅으로 그대로 흘러가는 값이라 여기서 자른다 */
-const LIMIT = { name: 60, phone: 40, industry: 60, budget: 60, goals: 300, message: 2000, source: 60 };
+const LIMIT = { name: 60, phone: 40, industry: 60, budget: 60, goals: 300, message: 2000, source: 120 };
 function capped(v: unknown, max: number): string {
   return String(v ?? "").slice(0, max);
 }

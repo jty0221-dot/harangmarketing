@@ -25,6 +25,7 @@ const BLOCKED = SNS_STORE_ENABLED
 const AI_BOTS = [
   "GPTBot",            // OpenAI 학습
   "OAI-SearchBot",     // ChatGPT 검색 인덱스
+  "OAI-AdsBot",        // ChatGPT 광고 랜딩 심사. 막히면 광고 승인이 안 난다 (help.openai.com 20001212)
   "ChatGPT-User",      // ChatGPT 사용자 실시간 열람
   "ClaudeBot",         // Anthropic 학습
   "Claude-Web",        // Anthropic 웹 열람
