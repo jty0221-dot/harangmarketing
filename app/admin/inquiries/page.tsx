@@ -37,7 +37,8 @@ interface Inquiry {
   createdAt: string;
 }
 
-type Filter = InquiryStatus | "all";
+/** open = 진행 중 (새 문의 + 확인함). 처음 화면이 open 이라 응대 완료로 바꾼 건은 목록에서 빠지고 응대 완료 탭으로 간다 */
+type Filter = InquiryStatus | "all" | "open";
 type ReplyChannel = "kakao" | "sms";
 
 const STATUS_CHIP: Record<InquiryStatus, string> = {
@@ -47,10 +48,11 @@ const STATUS_CHIP: Record<InquiryStatus, string> = {
 };
 
 const FILTERS: { key: Filter; label: string }[] = [
-  { key: "all", label: "전체" },
+  { key: "open", label: "진행 중" },
   { key: "new", label: INQUIRY_STATUS_LABEL.new },
   { key: "checked", label: INQUIRY_STATUS_LABEL.checked },
   { key: "done", label: INQUIRY_STATUS_LABEL.done },
+  { key: "all", label: "전체" },
 ];
 
 function fmt(iso: string) {
@@ -63,7 +65,7 @@ export default function AdminInquiriesPage() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<number | null>(null);
-  const [filter, setFilter] = useState<Filter>("all");
+  const [filter, setFilter] = useState<Filter>("open");
   const [message, setMessage] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
   const [replyChannel, setReplyChannel] = useState<ReplyChannel>("kakao");
@@ -75,19 +77,22 @@ export default function AdminInquiriesPage() {
   // 링크로 들어온 문의 번호 · 목록이 오면 그 카드로 한 번 스크롤한다
   const scrollTo = useRef<number | null>(null);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (): Promise<Inquiry[] | null> => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/inquiries", { cache: "no-store" });
       if (res.status === 401) {
         router.push("/admin/login");
-        return;
+        return null;
       }
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "목록을 불러오지 못했습니다");
-      setInquiries(data.inquiries as Inquiry[]);
+      const list = data.inquiries as Inquiry[];
+      setInquiries(list);
+      return list;
     } catch (e) {
       setMessage(e instanceof Error ? e.message : String(e));
+      return null;
     } finally {
       setLoading(false);
     }
@@ -98,11 +103,15 @@ export default function AdminInquiriesPage() {
     const t = setTimeout(() => {
       const raw = new URLSearchParams(window.location.search).get("id");
       const id = raw ? Number(raw) : NaN;
-      if (Number.isInteger(id) && id > 0) {
-        setOpenId(id);
-        scrollTo.current = id;
+      const linked = Number.isInteger(id) && id > 0 ? id : null;
+      if (linked != null) {
+        setOpenId(linked);
+        scrollTo.current = linked;
       }
-      void load();
+      void load().then((list) => {
+        // 링크로 연 문의가 이미 응대 완료면 처음 화면 (진행 중) 에는 없으므로 응대 완료 탭을 연다
+        if (linked != null && list?.some((q) => q.id === linked && q.status === "done")) setFilter("done");
+      });
     }, 0);
     return () => clearTimeout(t);
   }, [load]);
@@ -110,9 +119,11 @@ export default function AdminInquiriesPage() {
   useEffect(() => {
     if (loading || scrollTo.current == null) return;
     const el = document.getElementById(`inq-${scrollTo.current}`);
+    // 아직 화면에 없으면 (응대 완료 탭으로 넘어가기 전) 다음 렌더에서 다시 찾는다
+    if (!el) return;
     scrollTo.current = null;
-    el?.scrollIntoView({ block: "center" });
-  }, [loading, inquiries]);
+    el.scrollIntoView({ block: "center" });
+  }, [loading, inquiries, filter]);
 
   async function setStatus(id: number, status: InquiryStatus) {
     setBusy(id);
@@ -130,6 +141,7 @@ export default function AdminInquiriesPage() {
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "상태를 바꾸지 못했습니다");
       setInquiries((prev) => prev.map((q) => (q.id === id ? { ...q, status } : q)));
+      if (status === "done") setMessage("응대 완료로 옮겼습니다. 응대 완료 탭에서 다시 볼 수 있습니다.");
     } catch (e) {
       setMessage(e instanceof Error ? e.message : String(e));
     } finally {
@@ -183,9 +195,18 @@ export default function AdminInquiriesPage() {
     }
   }
 
-  const counts: Record<Filter, number> = { all: inquiries.length, new: 0, checked: 0, done: 0 };
+  const counts: Record<Filter, number> = { all: inquiries.length, open: 0, new: 0, checked: 0, done: 0 };
   for (const q of inquiries) counts[q.status] += 1;
-  const shown = filter === "all" ? inquiries : inquiries.filter((q) => q.status === filter);
+  counts.open = counts.new + counts.checked;
+  const openList = inquiries.filter((q) => q.status !== "done");
+  const doneList = inquiries.filter((q) => q.status === "done");
+  // 전체에서는 응대 완료를 아래로 모은다 (각 묶음 안은 최신순 그대로)
+  const shown =
+    filter === "open"
+      ? openList
+      : filter === "all"
+        ? [...openList, ...doneList]
+        : inquiries.filter((q) => q.status === filter);
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -195,7 +216,7 @@ export default function AdminInquiriesPage() {
           <div className="min-w-0">
             <h1 className="text-xl font-black text-gray-900">홈페이지 문의</h1>
             <p className="text-xs text-gray-400 mt-0.5">
-              상담 신청 폼과 무료 진단으로 들어온 문의입니다. 확인한 건은 상태를 바꿔 두면 새 문의만 골라 볼 수 있습니다.
+              상담 신청 폼과 무료 진단으로 들어온 문의입니다. 처음 화면은 진행 중 (새 문의 · 확인함) 만 보여 주고, 응대 완료로 바꾼 건은 응대 완료 탭으로 옮겨집니다.
             </p>
           </div>
           <button
@@ -253,7 +274,11 @@ export default function AdminInquiriesPage() {
               const memoDirty = memoText.trim() !== (q.memo ?? "");
               const memoWorking = memoBusy === q.id;
               return (
-                <div key={q.id} id={`inq-${q.id}`} className="bg-white rounded-2xl ring-1 ring-gray-100 overflow-hidden">
+                <div
+                  key={q.id}
+                  id={`inq-${q.id}`}
+                  className={`rounded-2xl ring-1 ring-gray-100 overflow-hidden ${q.status === "done" && !open ? "bg-gray-50 opacity-70" : "bg-white"}`}
+                >
                   <button
                     type="button"
                     onClick={() => setOpenId(open ? null : q.id)}
