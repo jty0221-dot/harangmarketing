@@ -177,7 +177,7 @@ export default function RestaurantPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
               <div>
                 <h2 className="text-2xl font-black text-gray-900 mb-2">이런 문제 겪고 계신가요?</h2>
-                <p className="text-gray-500 text-sm mb-6">음식점 사장님들이 가장 많이 말씀하시는 고민들입니다</p>
+                <p className="text-gray-500 text-sm mb-6">음식점 대표님들이 가장 많이 말씀하시는 고민들입니다</p>
                 <div className="space-y-3">
                   {CHECKLIST.map(item => (
                     <div key={item} className="flex items-start gap-3 p-3 bg-orange-50 border border-orange-100 rounded-xl">
@@ -217,7 +217,7 @@ export default function RestaurantPage() {
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/restaurant`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
-          title="음식점 사장님들이 가장 많이 묻는 질문"
+          title="음식점 대표님들이 가장 많이 묻는 질문"
           subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
           showMoreHref="/faq"
         />

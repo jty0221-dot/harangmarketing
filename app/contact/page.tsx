@@ -406,7 +406,7 @@ export default function ContactPage() {
                     </div>
                     <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                      <span className="font-black text-gray-800">{form.name || "사장님"}</span>, 소중한 신청 감사합니다.<br />
+                      <span className="font-black text-gray-800">{form.name || "대표님"}</span>, 소중한 신청 감사합니다.<br />
                       신청은 24시간 접수되며, <span className="font-semibold text-blue-600">하랑 대표가 직접</span> 확인하고 연락드립니다.
                     </p>
 

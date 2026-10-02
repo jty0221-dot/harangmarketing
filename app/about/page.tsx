@@ -202,7 +202,7 @@ export default function AboutPage() {
         {/* AEO — 회사·대표 정체성 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅 대표는 누구이고, 회사는 어떤 곳인가요?"
-          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 사장님 입장을 겪어본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
+          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 매장을 직접 운영해 본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
           facts={[
             { label: "대표", value: "전태영" },
             { label: "설립", value: "2020.04.15" },
@@ -435,7 +435,7 @@ export default function AboutPage() {
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
                 대행사, 어디를 골라야 할까요?
               </h2>
-              <p className="text-gray-500 text-sm">실제 소상공인 사장님들이 대행사 선택에서 가장 많이 겪는 문제와 하랑의 차이를 정직하게 비교했습니다.</p>
+              <p className="text-gray-500 text-sm">실제 소상공인 대표님들이 대행사 선택에서 가장 많이 겪는 문제와 하랑의 차이를 정직하게 비교했습니다.</p>
             </div>
             <div className="overflow-x-auto -mx-4 md:mx-0">
               <div className="min-w-[600px] md:min-w-0 px-4 md:px-0">
@@ -569,7 +569,7 @@ export default function AboutPage() {
               <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl">
                 하랑마케팅의 CI는 <strong className="text-gray-700">함께 더 높이</strong>라는 슬로건을 담아,
                 두 사람이 서로를 이어주는 모습을 형상화했습니다.
-                사장님과 함께 성장하는 하랑마케팅의 철학을 상징합니다.
+                대표님과 함께 성장하는 하랑마케팅의 철학을 상징합니다.
               </p>
             </div>
 
@@ -646,7 +646,7 @@ export default function AboutPage() {
               <div className="rounded-2xl border border-gray-100 bg-gray-50 flex items-center justify-center py-12 px-6">
                 <div className="text-center">
                   <p className="text-3xl md:text-5xl font-black text-[var(--w-primary)] tracking-tight mb-3">하랑, 함께 더 높이</p>
-                  <p className="text-sm text-gray-500">사장님과 함께, 더 높은 곳을 향해 성장합니다</p>
+                  <p className="text-sm text-gray-500">대표님과 함께, 더 높은 곳을 향해 성장합니다</p>
                 </div>
               </div>
             </div>

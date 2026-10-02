@@ -757,7 +757,7 @@ export default function HomePage() {
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
               </div>
               <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>이런 고민, 해결된 증거 있습니다</h2>
-              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 사장님들이 가장 많이 하는 말, 하랑이 어떻게 바꿨는지</p>
+              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 대표님들이 가장 많이 하는 말, 하랑이 어떻게 바꿨는지</p>
             </div>
             </RevealOnScroll>
             <div className="space-y-4">
@@ -1615,7 +1615,7 @@ export default function HomePage() {
                   className="font-black leading-tight"
                   style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-0.03em", color: "var(--h-dark)" }}
                 >
-                  실제 사장님들의<br />성장 이야기
+                  실제 대표님들의<br />성장 이야기
                 </h2>
               </div>
               <div className="flex items-center gap-8 shrink-0">
@@ -1703,7 +1703,7 @@ export default function HomePage() {
             { label: '채널별 마케팅', items: [9, 10, 11, 12, 13, 17].map(index => CORE_FAQ[index]) },
             { label: '병원 · 치과 마케팅', items: [22, 23, 24].map(index => CORE_FAQ[index]) },
           ]}
-          title="사장님들이 가장 많이 묻는 질문"
+          title="대표님들이 가장 많이 묻는 질문"
           subtitle="궁금한 주제를 선택해 질문을 확인하세요."
           showMoreHref="/faq"
         />

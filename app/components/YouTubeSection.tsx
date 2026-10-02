@@ -172,7 +172,7 @@ export default function YouTubeSection() {
               <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
             </div>
             <h2 className="text-2xl md:text-3xl font-black mb-2" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
-              사장님이 꼭 봐야 할 영상 4편
+              대표님이 꼭 봐야 할 영상 4편
             </h2>
             <p className="text-sm" style={{ color: "var(--h-muted)" }}>
               순서대로 보시면 네이버 플레이스 마케팅의 전체 그림이 잡힙니다

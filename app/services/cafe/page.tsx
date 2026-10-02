@@ -231,7 +231,7 @@ export default function CafeLandingPage() {
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/cafe`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
-          title="카페 사장님들이 가장 많이 묻는 질문"
+          title="카페 대표님들이 가장 많이 묻는 질문"
           subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
           showMoreHref="/faq"
         />

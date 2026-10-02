@@ -63,7 +63,7 @@ export default function FreeCheckPage() {
     setSending(true);
     const rankInfo = rank ? `\n현재 플레이스 순위: ${rank}위권` : "";
     const msg = encodeURIComponent(
-      `[무료 진단 신청]\n사장님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`
+      `[무료 진단 신청]\n대표님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`
     );
 
     /* 팝업 차단이나 인앱 브라우저에서는 창이 안 열리고 null 이 돌아온다.
@@ -259,7 +259,7 @@ export default function FreeCheckPage() {
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   <div>
-                    <label htmlFor="check-name" className="block text-xs font-bold text-gray-700 mb-1.5">사장님 성함</label>
+                    <label htmlFor="check-name" className="block text-xs font-bold text-gray-700 mb-1.5">대표님 성함</label>
                     <input
                       id="check-name"
                       type="text"
