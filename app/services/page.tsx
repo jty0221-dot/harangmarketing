@@ -1258,7 +1258,7 @@ export default function ServicesPage() {
                 },
                 {
                   tier: "두세 채널 묶음",
-                  desc: "검색 유입부터 만들어야 하는 매장 · 가장 많이 선택하는 구성",
+                  desc: "검색 유입부터 만들어야 하는 매장 · 기본으로 권해 드리는 구성",
                   highlight: true,
                   services: ["플레이스 SEO 최적화", "블로그 관리대행", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"],
                   result: "검색 유입부터 문의 동선까지 한 번에 세팅",
@@ -1278,7 +1278,7 @@ export default function ServicesPage() {
                   <div className={`px-6 py-6 ${pkg.highlight ? "bg-blue-600" : "bg-gray-900"}`}>
                     {pkg.highlight && (
                       <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[11px] font-black mb-3">
-                        가장 많이 선택
+                        기본 추천
                       </div>
                     )}
                     <div className="text-xl font-black text-white mb-2">{pkg.tier}</div>

@@ -57,7 +57,7 @@ export const PLANS: Plan[] = [
   { id: "m1", name: "1개월", price: 4900, perMonth: 4900, note: "커피 한 잔 값으로 먼저 써보실 때", pcs: 1 },
   { id: "m3", name: "3개월", price: 12900, perMonth: 4300, note: "한 프로젝트를 통째로 돌려볼 때", pcs: 1, best: true },
   { id: "m6", name: "6개월", price: 23900, perMonth: 3983, note: "반 년 단위로 정리하실 때", pcs: 1 },
-  { id: "y1", name: "1년", price: 39000, perMonth: 3250, note: "하루 100원꼴. 가장 많이 고르십니다", pcs: 1 },
+  { id: "y1", name: "1년", price: 39000, perMonth: 3250, note: "하루 100원꼴. 1년 내내 쓰실 때", pcs: 1 },
   { id: "a2", name: "대행사 2대 · 1년", price: 69000, note: "직원과 나눠 쓸 때", pcs: 2 },
   { id: "a3", name: "대행사 3대 · 1년", price: 89000, note: "PC 3대까지. 대행사에 가장 알맞습니다", pcs: 3, best: true },
   { id: "inf", name: "무기한", price: 99000, note: "갱신 없이 계속 쓰실 때", pcs: 1 },

@@ -567,7 +567,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3" style={{ letterSpacing: "-0.03em" }}>CI 소개</h2>
               <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl">
-                하랑마케팅의 CI는 <strong className="text-gray-700">함께 더 높이</strong>라는 슬로건을 담아,
+                하랑마케팅의 CI는 <strong className="text-gray-700">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 이름의 뜻을 담아,
                 두 사람이 서로를 이어주는 모습을 형상화했습니다.
                 대표님과 함께 성장하는 하랑마케팅의 철학을 상징합니다.
               </p>
@@ -645,8 +645,8 @@ export default function AboutPage() {
               <p className="text-sm text-gray-500 mb-8">하랑마케팅의 핵심 가치를 담은 브랜드 슬로건입니다.</p>
               <div className="rounded-2xl border border-gray-100 bg-gray-50 flex items-center justify-center py-12 px-6">
                 <div className="text-center">
-                  <p className="text-3xl md:text-5xl font-black text-[var(--w-primary)] tracking-tight mb-3">하랑, 함께 더 높이</p>
-                  <p className="text-sm text-gray-500">대표님과 함께, 더 높은 곳을 향해 성장합니다</p>
+                  <p className="text-2xl md:text-4xl font-black text-[var(--w-primary)] tracking-tight break-keep mb-3">직접 확인하고 솔직하게 설명하는 소상공인 마케팅</p>
+                  <p className="text-sm text-gray-500">하랑마케팅이 일하는 방식을 한 줄로 담았습니다</p>
                 </div>
               </div>
             </div>
