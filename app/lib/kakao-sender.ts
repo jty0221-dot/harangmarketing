@@ -16,7 +16,7 @@ import type { FaqItem } from "./seo";
 export const KS = {
   name: "카톡 예약 발송",
   maker: "하랑마케팅",
-  version: "1.5.4",
+  version: "1.6.0",
   /** 무료 체험 건수. 방 1곳에 한 번 보낸 것이 1건이다 (판매설정.json 무료체험.건수) */
   trialCount: 10,
   /** 항상 최신판을 받는 주소 (GitHub Releases latest) */
@@ -93,7 +93,7 @@ export const KS_PRICIEST = KS_PLANS.reduce((a, b) => (b.price > a.price ? b : a)
 
 export type KsFeature = { title: string; desc: string };
 
-/** 기능. 프로그램에 실제로 있는 것만 적는다 (1.5.4 기준) */
+/** 기능. 프로그램에 실제로 있는 것만 적는다 (1.6.0 기준) */
 export const KS_FEATURES: KsFeature[] = [
   {
     title: "여러 방에 한 번에 보내기",
@@ -216,5 +216,26 @@ export const KS_FAQ: FaqItem[] = [
   {
     q: "새 버전은 어떻게 받나요?",
     a: "이 페이지의 내려받기 단추는 늘 최신판으로 연결됩니다. 새로 받아서 쓰시면 됩니다.",
+  },
+];
+
+export type KsShot = { src: string; alt: string; caption: string };
+
+/** 프로그램 화면 캡처 (1.6.0 · 1360x820 · 예시 방 이름 · 실제 고객 이름 없음) */
+export const KS_SHOTS: KsShot[] = [
+  {
+    src: "/kakao-sender/shot-send.png",
+    alt: "카톡 예약 발송 보내기 화면. 왼쪽에서 보낼 카톡방을 고르고 오른쪽에 보낼 글과 첨부, 예약 시각을 넣습니다",
+    caption: "보내기 화면 · 방을 고르고 글을 쓴 뒤 지금 보내거나 예약합니다",
+  },
+  {
+    src: "/kakao-sender/shot-schedule.png",
+    alt: "카톡 예약 발송 예약 목록 화면. 예약마다 보낼 시각, 반복, 방 수, 승인 상태가 보이고 승인 · 수정 · 취소 단추가 있습니다",
+    caption: "예약 목록 · 승인한 예약만 그 시각에 나갑니다",
+  },
+  {
+    src: "/kakao-sender/shot-clients.png",
+    alt: "카톡 예약 발송 클라이언트 화면. 업체명과 카톡방 이름, 그룹을 목록으로 저장하고 여러 방을 한 번에 붙여 넣습니다",
+    caption: "클라이언트 · 방 목록을 저장하고 그룹으로 묶습니다",
   },
 ];

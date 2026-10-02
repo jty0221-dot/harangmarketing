@@ -253,7 +253,7 @@ const SERVICES = [
   {
     // 대행 서비스가 아니라 자사 프로그램. 상세는 /kakao-sender 에 따로 있다.
     // 가격 숫자는 app/lib/kakao-sender.ts (판매설정.json 옮김) 에서 가져온다. 여기에 박지 않는다.
-    // 커버 캡처가 아직 없어 브랜드 밴드로 나온다. 밴드는 s.color 로 그라데이션을 그리므로
+    // 커버는 실제 프로그램 캡처(1.6.0 · 예시 방 이름). 태그 배지가 s.color 로 그라데이션을 그리므로
     // 같은 색 두 개를 줘서 단색으로 만든다 (WDS · 그라데이션 금지).
     id: "kakao-sender",
     icon: MessageSquare,
@@ -279,6 +279,9 @@ const SERVICES = [
     rec: "설 · 추석 · 연말에 거래처 방 여러 곳으로 인사를 보내는 보험 · 딜러 · 대행사",
     result: `정품키 없이 ${KS.trialCount}건 무료 체험 · 자동 결제 없음`,
     href: "/kakao-sender",
+    cover: "/kakao-sender/shot-send.png",
+    coverAlt: "카톡 예약 발송 보내기 화면. 보낼 카톡방을 고르고 글과 예약 시각을 넣는 화면",
+    coverBadge: "프로그램 화면",
   },
   {
     id: "blog",
