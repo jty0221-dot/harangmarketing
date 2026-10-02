@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import { PUBLIC_SERVICES } from "../lib/service-catalog";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,9 +8,35 @@ import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock } from "l
 
 import { SITE } from "../lib/seo";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
+import { activeNotices, kstToday, type SiteNotice } from "../lib/site-notice";
+
+/** 켜진 공지가 없을 때의 닫기 기록 이름. 공지가 켜지면 공지 id 로 만든 이름을 쓴다 (lib/site-notice.ts) */
 const ANN_KEY = "harang_ann_v1";
 
-const ANN_MESSAGES = [
+type AnnItem = {
+  badge: string;
+  badgeColor: string;
+  dot: string;
+  text: ReactNode;
+  mobileText: ReactNode;
+  ctaLabel: string;
+  ctaHref: string;
+};
+
+/** 공지 파일의 공지 한 건을 공지 띠 한 줄로 바꾼다. 문장과 날짜는 lib/site-notice.ts 가 정본이다 */
+function noticeItem(n: SiteNotice): AnnItem {
+  return {
+    badge: "공지",
+    badgeColor: "text-blue-400",
+    dot: "bg-blue-400",
+    text: <span className="text-white font-bold">{n.text}</span>,
+    mobileText: <span className="text-white font-bold">{n.mobileText}</span>,
+    ctaLabel: n.ctaLabel,
+    ctaHref: n.ctaHref,
+  };
+}
+
+const ANN_MESSAGES: AnnItem[] = [
   {
     badge: "무료 제공",
     badgeColor: "text-blue-400",
@@ -103,24 +129,36 @@ export default function Header() {
   }, []);
   const [annClosed, setAnnClosed] = useState(true); // start true to avoid SSR flash
   const [annIdx, setAnnIdx] = useState(0);
+  const [annItems, setAnnItems] = useState<AnnItem[]>(ANN_MESSAGES);
+  const [annKey, setAnnKey] = useState(ANN_KEY);
   const pathname = usePathname();
 
   useEffect(() => {
-    const saved = localStorage.getItem(ANN_KEY);
-    const frame = requestAnimationFrame(() => { if (saved !== "closed") setAnnClosed(false); });
+    // 공지는 날짜를 보고 고른다. 서버 HTML 과 어긋나지 않게 화면이 붙은 뒤에 계산한다 (띠도 그 뒤에 뜬다).
+    const notices = activeNotices(kstToday());
+    const pinned = notices.filter((n) => n.pinned);
+    const items = pinned.length > 0 ? pinned.map(noticeItem) : [...notices.map(noticeItem), ...ANN_MESSAGES];
+    const key = notices.length > 0 ? `harang_ann_${notices.map((n) => n.id).join("_")}` : ANN_KEY;
+    const saved = localStorage.getItem(key);
+    const frame = requestAnimationFrame(() => {
+      setAnnItems(items);
+      setAnnKey(key);
+      setAnnIdx(0);
+      if (saved !== "closed") setAnnClosed(false);
+    });
     return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
-    if (annClosed) return;
-    const t = setInterval(() => setAnnIdx((p) => (p + 1) % ANN_MESSAGES.length), 4000);
+    if (annClosed || annItems.length < 2) return;
+    const t = setInterval(() => setAnnIdx((p) => (p + 1) % annItems.length), 4000);
     return () => clearInterval(t);
-  }, [annClosed]);
+  }, [annClosed, annItems]);
 
   const closeAnn = useCallback(() => {
     setAnnClosed(true);
-    localStorage.setItem(ANN_KEY, "closed");
-  }, []);
+    localStorage.setItem(annKey, "closed");
+  }, [annKey]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -144,7 +182,7 @@ export default function Header() {
   }, [open]);
 
   const isHome = pathname === "/";
-  const msg = ANN_MESSAGES[annIdx];
+  const msg = annItems[annIdx] ?? annItems[0];
 
   return (
     <header className={`fixed top-0 left-0 right-0 ${open || dropdownOpen ? "z-[10000]" : "z-50"}`} onKeyDown={event => { if (event.key === 'Escape') { setOpen(false); setDropdownOpen(false); if (open) menuButton.current?.focus(); } }}>
