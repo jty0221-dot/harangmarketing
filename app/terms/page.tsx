@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
+import { TERMS_REVISION, TERMS_PREVIOUS, koDateLong } from "../lib/terms-revision";
 
 export const metadata: Metadata = {
   title: "이용약관",
@@ -53,8 +54,14 @@ const SECTIONS = [
     content: `회사는 다음 의무를 이행합니다.\n· 계약된 서비스의 성실한 수행\n· 월별 성과 리포트 제공\n· 이용자 개인정보의 안전한 관리\n· 서비스 관련 문의에 영업일 기준 24시간 내 응답\n· 서비스 내용이나 요금이 변경되는 경우 사전 안내`,
   },
   {
-    title: "제11조 (계약 해지 및 위약금)",
-    content: `· 이용자 귀책으로 인한 중도 해지 : 잔여 계약 기간의 30%에 해당하는 위약금 발생\n· 회사 귀책으로 인한 해지 : 위약금 없이 환불\n· 양 당사자 합의 해지 : 협의 후 진행\n· 회사는 이용자가 본 약관을 중대하게 위반하고 시정 요구에도 응하지 않는 경우 계약을 해지할 수 있습니다.`,
+    /*
+     * 2026-10-02 (금) 개정 : 이용자 귀책 중도 해지 위약금 (잔여 계약 기간의 30%) 줄을 지웠다.
+     * 대표 지시 「위약금은 약관에서 빼」 (보라 세션 경유). 자주 묻는 질문 (faq/page.tsx 의 중도 해지 답) ·
+     * 환불 · 취소 정책 5번과 같은 말을 하게 맞췄다. 여러 달 선결제 환불은 환불 정책 한 곳에서만 정한다.
+     * 기간과 해지 조건을 계약서로 따로 정하는 상품의 이름은 여기 적지 않는다 (D-0521 · 화면에 보장이라는 말을 쓰지 않는다).
+     */
+    title: "제11조 (계약 해지)",
+    content: `· 월 단위로 진행하는 서비스는 다음 달부터 중단하겠다고 알려 주시면 진행 중인 달까지만 진행하고 해지합니다. 중도 해지 위약금은 없습니다.\n· 여러 달을 한 번에 결제한 뒤 중도에 해지하는 경우의 환불은 환불·취소 정책을 따릅니다.\n· 회사 귀책으로 인한 해지 : 위약금 없이 환불\n· 양 당사자 합의 해지 : 협의 후 진행\n· 개별 계약서에 기간과 해지 조건을 따로 정한 상품은 그 계약서를 따릅니다.\n· 회사는 이용자가 본 약관을 중대하게 위반하고 시정 요구에도 응하지 않는 경우 계약을 해지할 수 있습니다.`,
   },
   {
     title: "제12조 (미성년자의 계약)",
@@ -73,8 +80,9 @@ const SECTIONS = [
     content: `· 회사는 이용자가 제기하는 의견과 불만을 신속하게 처리합니다. 처리에 시간이 걸리는 경우 사유와 일정을 알려 드립니다.\n· 분쟁이 원만히 해결되지 않는 경우 이용자는 한국소비자원 또는 전자거래분쟁조정위원회에 조정을 신청할 수 있습니다.\n· 본 약관은 대한민국 법률에 따라 해석하며, 소송이 제기되는 경우 민사소송법에 따른 관할 법원에 제기합니다.`,
   },
   {
+    // 날짜는 lib/terms-revision.ts 한 곳에서 읽는다. 공지 띠의 약관 개정 공지도 같은 값을 쓴다.
     title: "부칙",
-    content: `· 본 약관은 2026년 9월 6일부터 시행됩니다.\n· 2024년 1월 1일부터 시행된 종전 약관은 본 약관의 시행과 동시에 대체됩니다.\n· 공고일 : 2026년 8월 30일`,
+    content: `· 본 약관은 ${koDateLong(TERMS_REVISION.effective)}부터 시행됩니다.\n· ${koDateLong(TERMS_PREVIOUS.effective)}부터 시행된 종전 약관은 본 약관의 시행과 동시에 대체됩니다.\n· 공고일 : ${koDateLong(TERMS_REVISION.announced)}\n· 이번 개정 : 제11조에서 이용자 귀책 중도 해지 위약금 조항을 삭제했습니다. 이용자에게 유리한 변경이라 회사는 공고일부터 개정된 내용대로 처리합니다.\n· 개정 이력 : ${koDateLong(TERMS_PREVIOUS.announced)} 공고 · ${koDateLong(TERMS_PREVIOUS.effective)} 시행`,
   },
 ];
 
@@ -94,7 +102,7 @@ export default function TermsPage() {
             </div>
             <div>
               <h1 className="text-xl font-black text-gray-900">이용약관</h1>
-              <p className="text-xs text-gray-500">하랑마케팅 · 2026년 8월 30일 개정 · 2026년 9월 6일 시행</p>
+              <p className="text-xs text-gray-500">하랑마케팅 · {koDateLong(TERMS_REVISION.announced)} 개정 · {koDateLong(TERMS_REVISION.effective)} 시행</p>
             </div>
           </div>
 
