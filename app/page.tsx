@@ -1290,7 +1290,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
               <div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-4" style={{ background: "var(--h-surface)", color: "var(--h-navy)", border: "1px solid var(--h-border)" }}>
-                  <Search size={10} strokeWidth={2.5} /> 10년 분석 인사이트
+                  <Search size={10} strokeWidth={2.5} /> 10년 노하우
                 </span>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">
                   네이버 플레이스 상위 노출,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
