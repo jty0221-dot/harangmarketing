@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import IndustrySteps from "../../components/IndustrySteps";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
@@ -159,6 +161,11 @@ export default function RestaurantPage() {
                 내 가게 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -212,9 +219,11 @@ export default function RestaurantPage() {
           </div>
         </section>
 
+        <IndustrySteps industry="restaurant" />
+
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
         <JsonLd data={FOOD_PAGE_LD} />
-        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/restaurant`)} />
+        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.restaurant.faqs], `${SITE.base}/services/restaurant`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
           title="음식점 대표님들이 가장 많이 묻는 질문"

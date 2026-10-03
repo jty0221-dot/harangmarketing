@@ -229,6 +229,11 @@ export default function ReviewServicePage() {
                 카카오톡으로 문의
               </a>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
 
             <p className="mt-6 text-xs md:text-[13px] text-gray-400">
               매장을 운영하시는 대표님께 드리는 안내입니다. 체험단 참여를 찾아오셨다면 이 페이지가 아닙니다.

@@ -91,6 +91,7 @@ const ALL_NAV_ITEMS: NavItem[] = [
   { label: "SNS스토어", href: "/sns", accent: true },
   { label: "마케팅 인사이트", href: "/blog" },
   { label: "진행사례", href: "/cases" },
+  { label: "가격", href: "/services#pricing" },
   { label: "FAQ", href: "/faq" },
   { label: "상담신청", href: "/contact" },
 ];

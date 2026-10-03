@@ -54,7 +54,8 @@ const CURRICULUM = [
   },
 ];
 
-export default function YouTubeSection() {
+// variant="latest" 는 최신 영상 칸만 그린다 (회사소개 등 다른 페이지용). 커리큘럼·구독 배너는 홈 전용.
+export default function YouTubeSection({ variant = "full" }: { variant?: "full" | "latest" }) {
   // 초기엔 최신 fallback 을 보여주고(SSR·즉시 표시), 마운트 후 API 로 실시간 최신을 받아 교체한다.
   // 채널에 새 영상이 올라오면 별도 배포 없이 최대 1시간 안에 자동 반영된다.
   const [latest, setLatest] = useState<YTVideo[]>(FALLBACK_LATEST);
@@ -127,6 +128,7 @@ export default function YouTubeSection() {
         </div>
       </section>
 
+      {variant === "full" && (<>
       {/* 2. 구독 유도 CTA 배너 */}
       <section className="relative overflow-hidden bg-red-600">
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
@@ -200,6 +202,7 @@ export default function YouTubeSection() {
           </div>
         </div>
       </section>
+      </>)}
     </>
   );
 }

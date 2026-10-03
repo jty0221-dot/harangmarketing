@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import IndustrySteps from "../../components/IndustrySteps";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
@@ -102,6 +104,11 @@ export default function AcademyPage() {
                 내 학원 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -167,9 +174,11 @@ export default function AcademyPage() {
           </div>
         </section>
 
+        <IndustrySteps industry="academy" />
+
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
         <JsonLd data={webPageLd({ path: "/services/academy", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/academy") })} />
-        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/academy`)} />
+        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.academy.faqs], `${SITE.base}/services/academy`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
           title="학원 마케팅에서 가장 많이 받는 질문"

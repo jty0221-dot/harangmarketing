@@ -255,6 +255,11 @@ export default function ClinicLandingPage() {
                 내 의원 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 

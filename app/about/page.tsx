@@ -8,6 +8,7 @@ import {
   Phone, BookOpen, MapPin, AtSign, Coffee, Users,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import YouTubeSection from "../components/YouTubeSection";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, companyYear } from "../lib/seo";
@@ -368,6 +369,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* 유튜브 최신 영상 (채널 RSS 로 자동 갱신) */}
+        <YouTubeSection variant="latest" />
 
         {/* CEO Letter */}
         <section className="py-16 md:py-20 bg-[var(--w-primary)] relative overflow-hidden">
