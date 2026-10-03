@@ -144,15 +144,11 @@ export type ClinicKeyword = {
   page1: boolean;
   /** 이 순위를 잰 날짜 (스냅샷 파일 이름) */
   measuredOn: string;
-  /** 성과 카운팅 시작일의 순위 · 그날 잰 값이 있을 때만 (Q-0550 · 카운팅 시작 전 숫자는 넣지 않는다) */
-  startRank?: number;
-  /** startRank 를 잰 날짜 */
-  startOn?: string;
 };
 export const CLINIC_KEYWORDS: ClinicKeyword[] = [
-  { display: "OO치과 A", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
-  { display: "OO치과 A", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
-  { display: "OO치과 B", shape: "지역 + 진료과", rank: 5, page1: true, measuredOn: "2026-10-03", startRank: 15, startOn: "2026-09-10" },
+  { display: "OO치과 A", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-10-03" },
+  { display: "OO치과 A", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-10-03" },
+  { display: "OO치과 B", shape: "지역 + 진료과", rank: 5, page1: true, measuredOn: "2026-10-03" },
 ];
 export const CLINIC_SUMMARY = {
   /** 표에 실은 병·의원 수 */
@@ -308,27 +304,35 @@ const clinicSentence = (r: RankRecord) =>
     ? `${r.to}위를 지켰습니다(${r.days}일 계측)`
     : `${r.from}위가 ${r.to}위가 됐습니다(${r.days}일 계측)`;
 
+/*
+ * 서술문의 병원 구분 (진우 2026-10-04 (일) 01:27 · Q-0550). 표에 OO치과 A · B 가 생긴 뒤로
+ * 그냥 `OO치과` 는 어느 쪽인지 갈린다. RECORDS 의 치과 기록은 표의 A 와 같은 병원이라 A 를 붙인다.
+ * B 는 9월 내내 1페이지 밖이었다. B 로 읽히면 `한 번도 1페이지를 벗어나지 않았다` 가 거짓이 된다.
+ */
+const CLINIC_LINE_LABEL: Record<string, string> = { 치과: " A" };
+
 /** 업종 한 줄 — 값이 같은 기록끼리는 묶고, 다르면 기록마다 따로 적는다 */
 function clinicLine(industry: string): string {
+  const name = `OO${industry}${CLINIC_LINE_LABEL[industry] ?? ""}`;
   const rows = byIndustry(industry);
   if (rows.length === 0) return "";
   const head = rows[0];
   const same = rows.every((r) => r.from === head.from && r.to === head.to && r.days === head.days);
   if (!same) {
     const each = rows.map(clinicSentence).join(", ");
-    return `OO${industry}는 계약 키워드 ${koCount(rows.length)}가 각각 ${each}.`;
+    return `${name}는 계약 키워드 ${koCount(rows.length)}가 각각 ${each}.`;
   }
   const cnt = rows.length === 1 ? "계약 키워드가" : `계약 키워드 ${koCount(rows.length)}가`;
   const both = rows.length === 1 ? "" : rows.length === 2 ? "둘 다 " : "모두 ";
   if (heldAll(rows)) {
     return (
-      `OO${industry}는 ${SNAPSHOT_SPAN} 동안 ${cnt} 한 번도 1페이지를 벗어나지 않았고, ` +
+      `${name}는 ${SNAPSHOT_SPAN} 동안 ${cnt} 한 번도 1페이지를 벗어나지 않았고, ` +
       `${koMonthDay(SNAPSHOT_DATE)} 순위는 ${both}${head.to}위였습니다.`
     );
   }
   return head.from === head.to
-    ? `OO${industry}는 ${koMonthDay(SNAPSHOT_DATE)} 기준 ${cnt} ${both}${head.to}위였습니다.`
-    : `OO${industry}는 ${cnt} ${head.days}일 계측에서 ${head.from}위가 ${head.to}위가 됐습니다.`;
+    ? `${name}는 ${koMonthDay(SNAPSHOT_DATE)} 기준 ${cnt} ${both}${head.to}위였습니다.`
+    : `${name}는 ${cnt} ${head.days}일 계측에서 ${head.from}위가 ${head.to}위가 됐습니다.`;
 }
 
 /** 업종별 한 줄 — 기록이 없는 업종은 아예 빠진다 (C-42) */
@@ -358,7 +362,11 @@ export const CLINIC_NOTE =
   CLINIC_SUMMARY.page1 === 0
     ? ""
     : `${CLINIC_WHEN} 병·의원 키워드 중 골라 실은 ${koNum(CLINIC_SUMMARY.keywords)}개는 ` +
-      (CLINIC_ALL_TOP1 ? `네이버 플레이스 1위였습니다.` : `네이버 플레이스에서 ${CLINIC_RANKS}였습니다.`);
+      (CLINIC_ALL_TOP1
+        ? `네이버 플레이스 1위였습니다.`
+        : CLINIC_MEASURED_ON
+          ? `네이버 플레이스 ${CLINIC_RANKS}였습니다.`
+          : `네이버 플레이스에서 ${CLINIC_RANKS}였습니다.`);
 
 /*
  * 병·의원 상승 기간 문장(CLINIC_RISE_DURATIONS)은 2026-09-25 (금) 뺐다 (진우 2026-09-24 (목) 판정 · D-0177 · C-50).
@@ -389,7 +397,9 @@ export const CLINIC_STATUS_LINES = [
   `맡고 있는 병·의원 가운데 ${koNum(CLINIC_SUMMARY.stores)}곳에서 키워드 ${koNum(CLINIC_SUMMARY.keywords)}개를 골라 표에 실었습니다.`,
   clinicStatusRankLine(),
   // 줄마다 잰 날짜가 다르고 한 줄은 스냅샷이 아니라 순위 도구 화면 기록에서 왔다 (Q-0550). 기간 · 회차 숫자를 걸지 않는다
-  "순위는 저장해 둔 계측 기록에서 옮겼고 줄마다 잰 날짜를 붙였습니다.",
+  CLINIC_MEASURED_ON
+    ? "순위는 저장해 둔 계측 기록에서 옮겼고 잰 날짜를 함께 적었습니다."
+    : "순위는 저장해 둔 계측 기록에서 옮겼고 줄마다 잰 날짜를 붙였습니다.",
 ];
 
 /** 3-D 표 아래 한 줄. 무엇을 언제 잰 숫자인지 표 옆에 붙여 둔다 */

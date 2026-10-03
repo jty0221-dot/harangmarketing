@@ -99,20 +99,23 @@ CLINIC_DISPLAY = lambda ind: "OO" + ind
 # 대표가 `블로그만 맡은 병원 순위도 싣는다` 한 줄을 주면 `블로그만 맡은 곳` 표기와 함께 다시 올린다.
 # 넷째 칸은 병원 구분 표기다 (Q-0550). 같은 `OO치과` 가 겹치면 한 병원으로 읽혀 병원마다 A · B 를 붙인다.
 CLINIC_PICK = [
-    ("미소나무치과의원 수원망포점", "망포치과", "2026-09-23", "A"),
-    ("미소나무치과의원 수원망포점", "망포역치과", "2026-09-23", "A"),
+    ("미소나무치과의원 수원망포점", "망포치과", "2026-10-03", "A"),
+    ("미소나무치과의원 수원망포점", "망포역치과", "2026-10-03", "A"),
 ]
 
 # 스냅샷만으로 못 만드는 줄 (Q-0550 · 2026-10-04 (일)). 숫자는 세영 정본에서 옮기고 출처를 같이 적는다.
 # 대표 지시 원문 `바른약속은 다시 플레이스만 진행하게 되었고 현시점 순위 변화 애드랭크에 있으니 추적해서 ... 홈페이지도 반영하고`.
-# 카운팅 시작 09-10 값은 애드랭크 화면 기록이고(스냅샷 없음), 10-03 은 스냅샷 4위 · 화면 5위 중 낮은 쪽 5위다.
+# 10-03 은 스냅샷 4위 · 애드랭크 화면 5위 중 낮은 쪽 5위로 고정한다 (--write 가 스냅샷 4위를 쓰지 않게 여기 적는다).
+# 시작값(09-10 15위)은 싣지 않는다 (진우 2026-10-04 (일) 01:27) : 한 줄에 시작값과 지금 값이 서면 올렸다로 읽히고,
+# 계약 전에 이미 오르고 있어 우리 몫을 가를 수 없다 (표시광고법 제3조 제1항 제2호 · D-0177).
+# 날짜는 세 줄 모두 10-03 하나로 맞춘다 (줄마다 좋은 날을 골랐다는 의심을 막는다).
 # 계약구분은 세영이 일부러 `미확인` 으로 둔다 (자동 사례가 카운팅 전 기준점으로 나가는 것을 막으려고) → OURS 게이트를 안 거친다.
 # 대신 그날 스냅샷 순위가 이 값보다 나쁘면(숫자가 크면) 멈춘다 — 낮은 쪽을 쓴다는 규칙의 검산이다.
 # 마곡점(마곡치과 1위 → 2위)은 상승 사례가 아니라 넣지 않는다 (세영 권고). 2025 년 옛 계약 숫자도 넣지 않는다.
 CLINIC_MANUAL = [
     {
         "store": "바른약속치과의원", "kw": "부천치과", "label": "B",
-        "rank": 5, "day": "2026-10-03", "startRank": 15, "startOn": "2026-09-10",
+        "rank": 5, "day": "2026-10-03",
         "source": "E:/하랑/본부장/플레이스/바른약속치과_재계약_순위추적_2026-10-04.md 맨 위 표",
     },
 ]
@@ -488,7 +491,7 @@ def main():
         else:
             suf = kw_suffix(kw) or ""
             shape = "지역 + 진료과" if kw[: len(kw) - len(suf)].strip() else "진료과"
-            clinic.append((CLINIC_DISPLAY(ind) + " " + label, shape, t, store, day, None, None))
+            clinic.append((CLINIC_DISPLAY(ind) + " " + label, shape, t, store, day))
     for m in CLINIC_MANUAL:
         _, ind = kind(m["kw"])
         rows = [r for r in by_date.get(m["day"], []) if r["매장"] == m["store"] and r["키워드"] == m["kw"]]
@@ -502,8 +505,7 @@ def main():
         else:
             suf = kw_suffix(m["kw"]) or ""
             shape = "지역 + 진료과" if m["kw"][: len(m["kw"]) - len(suf)].strip() else "진료과"
-            clinic.append((CLINIC_DISPLAY(ind) + " " + m["label"], shape, m["rank"], m["store"], m["day"],
-                           m.get("startRank"), m.get("startOn")))
+            clinic.append((CLINIC_DISPLAY(ind) + " " + m["label"], shape, m["rank"], m["store"], m["day"]))
     if bad:
         print("\n[중단] 병·의원 현황표를 만들지 않는다 — " + " / ".join(bad))
     else:
@@ -512,9 +514,8 @@ def main():
         B["CLINIC"] = "\n".join(
             ["export const CLINIC_KEYWORDS: ClinicKeyword[] = ["]
             + [
-                '  { display: "%s", shape: "%s", rank: %d, page1: true, measuredOn: "%s"%s },'
-                % (d, sh, t, day, "" if sr is None else ', startRank: %d, startOn: "%s"' % (sr, so))
-                for d, sh, t, _, day, sr, so in clinic
+                '  { display: "%s", shape: "%s", rank: %d, page1: true, measuredOn: "%s" },' % (d, sh, t, day)
+                for d, sh, t, _, day in clinic
             ]
             + ["];"]
         )
