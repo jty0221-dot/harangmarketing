@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState } from "react";
+import AlimtalkPanel from "./AlimtalkPanel";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Bell,
@@ -262,6 +263,8 @@ function NotifyTestInner() {
             새로고침
           </button>
         </div>
+
+        <AlimtalkPanel />
 
         {banner && (
           <div
