@@ -503,16 +503,18 @@ body { overflow-x: hidden; }
 
 /* ─────────────────────────────────────────────────────────────
    카페 배포 상세 · 레퍼런스 페이지 전용 토큰
-   design_handoff_cafe_distribution/README.md 의 Design Tokens 값 그대로.
-   사이트 공통 토큰(--h-*)과 별개다 — 임의로 통합하지 말 것.
+   처음 값은 design_handoff_cafe_distribution/README.md 의 Design Tokens 다.
+   2026-10-03 (토) 대표 「나머지들 전부 진행해」 (카페 배포 색을 WDS 로 합칠지 여쭌 것에 대한 답) 로
+   파랑과 어두운 바탕만 WDS 토큰으로 맞췄다. 회색 계열(옅은 바탕 · 테두리 · 글자)은 인계값 그대로다.
+   인계값으로 되돌릴 때는 각 줄 끝 주석의 옛 값을 쓴다. 그 밖의 통합은 따로 정한다.
    ───────────────────────────────────────────────────────────── */
 .cafe-dist {
-  --cd-primary:      #1655e8;
-  --cd-primary-deep: #1449c8;
-  --cd-primary-dark: #0f42c0;
-  --cd-primary-lt:   #2f6bf5;
-  --cd-primary-lt2:  #5b8dfa;
-  --cd-primary-lt3:  #7fa6ff;
+  --cd-primary:      var(--w-primary);         /* 옛 #1655e8 */
+  --cd-primary-deep: var(--w-primary-strong);  /* 옛 #1449c8 */
+  --cd-primary-dark: var(--w-primary-heavy);   /* 옛 #0f42c0 */
+  --cd-primary-lt:   var(--w-blue-55);         /* 옛 #2f6bf5 */
+  --cd-primary-lt2:  var(--w-blue-65);         /* 옛 #5b8dfa */
+  --cd-primary-lt3:  var(--w-blue-70);         /* 옛 #7fa6ff */
 
   --cd-tint:    #f3f6fc;
   --cd-tint-2:  #eaf1ff;
@@ -532,9 +534,9 @@ body { overflow-x: hidden; }
   --cd-muted-2: #5f6880;
   --cd-muted-3: #6a7389;
 
-  --cd-dark:   #0b1226;
-  --cd-dark-2: #101a36;
-  --cd-dark-3: #16224a;
+  --cd-dark:   var(--w-blue-10);                                 /* 옛 #0b1226 */
+  --cd-dark-2: color-mix(in srgb, var(--w-blue-10) 96%, white);  /* 옛 #101a36 · 어두운 구역끼리 층을 나누는 한 단계 밝은 남색 */
+  --cd-dark-3: color-mix(in srgb, var(--w-blue-10) 90%, white);  /* 옛 #16224a */
 
   --cd-on-dark:   #c6cfe4;
   --cd-on-dark-2: #98a3bc;

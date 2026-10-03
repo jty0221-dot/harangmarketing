@@ -32,7 +32,7 @@ export default async function BlogPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
+        <section className="bg-[var(--h-dark)] py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Blog</p>
@@ -105,7 +105,7 @@ export default async function BlogPage() {
         </section>
 
         {/* 매주 팁 받기 */}
-        <section className="py-10 bg-gradient-to-r from-blue-600 to-indigo-700">
+        <section className="py-10 bg-[var(--w-primary)]">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-5 md:gap-10">
             <div className="flex-1 text-center md:text-left">
               <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>

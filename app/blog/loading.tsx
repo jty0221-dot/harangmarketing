@@ -13,7 +13,7 @@ export default function Loading() {
     <>
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20">
+        <section className="bg-[var(--h-dark)] py-14 md:py-20">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 animate-pulse">
             <div className="h-3 w-12 rounded bg-white/10 mb-4" />
             <div className="h-9 md:h-10 w-3/4 rounded-lg bg-white/10 mb-3" />

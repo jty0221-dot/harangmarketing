@@ -106,7 +106,7 @@ const CasesPage: FC = () => {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-20 md:py-28 relative overflow-hidden">
+        <section className="bg-[var(--h-dark)] py-20 md:py-28 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-blue-600/8 rounded-full blur-3xl" />
           </div>

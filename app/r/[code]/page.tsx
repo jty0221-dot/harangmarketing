@@ -209,7 +209,7 @@ export default async function ReportPage({ params }: { params: Promise<{ code: s
         className="print:bg-white"
         style={{
           background:
-            "linear-gradient(152deg, var(--w-blue-20) 0%, var(--w-blue-30) 58%, var(--w-blue-40) 100%)",
+            "var(--w-blue-30)",
         }}
       >
         <div className="mx-auto w-full max-w-3xl px-5 pb-12 pt-6 md:px-8 md:pb-14 md:pt-8">

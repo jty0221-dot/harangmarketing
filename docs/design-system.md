@@ -226,7 +226,11 @@ Tab · Modal · Tooltip · Divider · GNB
 
 **장식**
 - 그라데이션 장식을 걷어냈다(소개 3곳 · 문의 1곳). 아이콘 박스는 단색 배경에 흰 아이콘이다.
-- 서비스 목록(`/services`)과 카페 배포 두 장(`/services/cafe-distribution` · `/reference`)의 그라데이션도 걷어냈다 (2026-10-03). 서비스 카드 머리 띠와 태그 배지는 원래 그라데이션의 가운데 색에 가까운 단색이다 (`bg-blue-600` · `bg-blue-700` · `bg-blue-800` · `bg-slate-800` · 흰 글자 대비 5:1 이상). 어두운 구역은 서비스 목록은 `--h-dark`, 카페 배포는 그 페이지 색 `--cd-dark-2` 를 쓴다. 카페 배포 버튼 · 띠는 `--cd-primary` · `--cd-primary-lt` · `--cd-primary-deep` 단색이다 (카페 배포 자체 색을 WDS 로 합칠지는 따로 정한다). app 아래 다른 32개 파일에는 아직 그라데이션이 남아 있다.
+- 서비스 목록(`/services`)과 카페 배포 두 장(`/services/cafe-distribution` · `/reference`)의 그라데이션도 걷어냈다 (2026-10-03). 서비스 카드 머리 띠와 태그 배지는 원래 그라데이션의 가운데 색에 가까운 단색이다 (`bg-blue-600` · `bg-blue-700` · `bg-blue-800` · `bg-slate-800` · 흰 글자 대비 5:1 이상). 어두운 구역은 서비스 목록은 `--h-dark`, 카페 배포는 그 페이지 색 `--cd-dark-2` 를 쓴다. 카페 배포 버튼 · 띠는 `--cd-primary` · `--cd-primary-lt` · `--cd-primary-deep` 단색이다.
+- 카페 배포 자체 색은 파랑과 어두운 바탕만 WDS 로 합쳤다 (2026-10-03 · 대표 「나머지들 전부 진행해」). `--cd-primary` = `--w-primary` 처럼 `globals.css` 의 `.cafe-dist` 토큰이 WDS 를 가리키고, 옛 인계값은 줄 끝 주석에 있다. 회색 계열은 인계값 그대로다.
+- 같은 날 나머지 그라데이션도 판정했다. 어두운 구역 (블로그 · 사례 · 문의 · FAQ · 업종 페이지) 은 `bg-[var(--h-dark)]`, 파랑 띠 · 진행 막대는 `bg-[var(--w-primary)]`, 고객 보고서 머리는 `--w-blue-30`, 스튜디오 첫 화면은 `bg-slate-50` 단색이다. 유튜브 구독 배너의 빛 번짐은 뺐다.
+- 남겨 둔 그라데이션 (장식이 아니라 기능이라 둔다) : 어두운 히어로 위 격자 무늬 (`linear-gradient(#fff 1px, …)`) · 히어로 사진 위 글씨 그늘 · 고객 로고 띠 양끝 흐림 · 사진 자리 로딩 반짝임 · 카드 빛 반사. 꺼진 SNS 스토어 화면과 그 배너는 켤 때 같이 정리한다.
+- 소개 페이지 (`/about`) 의 Tailwind 기본 파랑 54곳도 WDS 토큰으로 옮겼다 (2026-10-03). 600 → `--w-primary` · 700 → `--w-primary-strong` · 800 → `--w-primary-heavy` · 500 → `--w-blue-60` · 400 → `--w-blue-70` · 300 → `--w-blue-80` · 200 → `--w-blue-90` · 100 (글자) → `--w-blue-95` · 바탕 50 → `--w-blue-95` · 테두리 100 → `--w-blue-90` 이다. 다른 페이지의 Tailwind 기본 파랑은 따로 정한다.
 - 가짜 실시간 표시를 쓰지 않는다. 깜빡이는 점(`animate-pulse`) 2곳과 영업시간 상태 표시를 뺐다.
 - 쓰지 않던 부품 4개(ChatWidget · EntryPopup · ReviewsSection · SocialProofToast)를 지웠다.
 

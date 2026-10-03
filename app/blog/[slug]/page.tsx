@@ -798,7 +798,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <ScrollProgressBar />
         <Header />
         <main className="pt-[104px] md:pt-[108px]">
-          <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
+          <section className="bg-[var(--h-dark)] py-12 md:py-20">
             <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
               <Link href="/blog" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
                 <ArrowLeft size={13} /> 블로그 목록으로
@@ -838,7 +838,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
           </article>
-          <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
+          <section className="py-12 bg-[var(--w-primary)]">
             <div className="max-w-2xl mx-auto px-4 text-center">
               <h2 className="text-xl md:text-2xl font-black text-white mb-3">글을 읽고 직접 적용이 어려우신가요?</h2>
               <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 카카오톡 24시간 접수</p>
@@ -881,7 +881,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
+        <section className="bg-[var(--h-dark)] py-12 md:py-20">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <Link href="/blog" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
               <ArrowLeft size={13} /> 블로그 목록으로
@@ -947,7 +947,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
 
         {/* CTA */}
-        <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
+        <section className="py-12 bg-[var(--w-primary)]">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h2 className="text-xl md:text-2xl font-black text-white mb-3">{post.cta}</h2>
             <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 카카오톡 24시간 접수</p>

@@ -129,7 +129,6 @@ export default function YouTubeSection() {
 
       {/* 2. 구독 유도 CTA 배너 */}
       <section className="relative overflow-hidden bg-red-600">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #fff 0%, transparent 60%), radial-gradient(circle at 80% 20%, #fff 0%, transparent 50%)" }} />
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
             <p className="text-white text-xs font-bold uppercase tracking-widest mb-1.5">무료 마케팅 강의</p>

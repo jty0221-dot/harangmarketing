@@ -135,7 +135,7 @@ export default function CafeLandingPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24">
+        <section className="bg-[var(--h-dark)] py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-600/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Coffee size={12} strokeWidth={2.5} />

@@ -170,7 +170,7 @@ export default function ContactPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
+        <section className="bg-[var(--h-dark)] py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             {checklistCount >= 3 && (

@@ -174,7 +174,7 @@ function PackageRow({ p }: { p: CafePackage }) {
       className="rounded-[20px] bg-white md:rounded-[16px]"
       style={
         p.featured
-          ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(22,85,232,.14)" }
+          ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(0,102,255,.14)" }
           : { border: "1px solid var(--cd-border)" }
       }
     >
@@ -301,7 +301,7 @@ export default function CafeDistributionPage() {
             {/* 로고 카드 — 로고가 흰 배경 JPG라 반드시 흰 카드 안에 넣는다 */}
             <div
               className="mx-auto mt-8 flex h-[128px] w-[128px] items-center justify-center rounded-[26px] bg-white md:mt-10 md:h-[172px] md:w-[172px] md:rounded-[34px]"
-              style={{ boxShadow: "0 18px 50px rgba(22,85,232,.35)" }}
+              style={{ boxShadow: "0 18px 50px rgba(0,102,255,.35)" }}
             >
               <img
                 src="/harang-icon.svg"
@@ -410,7 +410,7 @@ export default function CafeDistributionPage() {
 
               <div
                 className="rounded-[18px] p-5 md:p-7"
-                style={{ background: "rgba(22,85,232,.18)", border: "1px solid rgba(127,166,255,.45)" }}
+                style={{ background: "rgba(0,102,255,.18)", border: "1px solid rgba(127,166,255,.45)" }}
               >
                 <p className="mb-2 text-[13px] font-bold" style={{ color: "var(--cd-primary-lt3)" }}>
                   카페 배포를 함께 했을 때

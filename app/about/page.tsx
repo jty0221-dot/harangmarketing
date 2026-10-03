@@ -169,12 +169,12 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="bg-gray-950 py-20 md:py-32 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-blue-600/7 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-indigo-600/7 rounded-full blur-3xl" />
+            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[var(--w-primary)]/7 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-[var(--w-primary)]/7 rounded-full blur-3xl" />
             <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           </div>
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-6">About Us</p>
+            <p className="text-xs font-bold text-[var(--w-blue-70)] uppercase tracking-[0.2em] mb-6">About Us</p>
             <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-black text-white mb-6 leading-[1.05] tracking-tight">
               결과가 없으면<br />솔직히 말씀드립니다
             </h1>
@@ -246,18 +246,18 @@ export default function AboutPage() {
                   className="rounded-2xl"
                 />
                 )}
-                <div className="w-full bg-blue-50 border border-blue-100 rounded-2xl p-4 text-center">
+                <div className="w-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-4 text-center">
                   <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
-                  <div className="text-xs text-blue-600 font-bold">하랑마케팅 대표</div>
+                  <div className="text-xs text-[var(--w-primary)] font-bold">하랑마케팅 대표</div>
                   <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년 · {companyYear()}년차 대표</div>
                 </div>
               </div>
 
               {/* Story */}
               <div>
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">대표 스토리</p>
+                <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-4">대표 스토리</p>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 leading-snug">
-                  실패해 본 마케터가<br /><span className="text-blue-600">성공하는 길을 가장 잘 압니다</span>
+                  실패해 본 마케터가<br /><span className="text-[var(--w-primary)]">성공하는 길을 가장 잘 압니다</span>
                 </h2>
                 <div className="space-y-4 text-gray-600 text-base leading-relaxed">
                   <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="text-gray-900">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
@@ -266,14 +266,14 @@ export default function AboutPage() {
                   <p>하랑이라는 이름은 순우리말로 <strong className="text-gray-900">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 뜻입니다.</p>
                 </div>
 
-                <div className="mt-7 p-5 rounded-2xl bg-blue-50 border border-blue-100">
-                  <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center mb-3 shadow-sm">
+                <div className="mt-7 p-5 rounded-2xl bg-[var(--w-blue-95)] border border-[var(--w-blue-90)]">
+                  <div className="w-7 h-7 rounded-lg bg-[var(--w-primary)] flex items-center justify-center mb-3 shadow-sm">
                     <Quote size={12} className="text-white" />
                   </div>
-                  <p className="text-sm text-blue-800 leading-relaxed font-medium italic">
+                  <p className="text-sm text-[var(--w-primary-heavy)] leading-relaxed font-medium italic">
                     &lsquo;음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.&rsquo;
                   </p>
-                  <p className="text-xs text-blue-600 mt-2 font-bold">대표 전태영</p>
+                  <p className="text-xs text-[var(--w-primary)] mt-2 font-bold">대표 전태영</p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -284,7 +284,7 @@ export default function AboutPage() {
                     { val: "24시간", label: "카카오톡 접수" },
                   ].map((s) => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
-                      <div className="text-lg font-black text-blue-600">{s.val}</div>
+                      <div className="text-lg font-black text-[var(--w-primary)]">{s.val}</div>
                       <div className="text-[11px] text-gray-500">{s.label}</div>
                     </div>
                   ))}
@@ -298,7 +298,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">하랑의 약속</p>
+              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">하랑의 약속</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">왜 하랑마케팅을 선택해야 할까요?</h2>
               <p className="text-gray-500 text-sm mt-2">미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다</p>
             </div>
@@ -318,7 +318,7 @@ export default function AboutPage() {
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="text-lg font-black hidden sm:block" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
                           <h3 className="font-black text-gray-900 text-base">{p.title}</h3>
-                          <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-black">{p.badge}</span>
+                          <span className="px-2 py-0.5 rounded-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] text-[var(--w-primary)] text-[11px] font-black">{p.badge}</span>
                         </div>
                         <p className="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
                       </div>
@@ -334,7 +334,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-24 bg-white border-t border-gray-100">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">All-in-One 서비스</p>
+              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">All-in-One 서비스</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">하랑을 통하면 원스텝으로 해결됩니다</h2>
               <p className="text-gray-500 text-sm mt-2">복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다</p>
             </div>
@@ -351,7 +351,7 @@ export default function AboutPage() {
                       <ul className="space-y-1">
                         {s.items.map((item) => (
                           <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
-                            <CheckCircle2 size={11} className="text-blue-400 shrink-0" strokeWidth={2.5} />
+                            <CheckCircle2 size={11} className="text-[var(--w-blue-70)] shrink-0" strokeWidth={2.5} />
                             {item}
                           </li>
                         ))}
@@ -362,7 +362,7 @@ export default function AboutPage() {
               })}
             </div>
             <div className="mt-8 text-center">
-              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm">
+              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-bold text-sm transition-colors shadow-sm">
                 서비스 상세 보기 <ArrowRight size={14} />
               </Link>
             </div>
@@ -370,33 +370,33 @@ export default function AboutPage() {
         </section>
 
         {/* CEO Letter */}
-        <section className="py-16 md:py-20 bg-blue-600 relative overflow-hidden">
+        <section className="py-16 md:py-20 bg-[var(--w-primary)] relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[var(--w-blue-70)]/10 rounded-full blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="w-10 h-10 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center mb-6 shadow-sm">
               <Quote size={17} className="text-white" />
             </div>
-            <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-5">대표의 편지</p>
+            <p className="text-xs font-bold text-[var(--w-blue-90)] uppercase tracking-widest mb-5">대표의 편지</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-6 leading-relaxed">
               광고비는 나가는데 전화는 울리지 않던 달, 저도 겪었습니다
             </h2>
-            <div className="space-y-4 text-blue-100 text-base leading-relaxed mb-8">
+            <div className="space-y-4 text-[var(--w-blue-95)] text-base leading-relaxed mb-8">
               <p>가게 문을 닫고 그날 매출을 정산하다 보면 압니다. 오늘 들어온 손님 중에 처음 온 사람이 몇인지. 그 숫자가 며칠째 그대로일 때의 기분을요. 저는 그게 맛 때문인 줄 알았습니다. 아니었습니다. 그 골목에 우리 가게가 있다는 걸 아무도 몰랐을 뿐입니다.</p>
               <p>그때 맡겨봤던 대행사는 물어봐야 답이 왔습니다. 이번 달에 무엇을 했고 무엇이 달라졌는지는 끝까지 알 수 없었습니다. 나중에 그 안으로 들어가 일해보고 나서야 알았습니다. <strong className="text-white">답을 안 준 게 아니라, 보여드릴 것이 없었던 겁니다.</strong></p>
               <p>그래서 하랑은 순서를 뒤집었습니다. 물어보시기 전에 먼저 말씀드리고, 안 된 것은 안 됐다고 적습니다. 순위가 내려간 주에도 그대로 보내드립니다. 좋은 소식만 골라 보내면 그건 보고가 아니라 광고입니다.</p>
               <p>전화를 받는 사람도 접니다. 상담한 사람이 그대로 끝까지 맡습니다. 계약하자마자 처음 보는 담당자로 바뀌는 일은 없습니다.</p>
             </div>
             <div className="bg-white/10 border border-white/20 rounded-2xl p-5 mb-8">
-              <p className="text-sm text-blue-100 font-medium leading-relaxed">
+              <p className="text-sm text-[var(--w-blue-95)] font-medium leading-relaxed">
                 오늘 계약하지 않으셔도 됩니다. 지금 어디에서 돈이 새고 있는지만 듣고 가셔도 괜찮습니다. 대표님이 지금 넣고 계신 그 돈이, 제가 카페에 넣었던 돈과 다르지 않다는 걸 아니까요.
               </p>
-              <p className="text-xs text-blue-300 mt-2 font-bold">하랑마케팅 대표 전태영</p>
+              <p className="text-xs text-[var(--w-blue-80)] mt-2 font-bold">하랑마케팅 대표 전태영</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-blue-700 font-black text-sm hover:bg-blue-50 transition-colors shadow-lg">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[var(--w-primary-strong)] font-black text-sm hover:bg-[var(--w-blue-95)] transition-colors shadow-lg">
                 무료 상담 신청 <ArrowRight size={14} />
               </Link>
               <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
@@ -418,7 +418,7 @@ export default function AboutPage() {
                 { value: "0원", label: "상담 비용", sub: "계약 강요 없음" },
               ].map((s) => (
                 <div key={s.label} className="bg-white rounded-2xl p-4 md:p-5 text-center border border-gray-100 shadow-sm">
-                  <div className="text-2xl md:text-3xl font-black text-blue-600 mb-0.5">{s.value}</div>
+                  <div className="text-2xl md:text-3xl font-black text-[var(--w-primary)] mb-0.5">{s.value}</div>
                   <div className="text-xs font-black text-gray-800">{s.label}</div>
                   <div className="text-[11px] text-gray-500 mt-0.5">{s.sub}</div>
                 </div>
@@ -431,7 +431,7 @@ export default function AboutPage() {
         <section className="py-14 md:py-20 bg-white border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Why Harang</p>
+              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">Why Harang</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
                 대행사, 어디를 골라야 할까요?
               </h2>
@@ -443,7 +443,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mb-1">
                   <div className="py-3 px-4 text-xs font-black text-gray-500 uppercase tracking-widest">항목</div>
                   <div className="py-3 px-4 rounded-t-2xl bg-gray-100 text-center text-xs font-black text-gray-600 uppercase tracking-widest">일반 대행사</div>
-                  <div className="py-3 px-4 rounded-t-2xl bg-blue-600 text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
+                  <div className="py-3 px-4 rounded-t-2xl bg-[var(--w-primary)] text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
                 </div>
                 {[
                   { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "대표가 직접 관리 (처음부터 끝까지)" },
@@ -460,8 +460,8 @@ export default function AboutPage() {
                       <CheckCircle2 size={13} className="text-gray-600 shrink-0 mr-2" strokeWidth={2.5} />
                       {row.general}
                     </div>
-                    <div className="py-4 px-4 text-sm text-blue-700 font-semibold flex items-center border-b border-blue-50 bg-blue-50/50">
-                      <CheckCircle2 size={13} className="text-blue-500 shrink-0 mr-2" strokeWidth={2.5} />
+                    <div className="py-4 px-4 text-sm text-[var(--w-primary-strong)] font-semibold flex items-center border-b border-[var(--w-blue-95)] bg-[var(--w-blue-99)]">
+                      <CheckCircle2 size={13} className="text-[var(--w-blue-60)] shrink-0 mr-2" strokeWidth={2.5} />
                       {row.harang}
                     </div>
                   </div>
@@ -470,13 +470,13 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mt-1">
                   <div />
                   <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-600 font-semibold">일반 대행사</div>
-                  <div className="rounded-b-2xl bg-blue-600 py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
+                  <div className="rounded-b-2xl bg-[var(--w-primary)] py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
                 </div>
               </div>
             </div>
             <div className="mt-8 text-center">
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm transition-colors shadow-sm">
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-black text-sm transition-colors shadow-sm">
                 무료 상담으로 직접 확인하기 <ArrowRight size={14} />
               </Link>
             </div>
@@ -487,20 +487,20 @@ export default function AboutPage() {
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">자주 묻는 질문</p>
+              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">자주 묻는 질문</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">상담 전 미리 확인하세요</h2>
             </div>
             <div className="space-y-3">
               {FAQS.map((faq, i) => (
-                <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors">
+                <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-[var(--w-blue-90)] transition-colors">
                   <summary className="flex items-center gap-3 p-5 cursor-pointer list-none select-none">
-                    <span className="w-6 h-6 rounded-lg bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
+                    <span className="w-6 h-6 rounded-lg bg-[var(--w-primary)] text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
                     <span className="font-bold text-gray-800 text-sm flex-1">Q. {faq.q}</span>
                     <svg className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
-                  <div className="px-5 pb-5 pt-3 ml-9 text-sm text-gray-500 leading-relaxed border-t border-blue-50">
+                  <div className="px-5 pb-5 pt-3 ml-9 text-sm text-gray-500 leading-relaxed border-t border-[var(--w-blue-95)]">
                     {faq.a}
                   </div>
                 </details>
@@ -522,11 +522,11 @@ export default function AboutPage() {
                     { year: "2026", event: "대표 10년 경력 누적 500건 프로젝트", note: "7년차 · 대표가 직접 관리 원칙 유지 중" },
                   ].map((item) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
-                      <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
-                        <span className="text-[11px] font-black text-blue-600">{item.year.slice(2)}</span>
+                      <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-[var(--w-blue-60)] flex items-center justify-center shrink-0 z-10">
+                        <span className="text-[11px] font-black text-[var(--w-primary)]">{item.year.slice(2)}</span>
                       </div>
                       <div className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                        <div className="text-[11px] font-bold text-blue-600 mb-1">{item.year}</div>
+                        <div className="text-[11px] font-bold text-[var(--w-primary)] mb-1">{item.year}</div>
                         <div className="font-black text-gray-900 text-sm mb-1">{item.event}</div>
                         <div className="text-xs text-gray-500">{item.note}</div>
                       </div>
@@ -536,7 +536,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center">
+            <div className="mt-8 bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-6 text-center">
               <p className="text-sm font-black text-gray-900 mb-1">더 궁금한 것이 있으신가요?</p>
               <p className="text-xs text-gray-600 mb-4">카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 답변드립니다</p>
               <div className="flex flex-col sm:flex-row gap-2 justify-center">
@@ -545,7 +545,7 @@ export default function AboutPage() {
                   <MessageCircle size={14} /> 카카오톡 문의
                 </a>
                 <a href="tel:010-7541-9054"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors">
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-bold text-sm transition-colors">
                   <Phone size={14} /> 010-7541-9054
                 </a>
               </div>
@@ -561,9 +561,9 @@ export default function AboutPage() {
             {/* 헤더 */}
             <div className="mb-14">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-6 h-[2px] bg-blue-600" />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-blue-600">Corporate Identity</span>
-                <div className="w-6 h-[2px] bg-blue-600" />
+                <div className="w-6 h-[2px] bg-[var(--w-primary)]" />
+                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[var(--w-primary)]">Corporate Identity</span>
+                <div className="w-6 h-[2px] bg-[var(--w-primary)]" />
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3" style={{ letterSpacing: "-0.03em" }}>CI 소개</h2>
               <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl">

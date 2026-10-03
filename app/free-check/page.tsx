@@ -259,7 +259,7 @@ export default function FreeCheckPage() {
             ) : (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Form header */}
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-5">
+                <div className="bg-[var(--w-primary)] px-6 py-5">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Handshake size={12} className="text-yellow-300" strokeWidth={2.5} />
                     <span className="text-blue-200 text-[11px]">10년 경력 누적 500건 프로젝트</span>

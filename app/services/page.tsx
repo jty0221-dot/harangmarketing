@@ -765,7 +765,7 @@ export default function ServicesPage() {
                   className="scroll-mt-32 overflow-hidden rounded-2xl bg-white shadow-sm"
                   style={
                     "href" in s && s.href
-                      ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(22,85,232,.14)" }
+                      ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(0,102,255,.14)" }
                       : { border: "1px solid var(--cd-border)" }
                   }
                 >
