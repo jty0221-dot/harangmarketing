@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveInquiry } from "../../lib/inquiries";
 import { sendKakaoNotify, inquiryAdminLink } from "../../lib/kakao-notify";
-import { sendInquiryAlimtalk } from "../../lib/alimtalk";
-import { inquirySourceLabel } from "../../lib/inquiry-status";
 
 /* 서버리스 인스턴스 단위의 가벼운 과다 요청 방지.
    /api/sns/order 와 같은 방식이다. 완전한 차단이 아니라 자동 도배를 늦추는 장치다. */
@@ -109,14 +107,6 @@ export async function POST(req: NextRequest) {
         inquiryId ? inquiryAdminLink(inquiryId) : undefined,
       ).then((r) => {
         if (!r.ok && !r.skipped) console.error("상담 카카오 알림 실패:", r.step, r.error);
-      }),
-      // 알림톡 · 하랑 채널 이름으로 대표 휴대폰에 (2026-10-03 대표 지시). 솔라피 값이 없으면 skipped
-      sendInquiryAlimtalk({
-        id: inquiryId,
-        source: inquirySourceLabel(source ? capped(source, LIMIT.source) : "web"),
-        industry: industry ? capped(industry, LIMIT.industry) : "",
-      }).then((r) => {
-        if (!r.ok && !r.skipped) console.error("상담 알림톡 실패:", r.error);
       }),
     ]);
 
