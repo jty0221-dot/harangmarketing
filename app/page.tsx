@@ -88,11 +88,14 @@ function clinicCells() {
   const asOf = koMonthDay(SNAPSHOT_DATE);
   // 결과 칸 날짜는 현황표 숫자를 잰 날이다 (H-1143). 여럿이면 날짜를 하나로 말하지 않는다
   const when = CLINIC_MEASURED_ON ? `${koMonthDay(CLINIC_MEASURED_ON)} 측정 ` : "";
-  const result = CLINIC_ALL_PAGE1
-    ? `${when}1페이지`
-    : CLINIC_SUMMARY.page1 > 0
-      ? `${when}${CLINIC_SUMMARY.page1}개 1페이지`
-      : "계측 중";
+  // 고른 줄이라 「모두 · 전부」 대신 잰 순위로 닫는다 (진우 2026-10-03 (토) 18:29)
+  const result = CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.top1 === CLINIC_SUMMARY.keywords
+    ? `${when}1위`
+    : CLINIC_ALL_PAGE1
+      ? `${when}1페이지`
+      : CLINIC_SUMMARY.page1 > 0
+        ? `${when}${CLINIC_SUMMARY.page1}개 1페이지`
+        : "계측 중";
   return {
     result,
     resultLabel: `골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개`,

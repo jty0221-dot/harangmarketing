@@ -305,7 +305,7 @@ export default function ClinicLandingPage() {
                   <Stethoscope size={13} strokeWidth={2.5} />
                   <span className="text-xs font-bold">병·의원</span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-black text-gray-900">플레이스 순위 현황</h2>
+                <h2 className="text-xl md:text-2xl font-black text-gray-900">플레이스 순위 기록</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 md:gap-6 items-start">
@@ -378,7 +378,7 @@ export default function ClinicLandingPage() {
         </section>
 
         {/* 의료광고 검수 공정 + 심의 판정 자료.
-            순위는 위 「플레이스 순위 현황」 절이 집계로 보여 준다. 진우 판단으로 공정 설명을 가운데 둔다.
+            순위는 위 「플레이스 순위 기록」 절이 보여 준다 (진우 2026-10-03 · 현황은 지금이라는 말이라 쓰지 않는다). 진우 판단으로 공정 설명을 가운데 둔다.
             자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
