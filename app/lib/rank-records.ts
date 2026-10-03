@@ -144,18 +144,23 @@ export type ClinicKeyword = {
   page1: boolean;
   /** 이 순위를 잰 날짜 (스냅샷 파일 이름) */
   measuredOn: string;
+  /** 성과 카운팅 시작일의 순위 · 그날 잰 값이 있을 때만 (Q-0550 · 카운팅 시작 전 숫자는 넣지 않는다) */
+  startRank?: number;
+  /** startRank 를 잰 날짜 */
+  startOn?: string;
 };
 export const CLINIC_KEYWORDS: ClinicKeyword[] = [
-  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
-  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
+  { display: "OO치과 A", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
+  { display: "OO치과 A", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
+  { display: "OO치과 B", shape: "지역 + 진료과", rank: 5, page1: true, measuredOn: "2026-10-03", startRank: 15, startOn: "2026-09-10" },
 ];
 export const CLINIC_SUMMARY = {
   /** 표에 실은 병·의원 수 */
-  stores: 1,
+  stores: 2,
   /** 표에 실은 키워드 수 */
-  keywords: 2,
+  keywords: 3,
   /** 그중 잰 날 1페이지(1~5위) 안이었던 키워드 수 */
-  page1: 2,
+  page1: 3,
   /** 그중 잰 날 1위였던 키워드 수 */
   top1: 2,
 };
@@ -164,6 +169,10 @@ export const CLINIC_MEASURED_ON: string | null = (() => {
   const days = Array.from(new Set(CLINIC_KEYWORDS.map((k) => k.measuredOn)));
   return days.length === 1 ? days[0] : null;
 })();
+/** 표의 잰 날짜들 (겹침 없이 오름차순) — 표 없이 도는 카드에 날짜를 붙일 때 쓴다 */
+export const CLINIC_DAYS: string[] = Array.from(new Set(CLINIC_KEYWORDS.map((k) => k.measuredOn))).sort();
+/** 표에서 가장 늦게 잰 날짜 — 기간 문장의 끝 (Q-0550 · 줄마다 날짜가 다르다) */
+export const CLINIC_LAST_ON: string = CLINIC_KEYWORDS.map((k) => k.measuredOn).sort().pop() ?? SNAPSHOT_DATE;
 /** 계약 키워드 전부가 1페이지 안인가 — 집계 문장의 「모두」 분기 */
 export const CLINIC_ALL_PAGE1 =
   CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.page1 === CLINIC_SUMMARY.keywords;
@@ -327,7 +336,9 @@ export const CLINIC_LINES = CLINIC_INDUSTRIES.map(clinicLine).filter(Boolean);
 
 /** 병·의원 공통 한 줄 — 화면 · JSON-LD · llms.txt 머리에 같이 쓴다 */
 /** `2026년 9월 23일에 잰` · 잰 날짜가 여럿이면 표의 날짜를 가리킨다 (H-1143 · 숫자마다 잰 날짜) */
-const CLINIC_WHEN = CLINIC_MEASURED_ON ? `${koDate(CLINIC_MEASURED_ON)}에 잰` : "표에 적은 날짜에 잰";
+const CLINIC_WHEN = CLINIC_MEASURED_ON
+  ? `${koDate(CLINIC_MEASURED_ON)}에 잰`
+  : `${CLINIC_LAST_ON.slice(0, 4)}년에 잰`;
 
 /*
  * 고른 줄이라 「계약 키워드 N개 모두」로 쓰지 않는다 (H-1143). 「골라 실은」을 빼면
@@ -339,12 +350,15 @@ const CLINIC_WHEN = CLINIC_MEASURED_ON ? `${koDate(CLINIC_MEASURED_ON)}에 잰` 
 /** 표의 순위가 전부 1위인가 — 문장을 「1위였습니다」로 닫을 수 있는가 */
 const CLINIC_ALL_TOP1 = CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.top1 === CLINIC_SUMMARY.keywords;
 /** `1위 · 3위` — 1위가 아닌 줄이 섞이면 비율 대신 잰 순위를 그대로 적는다 */
-const CLINIC_RANKS = CLINIC_KEYWORDS.filter((k) => k.rank !== null).map((k) => `${k.rank}위`).join(" · ");
+/* 잰 날짜가 줄마다 다르면 날짜를 순위 앞에 붙인다. 표 없이 혼자 도는 메타 · FAQ 에서도 숫자마다 날짜가 붙어 있어야 한다 */
+const CLINIC_RANKS = CLINIC_KEYWORDS.filter((k) => k.rank !== null)
+  .map((k) => (CLINIC_MEASURED_ON ? `${k.rank}위` : `${koMonthDay(k.measuredOn)} ${k.rank}위`))
+  .join(" · ");
 export const CLINIC_NOTE =
   CLINIC_SUMMARY.page1 === 0
     ? ""
     : `${CLINIC_WHEN} 병·의원 키워드 중 골라 실은 ${koNum(CLINIC_SUMMARY.keywords)}개는 ` +
-      (CLINIC_ALL_TOP1 ? `네이버 플레이스 1위였습니다.` : `네이버 플레이스 ${CLINIC_RANKS}였습니다.`);
+      (CLINIC_ALL_TOP1 ? `네이버 플레이스 1위였습니다.` : `네이버 플레이스에서 ${CLINIC_RANKS}였습니다.`);
 
 /*
  * 병·의원 상승 기간 문장(CLINIC_RISE_DURATIONS)은 2026-09-25 (금) 뺐다 (진우 2026-09-24 (목) 판정 · D-0177 · C-50).
@@ -374,10 +388,11 @@ export const CLINIC_STATUS_LINES = [
   "지금까지 치과와 의원 일곱 곳의 블로그와 플레이스를 맡아왔습니다.",
   `맡고 있는 병·의원 가운데 ${koNum(CLINIC_SUMMARY.stores)}곳에서 키워드 ${koNum(CLINIC_SUMMARY.keywords)}개를 골라 표에 실었습니다.`,
   clinicStatusRankLine(),
-  `순위는 ${SNAPSHOT_SPAN}로 계측해 기록했습니다.`,
+  // 줄마다 잰 날짜가 다르고 한 줄은 스냅샷이 아니라 순위 도구 화면 기록에서 왔다 (Q-0550). 기간 · 회차 숫자를 걸지 않는다
+  "순위는 저장해 둔 계측 기록에서 옮겼고 줄마다 잰 날짜를 붙였습니다.",
 ];
 
 /** 3-D 표 아래 한 줄. 무엇을 언제 잰 숫자인지 표 옆에 붙여 둔다 */
 export const CLINIC_STATUS_CAPTION = `${
   CLINIC_MEASURED_ON ? `잰 날짜 ${koDate(CLINIC_MEASURED_ON)}` : "잰 날짜는 줄마다 적었습니다"
-} · 골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개 · 스냅샷 ${SUMMARY.snapshots}회`;
+} · 골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개`;

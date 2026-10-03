@@ -38,7 +38,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import {
   fmt, byKeyword, BIGGEST_GAIN,
-  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES, CLINIC_MEASURED_ON,
+  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES, CLINIC_MEASURED_ON, CLINIC_LAST_ON, CLINIC_DAYS,
 } from "./lib/rank-records";
 import { TRACK_RECORD, TRACK_TOTALS } from "./lib/track-record";
 
@@ -85,9 +85,10 @@ const koMonthDay = (iso: string) => {
   return `${m}월 ${d}일`;
 };
 function clinicCells() {
-  const asOf = koMonthDay(SNAPSHOT_DATE);
   // 결과 칸 날짜는 현황표 숫자를 잰 날이다 (H-1143). 여럿이면 날짜를 하나로 말하지 않는다
-  const when = CLINIC_MEASURED_ON ? `${koMonthDay(CLINIC_MEASURED_ON)} 측정 ` : "";
+  const when = CLINIC_MEASURED_ON
+    ? `${koMonthDay(CLINIC_MEASURED_ON)} 측정 `
+    : `${CLINIC_DAYS.map(koMonthDay).join(" · ")} 측정 `;
   // 고른 줄이라 「모두 · 전부」 대신 잰 순위로 닫는다 (진우 2026-10-03 (토) 18:29)
   const result = CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.top1 === CLINIC_SUMMARY.keywords
     ? `${when}1위`
@@ -99,7 +100,8 @@ function clinicCells() {
   return {
     result,
     resultLabel: `골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개`,
-    duration: `${koMonthDay(FIRST_SNAPSHOT_DATE)}부터 ${asOf}까지 스냅샷 ${SUMMARY.snapshots}회 계측`,
+    // 끝은 표에서 가장 늦게 잰 날 (Q-0550). 줄마다 출처가 달라 스냅샷 회차는 걸지 않는다
+    duration: `${koMonthDay(FIRST_SNAPSHOT_DATE)}부터 ${koMonthDay(CLINIC_LAST_ON)}까지 계측`,
     ...(CLINIC_NOTE ? { note: CLINIC_NOTE } : {}),
   };
 }

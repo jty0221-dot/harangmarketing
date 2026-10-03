@@ -350,6 +350,11 @@ export default function ClinicLandingPage() {
                             >
                               {k.rank === null ? "계측 중" : `${k.rank}위`}
                               <span className="block text-[11px] font-medium text-gray-500">{clinicDay(k.measuredOn)}</span>
+                              {k.startRank !== undefined && k.startOn && (
+                                <span className="block text-[11px] font-medium text-gray-500">
+                                  시작 {k.startRank}위 · {clinicDay(k.startOn)}
+                                </span>
+                              )}
                             </td>
                           </tr>
                         ))}
