@@ -119,37 +119,52 @@ export const SUMMARY = {
 };
 
 /**
- * 병·의원 순위 현황 — 집계 층 (진우 D-0280 · D-0282 · 2026-09-06 (일) 대표 지시).
- * 위 RECORDS 는 병원 하나의 개선 카드라 진우 판정을 거친 것만 실리고, 여기는 계약 키워드 전체를
- * 한 표로 세는 집계라 병원을 특정하지 않는다. 표기는 `OO치과` 처럼 업종 앞 두 글자 가림뿐이고
- * 지역 · 키워드 · 상호는 어느 칸에도 담지 않는다. 계약 키워드만 센다 (관측용 서브 키워드 제외).
- * 손으로 고치지 않는다 — scripts/place-rank/rank_records.py --write 가 채운다.
+ * 병·의원 순위 현황표 (진우 D-0280 · D-0282 · 2026-09-06 (일) 대표 지시 · 2026-10-03 (토) H-1143 개정).
+ * 위 RECORDS 는 병원 하나의 개선 카드라 진우 판정을 거친 것만 실리고, 여기는 병원을 특정하지 않는
+ * 한 장짜리 표다. 표기는 `OO치과` 처럼 업종 앞 두 글자 가림뿐이고 지역 · 키워드 · 상호는 어느 칸에도
+ * 담지 않는다.
+ *
+ * 2026-10-03 (토) 대표 결정 (H-1143) — 계약 키워드 전체를 최신 스냅샷으로 세던 표를
+ * 「골라 실은 키워드 + 그 키워드를 잰 날짜」 표로 바꿨다. 대표 지시 원문
+ * `잘 됬을 때 기준으로 해, 그리고 다른 키워드나 병원들 순위 되어 있는거 많은데 왜 굳이`.
+ * 숫자는 실제로 잰 날의 값이고 행마다 measuredOn 을 붙인다. 지금 값으로 깎지도, 잰 적 없는 값으로
+ * 채우지도 않는다 (C-42). 고른 줄이라 「계약 키워드 N개 모두」 같은 전체 문장은 쓰지 않는다.
+ *
+ * 손으로 고치지 않는다 — scripts/place-rank/rank_records.py 의 CLINIC_PICK 에 (매장 · 키워드 · 날짜)를
+ * 적고 --write 를 돌린다. 그 날짜 스냅샷 파일에서 순위를 읽어 온다. 게시 전 진우 검수 (C-50 · D-0177).
  */
 export type ClinicKeyword = {
   /** 화면 표기. 업종 앞에 OO 두 글자 — 지역도 상호도 아니다 */
   display: string;
   /** 키워드 형태. 실제 키워드는 적지 않는다 */
   shape: string;
-  /** 기준일 순위. null 이면 그날 계측이 없었다 */
+  /** 잰 날의 순위. null 이면 그날 계측이 없었다 */
   rank: number | null;
-  /** 기준일에 1페이지(1~5위) 안인가 */
+  /** 잰 날에 1페이지(1~5위) 안이었나 */
   page1: boolean;
+  /** 이 순위를 잰 날짜 (스냅샷 파일 이름) */
+  measuredOn: string;
 };
 export const CLINIC_KEYWORDS: ClinicKeyword[] = [
-  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true },
-  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true },
-  { display: "OO피부과", shape: "지역 + 진료과", rank: 4, page1: true },
+  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
+  { display: "OO치과", shape: "지역 + 진료과", rank: 1, page1: true, measuredOn: "2026-09-23" },
+  { display: "OO치과", shape: "지역 + 진료과", rank: 2, page1: true, measuredOn: "2026-09-23" },
 ];
 export const CLINIC_SUMMARY = {
-  /** 플레이스 순위 계약이 있는 병·의원 수 */
+  /** 표에 실은 병·의원 수 */
   stores: 2,
-  /** 계약 키워드 수 (관측용 서브 키워드는 세지 않는다) */
+  /** 표에 실은 키워드 수 */
   keywords: 3,
-  /** 기준일에 1페이지(1~5위) 안에 있는 계약 키워드 수 */
+  /** 그중 잰 날 1페이지(1~5위) 안이었던 키워드 수 */
   page1: 3,
-  /** 기준일에 1위인 계약 키워드 수 */
+  /** 그중 잰 날 1위였던 키워드 수 */
   top1: 2,
 };
+/** 표의 잰 날짜가 하나로 같으면 그 날짜, 여럿이면 null — 문장은 날짜를 하나로 말할 수 있을 때만 「기준」을 붙인다 */
+export const CLINIC_MEASURED_ON: string | null = (() => {
+  const days = Array.from(new Set(CLINIC_KEYWORDS.map((k) => k.measuredOn)));
+  return days.length === 1 ? days[0] : null;
+})();
 /** 계약 키워드 전부가 1페이지 안인가 — 집계 문장의 「모두」 분기 */
 export const CLINIC_ALL_PAGE1 =
   CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.page1 === CLINIC_SUMMARY.keywords;
@@ -312,12 +327,19 @@ function clinicLine(industry: string): string {
 export const CLINIC_LINES = CLINIC_INDUSTRIES.map(clinicLine).filter(Boolean);
 
 /** 병·의원 공통 한 줄 — 화면 · JSON-LD · llms.txt 머리에 같이 쓴다 */
+/** `2026년 9월 23일에 잰` · 잰 날짜가 여럿이면 표의 날짜를 가리킨다 (H-1143 · 숫자마다 잰 날짜) */
+const CLINIC_WHEN = CLINIC_MEASURED_ON ? `${koDate(CLINIC_MEASURED_ON)}에 잰` : "표에 적은 날짜에 잰";
+
+/*
+ * 고른 줄이라 「계약 키워드 N개 모두」로 쓰지 않는다 (H-1143). 「골라 실은」을 빼면
+ * 계측 중인 병·의원 키워드 전부가 그렇다는 말로 읽힌다.
+ */
 export const CLINIC_NOTE =
   CLINIC_SUMMARY.page1 === 0
     ? ""
-    : `${koDate(SNAPSHOT_DATE)} 기준 병·의원 계약 키워드 ` +
+    : `${CLINIC_WHEN} 병·의원 키워드 중 골라 실은 ` +
       (CLINIC_ALL_PAGE1
-        ? `${koNum(CLINIC_SUMMARY.page1)}개가 모두 `
+        ? `${koNum(CLINIC_SUMMARY.page1)}개는 모두 `
         : `${koNum(CLINIC_SUMMARY.keywords)}개 중 ${koNum(CLINIC_SUMMARY.page1)}개가 `) +
       `네이버 플레이스 1페이지에 있었습니다.`;
 
@@ -330,7 +352,7 @@ export const CLINIC_NOTE =
 /*
  * 병·의원 순위 현황 문장 — 진우 인계서 3-C 절 다섯 문장 (D-0280 · D-0282 · 2026-09-06 (일) 대표 지시).
  * 바로 위 4-C 절과 층이 다르다. 저기는 진우 판정을 통과한 진료과 하나의 개선 카드를 서술하고,
- * 여기는 계약 키워드 전체를 한 표로 세는 집계라 병원을 특정하지 않는다.
+ * 여기는 골라 실은 키워드를 잰 날짜와 함께 한 표로 보여 주고 병원을 특정하지 않는다 (H-1143).
  * 문장을 화면에서 만들지 않는 이유는 위와 같다. 같은 말을 화면과 llms.txt 가 같이 쓰는데
  * 두 곳에서 따로 만들면 스냅샷이 바뀌는 날 서로 다른 말을 한다.
  * 「일곱 곳」은 누적이라 스냅샷에 없다. 진우 점검대장이 출처이고 바뀌면 진우가 알려 준다.
@@ -344,19 +366,21 @@ function clinicStatusRankLine(): string {
       ? `${koNum(keywords)}개 중 1페이지 안에 있는 것이 없었`
       : `${koNum(keywords)}개 중 ${koNum(page1)}개가 1페이지 안에 있었`;
   const tail = top1 > 0 ? `고 그중 ${koNum(top1)}개는 1위였습니다.` : "습니다.";
-  return `${koDate(SNAPSHOT_DATE)} 기준으로 ${body}${tail}`;
+  return `${CLINIC_WHEN} 순위로 ${body}${tail}`;
 }
 
 /** 3-C 다섯 문장. 셋째 · 넷째 · 다섯째 줄이 스냅샷마다 값이 바뀐다 */
 export const CLINIC_STATUS_LINES = [
   "하랑마케팅은 병원과 의원 마케팅을 맡고 있습니다.",
   "지금까지 치과와 의원 일곱 곳의 블로그와 플레이스를 맡아왔습니다.",
-  `플레이스 순위 계약은 ${koDate(SNAPSHOT_DATE)} 기준 ${koNum(CLINIC_SUMMARY.stores)}곳이고 계약 키워드는 ${koNum(CLINIC_SUMMARY.keywords)}개입니다.`,
+  `순위를 재고 있는 병·의원 가운데 ${koNum(CLINIC_SUMMARY.stores)}곳에서 키워드 ${koNum(CLINIC_SUMMARY.keywords)}개를 골라 표에 실었습니다.`,
   clinicStatusRankLine(),
   `순위는 ${SNAPSHOT_SPAN}로 계측해 기록했습니다.`,
 ];
 
 /** 3-D 표 아래 한 줄. 무엇을 언제 잰 숫자인지 표 옆에 붙여 둔다 */
-export const CLINIC_STATUS_CAPTION = `기준일 ${koDate(SNAPSHOT_DATE)} · 계약 키워드 ${CLINIC_SUMMARY.keywords}개 ${
+export const CLINIC_STATUS_CAPTION = `${
+  CLINIC_MEASURED_ON ? `잰 날짜 ${koDate(CLINIC_MEASURED_ON)}` : "잰 날짜는 줄마다 적었습니다"
+} · 골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개 ${
   CLINIC_ALL_PAGE1 ? "전부" : `중 ${CLINIC_SUMMARY.page1}개`
 } 1페이지 안 · 스냅샷 ${SUMMARY.snapshots}회`;

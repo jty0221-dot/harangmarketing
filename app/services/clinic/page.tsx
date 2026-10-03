@@ -29,6 +29,12 @@ const DERMA = byKeyword("지역 피부과 키워드");
 /** 병·의원 서술문 — 공통 한 줄 뒤에 업종 줄이 붙는다 */
 const CLINIC_STORY = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
 
+/** `2026-09-23` → `9월 23일 측정` · 현황표 순위마다 잰 날짜를 붙인다 (H-1143) */
+const clinicDay = (iso: string) => {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${m}월 ${d}일 측정`;
+};
+
 /*
  * WebPage 구조화 데이터 - 이 페이지가 무엇인지 · 언제 바뀌었는지 · 어느 문장을 소리 내 읽어도 되는지(speakable) 를
  * AI 검색과 답변 엔진에 알린다 (2026-09-20 · 요청 68 · D-0290). 문장은 layout metadata 와 CLINIC_ 상수를 그대로
@@ -285,7 +291,7 @@ export default function ClinicLandingPage() {
         {/*
           병·의원 순위 현황 — 진우 인계서 3-C 다섯 문장 + 3-D 표 (D-0280 · D-0282).
           문장도 숫자도 app/lib/rank-records.ts 에서 온다. 화면에서 만들지 않는다.
-          위 RankRecords 는 진우 판정을 통과한 진료과의 개선 카드고, 여기는 계약 키워드 전체 집계다.
+          위 RankRecords 는 진우 판정을 통과한 진료과의 개선 카드고, 여기는 골라 실은 키워드와 잰 날짜다 (H-1143).
           계약 대장을 못 읽으면 생성기가 아무것도 쓰지 않고 멈춰 이 절이 통째로 사라진다.
         */}
         {CLINIC_SUMMARY.keywords > 0 && (
@@ -324,7 +330,7 @@ export default function ClinicLandingPage() {
                       <thead className="bg-gray-50 text-gray-500 text-xs">
                         <tr>
                           <th className="text-left font-semibold px-4 py-2.5">병원</th>
-                          <th className="text-left font-semibold px-4 py-2.5">계약 키워드</th>
+                          <th className="text-left font-semibold px-4 py-2.5">키워드</th>
                           <th className="text-right font-semibold px-4 py-2.5">순위</th>
                         </tr>
                       </thead>
@@ -338,6 +344,7 @@ export default function ClinicLandingPage() {
                               style={{ color: k.page1 ? "var(--w-primary)" : "#70737C" }}
                             >
                               {k.rank === null ? "계측 중" : `${k.rank}위`}
+                              <span className="block text-[11px] font-medium text-gray-500">{clinicDay(k.measuredOn)}</span>
                             </td>
                           </tr>
                         ))}

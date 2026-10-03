@@ -38,7 +38,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import {
   fmt, byKeyword, BIGGEST_GAIN,
-  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES,
+  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES, CLINIC_MEASURED_ON,
 } from "./lib/rank-records";
 import { TRACK_RECORD, TRACK_TOTALS } from "./lib/track-record";
 
@@ -86,14 +86,16 @@ const koMonthDay = (iso: string) => {
 };
 function clinicCells() {
   const asOf = koMonthDay(SNAPSHOT_DATE);
+  // 결과 칸 날짜는 현황표 숫자를 잰 날이다 (H-1143). 여럿이면 날짜를 하나로 말하지 않는다
+  const when = CLINIC_MEASURED_ON ? `${koMonthDay(CLINIC_MEASURED_ON)} 측정 ` : "";
   const result = CLINIC_ALL_PAGE1
-    ? `${asOf} 기준 1페이지`
+    ? `${when}1페이지`
     : CLINIC_SUMMARY.page1 > 0
-      ? `${asOf} 기준 ${CLINIC_SUMMARY.page1}개 1페이지`
+      ? `${when}${CLINIC_SUMMARY.page1}개 1페이지`
       : "계측 중";
   return {
     result,
-    resultLabel: `계약 키워드 ${CLINIC_SUMMARY.keywords}개`,
+    resultLabel: `골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개`,
     duration: `${koMonthDay(FIRST_SNAPSHOT_DATE)}부터 ${asOf}까지 스냅샷 ${SUMMARY.snapshots}회 계측`,
     ...(CLINIC_NOTE ? { note: CLINIC_NOTE } : {}),
   };
