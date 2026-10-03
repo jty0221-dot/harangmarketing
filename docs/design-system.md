@@ -226,6 +226,7 @@ Tab · Modal · Tooltip · Divider · GNB
 
 **장식**
 - 그라데이션 장식을 걷어냈다(소개 3곳 · 문의 1곳). 아이콘 박스는 단색 배경에 흰 아이콘이다.
+- 서비스 목록(`/services`)과 카페 배포 두 장(`/services/cafe-distribution` · `/reference`)의 그라데이션도 걷어냈다 (2026-10-03). 서비스 카드 머리 띠와 태그 배지는 원래 그라데이션의 가운데 색에 가까운 단색이다 (`bg-blue-600` · `bg-blue-700` · `bg-blue-800` · `bg-slate-800` · 흰 글자 대비 5:1 이상). 어두운 구역은 서비스 목록은 `--h-dark`, 카페 배포는 그 페이지 색 `--cd-dark-2` 를 쓴다. 카페 배포 버튼 · 띠는 `--cd-primary` · `--cd-primary-lt` · `--cd-primary-deep` 단색이다 (카페 배포 자체 색을 WDS 로 합칠지는 따로 정한다). app 아래 다른 32개 파일에는 아직 그라데이션이 남아 있다.
 - 가짜 실시간 표시를 쓰지 않는다. 깜빡이는 점(`animate-pulse`) 2곳과 영업시간 상태 표시를 뺐다.
 - 쓰지 않던 부품 4개(ChatWidget · EntryPopup · ReviewsSection · SocialProofToast)를 지웠다.
 

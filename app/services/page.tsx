@@ -142,7 +142,7 @@ const PHOTO_CARD_COVERS: ServiceCover[] = [
 
 const SERVICES = [
   {
-    id: "powercontents", icon: ScrollText, color: "from-blue-600 to-blue-800", tag: "광고 원고",
+    id: "powercontents", icon: ScrollText, color: "bg-blue-700", tag: "광고 원고",
     title: "파워컨텐츠 원고 설계·검수", subtitle: "원고 설계와 검수 대응",
     desc: "파워컨텐츠 광고에 사용할 원고를 설계하고 검수 대응을 준비합니다.",
     timeline: "키워드와 원고 범위를 확인한 뒤 일정 협의",
@@ -151,7 +151,7 @@ const SERVICES = [
     rec: "파워컨텐츠 광고에 사용할 원고가 필요한 매장", result: "작업 범위를 정한 뒤 진행합니다",
   },
   {
-    id: "naver-ads", icon: BarChart3, color: "from-blue-600 to-blue-800", tag: "광고 운영",
+    id: "naver-ads", icon: BarChart3, color: "bg-blue-700", tag: "광고 운영",
     title: "네이버 광고 세팅·운영대행", subtitle: "광고 설정과 운영 관리",
     desc: "네이버 광고 세팅과 운영을 대행합니다. 운영대행비와 광고 집행비를 구분해 안내합니다.",
     timeline: "광고 계정과 진행 범위를 확인한 뒤 일정 협의",
@@ -162,7 +162,7 @@ const SERVICES = [
   {
     id: "cafe-distribution",
     icon: Layers,
-    color: "from-blue-600 to-indigo-700",
+    color: "bg-blue-700",
     tag: "배포",
     title: "최적화 블로그 · 카페 배포",
     subtitle: "블로그 탭 + 카페 탭 동시 노출",
@@ -194,7 +194,7 @@ const SERVICES = [
     // 단가·일정은 /services/detail-page 의 PLANS 가 정본이고 여기는 요약만 적는다 (C-22).
     id: "detail-page",
     icon: LayoutTemplate,
-    color: "from-blue-600 to-blue-800",
+    color: "bg-blue-700",
     tag: "상세페이지",
     title: "스마트스토어 상세페이지 제작",
     subtitle: "기획 · 카피 · 이미지까지 9단 구성",
@@ -224,7 +224,7 @@ const SERVICES = [
     // 대행 서비스가 아니라 자사 프로그램. 상세는 /studio 에 따로 있다.
     id: "studio",
     icon: Palette,
-    color: "from-slate-700 to-slate-900",
+    color: "bg-slate-800",
     tag: "프로그램",
     title: "하랑 스튜디오 · 사진·영상 정리 프로그램",
     subtitle: "동영상 GIF 변환 · 사진 세탁 · 워터마크",
@@ -253,11 +253,11 @@ const SERVICES = [
   {
     // 대행 서비스가 아니라 자사 프로그램. 상세는 /kakao-sender 에 따로 있다.
     // 가격 숫자는 app/lib/kakao-sender.ts (판매설정.json 옮김) 에서 가져온다. 여기에 박지 않는다.
-    // 커버는 실제 프로그램 캡처(1.6.0 · 예시 방 이름). 태그 배지가 s.color 로 그라데이션을 그리므로
-    // 같은 색 두 개를 줘서 단색으로 만든다 (WDS · 그라데이션 금지).
+    // 커버는 실제 프로그램 캡처(1.6.0 · 예시 방 이름). 카드 머리와 태그 배지는 s.color 단색 배경이다
+    // (WDS · 그라데이션 금지 · 2026-10-03 전 카드를 bg-* 단색으로 바꿈).
     id: "kakao-sender",
     icon: MessageSquare,
-    color: "from-slate-800 to-slate-800",
+    color: "bg-slate-800",
     tag: "프로그램",
     title: "카톡 예약 발송 · 단체 · 예약 발송 프로그램",
     subtitle: "거래처 · 고객 · 회원 카톡방에 한 번에, 원하는 시각에",
@@ -286,7 +286,7 @@ const SERVICES = [
   {
     id: "blog",
     icon: BookOpen,
-    color: "from-blue-500 to-blue-700",
+    color: "bg-blue-600",
     tag: "SEO",
     title: "블로그 마케팅",
     subtitle: "키워드 원고 → 검색 상단 노출 관리",
@@ -310,7 +310,7 @@ const SERVICES = [
   {
     id: "place",
     icon: MapPin,
-    color: "from-blue-600 to-blue-800",
+    color: "bg-blue-700",
     tag: "플레이스",
     title: "네이버 플레이스 SEO",
     subtitle: "플레이스 정보 정비 → 지도 상단 노출 관리",
@@ -337,7 +337,7 @@ const SERVICES = [
   {
     id: "review",
     icon: Star,
-    color: "from-blue-500 to-blue-700",
+    color: "bg-blue-600",
     tag: "리뷰",
     title: "리뷰 마케팅 · 체험단",
     subtitle: "리뷰 요청 동선 → 리뷰 축적 · 답글 관리",
@@ -364,7 +364,7 @@ const SERVICES = [
   {
     id: "sns",
     icon: AtSign,
-    color: "from-blue-600 to-indigo-700",
+    color: "bg-blue-700",
     tag: "SNS",
     title: "SNS · 인스타그램 마케팅",
     subtitle: "릴스 · 피드 운영 → 예약 동선 연결",
@@ -397,7 +397,7 @@ const SERVICES = [
   {
     id: "kakaomap",
     icon: Navigation,
-    color: "from-blue-500 to-blue-700",
+    color: "bg-blue-600",
     tag: "카카오맵",
     title: "카카오맵 매장 관리",
     subtitle: "카카오맵 정보 정비 → 카카오 검색 노출 관리",
@@ -421,7 +421,7 @@ const SERVICES = [
   {
     id: "startup",
     icon: Palette,
-    color: "from-blue-700 to-indigo-800",
+    color: "bg-blue-800",
     tag: "창업지원",
     title: "창업 지원 · 홈페이지형 블로그",
     subtitle: "개업 전 온라인 세팅 → 오픈 첫날 정보 준비 완료",
@@ -446,7 +446,7 @@ const SERVICES = [
     // 2026-09-21 대표 지시로 신설. 촬영 협력사와 함께 진행한다.
     id: "photo",
     icon: Camera,
-    color: "from-blue-600 to-blue-800",
+    color: "bg-blue-700",
     tag: "촬영",
     title: "매장 사진촬영",
     subtitle: "음식 사진 · 매장 공간 촬영",
@@ -686,7 +686,7 @@ export default function ServicesPage() {
         {/* Hero */}
         <section
           className="relative overflow-hidden py-14 md:py-20"
-          style={{ background: "linear-gradient(160deg,#111 0%,#16224a 55%,#0b1226 100%)" }}
+          style={{ background: "var(--h-dark)" }}
         >
           <div className="pointer-events-none absolute right-1/3 top-0 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
           <div className="relative mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
@@ -823,7 +823,7 @@ export default function ServicesPage() {
                     </div>
                   ) : (
                     <div
-                      className={`flex h-24 items-center gap-3 bg-gradient-to-br px-6 md:px-8 ${s.color}`}
+                      className={`flex h-24 items-center gap-3 px-6 md:px-8 ${s.color}`}
                     >
                       <Icon size={26} className="text-white/90" strokeWidth={1.5} />
                       <span className="cd-display text-[22px] text-white md:text-[26px]" style={{ letterSpacing: "-1px" }}>
@@ -839,7 +839,7 @@ export default function ServicesPage() {
                       </div>
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className={`px-2 py-0.5 rounded-full bg-gradient-to-r ${s.color} text-white text-[11px] font-black`}>
+                          <span className={`px-2 py-0.5 rounded-full ${s.color} text-white text-[11px] font-black`}>
                             {s.tag}
                           </span>
                           <span className="text-[11px] text-gray-500 flex items-center gap-1">
@@ -1463,7 +1463,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-14 md:py-20 bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 relative overflow-hidden">
+        <section className="py-14 md:py-20 relative overflow-hidden" style={{ background: "var(--h-dark)" }}>
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-purple-600/8 rounded-full blur-3xl" />
@@ -1505,7 +1505,7 @@ export default function ServicesPage() {
           </div>
         </section>
         {/* ══ 견적 계산기 CTA ══ */}
-        <section className="py-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-t border-blue-100">
+        <section className="py-10 bg-blue-50 border-t border-blue-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
               <div className="flex-1">

@@ -87,12 +87,12 @@ export default async function ReferencePage({
         {/* ══ 배너 ══ */}
         <div className="px-3 pt-5 md:px-8 md:pt-8">
           <div className="mx-auto w-full max-w-[1080px] overflow-hidden rounded-t-[20px] md:rounded-t-[26px]">
-            {/* 상단 그라디언트 라인 */}
-            <div className="h-3" style={{ background: "linear-gradient(90deg,#2f6bf5,#7fa6ff)" }} />
+            {/* 상단 띠 */}
+            <div className="h-3" style={{ background: "var(--cd-primary-lt)" }} />
 
             <div
               className="px-5 py-10 text-center md:px-12 md:py-14"
-              style={{ background: "linear-gradient(165deg,#1655e8,#1449c8 60%,#0f42c0)" }}
+              style={{ background: "var(--cd-primary-deep)" }}
             >
               <Link
                 href="/services/cafe-distribution"
@@ -152,7 +152,7 @@ export default async function ReferencePage({
         {/* ══ 하단 CTA ══ */}
         <section
           className="px-5 py-14 text-center md:px-8 md:py-20"
-          style={{ background: "linear-gradient(165deg,#101a36,#0b1226)" }}
+          style={{ background: "var(--cd-dark-2)" }}
         >
           <div className="mx-auto w-full max-w-[720px]">
             <h2 className="text-[20px] font-bold leading-[1.4] text-white md:text-[26px]">
@@ -166,7 +166,7 @@ export default async function ReferencePage({
               <Link
                 href="/contact?service=cafe-distribution"
                 className="flex items-center justify-center gap-2 rounded-full py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:py-5 md:text-[21px]"
-                style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+                style={{ background: "var(--cd-primary)" }}
               >
                 카페 배포 문의 바로가기 <ArrowRight size={17} />
               </Link>

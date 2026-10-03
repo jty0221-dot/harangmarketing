@@ -278,7 +278,7 @@ export default function CafeDistributionPage() {
         {/* ══ 1. 히어로 ══ */}
         <section
           className="px-5 py-14 text-center md:px-[60px] md:pb-[90px] md:pt-[70px]"
-          style={{ background: "linear-gradient(160deg,#111 0%,#16224a 55%,#0b1226 100%)" }}
+          style={{ background: "var(--cd-dark-2)" }}
         >
           <div className="mx-auto w-full max-w-[860px]">
             <div className="mb-7 flex justify-start">
@@ -566,7 +566,7 @@ export default function CafeDistributionPage() {
                 <Link
                   href={`${PATH}/reference`}
                   className="inline-flex w-full shrink-0 items-center justify-center rounded-full px-6 py-3 text-[15px] font-black text-white transition-opacity hover:opacity-90 sm:w-auto"
-                  style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+                  style={{ background: "var(--cd-primary)" }}
                 >
                   레퍼런스 {REF_TOTAL}건 전체 보기
                 </Link>
@@ -947,7 +947,7 @@ export default function CafeDistributionPage() {
             <Link
               href={`${PATH}/reference`}
               className="inline-flex w-full items-center justify-center rounded-full px-8 py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:w-auto md:text-[19px]"
-              style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+              style={{ background: "var(--cd-primary)" }}
             >
               업종별 레퍼런스 전체 보기
             </Link>
@@ -998,7 +998,7 @@ export default function CafeDistributionPage() {
         {/* ══ 9. CTA ══ */}
         <section
           className="px-5 py-16 text-center md:px-[60px] md:py-20"
-          style={{ background: "linear-gradient(160deg,#111,#16224a 60%,#0b1226)" }}
+          style={{ background: "var(--cd-dark-2)" }}
         >
           <div className="mx-auto w-full max-w-[860px]">
             <span
@@ -1022,7 +1022,7 @@ export default function CafeDistributionPage() {
               <Link
                 href={CTA_HREF}
                 className="block rounded-full py-5 text-[20px] font-black text-white md:py-6 md:text-[24px]"
-                style={{ background: "linear-gradient(90deg,#2f6bf5,#7fa6ff)" }}
+                style={{ background: "var(--cd-primary-lt)" }}
               >
                 구성 상담 신청하기
               </Link>
