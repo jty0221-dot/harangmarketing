@@ -260,13 +260,17 @@ export default function StudioPage() {
             {/* 프로그램이 만든 결과물 */}
             <div className="mt-8 overflow-hidden rounded-2xl bg-gray-50 ring-1 ring-gray-200 md:mt-10">
               <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr]">
-                <img
-                  src="/studio/demo-gif.gif"
-                  alt="현장 영상을 GIF로 바꾼 결과"
+                <video
+                  src="/studio/demo-gif.mp4"
+                  poster="/studio/demo-gif.jpg"
+                  aria-label="현장 영상을 GIF로 바꾼 결과"
                   width={560}
                   height={316}
-                  loading="lazy"
-                  decoding="async"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
                   className="block w-full"
                 />
                 <div className="p-5 md:p-7">

@@ -69,7 +69,7 @@ export default function FloatingCTA() {
             <div className="mb-3">
               <div className="flex items-center justify-between mb-1.5">
                 <p className="text-sm font-black text-gray-900">하랑마케팅 빠른 상담</p>
-                <button type="button" onClick={() => setExpanded(false)} aria-label="닫기" className="inline-flex items-center justify-center w-8 h-8 -mr-1.5 rounded-lg hover:bg-gray-100 text-gray-500">
+                <button type="button" onClick={() => setExpanded(false)} aria-label="닫기" className="inline-flex items-center justify-center w-11 h-11 -mr-2.5 rounded-lg hover:bg-gray-100 text-gray-500">
                   <X size={14} />
                 </button>
               </div>

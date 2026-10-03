@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "../lib/seo";
+import { SITE, ogImage } from "../lib/seo";
 import { KS, KS_CHEAPEST, won } from "../lib/kakao-sender";
 
 const PATH = "/kakao-sender";
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     description:
       `PC 카카오톡 방 여러 곳에 공지와 명절 인사를 한 번에. 보내기 전에 방과 글을 한 번 더 보여 드립니다. 무료 ${KS.trialCount}건 체험.`,
     url: URL,
+    images: [ogImage("카톡 예약 발송 프로그램")],
   },
 };
 
