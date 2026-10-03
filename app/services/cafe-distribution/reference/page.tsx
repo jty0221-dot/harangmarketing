@@ -16,16 +16,15 @@ export const metadata: Metadata = {
   title: "카페 배포 레퍼런스 | 업종별 카페 상위노출 실사 캡처",
   description: `카페 배포 레퍼런스입니다. 사진관·헬스·인테리어·반려동물·뷰티·여행·가구 등 ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 상위노출 캡처입니다.`,
   keywords: [
-    "카페 배포 레퍼런스", "카페 상위노출 사례", "네이버 카페 노출 실적",
+    "카페 배포 레퍼런스", "카페 배포 협력망 노출 캡처",
     "카페 배포 후기", "카페 마케팅 사례", "키워드 상위노출 캡처",
-    "하랑마케팅 레퍼런스",
   ],
   alternates: { canonical: URL },
   openGraph: {
     title: "카페 배포 레퍼런스 | 업종별 상위노출 실사 캡처",
     description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 노출 화면을 그대로 공개합니다.`,
     url: URL,
-    images: [ogImage("하랑마케팅 카페 배포 레퍼런스")],
+    images: [ogImage("카페 배포 협력망 노출 캡처")],
   },
 };
 
@@ -36,7 +35,7 @@ const LD = [
     path: PATH,
     type: "CollectionPage",
     name: "카페 배포 레퍼런스 | 하랑마케팅",
-    description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음.`,
+    description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음. 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다.`,
     dateModified: updatedAt(PATH),
   }),
   breadcrumbLd([

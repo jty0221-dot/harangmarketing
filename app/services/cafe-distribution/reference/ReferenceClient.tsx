@@ -85,6 +85,9 @@ export default function ReferenceClient({
             【 카페 상위 노출 배포 】 레퍼런스
           </span>
         </div>
+        <p className="mx-auto mt-2 w-full max-w-[1080px] text-[13px] leading-relaxed md:text-[14px]" style={{ color: "var(--cd-on-dark)" }}>
+          여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다.
+        </p>
       </div>
 
       {/* 흰 콘텐츠 카드 */}

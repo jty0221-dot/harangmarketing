@@ -88,8 +88,8 @@ const LD = [
     areaServed: { "@type": "Country", name: "대한민국" },
     serviceOutput: {
       "@type": "Thing",
-      name: "카페 상위노출 실적",
-      description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 모바일 통합검색 카페 영역 노출 실사 캡처를 레퍼런스로 공개합니다.`,
+      name: "카페 배포 협력망 노출 캡처",
+      description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 모바일 통합검색 카페 영역 노출 실사 캡처를 공개합니다. 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다.`,
     },
     offers: {
       "@type": "AggregateOffer",
@@ -484,7 +484,7 @@ export default function CafeDistributionPage() {
               </h2>
               <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
                 아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
-                보정하지 않았고, 진행 건마다 이런 캡처와 게시 URL을 함께 드립니다.
+                보정하지 않았습니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 이런 캡처와 게시 URL을 함께 드립니다.
               </p>
               <p className="mt-3 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
                 몇 건 올렸는지보다 어디에 떴는지가 결과를 가릅니다. 그래서 발행 뒤 키워드마다 노출 위치를 확인하고 캡처와 URL을 남깁니다.
@@ -925,7 +925,7 @@ export default function CafeDistributionPage() {
             </h2>
             <p className="mb-7 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-body-2)" }}>
               업종 {REF_CATEGORIES.length}개 · 키워드 {REF_TOTAL}개의 네이버 모바일 통합검색 카페 영역 노출 캡처를
-              그대로 공개합니다. 진행 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다.
+              그대로 공개합니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다.
             </p>
 
             {/* 업종이 14개라 정식 라벨을 쓰면 칩이 서너 줄로 늘어진다. 축약 라벨 사용. */}
