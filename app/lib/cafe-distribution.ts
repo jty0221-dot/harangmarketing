@@ -295,6 +295,8 @@ export interface RefCategory {
   crumb: string;
   imagePrefix: string;
   keywords: string[];
+  /** 화면에 남는 캡처 경로 (keywords 와 같은 순서). 숨김 목록을 거른 뒤 채운다 */
+  images?: string[];
 }
 
 /**
@@ -303,7 +305,7 @@ export interface RefCategory {
  * 캡처에서 판독한 실제 노출 키워드이므로 임의로 수정하지 말 것.
  * 이미지 경로 = imagePrefix + 2자리 인덱스 + ".png"
  */
-export const REF_CATEGORIES: RefCategory[] = [
+const REF_CATEGORIES_ALL: RefCategory[] = [
   {
     slug: "restaurant",
     short: "맛집·카페",
@@ -1382,6 +1384,50 @@ export const REF_CATEGORIES: RefCategory[] = [
  * 업종을 직접 나열하지 않고 REF_CATEGORIES 에서 뽑는다.
  * 업종이 추가되거나 키워드 순서가 바뀌어도 자동으로 따라간다.
  */
+/*
+ * 레퍼런스 캡처 숨김 목록 (2026-10-03 · H-1147).
+ * 캡처 파일 이름은 키워드 순번으로 붙어서 키워드를 배열에서 지우면 뒤 캡처가 한 칸씩 밀린다.
+ * 그래서 지우지 않고 여기서 거른다. 거른 뒤의 키워드 수 · 합계가 화면 숫자가 된다.
+ * 묶음마다 on 을 대표 결정에 맞춰 켠다. 파일 이름만 적는다 (업체 · 지역은 적지 않는다).
+ */
+const REF_HIDE_GROUPS: { on: boolean; why: string; files: string[] }[] = [
+  {
+    on: true,
+    why: "보청기 체험담 · 진우 판정 게시불가 (의료기기법 · D-0588)",
+    files: ["ref-h-01", "ref-h-02", "ref-h-16", "ref-h-18", "ref-h-20", "ref-h-21"],
+  },
+  {
+    on: true,
+    why: "미리보기에 남의 업체 연락처가 보임 (H-1147 · 갈래와 무관하게 숨김 권고)",
+    files: ["ref-p-52", "ref-p-103", "ref-c-01", "ref-h-08", "ref-h-09"],
+  },
+  {
+    on: true,
+    why: "미리보기에 광고 표기가 안 보이는 후기 (대표 「H-1147 숨겨」 2026-10-03)",
+    files: ["ref-x-38", "ref-x-40", "refs-30", "refs-31", "refs-32", "refs-85", "refs-86", "refs-90"],
+  },
+  {
+    on: true,
+    why: "장례 캡처 사진에 업체 대표번호가 보임 (대표 「대표번호도 숨겨」 2026-10-03)",
+    files: [
+      "ref-h-03", "ref-h-04", "ref-h-05", "ref-h-06", "ref-h-10", "ref-h-11", "ref-h-12",
+      "ref-h-14", "ref-h-15", "ref-h-22", "ref-h-23", "ref-h-24", "ref-h-26",
+    ],
+  },
+];
+const REF_HIDDEN = new Set(REF_HIDE_GROUPS.filter((g) => g.on).flatMap((g) => g.files));
+
+/** 화면에 쓰는 레퍼런스. 숨긴 캡처는 키워드째 빠지고 남은 캡처 경로가 images 에 붙는다 */
+export const REF_CATEGORIES: RefCategory[] = REF_CATEGORIES_ALL.map((c) => {
+  const kept = c.keywords
+    .map((keyword, i) => ({ keyword, image: `${c.imagePrefix}${String(i + 1).padStart(2, "0")}.png` }))
+    .filter((r) => !REF_HIDDEN.has(r.image.replace(/^.*\//, "").replace(/\.png$/, "")));
+  return { ...c, keywords: kept.map((r) => r.keyword), images: kept.map((r) => r.image) };
+});
+
+/** 메인 페이지 업종 대표 캡처에서 뺄 업종. 병원은 광고 표기와 연락처 둘 다 통과하는 캡처가 없어 비워 둔다 (H-1147) */
+const PROOF_SKIP_SLUGS = new Set(["clinic"]);
+
 export interface ProofSample {
   keyword: string;
   image: string;
@@ -1394,7 +1440,7 @@ export interface ProofSample {
 
 /** 업종별 대표 캡처 1장씩 (업종 순서 = REF_CATEGORIES 순서) */
 export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
-  .filter((c) => c.keywords.length > 0)
+  .filter((c) => c.keywords.length > 0 && !PROOF_SKIP_SLUGS.has(c.slug))
   .map((c) => ({
     keyword: c.keywords[0],
     image: refImage(c, 0),
@@ -1416,6 +1462,8 @@ export const REF_TOTAL = REF_CATEGORIES.reduce((n, c) => n + c.keywords.length, 
 
 /** 인덱스 → 캡처 이미지 경로 */
 export function refImage(cat: RefCategory, index: number): string {
+  // 숨김 목록을 거친 카테고리는 images 가 정답이다 (거른 뒤 순번과 파일 번호가 다르다)
+  if (cat.images && cat.images[index]) return cat.images[index];
   return `${cat.imagePrefix}${String(index + 1).padStart(2, "0")}.png`;
 }
 
