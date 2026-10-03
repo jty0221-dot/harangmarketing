@@ -122,7 +122,7 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/cafe-distribution": "2026-10-02",
   "/services/cafe-distribution/reference": "2026-10-01",
   "/studio": "2026-10-02",
-  "/kakao-sender": "2026-10-03",
+  "/kakao-sender": "2026-10-04",
   "/sns": "2026-09-25",
   "/portfolio": "2026-09-25",
   "/cases": "2026-10-01",

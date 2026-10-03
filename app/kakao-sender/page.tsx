@@ -6,13 +6,15 @@ import FaqAccordion from "../components/FaqAccordion";
 import { SITE, ORG_ID, faqLd, breadcrumbLd, webPageLd, updatedAt } from "../lib/seo";
 import {
   KS, KS_PLANS, KS_CHEAPEST, KS_PRICIEST, won,
-  KS_FEATURES, KS_SAFETY, KS_FOR_WHOM, KS_SHOTS, KS_BUY_STEPS, KS_SMARTSCREEN_STEPS, KS_SPECS, KS_FAQ,
+  KS_FEATURES, KS_SAFETY, KS_AD, KS_FOR_WHOM, KS_SHOTS, KS_BUY_STEPS, KS_SMARTSCREEN_STEPS, KS_SPECS, KS_FAQ,
   KS_REFERRAL, KS_REFERRAL_STEPS, KS_REFERRAL_RULES,
 } from "../lib/kakao-sender";
 import {
   Download, ArrowRight, MessageCircle, Phone, MonitorSmartphone, Users, Send,
   CalendarClock, PencilLine, Paperclip, Search, FolderOpen, ShieldCheck, ListChecks,
   Star, ShoppingCart, Info, ExternalLink, Clock, Gift, CalendarPlus, Coins,
+  Contact, RotateCcw, BarChart3, BookmarkPlus, FileSpreadsheet, Plug, FlaskConical, Eye, CalendarX2,
+  Megaphone, UserCheck, Moon,
 } from "lucide-react";
 
 /**
@@ -23,7 +25,8 @@ import {
  * 발송 보장 · 계정 안전 보장 · 카카오 공식 같은 말은 쓰지 않는다 (카카오 제휴가 아니다).
  * 입금계좌는 페이지에 싣지 않는다. 노출 여부는 대표 결재 대기다. 지금은 카카오톡 채널 문의만.
  * 추천 포인트 숫자는 lib 의 KS_REFERRAL 한 곳에서만 가져온다 (판매설정.json 추천포인트와 같다).
- * 화면 이미지는 실제 프로그램 캡처만 쓴다 (예시 방 이름 · 실제 고객 이름 없음 · 가짜 화면 금지).
+ * 화면 이미지는 실제 프로그램 캡처만 쓴다 (예시 이름 · 실제 고객 이름 없음 · 가짜 화면 금지).
+ * 광고 글 칸은 법을 지키게 돕는 장치까지만 말한다. 법 조항 숫자 · 보장 표현은 쓰지 않는다.
  * 캡처는 프로그램 색(노랑) 그대로다. 페이지 색은 WDS 를 유지하고 카카오 로고 · 브랜드 이미지는 쓰지 않는다.
  */
 
@@ -31,8 +34,12 @@ const PATH = "/kakao-sender";
 const URL = `${SITE.base}${PATH}`;
 const TEL = `tel:${SITE.phone}`;
 
-const FEATURE_ICONS = [Send, CalendarClock, PencilLine, Paperclip, Search, FolderOpen];
-const SAFETY_ICONS = [ListChecks, ShieldCheck];
+const FEATURE_ICONS = [
+  Contact, Send, CalendarClock, RotateCcw, BarChart3, BookmarkPlus,
+  PencilLine, Paperclip, Search, FolderOpen, FileSpreadsheet, Plug,
+];
+const SAFETY_ICONS = [ListChecks, FlaskConical, Eye, ShieldCheck, CalendarX2];
+const AD_ICONS = [Megaphone, UserCheck, Moon];
 
 const LD = [
   {
@@ -50,8 +57,8 @@ const LD = [
     publisher: { "@id": ORG_ID },
     description:
       "PC 카카오톡 채팅방 여러 곳에 같은 글을 한 번에 보내거나 원하는 시각에 예약해 보내는 윈도우 프로그램입니다. " +
-      "거래처 · 고객 · 회원 방에 공지와 명절 인사를 보낼 때 씁니다.",
-    featureList: [...KS_FEATURES, ...KS_SAFETY].map((f) => f.title),
+      "글에 이름 자리를 넣으면 방마다 이름이 바뀌어 나갑니다. 거래처 · 고객 · 회원 방에 공지와 명절 인사를 보낼 때 씁니다.",
+    featureList: [...KS_FEATURES, ...KS_SAFETY, ...KS_AD].map((f) => f.title),
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "KRW",
@@ -130,8 +137,8 @@ export default function KakaoSenderPage() {
 
                 <p className="speakable mt-4 text-[15px] leading-relaxed text-gray-600 md:text-base">
                   카톡 예약 발송은 PC 카카오톡 채팅방 여러 곳에 같은 글을 한 번에 보내거나 원하는 시각에
-                  예약해 보내는 윈도우 프로그램입니다. 거래처 · 고객 · 회원 방에 공지와 명절 인사를 한 번에
-                  보내세요.
+                  예약해 보내는 윈도우 프로그램입니다. 글에 이름 자리를 넣으면 방마다 받는 분 이름으로 바뀌어
+                  나갑니다. 거래처 · 고객 · 회원 방에 공지와 명절 인사를 한 번에 보내세요.
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -167,13 +174,13 @@ export default function KakaoSenderPage() {
                 </div>
               </div>
 
-              {/* 실제 프로그램 화면 (예시 방 이름으로 찍은 1.6.0 캡처 · 실제 고객 이름 없음) */}
+              {/* 실제 프로그램 화면 (예시 이름으로 찍은 1.8.0 캡처 · 실제 고객 이름 없음) */}
               <figure className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
                 <img
                   src={KS_SHOTS[0].src}
                   alt={KS_SHOTS[0].alt}
-                  width={1360}
-                  height={820}
+                  width={KS_SHOTS[0].width}
+                  height={KS_SHOTS[0].height}
                   loading="eager"
                   decoding="async"
                   className="block h-auto w-full"
@@ -197,9 +204,9 @@ export default function KakaoSenderPage() {
             <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 ["보낼 방 고르기", "저장해 둔 방이나 그룹에서 고릅니다"],
-                ["글 쓰기", "사진 · 동영상 · 파일도 같이 붙입니다"],
-                ["바로 보내기 또는 예약", "한 번 · 매일 · 매주 가운데 고릅니다"],
-                ["확인하고 승인", "방 목록과 글을 보고 나서 나갑니다"],
+                ["글 쓰기", "이름 자리를 넣고 사진 · 파일도 붙입니다"],
+                ["바로 보내기 또는 예약", "한 번 · 매일 · 매주 · 매월 · 며칠마다"],
+                ["확인하고 승인", "점검과 확인 창을 거친 뒤에 나갑니다"],
               ].map(([t, d], i) => (
                 <li key={t} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--w-primary)] text-xs font-black text-white">
@@ -214,13 +221,13 @@ export default function KakaoSenderPage() {
             </ol>
 
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {KS_SHOTS.slice(1).map((shot) => (
-                <figure key={shot.src} className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
+              {KS_SHOTS.slice(1, 5).map((shot) => (
+                <figure key={shot.src} className="self-start overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
                   <img
                     src={shot.src}
                     alt={shot.alt}
-                    width={1360}
-                    height={820}
+                    width={shot.width}
+                    height={shot.height}
                     loading="lazy"
                     decoding="async"
                     className="block h-auto w-full"
@@ -262,15 +269,63 @@ export default function KakaoSenderPage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-2 flex items-center gap-3">
               <IconBox icon={ShieldCheck} />
-              <h2 className="text-xl font-black text-gray-900 md:text-2xl">잘못 보내지 않게 두 번 묻습니다</h2>
+              <h2 className="text-xl font-black text-gray-900 md:text-2xl">잘못 보내지 않게 여러 번 확인합니다</h2>
             </div>
             <p className="mb-6 text-sm text-gray-600">
-              단체 발송은 한 번 나가면 되돌리기 어렵습니다. 그래서 보내기 전에 꼭 확인을 받습니다.
+              여러 방에 보낸 글은 한 번 나가면 되돌리기 어렵습니다. 그래서 보내기 전에 점검하고 확인을 받습니다.
             </p>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {KS_SAFETY.map((f, i) => {
-                const Icon = SAFETY_ICONS[i] ?? ShieldCheck;
+            {/* 왼쪽 장치 다섯 · 오른쪽 확인 창 캡처. 캡처 높이에 카드가 늘어나지 않게 두 칸으로 나눈다 */}
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
+              <div className="space-y-3">
+                {KS_SAFETY.map((f, i) => {
+                  const Icon = SAFETY_ICONS[i] ?? ShieldCheck;
+                  return (
+                    <div key={f.title} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-gray-200 md:p-5">
+                      <div className="flex items-center gap-2.5">
+                        <Icon size={20} className="shrink-0 text-[var(--w-primary)]" strokeWidth={2} aria-hidden />
+                        <h3 className="text-base font-bold text-gray-900">{f.title}</h3>
+                      </div>
+                      <p className="mt-1.5 text-sm leading-relaxed text-gray-600">{f.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              {/* 확인 창 캡처 (1.8.0 · 예시 이름) */}
+              <figure className="overflow-hidden rounded-2xl bg-gray-50 shadow-sm ring-1 ring-gray-200 lg:sticky lg:top-32">
+                <div className="flex justify-center p-4 md:p-5">
+                  <img
+                    src={KS_SHOTS[5].src}
+                    alt={KS_SHOTS[5].alt}
+                    width={KS_SHOTS[5].width}
+                    height={KS_SHOTS[5].height}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full max-w-[500px] rounded-xl ring-1 ring-gray-200"
+                  />
+                </div>
+                <figcaption className="border-t border-gray-100 bg-white px-4 py-3 text-xs text-gray-500">
+                  {KS_SHOTS[5].caption}
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        {/* 광고 글 (1.9.0) */}
+        <section id="ad" className="scroll-mt-28 bg-gray-50 py-10 md:py-16">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="mb-2 flex items-center gap-3">
+              <IconBox icon={Megaphone} />
+              <h2 className="text-xl font-black text-gray-900 md:text-2xl">광고 글은 규칙을 지키며 보내도록 돕습니다</h2>
+            </div>
+            <p className="mb-6 text-sm text-gray-600">
+              버전 1.9.0 부터 보내기 화면에 광고 글 체크가 있습니다. 체크하면 아래 세 가지가 함께 움직입니다.
+            </p>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {KS_AD.map((f, i) => {
+                const Icon = AD_ICONS[i] ?? Megaphone;
                 return (
                   <div key={f.title} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 md:p-6">
                     <div className="flex items-center gap-2.5">
@@ -282,6 +337,14 @@ export default function KakaoSenderPage() {
                 );
               })}
             </div>
+
+            <p className="mt-4 flex items-start gap-2 rounded-2xl bg-white p-4 text-xs leading-relaxed text-gray-600 ring-1 ring-gray-200 md:p-5 md:text-[13px]">
+              <Info size={14} className="mt-0.5 shrink-0 text-[var(--w-primary)]" strokeWidth={2.2} aria-hidden />
+              <span>
+                프로그램은 표기와 동의 확인을 돕는 장치입니다. 받는 분께 광고 수신 동의를 받는 일은 보내시는 분이
+                하셔야 합니다.
+              </span>
+            </p>
           </div>
         </section>
 
@@ -559,7 +622,7 @@ export default function KakaoSenderPage() {
             </div>
 
             <p className="mt-6 text-xs text-white">
-              광고성 메시지는 받는 분의 동의를 받고 보내세요. 이 프로그램은 카카오와 제휴한 프로그램이 아닙니다.
+              광고성 메시지는 받는 분의 동의를 받고 보내세요. 이 프로그램은 카카오와 관계가 없는 하랑마케팅 프로그램입니다.
             </p>
             <p className="mt-2 text-xs text-white">
               마케팅 대행도 함께 필요하시면{" "}
