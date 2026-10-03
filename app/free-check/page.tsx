@@ -11,6 +11,7 @@ import {
 import { best, fmt } from "../lib/rank-records";
 import { GA_EVENTS } from "../components/Analytics";
 import { attributionLabel } from "../lib/attribution";
+import KakaoSendNotice from "../components/KakaoSendNotice";
 const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
@@ -57,6 +58,8 @@ export default function FreeCheckPage() {
   // 카톡 창도 막히고 서버 접수도 안 닿은 상태. 이때는 완료라고 하지 않는다
   const [blocked, setBlocked] = useState(false);
   const [kakaoUrl, setKakaoUrl] = useState("");
+  // 신청 내용을 손님 클립보드에 복사했는지 · 완료 화면이 붙여넣기 안내를 붙일지 정한다
+  const [kakaoCopied, setKakaoCopied] = useState(false);
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -64,8 +67,12 @@ export default function FreeCheckPage() {
     if (sending) return;
     setSending(true);
     const rankInfo = rank ? `\n현재 플레이스 순위: ${rank}위권` : "";
-    const msg = encodeURIComponent(
-      `[무료 진단 신청]\n대표님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`
+    const plain = `[무료 진단 신청]\n대표님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`;
+    const msg = encodeURIComponent(plain);
+    // 채널 주소의 text 미리 채우기는 카카오가 보장하지 않는다. 붙여넣기로도 보낼 수 있게 같은 내용을 복사해 둔다
+    navigator.clipboard?.writeText(plain).then(
+      () => setKakaoCopied(true),
+      () => setKakaoCopied(false)
     );
 
     /* 팝업 차단이나 인앱 브라우저에서는 창이 안 열리고 null 이 돌아온다.
@@ -241,6 +248,7 @@ export default function FreeCheckPage() {
                 </div>
                 <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>
                 <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />접수는 24시간 받고, 하랑 대표가 직접 확인해 연락드립니다.</p>
+                <KakaoSendNotice href={kakaoUrl || "https://pf.kakao.com/_MuUkG/chat"} copied={kakaoCopied} />
                 <Link
                   href="/"
                   className="inline-flex items-center gap-2 min-h-11 md:min-h-0 text-blue-600 font-bold text-sm hover:underline"

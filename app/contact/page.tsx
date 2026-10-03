@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { GA_EVENTS } from "../components/Analytics";
 import { attributionLabel } from "../lib/attribution";
+import KakaoSendNotice from "../components/KakaoSendNotice";
 
 import { best, fmt, clinicFact, SNAPSHOT_DATE } from "../lib/rank-records";
 
@@ -85,6 +86,8 @@ export default function ContactPage() {
   const [step, setStep] = useState<"industry" | "form" | "done" | "blocked">("industry");
   // 접수가 막혔을 때 사장님이 적은 내용을 그대로 다시 보낼 수 있게 링크를 들고 있는다
   const [kakaoUrl, setKakaoUrl] = useState("");
+  // 신청 내용을 손님 클립보드에 복사했는지 · 완료 화면이 붙여넣기 안내를 붙일지 정한다
+  const [kakaoCopied, setKakaoCopied] = useState(false);
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
@@ -114,8 +117,12 @@ export default function ContactPage() {
     const budgetText = form.budget ? `\n예산: ${form.budget}` : "";
     const msgText = form.message ? `\n메모: ${form.message}` : "";
 
-    const kakaoMsg = encodeURIComponent(
-      `[하랑마케팅 상담 신청]\n이름/업체명: ${form.name}\n연락처: ${form.phone}\n업종: ${indLabel}${budgetText}${goalsText}${msgText}`
+    const kakaoPlain = `[하랑마케팅 상담 신청]\n이름/업체명: ${form.name}\n연락처: ${form.phone}\n업종: ${indLabel}${budgetText}${goalsText}${msgText}`;
+    const kakaoMsg = encodeURIComponent(kakaoPlain);
+    // 채널 주소의 text 미리 채우기는 카카오가 보장하지 않는다. 붙여넣기로도 보낼 수 있게 같은 내용을 복사해 둔다
+    navigator.clipboard?.writeText(kakaoPlain).then(
+      () => setKakaoCopied(true),
+      () => setKakaoCopied(false)
     );
 
     GA_EVENTS.contactFormSubmit(indLabel);
@@ -413,6 +420,8 @@ export default function ContactPage() {
                       <span className="font-black text-gray-800">{form.name || "대표님"}</span>, 소중한 신청 감사합니다.<br />
                       신청은 24시간 접수되며, <span className="font-semibold text-blue-600">하랑 대표가 직접</span> 확인하고 연락드립니다.
                     </p>
+
+                    <KakaoSendNotice href={kakaoUrl || "https://pf.kakao.com/_MuUkG/chat"} copied={kakaoCopied} />
 
                     {/* 다음 단계 안내 */}
                     <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
