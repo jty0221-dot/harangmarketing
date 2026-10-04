@@ -1,0 +1,41 @@
+# 바른미소 치과
+
+> 포항 바른미소 치과. 진료 과목 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 바른미소 치과
+- 업종: 치과
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [일반 진료](https://demo.example.kr/dental-medical-calm/services/general/): 충치 · 신경치료 · 스케일링
+- [임플란트](https://demo.example.kr/dental-medical-calm/services/implant/): 검사 · 상담 후 진행
+- [치아교정](https://demo.example.kr/dental-medical-calm/services/ortho/): 교정 상담 · 진단
+- [소아 치과](https://demo.example.kr/dental-medical-calm/services/kids/): 아이 눈높이 진료
+
+## 자주 묻는 질문
+- 야간 진료를 하나요? 화요일 · 목요일 21시까지 진료합니다.
+- 주차가 되나요? 건물 지하 주차 2시간 지원합니다.
+- 비급여 진료비는 어디서 보나요? 비급여 진료비용은 원내와 건강보험심사평가원 누리집에 고지된 금액을 확인하실 수 있습니다.
+
+## 주요 페이지
+- [포항 치과 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/)
+- [서비스 안내 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/services/)
+- [포항 일반 진료 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/services/general/)
+- [포항 임플란트 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/services/implant/)
+- [포항 치아교정 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/services/ortho/)
+- [포항 소아 치과 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/services/kids/)
+- [포항 치과 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/area/pohang/)
+- [경주 치과 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/area/gyeongju/)
+- [울산 치과 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/area/ulsan/)
+- [바른미소 치과 소개 | 포항 치과](https://demo.example.kr/dental-medical-calm/about/)
+- [자주 묻는 질문 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/faq/)
+- [오시는 길 · 문의 | 바른미소 치과](https://demo.example.kr/dental-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

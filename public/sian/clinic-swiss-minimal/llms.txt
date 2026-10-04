@@ -1,0 +1,39 @@
+# 한마음 의원
+
+> 포항 한마음 의원. 진료 과목과 접수 방법을 안내합니다.
+
+## 핵심 사실
+- 상호: 한마음 의원
+- 업종: 의원 · 병원
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [예방접종](https://demo.example.kr/clinic-swiss-minimal/services/dept-3/): 성인 · 소아 예방접종
+- [내과 진료](https://demo.example.kr/clinic-swiss-minimal/services/dept-1/): 감기 · 만성질환 관리
+- [건강검진](https://demo.example.kr/clinic-swiss-minimal/services/dept-2/): 국가 건강검진 · 종합검진
+
+## 자주 묻는 질문
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+
+## 주요 페이지
+- [포항 의원 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/)
+- [서비스 안내 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/services/)
+- [포항 예방접종 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/services/dept-3/)
+- [포항 내과 진료 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/services/dept-1/)
+- [포항 건강검진 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/services/dept-2/)
+- [포항 의원 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/area/pohang/)
+- [경주 의원 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/area/gyeongju/)
+- [울산 의원 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/area/ulsan/)
+- [한마음 의원 소개 | 포항 의원](https://demo.example.kr/clinic-swiss-minimal/about/)
+- [자주 묻는 질문 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/faq/)
+- [오시는 길 · 문의 | 한마음 의원](https://demo.example.kr/clinic-swiss-minimal/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

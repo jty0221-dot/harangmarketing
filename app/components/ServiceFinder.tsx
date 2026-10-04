@@ -2,15 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Search, BookOpen, Megaphone, Users, AtSign, Camera, LayoutTemplate, FileText, BarChart3, MapPin, Palette, MessageSquare } from 'lucide-react';
+import { ArrowRight, Search, BookOpen, Megaphone, Users, AtSign, Camera, LayoutTemplate, FileText, BarChart3, MapPin, Palette, MessageSquare, Globe2 } from 'lucide-react';
 import { PUBLIC_SERVICES } from '../lib/service-catalog';
 
-const icons = { Search, BookOpen, Megaphone, Users, AtSign, Camera, LayoutTemplate, FileText, BarChart3, MapPin, Palette, MessageSquare };
+const icons = { Search, BookOpen, Megaphone, Users, AtSign, Camera, LayoutTemplate, FileText, BarChart3, MapPin, Palette, MessageSquare, Globe2 };
 const goals = [
   { id: 'all', label: '전체 보기', services: PUBLIC_SERVICES.map(s => s.id) as readonly string[] },
   { id: 'search', label: '검색 유입', services: ['place', 'blog', 'cafe-distribution', 'review', 'powercontents', 'naver-ads', 'kakaomap'] },
-  { id: 'content', label: '콘텐츠 제작', services: ['photo', 'detail-page', 'sns', 'blog', 'powercontents'] },
-  { id: 'opening', label: '개업 준비', services: ['startup', 'photo', 'place', 'kakaomap', 'sns'] },
+  { id: 'content', label: '콘텐츠 제작', services: ['homepage', 'photo', 'detail-page', 'sns', 'blog', 'powercontents'] },
+  { id: 'opening', label: '개업 준비', services: ['startup', 'homepage', 'photo', 'place', 'kakaomap', 'sns'] },
   { id: 'operation', label: '운영 효율', services: ['studio', 'kakao-sender', 'blog', 'sns', 'naver-ads'] },
 ];
 

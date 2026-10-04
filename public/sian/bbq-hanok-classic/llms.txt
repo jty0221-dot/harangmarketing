@@ -1,0 +1,41 @@
+# 숯결 갈비
+
+> 일산 회식 · 가족 모임. 고기는 국내산 1등급 한돈만 씁니다.
+
+## 핵심 사실
+- 상호: 숯결 갈비
+- 업종: 고깃집 · 갈비
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [대표 고기](https://demo.example.kr/bbq-hanok-classic/services/meat/): 두툼하게 썰어 숙성한 대표 부위
+- [회식 · 단체](https://demo.example.kr/bbq-hanok-classic/services/group/): 룸 · 단체석과 코스 구성
+- [점심 메뉴](https://demo.example.kr/bbq-hanok-classic/services/lunch/): 직장인 점심 한상
+- [포장](https://demo.example.kr/bbq-hanok-classic/services/takeout/): 집에서 굽는 포장 고기
+
+## 자주 묻는 질문
+- 직접 구워 주시나요? 네, 직원이 처음부터 끝까지 구워 드립니다.
+- 룸이 있나요? 단독 룸 2개가 있고 하루 전 예약을 권합니다.
+- 콜키지가 되나요? 콜키지는 문의 주시면 안내드립니다.
+
+## 주요 페이지
+- [일산 고기집 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/)
+- [서비스 안내 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/services/)
+- [일산 대표 고기 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/services/meat/)
+- [일산 회식 · 단체 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/services/group/)
+- [일산 점심 메뉴 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/services/lunch/)
+- [일산 포장 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/services/takeout/)
+- [일산 고기집 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/area/ilsan/)
+- [파주 고기집 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/area/paju/)
+- [김포 고기집 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/area/gimpo/)
+- [숯결 갈비 소개 | 일산 고기집](https://demo.example.kr/bbq-hanok-classic/about/)
+- [자주 묻는 질문 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/faq/)
+- [오시는 길 · 문의 | 숯결 갈비](https://demo.example.kr/bbq-hanok-classic/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

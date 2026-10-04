@@ -1,0 +1,30 @@
+# 세움 어학원
+
+> 강남 어린이 · 성인 영어 세움 어학원. 레벨 테스트 후 반 배정.
+
+## 핵심 사실
+- 상호: 세움 어학원
+- 업종: 영어 · 어학
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [온라인 수업](https://demo.example.kr/english-clean-trust/services/online/): 화상 1:1 수업
+- [유초등 영어](https://demo.example.kr/english-clean-trust/services/kids/): 파닉스 · 리딩
+- [중고등 영어](https://demo.example.kr/english-clean-trust/services/teen/): 내신 · 문법 · 독해
+- [성인 회화](https://demo.example.kr/english-clean-trust/services/adult/): 직장인 회화 · 소그룹
+
+## 자주 묻는 질문
+- 원어민 수업이 있나요? 주 1회 원어민 회화 수업이 있습니다.
+- 성인도 다닐 수 있나요? 평일 저녁 · 주말 성인반이 있습니다.
+- 체험 수업이 되나요? 1회 무료 체험이 가능합니다.
+
+## 주요 페이지
+- [강남 영어학원 | 세움 어학원](https://demo.example.kr/english-clean-trust/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

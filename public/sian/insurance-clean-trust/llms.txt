@@ -1,0 +1,38 @@
+# 든든 보험상담
+
+> 든든 보험상담. 기존 보험 점검 · 화재보험 · 사업장 보험 상담.
+
+## 핵심 사실
+- 상호: 든든 보험상담
+- 업종: 보험 설계
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [보험 점검](https://demo.example.kr/insurance-clean-trust/services/check/): 가입 중인 보험 보장 분석
+- [화재 · 사업장 보험](https://demo.example.kr/insurance-clean-trust/services/business/): 가게 · 공장 보험
+- [보상 청구 도움](https://demo.example.kr/insurance-clean-trust/services/claim/): 청구 서류 안내
+
+## 자주 묻는 질문
+- 상담만 받아도 되나요? 네. 점검만 받고 결정은 천천히 하셔도 됩니다.
+- 사업장 화재보험은 의무인가요? 다중이용업소 등은 화재배상책임보험 가입 의무가 있습니다. 업종에 따라 확인해 드립니다.
+
+## 주요 페이지
+- [포항 보험상담 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/)
+- [서비스 안내 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/services/)
+- [포항 보험 점검 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/services/check/)
+- [포항 화재 · 사업장 보험 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/services/business/)
+- [포항 보상 청구 도움 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/services/claim/)
+- [포항 보험상담 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/area/pohang/)
+- [경주 보험상담 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/area/gyeongju/)
+- [울산 보험상담 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/area/ulsan/)
+- [든든 보험상담 소개 | 포항 보험상담](https://demo.example.kr/insurance-clean-trust/about/)
+- [자주 묻는 질문 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/faq/)
+- [오시는 길 · 문의 | 든든 보험상담](https://demo.example.kr/insurance-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

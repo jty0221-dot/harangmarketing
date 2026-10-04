@@ -1,0 +1,41 @@
+# 바람 헤어 일산점
+
+> 일산 미용실 바람 헤어 일산점. 커트 · 펌 · 염색 · 클리닉. 네이버 예약으로 기다림 없이.
+
+## 핵심 사실
+- 상호: 바람 헤어 일산점
+- 업종: 미용실 · 헤어
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [펌](https://demo.example.kr/hair-simple-mono/services/perm/): 매직 · 볼륨 · 디지털 펌
+- [염색 · 탈색](https://demo.example.kr/hair-simple-mono/services/color/): 톤 상담 후 진행
+- [두피 · 모발 클리닉](https://demo.example.kr/hair-simple-mono/services/clinic/): 손상 정도에 맞춘 관리
+- [커트](https://demo.example.kr/hair-simple-mono/services/cut/): 얼굴형과 모질을 보고 정하는 커트
+
+## 자주 묻는 질문
+- 당일 예약이 되나요? 네이버 예약에서 빈 시간을 바로 확인하실 수 있습니다.
+- 시술 후 마음에 안 들면요? 7일 안에 말씀 주시면 수정해 드립니다.
+- 가격표가 있나요? 기장 · 모질에 따라 달라 네이버 예약에 기본 가격을 올려 두었습니다.
+
+## 주요 페이지
+- [일산 미용실 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/)
+- [서비스 안내 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/services/)
+- [일산 펌 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/services/perm/)
+- [일산 염색 · 탈색 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/services/color/)
+- [일산 두피 · 모발 클리닉 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/services/clinic/)
+- [일산 커트 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/services/cut/)
+- [일산 미용실 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/area/ilsan/)
+- [파주 미용실 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/area/paju/)
+- [김포 미용실 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/area/gimpo/)
+- [바람 헤어 일산점 소개 | 일산 미용실](https://demo.example.kr/hair-simple-mono/about/)
+- [자주 묻는 질문 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/faq/)
+- [오시는 길 · 문의 | 바람 헤어 일산점](https://demo.example.kr/hair-simple-mono/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

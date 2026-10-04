@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/pet-vivid-pop/</loc><lastmod>2026-10-04</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/services/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/services/hotel/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/services/shop/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/services/grooming/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/area/ilsan/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/area/paju/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/area/gimpo/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/about/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/faq/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/pet-vivid-pop/contact/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+</urlset>

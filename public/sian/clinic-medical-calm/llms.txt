@@ -1,0 +1,39 @@
+# 오늘 내과 구월점
+
+> 인천 구월 오늘 내과 구월점. 진료 과목과 접수 방법을 안내합니다.
+
+## 핵심 사실
+- 상호: 오늘 내과 구월점
+- 업종: 의원 · 병원
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [내과 진료](https://demo.example.kr/clinic-medical-calm/services/dept-1/): 감기 · 만성질환 관리
+- [건강검진](https://demo.example.kr/clinic-medical-calm/services/dept-2/): 국가 건강검진 · 종합검진
+- [예방접종](https://demo.example.kr/clinic-medical-calm/services/dept-3/): 성인 · 소아 예방접종
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [인천 구월 의원 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/)
+- [서비스 안내 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/services/)
+- [인천 구월 내과 진료 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/services/dept-1/)
+- [인천 구월 건강검진 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/services/dept-2/)
+- [인천 구월 예방접종 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/services/dept-3/)
+- [인천 구월 의원 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/area/incheon-guwol/)
+- [부평 의원 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/area/bupyeong/)
+- [송도 의원 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/area/songdo/)
+- [오늘 내과 구월점 소개 | 인천 구월 의원](https://demo.example.kr/clinic-medical-calm/about/)
+- [자주 묻는 질문 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/faq/)
+- [오시는 길 · 문의 | 오늘 내과 구월점](https://demo.example.kr/clinic-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

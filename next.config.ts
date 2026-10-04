@@ -66,6 +66,11 @@ const nextConfig: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
       },
       {
+        // 홈페이지 제작 시안 (가상 업체) : 보이되 검색에는 안 잡히게. 갤러리는 /services/homepage
+        source: "/sian/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+      },
+      {
         // 이노페이 결제창 복귀 지점만 프레임 허용 — 전역 SAMEORIGIN 을 이 한 경로에서 푼다.
         // 이노페이 결제창은 우리 페이지 위에 iframe 으로 뜨고, 카드 인증이 끝나면 그 프레임
         // 안에서 이 주소를 연다. SAMEORIGIN 이면 문서가 아예 안 떠서 결제 결과를 못 받는다.

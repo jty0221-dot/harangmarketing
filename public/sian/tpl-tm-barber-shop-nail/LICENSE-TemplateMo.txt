@@ -1,0 +1,3 @@
+Source: https://templatemo.com (free HTML template)
+Terms (templatemo.com/about, checked 2026-10-04): "You can fully customize our templates for your clients and charge them for your service." / "You can remove any credit link"
+Kept in Harang homepage factory as original, unmodified. Do not redistribute this folder as a template.

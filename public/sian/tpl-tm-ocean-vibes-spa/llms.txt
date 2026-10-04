@@ -1,0 +1,30 @@
+# 고요 테라피 대구점
+
+> 대구 스파 · 아로마 마사지 고요 테라피 대구점. 1인실 · 커플룸 · 예약제.
+
+## 핵심 사실
+- 상호: 고요 테라피 대구점
+- 업종: 스파 · 마사지 · 아로마
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [스포츠 마사지](https://demo.example.kr/spa-clean-trust/services/sports/): 근육 피로 관리
+- [커플 · 프라이빗 룸](https://demo.example.kr/spa-clean-trust/services/couple/): 둘만 쓰는 공간
+- [헤드 스파](https://demo.example.kr/spa-clean-trust/services/head/): 두피 · 목 · 어깨
+- [아로마 테라피](https://demo.example.kr/spa-clean-trust/services/aroma/): 오일 · 향 선택 관리
+
+## 자주 묻는 질문
+- 커플룸이 있나요? 2인 커플룸이 있습니다.
+- 주차는요? 2시간 무료입니다.
+- 예약 없이 가도 되나요? 예약제로 운영합니다.
+
+## 주요 페이지
+- [대구 마사지 | 고요 테라피 대구점](https://demo.example.kr/spa-clean-trust/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,42 @@
+# 소담 식당
+
+> 포항에서 10년 동안 같은 자리. 단체 · 포장 · 예약 받습니다.
+
+## 핵심 사실
+- 상호: 소담 식당
+- 업종: 음식점
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [오시는 길 · 주차](https://demo.example.kr/restaurant-vivid-pop/services/location/): 주차 가능 대수와 대중교통 안내
+- [대표 메뉴](https://demo.example.kr/restaurant-vivid-pop/services/menu/): 가게를 대표하는 메뉴와 만드는 방식
+- [단체 · 회식 예약](https://demo.example.kr/restaurant-vivid-pop/services/group/): 인원 · 예산에 맞춘 코스 구성
+- [포장 · 배달](https://demo.example.kr/restaurant-vivid-pop/services/takeout/): 매장 맛 그대로 포장
+
+## 자주 묻는 질문
+- 브레이크 타임이 있나요? 평일 15시~17시입니다.
+- 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
+- 주차가 되나요? 매장 앞 8대 주차 가능합니다.
+- 아이와 함께 가도 되나요? 유아 의자와 덜 매운 메뉴가 준비돼 있습니다.
+
+## 주요 페이지
+- [포항 맛집 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/)
+- [서비스 안내 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/services/)
+- [포항 오시는 길 · 주차 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/services/location/)
+- [포항 대표 메뉴 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/services/menu/)
+- [포항 단체 · 회식 예약 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/services/group/)
+- [포항 포장 · 배달 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/services/takeout/)
+- [포항 맛집 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/area/pohang/)
+- [경주 맛집 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/area/gyeongju/)
+- [울산 맛집 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/area/ulsan/)
+- [소담 식당 소개 | 포항 맛집](https://demo.example.kr/restaurant-vivid-pop/about/)
+- [자주 묻는 질문 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/faq/)
+- [오시는 길 · 문의 | 소담 식당](https://demo.example.kr/restaurant-vivid-pop/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,3404 @@
+[
+{
+"slug": "tpl-h5-hyperspace-academy",
+"name": "오름 학원",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "Hyperspace",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-eduwell-academy",
+"name": "한걸음 학원",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "Eduwell",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-scholar-academy",
+"name": "한걸음 학원 구월점",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "Scholar",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-string-master-academy",
+"name": "한걸음 학원 구월2호점",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "String Master",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-scholar-arts",
+"name": "그림숲",
+"industry": "예체능 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "Scholar",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-string-master-arts",
+"name": "그림숲 수원점",
+"industry": "예체능 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "String Master",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-business-casual-bakery",
+"name": "하루 빵",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Business Casual",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-frost-bakery-bakery",
+"name": "하루 빵 강남점",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Frost Bakery",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-hexashop-bakery",
+"name": "하루 빵 부천점",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Hexashop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-nordic-store-bakery",
+"name": "따끈 베이커리",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Nordic Store",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-grayscale-bar",
+"name": "밤결",
+"industry": "바 · 라운지 · 와인바",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Grayscale",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-festava-live-bar",
+"name": "한 잔의 온도",
+"industry": "바 · 라운지 · 와인바",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Festava Live",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-machina-bar",
+"name": "골목 바",
+"industry": "바 · 라운지 · 와인바",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Machina",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-big-picture-bbq",
+"name": "불맛 고깃집",
+"industry": "고깃집 · 갈비",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Big Picture",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-klassy-cafe-bbq",
+"name": "불맛 고깃집 강남점",
+"industry": "고깃집 · 갈비",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Klassy Cafe",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-business-casual-cafe",
+"name": "온도 카페",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Business Casual",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-frost-bakery-cafe",
+"name": "오후 세시 카페",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Frost Bakery",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-klassy-cafe-cafe",
+"name": "볕 드는 집",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Klassy Cafe",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-simple-house-cafe",
+"name": "볕 드는 집 부천점",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Simple House",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-machina-car-dealer",
+"name": "드라이브온",
+"industry": "수입차 · 자동차 딜러",
+"group": "car",
+"groupLabel": "자동차",
+"design": "Machina",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-creative-car-service",
+"name": "속도 정비소",
+"industry": "자동차 정비 · 세차 · 광택",
+"group": "car",
+"groupLabel": "자동차",
+"design": "Creative",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-grayscale-car-service",
+"name": "반짝 카케어",
+"industry": "자동차 정비 · 세차 · 광택",
+"group": "car",
+"groupLabel": "자동차",
+"design": "Grayscale",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-machina-car-service",
+"name": "반짝 카케어 부천점",
+"industry": "자동차 정비 · 세차 · 광택",
+"group": "car",
+"groupLabel": "자동차",
+"design": "Machina",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-creative-cleaning",
+"name": "깨끗한 하루",
+"industry": "청소 · 방역",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "Creative",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-modern-business-cleaning",
+"name": "청결공방",
+"industry": "청소 · 방역",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "Modern Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-landing-page-cleaning",
+"name": "청결공방 구월점",
+"industry": "청소 · 방역",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "Landing Page",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-hyperspace-clinic",
+"name": "오늘 내과",
+"industry": "의원 · 병원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "Hyperspace",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-medic-care-clinic",
+"name": "오늘 내과 강남점",
+"industry": "의원 · 병원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "Medic Care",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-medic-care-dental",
+"name": "새봄 치과",
+"industry": "치과",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "Medic Care",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-eduwell-english",
+"name": "톡톡 잉글리시",
+"industry": "영어 · 어학",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "Eduwell",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-scholar-english",
+"name": "톡톡 잉글리시 부천점",
+"industry": "영어 · 어학",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "Scholar",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-string-master-english",
+"name": "세움 어학원",
+"industry": "영어 · 어학",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "String Master",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-modern-business-fire-safety",
+"name": "안전한 소방",
+"industry": "소방시설 공사",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Modern Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-axis-industrial-fire-safety",
+"name": "든든 소방설비",
+"industry": "소방시설 공사",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Axis Industrial",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-phantom-florist",
+"name": "꽃다운 날",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Phantom",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-business-casual-florist",
+"name": "꽃다운 날 구월점",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Business Casual",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-hexashop-florist",
+"name": "오늘의 꽃",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Hexashop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-nordic-store-florist",
+"name": "꽃다운 날 강남점",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Nordic Store",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-tiya-golf-club-gym",
+"name": "버팀 피트니스",
+"industry": "헬스 · PT",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "Tiya Golf Club",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-training-studio-gym",
+"name": "버팀 피트니스 대구점",
+"industry": "헬스 · PT",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "Training Studio",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-freelancer-hair",
+"name": "손결 살롱",
+"industry": "미용실 · 헤어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Freelancer",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-barber-shop-hair",
+"name": "바람 헤어",
+"industry": "미용실 · 헤어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Barber Shop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-noir-fashion-hair",
+"name": "오늘 머리",
+"industry": "미용실 · 헤어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Noir Fashion",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-business-oriented-homerepair",
+"name": "척척 집수리",
+"industry": "집수리 · 부분 수리",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Business Oriented",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-designer-homerepair",
+"name": "손끝 집수리",
+"industry": "집수리 · 부분 수리",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Designer",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-ethereal-hotel",
+"name": "스테이 온",
+"industry": "호텔 · 모텔",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Ethereal",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-villa-agency-hotel",
+"name": "라운드 호텔",
+"industry": "호텔 · 모텔",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Villa Agency",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-woox-travel-hotel",
+"name": "머무름 스테이",
+"industry": "호텔 · 모텔",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Woox Travel",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-finance-business-insurance",
+"name": "바른 설계",
+"industry": "보험 설계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Finance Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-novapay-insurance",
+"name": "지킴 보험",
+"industry": "보험 설계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Novapay",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-multiverse-interior",
+"name": "빛채 리모델링",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Multiverse",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-paradigm-shift-interior",
+"name": "온결 인테리어",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Paradigm Shift",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-agency-interior",
+"name": "결 디자인",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Agency",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-amber-folio-interior",
+"name": "공간짓기",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Amber Folio",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-designer-interior",
+"name": "빛채 리모델링 대구점",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Designer",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-lumen-eighty-interior",
+"name": "온결 인테리어 부천점",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Lumen Eighty",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-hyperspace-it-agency",
+"name": "만듦 스튜디오",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Hyperspace",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-agency-it-agency",
+"name": "만듦 스튜디오 강남점",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Agency",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-kinetic-it-agency",
+"name": "만듦 스튜디오 일산점",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Kinetic",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-nexus-system-it-agency",
+"name": "만듦 스튜디오 수원점",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Nexus System",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-novapay-it-agency",
+"name": "코드온 랩",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Novapay",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-landing-page-it-agency",
+"name": "바른 개발",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Landing Page",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-story-kids",
+"name": "통통 키즈카페",
+"industry": "키즈카페 · 놀이 · 체험",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Story",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-eduwell-kids",
+"name": "꿈틀 키즈",
+"industry": "키즈카페 · 놀이 · 체험",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Eduwell",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-festava-live-kids",
+"name": "통통 키즈카페 일산점",
+"industry": "키즈카페 · 놀이 · 체험",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Festava Live",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-big-picture-korean",
+"name": "한상 차림",
+"industry": "한식 · 한정식",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Big Picture",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-klassy-cafe-korean",
+"name": "다온 한정식",
+"industry": "한식 · 한정식",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Klassy Cafe",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-simple-house-korean",
+"name": "소반",
+"industry": "한식 · 한정식",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Simple House",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-paradigm-shift-law",
+"name": "한빛 행정사",
+"industry": "법률 · 노무 · 행정",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Paradigm Shift",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-finance-business-law",
+"name": "바른길 노무행정",
+"industry": "법률 · 노무 · 행정",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Finance Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-story-leisure",
+"name": "바깥 놀이",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Story",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-festava-live-leisure",
+"name": "모험 캠프",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Festava Live",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-kinetic-leisure",
+"name": "모험 캠프 강남점",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Kinetic",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-ocean-vibes-leisure",
+"name": "모험 캠프 부천점",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Ocean Vibes",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-tiya-golf-club-leisure",
+"name": "바깥 놀이 강남점",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Tiya Golf Club",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-woox-travel-leisure",
+"name": "주말 놀이터",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Woox Travel",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-agency-manufacturing",
+"name": "세움 산업",
+"industry": "제조 · 공장 B2B",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Agency",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-axis-industrial-manufacturing",
+"name": "정밀 가공",
+"industry": "제조 · 공장 B2B",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Axis Industrial",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-nexus-system-manufacturing",
+"name": "정밀 가공 일산점",
+"industry": "제조 · 공장 B2B",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Nexus System",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-creative-moving",
+"name": "새집 이사",
+"industry": "이사 · 용달 · 화물",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Creative",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-business-oriented-moving",
+"name": "가뿐 이사",
+"industry": "이사 · 용달 · 화물",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Business Oriented",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-landing-page-moving",
+"name": "새집 이사 포항점",
+"industry": "이사 · 용달 · 화물",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Landing Page",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-phantom-nail",
+"name": "결 속눈썹",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Phantom",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-barber-shop-nail",
+"name": "결 속눈썹 구월점",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Barber Shop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-maison-doree-nail",
+"name": "결 속눈썹 구월2호점",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Maison Doree",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-noir-fashion-nail",
+"name": "블룸 네일",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Noir Fashion",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-medic-care-oriental",
+"name": "온누리 한의원",
+"industry": "한의원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "Medic Care",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-festava-live-party-room",
+"name": "오늘 파티",
+"industry": "파티룸 · 스튜디오 대여",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Festava Live",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-big-picture-pension",
+"name": "하루 쉼터",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Big Picture",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-ethereal-pension",
+"name": "하루 쉼터 수원점",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Ethereal",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-ocean-vibes-pension",
+"name": "별채 풀빌라",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Ocean Vibes",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-villa-agency-pension",
+"name": "물소리 펜션",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Villa Agency",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-woox-travel-pension",
+"name": "하루 쉼터 포항점",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "Woox Travel",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-business-oriented-pest",
+"name": "안심 방역",
+"industry": "해충 방역 · 소독",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "Business Oriented",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-landing-page-pest",
+"name": "그만 방역",
+"industry": "해충 방역 · 소독",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "Landing Page",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-story-pet",
+"name": "포근 펫",
+"industry": "반려동물 · 펫샵 · 미용",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Story",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-freelancer-pet",
+"name": "꼬리 펫살롱",
+"industry": "반려동물 · 펫샵 · 미용",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Freelancer",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-hexashop-pet",
+"name": "포근 펫 구월점",
+"industry": "반려동물 · 펫샵 · 미용",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Hexashop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-dimension-photo-studio",
+"name": "빛결 스튜디오",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Dimension",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-multiverse-photo-studio",
+"name": "오늘 사진",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Multiverse",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-freelancer-photo-studio",
+"name": "찰나 사진관",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Freelancer",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-grayscale-photo-studio",
+"name": "담음 스튜디오",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Grayscale",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-amber-folio-photo-studio",
+"name": "담음 스튜디오 구월점",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Amber Folio",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-designer-photo-studio",
+"name": "찰나 사진관 수원점",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Designer",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-lumen-eighty-photo-studio",
+"name": "찰나 사진관 포항점",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Lumen Eighty",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-tiya-golf-club-pilates",
+"name": "코어 스튜디오",
+"industry": "필라테스 · 요가",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "Tiya Golf Club",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-training-studio-pilates",
+"name": "바른몸 필라테스",
+"industry": "필라테스 · 요가",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "Training Studio",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-modern-business-plumbing",
+"name": "한결누수",
+"industry": "설비 · 누수",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Modern Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-business-oriented-plumbing",
+"name": "온수배관",
+"industry": "설비 · 누수",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "Business Oriented",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-finance-business-realestate",
+"name": "한집 부동산",
+"industry": "부동산 · 분양",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Finance Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-villa-agency-realestate",
+"name": "한집 부동산 포항점",
+"industry": "부동산 · 분양",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Villa Agency",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-klassy-cafe-restaurant",
+"name": "정성 밥집",
+"industry": "음식점",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Klassy Cafe",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-simple-house-restaurant",
+"name": "정성 밥집 구월점",
+"industry": "음식점",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "Simple House",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-axis-industrial-scaffolding",
+"name": "세움 자재",
+"industry": "가설재 · 건설 자재",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Axis Industrial",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-nexus-system-scaffolding",
+"name": "튼튼 비계",
+"industry": "가설재 · 건설 자재",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "Nexus System",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-phantom-shopping",
+"name": "오늘의 물건",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Phantom",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-hexashop-shopping",
+"name": "손수 브랜드",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Hexashop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-kinetic-shopping",
+"name": "결 리빙",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Kinetic",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-noir-fashion-shopping",
+"name": "오늘의 물건 대구점",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Noir Fashion",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tt-nordic-store-shopping",
+"name": "오늘의 물건 구월점",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "Nordic Store",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-maison-doree-skincare",
+"name": "숨결 에스테틱",
+"industry": "피부관리 · 에스테틱",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Maison Doree",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-dimension-spa",
+"name": "쉼 마사지",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Dimension",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-ethereal-spa",
+"name": "고요 테라피",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Ethereal",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-maison-doree-spa",
+"name": "숲결 스파",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Maison Doree",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-ocean-vibes-spa",
+"name": "고요 테라피 대구점",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Ocean Vibes",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-paradigm-shift-tax",
+"name": "새길 세무",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Paradigm Shift",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-modern-business-tax",
+"name": "바른 세무",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Modern Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-finance-business-tax",
+"name": "한결 회계",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Finance Business",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-novapay-tax",
+"name": "새길 세무 대구점",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "Novapay",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-dimension-wedding",
+"name": "라온 웨딩",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Dimension",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-h5-multiverse-wedding",
+"name": "하루 웨딩",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Multiverse",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-sb-creative-wedding",
+"name": "더 메리 웨딩",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Creative",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-amber-folio-wedding",
+"name": "더 메리 웨딩 부천점",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Amber Folio",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-lumen-eighty-wedding",
+"name": "새날 연회장",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Lumen Eighty",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-maison-doree-wedding",
+"name": "하루 웨딩 포항점",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "Maison Doree",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "tpl-tm-barber-shop-wig",
+"name": "결 헤어웨어",
+"industry": "가발 · 탈모 케어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "Barber Shop",
+"moods": [
+"실사형"
+],
+"real": true
+},
+{
+"slug": "academy-bento-modern",
+"name": "생각 수학",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "벤토 모던",
+"moods": [
+"화려",
+"심플"
+],
+"real": false
+},
+{
+"slug": "academy-midnight-tech",
+"name": "오름 학원 수원점",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "미드나잇 테크",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "academy-tech-gradient",
+"name": "한걸음 학원 대구점",
+"industry": "입시 · 보습 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "테크 그라데이션",
+"moods": [
+"화려",
+"전문"
+],
+"real": false
+},
+{
+"slug": "arts-editorial-serif",
+"name": "그림숲 부천점",
+"industry": "예체능 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "arts-soft-pastel",
+"name": "물감 미술학원",
+"industry": "예체능 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "arts-vivid-pop",
+"name": "소리 음악학원",
+"industry": "예체능 학원",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "bakery-soft-pastel",
+"name": "따끈 베이커리 구월점",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "bakery-vivid-pop",
+"name": "밀가루 공방",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "bakery-warm-local",
+"name": "새벽빵집",
+"industry": "베이커리 · 빵집",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "웜 로컬",
+"moods": [
+"따뜻",
+"친근"
+],
+"real": false
+},
+{
+"slug": "bar-dark-neon",
+"name": "라운지 문",
+"industry": "바 · 라운지 · 와인바",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "다크 네온",
+"moods": [
+"다크",
+"화려"
+],
+"real": false
+},
+{
+"slug": "bar-dark-premium",
+"name": "밤결 강남점",
+"industry": "바 · 라운지 · 와인바",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "bar-luxe-gold",
+"name": "한 잔의 온도 구월점",
+"industry": "바 · 라운지 · 와인바",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "럭스 골드",
+"moods": [
+"화려",
+"다크"
+],
+"real": false
+},
+{
+"slug": "bbq-dark-premium",
+"name": "불맛 고깃집 수원점",
+"industry": "고깃집 · 갈비",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "bbq-hanok-classic",
+"name": "숯결 갈비",
+"industry": "고깃집 · 갈비",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "한옥 클래식",
+"moods": [
+"따뜻",
+"다크"
+],
+"real": false
+},
+{
+"slug": "bbq-warm-local",
+"name": "화로 정육식당",
+"industry": "고깃집 · 갈비",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "웜 로컬",
+"moods": [
+"따뜻",
+"친근"
+],
+"real": false
+},
+{
+"slug": "cafe-dreamy-aurora",
+"name": "머무름 커피",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "cafe-editorial-serif",
+"name": "온도 카페 포항점",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "cafe-vivid-pop",
+"name": "볕 드는 집 대구점",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "cafe-warm-local",
+"name": "오후 세시 카페 구월점",
+"industry": "카페 · 디저트",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "웜 로컬",
+"moods": [
+"따뜻",
+"친근"
+],
+"real": false
+},
+{
+"slug": "car-dealer-dark-premium",
+"name": "모터라인",
+"industry": "수입차 · 자동차 딜러",
+"group": "car",
+"groupLabel": "자동차",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "car-dealer-midnight-tech",
+"name": "드라이브온 일산점",
+"industry": "수입차 · 자동차 딜러",
+"group": "car",
+"groupLabel": "자동차",
+"design": "미드나잇 테크",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "car-dealer-swiss-minimal",
+"name": "오토하우스",
+"industry": "수입차 · 자동차 딜러",
+"group": "car",
+"groupLabel": "자동차",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "car-service-bold-industrial",
+"name": "광택공방",
+"industry": "자동차 정비 · 세차 · 광택",
+"group": "car",
+"groupLabel": "자동차",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "car-service-dark-neon",
+"name": "차담 정비",
+"industry": "자동차 정비 · 세차 · 광택",
+"group": "car",
+"groupLabel": "자동차",
+"design": "다크 네온",
+"moods": [
+"다크",
+"화려"
+],
+"real": false
+},
+{
+"slug": "car-service-midnight-tech",
+"name": "반짝 카케어 대구점",
+"industry": "자동차 정비 · 세차 · 광택",
+"group": "car",
+"groupLabel": "자동차",
+"design": "미드나잇 테크",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "cleaning-bento-modern",
+"name": "깨끗한 하루 수원점",
+"industry": "청소 · 방역",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "벤토 모던",
+"moods": [
+"화려",
+"심플"
+],
+"real": false
+},
+{
+"slug": "cleaning-clean-trust",
+"name": "반짝 청소",
+"industry": "청소 · 방역",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "cleaning-fresh-nature",
+"name": "맑음 클린",
+"industry": "청소 · 방역",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "프레시 네이처",
+"moods": [
+"친근",
+"전문"
+],
+"real": false
+},
+{
+"slug": "clinic-clean-trust",
+"name": "바른 의원",
+"industry": "의원 · 병원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "clinic-medical-calm",
+"name": "오늘 내과 구월점",
+"industry": "의원 · 병원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "메디컬 캄",
+"moods": [
+"전문",
+"심플"
+],
+"real": false
+},
+{
+"slug": "clinic-swiss-minimal",
+"name": "한마음 의원",
+"industry": "의원 · 병원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "dental-clean-trust",
+"name": "하루 치과",
+"industry": "치과",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "dental-corporate-navy",
+"name": "편한 치과",
+"industry": "치과",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "dental-medical-calm",
+"name": "바른미소 치과",
+"industry": "치과",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "메디컬 캄",
+"moods": [
+"전문",
+"심플"
+],
+"real": false
+},
+{
+"slug": "english-bento-modern",
+"name": "말문 영어",
+"industry": "영어 · 어학",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "벤토 모던",
+"moods": [
+"화려",
+"심플"
+],
+"real": false
+},
+{
+"slug": "english-tech-gradient",
+"name": "하루 영어",
+"industry": "영어 · 어학",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "테크 그라데이션",
+"moods": [
+"화려",
+"전문"
+],
+"real": false
+},
+{
+"slug": "english-vivid-pop",
+"name": "톡톡 잉글리시 포항점",
+"industry": "영어 · 어학",
+"group": "edu",
+"groupLabel": "학원 · 교육",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "fire-safety-bold-industrial",
+"name": "든든 소방설비 일산점",
+"industry": "소방시설 공사",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "fire-safety-corporate-navy",
+"name": "지킴 소방",
+"industry": "소방시설 공사",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "fire-safety-swiss-minimal",
+"name": "안전한 소방 포항점",
+"industry": "소방시설 공사",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "florist-dreamy-aurora",
+"name": "오늘의 꽃 강남점",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "florist-soft-pastel",
+"name": "꽃다운 날 수원점",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "florist-warm-local",
+"name": "꽃바람",
+"industry": "꽃집 · 플라워",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "웜 로컬",
+"moods": [
+"따뜻",
+"친근"
+],
+"real": false
+},
+{
+"slug": "gym-bold-industrial",
+"name": "버팀 피트니스 포항점",
+"industry": "헬스 · PT",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "gym-dark-neon",
+"name": "오늘 짐",
+"industry": "헬스 · PT",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "다크 네온",
+"moods": [
+"다크",
+"화려"
+],
+"real": false
+},
+{
+"slug": "gym-dark-premium",
+"name": "근력공장",
+"industry": "헬스 · PT",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "hair-dreamy-aurora",
+"name": "손결 살롱 수원점",
+"industry": "미용실 · 헤어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "hair-editorial-serif",
+"name": "결 헤어",
+"industry": "미용실 · 헤어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "hair-simple-mono",
+"name": "바람 헤어 일산점",
+"industry": "미용실 · 헤어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "심플 모노",
+"moods": [
+"심플"
+],
+"real": false
+},
+{
+"slug": "homerepair-bold-industrial",
+"name": "고침방",
+"industry": "집수리 · 부분 수리",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "homerepair-clean-trust",
+"name": "손끝 집수리 일산점",
+"industry": "집수리 · 부분 수리",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "homerepair-simple-mono",
+"name": "척척 집수리 강남점",
+"industry": "집수리 · 부분 수리",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "심플 모노",
+"moods": [
+"심플"
+],
+"real": false
+},
+{
+"slug": "hotel-clean-trust",
+"name": "머무름 스테이 구월점",
+"industry": "호텔 · 모텔",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "hotel-dark-premium",
+"name": "스테이 온 수원점",
+"industry": "호텔 · 모텔",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "hotel-luxe-gold",
+"name": "도시 호텔",
+"industry": "호텔 · 모텔",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "럭스 골드",
+"moods": [
+"화려",
+"다크"
+],
+"real": false
+},
+{
+"slug": "insurance-clean-trust",
+"name": "든든 보험상담",
+"industry": "보험 설계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "insurance-corporate-navy",
+"name": "안심 보험",
+"industry": "보험 설계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "insurance-simple-mono",
+"name": "지킴 보험 일산점",
+"industry": "보험 설계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "심플 모노",
+"moods": [
+"심플"
+],
+"real": false
+},
+{
+"slug": "interior-dark-premium",
+"name": "결 디자인 부천점",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "interior-dreamy-mist",
+"name": "빛채 리모델링 포항점",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "드리미 미스트",
+"moods": [
+"몽환",
+"심플"
+],
+"real": false
+},
+{
+"slug": "interior-editorial-serif",
+"name": "온결 인테리어 강남점",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "interior-swiss-minimal",
+"name": "공간짓기 구월점",
+"industry": "인테리어 · 리모델링",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "it-agency-midnight-tech",
+"name": "코드온 랩 일산점",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "미드나잇 테크",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "it-agency-swiss-minimal",
+"name": "바른 개발 강남점",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "it-agency-tech-gradient",
+"name": "만듦 스튜디오 수원2호점",
+"industry": "IT · 웹 · 앱 개발",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "테크 그라데이션",
+"moods": [
+"화려",
+"전문"
+],
+"real": false
+},
+{
+"slug": "kids-bento-modern",
+"name": "꿈틀 키즈 부천점",
+"industry": "키즈카페 · 놀이 · 체험",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "벤토 모던",
+"moods": [
+"화려",
+"심플"
+],
+"real": false
+},
+{
+"slug": "kids-soft-pastel",
+"name": "방방 놀이터",
+"industry": "키즈카페 · 놀이 · 체험",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "kids-vivid-pop",
+"name": "통통 키즈카페 강남점",
+"industry": "키즈카페 · 놀이 · 체험",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "korean-editorial-serif",
+"name": "한상 차림 일산점",
+"industry": "한식 · 한정식",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "korean-hanok-classic",
+"name": "다온 한정식 포항점",
+"industry": "한식 · 한정식",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "한옥 클래식",
+"moods": [
+"따뜻",
+"다크"
+],
+"real": false
+},
+{
+"slug": "korean-luxe-gold",
+"name": "소반 대구점",
+"industry": "한식 · 한정식",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "럭스 골드",
+"moods": [
+"화려",
+"다크"
+],
+"real": false
+},
+{
+"slug": "law-corporate-navy",
+"name": "공정 노무",
+"industry": "법률 · 노무 · 행정",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "law-editorial-serif",
+"name": "한빛 행정사 강남점",
+"industry": "법률 · 노무 · 행정",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "law-swiss-minimal",
+"name": "바른길 노무행정 일산점",
+"industry": "법률 · 노무 · 행정",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "leisure-fresh-nature",
+"name": "신나는 하루",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "프레시 네이처",
+"moods": [
+"친근",
+"전문"
+],
+"real": false
+},
+{
+"slug": "leisure-tech-gradient",
+"name": "주말 놀이터 일산점",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "테크 그라데이션",
+"moods": [
+"화려",
+"전문"
+],
+"real": false
+},
+{
+"slug": "leisure-vivid-pop",
+"name": "바깥 놀이 수원점",
+"industry": "레저 · 체험 시설",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "manufacturing-corporate-navy",
+"name": "한결 정공",
+"industry": "제조 · 공장 B2B",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "manufacturing-midnight-tech",
+"name": "바른 제작소",
+"industry": "제조 · 공장 B2B",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "미드나잇 테크",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "manufacturing-swiss-minimal",
+"name": "정밀 가공 구월점",
+"industry": "제조 · 공장 B2B",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "moving-bold-industrial",
+"name": "가뿐 이사 수원점",
+"industry": "이사 · 용달 · 화물",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "moving-clean-trust",
+"name": "새집 이사 강남점",
+"industry": "이사 · 용달 · 화물",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "moving-fresh-nature",
+"name": "한번에 이사",
+"industry": "이사 · 용달 · 화물",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "프레시 네이처",
+"moods": [
+"친근",
+"전문"
+],
+"real": false
+},
+{
+"slug": "nail-dreamy-aurora",
+"name": "손끝 네일",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "nail-editorial-serif",
+"name": "블룸 네일 대구점",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "nail-soft-pastel",
+"name": "물결 네일",
+"industry": "네일 · 속눈썹",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "oriental-dreamy-mist",
+"name": "숲 한의원",
+"industry": "한의원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "드리미 미스트",
+"moods": [
+"몽환",
+"심플"
+],
+"real": false
+},
+{
+"slug": "oriental-hanok-classic",
+"name": "솔빛 한의원",
+"industry": "한의원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "한옥 클래식",
+"moods": [
+"따뜻",
+"다크"
+],
+"real": false
+},
+{
+"slug": "oriental-medical-calm",
+"name": "온누리 한의원 강남점",
+"industry": "한의원",
+"group": "medical",
+"groupLabel": "병원 · 의원 (진우 검수)",
+"design": "메디컬 캄",
+"moods": [
+"전문",
+"심플"
+],
+"real": false
+},
+{
+"slug": "party-room-bento-modern",
+"name": "모임방 파티룸",
+"industry": "파티룸 · 스튜디오 대여",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "벤토 모던",
+"moods": [
+"화려",
+"심플"
+],
+"real": false
+},
+{
+"slug": "party-room-dark-neon",
+"name": "오늘 파티 구월점",
+"industry": "파티룸 · 스튜디오 대여",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "다크 네온",
+"moods": [
+"다크",
+"화려"
+],
+"real": false
+},
+{
+"slug": "party-room-vivid-pop",
+"name": "축하 공간",
+"industry": "파티룸 · 스튜디오 대여",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "pension-dark-premium",
+"name": "물소리 펜션 포항점",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "pension-dreamy-mist",
+"name": "숲속 독채",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "드리미 미스트",
+"moods": [
+"몽환",
+"심플"
+],
+"real": false
+},
+{
+"slug": "pension-editorial-serif",
+"name": "별채 풀빌라 구월점",
+"industry": "펜션 · 풀빌라",
+"group": "stay",
+"groupLabel": "숙박 · 여행",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "pest-clean-trust",
+"name": "그만 방역 부천점",
+"industry": "해충 방역 · 소독",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "pest-fresh-nature",
+"name": "안심 방역 포항점",
+"industry": "해충 방역 · 소독",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "프레시 네이처",
+"moods": [
+"친근",
+"전문"
+],
+"real": false
+},
+{
+"slug": "pest-midnight-tech",
+"name": "말끔 소독",
+"industry": "해충 방역 · 소독",
+"group": "clean",
+"groupLabel": "청소 · 방역",
+"design": "미드나잇 테크",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "pet-fresh-nature",
+"name": "꼬리 펫살롱 대구점",
+"industry": "반려동물 · 펫샵 · 미용",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "프레시 네이처",
+"moods": [
+"친근",
+"전문"
+],
+"real": false
+},
+{
+"slug": "pet-soft-pastel",
+"name": "포근 펫 수원점",
+"industry": "반려동물 · 펫샵 · 미용",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "pet-vivid-pop",
+"name": "멍냥 하우스",
+"industry": "반려동물 · 펫샵 · 미용",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "photo-studio-dreamy-aurora",
+"name": "찰나 사진관 대구점",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "photo-studio-editorial-serif",
+"name": "빛결 스튜디오 포항점",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "photo-studio-simple-mono",
+"name": "오늘 사진 일산점",
+"industry": "사진관 · 촬영 스튜디오",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "심플 모노",
+"moods": [
+"심플"
+],
+"real": false
+},
+{
+"slug": "pilates-dreamy-mist",
+"name": "바른몸 필라테스 수원점",
+"industry": "필라테스 · 요가",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "드리미 미스트",
+"moods": [
+"몽환",
+"심플"
+],
+"real": false
+},
+{
+"slug": "pilates-editorial-serif",
+"name": "숨 필라테스",
+"industry": "필라테스 · 요가",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "pilates-soft-pastel",
+"name": "결 요가",
+"industry": "필라테스 · 요가",
+"group": "fitness",
+"groupLabel": "운동 · 건강",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "plumbing-bold-industrial",
+"name": "바로설비24",
+"industry": "설비 · 누수",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "plumbing-clean-trust",
+"name": "물길설비",
+"industry": "설비 · 누수",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "plumbing-simple-mono",
+"name": "한결누수 대구점",
+"industry": "설비 · 누수",
+"group": "home",
+"groupLabel": "시공 · 설비 · 수리",
+"design": "심플 모노",
+"moods": [
+"심플"
+],
+"real": false
+},
+{
+"slug": "realestate-clean-trust",
+"name": "발품 공인중개사",
+"industry": "부동산 · 분양",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "realestate-corporate-navy",
+"name": "바른 중개",
+"industry": "부동산 · 분양",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "realestate-dark-premium",
+"name": "한집 부동산 부천점",
+"industry": "부동산 · 분양",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "restaurant-dark-premium",
+"name": "정성 밥집 부천점",
+"industry": "음식점",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "restaurant-hanok-classic",
+"name": "오늘 한상",
+"industry": "음식점",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "한옥 클래식",
+"moods": [
+"따뜻",
+"다크"
+],
+"real": false
+},
+{
+"slug": "restaurant-vivid-pop",
+"name": "소담 식당",
+"industry": "음식점",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "restaurant-warm-local",
+"name": "한솥 식당",
+"industry": "음식점",
+"group": "food",
+"groupLabel": "음식점 · 카페",
+"design": "웜 로컬",
+"moods": [
+"따뜻",
+"친근"
+],
+"real": false
+},
+{
+"slug": "scaffolding-bold-industrial",
+"name": "튼튼 비계 포항점",
+"industry": "가설재 · 건설 자재",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "볼드 인더스트리얼",
+"moods": [
+"현장",
+"화려"
+],
+"real": false
+},
+{
+"slug": "scaffolding-corporate-navy",
+"name": "세움 자재 부천점",
+"industry": "가설재 · 건설 자재",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "scaffolding-swiss-minimal",
+"name": "든든 가설재",
+"industry": "가설재 · 건설 자재",
+"group": "b2b",
+"groupLabel": "제조 · 기업 거래",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "shopping-bento-modern",
+"name": "손수 브랜드 부천점",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "벤토 모던",
+"moods": [
+"화려",
+"심플"
+],
+"real": false
+},
+{
+"slug": "shopping-editorial-serif",
+"name": "오늘의 물건 포항점",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "shopping-vivid-pop",
+"name": "결 리빙 대구점",
+"industry": "쇼핑몰 · 제조 브랜드",
+"group": "retail",
+"groupLabel": "상점 · 반려동물",
+"design": "비비드 팝",
+"moods": [
+"화려",
+"친근"
+],
+"real": false
+},
+{
+"slug": "skincare-dreamy-mist",
+"name": "맑은 결",
+"industry": "피부관리 · 에스테틱",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "드리미 미스트",
+"moods": [
+"몽환",
+"심플"
+],
+"real": false
+},
+{
+"slug": "skincare-medical-calm",
+"name": "숨결 에스테틱 부천점",
+"industry": "피부관리 · 에스테틱",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "메디컬 캄",
+"moods": [
+"전문",
+"심플"
+],
+"real": false
+},
+{
+"slug": "skincare-soft-pastel",
+"name": "고요 피부관리",
+"industry": "피부관리 · 에스테틱",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "소프트 파스텔",
+"moods": [
+"친근",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "spa-dreamy-aurora",
+"name": "고요 테라피 포항점",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "spa-dreamy-mist",
+"name": "숲결 스파 부천점",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "드리미 미스트",
+"moods": [
+"몽환",
+"심플"
+],
+"real": false
+},
+{
+"slug": "spa-hanok-classic",
+"name": "쉼 마사지 대구점",
+"industry": "스파 · 마사지 · 아로마",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "한옥 클래식",
+"moods": [
+"따뜻",
+"다크"
+],
+"real": false
+},
+{
+"slug": "tax-clean-trust",
+"name": "한결 회계 부천점",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "클린 트러스트",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "tax-corporate-navy",
+"name": "바른 세무 구월점",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "코퍼레이트 네이비",
+"moods": [
+"전문"
+],
+"real": false
+},
+{
+"slug": "tax-swiss-minimal",
+"name": "정도 세무회계",
+"industry": "세무 · 회계",
+"group": "pro",
+"groupLabel": "전문직 · 사무",
+"design": "스위스 미니멀",
+"moods": [
+"심플",
+"전문"
+],
+"real": false
+},
+{
+"slug": "wedding-dreamy-aurora",
+"name": "하루 웨딩 일산점",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "드리미 오로라",
+"moods": [
+"몽환",
+"화려"
+],
+"real": false
+},
+{
+"slug": "wedding-editorial-serif",
+"name": "새날 연회장 수원점",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "wedding-luxe-gold",
+"name": "더 메리 웨딩 대구점",
+"industry": "웨딩 · 스드메 · 돌잔치",
+"group": "leisure",
+"groupLabel": "레저 · 공간 대여",
+"design": "럭스 골드",
+"moods": [
+"화려",
+"다크"
+],
+"real": false
+},
+{
+"slug": "wig-dark-premium",
+"name": "결 헤어웨어 강남점",
+"industry": "가발 · 탈모 케어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "다크 프리미엄",
+"moods": [
+"다크",
+"전문"
+],
+"real": false
+},
+{
+"slug": "wig-editorial-serif",
+"name": "온모 맞춤가발",
+"industry": "가발 · 탈모 케어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "에디토리얼",
+"moods": [
+"심플",
+"몽환"
+],
+"real": false
+},
+{
+"slug": "wig-medical-calm",
+"name": "새머리 가발",
+"industry": "가발 · 탈모 케어",
+"group": "beauty",
+"groupLabel": "미용 · 뷰티",
+"design": "메디컬 캄",
+"moods": [
+"전문",
+"심플"
+],
+"real": false
+}
+]

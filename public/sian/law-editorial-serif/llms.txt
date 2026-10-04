@@ -1,0 +1,38 @@
+# 한빛 행정사 강남점
+
+> 강남 노무 · 행정 사무소. 상담 예약과 업무 분야 안내.
+
+## 핵심 사실
+- 상호: 한빛 행정사 강남점
+- 업종: 법률 · 노무 · 행정
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [기업 자문](https://demo.example.kr/law-editorial-serif/services/area-3/): 정기 자문 계약
+- [임금 체불 · 노동 사건](https://demo.example.kr/law-editorial-serif/services/area-1/): 절차 안내와 대리
+- [인허가 · 행정 심판](https://demo.example.kr/law-editorial-serif/services/area-2/): 서류 준비와 대리
+
+## 자주 묻는 질문
+- 상담 비용이 있나요? 첫 상담 30분은 무료입니다.
+- 어떤 자료를 가져가야 하나요? 관련 계약서 · 문자 · 통장 내역 등 사실을 보여 주는 자료를 가져오시면 됩니다.
+
+## 주요 페이지
+- [강남 법률상담 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/)
+- [서비스 안내 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/services/)
+- [강남 기업 자문 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/services/area-3/)
+- [강남 임금 체불 · 노동 사건 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/services/area-1/)
+- [강남 인허가 · 행정 심판 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/services/area-2/)
+- [강남 법률상담 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/area/gangnam/)
+- [서초 법률상담 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/area/seocho/)
+- [송파 법률상담 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/area/songpa/)
+- [한빛 행정사 강남점 소개 | 강남 법률상담](https://demo.example.kr/law-editorial-serif/about/)
+- [자주 묻는 질문 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/faq/)
+- [오시는 길 · 문의 | 한빛 행정사 강남점](https://demo.example.kr/law-editorial-serif/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

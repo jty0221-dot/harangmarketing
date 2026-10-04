@@ -1,0 +1,38 @@
+# 안심 보험
+
+> 안심 보험. 기존 보험 점검 · 화재보험 · 사업장 보험 상담.
+
+## 핵심 사실
+- 상호: 안심 보험
+- 업종: 보험 설계
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [화재 · 사업장 보험](https://demo.example.kr/insurance-corporate-navy/services/business/): 가게 · 공장 보험
+- [보상 청구 도움](https://demo.example.kr/insurance-corporate-navy/services/claim/): 청구 서류 안내
+- [보험 점검](https://demo.example.kr/insurance-corporate-navy/services/check/): 가입 중인 보험 보장 분석
+
+## 자주 묻는 질문
+- 사업장 화재보험은 의무인가요? 다중이용업소 등은 화재배상책임보험 가입 의무가 있습니다. 업종에 따라 확인해 드립니다.
+- 상담만 받아도 되나요? 네. 점검만 받고 결정은 천천히 하셔도 됩니다.
+
+## 주요 페이지
+- [대구 보험상담 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/)
+- [서비스 안내 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/services/)
+- [대구 화재 · 사업장 보험 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/services/business/)
+- [대구 보상 청구 도움 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/services/claim/)
+- [대구 보험 점검 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/services/check/)
+- [대구 보험상담 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/area/daegu/)
+- [경산 보험상담 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/area/gyeongsan/)
+- [수성 보험상담 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/area/suseong/)
+- [안심 보험 소개 | 대구 보험상담](https://demo.example.kr/insurance-corporate-navy/about/)
+- [자주 묻는 질문 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/faq/)
+- [오시는 길 · 문의 | 안심 보험](https://demo.example.kr/insurance-corporate-navy/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

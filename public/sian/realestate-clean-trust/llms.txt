@@ -1,0 +1,38 @@
+# 발품 공인중개사
+
+> 인천 구월 아파트 · 상가 · 사무실 매매 · 임대 발품 공인중개사.
+
+## 핵심 사실
+- 상호: 발품 공인중개사
+- 업종: 부동산 · 분양
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [아파트 매매 · 전월세](https://demo.example.kr/realestate-clean-trust/services/apartment/): 단지별 시세와 매물
+- [상가 · 사무실](https://demo.example.kr/realestate-clean-trust/services/commercial/): 업종별 입지 상담
+- [분양 상담](https://demo.example.kr/realestate-clean-trust/services/presale/): 분양 일정 · 조건 안내
+
+## 자주 묻는 질문
+- 중개 수수료는요? 법정 상한 요율 안에서 계약 전에 안내드립니다.
+- 주말에도 매물을 볼 수 있나요? 예약하시면 주말에도 안내드립니다.
+
+## 주요 페이지
+- [인천 구월 부동산 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/)
+- [서비스 안내 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/services/)
+- [인천 구월 아파트 매매 · 전월세 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/services/apartment/)
+- [인천 구월 상가 · 사무실 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/services/commercial/)
+- [인천 구월 분양 상담 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/services/presale/)
+- [인천 구월 부동산 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/area/incheon-guwol/)
+- [부평 부동산 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/area/bupyeong/)
+- [송도 부동산 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/area/songdo/)
+- [발품 공인중개사 소개 | 인천 구월 부동산](https://demo.example.kr/realestate-clean-trust/about/)
+- [자주 묻는 질문 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/faq/)
+- [오시는 길 · 문의 | 발품 공인중개사](https://demo.example.kr/realestate-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

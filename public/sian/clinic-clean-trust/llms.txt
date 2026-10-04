@@ -1,0 +1,39 @@
+# 바른 의원
+
+> 부천 바른 의원. 진료 과목과 접수 방법을 안내합니다.
+
+## 핵심 사실
+- 상호: 바른 의원
+- 업종: 의원 · 병원
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [건강검진](https://demo.example.kr/clinic-clean-trust/services/dept-2/): 국가 건강검진 · 종합검진
+- [예방접종](https://demo.example.kr/clinic-clean-trust/services/dept-3/): 성인 · 소아 예방접종
+- [내과 진료](https://demo.example.kr/clinic-clean-trust/services/dept-1/): 감기 · 만성질환 관리
+
+## 자주 묻는 질문
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+
+## 주요 페이지
+- [부천 의원 | 바른 의원](https://demo.example.kr/clinic-clean-trust/)
+- [서비스 안내 | 바른 의원](https://demo.example.kr/clinic-clean-trust/services/)
+- [부천 건강검진 | 바른 의원](https://demo.example.kr/clinic-clean-trust/services/dept-2/)
+- [부천 예방접종 | 바른 의원](https://demo.example.kr/clinic-clean-trust/services/dept-3/)
+- [부천 내과 진료 | 바른 의원](https://demo.example.kr/clinic-clean-trust/services/dept-1/)
+- [부천 의원 | 바른 의원](https://demo.example.kr/clinic-clean-trust/area/bucheon/)
+- [인천 부평 의원 | 바른 의원](https://demo.example.kr/clinic-clean-trust/area/bupyeong/)
+- [서울 구로 의원 | 바른 의원](https://demo.example.kr/clinic-clean-trust/area/guro/)
+- [바른 의원 소개 | 부천 의원](https://demo.example.kr/clinic-clean-trust/about/)
+- [자주 묻는 질문 | 바른 의원](https://demo.example.kr/clinic-clean-trust/faq/)
+- [오시는 길 · 문의 | 바른 의원](https://demo.example.kr/clinic-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.
