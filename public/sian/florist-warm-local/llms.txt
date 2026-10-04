@@ -1,0 +1,41 @@
+# 꽃바람
+
+> 인천 구월 꽃집 꽃바람. 꽃다발 · 화환 · 개업 화분 · 당일 배송.
+
+## 핵심 사실
+- 상호: 꽃바람
+- 업종: 꽃집 · 플라워
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [개업 · 승진 화분](https://demo.example.kr/florist-warm-local/services/plant/): 관엽 · 동양란
+- [정기 꽃 구독](https://demo.example.kr/florist-warm-local/services/subscription/): 매장 · 사무실 정기 배송
+- [꽃다발](https://demo.example.kr/florist-warm-local/services/bouquet/): 기념일 · 프러포즈
+- [축하 · 근조 화환](https://demo.example.kr/florist-warm-local/services/wreath/): 당일 배송
+
+## 자주 묻는 질문
+- 보내기 전에 사진을 볼 수 있나요? 네. 제작 후 사진을 먼저 보내 드립니다.
+- 당일 배송이 되나요? 오후 3시까지 주문하시면 당일 배송됩니다.
+- 배송 지역은요? 시내 전역 · 인근 지역입니다.
+
+## 주요 페이지
+- [인천 구월 꽃집 | 꽃바람](https://demo.example.kr/florist-warm-local/)
+- [서비스 안내 | 꽃바람](https://demo.example.kr/florist-warm-local/services/)
+- [인천 구월 개업 · 승진 화분 | 꽃바람](https://demo.example.kr/florist-warm-local/services/plant/)
+- [인천 구월 정기 꽃 구독 | 꽃바람](https://demo.example.kr/florist-warm-local/services/subscription/)
+- [인천 구월 꽃다발 | 꽃바람](https://demo.example.kr/florist-warm-local/services/bouquet/)
+- [인천 구월 축하 · 근조 화환 | 꽃바람](https://demo.example.kr/florist-warm-local/services/wreath/)
+- [인천 구월 꽃집 | 꽃바람](https://demo.example.kr/florist-warm-local/area/incheon-guwol/)
+- [부평 꽃집 | 꽃바람](https://demo.example.kr/florist-warm-local/area/bupyeong/)
+- [송도 꽃집 | 꽃바람](https://demo.example.kr/florist-warm-local/area/songdo/)
+- [꽃바람 소개 | 인천 구월 꽃집](https://demo.example.kr/florist-warm-local/about/)
+- [자주 묻는 질문 | 꽃바람](https://demo.example.kr/florist-warm-local/faq/)
+- [오시는 길 · 문의 | 꽃바람](https://demo.example.kr/florist-warm-local/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

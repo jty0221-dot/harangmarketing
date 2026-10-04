@@ -102,7 +102,7 @@ export function ogImage(alt?: string): { url: string; width: number; height: num
 export const PAGE_UPDATED: Record<string, string> = {
   "/": "2026-10-02",
   "/about": "2026-10-02",
-  "/services": "2026-10-02",
+  "/services": "2026-10-04",
   "/services/cafe": "2026-10-02",
   "/services/clinic": "2026-09-25",
   "/services/clinic/medical-ad-guide": "2026-09-25",
@@ -118,6 +118,7 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/place": "2026-10-02",
   "/services/instagram": "2026-09-24",
   "/services/detail-page": "2026-10-02",
+  "/services/homepage": "2026-10-04",
   "/services/detail-page/reference": "2026-09-30",
   "/services/cafe-distribution": "2026-10-02",
   "/services/cafe-distribution/reference": "2026-10-01",
@@ -213,7 +214,7 @@ export const DEFINITIONS: { term: string; definition: string }[] = [
   {
     term: "홈페이지형 블로그",
     definition:
-      "홈페이지형 블로그는 네이버 블로그를 홈페이지처럼 디자인해 메뉴·예약·오시는길을 한 화면에 배치한 형태입니다. 별도 홈페이지 제작비 없이, 검색으로 들어온 손님에게 매장 정보를 한 화면에 정리해 보여 줍니다.",
+      "홈페이지형 블로그는 네이버 블로그를 홈페이지처럼 디자인해 메뉴·예약·오시는길을 한 화면에 배치한 형태입니다. 홈페이지를 만들기 전 단계에서 검색으로 들어온 손님에게 매장 정보를 한 화면에 정리해 보여 줍니다. 홈페이지가 필요해지면 업종별 시안으로 따로 만들어 드립니다.",
   },
   {
     term: "스마트스토어 상세페이지",

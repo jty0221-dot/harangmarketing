@@ -1,0 +1,30 @@
+# 따끈 베이커리
+
+> 부천 베이커리 따끈 베이커리. 갓 나온 시간표와 예약 · 선물 세트 안내.
+
+## 핵심 사실
+- 상호: 따끈 베이커리
+- 업종: 베이커리 · 빵집
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [선물 세트](https://demo.example.kr/bakery-clean-trust/services/gift/): 명절 · 답례품 세트
+- [택배 주문](https://demo.example.kr/bakery-clean-trust/services/delivery/): 전국 택배 가능 품목
+- [오늘의 빵](https://demo.example.kr/bakery-clean-trust/services/bread/): 시간대별로 나오는 빵
+- [케이크 예약](https://demo.example.kr/bakery-clean-trust/services/cake/): 생일 · 기념일 케이크 주문
+
+## 자주 묻는 질문
+- 택배가 되나요? 구움과자와 일부 빵은 전국 택배가 됩니다.
+- 알레르기 정보는요? 제품마다 원재료와 알레르기 유발 성분을 표시해 두었습니다.
+- 빵 나오는 시간이 정해져 있나요? 오전 8시 · 11시 · 오후 3시에 주요 빵이 나옵니다.
+
+## 주요 페이지
+- [부천 빵집 | 따끈 베이커리](https://demo.example.kr/bakery-clean-trust/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

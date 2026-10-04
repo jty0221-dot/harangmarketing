@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/spa-hanok-classic/</loc><lastmod>2026-10-04</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/services/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/services/couple/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/services/head/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/services/aroma/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/services/sports/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/area/daegu/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/area/gyeongsan/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/area/suseong/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/about/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/faq/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/spa-hanok-classic/contact/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+</urlset>

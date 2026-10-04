@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/hair-simple-mono/</loc><lastmod>2026-10-04</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/services/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/services/perm/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/services/color/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/services/clinic/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/services/cut/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/area/ilsan/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/area/paju/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/area/gimpo/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/about/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/faq/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/hair-simple-mono/contact/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+</urlset>

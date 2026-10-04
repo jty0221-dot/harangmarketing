@@ -1,0 +1,41 @@
+# 꿈틀 키즈 부천점
+
+> 부천 키즈카페 꿈틀 키즈 부천점. 이용 요금 · 놀이 시설 · 생일파티 예약.
+
+## 핵심 사실
+- 상호: 꿈틀 키즈 부천점
+- 업종: 키즈카페 · 놀이 · 체험
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [체험 클래스](https://demo.example.kr/kids-bento-modern/services/class/): 만들기 · 요리 체험
+- [보호자 공간](https://demo.example.kr/kids-bento-modern/services/parents/): 카페 · 휴식
+- [놀이 시설](https://demo.example.kr/kids-bento-modern/services/play/): 연령별 놀이 공간
+- [생일 파티](https://demo.example.kr/kids-bento-modern/services/birthday/): 파티룸 · 케이크 · 진행
+
+## 자주 묻는 질문
+- 생일파티는 며칠 전 예약하나요? 1주 전 예약을 권합니다.
+- 보호자도 입장료가 있나요? 보호자는 음료 주문으로 입장합니다.
+- 양말이 필요한가요? 네. 아이와 보호자 모두 양말을 신어야 합니다.
+
+## 주요 페이지
+- [부천 키즈카페 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/)
+- [서비스 안내 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/services/)
+- [부천 체험 클래스 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/services/class/)
+- [부천 보호자 공간 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/services/parents/)
+- [부천 놀이 시설 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/services/play/)
+- [부천 생일 파티 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/services/birthday/)
+- [부천 키즈카페 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/area/bucheon/)
+- [인천 부평 키즈카페 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/area/bupyeong/)
+- [서울 구로 키즈카페 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/area/guro/)
+- [꿈틀 키즈 부천점 소개 | 부천 키즈카페](https://demo.example.kr/kids-bento-modern/about/)
+- [자주 묻는 질문 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/faq/)
+- [오시는 길 · 문의 | 꿈틀 키즈 부천점](https://demo.example.kr/kids-bento-modern/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

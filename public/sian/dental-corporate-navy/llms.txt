@@ -1,0 +1,41 @@
+# 편한 치과
+
+> 일산 편한 치과. 진료 과목 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 편한 치과
+- 업종: 치과
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [치아교정](https://demo.example.kr/dental-corporate-navy/services/ortho/): 교정 상담 · 진단
+- [소아 치과](https://demo.example.kr/dental-corporate-navy/services/kids/): 아이 눈높이 진료
+- [일반 진료](https://demo.example.kr/dental-corporate-navy/services/general/): 충치 · 신경치료 · 스케일링
+- [임플란트](https://demo.example.kr/dental-corporate-navy/services/implant/): 검사 · 상담 후 진행
+
+## 자주 묻는 질문
+- 비급여 진료비는 어디서 보나요? 비급여 진료비용은 원내와 건강보험심사평가원 누리집에 고지된 금액을 확인하실 수 있습니다.
+- 야간 진료를 하나요? 화요일 · 목요일 21시까지 진료합니다.
+- 주차가 되나요? 건물 지하 주차 2시간 지원합니다.
+
+## 주요 페이지
+- [일산 치과 | 편한 치과](https://demo.example.kr/dental-corporate-navy/)
+- [서비스 안내 | 편한 치과](https://demo.example.kr/dental-corporate-navy/services/)
+- [일산 치아교정 | 편한 치과](https://demo.example.kr/dental-corporate-navy/services/ortho/)
+- [일산 소아 치과 | 편한 치과](https://demo.example.kr/dental-corporate-navy/services/kids/)
+- [일산 일반 진료 | 편한 치과](https://demo.example.kr/dental-corporate-navy/services/general/)
+- [일산 임플란트 | 편한 치과](https://demo.example.kr/dental-corporate-navy/services/implant/)
+- [일산 치과 | 편한 치과](https://demo.example.kr/dental-corporate-navy/area/ilsan/)
+- [파주 치과 | 편한 치과](https://demo.example.kr/dental-corporate-navy/area/paju/)
+- [김포 치과 | 편한 치과](https://demo.example.kr/dental-corporate-navy/area/gimpo/)
+- [편한 치과 소개 | 일산 치과](https://demo.example.kr/dental-corporate-navy/about/)
+- [자주 묻는 질문 | 편한 치과](https://demo.example.kr/dental-corporate-navy/faq/)
+- [오시는 길 · 문의 | 편한 치과](https://demo.example.kr/dental-corporate-navy/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

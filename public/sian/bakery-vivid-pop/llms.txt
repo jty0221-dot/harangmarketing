@@ -1,0 +1,41 @@
+# 밀가루 공방
+
+> 강남 베이커리 밀가루 공방. 갓 나온 시간표와 예약 · 선물 세트 안내.
+
+## 핵심 사실
+- 상호: 밀가루 공방
+- 업종: 베이커리 · 빵집
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [케이크 예약](https://demo.example.kr/bakery-vivid-pop/services/cake/): 생일 · 기념일 케이크 주문
+- [선물 세트](https://demo.example.kr/bakery-vivid-pop/services/gift/): 명절 · 답례품 세트
+- [택배 주문](https://demo.example.kr/bakery-vivid-pop/services/delivery/): 전국 택배 가능 품목
+- [오늘의 빵](https://demo.example.kr/bakery-vivid-pop/services/bread/): 시간대별로 나오는 빵
+
+## 자주 묻는 질문
+- 택배가 되나요? 구움과자와 일부 빵은 전국 택배가 됩니다.
+- 알레르기 정보는요? 제품마다 원재료와 알레르기 유발 성분을 표시해 두었습니다.
+- 빵 나오는 시간이 정해져 있나요? 오전 8시 · 11시 · 오후 3시에 주요 빵이 나옵니다.
+
+## 주요 페이지
+- [강남 빵집 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/)
+- [서비스 안내 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/services/)
+- [강남 케이크 예약 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/services/cake/)
+- [강남 선물 세트 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/services/gift/)
+- [강남 택배 주문 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/services/delivery/)
+- [강남 오늘의 빵 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/services/bread/)
+- [강남 빵집 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/area/gangnam/)
+- [서초 빵집 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/area/seocho/)
+- [송파 빵집 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/area/songpa/)
+- [밀가루 공방 소개 | 강남 빵집](https://demo.example.kr/bakery-vivid-pop/about/)
+- [자주 묻는 질문 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/faq/)
+- [오시는 길 · 문의 | 밀가루 공방](https://demo.example.kr/bakery-vivid-pop/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,41 @@
+# 바깥 놀이 수원점
+
+> 수원 바깥 놀이 수원점. 이용 요금 · 운영 시간 · 단체 예약 안내.
+
+## 핵심 사실
+- 상호: 바깥 놀이 수원점
+- 업종: 레저 · 체험 시설
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [이용 요금](https://demo.example.kr/leisure-vivid-pop/services/price/): 개인 · 가족 · 단체
+- [단체 · 기업 행사](https://demo.example.kr/leisure-vivid-pop/services/group/): 워크숍 · 학교 단체
+- [오시는 길](https://demo.example.kr/leisure-vivid-pop/services/location/): 주차 · 대중교통
+- [체험 프로그램](https://demo.example.kr/leisure-vivid-pop/services/programs/): 연령별 프로그램
+
+## 자주 묻는 질문
+- 비가 오면 어떻게 되나요? 우천 시 실내 프로그램으로 바꾸거나 전액 환불합니다.
+- 단체 할인이 있나요? 20명 이상 단체 할인이 있습니다.
+- 몇 살부터 이용할 수 있나요? 프로그램마다 다르며 7세 이상 이용 가능한 프로그램이 많습니다.
+
+## 주요 페이지
+- [수원 체험 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/)
+- [서비스 안내 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/services/)
+- [수원 이용 요금 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/services/price/)
+- [수원 단체 · 기업 행사 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/services/group/)
+- [수원 오시는 길 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/services/location/)
+- [수원 체험 프로그램 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/services/programs/)
+- [수원 체험 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/area/suwon/)
+- [용인 체험 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/area/yongin/)
+- [화성 체험 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/area/hwaseong/)
+- [바깥 놀이 수원점 소개 | 수원 체험](https://demo.example.kr/leisure-vivid-pop/about/)
+- [자주 묻는 질문 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/faq/)
+- [오시는 길 · 문의 | 바깥 놀이 수원점](https://demo.example.kr/leisure-vivid-pop/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

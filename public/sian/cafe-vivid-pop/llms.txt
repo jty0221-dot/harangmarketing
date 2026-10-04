@@ -1,0 +1,41 @@
+# 볕 드는 집 대구점
+
+> 대구 카페 볕 드는 집 대구점. 창가 자리 · 주차 · 단체 주문 안내.
+
+## 핵심 사실
+- 상호: 볕 드는 집 대구점
+- 업종: 카페 · 디저트
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [공간 안내](https://demo.example.kr/cafe-vivid-pop/services/space/): 좌석 · 콘센트 · 반려동물 동반 여부
+- [시그니처 메뉴](https://demo.example.kr/cafe-vivid-pop/services/signature/): 매장에서만 맛볼 수 있는 대표 음료
+- [디저트 · 베이커리](https://demo.example.kr/cafe-vivid-pop/services/dessert/): 매일 아침 굽는 디저트
+- [단체 · 선물 주문](https://demo.example.kr/cafe-vivid-pop/services/order/): 답례품 · 케이터링 박스
+
+## 자주 묻는 질문
+- 주차가 되나요? 건물 뒤 전용 주차장 10대입니다.
+- 반려동물 동반이 되나요? 테라스 좌석은 동반 가능합니다.
+- 단체 주문은 며칠 전에 하나요? 3일 전까지 말씀 주세요.
+
+## 주요 페이지
+- [대구 카페 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/)
+- [서비스 안내 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/services/)
+- [대구 공간 안내 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/services/space/)
+- [대구 시그니처 메뉴 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/services/signature/)
+- [대구 디저트 · 베이커리 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/services/dessert/)
+- [대구 단체 · 선물 주문 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/services/order/)
+- [대구 카페 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/area/daegu/)
+- [경산 카페 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/area/gyeongsan/)
+- [수성 카페 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/area/suseong/)
+- [볕 드는 집 대구점 소개 | 대구 카페](https://demo.example.kr/cafe-vivid-pop/about/)
+- [자주 묻는 질문 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/faq/)
+- [오시는 길 · 문의 | 볕 드는 집 대구점](https://demo.example.kr/cafe-vivid-pop/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

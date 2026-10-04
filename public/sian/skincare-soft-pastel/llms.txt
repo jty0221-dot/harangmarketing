@@ -1,0 +1,41 @@
+# 고요 피부관리
+
+> 강남 피부관리 고요 피부관리. 피부 측정 후 맞춤 관리. 의료 시술은 하지 않습니다.
+
+## 핵심 사실
+- 상호: 고요 피부관리
+- 업종: 피부관리 · 에스테틱
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [기본 관리](https://demo.example.kr/skincare-soft-pastel/services/basic/): 클렌징 · 각질 · 보습
+- [여드름 · 트러블 관리](https://demo.example.kr/skincare-soft-pastel/services/trouble/): 압출 · 진정 관리
+- [리프팅 · 탄력 관리](https://demo.example.kr/skincare-soft-pastel/services/lifting/): 수기 · 장비 관리
+- [바디 관리](https://demo.example.kr/skincare-soft-pastel/services/body/): 등 · 어깨 관리
+
+## 자주 묻는 질문
+- 처음 가면 무엇을 하나요? 피부 상태를 사진으로 기록하고 관리 순서를 정합니다.
+- 회원권을 꼭 끊어야 하나요? 아닙니다. 1회 체험 후 결정하셔도 됩니다.
+- 의료 시술도 하나요? 하지 않습니다. 피부관리실은 의료 행위를 할 수 없습니다.
+
+## 주요 페이지
+- [강남 피부관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/)
+- [서비스 안내 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/services/)
+- [강남 기본 관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/services/basic/)
+- [강남 여드름 · 트러블 관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/services/trouble/)
+- [강남 리프팅 · 탄력 관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/services/lifting/)
+- [강남 바디 관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/services/body/)
+- [강남 피부관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/area/gangnam/)
+- [서초 피부관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/area/seocho/)
+- [송파 피부관리 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/area/songpa/)
+- [고요 피부관리 소개 | 강남 피부관리](https://demo.example.kr/skincare-soft-pastel/about/)
+- [자주 묻는 질문 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/faq/)
+- [오시는 길 · 문의 | 고요 피부관리](https://demo.example.kr/skincare-soft-pastel/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

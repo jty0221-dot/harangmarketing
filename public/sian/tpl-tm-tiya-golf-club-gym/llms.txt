@@ -1,0 +1,30 @@
+# 버팀 피트니스
+
+> 수원 헬스 · PT 버팀 피트니스. 시설 둘러보기와 무료 체형 측정.
+
+## 핵심 사실
+- 상호: 버팀 피트니스
+- 업종: 헬스 · PT
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [헬스 회원권](https://demo.example.kr/gym-clean-trust/services/membership/): 월 · 분기 · 연 회원권
+- [PT](https://demo.example.kr/gym-clean-trust/services/pt/): 1:1 트레이닝
+- [그룹 운동](https://demo.example.kr/gym-clean-trust/services/group/): GX · 크로스핏
+- [체형 측정](https://demo.example.kr/gym-clean-trust/services/measure/): 인바디 · 자세 측정
+
+## 자주 묻는 질문
+- 주차가 되나요? 2시간 무료입니다.
+- 일일권이 있나요? 일일권이 있습니다.
+- 운영 시간이 어떻게 되나요? 평일 06시~24시 · 주말 09시~20시입니다.
+
+## 주요 페이지
+- [수원 헬스장 | 버팀 피트니스](https://demo.example.kr/gym-clean-trust/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

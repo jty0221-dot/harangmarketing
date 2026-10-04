@@ -1,0 +1,31 @@
+# 정성 밥집 구월점
+
+> 인천 구월에서 10년 동안 같은 자리. 단체 · 포장 · 예약 받습니다.
+
+## 핵심 사실
+- 상호: 정성 밥집 구월점
+- 업종: 음식점
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [포장 · 배달](https://demo.example.kr/restaurant-clean-trust/services/takeout/): 매장 맛 그대로 포장
+- [오시는 길 · 주차](https://demo.example.kr/restaurant-clean-trust/services/location/): 주차 가능 대수와 대중교통 안내
+- [대표 메뉴](https://demo.example.kr/restaurant-clean-trust/services/menu/): 가게를 대표하는 메뉴와 만드는 방식
+- [단체 · 회식 예약](https://demo.example.kr/restaurant-clean-trust/services/group/): 인원 · 예산에 맞춘 코스 구성
+
+## 자주 묻는 질문
+- 아이와 함께 가도 되나요? 유아 의자와 덜 매운 메뉴가 준비돼 있습니다.
+- 브레이크 타임이 있나요? 평일 15시~17시입니다.
+- 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
+- 주차가 되나요? 매장 앞 8대 주차 가능합니다.
+
+## 주요 페이지
+- [인천 구월 맛집 | 정성 밥집 구월점](https://demo.example.kr/restaurant-clean-trust/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

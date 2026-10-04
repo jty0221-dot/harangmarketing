@@ -537,7 +537,7 @@ const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[
   { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "20만원", note: "PC 전용입니다." },
   { item: "홈페이지형 블로그 디자인 DELUXE", unit: "1회", price: "20만원", note: "PC와 모바일, 위젯 5개까지입니다." },
   { item: "홈페이지형 블로그 디자인 PREMIUM", unit: "1회", price: "30만원", note: "섹션과 위젯 수에 제한이 없습니다." },
-  { item: "홈페이지 제작", unit: "건별", price: "상담 후 안내" },
+  { item: "홈페이지 제작", unit: "건별", price: "1,100,000원부터", note: "부가세 포함 · 업종별 시안은 /services/homepage" },
   { item: "네이버 광고 세팅·운영대행", unit: "월", price: "15만원" },
   { item: "키워드 설계 · 리뷰 동선 · 순위 모니터링", unit: "월", price: "계약 시 포함" },
 ];

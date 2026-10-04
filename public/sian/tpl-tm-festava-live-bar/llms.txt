@@ -1,0 +1,30 @@
+# 한 잔의 온도
+
+> 포항 바 한 잔의 온도. 시그니처 칵테일 · 위스키 · 와인. 예약과 대관 안내.
+
+## 핵심 사실
+- 상호: 한 잔의 온도
+- 업종: 바 · 라운지 · 와인바
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-04
+
+## 서비스
+- [대관 · 프라이빗 파티](https://demo.example.kr/bar-clean-trust/services/private/): 생일 · 모임 · 기업 행사 대관
+- [안주 메뉴](https://demo.example.kr/bar-clean-trust/services/food/): 술과 맞춘 안주
+- [시그니처 칵테일](https://demo.example.kr/bar-clean-trust/services/cocktail/): 바텐더가 직접 만드는 대표 칵테일
+- [위스키 · 와인](https://demo.example.kr/bar-clean-trust/services/bottle/): 보유 리스트와 병 보관
+
+## 자주 묻는 질문
+- 대관이 되나요? 평일 20명부터 대관 가능합니다.
+- 콜키지가 되나요? 병당 콜키지 비용을 안내드립니다.
+- 예약이 필요한가요? 주말은 예약을 권합니다.
+
+## 주요 페이지
+- [포항 바 | 한 잔의 온도](https://demo.example.kr/bar-clean-trust/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.
