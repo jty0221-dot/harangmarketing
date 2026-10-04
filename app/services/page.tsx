@@ -1,5 +1,6 @@
 import ServiceFinder from "../components/ServiceFinder";
 import { PUBLIC_SERVICES, isProgram } from "../lib/service-catalog";
+import { HP_DRAFTS, HP_STATS, hpThumb } from "../lib/homepage-portfolio";
 import { FOOD_PLANS, STAY_PLANS } from "../lib/photo-pricing";
 import type { Metadata } from "next";
 import Header from "../components/Header";
@@ -9,7 +10,7 @@ import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare,
-  Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate,
+  Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate, Globe2,
   ScrollText, Camera, Calendar,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
@@ -139,6 +140,11 @@ const PHOTO_CARD_COVERS: ServiceCover[] = [
   SPACE_SHOTS[0],
   SPACE_SHOTS[7],
 ].map((s) => ({ src: s.src, alt: s.alt, w: s.w, h: s.h }));
+
+/** 홈페이지 제작 카드 커버 — 업종이 겹치지 않게 시안 다섯 장. 전부 가상 업체 시안이라 alt 에 그렇게 적는다. */
+const HP_CARD_COVERS: ServiceCover[] = HP_DRAFTS.filter((d, i, a) => a.findIndex((x) => x.industry === d.industry) === i)
+  .slice(0, 5)
+  .map((d) => ({ src: hpThumb(d.slug), alt: `${d.industry} 업종 홈페이지 시안 (가상 업체)`, w: 560, h: 350 }));
 
 const SERVICES = [
   {
@@ -417,6 +423,26 @@ const SERVICES = [
     ],
     rec: "카카오맵으로 유입되는 고객을 놓치고 싶지 않은 매장",
     result: "네이버에서 놓친 검색을 카카오에서 받는 구조",
+  },
+  {
+    id: "homepage",
+    icon: Globe2,
+    color: "bg-blue-700",
+    tag: "홈페이지",
+    title: "홈페이지 제작",
+    subtitle: "업종별 시안을 먼저 보고 고르는 제작",
+    desc: `업종 ${HP_STATS.industries}개 · 시안 ${HP_STATS.drafts}개를 미리 만들어 두었습니다. 마음에 드는 시안을 고르시면 대표님 업체의 상호 · 사진 · 문구로 바꿔 넘겨 드리고, 네이버 통합검색과 AI 답변 노출 기본 세팅까지 넣습니다.`,
+    timeline: "계약금 입금일부터 15영업일",
+    href: "/services/homepage",
+    covers: HP_CARD_COVERS,
+    deliverables: [
+      { label: "제작비", value: "1,100,000원부터", note: "부가세 포함 · 3단 구성" },
+      { label: "월 관리", value: "선택", note: "오픈 후 3개월 오류 수정 무상" },
+      { label: "시안", value: `${HP_STATS.drafts}개`, note: "업종 · 무드별로 직접 눌러 보기" },
+    ],
+    features: ["업종별 시안 중에서 선택", "상호 · 사진 · 문구 교체", "문의 전환 동선", "검색 노출 기본 세팅"],
+    rec: "블로그 말고 우리 업체 이름으로 된 홈페이지가 필요한 대표님",
+    result: "고른 시안 그대로의 구조로 15영업일 안에 넘겨 받는 홈페이지",
   },
   {
     id: "startup",
