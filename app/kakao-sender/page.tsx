@@ -15,6 +15,7 @@ import {
   Star, ShoppingCart, Info, ExternalLink, Clock, Gift, CalendarPlus, Coins,
   Contact, RotateCcw, BarChart3, BookmarkPlus, FileSpreadsheet, Plug, FlaskConical, Eye, CalendarX2,
   Megaphone, UserCheck, Moon,
+  Layers, ClipboardPaste, CalendarDays, ArchiveRestore, SearchCheck, Camera, OctagonPause,
 } from "lucide-react";
 
 /**
@@ -37,8 +38,9 @@ const TEL = `tel:${SITE.phone}`;
 const FEATURE_ICONS = [
   Contact, Send, CalendarClock, RotateCcw, BarChart3, BookmarkPlus,
   PencilLine, Paperclip, Search, FolderOpen, FileSpreadsheet, Plug,
+  Layers, ClipboardPaste, CalendarDays, ArchiveRestore, SearchCheck, Camera,
 ];
-const SAFETY_ICONS = [ListChecks, FlaskConical, Eye, ShieldCheck, CalendarX2];
+const SAFETY_ICONS = [ListChecks, FlaskConical, Eye, ShieldCheck, CalendarX2, OctagonPause];
 const AD_ICONS = [Megaphone, UserCheck, Moon];
 
 const LD = [
@@ -275,7 +277,7 @@ export default function KakaoSenderPage() {
               여러 방에 보낸 글은 한 번 나가면 되돌리기 어렵습니다. 그래서 보내기 전에 점검하고 확인을 받습니다.
             </p>
 
-            {/* 왼쪽 장치 다섯 · 오른쪽 확인 창 캡처. 캡처 높이에 카드가 늘어나지 않게 두 칸으로 나눈다 */}
+            {/* 왼쪽 장치 여섯 · 오른쪽 확인 창 캡처. 캡처 높이에 카드가 늘어나지 않게 두 칸으로 나눈다 */}
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
               <div className="space-y-3">
                 {KS_SAFETY.map((f, i) => {
@@ -312,7 +314,7 @@ export default function KakaoSenderPage() {
           </div>
         </section>
 
-        {/* 광고 글 (1.9.0) */}
+        {/* 광고 글 */}
         <section id="ad" className="scroll-mt-28 bg-gray-50 py-10 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-2 flex items-center gap-3">
@@ -320,7 +322,7 @@ export default function KakaoSenderPage() {
               <h2 className="text-xl font-black text-gray-900 md:text-2xl">광고 글은 규칙을 지키며 보내도록 돕습니다</h2>
             </div>
             <p className="mb-6 text-sm text-gray-600">
-              버전 1.9.0 부터 보내기 화면에 광고 글 체크가 있습니다. 체크하면 아래 세 가지가 함께 움직입니다.
+              보내기 화면에 광고 글 체크가 있습니다. 체크하면 아래 세 가지가 함께 움직입니다.
             </p>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
