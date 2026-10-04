@@ -9,13 +9,14 @@ import {
   KS_FEATURES, KS_SAFETY, KS_AD, KS_FOR_WHOM, KS_SHOTS, KS_BUY_STEPS, KS_SMARTSCREEN_STEPS, KS_SPECS, KS_FAQ,
   KS_REFERRAL, KS_REFERRAL_STEPS, KS_REFERRAL_RULES,
 } from "../lib/kakao-sender";
+import { getKsRelease, ksDateLabel } from "../lib/kakao-sender-release";
 import {
   Download, ArrowRight, MessageCircle, Phone, MonitorSmartphone, Users, Send,
   CalendarClock, PencilLine, Paperclip, Search, FolderOpen, ShieldCheck, ListChecks,
   Star, ShoppingCart, Info, ExternalLink, Clock, Gift, CalendarPlus, Coins,
   Contact, RotateCcw, BarChart3, BookmarkPlus, FileSpreadsheet, Plug, FlaskConical, Eye, CalendarX2,
   Megaphone, UserCheck, Moon,
-  Layers, ClipboardPaste, CalendarDays, ArchiveRestore, SearchCheck, Camera, OctagonPause,
+  Layers, ClipboardPaste, CalendarDays, ArchiveRestore, SearchCheck, Camera, OctagonPause, Sparkles,
 } from "lucide-react";
 
 /**
@@ -43,7 +44,8 @@ const FEATURE_ICONS = [
 const SAFETY_ICONS = [ListChecks, FlaskConical, Eye, ShieldCheck, CalendarX2, OctagonPause];
 const AD_ICONS = [Megaphone, UserCheck, Moon];
 
-const LD = [
+function buildLd(version: string) {
+  return [
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -51,7 +53,7 @@ const LD = [
     name: KS.name,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Windows",
-    softwareVersion: KS.version,
+    softwareVersion: version,
     inLanguage: "ko-KR",
     url: URL,
     downloadUrl: KS.downloadUrl,
@@ -91,7 +93,8 @@ const LD = [
     { name: "서비스", path: "/services" },
     { name: KS.name, path: PATH },
   ]),
-];
+  ];
+}
 
 /** 섹션 제목 앞 아이콘 박스. WDS 기준이라 단색 배경 + 흰 아이콘 (그라데이션 금지) */
 function IconBox({ icon: Icon }: { icon: typeof Send }) {
@@ -114,10 +117,15 @@ function PcOnlyNote() {
   );
 }
 
-export default function KakaoSenderPage() {
+export default async function KakaoSenderPage() {
+  /* 버전 · 날짜 · 바뀐 점은 프로그램 저장소의 버전정보.json 에서 읽는다 (실패하면 KS.version) */
+  const release = await getKsRelease();
+  const releaseDate = ksDateLabel(release.date);
+  const specs = KS_SPECS.map((s) => (s.label === "버전" ? { ...s, value: release.version } : s));
+
   return (
     <>
-      <JsonLd data={LD} />
+      <JsonLd data={buildLd(release.version)} />
       <Header />
 
       {/* 헤더가 고정이라 본문을 그만큼 내린다. 사이트 공통 값 */}
@@ -128,8 +136,19 @@ export default function KakaoSenderPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
               <div className="min-w-0">
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-[var(--w-primary)] ring-1 ring-gray-200">
-                  하랑마케팅이 만든 윈도우 프로그램 · 버전 {KS.version}
+                  하랑마케팅이 만든 윈도우 프로그램 · 버전 {release.version}
                 </div>
+                {release.summary && (
+                  <p className="mt-2 flex items-start gap-1.5 text-xs leading-relaxed text-gray-500 md:text-[13px]">
+                    <Sparkles size={14} className="mt-0.5 shrink-0 text-[var(--w-primary)]" strokeWidth={2} aria-hidden />
+                    <span className="min-w-0">
+                      <span className="font-semibold text-gray-700">
+                        {releaseDate ? `${releaseDate} 업데이트` : "최근 업데이트"}
+                      </span>{" "}
+                      {release.summary}
+                    </span>
+                  </p>
+                )}
 
                 <h1 className="mt-4 text-[28px] leading-[1.3] font-black tracking-tight text-gray-900 md:text-[40px] md:leading-[1.25]">
                   거래처 카톡방 여러 곳에
@@ -549,7 +568,7 @@ export default function KakaoSenderPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-              {KS_SPECS.map((s) => (
+              {specs.map((s) => (
                 <div key={s.label} className="rounded-xl bg-white p-3.5 ring-1 ring-gray-200">
                   <div className="text-xs font-bold text-gray-500">{s.label}</div>
                   <div className="mt-1 text-sm font-bold text-gray-900">{s.value}</div>
