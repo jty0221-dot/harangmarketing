@@ -1,0 +1,41 @@
+# 한뼘 공부방
+
+> 인천 구월 한뼘 공부방. 초등 · 중등 소수 정원 · 국영수 · 숙제 관리.
+
+## 핵심 사실
+- 상호: 한뼘 공부방
+- 업종: 공부방 · 과외
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [중등 국영수](https://demo.example.kr/studyroom-fresh-nature/services/middle/): 내신 대비
+- [숙제 관리](https://demo.example.kr/studyroom-fresh-nature/services/homework/): 매일 확인
+- [학부모 상담](https://demo.example.kr/studyroom-fresh-nature/services/parent/): 주간 보고
+- [초등 전과목](https://demo.example.kr/studyroom-fresh-nature/services/elem/): 숙제 · 복습
+
+## 자주 묻는 질문
+- 수강료는 얼마인가요? 교습비는 교육청에 등록된 금액으로 학원 내 게시되어 있으며 상담 시 안내드립니다.
+- 보강이 되나요? 결석 시 주 1회 보강합니다.
+- 레벨 테스트는 무료인가요? 네, 무료입니다.
+
+## 주요 페이지
+- [인천 구월 공부방 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/)
+- [서비스 안내 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/services/)
+- [인천 구월 중등 국영수 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/services/middle/)
+- [인천 구월 숙제 관리 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/services/homework/)
+- [인천 구월 학부모 상담 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/services/parent/)
+- [인천 구월 초등 전과목 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/services/elem/)
+- [인천 구월 공부방 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/area/incheon-guwol/)
+- [부평 공부방 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/area/bupyeong/)
+- [송도 공부방 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/area/songdo/)
+- [한뼘 공부방 소개 | 인천 구월 공부방](https://demo.example.kr/studyroom-fresh-nature/about/)
+- [자주 묻는 질문 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/faq/)
+- [오시는 길 · 문의 | 한뼘 공부방](https://demo.example.kr/studyroom-fresh-nature/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

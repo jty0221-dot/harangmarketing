@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/sidedish-warm-local/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/services/daily/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/services/soup/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/services/subscribe/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/services/holiday/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/area/suwon/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/area/yongin/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/area/hwaseong/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sidedish-warm-local/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+</urlset>

@@ -1,0 +1,41 @@
+# 숨편한 이비인후과
+
+> 강남 숨편한 이비인후과. 진료 과목 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 숨편한 이비인후과
+- 업종: 이비인후과
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [코 · 비염 진료](https://demo.example.kr/ent-clean-trust/services/nose/): 비염 · 축농증
+- [목 · 편도 진료](https://demo.example.kr/ent-clean-trust/services/throat/): 인후염 · 편도염
+- [귀 진료](https://demo.example.kr/ent-clean-trust/services/ear/): 중이염 · 청력 검사
+- [내시경 검사](https://demo.example.kr/ent-clean-trust/services/scope/): 화면으로 함께 확인
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [강남 이비인후과 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/)
+- [서비스 안내 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/services/)
+- [강남 코 · 비염 진료 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/services/nose/)
+- [강남 목 · 편도 진료 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/services/throat/)
+- [강남 귀 진료 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/services/ear/)
+- [강남 내시경 검사 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/services/scope/)
+- [강남 이비인후과 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/area/gangnam/)
+- [서초 이비인후과 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/area/seocho/)
+- [송파 이비인후과 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/area/songpa/)
+- [숨편한 이비인후과 소개 | 강남 이비인후과](https://demo.example.kr/ent-clean-trust/about/)
+- [자주 묻는 질문 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/faq/)
+- [오시는 길 · 문의 | 숨편한 이비인후과](https://demo.example.kr/ent-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,1 +1,1 @@
-{"name": "고요 테라피 포항점", "short_name": "고요 테라피 포항점", "start_url": "./", "display": "standalone", "background_color": "#FBF9FF", "theme_color": "#8A6CF0", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "고요 테라피", "short_name": "고요 테라피", "start_url": "./", "display": "standalone", "background_color": "#FBF9FF", "theme_color": "#8A6CF0", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

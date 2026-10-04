@@ -1,1 +1,1 @@
-{"name": "바른길 노무행정 일산점", "short_name": "바른길 노무행정 일산점", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0A0A0A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "바른길 노무행정", "short_name": "바른길 노무행정", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0A0A0A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

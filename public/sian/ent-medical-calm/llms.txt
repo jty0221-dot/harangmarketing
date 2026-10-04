@@ -1,0 +1,41 @@
+# 맑은소리 이비인후과
+
+> 인천 구월 맑은소리 이비인후과. 진료 과목 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 맑은소리 이비인후과
+- 업종: 이비인후과
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [목 · 편도 진료](https://demo.example.kr/ent-medical-calm/services/throat/): 인후염 · 편도염
+- [귀 진료](https://demo.example.kr/ent-medical-calm/services/ear/): 중이염 · 청력 검사
+- [내시경 검사](https://demo.example.kr/ent-medical-calm/services/scope/): 화면으로 함께 확인
+- [코 · 비염 진료](https://demo.example.kr/ent-medical-calm/services/nose/): 비염 · 축농증
+
+## 자주 묻는 질문
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+
+## 주요 페이지
+- [인천 구월 이비인후과 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/)
+- [서비스 안내 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/services/)
+- [인천 구월 목 · 편도 진료 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/services/throat/)
+- [인천 구월 귀 진료 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/services/ear/)
+- [인천 구월 내시경 검사 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/services/scope/)
+- [인천 구월 코 · 비염 진료 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/services/nose/)
+- [인천 구월 이비인후과 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/area/incheon-guwol/)
+- [부평 이비인후과 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/area/bupyeong/)
+- [송도 이비인후과 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/area/songdo/)
+- [맑은소리 이비인후과 소개 | 인천 구월 이비인후과](https://demo.example.kr/ent-medical-calm/about/)
+- [자주 묻는 질문 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/faq/)
+- [오시는 길 · 문의 | 맑은소리 이비인후과](https://demo.example.kr/ent-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

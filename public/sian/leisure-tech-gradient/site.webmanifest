@@ -1,1 +1,1 @@
-{"name": "주말 놀이터 일산점", "short_name": "주말 놀이터 일산점", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#4B4BF5", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "주말 놀이터", "short_name": "주말 놀이터", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#4B4BF5", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://demo.example.kr/gym-dark-neon/</loc><lastmod>2026-10-04</lastmod><priority>1.0</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/services/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/services/pt/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/services/group/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/services/measure/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/services/membership/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/area/daegu/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/area/gyeongsan/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/area/suseong/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/about/</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/faq/</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/gym-dark-neon/contact/</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/services/pt/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/services/group/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/services/measure/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/services/membership/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/area/daegu/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/area/gyeongsan/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/area/suseong/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/gym-dark-neon/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
 </urlset>

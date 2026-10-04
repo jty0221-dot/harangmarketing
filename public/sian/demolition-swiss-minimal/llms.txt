@@ -1,0 +1,41 @@
+# 한번에 원상복구
+
+> 포항 한번에 원상복구. 상가 원상복구 · 인테리어 철거 · 폐기물 처리.
+
+## 핵심 사실
+- 상호: 한번에 원상복구
+- 업종: 철거 · 폐기물
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [인테리어 철거](https://demo.example.kr/demolition-swiss-minimal/services/strip/): 벽체 · 천장 · 바닥
+- [폐기물 처리](https://demo.example.kr/demolition-swiss-minimal/services/waste/): 분리 · 반출
+- [짐 정리](https://demo.example.kr/demolition-swiss-minimal/services/clear/): 집 정리 · 처분
+- [상가 원상복구](https://demo.example.kr/demolition-swiss-minimal/services/restore/): 임대차 종료 복구
+
+## 자주 묻는 질문
+- 폐기물 처리도 포함인가요? 분리 · 반출 · 처리까지 포함하고 영수증을 드립니다.
+- 작업 기간은요? 상가 기준 1~3일이 걸립니다.
+- 견적은 어떻게 받나요? 현장 실측 후 당일 견적을 드립니다.
+
+## 주요 페이지
+- [포항 철거 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/)
+- [서비스 안내 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/services/)
+- [포항 인테리어 철거 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/services/strip/)
+- [포항 폐기물 처리 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/services/waste/)
+- [포항 짐 정리 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/services/clear/)
+- [포항 상가 원상복구 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/services/restore/)
+- [포항 철거 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/area/pohang/)
+- [경주 철거 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/area/gyeongju/)
+- [울산 철거 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/area/ulsan/)
+- [한번에 원상복구 소개 | 포항 철거](https://demo.example.kr/demolition-swiss-minimal/about/)
+- [자주 묻는 질문 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/faq/)
+- [오시는 길 · 문의 | 한번에 원상복구](https://demo.example.kr/demolition-swiss-minimal/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

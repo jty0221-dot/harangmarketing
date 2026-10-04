@@ -1,1 +1,1 @@
-{"name": "만듦 스튜디오 수원2호점", "short_name": "만듦 스튜디오 수원2호", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#4B4BF5", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "만듦 스튜디오", "short_name": "만듦 스튜디오", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#4B4BF5", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

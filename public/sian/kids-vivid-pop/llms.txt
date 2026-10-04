@@ -1,16 +1,16 @@
-# 통통 키즈카페 강남점
+# 통통 키즈카페
 
-> 강남 키즈카페 통통 키즈카페 강남점. 이용 요금 · 놀이 시설 · 생일파티 예약.
+> 강남 키즈카페 통통 키즈카페. 이용 요금 · 놀이 시설 · 생일파티 예약.
 
 ## 핵심 사실
-- 상호: 통통 키즈카페 강남점
+- 상호: 통통 키즈카페
 - 업종: 키즈카페 · 놀이 · 체험
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [놀이 시설](https://demo.example.kr/kids-vivid-pop/services/play/): 연령별 놀이 공간
@@ -24,18 +24,18 @@
 - 생일파티는 며칠 전 예약하나요? 1주 전 예약을 권합니다.
 
 ## 주요 페이지
-- [강남 키즈카페 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/)
-- [서비스 안내 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/services/)
-- [강남 놀이 시설 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/services/play/)
-- [강남 생일 파티 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/services/birthday/)
-- [강남 체험 클래스 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/services/class/)
-- [강남 보호자 공간 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/services/parents/)
-- [강남 키즈카페 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/area/gangnam/)
-- [서초 키즈카페 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/area/seocho/)
-- [송파 키즈카페 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/area/songpa/)
-- [통통 키즈카페 강남점 소개 | 강남 키즈카페](https://demo.example.kr/kids-vivid-pop/about/)
-- [자주 묻는 질문 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/faq/)
-- [오시는 길 · 문의 | 통통 키즈카페 강남점](https://demo.example.kr/kids-vivid-pop/contact/)
+- [강남 키즈카페 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/)
+- [서비스 안내 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/services/)
+- [강남 놀이 시설 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/services/play/)
+- [강남 생일 파티 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/services/birthday/)
+- [강남 체험 클래스 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/services/class/)
+- [강남 보호자 공간 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/services/parents/)
+- [강남 키즈카페 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/area/gangnam/)
+- [서초 키즈카페 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/area/seocho/)
+- [송파 키즈카페 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/area/songpa/)
+- [통통 키즈카페 소개 | 강남 키즈카페](https://demo.example.kr/kids-vivid-pop/about/)
+- [자주 묻는 질문 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/faq/)
+- [오시는 길 · 문의 | 통통 키즈카페](https://demo.example.kr/kids-vivid-pop/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

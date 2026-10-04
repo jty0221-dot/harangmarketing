@@ -1,0 +1,41 @@
+# 믿음 오토
+
+> 대구 믿음 오토. 매물 · 성능점검 · 할부 · 매입 상담.
+
+## 핵심 사실
+- 상호: 믿음 오토
+- 업종: 중고차 매매
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [성능점검 기록](https://demo.example.kr/car-used-swiss-minimal/services/check/): 기록부 확인
+- [할부 · 리스 상담](https://demo.example.kr/car-used-swiss-minimal/services/finance/): 조건 안내
+- [내 차 매입](https://demo.example.kr/car-used-swiss-minimal/services/buy/): 시세 확인 후 매입
+- [매물 보기](https://demo.example.kr/car-used-swiss-minimal/services/stock/): 차종 · 연식 · 주행거리
+
+## 자주 묻는 질문
+- 시승이 되나요? 방문 예약 후 시승이 가능합니다.
+- 내 차도 팔 수 있나요? 시세 확인 후 바로 매입 상담을 해 드립니다.
+- 성능점검 기록부를 볼 수 있나요? 모든 매물의 성능점검 기록부를 계약 전에 보여 드립니다.
+
+## 주요 페이지
+- [대구 중고차 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/)
+- [서비스 안내 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/services/)
+- [대구 성능점검 기록 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/services/check/)
+- [대구 할부 · 리스 상담 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/services/finance/)
+- [대구 내 차 매입 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/services/buy/)
+- [대구 매물 보기 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/services/stock/)
+- [대구 중고차 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/area/daegu/)
+- [경산 중고차 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/area/gyeongsan/)
+- [수성 중고차 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/area/suseong/)
+- [믿음 오토 소개 | 대구 중고차](https://demo.example.kr/car-used-swiss-minimal/about/)
+- [자주 묻는 질문 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/faq/)
+- [오시는 길 · 문의 | 믿음 오토](https://demo.example.kr/car-used-swiss-minimal/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

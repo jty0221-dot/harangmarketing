@@ -117,6 +117,13 @@ mark.slot { background: #FFF3B0; color: #5A4500; border-radius: 4px; padding: 0 
 /* 사진 자리 */
 .ph { aspect-ratio: 4/3; border-radius: var(--radius); background: repeating-linear-gradient(135deg, var(--surface) 0 14px, color-mix(in srgb, var(--line) 70%, var(--surface)) 14px 28px); border: 1px dashed var(--line); display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 14px; padding: 16px; }
 .ph .ico { margin: 0 auto 8px; }
+.pic { margin: 0; } .pic img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); background: var(--surface); }
+.pic figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.hero .art img { display: block; width: 100%; height: 100%; aspect-ratio: 16/10; object-fit: cover; }
+.hero-fullbleed .art:has(img) { opacity: .28; }
+.hero-editorial .art img { aspect-ratio: 21/8; }
+.hero-photo { padding: 0 0 8px; } .hero-photo img { display: block; width: 100%; aspect-ratio: 21/9; object-fit: cover; border-radius: var(--radius); }
+@media (max-width: 860px) { .hero-photo img { aspect-ratio: 16/10; } }
 
 /* 지역 · FAQ · CTA */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -177,4 +184,6 @@ mark.slot { background: #FFF3B0; color: #5A4500; border-radius: 4px; padding: 0 
 .cs-pop .card { border: 3px solid var(--text); box-shadow: var(--shadow); } .cs-pop .card:nth-child(3n+1) .ic { background: var(--primary); color: var(--primary-ink); } .cs-pop .card:nth-child(3n+2) .ic { background: var(--accent); color: #fff; }
 .cs-frame .card { border: 1px solid var(--line); outline: 1px solid var(--line); outline-offset: -8px; padding: 34px; }
 .cs-glass .steps li, .cs-glow .steps li { background: var(--surface); }
+.hl-draft-badge { position: fixed; top: 0; left: 50%; transform: translateX(-50%); z-index: 60; background: #e5322b; color: #fff; font-size: 13px; padding: 6px 14px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 14px rgba(0,0,0,.2); pointer-events: none; white-space: nowrap; }
+.hl-draft-badge b { margin-right: 6px; letter-spacing: .1em; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }

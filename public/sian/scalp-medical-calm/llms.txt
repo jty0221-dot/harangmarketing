@@ -1,0 +1,41 @@
+# 숲 두피관리
+
+> 인천 구월 숲 두피관리. 두피 진단 · 스케일링 · 홈케어 안내.
+
+## 핵심 사실
+- 상호: 숲 두피관리
+- 업종: 두피 · 탈모 관리
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [두피 상태 확인](https://demo.example.kr/scalp-medical-calm/services/diag/): 확대 화면으로 확인
+- [두피 스케일링](https://demo.example.kr/scalp-medical-calm/services/scaling/): 각질 · 피지 클렌징
+- [두피 영양 관리](https://demo.example.kr/scalp-medical-calm/services/care/): 관리 프로그램
+- [홈케어 안내](https://demo.example.kr/scalp-medical-calm/services/home/): 샴푸 · 생활 습관
+
+## 자주 묻는 질문
+- 가격표가 있나요? 기장 · 모질에 따라 달라 네이버 예약에 기본 가격을 올려 두었습니다.
+- 당일 예약이 되나요? 네이버 예약에서 빈 시간을 바로 확인하실 수 있습니다.
+- 시술 후 마음에 안 들면요? 7일 안에 말씀 주시면 수정해 드립니다.
+
+## 주요 페이지
+- [인천 구월 두피관리 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/)
+- [서비스 안내 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/services/)
+- [인천 구월 두피 상태 확인 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/services/diag/)
+- [인천 구월 두피 스케일링 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/services/scaling/)
+- [인천 구월 두피 영양 관리 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/services/care/)
+- [인천 구월 홈케어 안내 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/services/home/)
+- [인천 구월 두피관리 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/area/incheon-guwol/)
+- [부평 두피관리 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/area/bupyeong/)
+- [송도 두피관리 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/area/songdo/)
+- [숲 두피관리 소개 | 인천 구월 두피관리](https://demo.example.kr/scalp-medical-calm/about/)
+- [자주 묻는 질문 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/faq/)
+- [오시는 길 · 문의 | 숲 두피관리](https://demo.example.kr/scalp-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

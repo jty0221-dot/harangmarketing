@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/sushi-simple-mono/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/services/lunch/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/services/sashimi/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/services/private/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/services/dinner/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/area/bucheon/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/area/bupyeong/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/area/guro/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/sushi-simple-mono/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+</urlset>

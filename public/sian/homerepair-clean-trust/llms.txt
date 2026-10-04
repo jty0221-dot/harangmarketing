@@ -1,16 +1,16 @@
-# 손끝 집수리 일산점
+# 손끝 집수리
 
 > 일산 문 · 창호 · 욕실 · 싱크대 부분 수리. 작은 일이라고 미루지 않습니다.
 
 ## 핵심 사실
-- 상호: 손끝 집수리 일산점
+- 상호: 손끝 집수리
 - 업종: 집수리 · 부분 수리
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [문 · 문틀 교체](https://demo.example.kr/homerepair-clean-trust/services/door/): 방문 · 현관 중문 교체와 손잡이 · 경첩 수리
@@ -24,18 +24,18 @@
 - 자재는 직접 사야 하나요? 저희가 준비해 드립니다. 원하시는 제품이 있으면 그 제품으로 시공합니다.
 
 ## 주요 페이지
-- [일산 집수리 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/)
-- [서비스 안내 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/services/)
-- [일산 문 · 문틀 교체 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/services/door/)
-- [일산 필름 · 도배 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/services/film/)
-- [일산 욕실 부분 수리 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/services/bath/)
-- [일산 샷시 · 방충망 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/services/window/)
-- [일산 집수리 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/area/ilsan/)
-- [파주 집수리 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/area/paju/)
-- [김포 집수리 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/area/gimpo/)
-- [손끝 집수리 일산점 소개 | 일산 집수리](https://demo.example.kr/homerepair-clean-trust/about/)
-- [자주 묻는 질문 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/faq/)
-- [오시는 길 · 문의 | 손끝 집수리 일산점](https://demo.example.kr/homerepair-clean-trust/contact/)
+- [일산 집수리 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/)
+- [서비스 안내 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/services/)
+- [일산 문 · 문틀 교체 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/services/door/)
+- [일산 필름 · 도배 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/services/film/)
+- [일산 욕실 부분 수리 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/services/bath/)
+- [일산 샷시 · 방충망 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/services/window/)
+- [일산 집수리 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/area/ilsan/)
+- [파주 집수리 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/area/paju/)
+- [김포 집수리 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/area/gimpo/)
+- [손끝 집수리 소개 | 일산 집수리](https://demo.example.kr/homerepair-clean-trust/about/)
+- [자주 묻는 질문 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/faq/)
+- [오시는 길 · 문의 | 손끝 집수리](https://demo.example.kr/homerepair-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

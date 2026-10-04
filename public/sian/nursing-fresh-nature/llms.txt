@@ -1,0 +1,41 @@
+# 햇살 요양병원
+
+> 부천 햇살 요양병원. 입원 상담 · 병실 · 면회 · 재활 프로그램 안내.
+
+## 핵심 사실
+- 상호: 햇살 요양병원
+- 업종: 요양병원
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [입원 상담](https://demo.example.kr/nursing-fresh-nature/services/admit/): 상태 확인 후 상담
+- [병실 안내](https://demo.example.kr/nursing-fresh-nature/services/room/): 다인실 · 1인실
+- [재활 프로그램](https://demo.example.kr/nursing-fresh-nature/services/rehab/): 운동 · 작업 치료
+- [면회 안내](https://demo.example.kr/nursing-fresh-nature/services/visit/): 면회 시간 · 방법
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [부천 요양병원 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/)
+- [서비스 안내 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/services/)
+- [부천 입원 상담 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/services/admit/)
+- [부천 병실 안내 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/services/room/)
+- [부천 재활 프로그램 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/services/rehab/)
+- [부천 면회 안내 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/services/visit/)
+- [부천 요양병원 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/area/bucheon/)
+- [인천 부평 요양병원 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/area/bupyeong/)
+- [서울 구로 요양병원 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/area/guro/)
+- [햇살 요양병원 소개 | 부천 요양병원](https://demo.example.kr/nursing-fresh-nature/about/)
+- [자주 묻는 질문 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/faq/)
+- [오시는 길 · 문의 | 햇살 요양병원](https://demo.example.kr/nursing-fresh-nature/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

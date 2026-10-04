@@ -1,0 +1,41 @@
+# 바른 자동차학원
+
+> 수원 바른 자동차학원. 1종 · 2종 보통 · 도로 연수 · 셔틀 운행 안내.
+
+## 핵심 사실
+- 상호: 바른 자동차학원
+- 업종: 운전학원
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [1종 보통](https://demo.example.kr/driving-bold-industrial/services/class1/): 수동 면허
+- [도로 연수](https://demo.example.kr/driving-bold-industrial/services/road/): 장롱면허 연수
+- [셔틀 운행](https://demo.example.kr/driving-bold-industrial/services/shuttle/): 지역별 셔틀
+- [2종 보통](https://demo.example.kr/driving-bold-industrial/services/class2/): 자동 면허
+
+## 자주 묻는 질문
+- 합격까지 얼마나 걸리나요? 빠르면 2주 안팎입니다.
+- 도로 연수만 받을 수 있나요? 장롱면허 도로 연수만 따로 받으실 수 있습니다.
+- 셔틀이 어디까지 오나요? 주요 아파트 단지와 역까지 운행합니다.
+
+## 주요 페이지
+- [수원 운전학원 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/)
+- [서비스 안내 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/services/)
+- [수원 1종 보통 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/services/class1/)
+- [수원 도로 연수 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/services/road/)
+- [수원 셔틀 운행 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/services/shuttle/)
+- [수원 2종 보통 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/services/class2/)
+- [수원 운전학원 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/area/suwon/)
+- [용인 운전학원 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/area/yongin/)
+- [화성 운전학원 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/area/hwaseong/)
+- [바른 자동차학원 소개 | 수원 운전학원](https://demo.example.kr/driving-bold-industrial/about/)
+- [자주 묻는 질문 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/faq/)
+- [오시는 길 · 문의 | 바른 자동차학원](https://demo.example.kr/driving-bold-industrial/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

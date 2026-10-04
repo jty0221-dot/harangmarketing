@@ -1,0 +1,41 @@
+# 바로 렌터카
+
+> 대구 바로 렌터카. 단기 · 월 렌트 · 보험 · 배차 안내.
+
+## 핵심 사실
+- 상호: 바로 렌터카
+- 업종: 렌터카
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [단기 렌트](https://demo.example.kr/rentcar-clean-trust/services/short/): 하루 · 주말
+- [월 렌트](https://demo.example.kr/rentcar-clean-trust/services/month/): 한 달 단위
+- [장기 렌트](https://demo.example.kr/rentcar-clean-trust/services/long/): 1년 이상
+- [배차 · 반납](https://demo.example.kr/rentcar-clean-trust/services/delivery/): 지정 장소 배차
+
+## 자주 묻는 질문
+- 보험은 어떻게 되나요? 자차 · 대인 · 대물 조건을 대여 전에 안내합니다.
+- 배차는 어디서 받나요? 공항 · 역 · 지정 장소로 배차합니다.
+- 나이 제한이 있나요? 만 21세 이상 · 면허 1년 이상이면 대여할 수 있습니다.
+
+## 주요 페이지
+- [대구 렌터카 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/)
+- [서비스 안내 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/services/)
+- [대구 단기 렌트 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/services/short/)
+- [대구 월 렌트 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/services/month/)
+- [대구 장기 렌트 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/services/long/)
+- [대구 배차 · 반납 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/services/delivery/)
+- [대구 렌터카 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/area/daegu/)
+- [경산 렌터카 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/area/gyeongsan/)
+- [수성 렌터카 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/area/suseong/)
+- [바로 렌터카 소개 | 대구 렌터카](https://demo.example.kr/rentcar-clean-trust/about/)
+- [자주 묻는 질문 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/faq/)
+- [오시는 길 · 문의 | 바로 렌터카](https://demo.example.kr/rentcar-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

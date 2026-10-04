@@ -1,0 +1,41 @@
+# 24 열쇠
+
+> 대구 24 열쇠. 도어락 설치 · 교체 · 문 개방 · 금고.
+
+## 핵심 사실
+- 상호: 24 열쇠
+- 업종: 열쇠 · 도어락
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [도어락 설치](https://demo.example.kr/locksmith-dark-premium/services/install/): 번호 · 지문 · 카드
+- [도어락 교체](https://demo.example.kr/locksmith-dark-premium/services/replace/): 고장 · 노후 교체
+- [문 개방](https://demo.example.kr/locksmith-dark-premium/services/open/): 신분 확인 후 개방
+- [금고 · 자물쇠](https://demo.example.kr/locksmith-dark-premium/services/safe/): 개방 · 수리
+
+## 자주 묻는 질문
+- 작은 수리도 와 주시나요? 네. 손잡이 교체 같은 작은 작업도 접수합니다.
+- 사진만 보내도 견적이 되나요? 대략적인 금액은 사진으로 안내드리고 정확한 금액은 방문 후 확정합니다.
+- 자재는 직접 사야 하나요? 저희가 준비해 드립니다. 원하시는 제품이 있으면 그 제품으로 시공합니다.
+
+## 주요 페이지
+- [대구 도어락 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/)
+- [서비스 안내 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/services/)
+- [대구 도어락 설치 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/services/install/)
+- [대구 도어락 교체 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/services/replace/)
+- [대구 문 개방 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/services/open/)
+- [대구 금고 · 자물쇠 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/services/safe/)
+- [대구 도어락 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/area/daegu/)
+- [경산 도어락 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/area/gyeongsan/)
+- [수성 도어락 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/area/suseong/)
+- [24 열쇠 소개 | 대구 도어락](https://demo.example.kr/locksmith-dark-premium/about/)
+- [자주 묻는 질문 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/faq/)
+- [오시는 길 · 문의 | 24 열쇠](https://demo.example.kr/locksmith-dark-premium/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,40 @@
+# 바른 노무사사무소
+
+> 수원 바른 노무사사무소. 노무 상담 · 급여 아웃소싱 · 산재 · 노동위원회 대리.
+
+## 핵심 사실
+- 상호: 바른 노무사사무소
+- 업종: 노무사 사무소
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [노무 자문](https://demo.example.kr/labor-corporate-navy/services/advice/): 사업장 정기 자문
+- [급여 아웃소싱](https://demo.example.kr/labor-corporate-navy/services/payroll/): 4대보험 · 급여 계산
+- [산재 신청](https://demo.example.kr/labor-corporate-navy/services/injury/): 요양 · 장해 급여
+- [부당해고 구제](https://demo.example.kr/labor-corporate-navy/services/dismiss/): 노동위원회 대리
+
+## 자주 묻는 질문
+- 상담 비용이 있나요? 첫 상담 30분은 무료입니다.
+- 어떤 자료를 가져가야 하나요? 관련 계약서 · 문자 · 통장 내역 등 사실을 보여 주는 자료를 가져오시면 됩니다.
+
+## 주요 페이지
+- [수원 노무사 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/)
+- [서비스 안내 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/services/)
+- [수원 노무 자문 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/services/advice/)
+- [수원 급여 아웃소싱 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/services/payroll/)
+- [수원 산재 신청 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/services/injury/)
+- [수원 부당해고 구제 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/services/dismiss/)
+- [수원 노무사 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/area/suwon/)
+- [용인 노무사 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/area/yongin/)
+- [화성 노무사 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/area/hwaseong/)
+- [바른 노무사사무소 소개 | 수원 노무사](https://demo.example.kr/labor-corporate-navy/about/)
+- [자주 묻는 질문 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/faq/)
+- [오시는 길 · 문의 | 바른 노무사사무소](https://demo.example.kr/labor-corporate-navy/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

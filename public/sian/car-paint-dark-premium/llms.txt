@@ -1,0 +1,41 @@
+# 결 오토바디
+
+> 부천 결 오토바디. 판금 · 부분 도색 · 덴트 · 보험 수리 안내.
+
+## 핵심 사실
+- 상호: 결 오토바디
+- 업종: 판금 · 도색
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [부분 도색](https://demo.example.kr/car-paint-dark-premium/services/paint/): 조색 후 부분 도장
+- [덴트](https://demo.example.kr/car-paint-dark-premium/services/dent/): 도색 없이 펴기
+- [보험 수리 안내](https://demo.example.kr/car-paint-dark-premium/services/insurance/): 사고 수리 접수
+- [판금](https://demo.example.kr/car-paint-dark-premium/services/body/): 찌그러짐 · 문콕 복원
+
+## 자주 묻는 질문
+- 작업 시간은요? 엔진오일은 30분 안팎, 코팅은 하루 이상 걸립니다.
+- 부품을 가져가도 되나요? 지참 부품 장착이 가능합니다.
+- 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
+
+## 주요 페이지
+- [부천 판금도색 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/)
+- [서비스 안내 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/services/)
+- [부천 부분 도색 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/services/paint/)
+- [부천 덴트 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/services/dent/)
+- [부천 보험 수리 안내 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/services/insurance/)
+- [부천 판금 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/services/body/)
+- [부천 판금도색 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/area/bucheon/)
+- [인천 부평 판금도색 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/area/bupyeong/)
+- [서울 구로 판금도색 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/area/guro/)
+- [결 오토바디 소개 | 부천 판금도색](https://demo.example.kr/car-paint-dark-premium/about/)
+- [자주 묻는 질문 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/faq/)
+- [오시는 길 · 문의 | 결 오토바디](https://demo.example.kr/car-paint-dark-premium/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

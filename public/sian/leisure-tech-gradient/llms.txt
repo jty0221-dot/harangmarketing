@@ -1,16 +1,16 @@
-# 주말 놀이터 일산점
+# 주말 놀이터
 
-> 일산 주말 놀이터 일산점. 이용 요금 · 운영 시간 · 단체 예약 안내.
+> 일산 주말 놀이터. 이용 요금 · 운영 시간 · 단체 예약 안내.
 
 ## 핵심 사실
-- 상호: 주말 놀이터 일산점
+- 상호: 주말 놀이터
 - 업종: 레저 · 체험 시설
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [체험 프로그램](https://demo.example.kr/leisure-tech-gradient/services/programs/): 연령별 프로그램
@@ -24,18 +24,18 @@
 - 단체 할인이 있나요? 20명 이상 단체 할인이 있습니다.
 
 ## 주요 페이지
-- [일산 체험 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/)
-- [서비스 안내 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/services/)
-- [일산 체험 프로그램 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/services/programs/)
-- [일산 이용 요금 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/services/price/)
-- [일산 단체 · 기업 행사 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/services/group/)
-- [일산 오시는 길 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/services/location/)
-- [일산 체험 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/area/ilsan/)
-- [파주 체험 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/area/paju/)
-- [김포 체험 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/area/gimpo/)
-- [주말 놀이터 일산점 소개 | 일산 체험](https://demo.example.kr/leisure-tech-gradient/about/)
-- [자주 묻는 질문 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/faq/)
-- [오시는 길 · 문의 | 주말 놀이터 일산점](https://demo.example.kr/leisure-tech-gradient/contact/)
+- [일산 체험 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/)
+- [서비스 안내 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/services/)
+- [일산 체험 프로그램 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/services/programs/)
+- [일산 이용 요금 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/services/price/)
+- [일산 단체 · 기업 행사 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/services/group/)
+- [일산 오시는 길 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/services/location/)
+- [일산 체험 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/area/ilsan/)
+- [파주 체험 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/area/paju/)
+- [김포 체험 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/area/gimpo/)
+- [주말 놀이터 소개 | 일산 체험](https://demo.example.kr/leisure-tech-gradient/about/)
+- [자주 묻는 질문 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/faq/)
+- [오시는 길 · 문의 | 주말 놀이터](https://demo.example.kr/leisure-tech-gradient/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

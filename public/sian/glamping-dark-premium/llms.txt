@@ -1,0 +1,41 @@
+# 별밤 캠핑
+
+> 부천 별밤 캠핑. 글램핑 · 오토캠핑 · 바비큐 · 예약 안내.
+
+## 핵심 사실
+- 상호: 별밤 캠핑
+- 업종: 캠핑 · 글램핑
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [오토캠핑 사이트](https://demo.example.kr/glamping-dark-premium/services/auto/): 차량 옆 텐트
+- [바비큐 세트](https://demo.example.kr/glamping-dark-premium/services/bbq/): 그릴 · 숯 준비
+- [불멍 세트](https://demo.example.kr/glamping-dark-premium/services/fire/): 화로 · 장작
+- [글램핑 텐트](https://demo.example.kr/glamping-dark-premium/services/glamping/): 침구 · 냉난방 포함
+
+## 자주 묻는 질문
+- 반려동물 동반이 되나요? 일부 객실만 가능합니다.
+- 바비큐 이용료가 있나요? 숯 · 그릴 세팅 2만원입니다.
+- 체크인 · 체크아웃 시간은요? 체크인 15시 · 체크아웃 11시입니다.
+
+## 주요 페이지
+- [부천 글램핑 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/)
+- [서비스 안내 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/services/)
+- [부천 오토캠핑 사이트 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/services/auto/)
+- [부천 바비큐 세트 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/services/bbq/)
+- [부천 불멍 세트 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/services/fire/)
+- [부천 글램핑 텐트 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/services/glamping/)
+- [부천 글램핑 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/area/bucheon/)
+- [인천 부평 글램핑 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/area/bupyeong/)
+- [서울 구로 글램핑 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/area/guro/)
+- [별밤 캠핑 소개 | 부천 글램핑](https://demo.example.kr/glamping-dark-premium/about/)
+- [자주 묻는 질문 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/faq/)
+- [오시는 길 · 문의 | 별밤 캠핑](https://demo.example.kr/glamping-dark-premium/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

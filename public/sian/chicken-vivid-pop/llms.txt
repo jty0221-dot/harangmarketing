@@ -1,0 +1,42 @@
+# 바삭 치킨
+
+> 대구 바삭 치킨. 매장 · 포장 · 배달 안내.
+
+## 핵심 사실
+- 상호: 바삭 치킨
+- 업종: 치킨 · 호프
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [후라이드 · 양념](https://demo.example.kr/chicken-vivid-pop/services/chicken/): 주문 후 바로 튀김
+- [안주 메뉴](https://demo.example.kr/chicken-vivid-pop/services/side/): 감자튀김 · 떡볶이
+- [생맥주](https://demo.example.kr/chicken-vivid-pop/services/beer/): 시원한 생맥주
+- [포장 · 배달](https://demo.example.kr/chicken-vivid-pop/services/delivery/): 주문 안내
+
+## 자주 묻는 질문
+- 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
+- 주차가 되나요? 매장 앞 8대 주차 가능합니다.
+- 아이와 함께 가도 되나요? 유아 의자와 덜 매운 메뉴가 준비돼 있습니다.
+- 브레이크 타임이 있나요? 평일 15시~17시입니다.
+
+## 주요 페이지
+- [대구 치킨 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/)
+- [서비스 안내 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/services/)
+- [대구 후라이드 · 양념 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/services/chicken/)
+- [대구 안주 메뉴 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/services/side/)
+- [대구 생맥주 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/services/beer/)
+- [대구 포장 · 배달 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/services/delivery/)
+- [대구 치킨 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/area/daegu/)
+- [경산 치킨 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/area/gyeongsan/)
+- [수성 치킨 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/area/suseong/)
+- [바삭 치킨 소개 | 대구 치킨](https://demo.example.kr/chicken-vivid-pop/about/)
+- [자주 묻는 질문 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/faq/)
+- [오시는 길 · 문의 | 바삭 치킨](https://demo.example.kr/chicken-vivid-pop/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

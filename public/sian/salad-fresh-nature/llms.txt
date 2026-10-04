@@ -1,0 +1,41 @@
+# 초록 샐러드
+
+> 포항 초록 샐러드. 샐러드 · 포케 · 브런치 · 정기 배송.
+
+## 핵심 사실
+- 상호: 초록 샐러드
+- 업종: 샐러드 · 브런치
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [샐러드](https://demo.example.kr/salad-fresh-nature/services/salad/): 매일 손질 채소
+- [포케 · 볼](https://demo.example.kr/salad-fresh-nature/services/poke/): 곡물 · 단백질 볼
+- [브런치](https://demo.example.kr/salad-fresh-nature/services/brunch/): 주말 브런치
+- [정기 배송](https://demo.example.kr/salad-fresh-nature/services/subscribe/): 주간 샐러드
+
+## 자주 묻는 질문
+- 주차가 되나요? 건물 뒤 전용 주차장 10대입니다.
+- 반려동물 동반이 되나요? 테라스 좌석은 동반 가능합니다.
+- 단체 주문은 며칠 전에 하나요? 3일 전까지 말씀 주세요.
+
+## 주요 페이지
+- [포항 브런치 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/)
+- [서비스 안내 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/services/)
+- [포항 샐러드 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/services/salad/)
+- [포항 포케 · 볼 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/services/poke/)
+- [포항 브런치 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/services/brunch/)
+- [포항 정기 배송 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/services/subscribe/)
+- [포항 브런치 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/area/pohang/)
+- [경주 브런치 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/area/gyeongju/)
+- [울산 브런치 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/area/ulsan/)
+- [초록 샐러드 소개 | 포항 브런치](https://demo.example.kr/salad-fresh-nature/about/)
+- [자주 묻는 질문 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/faq/)
+- [오시는 길 · 문의 | 초록 샐러드](https://demo.example.kr/salad-fresh-nature/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

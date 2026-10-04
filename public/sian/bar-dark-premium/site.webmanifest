@@ -1,1 +1,1 @@
-{"name": "밤결 강남점", "short_name": "밤결 강남점", "start_url": "./", "display": "standalone", "background_color": "#0E0E10", "theme_color": "#C9A45C", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "밤결", "short_name": "밤결", "start_url": "./", "display": "standalone", "background_color": "#0E0E10", "theme_color": "#C9A45C", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

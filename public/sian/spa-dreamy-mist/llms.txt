@@ -1,16 +1,16 @@
-# 숲결 스파 부천점
+# 숲결 스파
 
-> 부천 스파 · 아로마 마사지 숲결 스파 부천점. 1인실 · 커플룸 · 예약제.
+> 부천 스파 · 아로마 마사지 숲결 스파. 1인실 · 커플룸 · 예약제.
 
 ## 핵심 사실
-- 상호: 숲결 스파 부천점
+- 상호: 숲결 스파
 - 업종: 스파 · 마사지 · 아로마
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [아로마 테라피](https://demo.example.kr/spa-dreamy-mist/services/aroma/): 오일 · 향 선택 관리
@@ -24,18 +24,18 @@
 - 주차는요? 2시간 무료입니다.
 
 ## 주요 페이지
-- [부천 마사지 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/)
-- [서비스 안내 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/services/)
-- [부천 아로마 테라피 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/services/aroma/)
-- [부천 스포츠 마사지 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/services/sports/)
-- [부천 커플 · 프라이빗 룸 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/services/couple/)
-- [부천 헤드 스파 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/services/head/)
-- [부천 마사지 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/area/bucheon/)
-- [인천 부평 마사지 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/area/bupyeong/)
-- [서울 구로 마사지 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/area/guro/)
-- [숲결 스파 부천점 소개 | 부천 마사지](https://demo.example.kr/spa-dreamy-mist/about/)
-- [자주 묻는 질문 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/faq/)
-- [오시는 길 · 문의 | 숲결 스파 부천점](https://demo.example.kr/spa-dreamy-mist/contact/)
+- [부천 마사지 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/)
+- [서비스 안내 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/services/)
+- [부천 아로마 테라피 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/services/aroma/)
+- [부천 스포츠 마사지 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/services/sports/)
+- [부천 커플 · 프라이빗 룸 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/services/couple/)
+- [부천 헤드 스파 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/services/head/)
+- [부천 마사지 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/area/bucheon/)
+- [인천 부평 마사지 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/area/bupyeong/)
+- [서울 구로 마사지 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/area/guro/)
+- [숲결 스파 소개 | 부천 마사지](https://demo.example.kr/spa-dreamy-mist/about/)
+- [자주 묻는 질문 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/faq/)
+- [오시는 길 · 문의 | 숲결 스파](https://demo.example.kr/spa-dreamy-mist/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

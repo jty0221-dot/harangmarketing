@@ -1,0 +1,42 @@
+# 학교앞 분식
+
+> 포항 학교앞 분식. 떡볶이 · 김밥 · 튀김 · 포장 안내.
+
+## 핵심 사실
+- 상호: 학교앞 분식
+- 업종: 분식
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [김밥](https://demo.example.kr/snack-soft-pastel/services/gimbap/): 매일 아침 싸는 김밥
+- [튀김 · 순대](https://demo.example.kr/snack-soft-pastel/services/fried/): 바로 튀긴 튀김
+- [포장 · 배달](https://demo.example.kr/snack-soft-pastel/services/delivery/): 주문 안내
+- [떡볶이](https://demo.example.kr/snack-soft-pastel/services/tteok/): 매운맛 단계 선택
+
+## 자주 묻는 질문
+- 주차가 되나요? 매장 앞 8대 주차 가능합니다.
+- 아이와 함께 가도 되나요? 유아 의자와 덜 매운 메뉴가 준비돼 있습니다.
+- 브레이크 타임이 있나요? 평일 15시~17시입니다.
+- 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
+
+## 주요 페이지
+- [포항 분식 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/)
+- [서비스 안내 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/services/)
+- [포항 김밥 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/services/gimbap/)
+- [포항 튀김 · 순대 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/services/fried/)
+- [포항 포장 · 배달 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/services/delivery/)
+- [포항 떡볶이 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/services/tteok/)
+- [포항 분식 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/area/pohang/)
+- [경주 분식 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/area/gyeongju/)
+- [울산 분식 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/area/ulsan/)
+- [학교앞 분식 소개 | 포항 분식](https://demo.example.kr/snack-soft-pastel/about/)
+- [자주 묻는 질문 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/faq/)
+- [오시는 길 · 문의 | 학교앞 분식](https://demo.example.kr/snack-soft-pastel/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

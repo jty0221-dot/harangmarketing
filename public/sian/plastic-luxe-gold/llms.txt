@@ -1,0 +1,41 @@
+# 온결 성형외과
+
+> 인천 구월 온결 성형외과. 상담 예약 · 진료 과목 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 온결 성형외과
+- 업종: 성형외과
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [상담 예약](https://demo.example.kr/plastic-luxe-gold/services/consult/): 원장 상담 후 진료 계획 설명
+- [눈 · 코 진료](https://demo.example.kr/plastic-luxe-gold/services/face/): 검사 · 상담 후 진행
+- [리프팅 진료](https://demo.example.kr/plastic-luxe-gold/services/lifting/): 상담 후 진행 여부 결정
+- [진료비 · 회복 안내](https://demo.example.kr/plastic-luxe-gold/services/care/): 비급여 고지 · 주의사항 안내
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [인천 구월 성형외과 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/)
+- [서비스 안내 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/services/)
+- [인천 구월 상담 예약 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/services/consult/)
+- [인천 구월 눈 · 코 진료 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/services/face/)
+- [인천 구월 리프팅 진료 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/services/lifting/)
+- [인천 구월 진료비 · 회복 안내 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/services/care/)
+- [인천 구월 성형외과 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/area/incheon-guwol/)
+- [부평 성형외과 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/area/bupyeong/)
+- [송도 성형외과 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/area/songdo/)
+- [온결 성형외과 소개 | 인천 구월 성형외과](https://demo.example.kr/plastic-luxe-gold/about/)
+- [자주 묻는 질문 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/faq/)
+- [오시는 길 · 문의 | 온결 성형외과](https://demo.example.kr/plastic-luxe-gold/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

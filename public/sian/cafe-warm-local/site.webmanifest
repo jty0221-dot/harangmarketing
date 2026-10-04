@@ -1,1 +1,1 @@
-{"name": "오후 세시 카페 구월점", "short_name": "오후 세시 카페 구월점", "start_url": "./", "display": "standalone", "background_color": "#FBF6EF", "theme_color": "#C2562F", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "오후 세시 카페", "short_name": "오후 세시 카페", "start_url": "./", "display": "standalone", "background_color": "#FBF6EF", "theme_color": "#C2562F", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

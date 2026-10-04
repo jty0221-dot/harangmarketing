@@ -10,6 +10,7 @@ import {
   PLACE_RANK_AS_OF, PLACE_RANK_CASES, PLACE_RANK_NOTE, PLACE_RANK_MEASURE_TIME, fmtMoveDays,
 } from "../lib/place-rank-cases";
 import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL, CAFE_NOTICE } from "../lib/cafe-notice";
+import { HP_STATS } from "../lib/homepage-portfolio";
 import { HL_SHOP_TOTAL, HL_TOTAL, HL_INDUSTRIES } from "../lib/highlight-reference";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 
@@ -297,7 +298,7 @@ ${faq}
 - [서비스 전체](${B}/services): 서비스 상세와 패키지 구성
 - [최적화 블로그 · 카페 배포](${B}/services/cafe-distribution): 최적화 블로그 · 카페 배포 상품 구성·가격·프로세스 · 카페 등급별 단가와 대표 카페 · 지역 + 업종 키워드 월 단위 진행
 - [카페 배포 레퍼런스](${B}/services/cafe-distribution/reference): ${REF_CATEGORIES.length}개 업종 실사 노출 캡처
-- [홈페이지 제작](${B}/services/homepage): 업종별 시안 274개 · 3단 가격 · 월 관리 · 15영업일 제작 순서 · 대표님 명의 도메인
+- [홈페이지 제작](${B}/services/homepage): 업종별 시안 ${HP_STATS.drafts}개 (판매용 견본 · 업체명과 사진은 예시) · 3단 가격 · 월 관리 · 15영업일 제작 순서 · 대표님 명의 도메인
 - [스마트스토어 상세페이지 제작](${B}/services/detail-page): 세 등급과 브랜드 패키지 단가·제작 순서·수정 규정
 - [상세페이지 레퍼런스](${B}/services/detail-page/reference): ${DP_REF_CATEGORIES.length}개 종류 ${DP_REF_TOTAL}건의 상세페이지 실물을 처음부터 끝까지 공개
 - [카페·베이커리 마케팅](${B}/services/cafe)

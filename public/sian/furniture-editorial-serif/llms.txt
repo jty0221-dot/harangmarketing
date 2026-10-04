@@ -1,0 +1,41 @@
+# 나무결 가구
+
+> 포항 나무결 가구. 원목 가구 · 소파 · 조명 · 소품 · 배송 설치.
+
+## 핵심 사실
+- 상호: 나무결 가구
+- 업종: 가구 · 소품
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [원목 가구](https://demo.example.kr/furniture-editorial-serif/services/wood/): 식탁 · 수납장
+- [소파 · 침대](https://demo.example.kr/furniture-editorial-serif/services/sofa/): 패브릭 · 가죽
+- [조명 · 소품](https://demo.example.kr/furniture-editorial-serif/services/deco/): 집 분위기 소품
+- [배송 · 설치](https://demo.example.kr/furniture-editorial-serif/services/delivery/): 지역 배송
+
+## 자주 묻는 질문
+- 배송은 얼마나 걸리나요? 재고 상품은 일주일 안에 배송합니다.
+- 설치비가 따로 있나요? 지역 내 설치는 포함입니다.
+- 실물을 볼 수 있나요? 매장에서 전시 상품을 직접 보실 수 있습니다.
+
+## 주요 페이지
+- [포항 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/)
+- [서비스 안내 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/)
+- [포항 원목 가구 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/wood/)
+- [포항 소파 · 침대 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/sofa/)
+- [포항 조명 · 소품 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/deco/)
+- [포항 배송 · 설치 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/delivery/)
+- [포항 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/area/pohang/)
+- [경주 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/area/gyeongju/)
+- [울산 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/area/ulsan/)
+- [나무결 가구 소개 | 포항 가구점](https://demo.example.kr/furniture-editorial-serif/about/)
+- [자주 묻는 질문 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/faq/)
+- [오시는 길 · 문의 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,16 +1,16 @@
-# 톡톡 잉글리시 포항점
+# 톡톡 잉글리시
 
-> 포항 어린이 · 성인 영어 톡톡 잉글리시 포항점. 레벨 테스트 후 반 배정.
+> 포항 어린이 · 성인 영어 톡톡 잉글리시. 레벨 테스트 후 반 배정.
 
 ## 핵심 사실
-- 상호: 톡톡 잉글리시 포항점
+- 상호: 톡톡 잉글리시
 - 업종: 영어 · 어학
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [중고등 영어](https://demo.example.kr/english-vivid-pop/services/teen/): 내신 · 문법 · 독해
@@ -24,18 +24,18 @@
 - 원어민 수업이 있나요? 주 1회 원어민 회화 수업이 있습니다.
 
 ## 주요 페이지
-- [포항 영어학원 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/)
-- [서비스 안내 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/services/)
-- [포항 중고등 영어 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/services/teen/)
-- [포항 성인 회화 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/services/adult/)
-- [포항 온라인 수업 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/services/online/)
-- [포항 유초등 영어 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/services/kids/)
-- [포항 영어학원 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/area/pohang/)
-- [경주 영어학원 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/area/gyeongju/)
-- [울산 영어학원 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/area/ulsan/)
-- [톡톡 잉글리시 포항점 소개 | 포항 영어학원](https://demo.example.kr/english-vivid-pop/about/)
-- [자주 묻는 질문 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/faq/)
-- [오시는 길 · 문의 | 톡톡 잉글리시 포항점](https://demo.example.kr/english-vivid-pop/contact/)
+- [포항 영어학원 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/)
+- [서비스 안내 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/services/)
+- [포항 중고등 영어 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/services/teen/)
+- [포항 성인 회화 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/services/adult/)
+- [포항 온라인 수업 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/services/online/)
+- [포항 유초등 영어 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/services/kids/)
+- [포항 영어학원 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/area/pohang/)
+- [경주 영어학원 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/area/gyeongju/)
+- [울산 영어학원 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/area/ulsan/)
+- [톡톡 잉글리시 소개 | 포항 영어학원](https://demo.example.kr/english-vivid-pop/about/)
+- [자주 묻는 질문 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/faq/)
+- [오시는 길 · 문의 | 톡톡 잉글리시](https://demo.example.kr/english-vivid-pop/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

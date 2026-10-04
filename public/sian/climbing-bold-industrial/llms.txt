@@ -1,0 +1,41 @@
+# 오름 볼더
+
+> 강남 오름 볼더. 볼더링 · 리드 · 초보 강습 · 일일 체험.
+
+## 핵심 사실
+- 상호: 오름 볼더
+- 업종: 클라이밍
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [리드 클라이밍](https://demo.example.kr/climbing-bold-industrial/services/lead/): 로프 클라이밍
+- [초보 강습](https://demo.example.kr/climbing-bold-industrial/services/lesson/): 기초 동작 수업
+- [일일 체험](https://demo.example.kr/climbing-bold-industrial/services/trial/): 장비 대여 포함
+- [볼더링](https://demo.example.kr/climbing-bold-industrial/services/boulder/): 낮은 벽 문제 풀기
+
+## 자주 묻는 질문
+- 주차가 되나요? 2시간 무료입니다.
+- 일일권이 있나요? 일일권이 있습니다.
+- 운영 시간이 어떻게 되나요? 평일 06시~24시 · 주말 09시~20시입니다.
+
+## 주요 페이지
+- [강남 클라이밍 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/)
+- [서비스 안내 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/services/)
+- [강남 리드 클라이밍 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/services/lead/)
+- [강남 초보 강습 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/services/lesson/)
+- [강남 일일 체험 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/services/trial/)
+- [강남 볼더링 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/services/boulder/)
+- [강남 클라이밍 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/area/gangnam/)
+- [서초 클라이밍 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/area/seocho/)
+- [송파 클라이밍 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/area/songpa/)
+- [오름 볼더 소개 | 강남 클라이밍](https://demo.example.kr/climbing-bold-industrial/about/)
+- [자주 묻는 질문 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/faq/)
+- [오시는 길 · 문의 | 오름 볼더](https://demo.example.kr/climbing-bold-industrial/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

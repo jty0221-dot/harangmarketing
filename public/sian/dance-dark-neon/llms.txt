@@ -1,0 +1,41 @@
+# 무브 댄스
+
+> 포항 무브 댄스. K-POP · 방송댄스 · 입시 · 성인 취미반.
+
+## 핵심 사실
+- 상호: 무브 댄스
+- 업종: 댄스학원
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [K-POP 커버](https://demo.example.kr/dance-dark-neon/services/kpop/): 한 곡 완성반
+- [방송 댄스](https://demo.example.kr/dance-dark-neon/services/basic/): 기초부터
+- [입시 · 오디션](https://demo.example.kr/dance-dark-neon/services/exam/): 실용무용 입시
+- [성인 취미반](https://demo.example.kr/dance-dark-neon/services/adult/): 직장인 저녁반
+
+## 자주 묻는 질문
+- 몇 살부터 다닐 수 있나요? 5세부터 가능합니다.
+- 준비물이 있나요? 재료는 학원에서 준비합니다.
+- 발표회가 있나요? 1년에 한 번 발표회를 엽니다.
+
+## 주요 페이지
+- [포항 댄스학원 | 무브 댄스](https://demo.example.kr/dance-dark-neon/)
+- [서비스 안내 | 무브 댄스](https://demo.example.kr/dance-dark-neon/services/)
+- [포항 K-POP 커버 | 무브 댄스](https://demo.example.kr/dance-dark-neon/services/kpop/)
+- [포항 방송 댄스 | 무브 댄스](https://demo.example.kr/dance-dark-neon/services/basic/)
+- [포항 입시 · 오디션 | 무브 댄스](https://demo.example.kr/dance-dark-neon/services/exam/)
+- [포항 성인 취미반 | 무브 댄스](https://demo.example.kr/dance-dark-neon/services/adult/)
+- [포항 댄스학원 | 무브 댄스](https://demo.example.kr/dance-dark-neon/area/pohang/)
+- [경주 댄스학원 | 무브 댄스](https://demo.example.kr/dance-dark-neon/area/gyeongju/)
+- [울산 댄스학원 | 무브 댄스](https://demo.example.kr/dance-dark-neon/area/ulsan/)
+- [무브 댄스 소개 | 포항 댄스학원](https://demo.example.kr/dance-dark-neon/about/)
+- [자주 묻는 질문 | 무브 댄스](https://demo.example.kr/dance-dark-neon/faq/)
+- [오시는 길 · 문의 | 무브 댄스](https://demo.example.kr/dance-dark-neon/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

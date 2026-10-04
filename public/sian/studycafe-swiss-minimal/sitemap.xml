@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/services/room/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/services/pass/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/services/lounge/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/services/seat/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/area/ilsan/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/area/paju/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/area/gimpo/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/studycafe-swiss-minimal/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+</urlset>

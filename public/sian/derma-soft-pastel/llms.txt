@@ -1,0 +1,41 @@
+# 고운날 피부과
+
+> 대구 고운날 피부과. 진료 과목 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 고운날 피부과
+- 업종: 피부과
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [피부 검사 · 상담](https://demo.example.kr/derma-soft-pastel/services/consult/): 상태 확인 후 진료 계획 설명
+- [레이저 진료](https://demo.example.kr/derma-soft-pastel/services/laser/): 검사 · 상담 후 진행
+- [비급여 진료 안내](https://demo.example.kr/derma-soft-pastel/services/fee/): 진료비 고지 확인
+- [피부 질환 진료](https://demo.example.kr/derma-soft-pastel/services/skin/): 여드름 · 아토피 · 두드러기
+
+## 자주 묻는 질문
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+
+## 주요 페이지
+- [대구 피부과 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/)
+- [서비스 안내 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/services/)
+- [대구 피부 검사 · 상담 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/services/consult/)
+- [대구 레이저 진료 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/services/laser/)
+- [대구 비급여 진료 안내 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/services/fee/)
+- [대구 피부 질환 진료 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/services/skin/)
+- [대구 피부과 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/area/daegu/)
+- [경산 피부과 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/area/gyeongsan/)
+- [수성 피부과 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/area/suseong/)
+- [고운날 피부과 소개 | 대구 피부과](https://demo.example.kr/derma-soft-pastel/about/)
+- [자주 묻는 질문 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/faq/)
+- [오시는 길 · 문의 | 고운날 피부과](https://demo.example.kr/derma-soft-pastel/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

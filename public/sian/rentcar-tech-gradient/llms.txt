@@ -1,0 +1,41 @@
+# 착한 렌트
+
+> 일산 착한 렌트. 단기 · 월 렌트 · 보험 · 배차 안내.
+
+## 핵심 사실
+- 상호: 착한 렌트
+- 업종: 렌터카
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [월 렌트](https://demo.example.kr/rentcar-tech-gradient/services/month/): 한 달 단위
+- [장기 렌트](https://demo.example.kr/rentcar-tech-gradient/services/long/): 1년 이상
+- [배차 · 반납](https://demo.example.kr/rentcar-tech-gradient/services/delivery/): 지정 장소 배차
+- [단기 렌트](https://demo.example.kr/rentcar-tech-gradient/services/short/): 하루 · 주말
+
+## 자주 묻는 질문
+- 배차는 어디서 받나요? 공항 · 역 · 지정 장소로 배차합니다.
+- 나이 제한이 있나요? 만 21세 이상 · 면허 1년 이상이면 대여할 수 있습니다.
+- 보험은 어떻게 되나요? 자차 · 대인 · 대물 조건을 대여 전에 안내합니다.
+
+## 주요 페이지
+- [일산 렌터카 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/)
+- [서비스 안내 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/services/)
+- [일산 월 렌트 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/services/month/)
+- [일산 장기 렌트 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/services/long/)
+- [일산 배차 · 반납 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/services/delivery/)
+- [일산 단기 렌트 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/services/short/)
+- [일산 렌터카 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/area/ilsan/)
+- [파주 렌터카 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/area/paju/)
+- [김포 렌터카 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/area/gimpo/)
+- [착한 렌트 소개 | 일산 렌터카](https://demo.example.kr/rentcar-tech-gradient/about/)
+- [자주 묻는 질문 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/faq/)
+- [오시는 길 · 문의 | 착한 렌트](https://demo.example.kr/rentcar-tech-gradient/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

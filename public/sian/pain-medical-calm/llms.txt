@@ -1,0 +1,41 @@
+# 편한 통증의학과
+
+> 대구 편한 통증의학과. 진료 과목 · 검사 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 편한 통증의학과
+- 업종: 통증의학과
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [목 · 허리 진료](https://demo.example.kr/pain-medical-calm/services/spine/): 통증 부위 확인
+- [어깨 · 무릎 진료](https://demo.example.kr/pain-medical-calm/services/joint/): 관절 통증
+- [초음파 검사](https://demo.example.kr/pain-medical-calm/services/ultra/): 검사 후 설명
+- [주사 · 물리치료 안내](https://demo.example.kr/pain-medical-calm/services/treat/): 상담 후 진행
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [대구 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/)
+- [서비스 안내 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/)
+- [대구 목 · 허리 진료 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/spine/)
+- [대구 어깨 · 무릎 진료 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/joint/)
+- [대구 초음파 검사 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/ultra/)
+- [대구 주사 · 물리치료 안내 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/treat/)
+- [대구 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/area/daegu/)
+- [경산 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/area/gyeongsan/)
+- [수성 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/area/suseong/)
+- [편한 통증의학과 소개 | 대구 통증의학과](https://demo.example.kr/pain-medical-calm/about/)
+- [자주 묻는 질문 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/faq/)
+- [오시는 길 · 문의 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

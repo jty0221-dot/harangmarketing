@@ -1,0 +1,41 @@
+# 달콤 공방
+
+> 인천 구월 달콤 공방. 주문 케이크 · 마카롱 · 구움과자 · 픽업 예약.
+
+## 핵심 사실
+- 상호: 달콤 공방
+- 업종: 디저트 · 케이크
+- 지역: 남동구
+- 서비스 지역: 인천 구월 · 부평 · 송도
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [주문 케이크](https://demo.example.kr/dessert-soft-pastel/services/cake/): 도안 상담 후 제작
+- [마카롱](https://demo.example.kr/dessert-soft-pastel/services/macaron/): 매일 굽는 마카롱
+- [구움과자](https://demo.example.kr/dessert-soft-pastel/services/baked/): 휘낭시에 · 마들렌
+- [선물 포장](https://demo.example.kr/dessert-soft-pastel/services/gift/): 답례품 · 단체
+
+## 자주 묻는 질문
+- 빵 나오는 시간이 정해져 있나요? 오전 8시 · 11시 · 오후 3시에 주요 빵이 나옵니다.
+- 택배가 되나요? 구움과자와 일부 빵은 전국 택배가 됩니다.
+- 알레르기 정보는요? 제품마다 원재료와 알레르기 유발 성분을 표시해 두었습니다.
+
+## 주요 페이지
+- [인천 구월 디저트 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/)
+- [서비스 안내 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/services/)
+- [인천 구월 주문 케이크 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/services/cake/)
+- [인천 구월 마카롱 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/services/macaron/)
+- [인천 구월 구움과자 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/services/baked/)
+- [인천 구월 선물 포장 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/services/gift/)
+- [인천 구월 디저트 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/area/incheon-guwol/)
+- [부평 디저트 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/area/bupyeong/)
+- [송도 디저트 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/area/songdo/)
+- [달콤 공방 소개 | 인천 구월 디저트](https://demo.example.kr/dessert-soft-pastel/about/)
+- [자주 묻는 질문 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/faq/)
+- [오시는 길 · 문의 | 달콤 공방](https://demo.example.kr/dessert-soft-pastel/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,41 @@
+# 몰입 스터디카페
+
+> 대구 몰입 스터디카페. 1인석 · 스터디룸 · 정기권 · 24시간 운영.
+
+## 핵심 사실
+- 상호: 몰입 스터디카페
+- 업종: 스터디카페
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [1인 집중석](https://demo.example.kr/studycafe-simple-mono/services/seat/): 칸막이 좌석
+- [스터디룸](https://demo.example.kr/studycafe-simple-mono/services/room/): 2~6인 룸
+- [정기권](https://demo.example.kr/studycafe-simple-mono/services/pass/): 시간 · 기간권
+- [음료 · 휴게 공간](https://demo.example.kr/studycafe-simple-mono/services/lounge/): 무료 음료
+
+## 자주 묻는 질문
+- 24시간 운영하나요? 연중무휴 24시간 운영합니다.
+- 정기권은 어떤 게 있나요? 시간권 · 2주권 · 4주권이 있습니다.
+- 주차가 되나요? 건물 주차 2시간 지원합니다.
+
+## 주요 페이지
+- [대구 스터디카페 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/)
+- [서비스 안내 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/services/)
+- [대구 1인 집중석 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/services/seat/)
+- [대구 스터디룸 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/services/room/)
+- [대구 정기권 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/services/pass/)
+- [대구 음료 · 휴게 공간 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/services/lounge/)
+- [대구 스터디카페 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/area/daegu/)
+- [경산 스터디카페 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/area/gyeongsan/)
+- [수성 스터디카페 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/area/suseong/)
+- [몰입 스터디카페 소개 | 대구 스터디카페](https://demo.example.kr/studycafe-simple-mono/about/)
+- [자주 묻는 질문 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/faq/)
+- [오시는 길 · 문의 | 몰입 스터디카페](https://demo.example.kr/studycafe-simple-mono/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

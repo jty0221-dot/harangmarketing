@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://demo.example.kr/internal-corporate-navy/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/services/general/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/services/checkup/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/services/scope/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/services/result/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/area/ilsan/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/area/paju/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/area/gimpo/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/internal-corporate-navy/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+</urlset>

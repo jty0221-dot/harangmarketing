@@ -1,0 +1,41 @@
+# 오브제 홈
+
+> 대구 오브제 홈. 원목 가구 · 소파 · 조명 · 소품 · 배송 설치.
+
+## 핵심 사실
+- 상호: 오브제 홈
+- 업종: 가구 · 소품
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [소파 · 침대](https://demo.example.kr/furniture-warm-local/services/sofa/): 패브릭 · 가죽
+- [조명 · 소품](https://demo.example.kr/furniture-warm-local/services/deco/): 집 분위기 소품
+- [배송 · 설치](https://demo.example.kr/furniture-warm-local/services/delivery/): 지역 배송
+- [원목 가구](https://demo.example.kr/furniture-warm-local/services/wood/): 식탁 · 수납장
+
+## 자주 묻는 질문
+- 설치비가 따로 있나요? 지역 내 설치는 포함입니다.
+- 실물을 볼 수 있나요? 매장에서 전시 상품을 직접 보실 수 있습니다.
+- 배송은 얼마나 걸리나요? 재고 상품은 일주일 안에 배송합니다.
+
+## 주요 페이지
+- [대구 가구점 | 오브제 홈](https://demo.example.kr/furniture-warm-local/)
+- [서비스 안내 | 오브제 홈](https://demo.example.kr/furniture-warm-local/services/)
+- [대구 소파 · 침대 | 오브제 홈](https://demo.example.kr/furniture-warm-local/services/sofa/)
+- [대구 조명 · 소품 | 오브제 홈](https://demo.example.kr/furniture-warm-local/services/deco/)
+- [대구 배송 · 설치 | 오브제 홈](https://demo.example.kr/furniture-warm-local/services/delivery/)
+- [대구 원목 가구 | 오브제 홈](https://demo.example.kr/furniture-warm-local/services/wood/)
+- [대구 가구점 | 오브제 홈](https://demo.example.kr/furniture-warm-local/area/daegu/)
+- [경산 가구점 | 오브제 홈](https://demo.example.kr/furniture-warm-local/area/gyeongsan/)
+- [수성 가구점 | 오브제 홈](https://demo.example.kr/furniture-warm-local/area/suseong/)
+- [오브제 홈 소개 | 대구 가구점](https://demo.example.kr/furniture-warm-local/about/)
+- [자주 묻는 질문 | 오브제 홈](https://demo.example.kr/furniture-warm-local/faq/)
+- [오시는 길 · 문의 | 오브제 홈](https://demo.example.kr/furniture-warm-local/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,1 +1,1 @@
-{"name": "안전한 소방 포항점", "short_name": "안전한 소방 포항점", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0A0A0A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "안전한 소방", "short_name": "안전한 소방", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0A0A0A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

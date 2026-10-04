@@ -1,0 +1,41 @@
+# 새벽 식자재
+
+> 포항 새벽 식자재. 농산물 · 공산품 · 냉장 배송 · 거래처 관리.
+
+## 핵심 사실
+- 상호: 새벽 식자재
+- 업종: 식자재 납품
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [농산물](https://demo.example.kr/foodsupply-fresh-nature/services/veg/): 산지 직거래 채소
+- [공산품 · 소스](https://demo.example.kr/foodsupply-fresh-nature/services/goods/): 식당용 대용량
+- [냉장 · 냉동 배송](https://demo.example.kr/foodsupply-fresh-nature/services/cold/): 온도 관리 배송
+- [거래처 관리](https://demo.example.kr/foodsupply-fresh-nature/services/account/): 주문 · 정산
+
+## 자주 묻는 질문
+- 최소 주문 수량이 있나요? 품목별로 다르며 견적 시 안내드립니다.
+- 샘플 제작이 되나요? 네, 유상 샘플 제작이 가능합니다.
+- 납기는 얼마나 걸리나요? 발주 후 2~3주입니다.
+
+## 주요 페이지
+- [포항 식자재 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/)
+- [서비스 안내 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/services/)
+- [포항 농산물 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/services/veg/)
+- [포항 공산품 · 소스 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/services/goods/)
+- [포항 냉장 · 냉동 배송 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/services/cold/)
+- [포항 거래처 관리 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/services/account/)
+- [포항 식자재 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/area/pohang/)
+- [경주 식자재 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/area/gyeongju/)
+- [울산 식자재 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/area/ulsan/)
+- [새벽 식자재 소개 | 포항 식자재](https://demo.example.kr/foodsupply-fresh-nature/about/)
+- [자주 묻는 질문 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/faq/)
+- [오시는 길 · 문의 | 새벽 식자재](https://demo.example.kr/foodsupply-fresh-nature/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,40 @@
+# 바른 법무사
+
+> 일산 바른 법무사. 부동산 등기 · 법인 등기 · 소송 서류 · 개인회생 상담.
+
+## 핵심 사실
+- 상호: 바른 법무사
+- 업종: 법무사 사무소
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [법인 등기](https://demo.example.kr/judicial-corporate-navy/services/corp/): 설립 · 변경 등기
+- [소송 서류 작성](https://demo.example.kr/judicial-corporate-navy/services/docs/): 지급명령 · 내용증명
+- [개인회생 · 파산](https://demo.example.kr/judicial-corporate-navy/services/rehab/): 신청 서류 상담
+- [부동산 등기](https://demo.example.kr/judicial-corporate-navy/services/estate/): 소유권 이전 · 근저당
+
+## 자주 묻는 질문
+- 어떤 자료를 가져가야 하나요? 관련 계약서 · 문자 · 통장 내역 등 사실을 보여 주는 자료를 가져오시면 됩니다.
+- 상담 비용이 있나요? 첫 상담 30분은 무료입니다.
+
+## 주요 페이지
+- [일산 법무사 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/)
+- [서비스 안내 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/services/)
+- [일산 법인 등기 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/services/corp/)
+- [일산 소송 서류 작성 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/services/docs/)
+- [일산 개인회생 · 파산 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/services/rehab/)
+- [일산 부동산 등기 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/services/estate/)
+- [일산 법무사 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/area/ilsan/)
+- [파주 법무사 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/area/paju/)
+- [김포 법무사 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/area/gimpo/)
+- [바른 법무사 소개 | 일산 법무사](https://demo.example.kr/judicial-corporate-navy/about/)
+- [자주 묻는 질문 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/faq/)
+- [오시는 길 · 문의 | 바른 법무사](https://demo.example.kr/judicial-corporate-navy/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,41 @@
+# 결 바버
+
+> 포항 결 바버. 남성 커트 · 펌 · 면도 · 예약 안내.
+
+## 핵심 사실
+- 상호: 결 바버
+- 업종: 바버샵 · 남성 커트
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [남성 커트](https://demo.example.kr/barber-dark-premium/services/cut/): 두상 맞춤 커트
+- [다운펌 · 볼륨펌](https://demo.example.kr/barber-dark-premium/services/perm/): 남성 펌
+- [습식 면도](https://demo.example.kr/barber-dark-premium/services/shave/): 따뜻한 타월 면도
+- [두피 케어](https://demo.example.kr/barber-dark-premium/services/scalp/): 두피 클렌징
+
+## 자주 묻는 질문
+- 가격표가 있나요? 기장 · 모질에 따라 달라 네이버 예약에 기본 가격을 올려 두었습니다.
+- 당일 예약이 되나요? 네이버 예약에서 빈 시간을 바로 확인하실 수 있습니다.
+- 시술 후 마음에 안 들면요? 7일 안에 말씀 주시면 수정해 드립니다.
+
+## 주요 페이지
+- [포항 바버샵 | 결 바버](https://demo.example.kr/barber-dark-premium/)
+- [서비스 안내 | 결 바버](https://demo.example.kr/barber-dark-premium/services/)
+- [포항 남성 커트 | 결 바버](https://demo.example.kr/barber-dark-premium/services/cut/)
+- [포항 다운펌 · 볼륨펌 | 결 바버](https://demo.example.kr/barber-dark-premium/services/perm/)
+- [포항 습식 면도 | 결 바버](https://demo.example.kr/barber-dark-premium/services/shave/)
+- [포항 두피 케어 | 결 바버](https://demo.example.kr/barber-dark-premium/services/scalp/)
+- [포항 바버샵 | 결 바버](https://demo.example.kr/barber-dark-premium/area/pohang/)
+- [경주 바버샵 | 결 바버](https://demo.example.kr/barber-dark-premium/area/gyeongju/)
+- [울산 바버샵 | 결 바버](https://demo.example.kr/barber-dark-premium/area/ulsan/)
+- [결 바버 소개 | 포항 바버샵](https://demo.example.kr/barber-dark-premium/about/)
+- [자주 묻는 질문 | 결 바버](https://demo.example.kr/barber-dark-premium/faq/)
+- [오시는 길 · 문의 | 결 바버](https://demo.example.kr/barber-dark-premium/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

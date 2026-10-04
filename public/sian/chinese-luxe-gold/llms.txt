@@ -1,0 +1,42 @@
+# 홍연 중식
+
+> 수원 홍연 중식. 식사 · 요리 · 코스 · 단체 예약.
+
+## 핵심 사실
+- 상호: 홍연 중식
+- 업종: 중식
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [식사](https://demo.example.kr/chinese-luxe-gold/services/meal/): 짜장 · 짬뽕 · 볶음밥
+- [요리](https://demo.example.kr/chinese-luxe-gold/services/dish/): 탕수육 · 깐풍기
+- [코스](https://demo.example.kr/chinese-luxe-gold/services/course/): 모임 · 접대 코스
+- [룸 · 단체](https://demo.example.kr/chinese-luxe-gold/services/room/): 가족 모임 예약
+
+## 자주 묻는 질문
+- 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
+- 주차가 되나요? 매장 앞 8대 주차 가능합니다.
+- 아이와 함께 가도 되나요? 유아 의자와 덜 매운 메뉴가 준비돼 있습니다.
+- 브레이크 타임이 있나요? 평일 15시~17시입니다.
+
+## 주요 페이지
+- [수원 중식당 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/)
+- [서비스 안내 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/services/)
+- [수원 식사 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/services/meal/)
+- [수원 요리 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/services/dish/)
+- [수원 코스 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/services/course/)
+- [수원 룸 · 단체 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/services/room/)
+- [수원 중식당 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/area/suwon/)
+- [용인 중식당 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/area/yongin/)
+- [화성 중식당 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/area/hwaseong/)
+- [홍연 중식 소개 | 수원 중식당](https://demo.example.kr/chinese-luxe-gold/about/)
+- [자주 묻는 질문 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/faq/)
+- [오시는 길 · 문의 | 홍연 중식](https://demo.example.kr/chinese-luxe-gold/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

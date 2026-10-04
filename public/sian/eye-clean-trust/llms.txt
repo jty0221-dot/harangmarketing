@@ -1,0 +1,41 @@
+# 밝은눈 안과
+
+> 수원 밝은눈 안과. 진료 과목 · 검사 안내 · 진료 시간.
+
+## 핵심 사실
+- 상호: 밝은눈 안과
+- 업종: 안과
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [일반 안과 진료](https://demo.example.kr/eye-clean-trust/services/general/): 결막염 · 안구건조 · 다래끼
+- [시력 · 안압 검사](https://demo.example.kr/eye-clean-trust/services/exam/): 정밀 검사 장비
+- [백내장 상담](https://demo.example.kr/eye-clean-trust/services/cataract/): 검사 · 상담 후 진행
+- [소아 시력 검사](https://demo.example.kr/eye-clean-trust/services/kids/): 아이 눈 건강 확인
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [수원 안과 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/)
+- [서비스 안내 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/services/)
+- [수원 일반 안과 진료 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/services/general/)
+- [수원 시력 · 안압 검사 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/services/exam/)
+- [수원 백내장 상담 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/services/cataract/)
+- [수원 소아 시력 검사 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/services/kids/)
+- [수원 안과 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/area/suwon/)
+- [용인 안과 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/area/yongin/)
+- [화성 안과 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/area/hwaseong/)
+- [밝은눈 안과 소개 | 수원 안과](https://demo.example.kr/eye-clean-trust/about/)
+- [자주 묻는 질문 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/faq/)
+- [오시는 길 · 문의 | 밝은눈 안과](https://demo.example.kr/eye-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

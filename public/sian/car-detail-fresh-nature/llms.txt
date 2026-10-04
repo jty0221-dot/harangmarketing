@@ -1,0 +1,41 @@
+# 반짝 디테일링
+
+> 부천 반짝 디테일링. 손세차 · 실내 클리닝 · 광택 · 유리막 코팅.
+
+## 핵심 사실
+- 상호: 반짝 디테일링
+- 업종: 디테일링 · 세차
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [프리미엄 손세차](https://demo.example.kr/car-detail-fresh-nature/services/wash/): 외부 · 휠 · 유리
+- [실내 클리닝](https://demo.example.kr/car-detail-fresh-nature/services/interior/): 시트 · 매트 · 냄새 제거
+- [광택](https://demo.example.kr/car-detail-fresh-nature/services/polish/): 스월 마크 제거
+- [유리막 코팅](https://demo.example.kr/car-detail-fresh-nature/services/coating/): 도장면 코팅
+
+## 자주 묻는 질문
+- 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
+- 작업 시간은요? 엔진오일은 30분 안팎, 코팅은 하루 이상 걸립니다.
+- 부품을 가져가도 되나요? 지참 부품 장착이 가능합니다.
+
+## 주요 페이지
+- [부천 디테일링 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/)
+- [서비스 안내 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/services/)
+- [부천 프리미엄 손세차 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/services/wash/)
+- [부천 실내 클리닝 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/services/interior/)
+- [부천 광택 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/services/polish/)
+- [부천 유리막 코팅 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/services/coating/)
+- [부천 디테일링 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/area/bucheon/)
+- [인천 부평 디테일링 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/area/bupyeong/)
+- [서울 구로 디테일링 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/area/guro/)
+- [반짝 디테일링 소개 | 부천 디테일링](https://demo.example.kr/car-detail-fresh-nature/about/)
+- [자주 묻는 질문 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/faq/)
+- [오시는 길 · 문의 | 반짝 디테일링](https://demo.example.kr/car-detail-fresh-nature/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

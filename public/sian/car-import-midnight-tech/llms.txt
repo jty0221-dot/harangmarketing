@@ -1,0 +1,41 @@
+# 정밀 오토
+
+> 수원 정밀 오토. 수입차 진단 · 소모품 · 엔진 · 미션 정비.
+
+## 핵심 사실
+- 상호: 정밀 오토
+- 업종: 수입차 정비
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [소모품 교체](https://demo.example.kr/car-import-midnight-tech/services/parts/): 오일 · 브레이크 · 필터
+- [엔진 · 미션 정비](https://demo.example.kr/car-import-midnight-tech/services/engine/): 점검 후 견적
+- [하체 점검](https://demo.example.kr/car-import-midnight-tech/services/chassis/): 서스펜션 · 누유 확인
+- [전자 진단](https://demo.example.kr/car-import-midnight-tech/services/diag/): 진단기로 고장 코드 확인
+
+## 자주 묻는 질문
+- 작업 시간은요? 엔진오일은 30분 안팎, 코팅은 하루 이상 걸립니다.
+- 부품을 가져가도 되나요? 지참 부품 장착이 가능합니다.
+- 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
+
+## 주요 페이지
+- [수원 수입차정비 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/)
+- [서비스 안내 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/services/)
+- [수원 소모품 교체 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/services/parts/)
+- [수원 엔진 · 미션 정비 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/services/engine/)
+- [수원 하체 점검 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/services/chassis/)
+- [수원 전자 진단 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/services/diag/)
+- [수원 수입차정비 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/area/suwon/)
+- [용인 수입차정비 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/area/yongin/)
+- [화성 수입차정비 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/area/hwaseong/)
+- [정밀 오토 소개 | 수원 수입차정비](https://demo.example.kr/car-import-midnight-tech/about/)
+- [자주 묻는 질문 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/faq/)
+- [오시는 길 · 문의 | 정밀 오토](https://demo.example.kr/car-import-midnight-tech/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

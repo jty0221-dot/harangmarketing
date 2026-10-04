@@ -1,0 +1,41 @@
+# 단정 성형외과
+
+> 부천 단정 성형외과. 상담 예약 · 진료 과목 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 단정 성형외과
+- 업종: 성형외과
+- 지역: 부천시
+- 서비스 지역: 부천 · 인천 부평 · 서울 구로
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [눈 · 코 진료](https://demo.example.kr/plastic-dreamy-mist/services/face/): 검사 · 상담 후 진행
+- [리프팅 진료](https://demo.example.kr/plastic-dreamy-mist/services/lifting/): 상담 후 진행 여부 결정
+- [진료비 · 회복 안내](https://demo.example.kr/plastic-dreamy-mist/services/care/): 비급여 고지 · 주의사항 안내
+- [상담 예약](https://demo.example.kr/plastic-dreamy-mist/services/consult/): 원장 상담 후 진료 계획 설명
+
+## 자주 묻는 질문
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+
+## 주요 페이지
+- [부천 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/)
+- [서비스 안내 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/)
+- [부천 눈 · 코 진료 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/face/)
+- [부천 리프팅 진료 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/lifting/)
+- [부천 진료비 · 회복 안내 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/care/)
+- [부천 상담 예약 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/consult/)
+- [부천 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/area/bucheon/)
+- [인천 부평 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/area/bupyeong/)
+- [서울 구로 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/area/guro/)
+- [단정 성형외과 소개 | 부천 성형외과](https://demo.example.kr/plastic-dreamy-mist/about/)
+- [자주 묻는 질문 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/faq/)
+- [오시는 길 · 문의 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

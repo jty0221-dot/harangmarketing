@@ -1,0 +1,41 @@
+# 밝음 썬팅
+
+> 대구 밝음 썬팅. 썬팅 · 블랙박스 · 하이패스 · 전장 시공.
+
+## 핵심 사실
+- 상호: 밝음 썬팅
+- 업종: 썬팅 · 블랙박스
+- 지역: 수성구
+- 서비스 지역: 대구 · 경산 · 수성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [썬팅](https://demo.example.kr/car-tint-dark-neon/services/tint/): 농도 · 필름 상담
+- [블랙박스](https://demo.example.kr/car-tint-dark-neon/services/dashcam/): 전후방 · 주차 녹화
+- [하이패스 · 내비](https://demo.example.kr/car-tint-dark-neon/services/hipass/): 매립 시공
+- [전장 시공](https://demo.example.kr/car-tint-dark-neon/services/electric/): 배선 정리 · 보조배터리
+
+## 자주 묻는 질문
+- 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
+- 작업 시간은요? 엔진오일은 30분 안팎, 코팅은 하루 이상 걸립니다.
+- 부품을 가져가도 되나요? 지참 부품 장착이 가능합니다.
+
+## 주요 페이지
+- [대구 썬팅 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/)
+- [서비스 안내 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/services/)
+- [대구 썬팅 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/services/tint/)
+- [대구 블랙박스 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/services/dashcam/)
+- [대구 하이패스 · 내비 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/services/hipass/)
+- [대구 전장 시공 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/services/electric/)
+- [대구 썬팅 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/area/daegu/)
+- [경산 썬팅 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/area/gyeongsan/)
+- [수성 썬팅 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/area/suseong/)
+- [밝음 썬팅 소개 | 대구 썬팅](https://demo.example.kr/car-tint-dark-neon/about/)
+- [자주 묻는 질문 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/faq/)
+- [오시는 길 · 문의 | 밝음 썬팅](https://demo.example.kr/car-tint-dark-neon/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,16 +1,16 @@
-# 스테이 온 수원점
+# 스테이 온
 
-> 수원 스테이 온 수원점. 객실 · 요금 · 주차 · 대실 안내.
+> 수원 스테이 온. 객실 · 요금 · 주차 · 대실 안내.
 
 ## 핵심 사실
-- 상호: 스테이 온 수원점
+- 상호: 스테이 온
 - 업종: 호텔 · 모텔
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [객실](https://demo.example.kr/hotel-dark-premium/services/rooms/): 객실 타입별 안내
@@ -23,17 +23,17 @@
 - 조식이 있나요? 간단한 조식이 제공됩니다.
 
 ## 주요 페이지
-- [수원 호텔 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/)
-- [서비스 안내 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/services/)
-- [수원 객실 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/services/rooms/)
-- [수원 대실 · 숙박 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/services/stay/)
-- [수원 비즈니스 장기 투숙 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/services/long-stay/)
-- [수원 호텔 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/area/suwon/)
-- [용인 호텔 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/area/yongin/)
-- [화성 호텔 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/area/hwaseong/)
-- [스테이 온 수원점 소개 | 수원 호텔](https://demo.example.kr/hotel-dark-premium/about/)
-- [자주 묻는 질문 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/faq/)
-- [오시는 길 · 문의 | 스테이 온 수원점](https://demo.example.kr/hotel-dark-premium/contact/)
+- [수원 호텔 | 스테이 온](https://demo.example.kr/hotel-dark-premium/)
+- [서비스 안내 | 스테이 온](https://demo.example.kr/hotel-dark-premium/services/)
+- [수원 객실 | 스테이 온](https://demo.example.kr/hotel-dark-premium/services/rooms/)
+- [수원 대실 · 숙박 | 스테이 온](https://demo.example.kr/hotel-dark-premium/services/stay/)
+- [수원 비즈니스 장기 투숙 | 스테이 온](https://demo.example.kr/hotel-dark-premium/services/long-stay/)
+- [수원 호텔 | 스테이 온](https://demo.example.kr/hotel-dark-premium/area/suwon/)
+- [용인 호텔 | 스테이 온](https://demo.example.kr/hotel-dark-premium/area/yongin/)
+- [화성 호텔 | 스테이 온](https://demo.example.kr/hotel-dark-premium/area/hwaseong/)
+- [스테이 온 소개 | 수원 호텔](https://demo.example.kr/hotel-dark-premium/about/)
+- [자주 묻는 질문 | 스테이 온](https://demo.example.kr/hotel-dark-premium/faq/)
+- [오시는 길 · 문의 | 스테이 온](https://demo.example.kr/hotel-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

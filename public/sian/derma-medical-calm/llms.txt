@@ -1,0 +1,41 @@
+# 맑은결 피부과
+
+> 포항 맑은결 피부과. 진료 과목 · 진료 시간 · 오시는 길 안내.
+
+## 핵심 사실
+- 상호: 맑은결 피부과
+- 업종: 피부과
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [피부 질환 진료](https://demo.example.kr/derma-medical-calm/services/skin/): 여드름 · 아토피 · 두드러기
+- [피부 검사 · 상담](https://demo.example.kr/derma-medical-calm/services/consult/): 상태 확인 후 진료 계획 설명
+- [레이저 진료](https://demo.example.kr/derma-medical-calm/services/laser/): 검사 · 상담 후 진행
+- [비급여 진료 안내](https://demo.example.kr/derma-medical-calm/services/fee/): 진료비 고지 확인
+
+## 자주 묻는 질문
+- 점심시간이 언제인가요? 13시~14시입니다.
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+
+## 주요 페이지
+- [포항 피부과 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/)
+- [서비스 안내 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/services/)
+- [포항 피부 질환 진료 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/services/skin/)
+- [포항 피부 검사 · 상담 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/services/consult/)
+- [포항 레이저 진료 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/services/laser/)
+- [포항 비급여 진료 안내 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/services/fee/)
+- [포항 피부과 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/area/pohang/)
+- [경주 피부과 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/area/gyeongju/)
+- [울산 피부과 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/area/ulsan/)
+- [맑은결 피부과 소개 | 포항 피부과](https://demo.example.kr/derma-medical-calm/about/)
+- [자주 묻는 질문 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/faq/)
+- [오시는 길 · 문의 | 맑은결 피부과](https://demo.example.kr/derma-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,42 @@
+# 황금 호프
+
+> 일산 황금 호프. 매장 · 포장 · 배달 안내.
+
+## 핵심 사실
+- 상호: 황금 호프
+- 업종: 치킨 · 호프
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [안주 메뉴](https://demo.example.kr/chicken-dark-neon/services/side/): 감자튀김 · 떡볶이
+- [생맥주](https://demo.example.kr/chicken-dark-neon/services/beer/): 시원한 생맥주
+- [포장 · 배달](https://demo.example.kr/chicken-dark-neon/services/delivery/): 주문 안내
+- [후라이드 · 양념](https://demo.example.kr/chicken-dark-neon/services/chicken/): 주문 후 바로 튀김
+
+## 자주 묻는 질문
+- 주차가 되나요? 매장 앞 8대 주차 가능합니다.
+- 아이와 함께 가도 되나요? 유아 의자와 덜 매운 메뉴가 준비돼 있습니다.
+- 브레이크 타임이 있나요? 평일 15시~17시입니다.
+- 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
+
+## 주요 페이지
+- [일산 치킨 | 황금 호프](https://demo.example.kr/chicken-dark-neon/)
+- [서비스 안내 | 황금 호프](https://demo.example.kr/chicken-dark-neon/services/)
+- [일산 안주 메뉴 | 황금 호프](https://demo.example.kr/chicken-dark-neon/services/side/)
+- [일산 생맥주 | 황금 호프](https://demo.example.kr/chicken-dark-neon/services/beer/)
+- [일산 포장 · 배달 | 황금 호프](https://demo.example.kr/chicken-dark-neon/services/delivery/)
+- [일산 후라이드 · 양념 | 황금 호프](https://demo.example.kr/chicken-dark-neon/services/chicken/)
+- [일산 치킨 | 황금 호프](https://demo.example.kr/chicken-dark-neon/area/ilsan/)
+- [파주 치킨 | 황금 호프](https://demo.example.kr/chicken-dark-neon/area/paju/)
+- [김포 치킨 | 황금 호프](https://demo.example.kr/chicken-dark-neon/area/gimpo/)
+- [황금 호프 소개 | 일산 치킨](https://demo.example.kr/chicken-dark-neon/about/)
+- [자주 묻는 질문 | 황금 호프](https://demo.example.kr/chicken-dark-neon/faq/)
+- [오시는 길 · 문의 | 황금 호프](https://demo.example.kr/chicken-dark-neon/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

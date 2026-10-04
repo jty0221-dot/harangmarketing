@@ -1,16 +1,16 @@
-# 가뿐 이사 수원점
+# 가뿐 이사
 
 > 수원 포장이사 · 반포장 · 원룸 이사 · 용달. 방문 견적 후 금액이 바뀌지 않습니다.
 
 ## 핵심 사실
-- 상호: 가뿐 이사 수원점
+- 상호: 가뿐 이사
 - 업종: 이사 · 용달 · 화물
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-04
+- 최종 갱신: 2026-10-05
 
 ## 서비스
 - [포장이사](https://demo.example.kr/moving-bold-industrial/services/full/): 포장부터 정리까지 전 과정
@@ -24,18 +24,18 @@
 - 파손되면 어떻게 하나요? 적재물 배상 보험 가입 업체입니다. 보상 절차를 계약서에 적어 드립니다.
 
 ## 주요 페이지
-- [수원 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/)
-- [서비스 안내 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/services/)
-- [수원 포장이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/services/full/)
-- [수원 반포장 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/services/half/)
-- [수원 원룸 · 소형 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/services/small/)
-- [수원 사무실 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/services/office/)
-- [수원 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/area/suwon/)
-- [용인 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/area/yongin/)
-- [화성 이사 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/area/hwaseong/)
-- [가뿐 이사 수원점 소개 | 수원 이사](https://demo.example.kr/moving-bold-industrial/about/)
-- [자주 묻는 질문 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/faq/)
-- [오시는 길 · 문의 | 가뿐 이사 수원점](https://demo.example.kr/moving-bold-industrial/contact/)
+- [수원 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/)
+- [서비스 안내 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/services/)
+- [수원 포장이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/services/full/)
+- [수원 반포장 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/services/half/)
+- [수원 원룸 · 소형 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/services/small/)
+- [수원 사무실 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/services/office/)
+- [수원 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/area/suwon/)
+- [용인 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/area/yongin/)
+- [화성 이사 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/area/hwaseong/)
+- [가뿐 이사 소개 | 수원 이사](https://demo.example.kr/moving-bold-industrial/about/)
+- [자주 묻는 질문 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/faq/)
+- [오시는 길 · 문의 | 가뿐 이사](https://demo.example.kr/moving-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,0 +1,41 @@
+# 든든 정형외과
+
+> 일산 든든 정형외과. 진료 과목 · 물리치료 · 진료 시간.
+
+## 핵심 사실
+- 상호: 든든 정형외과
+- 업종: 정형외과
+- 지역: 고양시
+- 서비스 지역: 일산 · 파주 · 김포
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [영상 검사](https://demo.example.kr/ortho-clean-trust/services/imaging/): 엑스레이 · 초음파
+- [물리치료](https://demo.example.kr/ortho-clean-trust/services/physio/): 도수 · 운동 치료
+- [재활 운동 안내](https://demo.example.kr/ortho-clean-trust/services/rehab/): 생활 습관 · 운동 방법
+- [관절 · 척추 진료](https://demo.example.kr/ortho-clean-trust/services/joint/): 허리 · 목 · 무릎 · 어깨
+
+## 자주 묻는 질문
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+
+## 주요 페이지
+- [일산 정형외과 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/)
+- [서비스 안내 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/services/)
+- [일산 영상 검사 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/services/imaging/)
+- [일산 물리치료 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/services/physio/)
+- [일산 재활 운동 안내 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/services/rehab/)
+- [일산 관절 · 척추 진료 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/services/joint/)
+- [일산 정형외과 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/area/ilsan/)
+- [파주 정형외과 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/area/paju/)
+- [김포 정형외과 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/area/gimpo/)
+- [든든 정형외과 소개 | 일산 정형외과](https://demo.example.kr/ortho-clean-trust/about/)
+- [자주 묻는 질문 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/faq/)
+- [오시는 길 · 문의 | 든든 정형외과](https://demo.example.kr/ortho-clean-trust/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

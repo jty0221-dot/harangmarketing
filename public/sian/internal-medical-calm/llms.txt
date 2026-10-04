@@ -1,0 +1,41 @@
+# 온맘 내과
+
+> 수원 온맘 내과. 진료 과목 · 건강검진 · 진료 시간.
+
+## 핵심 사실
+- 상호: 온맘 내과
+- 업종: 내과 · 건강검진
+- 지역: 수원시
+- 서비스 지역: 수원 · 용인 · 화성
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [건강검진](https://demo.example.kr/internal-medical-calm/services/checkup/): 국가검진 · 종합검진
+- [내시경 검사](https://demo.example.kr/internal-medical-calm/services/scope/): 위 · 대장 내시경
+- [검진 결과 상담](https://demo.example.kr/internal-medical-calm/services/result/): 결과지 설명
+- [내과 진료](https://demo.example.kr/internal-medical-calm/services/general/): 감기 · 소화기 · 만성질환
+
+## 자주 묻는 질문
+- 예약이 필요한가요? 일반 진료는 접수 순서이고 검진은 예약제입니다.
+- 주차가 되나요? 건물 주차장 1시간 무료입니다.
+- 점심시간이 언제인가요? 13시~14시입니다.
+
+## 주요 페이지
+- [수원 내과 | 온맘 내과](https://demo.example.kr/internal-medical-calm/)
+- [서비스 안내 | 온맘 내과](https://demo.example.kr/internal-medical-calm/services/)
+- [수원 건강검진 | 온맘 내과](https://demo.example.kr/internal-medical-calm/services/checkup/)
+- [수원 내시경 검사 | 온맘 내과](https://demo.example.kr/internal-medical-calm/services/scope/)
+- [수원 검진 결과 상담 | 온맘 내과](https://demo.example.kr/internal-medical-calm/services/result/)
+- [수원 내과 진료 | 온맘 내과](https://demo.example.kr/internal-medical-calm/services/general/)
+- [수원 내과 | 온맘 내과](https://demo.example.kr/internal-medical-calm/area/suwon/)
+- [용인 내과 | 온맘 내과](https://demo.example.kr/internal-medical-calm/area/yongin/)
+- [화성 내과 | 온맘 내과](https://demo.example.kr/internal-medical-calm/area/hwaseong/)
+- [온맘 내과 소개 | 수원 내과](https://demo.example.kr/internal-medical-calm/about/)
+- [자주 묻는 질문 | 온맘 내과](https://demo.example.kr/internal-medical-calm/faq/)
+- [오시는 길 · 문의 | 온맘 내과](https://demo.example.kr/internal-medical-calm/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

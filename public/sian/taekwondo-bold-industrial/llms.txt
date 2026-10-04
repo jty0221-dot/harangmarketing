@@ -1,0 +1,41 @@
+# 힘찬 태권도장
+
+> 포항 힘찬 태권도장. 유아 · 초등 태권도 · 차량 운행 안내.
+
+## 핵심 사실
+- 상호: 힘찬 태권도장
+- 업종: 태권도장
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [초등 태권도](https://demo.example.kr/taekwondo-bold-industrial/services/elem/): 품새 · 겨루기
+- [승급 · 승단 심사](https://demo.example.kr/taekwondo-bold-industrial/services/exam/): 심사 준비
+- [차량 운행](https://demo.example.kr/taekwondo-bold-industrial/services/bus/): 등하원 운행
+- [유아 태권도](https://demo.example.kr/taekwondo-bold-industrial/services/kids/): 놀이 체육
+
+## 자주 묻는 질문
+- 차량 운행을 하나요? 도장 주변 아파트 단지까지 운행합니다.
+- 체험 수업이 있나요? 첫 수업은 무료 체험으로 진행합니다.
+- 몇 살부터 다닐 수 있나요? 5세부터 다닐 수 있습니다.
+
+## 주요 페이지
+- [포항 태권도 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/)
+- [서비스 안내 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/services/)
+- [포항 초등 태권도 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/services/elem/)
+- [포항 승급 · 승단 심사 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/services/exam/)
+- [포항 차량 운행 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/services/bus/)
+- [포항 유아 태권도 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/services/kids/)
+- [포항 태권도 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/area/pohang/)
+- [경주 태권도 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/area/gyeongju/)
+- [울산 태권도 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/area/ulsan/)
+- [힘찬 태권도장 소개 | 포항 태권도](https://demo.example.kr/taekwondo-bold-industrial/about/)
+- [자주 묻는 질문 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/faq/)
+- [오시는 길 · 문의 | 힘찬 태권도장](https://demo.example.kr/taekwondo-bold-industrial/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

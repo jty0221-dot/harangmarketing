@@ -1,0 +1,41 @@
+# 물결 손세차
+
+> 포항 물결 손세차. 손세차 · 실내 클리닝 · 광택 · 유리막 코팅.
+
+## 핵심 사실
+- 상호: 물결 손세차
+- 업종: 디테일링 · 세차
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [실내 클리닝](https://demo.example.kr/car-detail-dark-premium/services/interior/): 시트 · 매트 · 냄새 제거
+- [광택](https://demo.example.kr/car-detail-dark-premium/services/polish/): 스월 마크 제거
+- [유리막 코팅](https://demo.example.kr/car-detail-dark-premium/services/coating/): 도장면 코팅
+- [프리미엄 손세차](https://demo.example.kr/car-detail-dark-premium/services/wash/): 외부 · 휠 · 유리
+
+## 자주 묻는 질문
+- 작업 시간은요? 엔진오일은 30분 안팎, 코팅은 하루 이상 걸립니다.
+- 부품을 가져가도 되나요? 지참 부품 장착이 가능합니다.
+- 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
+
+## 주요 페이지
+- [포항 디테일링 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/)
+- [서비스 안내 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/services/)
+- [포항 실내 클리닝 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/services/interior/)
+- [포항 광택 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/services/polish/)
+- [포항 유리막 코팅 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/services/coating/)
+- [포항 프리미엄 손세차 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/services/wash/)
+- [포항 디테일링 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/area/pohang/)
+- [경주 디테일링 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/area/gyeongju/)
+- [울산 디테일링 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/area/ulsan/)
+- [물결 손세차 소개 | 포항 디테일링](https://demo.example.kr/car-detail-dark-premium/about/)
+- [자주 묻는 질문 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/faq/)
+- [오시는 길 · 문의 | 물결 손세차](https://demo.example.kr/car-detail-dark-premium/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

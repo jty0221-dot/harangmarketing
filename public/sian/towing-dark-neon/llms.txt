@@ -1,0 +1,41 @@
+# 24 레커
+
+> 포항 24 레커. 견인 · 배터리 · 타이어 · 사고 차량 이송.
+
+## 핵심 사실
+- 상호: 24 레커
+- 업종: 견인 · 긴급출동
+- 지역: 포항시
+- 서비스 지역: 포항 · 경주 · 울산
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [배터리 출동](https://demo.example.kr/towing-dark-neon/services/battery/): 점프 · 교체
+- [타이어 긴급](https://demo.example.kr/towing-dark-neon/services/tire/): 펑크 · 교체
+- [차량 이송](https://demo.example.kr/towing-dark-neon/services/transport/): 정비소 · 공업사 이송
+- [견인](https://demo.example.kr/towing-dark-neon/services/tow/): 사고 · 고장 차량
+
+## 자주 묻는 질문
+- 요금은 언제 알 수 있나요? 출동 전에 거리 기준 요금을 먼저 알려 드립니다.
+- 보험 출동과 같은가요? 보험사 긴급출동 연계 여부를 함께 확인해 드립니다.
+- 출동은 얼마나 걸리나요? 시내 기준 30분 안팎에 도착합니다.
+
+## 주요 페이지
+- [포항 견인 | 24 레커](https://demo.example.kr/towing-dark-neon/)
+- [서비스 안내 | 24 레커](https://demo.example.kr/towing-dark-neon/services/)
+- [포항 배터리 출동 | 24 레커](https://demo.example.kr/towing-dark-neon/services/battery/)
+- [포항 타이어 긴급 | 24 레커](https://demo.example.kr/towing-dark-neon/services/tire/)
+- [포항 차량 이송 | 24 레커](https://demo.example.kr/towing-dark-neon/services/transport/)
+- [포항 견인 | 24 레커](https://demo.example.kr/towing-dark-neon/services/tow/)
+- [포항 견인 | 24 레커](https://demo.example.kr/towing-dark-neon/area/pohang/)
+- [경주 견인 | 24 레커](https://demo.example.kr/towing-dark-neon/area/gyeongju/)
+- [울산 견인 | 24 레커](https://demo.example.kr/towing-dark-neon/area/ulsan/)
+- [24 레커 소개 | 포항 견인](https://demo.example.kr/towing-dark-neon/about/)
+- [자주 묻는 질문 | 24 레커](https://demo.example.kr/towing-dark-neon/faq/)
+- [오시는 길 · 문의 | 24 레커](https://demo.example.kr/towing-dark-neon/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

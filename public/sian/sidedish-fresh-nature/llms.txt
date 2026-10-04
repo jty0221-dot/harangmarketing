@@ -1,0 +1,41 @@
+# 오늘 반찬
+
+> 강남 오늘 반찬. 매일 반찬 · 국 · 정기 배달 · 명절 음식.
+
+## 핵심 사실
+- 상호: 오늘 반찬
+- 업종: 반찬가게
+- 지역: 강남구
+- 서비스 지역: 강남 · 서초 · 송파
+- 전화: 010-0000-0000
+- 주소: 확인 중
+- 영업시간: 평일 09:00 ~ 18:00
+- 최종 갱신: 2026-10-05
+
+## 서비스
+- [국 · 찌개](https://demo.example.kr/sidedish-fresh-nature/services/soup/): 데우기만 하면 끝
+- [정기 배달](https://demo.example.kr/sidedish-fresh-nature/services/subscribe/): 주 2회 배달
+- [명절 음식](https://demo.example.kr/sidedish-fresh-nature/services/holiday/): 전 · 나물 예약
+- [오늘의 반찬](https://demo.example.kr/sidedish-fresh-nature/services/daily/): 매일 바뀌는 반찬
+
+## 자주 묻는 질문
+- 정기 배달은 어떻게 하나요? 주 2회 문 앞 배달로 운영합니다.
+- 원산지 표시가 있나요? 모든 반찬에 원산지를 표시합니다.
+- 반찬은 매일 바뀌나요? 매일 아침 일부 메뉴가 바뀝니다.
+
+## 주요 페이지
+- [강남 반찬가게 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/)
+- [서비스 안내 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/services/)
+- [강남 국 · 찌개 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/services/soup/)
+- [강남 정기 배달 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/services/subscribe/)
+- [강남 명절 음식 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/services/holiday/)
+- [강남 오늘의 반찬 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/services/daily/)
+- [강남 반찬가게 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/area/gangnam/)
+- [서초 반찬가게 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/area/seocho/)
+- [송파 반찬가게 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/area/songpa/)
+- [오늘 반찬 소개 | 강남 반찬가게](https://demo.example.kr/sidedish-fresh-nature/about/)
+- [자주 묻는 질문 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/faq/)
+- [오시는 길 · 문의 | 오늘 반찬](https://demo.example.kr/sidedish-fresh-nature/contact/)
+
+## 인용 안내
+- 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.
