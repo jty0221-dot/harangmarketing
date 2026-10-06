@@ -10,7 +10,7 @@ import {
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle, Sparkles,
   Handshake,
 } from "lucide-react";
-import { GA_EVENTS } from "../components/Analytics";
+import { GA_EVENTS, newEventId } from "../components/Analytics";
 import { attributionLabel } from "../lib/attribution";
 import KakaoSendNotice from "../components/KakaoSendNotice";
 
@@ -140,6 +140,8 @@ export default function ContactPage() {
 
     // 서버 접수 (저장 + 알림). 카톡 창이 막혀도 이 길이 살아 있으면 접수된 것이다
     let saved = false;
+    // 픽셀과 서버 전환이 같은 신청을 하나로 세도록 같은 id 를 쓴다
+    const eventId = newEventId();
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -154,10 +156,11 @@ export default function ContactPage() {
           // 광고 유입 경로. 없으면 서버가 'web' 으로 둔다
           source: attributionLabel() ? `web · ${attributionLabel()}` : "web",
           website,
+          eventId,
         }),
       });
       saved = res.ok;
-      if (saved) GA_EVENTS.leadSaved("contact", attributionLabel() || "direct");
+      if (saved) GA_EVENTS.leadSaved("contact", attributionLabel() || "direct", eventId);
     } catch {
       saved = false;
     }

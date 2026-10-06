@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/check/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/finance/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/buy/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/stock/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/area/daegu/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/area/gyeongsan/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/area/suseong/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/car-used-swiss-minimal/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/</loc><lastmod>2026-10-06</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/</loc><lastmod>2026-10-06</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/check/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/finance/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/buy/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/services/stock/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/area/daegu/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/area/gyeongsan/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/area/suseong/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/about/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/faq/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/car-used-swiss-minimal/contact/</loc><lastmod>2026-10-06</lastmod><priority>0.9</priority></url>
 </urlset>

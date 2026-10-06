@@ -1,16 +1,16 @@
-# 단정 성형외과
+# 견본 성형외과 B
 
-> 부천 단정 성형외과. 상담 예약 · 진료 과목 · 오시는 길 안내.
+> 부천 견본 성형외과 B. 상담 예약 · 진료 과목 · 오시는 길 안내.
 
 ## 핵심 사실
-- 상호: 단정 성형외과
+- 상호: 견본 성형외과 B
 - 업종: 성형외과
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [눈 · 코 진료](https://demo.example.kr/plastic-dreamy-mist/services/face/): 검사 · 상담 후 진행
@@ -24,18 +24,18 @@
 - 점심시간이 언제인가요? 13시~14시입니다.
 
 ## 주요 페이지
-- [부천 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/)
-- [서비스 안내 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/)
-- [부천 눈 · 코 진료 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/face/)
-- [부천 리프팅 진료 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/lifting/)
-- [부천 진료비 · 회복 안내 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/care/)
-- [부천 상담 예약 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/services/consult/)
-- [부천 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/area/bucheon/)
-- [인천 부평 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/area/bupyeong/)
-- [서울 구로 성형외과 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/area/guro/)
-- [단정 성형외과 소개 | 부천 성형외과](https://demo.example.kr/plastic-dreamy-mist/about/)
-- [자주 묻는 질문 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/faq/)
-- [오시는 길 · 문의 | 단정 성형외과](https://demo.example.kr/plastic-dreamy-mist/contact/)
+- [부천 성형외과 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/)
+- [서비스 안내 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/services/)
+- [부천 눈 · 코 진료 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/services/face/)
+- [부천 리프팅 진료 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/services/lifting/)
+- [부천 진료비 · 회복 안내 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/services/care/)
+- [부천 상담 예약 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/services/consult/)
+- [부천 성형외과 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/area/bucheon/)
+- [인천 부평 성형외과 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/area/bupyeong/)
+- [서울 구로 성형외과 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/area/guro/)
+- [견본 성형외과 B 소개 | 부천 성형외과](https://demo.example.kr/plastic-dreamy-mist/about/)
+- [자주 묻는 질문 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/faq/)
+- [오시는 길 · 문의 | 견본 성형외과 B](https://demo.example.kr/plastic-dreamy-mist/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

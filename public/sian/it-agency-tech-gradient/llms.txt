@@ -1,16 +1,16 @@
-# 만듦 스튜디오
+# 견본 개발사 B
 
-> 만듦 스튜디오. 웹 · 앱 · 업무 자동화 개발. 요구사항 정리부터 운영까지.
+> 견본 개발사 B. 웹 · 앱 · 업무 자동화 개발. 요구사항 정리부터 운영까지.
 
 ## 핵심 사실
-- 상호: 만듦 스튜디오
+- 상호: 견본 개발사 B
 - 업종: IT · 웹 · 앱 개발
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [앱 개발](https://demo.example.kr/it-agency-tech-gradient/services/app/): iOS · 안드로이드
@@ -24,18 +24,18 @@
 - 기획서가 없는데 괜찮나요? 네. 첫 상담에서 기능 목록을 같이 정리합니다.
 
 ## 주요 페이지
-- [수원 앱개발 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/)
-- [서비스 안내 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/services/)
-- [수원 앱 개발 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/services/app/)
-- [수원 업무 자동화 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/services/automation/)
-- [수원 유지보수 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/services/maintenance/)
-- [수원 웹 개발 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/services/web/)
-- [수원 앱개발 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/area/suwon/)
-- [용인 앱개발 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/area/yongin/)
-- [화성 앱개발 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/area/hwaseong/)
-- [만듦 스튜디오 소개 | 수원 앱개발](https://demo.example.kr/it-agency-tech-gradient/about/)
-- [자주 묻는 질문 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/faq/)
-- [오시는 길 · 문의 | 만듦 스튜디오](https://demo.example.kr/it-agency-tech-gradient/contact/)
+- [수원 앱개발 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/)
+- [서비스 안내 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/services/)
+- [수원 앱 개발 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/services/app/)
+- [수원 업무 자동화 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/services/automation/)
+- [수원 유지보수 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/services/maintenance/)
+- [수원 웹 개발 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/services/web/)
+- [수원 앱개발 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/area/suwon/)
+- [용인 앱개발 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/area/yongin/)
+- [화성 앱개발 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/area/hwaseong/)
+- [견본 개발사 B 소개 | 수원 앱개발](https://demo.example.kr/it-agency-tech-gradient/about/)
+- [자주 묻는 질문 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/faq/)
+- [오시는 길 · 문의 | 견본 개발사 B](https://demo.example.kr/it-agency-tech-gradient/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

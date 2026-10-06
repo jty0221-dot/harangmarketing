@@ -1,1 +1,1 @@
-{"name": "스윙 골프", "short_name": "스윙 골프", "start_url": "./", "display": "standalone", "background_color": "#0E0E10", "theme_color": "#C9A45C", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 골프연습장 A", "short_name": "견본 골프연습장 A", "start_url": "./", "display": "standalone", "background_color": "#0E0E10", "theme_color": "#C9A45C", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

@@ -1,1 +1,1 @@
-{"name": "찰나 사진관", "short_name": "찰나 사진관", "start_url": "./", "display": "standalone", "background_color": "#FBF9FF", "theme_color": "#8A6CF0", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 사진관 C", "short_name": "견본 사진관 C", "start_url": "./", "display": "standalone", "background_color": "#FBF9FF", "theme_color": "#8A6CF0", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

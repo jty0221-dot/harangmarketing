@@ -1,16 +1,16 @@
-# 오선 음악학원
+# 견본 음악학원 A
 
-> 강남 오선 음악학원. 피아노 · 바이올린 · 보컬 · 성인 취미반.
+> 강남 견본 음악학원 A. 피아노 · 바이올린 · 보컬 · 성인 취미반.
 
 ## 핵심 사실
-- 상호: 오선 음악학원
+- 상호: 견본 음악학원 A
 - 업종: 음악학원
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [피아노](https://demo.example.kr/music-editorial-serif/services/piano/): 유아 · 초등 · 성인
@@ -24,18 +24,18 @@
 - 발표회가 있나요? 1년에 한 번 발표회를 엽니다.
 
 ## 주요 페이지
-- [강남 음악학원 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/)
-- [서비스 안내 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/services/)
-- [강남 피아노 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/services/piano/)
-- [강남 바이올린 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/services/violin/)
-- [강남 보컬 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/services/vocal/)
-- [강남 연주회 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/services/concert/)
-- [강남 음악학원 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/area/gangnam/)
-- [서초 음악학원 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/area/seocho/)
-- [송파 음악학원 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/area/songpa/)
-- [오선 음악학원 소개 | 강남 음악학원](https://demo.example.kr/music-editorial-serif/about/)
-- [자주 묻는 질문 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/faq/)
-- [오시는 길 · 문의 | 오선 음악학원](https://demo.example.kr/music-editorial-serif/contact/)
+- [강남 음악학원 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/)
+- [서비스 안내 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/services/)
+- [강남 피아노 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/services/piano/)
+- [강남 바이올린 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/services/violin/)
+- [강남 보컬 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/services/vocal/)
+- [강남 연주회 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/services/concert/)
+- [강남 음악학원 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/area/gangnam/)
+- [서초 음악학원 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/area/seocho/)
+- [송파 음악학원 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/area/songpa/)
+- [견본 음악학원 A 소개 | 강남 음악학원](https://demo.example.kr/music-editorial-serif/about/)
+- [자주 묻는 질문 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/faq/)
+- [오시는 길 · 문의 | 견본 음악학원 A](https://demo.example.kr/music-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

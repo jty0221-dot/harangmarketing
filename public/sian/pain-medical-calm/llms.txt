@@ -1,16 +1,16 @@
-# 편한 통증의학과
+# 견본 마취통증의학과 A
 
-> 대구 편한 통증의학과. 진료 과목 · 검사 · 진료 시간 · 오시는 길 안내.
+> 대구 견본 마취통증의학과 A. 진료 과목 · 검사 · 진료 시간 · 오시는 길 안내.
 
 ## 핵심 사실
-- 상호: 편한 통증의학과
-- 업종: 통증의학과
+- 상호: 견본 마취통증의학과 A
+- 업종: 마취통증의학과
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [목 · 허리 진료](https://demo.example.kr/pain-medical-calm/services/spine/): 통증 부위 확인
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 주차장 1시간 무료입니다.
 
 ## 주요 페이지
-- [대구 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/)
-- [서비스 안내 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/)
-- [대구 목 · 허리 진료 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/spine/)
-- [대구 어깨 · 무릎 진료 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/joint/)
-- [대구 초음파 검사 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/ultra/)
-- [대구 주사 · 물리치료 안내 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/services/treat/)
-- [대구 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/area/daegu/)
-- [경산 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/area/gyeongsan/)
-- [수성 통증의학과 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/area/suseong/)
-- [편한 통증의학과 소개 | 대구 통증의학과](https://demo.example.kr/pain-medical-calm/about/)
-- [자주 묻는 질문 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/faq/)
-- [오시는 길 · 문의 | 편한 통증의학과](https://demo.example.kr/pain-medical-calm/contact/)
+- [대구 마취통증의학과 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/)
+- [서비스 안내 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/services/)
+- [대구 목 · 허리 진료 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/services/spine/)
+- [대구 어깨 · 무릎 진료 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/services/joint/)
+- [대구 초음파 검사 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/services/ultra/)
+- [대구 주사 · 물리치료 안내 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/services/treat/)
+- [대구 마취통증의학과 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/area/daegu/)
+- [경산 마취통증의학과 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/area/gyeongsan/)
+- [수성 마취통증의학과 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/area/suseong/)
+- [견본 마취통증의학과 A 소개 | 대구 마취통증의학과](https://demo.example.kr/pain-medical-calm/about/)
+- [자주 묻는 질문 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/faq/)
+- [오시는 길 · 문의 | 견본 마취통증의학과 A](https://demo.example.kr/pain-medical-calm/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

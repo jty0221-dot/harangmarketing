@@ -1,16 +1,16 @@
-# 불맛 고깃집
+# 견본 고기집 B
 
 > 수원 회식 · 가족 모임. 고기는 국내산 1등급 한돈만 씁니다.
 
 ## 핵심 사실
-- 상호: 불맛 고깃집
+- 상호: 견본 고기집 B
 - 업종: 고깃집 · 갈비
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [회식 · 단체](https://demo.example.kr/bbq-dark-premium/services/group/): 룸 · 단체석과 코스 구성
@@ -24,18 +24,18 @@
 - 직접 구워 주시나요? 네, 직원이 처음부터 끝까지 구워 드립니다.
 
 ## 주요 페이지
-- [수원 고기집 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/)
-- [서비스 안내 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/services/)
-- [수원 회식 · 단체 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/services/group/)
-- [수원 점심 메뉴 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/services/lunch/)
-- [수원 포장 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/services/takeout/)
-- [수원 대표 고기 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/services/meat/)
-- [수원 고기집 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/area/suwon/)
-- [용인 고기집 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/area/yongin/)
-- [화성 고기집 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/area/hwaseong/)
-- [불맛 고깃집 소개 | 수원 고기집](https://demo.example.kr/bbq-dark-premium/about/)
-- [자주 묻는 질문 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/faq/)
-- [오시는 길 · 문의 | 불맛 고깃집](https://demo.example.kr/bbq-dark-premium/contact/)
+- [수원 고기집 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/)
+- [서비스 안내 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/services/)
+- [수원 회식 · 단체 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/services/group/)
+- [수원 점심 메뉴 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/services/lunch/)
+- [수원 포장 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/services/takeout/)
+- [수원 대표 고기 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/services/meat/)
+- [수원 고기집 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/area/suwon/)
+- [용인 고기집 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/area/yongin/)
+- [화성 고기집 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/area/hwaseong/)
+- [견본 고기집 B 소개 | 수원 고기집](https://demo.example.kr/bbq-dark-premium/about/)
+- [자주 묻는 질문 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/faq/)
+- [오시는 길 · 문의 | 견본 고기집 B](https://demo.example.kr/bbq-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

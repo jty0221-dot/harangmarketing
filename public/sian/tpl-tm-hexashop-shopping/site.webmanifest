@@ -1,1 +1,1 @@
-{"name": "작은 공방", "short_name": "작은 공방", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#1F5BFF", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 브랜드샵 A", "short_name": "견본 브랜드샵 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#1F5BFF", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

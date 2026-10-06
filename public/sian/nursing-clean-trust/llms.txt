@@ -1,16 +1,16 @@
-# 늘봄 요양병원
+# 견본 요양병원 B
 
-> 포항 늘봄 요양병원. 입원 상담 · 병실 · 면회 · 재활 프로그램 안내.
+> 포항 견본 요양병원 B. 입원 상담 · 병실 · 면회 · 재활 프로그램 안내.
 
 ## 핵심 사실
-- 상호: 늘봄 요양병원
+- 상호: 견본 요양병원 B
 - 업종: 요양병원
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [병실 안내](https://demo.example.kr/nursing-clean-trust/services/room/): 다인실 · 1인실
@@ -24,18 +24,18 @@
 - 점심시간이 언제인가요? 13시~14시입니다.
 
 ## 주요 페이지
-- [포항 요양병원 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/)
-- [서비스 안내 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/services/)
-- [포항 병실 안내 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/services/room/)
-- [포항 재활 프로그램 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/services/rehab/)
-- [포항 면회 안내 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/services/visit/)
-- [포항 입원 상담 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/services/admit/)
-- [포항 요양병원 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/area/pohang/)
-- [경주 요양병원 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/area/gyeongju/)
-- [울산 요양병원 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/area/ulsan/)
-- [늘봄 요양병원 소개 | 포항 요양병원](https://demo.example.kr/nursing-clean-trust/about/)
-- [자주 묻는 질문 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/faq/)
-- [오시는 길 · 문의 | 늘봄 요양병원](https://demo.example.kr/nursing-clean-trust/contact/)
+- [포항 요양병원 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/)
+- [서비스 안내 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/services/)
+- [포항 병실 안내 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/services/room/)
+- [포항 재활 프로그램 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/services/rehab/)
+- [포항 면회 안내 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/services/visit/)
+- [포항 입원 상담 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/services/admit/)
+- [포항 요양병원 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/area/pohang/)
+- [경주 요양병원 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/area/gyeongju/)
+- [울산 요양병원 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/area/ulsan/)
+- [견본 요양병원 B 소개 | 포항 요양병원](https://demo.example.kr/nursing-clean-trust/about/)
+- [자주 묻는 질문 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/faq/)
+- [오시는 길 · 문의 | 견본 요양병원 B](https://demo.example.kr/nursing-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

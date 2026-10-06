@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/dessert/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/order/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/space/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/signature/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/area/bucheon/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/area/bupyeong/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/area/guro/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/cafe-dreamy-aurora/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/</loc><lastmod>2026-10-06</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/</loc><lastmod>2026-10-06</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/dessert/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/order/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/space/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/services/signature/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/area/bucheon/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/area/bupyeong/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/area/guro/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/about/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/faq/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/cafe-dreamy-aurora/contact/</loc><lastmod>2026-10-06</lastmod><priority>0.9</priority></url>
 </urlset>

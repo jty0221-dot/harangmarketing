@@ -1,16 +1,16 @@
-# 바른몸 정형외과
+# 견본 정형외과 A
 
-> 대구 바른몸 정형외과. 진료 과목 · 물리치료 · 진료 시간.
+> 대구 견본 정형외과 A. 진료 과목 · 물리치료 · 진료 시간.
 
 ## 핵심 사실
-- 상호: 바른몸 정형외과
+- 상호: 견본 정형외과 A
 - 업종: 정형외과
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [관절 · 척추 진료](https://demo.example.kr/ortho-swiss-minimal/services/joint/): 허리 · 목 · 무릎 · 어깨
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 주차장 1시간 무료입니다.
 
 ## 주요 페이지
-- [대구 정형외과 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/)
-- [서비스 안내 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/services/)
-- [대구 관절 · 척추 진료 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/services/joint/)
-- [대구 영상 검사 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/services/imaging/)
-- [대구 물리치료 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/services/physio/)
-- [대구 재활 운동 안내 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/services/rehab/)
-- [대구 정형외과 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/area/daegu/)
-- [경산 정형외과 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/area/gyeongsan/)
-- [수성 정형외과 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/area/suseong/)
-- [바른몸 정형외과 소개 | 대구 정형외과](https://demo.example.kr/ortho-swiss-minimal/about/)
-- [자주 묻는 질문 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/faq/)
-- [오시는 길 · 문의 | 바른몸 정형외과](https://demo.example.kr/ortho-swiss-minimal/contact/)
+- [대구 정형외과 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/)
+- [서비스 안내 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/services/)
+- [대구 관절 · 척추 진료 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/services/joint/)
+- [대구 영상 검사 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/services/imaging/)
+- [대구 물리치료 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/services/physio/)
+- [대구 재활 운동 안내 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/services/rehab/)
+- [대구 정형외과 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/area/daegu/)
+- [경산 정형외과 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/area/gyeongsan/)
+- [수성 정형외과 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/area/suseong/)
+- [견본 정형외과 A 소개 | 대구 정형외과](https://demo.example.kr/ortho-swiss-minimal/about/)
+- [자주 묻는 질문 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/faq/)
+- [오시는 길 · 문의 | 견본 정형외과 A](https://demo.example.kr/ortho-swiss-minimal/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

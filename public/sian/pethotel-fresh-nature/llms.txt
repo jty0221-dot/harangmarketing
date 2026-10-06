@@ -1,16 +1,16 @@
-# 꼬리 호텔
+# 견본 애견유치원 B
 
-> 인천 구월 꼬리 호텔. 애견 유치원 · 호텔 · 놀이방 · 픽업 안내.
+> 인천 구월 견본 애견유치원 B. 애견 유치원 · 호텔 · 놀이방 · 픽업 안내.
 
 ## 핵심 사실
-- 상호: 꼬리 호텔
+- 상호: 견본 애견유치원 B
 - 업종: 애견호텔 · 유치원
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [애견 호텔](https://demo.example.kr/pethotel-fresh-nature/services/hotel/): 숙박 돌봄
@@ -24,18 +24,18 @@
 - 예민한 아이도 되나요? 첫 방문 때 상태를 보고 무리하지 않는 선에서 진행합니다.
 
 ## 주요 페이지
-- [인천 구월 애견유치원 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/)
-- [서비스 안내 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/services/)
-- [인천 구월 애견 호텔 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/services/hotel/)
-- [인천 구월 놀이 · 산책 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/services/play/)
-- [인천 구월 픽업 서비스 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/services/pickup/)
-- [인천 구월 애견 유치원 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/services/daycare/)
-- [인천 구월 애견유치원 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/area/incheon-guwol/)
-- [부평 애견유치원 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/area/bupyeong/)
-- [송도 애견유치원 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/area/songdo/)
-- [꼬리 호텔 소개 | 인천 구월 애견유치원](https://demo.example.kr/pethotel-fresh-nature/about/)
-- [자주 묻는 질문 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/faq/)
-- [오시는 길 · 문의 | 꼬리 호텔](https://demo.example.kr/pethotel-fresh-nature/contact/)
+- [인천 구월 애견유치원 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/)
+- [서비스 안내 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/services/)
+- [인천 구월 애견 호텔 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/services/hotel/)
+- [인천 구월 놀이 · 산책 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/services/play/)
+- [인천 구월 픽업 서비스 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/services/pickup/)
+- [인천 구월 애견 유치원 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/services/daycare/)
+- [인천 구월 애견유치원 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/area/incheon-guwol/)
+- [부평 애견유치원 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/area/bupyeong/)
+- [송도 애견유치원 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/area/songdo/)
+- [견본 애견유치원 B 소개 | 인천 구월 애견유치원](https://demo.example.kr/pethotel-fresh-nature/about/)
+- [자주 묻는 질문 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/faq/)
+- [오시는 길 · 문의 | 견본 애견유치원 B](https://demo.example.kr/pethotel-fresh-nature/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,16 +1,16 @@
-# 새벽 국밥
+# 견본 국밥 B
 
-> 인천 구월 새벽 국밥. 돼지국밥 · 순대국 · 해장국 · 포장 안내.
+> 인천 구월 견본 국밥 B. 돼지국밥 · 순대국 · 해장국 · 포장 안내.
 
 ## 핵심 사실
-- 상호: 새벽 국밥
+- 상호: 견본 국밥 B
 - 업종: 국밥 · 해장국
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [순대국](https://demo.example.kr/gukbap-hanok-classic/services/sundae/): 직접 만든 순대
@@ -25,18 +25,18 @@
 - 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
 
 ## 주요 페이지
-- [인천 구월 국밥 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/)
-- [서비스 안내 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/services/)
-- [인천 구월 순대국 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/services/sundae/)
-- [인천 구월 해장국 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/services/hangover/)
-- [인천 구월 포장 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/services/takeout/)
-- [인천 구월 돼지국밥 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/services/pork/)
-- [인천 구월 국밥 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/area/incheon-guwol/)
-- [부평 국밥 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/area/bupyeong/)
-- [송도 국밥 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/area/songdo/)
-- [새벽 국밥 소개 | 인천 구월 국밥](https://demo.example.kr/gukbap-hanok-classic/about/)
-- [자주 묻는 질문 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/faq/)
-- [오시는 길 · 문의 | 새벽 국밥](https://demo.example.kr/gukbap-hanok-classic/contact/)
+- [인천 구월 국밥 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/)
+- [서비스 안내 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/services/)
+- [인천 구월 순대국 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/services/sundae/)
+- [인천 구월 해장국 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/services/hangover/)
+- [인천 구월 포장 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/services/takeout/)
+- [인천 구월 돼지국밥 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/services/pork/)
+- [인천 구월 국밥 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/area/incheon-guwol/)
+- [부평 국밥 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/area/bupyeong/)
+- [송도 국밥 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/area/songdo/)
+- [견본 국밥 B 소개 | 인천 구월 국밥](https://demo.example.kr/gukbap-hanok-classic/about/)
+- [자주 묻는 질문 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/faq/)
+- [오시는 길 · 문의 | 견본 국밥 B](https://demo.example.kr/gukbap-hanok-classic/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

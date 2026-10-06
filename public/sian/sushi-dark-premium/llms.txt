@@ -1,16 +1,16 @@
-# 스시 하루
+# 견본 스시 A
 
-> 인천 구월 스시 하루. 오마카세 · 런치 · 예약 안내.
+> 인천 구월 견본 스시 A. 오마카세 · 런치 · 예약 안내.
 
 ## 핵심 사실
-- 상호: 스시 하루
+- 상호: 견본 스시 A
 - 업종: 일식 · 스시
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [디너 오마카세](https://demo.example.kr/sushi-dark-premium/services/dinner/): 그날 생선 코스
@@ -25,18 +25,18 @@
 - 브레이크 타임이 있나요? 평일 15시~17시입니다.
 
 ## 주요 페이지
-- [인천 구월 스시 | 스시 하루](https://demo.example.kr/sushi-dark-premium/)
-- [서비스 안내 | 스시 하루](https://demo.example.kr/sushi-dark-premium/services/)
-- [인천 구월 디너 오마카세 | 스시 하루](https://demo.example.kr/sushi-dark-premium/services/dinner/)
-- [인천 구월 런치 코스 | 스시 하루](https://demo.example.kr/sushi-dark-premium/services/lunch/)
-- [인천 구월 사시미 · 단품 | 스시 하루](https://demo.example.kr/sushi-dark-premium/services/sashimi/)
-- [인천 구월 단체 · 대관 | 스시 하루](https://demo.example.kr/sushi-dark-premium/services/private/)
-- [인천 구월 스시 | 스시 하루](https://demo.example.kr/sushi-dark-premium/area/incheon-guwol/)
-- [부평 스시 | 스시 하루](https://demo.example.kr/sushi-dark-premium/area/bupyeong/)
-- [송도 스시 | 스시 하루](https://demo.example.kr/sushi-dark-premium/area/songdo/)
-- [스시 하루 소개 | 인천 구월 스시](https://demo.example.kr/sushi-dark-premium/about/)
-- [자주 묻는 질문 | 스시 하루](https://demo.example.kr/sushi-dark-premium/faq/)
-- [오시는 길 · 문의 | 스시 하루](https://demo.example.kr/sushi-dark-premium/contact/)
+- [인천 구월 스시 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/)
+- [서비스 안내 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/services/)
+- [인천 구월 디너 오마카세 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/services/dinner/)
+- [인천 구월 런치 코스 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/services/lunch/)
+- [인천 구월 사시미 · 단품 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/services/sashimi/)
+- [인천 구월 단체 · 대관 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/services/private/)
+- [인천 구월 스시 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/area/incheon-guwol/)
+- [부평 스시 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/area/bupyeong/)
+- [송도 스시 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/area/songdo/)
+- [견본 스시 A 소개 | 인천 구월 스시](https://demo.example.kr/sushi-dark-premium/about/)
+- [자주 묻는 질문 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/faq/)
+- [오시는 길 · 문의 | 견본 스시 A](https://demo.example.kr/sushi-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

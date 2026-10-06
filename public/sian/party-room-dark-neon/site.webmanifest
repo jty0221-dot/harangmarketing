@@ -1,1 +1,1 @@
-{"name": "오늘 파티", "short_name": "오늘 파티", "start_url": "./", "display": "standalone", "background_color": "#07070C", "theme_color": "#B04BFF", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 파티룸 B", "short_name": "견본 파티룸 B", "start_url": "./", "display": "standalone", "background_color": "#07070C", "theme_color": "#B04BFF", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

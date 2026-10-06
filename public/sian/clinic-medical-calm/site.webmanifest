@@ -1,1 +1,1 @@
-{"name": "오늘 내과", "short_name": "오늘 내과", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0E8C8C", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 의원 B", "short_name": "견본 의원 B", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0E8C8C", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

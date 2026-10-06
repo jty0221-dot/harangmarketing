@@ -1,1 +1,1 @@
-{"name": "한결 정공", "short_name": "한결 정공", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#163A70", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 공장 B", "short_name": "견본 공장 B", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#163A70", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

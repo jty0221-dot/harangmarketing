@@ -1,16 +1,16 @@
-# 고침방
+# 견본 집수리 C
 
 > 수원 문 · 창호 · 욕실 · 싱크대 부분 수리. 작은 일이라고 미루지 않습니다.
 
 ## 핵심 사실
-- 상호: 고침방
+- 상호: 견본 집수리 C
 - 업종: 집수리 · 부분 수리
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [필름 · 도배](https://demo.example.kr/homerepair-bold-industrial/services/film/): 문짝 · 몰딩 필름과 부분 도배
@@ -24,18 +24,18 @@
 - 작은 수리도 와 주시나요? 네. 손잡이 교체 같은 작은 작업도 접수합니다.
 
 ## 주요 페이지
-- [수원 집수리 | 고침방](https://demo.example.kr/homerepair-bold-industrial/)
-- [서비스 안내 | 고침방](https://demo.example.kr/homerepair-bold-industrial/services/)
-- [수원 필름 · 도배 | 고침방](https://demo.example.kr/homerepair-bold-industrial/services/film/)
-- [수원 욕실 부분 수리 | 고침방](https://demo.example.kr/homerepair-bold-industrial/services/bath/)
-- [수원 샷시 · 방충망 | 고침방](https://demo.example.kr/homerepair-bold-industrial/services/window/)
-- [수원 문 · 문틀 교체 | 고침방](https://demo.example.kr/homerepair-bold-industrial/services/door/)
-- [수원 집수리 | 고침방](https://demo.example.kr/homerepair-bold-industrial/area/suwon/)
-- [용인 집수리 | 고침방](https://demo.example.kr/homerepair-bold-industrial/area/yongin/)
-- [화성 집수리 | 고침방](https://demo.example.kr/homerepair-bold-industrial/area/hwaseong/)
-- [고침방 소개 | 수원 집수리](https://demo.example.kr/homerepair-bold-industrial/about/)
-- [자주 묻는 질문 | 고침방](https://demo.example.kr/homerepair-bold-industrial/faq/)
-- [오시는 길 · 문의 | 고침방](https://demo.example.kr/homerepair-bold-industrial/contact/)
+- [수원 집수리 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/)
+- [서비스 안내 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/)
+- [수원 필름 · 도배 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/film/)
+- [수원 욕실 부분 수리 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/bath/)
+- [수원 샷시 · 방충망 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/window/)
+- [수원 문 · 문틀 교체 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/door/)
+- [수원 집수리 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/suwon/)
+- [용인 집수리 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/yongin/)
+- [화성 집수리 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/hwaseong/)
+- [견본 집수리 C 소개 | 수원 집수리](https://demo.example.kr/homerepair-bold-industrial/about/)
+- [자주 묻는 질문 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/faq/)
+- [오시는 길 · 문의 | 견본 집수리 C](https://demo.example.kr/homerepair-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

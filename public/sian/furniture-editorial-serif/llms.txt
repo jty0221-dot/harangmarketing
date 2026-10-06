@@ -1,16 +1,16 @@
-# 나무결 가구
+# 견본 가구점 A
 
-> 포항 나무결 가구. 원목 가구 · 소파 · 조명 · 소품 · 배송 설치.
+> 포항 견본 가구점 A. 원목 가구 · 소파 · 조명 · 소품 · 배송 설치.
 
 ## 핵심 사실
-- 상호: 나무결 가구
+- 상호: 견본 가구점 A
 - 업종: 가구 · 소품
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [원목 가구](https://demo.example.kr/furniture-editorial-serif/services/wood/): 식탁 · 수납장
@@ -24,18 +24,18 @@
 - 실물을 볼 수 있나요? 매장에서 전시 상품을 직접 보실 수 있습니다.
 
 ## 주요 페이지
-- [포항 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/)
-- [서비스 안내 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/)
-- [포항 원목 가구 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/wood/)
-- [포항 소파 · 침대 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/sofa/)
-- [포항 조명 · 소품 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/deco/)
-- [포항 배송 · 설치 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/services/delivery/)
-- [포항 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/area/pohang/)
-- [경주 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/area/gyeongju/)
-- [울산 가구점 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/area/ulsan/)
-- [나무결 가구 소개 | 포항 가구점](https://demo.example.kr/furniture-editorial-serif/about/)
-- [자주 묻는 질문 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/faq/)
-- [오시는 길 · 문의 | 나무결 가구](https://demo.example.kr/furniture-editorial-serif/contact/)
+- [포항 가구점 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/)
+- [서비스 안내 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/services/)
+- [포항 원목 가구 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/services/wood/)
+- [포항 소파 · 침대 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/services/sofa/)
+- [포항 조명 · 소품 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/services/deco/)
+- [포항 배송 · 설치 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/services/delivery/)
+- [포항 가구점 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/area/pohang/)
+- [경주 가구점 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/area/gyeongju/)
+- [울산 가구점 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/area/ulsan/)
+- [견본 가구점 A 소개 | 포항 가구점](https://demo.example.kr/furniture-editorial-serif/about/)
+- [자주 묻는 질문 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/faq/)
+- [오시는 길 · 문의 | 견본 가구점 A](https://demo.example.kr/furniture-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

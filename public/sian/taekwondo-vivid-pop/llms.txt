@@ -1,16 +1,16 @@
-# 바른 태권도
+# 견본 태권도 A
 
-> 부천 바른 태권도. 유아 · 초등 태권도 · 차량 운행 안내.
+> 부천 견본 태권도 A. 유아 · 초등 태권도 · 차량 운행 안내.
 
 ## 핵심 사실
-- 상호: 바른 태권도
+- 상호: 견본 태권도 A
 - 업종: 태권도장
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [유아 태권도](https://demo.example.kr/taekwondo-vivid-pop/services/kids/): 놀이 체육
@@ -24,18 +24,18 @@
 - 체험 수업이 있나요? 첫 수업은 무료 체험으로 진행합니다.
 
 ## 주요 페이지
-- [부천 태권도 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/)
-- [서비스 안내 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/services/)
-- [부천 유아 태권도 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/services/kids/)
-- [부천 초등 태권도 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/services/elem/)
-- [부천 승급 · 승단 심사 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/services/exam/)
-- [부천 차량 운행 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/services/bus/)
-- [부천 태권도 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/area/bucheon/)
-- [인천 부평 태권도 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/area/bupyeong/)
-- [서울 구로 태권도 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/area/guro/)
-- [바른 태권도 소개 | 부천 태권도](https://demo.example.kr/taekwondo-vivid-pop/about/)
-- [자주 묻는 질문 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/faq/)
-- [오시는 길 · 문의 | 바른 태권도](https://demo.example.kr/taekwondo-vivid-pop/contact/)
+- [부천 태권도 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/)
+- [서비스 안내 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/services/)
+- [부천 유아 태권도 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/services/kids/)
+- [부천 초등 태권도 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/services/elem/)
+- [부천 승급 · 승단 심사 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/services/exam/)
+- [부천 차량 운행 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/services/bus/)
+- [부천 태권도 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/area/bucheon/)
+- [인천 부평 태권도 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/area/bupyeong/)
+- [서울 구로 태권도 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/area/guro/)
+- [견본 태권도 A 소개 | 부천 태권도](https://demo.example.kr/taekwondo-vivid-pop/about/)
+- [자주 묻는 질문 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/faq/)
+- [오시는 길 · 문의 | 견본 태권도 A](https://demo.example.kr/taekwondo-vivid-pop/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

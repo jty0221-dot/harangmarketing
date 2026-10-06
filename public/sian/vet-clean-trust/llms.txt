@@ -1,16 +1,16 @@
-# 꼬리 동물병원
+# 견본 동물병원 B
 
-> 대구 꼬리 동물병원. 진료 · 예방접종 · 건강검진 · 진료 시간 안내.
+> 대구 견본 동물병원 B. 진료 · 예방접종 · 건강검진 · 진료 시간 안내.
 
 ## 핵심 사실
-- 상호: 꼬리 동물병원
+- 상호: 견본 동물병원 B
 - 업종: 동물병원
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [예방접종](https://demo.example.kr/vet-clean-trust/services/vaccine/): 종합백신 · 광견병
@@ -24,18 +24,18 @@
 - 야간 진료를 하나요? 평일 21시까지 진료합니다.
 
 ## 주요 페이지
-- [대구 동물병원 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/)
-- [서비스 안내 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/services/)
-- [대구 예방접종 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/services/vaccine/)
-- [대구 건강검진 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/services/checkup/)
-- [대구 입원 · 수술 안내 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/services/surgery/)
-- [대구 진료 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/services/general/)
-- [대구 동물병원 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/area/daegu/)
-- [경산 동물병원 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/area/gyeongsan/)
-- [수성 동물병원 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/area/suseong/)
-- [꼬리 동물병원 소개 | 대구 동물병원](https://demo.example.kr/vet-clean-trust/about/)
-- [자주 묻는 질문 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/faq/)
-- [오시는 길 · 문의 | 꼬리 동물병원](https://demo.example.kr/vet-clean-trust/contact/)
+- [대구 동물병원 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/)
+- [서비스 안내 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/services/)
+- [대구 예방접종 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/services/vaccine/)
+- [대구 건강검진 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/services/checkup/)
+- [대구 입원 · 수술 안내 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/services/surgery/)
+- [대구 진료 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/services/general/)
+- [대구 동물병원 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/area/daegu/)
+- [경산 동물병원 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/area/gyeongsan/)
+- [수성 동물병원 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/area/suseong/)
+- [견본 동물병원 B 소개 | 대구 동물병원](https://demo.example.kr/vet-clean-trust/about/)
+- [자주 묻는 질문 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/faq/)
+- [오시는 길 · 문의 | 견본 동물병원 B](https://demo.example.kr/vet-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

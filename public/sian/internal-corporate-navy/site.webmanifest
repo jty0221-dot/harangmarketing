@@ -1,1 +1,1 @@
-{"name": "바른 내과", "short_name": "바른 내과", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#163A70", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 내과 A", "short_name": "견본 내과 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#163A70", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

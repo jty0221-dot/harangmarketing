@@ -1,16 +1,16 @@
-# 물감 미술학원
+# 견본 미술학원 A
 
 > 강남 미술 · 피아노 학원. 체험 수업 예약.
 
 ## 핵심 사실
-- 상호: 물감 미술학원
+- 상호: 견본 미술학원 A
 - 업종: 예체능 학원
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [취미반](https://demo.example.kr/arts-soft-pastel/services/hobby/): 처음 시작하는 아이 · 성인
@@ -23,17 +23,17 @@
 - 발표회가 있나요? 1년에 한 번 발표회를 엽니다.
 
 ## 주요 페이지
-- [강남 미술학원 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/)
-- [서비스 안내 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/services/)
-- [강남 취미반 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/services/hobby/)
-- [강남 입시반 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/services/exam/)
-- [강남 체험 수업 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/services/trial/)
-- [강남 미술학원 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/area/gangnam/)
-- [서초 미술학원 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/area/seocho/)
-- [송파 미술학원 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/area/songpa/)
-- [물감 미술학원 소개 | 강남 미술학원](https://demo.example.kr/arts-soft-pastel/about/)
-- [자주 묻는 질문 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/faq/)
-- [오시는 길 · 문의 | 물감 미술학원](https://demo.example.kr/arts-soft-pastel/contact/)
+- [강남 미술학원 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/)
+- [서비스 안내 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/services/)
+- [강남 취미반 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/services/hobby/)
+- [강남 입시반 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/services/exam/)
+- [강남 체험 수업 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/services/trial/)
+- [강남 미술학원 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/area/gangnam/)
+- [서초 미술학원 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/area/seocho/)
+- [송파 미술학원 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/area/songpa/)
+- [견본 미술학원 A 소개 | 강남 미술학원](https://demo.example.kr/arts-soft-pastel/about/)
+- [자주 묻는 질문 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/faq/)
+- [오시는 길 · 문의 | 견본 미술학원 A](https://demo.example.kr/arts-soft-pastel/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

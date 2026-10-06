@@ -10,7 +10,7 @@ import {
 
 import { best, fmt } from "../lib/rank-records";
 import { LANDING_RANK_PROOF } from "../lib/landing-gate";
-import { GA_EVENTS } from "../components/Analytics";
+import { GA_EVENTS, newEventId } from "../components/Analytics";
 import { attributionLabel } from "../lib/attribution";
 import KakaoSendNotice from "../components/KakaoSendNotice";
 const CHECKS = [
@@ -85,6 +85,8 @@ export default function FreeCheckPage() {
     /* 서버 접수 (저장 + 알림).
        예전에는 이 길이 아예 없어서 카톡 창이 막히면 접수 경로가 0 개였다. */
     let saved = false;
+    // 픽셀과 서버 전환이 같은 신청을 하나로 세도록 같은 id 를 쓴다
+    const eventId = newEventId();
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -95,10 +97,11 @@ export default function FreeCheckPage() {
           industry: business,
           message: rank ? `현재 플레이스 순위: ${rank}위권` : "",
           source: attributionLabel() ? `free-check · ${attributionLabel()}` : "free-check",
+          eventId,
         }),
       });
       saved = res.ok;
-      if (saved) GA_EVENTS.leadSaved("free-check", attributionLabel() || "direct");
+      if (saved) GA_EVENTS.leadSaved("free-check", attributionLabel() || "direct", eventId);
     } catch {
       saved = false;
     }

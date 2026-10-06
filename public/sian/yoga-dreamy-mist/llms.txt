@@ -1,16 +1,16 @@
-# 숨결 요가
+# 견본 요가 A
 
-> 부천 숨결 요가. 하타 · 빈야사 · 소수 정원 · 체험 수업 안내.
+> 부천 견본 요가 A. 하타 · 빈야사 · 소수 정원 · 체험 수업 안내.
 
 ## 핵심 사실
-- 상호: 숨결 요가
+- 상호: 견본 요가 A
 - 업종: 요가
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [하타 요가](https://demo.example.kr/yoga-dreamy-mist/services/hatha/): 기초 자세 · 호흡
@@ -24,18 +24,18 @@
 - 샤워실이 있나요? 샤워실과 개인 락커가 있습니다.
 
 ## 주요 페이지
-- [부천 요가 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/)
-- [서비스 안내 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/services/)
-- [부천 하타 요가 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/services/hatha/)
-- [부천 빈야사 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/services/vinyasa/)
-- [부천 소수 정원반 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/services/small/)
-- [부천 체험 수업 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/services/trial/)
-- [부천 요가 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/area/bucheon/)
-- [인천 부평 요가 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/area/bupyeong/)
-- [서울 구로 요가 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/area/guro/)
-- [숨결 요가 소개 | 부천 요가](https://demo.example.kr/yoga-dreamy-mist/about/)
-- [자주 묻는 질문 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/faq/)
-- [오시는 길 · 문의 | 숨결 요가](https://demo.example.kr/yoga-dreamy-mist/contact/)
+- [부천 요가 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/)
+- [서비스 안내 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/services/)
+- [부천 하타 요가 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/services/hatha/)
+- [부천 빈야사 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/services/vinyasa/)
+- [부천 소수 정원반 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/services/small/)
+- [부천 체험 수업 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/services/trial/)
+- [부천 요가 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/area/bucheon/)
+- [인천 부평 요가 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/area/bupyeong/)
+- [서울 구로 요가 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/area/guro/)
+- [견본 요가 A 소개 | 부천 요가](https://demo.example.kr/yoga-dreamy-mist/about/)
+- [자주 묻는 질문 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/faq/)
+- [오시는 길 · 문의 | 견본 요가 A](https://demo.example.kr/yoga-dreamy-mist/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

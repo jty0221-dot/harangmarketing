@@ -1,1 +1,1 @@
-{"name": "오늘의 물건", "short_name": "오늘의 물건", "start_url": "./", "display": "standalone", "background_color": "#FAF8F4", "theme_color": "#1B1A17", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 브랜드샵 C", "short_name": "견본 브랜드샵 C", "start_url": "./", "display": "standalone", "background_color": "#FAF8F4", "theme_color": "#1B1A17", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

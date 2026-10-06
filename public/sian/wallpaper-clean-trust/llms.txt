@@ -1,16 +1,16 @@
-# 고운 벽지
+# 견본 도배 B
 
-> 강남 고운 벽지. 도배 · 장판 · 마루 · 샘플 상담.
+> 강남 견본 도배 B. 도배 · 장판 · 마루 · 샘플 상담.
 
 ## 핵심 사실
-- 상호: 고운 벽지
+- 상호: 견본 도배 B
 - 업종: 도배 · 장판
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [장판](https://demo.example.kr/wallpaper-clean-trust/services/floor/): 두께 · 무늬 선택
@@ -25,18 +25,18 @@
 - 견적은 어떻게 받나요? 현장 실측 후 자재 등급별로 견적서를 드립니다. 실측 없이 평수만으로 드리는 금액은 참고용입니다.
 
 ## 주요 페이지
-- [강남 도배 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/)
-- [서비스 안내 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/services/)
-- [강남 장판 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/services/floor/)
-- [강남 마루 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/services/wood/)
-- [강남 샘플 상담 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/services/sample/)
-- [강남 도배 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/services/wallpaper/)
-- [강남 도배 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/area/gangnam/)
-- [서초 도배 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/area/seocho/)
-- [송파 도배 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/area/songpa/)
-- [고운 벽지 소개 | 강남 도배](https://demo.example.kr/wallpaper-clean-trust/about/)
-- [자주 묻는 질문 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/faq/)
-- [오시는 길 · 문의 | 고운 벽지](https://demo.example.kr/wallpaper-clean-trust/contact/)
+- [강남 도배 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/)
+- [서비스 안내 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/services/)
+- [강남 장판 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/services/floor/)
+- [강남 마루 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/services/wood/)
+- [강남 샘플 상담 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/services/sample/)
+- [강남 도배 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/services/wallpaper/)
+- [강남 도배 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/area/gangnam/)
+- [서초 도배 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/area/seocho/)
+- [송파 도배 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/area/songpa/)
+- [견본 도배 B 소개 | 강남 도배](https://demo.example.kr/wallpaper-clean-trust/about/)
+- [자주 묻는 질문 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/faq/)
+- [오시는 길 · 문의 | 견본 도배 B](https://demo.example.kr/wallpaper-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

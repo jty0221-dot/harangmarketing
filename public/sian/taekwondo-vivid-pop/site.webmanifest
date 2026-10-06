@@ -1,1 +1,1 @@
-{"name": "바른 태권도", "short_name": "바른 태권도", "start_url": "./", "display": "standalone", "background_color": "#FFFDF5", "theme_color": "#FF4D2E", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 태권도 A", "short_name": "견본 태권도 A", "start_url": "./", "display": "standalone", "background_color": "#FFFDF5", "theme_color": "#FF4D2E", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

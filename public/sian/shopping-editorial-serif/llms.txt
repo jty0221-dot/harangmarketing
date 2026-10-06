@@ -1,16 +1,16 @@
-# 오늘의 물건
+# 견본 브랜드샵 C
 
-> 오늘의 물건 공식 홈페이지. 제품 소개 · 구매처 · 대량 구매 문의.
+> 견본 브랜드샵 C 공식 홈페이지. 제품 소개 · 구매처 · 대량 구매 문의.
 
 ## 핵심 사실
-- 상호: 오늘의 물건
+- 상호: 견본 브랜드샵 C
 - 업종: 쇼핑몰 · 제조 브랜드
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [구매처 안내](https://demo.example.kr/shopping-editorial-serif/services/where-to-buy/): 스마트스토어 · 오프라인 매장
@@ -24,18 +24,18 @@
 - 어디서 살 수 있나요? 공식 스마트스토어와 직영 매장에서 구매하실 수 있습니다.
 
 ## 주요 페이지
-- [포항 브랜드 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/)
-- [서비스 안내 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/services/)
-- [포항 구매처 안내 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/services/where-to-buy/)
-- [포항 대량 · 기업 구매 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/services/b2b/)
-- [포항 브랜드 이야기 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/services/story/)
-- [포항 제품 소개 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/services/products/)
-- [포항 브랜드 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/area/pohang/)
-- [경주 브랜드 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/area/gyeongju/)
-- [울산 브랜드 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/area/ulsan/)
-- [오늘의 물건 소개 | 포항 브랜드](https://demo.example.kr/shopping-editorial-serif/about/)
-- [자주 묻는 질문 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/faq/)
-- [오시는 길 · 문의 | 오늘의 물건](https://demo.example.kr/shopping-editorial-serif/contact/)
+- [포항 브랜드 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/)
+- [서비스 안내 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/services/)
+- [포항 구매처 안내 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/services/where-to-buy/)
+- [포항 대량 · 기업 구매 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/services/b2b/)
+- [포항 브랜드 이야기 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/services/story/)
+- [포항 제품 소개 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/services/products/)
+- [포항 브랜드 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/area/pohang/)
+- [경주 브랜드 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/area/gyeongju/)
+- [울산 브랜드 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/area/ulsan/)
+- [견본 브랜드샵 C 소개 | 포항 브랜드](https://demo.example.kr/shopping-editorial-serif/about/)
+- [자주 묻는 질문 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/faq/)
+- [오시는 길 · 문의 | 견본 브랜드샵 C](https://demo.example.kr/shopping-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,16 +1,16 @@
-# 별채 풀빌라
+# 견본 풀빌라 C
 
-> 인천 구월 독채 풀빌라 별채 풀빌라. 객실 · 요금 · 예약 안내.
+> 인천 구월 독채 풀빌라 견본 풀빌라 C. 객실 · 요금 · 예약 안내.
 
 ## 핵심 사실
-- 상호: 별채 풀빌라
+- 상호: 견본 풀빌라 C
 - 업종: 펜션 · 풀빌라
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [객실 안내](https://demo.example.kr/pension-editorial-serif/services/rooms/): 객실별 인원 · 구조 · 시설
@@ -24,18 +24,18 @@
 - 바비큐 이용료가 있나요? 숯 · 그릴 세팅 2만원입니다.
 
 ## 주요 페이지
-- [인천 구월 풀빌라 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/)
-- [서비스 안내 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/services/)
-- [인천 구월 객실 안내 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/services/rooms/)
-- [인천 구월 부대시설 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/services/facilities/)
-- [인천 구월 주변 여행 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/services/around/)
-- [인천 구월 예약 · 환불 규정 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/services/booking/)
-- [인천 구월 풀빌라 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/area/incheon-guwol/)
-- [부평 풀빌라 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/area/bupyeong/)
-- [송도 풀빌라 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/area/songdo/)
-- [별채 풀빌라 소개 | 인천 구월 풀빌라](https://demo.example.kr/pension-editorial-serif/about/)
-- [자주 묻는 질문 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/faq/)
-- [오시는 길 · 문의 | 별채 풀빌라](https://demo.example.kr/pension-editorial-serif/contact/)
+- [인천 구월 풀빌라 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/)
+- [서비스 안내 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/services/)
+- [인천 구월 객실 안내 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/services/rooms/)
+- [인천 구월 부대시설 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/services/facilities/)
+- [인천 구월 주변 여행 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/services/around/)
+- [인천 구월 예약 · 환불 규정 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/services/booking/)
+- [인천 구월 풀빌라 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/area/incheon-guwol/)
+- [부평 풀빌라 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/area/bupyeong/)
+- [송도 풀빌라 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/area/songdo/)
+- [견본 풀빌라 C 소개 | 인천 구월 풀빌라](https://demo.example.kr/pension-editorial-serif/about/)
+- [자주 묻는 질문 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/faq/)
+- [오시는 길 · 문의 | 견본 풀빌라 C](https://demo.example.kr/pension-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

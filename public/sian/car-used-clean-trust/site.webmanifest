@@ -1,1 +1,1 @@
-{"name": "바른 중고차", "short_name": "바른 중고차", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#1F5BFF", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 중고차 A", "short_name": "견본 중고차 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#1F5BFF", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

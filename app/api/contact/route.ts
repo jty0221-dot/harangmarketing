@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveInquiry } from "../../lib/inquiries";
 import { sendKakaoNotify, inquiryAdminLink } from "../../lib/kakao-notify";
+import { safeEventId, sendOpenAIConversion } from "../../lib/openai-capi";
 
 /* 서버리스 인스턴스 단위의 가벼운 과다 요청 방지.
    /api/sns/order 와 같은 방식이다. 완전한 차단이 아니라 자동 도배를 늦추는 장치다. */
@@ -108,6 +109,16 @@ export async function POST(req: NextRequest) {
       ).then((r) => {
         if (!r.ok && !r.skipped) console.error("상담 카카오 알림 실패:", r.step, r.error);
       }),
+      // ChatGPT 광고 서버 전환. 저장된 문의만 센다 (브라우저 픽셀 lead_created 와 같은 id)
+      saved
+        ? sendOpenAIConversion({
+            id: safeEventId(body?.eventId),
+            type: "lead_created",
+            sourceUrl: req.headers.get("referer") || "https://www.harangmarketing.com/contact",
+            oppref: req.cookies.get("__oppref")?.value,
+            obref: req.cookies.get("__obref")?.value,
+          })
+        : Promise.resolve(),
     ]);
 
     return NextResponse.json({ ok: true });

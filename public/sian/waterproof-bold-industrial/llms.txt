@@ -1,16 +1,16 @@
-# 단단 방수
+# 견본 방수 A
 
-> 인천 구월 단단 방수. 옥상 방수 · 외벽 · 욕실 방수 · 누수 탐지.
+> 인천 구월 견본 방수 A. 옥상 방수 · 외벽 · 욕실 방수 · 누수 탐지.
 
 ## 핵심 사실
-- 상호: 단단 방수
+- 상호: 견본 방수 A
 - 업종: 방수 · 누수
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [옥상 방수](https://demo.example.kr/waterproof-bold-industrial/services/roof/): 우레탄 · 시트 방수
@@ -24,18 +24,18 @@
 - 자재는 직접 사야 하나요? 저희가 준비해 드립니다. 원하시는 제품이 있으면 그 제품으로 시공합니다.
 
 ## 주요 페이지
-- [인천 구월 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/)
-- [서비스 안내 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/services/)
-- [인천 구월 옥상 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/services/roof/)
-- [인천 구월 외벽 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/services/wall/)
-- [인천 구월 욕실 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/services/bath/)
-- [인천 구월 누수 탐지 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/services/leak/)
-- [인천 구월 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/area/incheon-guwol/)
-- [부평 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/area/bupyeong/)
-- [송도 방수 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/area/songdo/)
-- [단단 방수 소개 | 인천 구월 방수](https://demo.example.kr/waterproof-bold-industrial/about/)
-- [자주 묻는 질문 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/faq/)
-- [오시는 길 · 문의 | 단단 방수](https://demo.example.kr/waterproof-bold-industrial/contact/)
+- [인천 구월 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/)
+- [서비스 안내 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/services/)
+- [인천 구월 옥상 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/services/roof/)
+- [인천 구월 외벽 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/services/wall/)
+- [인천 구월 욕실 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/services/bath/)
+- [인천 구월 누수 탐지 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/services/leak/)
+- [인천 구월 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/area/incheon-guwol/)
+- [부평 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/area/bupyeong/)
+- [송도 방수 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/area/songdo/)
+- [견본 방수 A 소개 | 인천 구월 방수](https://demo.example.kr/waterproof-bold-industrial/about/)
+- [자주 묻는 질문 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/faq/)
+- [오시는 길 · 문의 | 견본 방수 A](https://demo.example.kr/waterproof-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

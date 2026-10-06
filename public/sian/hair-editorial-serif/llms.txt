@@ -1,16 +1,16 @@
-# 결 헤어
+# 견본 미용실 A
 
-> 대구 미용실 결 헤어. 커트 · 펌 · 염색 · 클리닉. 네이버 예약으로 기다림 없이.
+> 대구 미용실 견본 미용실 A. 커트 · 펌 · 염색 · 클리닉. 네이버 예약으로 기다림 없이.
 
 ## 핵심 사실
-- 상호: 결 헤어
+- 상호: 견본 미용실 A
 - 업종: 미용실 · 헤어
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [커트](https://demo.example.kr/hair-editorial-serif/services/cut/): 얼굴형과 모질을 보고 정하는 커트
@@ -24,18 +24,18 @@
 - 시술 후 마음에 안 들면요? 7일 안에 말씀 주시면 수정해 드립니다.
 
 ## 주요 페이지
-- [대구 미용실 | 결 헤어](https://demo.example.kr/hair-editorial-serif/)
-- [서비스 안내 | 결 헤어](https://demo.example.kr/hair-editorial-serif/services/)
-- [대구 커트 | 결 헤어](https://demo.example.kr/hair-editorial-serif/services/cut/)
-- [대구 펌 | 결 헤어](https://demo.example.kr/hair-editorial-serif/services/perm/)
-- [대구 염색 · 탈색 | 결 헤어](https://demo.example.kr/hair-editorial-serif/services/color/)
-- [대구 두피 · 모발 클리닉 | 결 헤어](https://demo.example.kr/hair-editorial-serif/services/clinic/)
-- [대구 미용실 | 결 헤어](https://demo.example.kr/hair-editorial-serif/area/daegu/)
-- [경산 미용실 | 결 헤어](https://demo.example.kr/hair-editorial-serif/area/gyeongsan/)
-- [수성 미용실 | 결 헤어](https://demo.example.kr/hair-editorial-serif/area/suseong/)
-- [결 헤어 소개 | 대구 미용실](https://demo.example.kr/hair-editorial-serif/about/)
-- [자주 묻는 질문 | 결 헤어](https://demo.example.kr/hair-editorial-serif/faq/)
-- [오시는 길 · 문의 | 결 헤어](https://demo.example.kr/hair-editorial-serif/contact/)
+- [대구 미용실 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/)
+- [서비스 안내 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/services/)
+- [대구 커트 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/services/cut/)
+- [대구 펌 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/services/perm/)
+- [대구 염색 · 탈색 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/services/color/)
+- [대구 두피 · 모발 클리닉 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/services/clinic/)
+- [대구 미용실 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/area/daegu/)
+- [경산 미용실 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/area/gyeongsan/)
+- [수성 미용실 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/area/suseong/)
+- [견본 미용실 A 소개 | 대구 미용실](https://demo.example.kr/hair-editorial-serif/about/)
+- [자주 묻는 질문 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/faq/)
+- [오시는 길 · 문의 | 견본 미용실 A](https://demo.example.kr/hair-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

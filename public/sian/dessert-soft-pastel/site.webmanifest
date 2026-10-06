@@ -1,1 +1,1 @@
-{"name": "달콤 공방", "short_name": "달콤 공방", "start_url": "./", "display": "standalone", "background_color": "#FFF9F8", "theme_color": "#E8607A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 디저트 A", "short_name": "견본 디저트 A", "start_url": "./", "display": "standalone", "background_color": "#FFF9F8", "theme_color": "#E8607A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

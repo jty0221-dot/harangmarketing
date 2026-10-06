@@ -1,1 +1,1 @@
-{"name": "한뼘 공부방", "short_name": "한뼘 공부방", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#178A55", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 공부방 B", "short_name": "견본 공부방 B", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#178A55", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

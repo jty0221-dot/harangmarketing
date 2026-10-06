@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { ExternalLink, Search } from "lucide-react";
 import { HP_DRAFTS, HP_GROUPS, HP_MOODS, hpDemoUrl, hpThumb } from "../../lib/homepage-portfolio";
+import { GA_EVENTS } from "../../components/Analytics";
 
 const PAGE = 24;
 
@@ -25,6 +26,8 @@ export default function HomepageGallery() {
     queueMicrotask(() => {
       if (g && HP_GROUPS.some((x) => x.key === g)) setGroup(g);
       if (query) setQ(query.slice(0, 30));
+      // 광고 링크는 #gallery 를 붙일 수 없다 (플랫폼이 뒤에 추적 값을 붙인다) → 업종으로 열리면 갤러리로 내려 준다
+      document.getElementById("gallery")?.scrollIntoView({ block: "start" });
     });
   }, []);
 
@@ -89,6 +92,7 @@ export default function HomepageGallery() {
               href={hpDemoUrl(d.slug)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => GA_EVENTS.demoView(d.slug)}
               className="w-card group flex flex-col overflow-hidden transition-shadow hover:shadow-[var(--w-shadow-md)]"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden" style={{ background: "var(--w-cn-98)" }}>

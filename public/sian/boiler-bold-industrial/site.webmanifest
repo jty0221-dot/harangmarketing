@@ -1,1 +1,1 @@
-{"name": "온 보일러", "short_name": "온 보일러", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#FFC400", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 보일러 B", "short_name": "견본 보일러 B", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#FFC400", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

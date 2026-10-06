@@ -1,16 +1,16 @@
-# 맑은 결
+# 견본 피부관리 C
 
-> 인천 구월 피부관리 맑은 결. 피부 측정 후 맞춤 관리. 의료 시술은 하지 않습니다.
+> 인천 구월 피부관리 견본 피부관리 C. 피부 측정 후 맞춤 관리. 의료 시술은 하지 않습니다.
 
 ## 핵심 사실
-- 상호: 맑은 결
+- 상호: 견본 피부관리 C
 - 업종: 피부관리 · 에스테틱
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [여드름 · 트러블 관리](https://demo.example.kr/skincare-dreamy-mist/services/trouble/): 압출 · 진정 관리
@@ -24,18 +24,18 @@
 - 처음 가면 무엇을 하나요? 피부 상태를 사진으로 기록하고 관리 순서를 정합니다.
 
 ## 주요 페이지
-- [인천 구월 피부관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/)
-- [서비스 안내 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/services/)
-- [인천 구월 여드름 · 트러블 관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/services/trouble/)
-- [인천 구월 리프팅 · 탄력 관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/services/lifting/)
-- [인천 구월 바디 관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/services/body/)
-- [인천 구월 기본 관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/services/basic/)
-- [인천 구월 피부관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/area/incheon-guwol/)
-- [부평 피부관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/area/bupyeong/)
-- [송도 피부관리 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/area/songdo/)
-- [맑은 결 소개 | 인천 구월 피부관리](https://demo.example.kr/skincare-dreamy-mist/about/)
-- [자주 묻는 질문 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/faq/)
-- [오시는 길 · 문의 | 맑은 결](https://demo.example.kr/skincare-dreamy-mist/contact/)
+- [인천 구월 피부관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/)
+- [서비스 안내 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/services/)
+- [인천 구월 여드름 · 트러블 관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/services/trouble/)
+- [인천 구월 리프팅 · 탄력 관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/services/lifting/)
+- [인천 구월 바디 관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/services/body/)
+- [인천 구월 기본 관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/services/basic/)
+- [인천 구월 피부관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/area/incheon-guwol/)
+- [부평 피부관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/area/bupyeong/)
+- [송도 피부관리 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/area/songdo/)
+- [견본 피부관리 C 소개 | 인천 구월 피부관리](https://demo.example.kr/skincare-dreamy-mist/about/)
+- [자주 묻는 질문 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/faq/)
+- [오시는 길 · 문의 | 견본 피부관리 C](https://demo.example.kr/skincare-dreamy-mist/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

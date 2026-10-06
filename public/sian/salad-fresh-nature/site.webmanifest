@@ -1,1 +1,1 @@
-{"name": "초록 샐러드", "short_name": "초록 샐러드", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#178A55", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 브런치 A", "short_name": "견본 브런치 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#178A55", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

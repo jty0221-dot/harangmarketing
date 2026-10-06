@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://demo.example.kr/rentcar-clean-trust/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/services/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/services/short/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/services/month/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/services/long/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/services/delivery/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/area/daegu/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/area/gyeongsan/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/area/suseong/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/about/</loc><lastmod>2026-10-05</lastmod><priority>0.7</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/faq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-<url><loc>https://demo.example.kr/rentcar-clean-trust/contact/</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/</loc><lastmod>2026-10-06</lastmod><priority>1.0</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/services/</loc><lastmod>2026-10-06</lastmod><priority>0.9</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/services/short/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/services/month/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/services/long/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/services/delivery/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/area/daegu/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/area/gyeongsan/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/area/suseong/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/about/</loc><lastmod>2026-10-06</lastmod><priority>0.7</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/faq/</loc><lastmod>2026-10-06</lastmod><priority>0.8</priority></url>
+<url><loc>https://demo.example.kr/rentcar-clean-trust/contact/</loc><lastmod>2026-10-06</lastmod><priority>0.9</priority></url>
 </urlset>

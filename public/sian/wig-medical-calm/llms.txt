@@ -1,16 +1,16 @@
-# 새머리 가발
+# 견본 맞춤가발 B
 
-> 수원 맞춤가발 · 부분가발 새머리 가발. 1:1 개인실 상담.
+> 수원 맞춤가발 · 부분가발 견본 맞춤가발 B. 1:1 개인실 상담.
 
 ## 핵심 사실
-- 상호: 새머리 가발
+- 상호: 견본 맞춤가발 B
 - 업종: 가발 · 탈모 케어
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [부분 가발 · 증모](https://demo.example.kr/wig-medical-calm/services/partial/): 정수리 · 앞머리 부분 보완
@@ -23,17 +23,17 @@
 - 티가 나지 않을까요? 두상 본과 모발 색 · 굵기를 맞춰 제작하고 착용 후 기존 머리와 이어지게 커트합니다.
 
 ## 주요 페이지
-- [수원 맞춤가발 | 새머리 가발](https://demo.example.kr/wig-medical-calm/)
-- [서비스 안내 | 새머리 가발](https://demo.example.kr/wig-medical-calm/services/)
-- [수원 부분 가발 · 증모 | 새머리 가발](https://demo.example.kr/wig-medical-calm/services/partial/)
-- [수원 가발 관리 · 커트 | 새머리 가발](https://demo.example.kr/wig-medical-calm/services/care/)
-- [수원 맞춤 가발 | 새머리 가발](https://demo.example.kr/wig-medical-calm/services/custom/)
-- [수원 맞춤가발 | 새머리 가발](https://demo.example.kr/wig-medical-calm/area/suwon/)
-- [용인 맞춤가발 | 새머리 가발](https://demo.example.kr/wig-medical-calm/area/yongin/)
-- [화성 맞춤가발 | 새머리 가발](https://demo.example.kr/wig-medical-calm/area/hwaseong/)
-- [새머리 가발 소개 | 수원 맞춤가발](https://demo.example.kr/wig-medical-calm/about/)
-- [자주 묻는 질문 | 새머리 가발](https://demo.example.kr/wig-medical-calm/faq/)
-- [오시는 길 · 문의 | 새머리 가발](https://demo.example.kr/wig-medical-calm/contact/)
+- [수원 맞춤가발 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/)
+- [서비스 안내 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/services/)
+- [수원 부분 가발 · 증모 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/services/partial/)
+- [수원 가발 관리 · 커트 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/services/care/)
+- [수원 맞춤 가발 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/services/custom/)
+- [수원 맞춤가발 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/area/suwon/)
+- [용인 맞춤가발 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/area/yongin/)
+- [화성 맞춤가발 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/area/hwaseong/)
+- [견본 맞춤가발 B 소개 | 수원 맞춤가발](https://demo.example.kr/wig-medical-calm/about/)
+- [자주 묻는 질문 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/faq/)
+- [오시는 길 · 문의 | 견본 맞춤가발 B](https://demo.example.kr/wig-medical-calm/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

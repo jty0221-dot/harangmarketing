@@ -1,16 +1,16 @@
-# 만들자 코딩
+# 견본 코딩학원 B
 
-> 일산 만들자 코딩. 블록 코딩 · 파이썬 · 로봇 · 정보 교과 안내.
+> 일산 견본 코딩학원 B. 블록 코딩 · 파이썬 · 로봇 · 정보 교과 안내.
 
 ## 핵심 사실
-- 상호: 만들자 코딩
+- 상호: 견본 코딩학원 B
 - 업종: 코딩학원
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [파이썬](https://demo.example.kr/coding-midnight-tech/services/python/): 중고등 프로그래밍
@@ -24,18 +24,18 @@
 - 레벨 테스트는 무료인가요? 네, 무료입니다.
 
 ## 주요 페이지
-- [일산 코딩학원 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/)
-- [서비스 안내 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/services/)
-- [일산 파이썬 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/services/python/)
-- [일산 로봇 · 메이커 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/services/robot/)
-- [일산 정보 교과 대비 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/services/school/)
-- [일산 블록 코딩 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/services/block/)
-- [일산 코딩학원 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/area/ilsan/)
-- [파주 코딩학원 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/area/paju/)
-- [김포 코딩학원 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/area/gimpo/)
-- [만들자 코딩 소개 | 일산 코딩학원](https://demo.example.kr/coding-midnight-tech/about/)
-- [자주 묻는 질문 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/faq/)
-- [오시는 길 · 문의 | 만들자 코딩](https://demo.example.kr/coding-midnight-tech/contact/)
+- [일산 코딩학원 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/)
+- [서비스 안내 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/services/)
+- [일산 파이썬 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/services/python/)
+- [일산 로봇 · 메이커 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/services/robot/)
+- [일산 정보 교과 대비 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/services/school/)
+- [일산 블록 코딩 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/services/block/)
+- [일산 코딩학원 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/area/ilsan/)
+- [파주 코딩학원 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/area/paju/)
+- [김포 코딩학원 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/area/gimpo/)
+- [견본 코딩학원 B 소개 | 일산 코딩학원](https://demo.example.kr/coding-midnight-tech/about/)
+- [자주 묻는 질문 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/faq/)
+- [오시는 길 · 문의 | 견본 코딩학원 B](https://demo.example.kr/coding-midnight-tech/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

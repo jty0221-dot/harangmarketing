@@ -1,1 +1,1 @@
-{"name": "물결 수영", "short_name": "물결 수영", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#178A55", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 수영강습 A", "short_name": "견본 수영강습 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#178A55", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

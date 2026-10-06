@@ -1,16 +1,16 @@
-# 온누리 한의원
+# 견본 한의원 B
 
-> 강남 온누리 한의원. 침 · 뜸 · 추나 · 한약 진료 안내.
+> 강남 견본 한의원 B. 침 · 뜸 · 추나 · 한약 진료 안내.
 
 ## 핵심 사실
-- 상호: 온누리 한의원
+- 상호: 견본 한의원 B
 - 업종: 한의원
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [추나 요법](https://demo.example.kr/oriental-medical-calm/services/chuna/): 건강보험 적용 기준 안내
@@ -23,17 +23,17 @@
 - 추나는 건강보험이 되나요? 건강보험 적용 기준이 있어 진료 시 안내드립니다.
 
 ## 주요 페이지
-- [강남 한의원 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/)
-- [서비스 안내 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/services/)
-- [강남 추나 요법 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/services/chuna/)
-- [강남 한약 처방 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/services/herbal/)
-- [강남 침 · 뜸 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/services/acupuncture/)
-- [강남 한의원 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/area/gangnam/)
-- [서초 한의원 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/area/seocho/)
-- [송파 한의원 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/area/songpa/)
-- [온누리 한의원 소개 | 강남 한의원](https://demo.example.kr/oriental-medical-calm/about/)
-- [자주 묻는 질문 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/faq/)
-- [오시는 길 · 문의 | 온누리 한의원](https://demo.example.kr/oriental-medical-calm/contact/)
+- [강남 한의원 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/)
+- [서비스 안내 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/services/)
+- [강남 추나 요법 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/services/chuna/)
+- [강남 한약 처방 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/services/herbal/)
+- [강남 침 · 뜸 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/services/acupuncture/)
+- [강남 한의원 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/area/gangnam/)
+- [서초 한의원 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/area/seocho/)
+- [송파 한의원 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/area/songpa/)
+- [견본 한의원 B 소개 | 강남 한의원](https://demo.example.kr/oriental-medical-calm/about/)
+- [자주 묻는 질문 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/faq/)
+- [오시는 길 · 문의 | 견본 한의원 B](https://demo.example.kr/oriental-medical-calm/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

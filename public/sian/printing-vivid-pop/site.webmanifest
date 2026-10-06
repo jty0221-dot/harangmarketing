@@ -1,1 +1,1 @@
-{"name": "선명 프린팅", "short_name": "선명 프린팅", "start_url": "./", "display": "standalone", "background_color": "#FFFDF5", "theme_color": "#FF4D2E", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "견본 인쇄소 B", "short_name": "견본 인쇄소 B", "start_url": "./", "display": "standalone", "background_color": "#FFFDF5", "theme_color": "#FF4D2E", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

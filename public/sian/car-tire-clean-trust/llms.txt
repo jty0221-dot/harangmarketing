@@ -1,16 +1,16 @@
-# 구름 타이어
+# 견본 타이어 B
 
-> 인천 구월 구름 타이어. 타이어 · 휠 얼라인먼트 · 엔진오일 · 배터리.
+> 인천 구월 견본 타이어 B. 타이어 · 휠 얼라인먼트 · 엔진오일 · 배터리.
 
 ## 핵심 사실
-- 상호: 구름 타이어
+- 상호: 견본 타이어 B
 - 업종: 타이어 · 경정비
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [휠 얼라인먼트](https://demo.example.kr/car-tire-clean-trust/services/align/): 장비로 측정 후 조정
@@ -24,18 +24,18 @@
 - 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
 
 ## 주요 페이지
-- [인천 구월 타이어 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/)
-- [서비스 안내 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/services/)
-- [인천 구월 휠 얼라인먼트 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/services/align/)
-- [인천 구월 엔진오일 교환 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/services/oil/)
-- [인천 구월 배터리 교체 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/services/battery/)
-- [인천 구월 타이어 교체 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/services/tire/)
-- [인천 구월 타이어 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/area/incheon-guwol/)
-- [부평 타이어 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/area/bupyeong/)
-- [송도 타이어 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/area/songdo/)
-- [구름 타이어 소개 | 인천 구월 타이어](https://demo.example.kr/car-tire-clean-trust/about/)
-- [자주 묻는 질문 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/faq/)
-- [오시는 길 · 문의 | 구름 타이어](https://demo.example.kr/car-tire-clean-trust/contact/)
+- [인천 구월 타이어 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/)
+- [서비스 안내 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/services/)
+- [인천 구월 휠 얼라인먼트 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/services/align/)
+- [인천 구월 엔진오일 교환 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/services/oil/)
+- [인천 구월 배터리 교체 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/services/battery/)
+- [인천 구월 타이어 교체 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/services/tire/)
+- [인천 구월 타이어 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/area/incheon-guwol/)
+- [부평 타이어 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/area/bupyeong/)
+- [송도 타이어 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/area/songdo/)
+- [견본 타이어 B 소개 | 인천 구월 타이어](https://demo.example.kr/car-tire-clean-trust/about/)
+- [자주 묻는 질문 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/faq/)
+- [오시는 길 · 문의 | 견본 타이어 B](https://demo.example.kr/car-tire-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

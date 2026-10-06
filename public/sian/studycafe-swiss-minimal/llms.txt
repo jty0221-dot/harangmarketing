@@ -1,16 +1,16 @@
-# 고요 스터디
+# 견본 스터디카페 B
 
-> 일산 고요 스터디. 1인석 · 스터디룸 · 정기권 · 24시간 운영.
+> 일산 견본 스터디카페 B. 1인석 · 스터디룸 · 정기권 · 24시간 운영.
 
 ## 핵심 사실
-- 상호: 고요 스터디
+- 상호: 견본 스터디카페 B
 - 업종: 스터디카페
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-05
+- 최종 갱신: 2026-10-06
 
 ## 서비스
 - [스터디룸](https://demo.example.kr/studycafe-swiss-minimal/services/room/): 2~6인 룸
@@ -24,18 +24,18 @@
 - 24시간 운영하나요? 연중무휴 24시간 운영합니다.
 
 ## 주요 페이지
-- [일산 스터디카페 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/)
-- [서비스 안내 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/services/)
-- [일산 스터디룸 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/services/room/)
-- [일산 정기권 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/services/pass/)
-- [일산 음료 · 휴게 공간 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/services/lounge/)
-- [일산 1인 집중석 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/services/seat/)
-- [일산 스터디카페 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/area/ilsan/)
-- [파주 스터디카페 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/area/paju/)
-- [김포 스터디카페 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/area/gimpo/)
-- [고요 스터디 소개 | 일산 스터디카페](https://demo.example.kr/studycafe-swiss-minimal/about/)
-- [자주 묻는 질문 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/faq/)
-- [오시는 길 · 문의 | 고요 스터디](https://demo.example.kr/studycafe-swiss-minimal/contact/)
+- [일산 스터디카페 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/)
+- [서비스 안내 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/)
+- [일산 스터디룸 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/room/)
+- [일산 정기권 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/pass/)
+- [일산 음료 · 휴게 공간 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/lounge/)
+- [일산 1인 집중석 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/seat/)
+- [일산 스터디카페 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/ilsan/)
+- [파주 스터디카페 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/paju/)
+- [김포 스터디카페 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/gimpo/)
+- [견본 스터디카페 B 소개 | 일산 스터디카페](https://demo.example.kr/studycafe-swiss-minimal/about/)
+- [자주 묻는 질문 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/faq/)
+- [오시는 길 · 문의 | 견본 스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.
