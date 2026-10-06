@@ -17,7 +17,7 @@ for sec in re.split(r"\n## \d+\. ", SHEET)[1:]:
     hints = re.findall(r"\n  - (.+)", sec.split("- 컨텍스트 힌트", 1)[1].split("\n- 광고\n", 1)[0])
     adl = re.findall(r"- ([AB]) 제목: (.+)\n\s+본문: (.+)", sec)
     groups.append((key, name, url, utm, hints, adl))
-assert len(groups) == 8 and all(len(g[5]) == 2 and len(g[4]) >= 3 for g in groups), "세팅표 파싱 실패"
+assert len(groups) >= 8 and all(len(g[5]) == 2 and len(g[4]) >= 3 for g in groups), "세팅표 파싱 실패"
 for key, name, url, utm, hints, adl in groups:
     rec = done.setdefault(key, {"ads": {}})
     if "group" not in rec:

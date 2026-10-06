@@ -3,7 +3,7 @@ import json, pathlib, uuid, urllib.request, urllib.error, ads
 IMG = pathlib.Path(__file__).resolve().parents[2] / "docs/chatgpt-ads"
 OUT = pathlib.Path(__file__).with_name("file_ids.json")
 done = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
-for k in ["place", "blog", "cafe", "review", "instagram", "photo", "detail", "naver-ads"]:
+for k in ["place", "blog", "cafe", "review", "instagram", "photo", "detail", "naver-ads", "homepage"]:
     if k in done: print(k, "skip", done[k]); continue
     data = (IMG / f"ad-{k}.png").read_bytes()
     b = uuid.uuid4().hex
