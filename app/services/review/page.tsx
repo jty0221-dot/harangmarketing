@@ -97,8 +97,8 @@ const STEPS = [
 const NEVER = [
   {
     icon: Ban,
-    title: "리뷰를 사지 않습니다",
-    body: "방문하지 않은 사람이 쓴 글은 남기지 않습니다. 순위가 잠깐 오르더라도 플랫폼이 잡아내면 매장 계정이 같이 다칩니다.",
+    title: "다녀가지 않은 사람의 글은 받지 않습니다",
+    body: "체험단 글은 매장에 직접 다녀간 블로거와 인플루언서만 씁니다. 방문 없이 쓴 글은 순위가 잠깐 오르더라도 플랫폼이 잡아내면 매장 계정이 같이 다칩니다.",
   },
   {
     icon: ShieldCheck,
@@ -208,7 +208,7 @@ export default function ReviewServicePage() {
             </h1>
 
             <p className="speakable text-base md:text-lg text-gray-300 leading-relaxed mb-8 max-w-3xl">
-              실제로 방문한 사람이 쓴 글만 남깁니다. 블로거·인플루언서 섭외부터 방문 일정, 올라온 글 확인까지 하랑 대표가 직접 하고, 리뷰를 사지 않습니다.
+              실제로 방문한 사람이 쓴 글만 남깁니다. 블로거·인플루언서 섭외부터 방문 일정, 올라온 글 확인까지 하랑 대표가 직접 합니다.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">

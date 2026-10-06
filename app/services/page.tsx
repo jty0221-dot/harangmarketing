@@ -14,7 +14,7 @@ import {
   ScrollText, Camera, Calendar,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
-import { REF_TOTAL, REF_CATEGORIES, UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
+import { UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
@@ -24,6 +24,7 @@ import GlossarySection from "../components/GlossarySection";
 import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage, companyYear } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
 import PlaceRankTable from "../components/PlaceRankTable";
+import { LANDING_RANK_PROOF } from "../lib/landing-gate";
 
 /*
  * 업종별 추천 — 순위 칸은 손으로 적지 않는다.
@@ -53,7 +54,8 @@ const INDUSTRY_RECS = ([
   { industry: "청소·시설관리", firstRec: "플레이스 SEO", recs: ["블로그 관리", "리뷰 마케팅"], rank: "청소", fallback: "플레이스 SEO 중심" },
   { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], fallback: "오픈 전 플레이스 세팅" },
 ] as IndustryRec[]).map(({ rank, fallback, ...row }) => {
-  const r = rank ? best(rank) : undefined;
+  // 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts). 꺼져 있으면 fallback 문구
+  const r = rank && LANDING_RANK_PROOF ? best(rank) : undefined;
   return { ...row, result: r ? fmtLong(r) : fallback };
 });
 
@@ -189,11 +191,10 @@ const SERVICES = [
       "회원이 많고 매일 새 글이 올라오는 대표 카페 배정",
     ],
     rec: "블로그 노출은 되는데 검색 유입이 더 필요한 매장",
-    result: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드 카페 영역 노출 레퍼런스 공개`,
+    // 결과 칸은 하랑이 넘기는 납품 항목으로 적는다. 레퍼런스 캡처 숫자는 레퍼런스 페이지에서만 보여 주고,
+    // 커버는 캡처 대신 브랜드 밴드로 둔다 (광고 착지 화면 문구 정리)
+    result: "게시 글 주소 전체 정리 보고 · 노출 위치 확인 포함",
     href: "/services/cafe-distribution",
-    cover: "/cafe-ref/ref-r-01.png",
-    coverAlt: "네이버 카페 영역 상위노출 실제 화면",
-    coverBadge: "실제 노출 화면",
   },
   {
     // 팔고 있는데 이 목록에 없어서 /services 에서 상세페이지로 가는 길이 없었다.
@@ -347,7 +348,7 @@ const SERVICES = [
     tag: "리뷰",
     title: "리뷰 마케팅 · 체험단",
     subtitle: "리뷰 요청 동선 → 리뷰 축적 · 답글 관리",
-    desc: "체험단 모집부터 리뷰 관리까지. 진짜 방문 후기로 신규 고객의 결정을 돕습니다.",
+    desc: "체험단 모집부터 리뷰 답글 관리까지 맡습니다. 매장에 쌓인 후기와 답글이 처음 오는 손님의 결정을 돕습니다.",
     timeline: "체험단 시작 1~2주 · 리뷰 쌓기 1개월",
     deliverables: [
       { label: "체험단 모집", value: "회차당 5~30명", note: "원하시는 규모로 구성" },
@@ -362,7 +363,8 @@ const SERVICES = [
       "리뷰 답글 작성 대행",
     ],
     rec: "리뷰가 부족해 신규 고객 유입이 어려운 매장",
-    result: "실제 방문 고객 리뷰만 · 구매 리뷰 없음",
+    // 결과 칸은 납품 항목으로 적는다 (광고 착지 화면 문구 정리)
+    result: "리뷰 월 2회 점검 · 답글 가이드 포함",
     href: "/services/review",
     // 체험단 랜딩에는 가격이 없다. 기본 라벨(가격 보기)을 그대로 쓰면 없는 것을 약속하게 된다.
     hrefLabel: "체험단 안내 보기",
@@ -557,7 +559,7 @@ const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[
   { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
   { item: "최적화 블로그 배포", unit: "1건", price: won(BLOG_UNIT_WITH_COPY), note: `원고 작성 포함 10건 패키지 기준. 원고를 직접 주시면 ${won(BLOG_UNIT_WITHOUT_COPY)}.` },
   { item: "카페 단건 배포 (등급별)", unit: "1건", price: `${won(CAFE_TIER_MIN)}~`, note: `카페 등급별 ${CAFE_TIERS.map((t) => t.price.toLocaleString("ko-KR")).join(" · ")}원. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)} 추가.` },
-  { item: "대량 배포 (실명 · 리워드)", unit: "건별", price: "상담 시 안내" },
+  // 단가표 행을 고치면 llms.txt 단가표도 같이 맞춘다
   { item: "체험단", unit: "1회 (5~30명)", price: "상담 시 안내", note: "업종과 인원에 따라 달라집니다. 병·의원은 체험단을 권하지 않습니다." },
   { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
   { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "20만원", note: "PC 전용입니다." },
@@ -984,14 +986,17 @@ export default function ServicesPage() {
         </section>
 
 
-        {/* ══ 순위표 ══ 2026-09-17 (목) 대표 지시 : 진행사례뿐 아니라 서비스에도 보이게 */}
-        <PlaceRankTable
-          align="center"
-          width="5xl"
-          tone="gray"
-          limit={10}
-          more={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
-        />
+        {/* ══ 순위표 ══ 2026-09-17 (목) 대표 지시 : 진행사례뿐 아니라 서비스에도 보이게
+            광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
+        {LANDING_RANK_PROOF && (
+          <PlaceRankTable
+            align="center"
+            width="5xl"
+            tone="gray"
+            limit={10}
+            more={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
+          />
+        )}
 
         {/* ══ 가격 산출 근거 ══ */}
         <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-32">

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { best, fmt } from "../lib/rank-records";
+import { LANDING_RANK_PROOF } from "../lib/landing-gate";
 import { GA_EVENTS } from "../components/Analytics";
 import { attributionLabel } from "../lib/attribution";
 import KakaoSendNotice from "../components/KakaoSendNotice";
@@ -200,22 +201,24 @@ export default function FreeCheckPage() {
               </div>
             </div>
 
-            {/* Cases */}
-            <div>
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 진행 기록</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {CASES.map((c) => (
-                  <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
-                    <div className="flex items-center gap-1.5 mb-1.5">
-                      <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
-                      <span className="text-[11px] text-gray-400">{c.loc}</span>
+            {/* Cases · 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
+            {LANDING_RANK_PROOF && CASES.length > 0 && (
+              <div>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 진행 기록</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {CASES.map((c) => (
+                    <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
+                        <span className="text-[11px] text-gray-400">{c.loc}</span>
+                      </div>
+                      <p className="font-black text-white text-sm">{c.result}</p>
+                      <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
                     </div>
-                    <p className="font-black text-white text-sm">{c.result}</p>
-                    <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right: Form */}
