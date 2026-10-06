@@ -1,9 +1,9 @@
-# 견본 체험장 A
+# ○○체험장 A
 
-> 일산 견본 체험장 A. 이용 요금 · 운영 시간 · 단체 예약 안내.
+> 일산 ○○체험장 A. 이용 요금 · 운영 시간 · 단체 예약 안내.
 
 ## 핵심 사실
-- 상호: 견본 체험장 A
+- 상호: ○○체험장 A
 - 업종: 레저 · 체험 시설
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
@@ -24,18 +24,18 @@
 - 단체 할인이 있나요? 20명 이상 단체 할인이 있습니다.
 
 ## 주요 페이지
-- [일산 체험 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/)
-- [서비스 안내 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/services/)
-- [일산 체험 프로그램 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/services/programs/)
-- [일산 이용 요금 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/services/price/)
-- [일산 단체 · 기업 행사 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/services/group/)
-- [일산 오시는 길 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/services/location/)
-- [일산 체험 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/area/ilsan/)
-- [파주 체험 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/area/paju/)
-- [김포 체험 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/area/gimpo/)
-- [견본 체험장 A 소개 | 일산 체험](https://demo.example.kr/leisure-tech-gradient/about/)
-- [자주 묻는 질문 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/faq/)
-- [오시는 길 · 문의 | 견본 체험장 A](https://demo.example.kr/leisure-tech-gradient/contact/)
+- [일산 체험 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/)
+- [서비스 안내 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/services/)
+- [일산 체험 프로그램 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/services/programs/)
+- [일산 이용 요금 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/services/price/)
+- [일산 단체 · 기업 행사 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/services/group/)
+- [일산 오시는 길 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/services/location/)
+- [일산 체험 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/area/ilsan/)
+- [파주 체험 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/area/paju/)
+- [김포 체험 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/area/gimpo/)
+- [○○체험장 A 소개 | 일산 체험](https://demo.example.kr/leisure-tech-gradient/about/)
+- [자주 묻는 질문 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/faq/)
+- [오시는 길 · 문의 | ○○체험장 A](https://demo.example.kr/leisure-tech-gradient/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,9 +1,9 @@
-# 견본 댄스학원 B
+# ○○댄스학원 B
 
-> 대구 견본 댄스학원 B. K-POP · 방송댄스 · 입시 · 성인 취미반.
+> 대구 ○○댄스학원 B. K-POP · 방송댄스 · 입시 · 성인 취미반.
 
 ## 핵심 사실
-- 상호: 견본 댄스학원 B
+- 상호: ○○댄스학원 B
 - 업종: 댄스학원
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 몇 살부터 다닐 수 있나요? 5세부터 가능합니다.
 
 ## 주요 페이지
-- [대구 댄스학원 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/)
-- [서비스 안내 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/)
-- [대구 방송 댄스 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/basic/)
-- [대구 입시 · 오디션 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/exam/)
-- [대구 성인 취미반 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/adult/)
-- [대구 K-POP 커버 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/kpop/)
-- [대구 댄스학원 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/daegu/)
-- [경산 댄스학원 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/gyeongsan/)
-- [수성 댄스학원 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/suseong/)
-- [견본 댄스학원 B 소개 | 대구 댄스학원](https://demo.example.kr/dance-vivid-pop/about/)
-- [자주 묻는 질문 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/faq/)
-- [오시는 길 · 문의 | 견본 댄스학원 B](https://demo.example.kr/dance-vivid-pop/contact/)
+- [대구 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/)
+- [서비스 안내 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/)
+- [대구 방송 댄스 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/basic/)
+- [대구 입시 · 오디션 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/exam/)
+- [대구 성인 취미반 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/adult/)
+- [대구 K-POP 커버 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/kpop/)
+- [대구 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/daegu/)
+- [경산 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/gyeongsan/)
+- [수성 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/suseong/)
+- [○○댄스학원 B 소개 | 대구 댄스학원](https://demo.example.kr/dance-vivid-pop/about/)
+- [자주 묻는 질문 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/faq/)
+- [오시는 길 · 문의 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,9 +1,9 @@
-# 견본 골프연습장 B
+# ○○골프연습장 B
 
-> 인천 구월 견본 골프연습장 B. 스크린 타석 · 레슨 · 시간 예약 안내.
+> 인천 구월 ○○골프연습장 B. 스크린 타석 · 레슨 · 시간 예약 안내.
 
 ## 핵심 사실
-- 상호: 견본 골프연습장 B
+- 상호: ○○골프연습장 B
 - 업종: 실내 골프
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
@@ -24,18 +24,18 @@
 - 처음 치는데 괜찮나요? 초보 레슨 반부터 시작하실 수 있습니다.
 
 ## 주요 페이지
-- [인천 구월 골프연습장 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/)
-- [서비스 안내 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/)
-- [인천 구월 골프 레슨 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/lesson/)
-- [인천 구월 스윙 분석 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/analysis/)
-- [인천 구월 월 회원권 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/member/)
-- [인천 구월 스크린 타석 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/bay/)
-- [인천 구월 골프연습장 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/area/incheon-guwol/)
-- [부평 골프연습장 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/area/bupyeong/)
-- [송도 골프연습장 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/area/songdo/)
-- [견본 골프연습장 B 소개 | 인천 구월 골프연습장](https://demo.example.kr/golf-midnight-tech/about/)
-- [자주 묻는 질문 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/faq/)
-- [오시는 길 · 문의 | 견본 골프연습장 B](https://demo.example.kr/golf-midnight-tech/contact/)
+- [인천 구월 골프연습장 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/)
+- [서비스 안내 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/)
+- [인천 구월 골프 레슨 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/lesson/)
+- [인천 구월 스윙 분석 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/analysis/)
+- [인천 구월 월 회원권 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/member/)
+- [인천 구월 스크린 타석 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/services/bay/)
+- [인천 구월 골프연습장 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/area/incheon-guwol/)
+- [부평 골프연습장 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/area/bupyeong/)
+- [송도 골프연습장 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/area/songdo/)
+- [○○골프연습장 B 소개 | 인천 구월 골프연습장](https://demo.example.kr/golf-midnight-tech/about/)
+- [자주 묻는 질문 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/faq/)
+- [오시는 길 · 문의 | ○○골프연습장 B](https://demo.example.kr/golf-midnight-tech/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

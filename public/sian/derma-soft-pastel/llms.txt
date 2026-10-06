@@ -1,9 +1,9 @@
-# 견본 피부과 B
+# ○○피부과 B
 
-> 대구 견본 피부과 B. 진료 과목 · 진료 시간 · 오시는 길 안내.
+> 대구 ○○피부과 B. 진료 과목 · 진료 시간 · 오시는 길 안내.
 
 ## 핵심 사실
-- 상호: 견본 피부과 B
+- 상호: ○○피부과 B
 - 업종: 피부과
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 점심시간이 언제인가요? 13시~14시입니다.
 
 ## 주요 페이지
-- [대구 피부과 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/)
-- [서비스 안내 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/services/)
-- [대구 피부 검사 · 상담 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/services/consult/)
-- [대구 레이저 진료 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/services/laser/)
-- [대구 비급여 진료 안내 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/services/fee/)
-- [대구 피부 질환 진료 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/services/skin/)
-- [대구 피부과 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/area/daegu/)
-- [경산 피부과 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/area/gyeongsan/)
-- [수성 피부과 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/area/suseong/)
-- [견본 피부과 B 소개 | 대구 피부과](https://demo.example.kr/derma-soft-pastel/about/)
-- [자주 묻는 질문 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/faq/)
-- [오시는 길 · 문의 | 견본 피부과 B](https://demo.example.kr/derma-soft-pastel/contact/)
+- [대구 피부과 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/)
+- [서비스 안내 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/services/)
+- [대구 피부 검사 · 상담 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/services/consult/)
+- [대구 레이저 진료 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/services/laser/)
+- [대구 비급여 진료 안내 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/services/fee/)
+- [대구 피부 질환 진료 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/services/skin/)
+- [대구 피부과 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/area/daegu/)
+- [경산 피부과 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/area/gyeongsan/)
+- [수성 피부과 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/area/suseong/)
+- [○○피부과 B 소개 | 대구 피부과](https://demo.example.kr/derma-soft-pastel/about/)
+- [자주 묻는 질문 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/faq/)
+- [오시는 길 · 문의 | ○○피부과 B](https://demo.example.kr/derma-soft-pastel/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

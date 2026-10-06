@@ -1,9 +1,9 @@
-# 견본 복싱 B
+# ○○복싱 B
 
-> 수원 견본 복싱 B. 다이어트 복싱 · 크로스핏 · 그룹 수업 안내.
+> 수원 ○○복싱 B. 다이어트 복싱 · 크로스핏 · 그룹 수업 안내.
 
 ## 핵심 사실
-- 상호: 견본 복싱 B
+- 상호: ○○복싱 B
 - 업종: 복싱 · 크로스핏
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -24,18 +24,18 @@
 - 운영 시간이 어떻게 되나요? 평일 06시~24시 · 주말 09시~20시입니다.
 
 ## 주요 페이지
-- [수원 복싱 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/)
-- [서비스 안내 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/services/)
-- [수원 크로스핏 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/services/crossfit/)
-- [수원 1:1 PT | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/services/pt/)
-- [수원 체험 수업 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/services/trial/)
-- [수원 다이어트 복싱 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/services/boxing/)
-- [수원 복싱 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/area/suwon/)
-- [용인 복싱 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/area/yongin/)
-- [화성 복싱 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/area/hwaseong/)
-- [견본 복싱 B 소개 | 수원 복싱](https://demo.example.kr/boxing-dark-neon/about/)
-- [자주 묻는 질문 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/faq/)
-- [오시는 길 · 문의 | 견본 복싱 B](https://demo.example.kr/boxing-dark-neon/contact/)
+- [수원 복싱 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/)
+- [서비스 안내 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/services/)
+- [수원 크로스핏 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/services/crossfit/)
+- [수원 1:1 PT | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/services/pt/)
+- [수원 체험 수업 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/services/trial/)
+- [수원 다이어트 복싱 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/services/boxing/)
+- [수원 복싱 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/area/suwon/)
+- [용인 복싱 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/area/yongin/)
+- [화성 복싱 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/area/hwaseong/)
+- [○○복싱 B 소개 | 수원 복싱](https://demo.example.kr/boxing-dark-neon/about/)
+- [자주 묻는 질문 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/faq/)
+- [오시는 길 · 문의 | ○○복싱 B](https://demo.example.kr/boxing-dark-neon/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,9 +1,9 @@
-# 견본 헬스장 B
+# ○○헬스장 B
 
-> 대구 헬스 · PT 견본 헬스장 B. 시설 둘러보기와 무료 체형 측정.
+> 대구 헬스 · PT ○○헬스장 B. 시설 둘러보기와 무료 체형 측정.
 
 ## 핵심 사실
-- 상호: 견본 헬스장 B
+- 상호: ○○헬스장 B
 - 업종: 헬스 · PT
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 운영 시간이 어떻게 되나요? 평일 06시~24시 · 주말 09시~20시입니다.
 
 ## 주요 페이지
-- [대구 헬스장 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/)
-- [서비스 안내 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/services/)
-- [대구 PT | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/services/pt/)
-- [대구 그룹 운동 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/services/group/)
-- [대구 체형 측정 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/services/measure/)
-- [대구 헬스 회원권 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/services/membership/)
-- [대구 헬스장 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/area/daegu/)
-- [경산 헬스장 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/area/gyeongsan/)
-- [수성 헬스장 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/area/suseong/)
-- [견본 헬스장 B 소개 | 대구 헬스장](https://demo.example.kr/gym-dark-neon/about/)
-- [자주 묻는 질문 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/faq/)
-- [오시는 길 · 문의 | 견본 헬스장 B](https://demo.example.kr/gym-dark-neon/contact/)
+- [대구 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/)
+- [서비스 안내 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/)
+- [대구 PT | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/pt/)
+- [대구 그룹 운동 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/group/)
+- [대구 체형 측정 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/measure/)
+- [대구 헬스 회원권 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/membership/)
+- [대구 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/daegu/)
+- [경산 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/gyeongsan/)
+- [수성 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/suseong/)
+- [○○헬스장 B 소개 | 대구 헬스장](https://demo.example.kr/gym-dark-neon/about/)
+- [자주 묻는 질문 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/faq/)
+- [오시는 길 · 문의 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -6,7 +6,7 @@ export const PUBLIC_SERVICES = [
   { id: 'review', title: '리뷰 마케팅 · 체험단', href: '/services/review', icon: 'Users', desc: '체험단 모집과 방문 확인, 리뷰 링크 회수를 관리합니다.' },
   { id: 'sns', title: '인스타그램 마케팅', href: '/services/instagram', icon: 'AtSign', desc: '피드와 릴스 콘텐츠부터 계정 운영까지 안내합니다.' },
   { id: 'photo', title: '매장 사진촬영', href: '/services/photo', icon: 'Camera', desc: '음식점 메뉴와 시설 공간을 촬영합니다. 구성별 가격과 업체별 사진을 확인하세요.' },
-  { id: 'homepage', title: '홈페이지 제작', href: '/services/homepage', icon: 'Globe2', desc: '업종 · 세부 업종별 시안을 먼저 보고 고르는 홈페이지 제작. 시안은 판매용 견본이고, 대표님 사진과 문구로 바꿔 15영업일 안에 넘겨 드립니다.' },
+  { id: 'homepage', title: '홈페이지 제작', href: '/services/homepage', icon: 'Globe2', desc: '업종 · 세부 업종별 시안을 먼저 보고 고르는 홈페이지 제작. 시안은 판매용으로 미리 만든 화면이고, 대표님 사진과 문구로 바꿔 15영업일 안에 넘겨 드립니다.' },
   { id: 'detail-page', title: '스마트스토어 상세페이지 제작', href: '/services/detail-page', icon: 'LayoutTemplate', desc: '상품의 설명 순서와 카피를 기획하고 상세 이미지를 제작합니다.' },
   { id: 'powercontents', title: '파워컨텐츠 원고 설계·검수', href: '/services#powercontents', icon: 'FileText', desc: '광고에 사용할 원고를 설계하고 검수 대응을 준비합니다.' },
   { id: 'naver-ads', title: '네이버 광고 세팅·운영대행', href: '/services#naver-ads', icon: 'BarChart3', desc: '광고 세팅과 운영을 대행합니다. 광고 집행비는 별도입니다.' },

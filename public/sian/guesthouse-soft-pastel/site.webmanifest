@@ -1,1 +1,1 @@
-{"name": "견본 게스트하우스 B", "short_name": "견본 게스트하우스 B", "start_url": "./", "display": "standalone", "background_color": "#FFF9F8", "theme_color": "#E8607A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "○○게스트하우스 B", "short_name": "○○게스트하우스 B", "start_url": "./", "display": "standalone", "background_color": "#FFF9F8", "theme_color": "#E8607A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

@@ -1,9 +1,9 @@
-# 견본 브런치 B
+# ○○브런치 B
 
-> 대구 견본 브런치 B. 샐러드 · 포케 · 브런치 · 정기 배송.
+> 대구 ○○브런치 B. 샐러드 · 포케 · 브런치 · 정기 배송.
 
 ## 핵심 사실
-- 상호: 견본 브런치 B
+- 상호: ○○브런치 B
 - 업종: 샐러드 · 브런치
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 뒤 전용 주차장 10대입니다.
 
 ## 주요 페이지
-- [대구 브런치 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/)
-- [서비스 안내 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/services/)
-- [대구 포케 · 볼 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/services/poke/)
-- [대구 브런치 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/services/brunch/)
-- [대구 정기 배송 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/services/subscribe/)
-- [대구 샐러드 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/services/salad/)
-- [대구 브런치 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/area/daegu/)
-- [경산 브런치 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/area/gyeongsan/)
-- [수성 브런치 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/area/suseong/)
-- [견본 브런치 B 소개 | 대구 브런치](https://demo.example.kr/salad-soft-pastel/about/)
-- [자주 묻는 질문 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/faq/)
-- [오시는 길 · 문의 | 견본 브런치 B](https://demo.example.kr/salad-soft-pastel/contact/)
+- [대구 브런치 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/)
+- [서비스 안내 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/services/)
+- [대구 포케 · 볼 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/services/poke/)
+- [대구 브런치 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/services/brunch/)
+- [대구 정기 배송 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/services/subscribe/)
+- [대구 샐러드 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/services/salad/)
+- [대구 브런치 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/area/daegu/)
+- [경산 브런치 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/area/gyeongsan/)
+- [수성 브런치 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/area/suseong/)
+- [○○브런치 B 소개 | 대구 브런치](https://demo.example.kr/salad-soft-pastel/about/)
+- [자주 묻는 질문 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/faq/)
+- [오시는 길 · 문의 | ○○브런치 B](https://demo.example.kr/salad-soft-pastel/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

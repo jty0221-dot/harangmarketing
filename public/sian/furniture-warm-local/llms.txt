@@ -1,9 +1,9 @@
-# 견본 가구점 B
+# ○○가구점 B
 
-> 대구 견본 가구점 B. 원목 가구 · 소파 · 조명 · 소품 · 배송 설치.
+> 대구 ○○가구점 B. 원목 가구 · 소파 · 조명 · 소품 · 배송 설치.
 
 ## 핵심 사실
-- 상호: 견본 가구점 B
+- 상호: ○○가구점 B
 - 업종: 가구 · 소품
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 배송은 얼마나 걸리나요? 재고 상품은 일주일 안에 배송합니다.
 
 ## 주요 페이지
-- [대구 가구점 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/)
-- [서비스 안내 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/services/)
-- [대구 소파 · 침대 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/services/sofa/)
-- [대구 조명 · 소품 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/services/deco/)
-- [대구 배송 · 설치 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/services/delivery/)
-- [대구 원목 가구 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/services/wood/)
-- [대구 가구점 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/area/daegu/)
-- [경산 가구점 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/area/gyeongsan/)
-- [수성 가구점 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/area/suseong/)
-- [견본 가구점 B 소개 | 대구 가구점](https://demo.example.kr/furniture-warm-local/about/)
-- [자주 묻는 질문 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/faq/)
-- [오시는 길 · 문의 | 견본 가구점 B](https://demo.example.kr/furniture-warm-local/contact/)
+- [대구 가구점 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/)
+- [서비스 안내 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/services/)
+- [대구 소파 · 침대 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/services/sofa/)
+- [대구 조명 · 소품 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/services/deco/)
+- [대구 배송 · 설치 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/services/delivery/)
+- [대구 원목 가구 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/services/wood/)
+- [대구 가구점 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/area/daegu/)
+- [경산 가구점 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/area/gyeongsan/)
+- [수성 가구점 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/area/suseong/)
+- [○○가구점 B 소개 | 대구 가구점](https://demo.example.kr/furniture-warm-local/about/)
+- [자주 묻는 질문 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/faq/)
+- [오시는 길 · 문의 | ○○가구점 B](https://demo.example.kr/furniture-warm-local/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

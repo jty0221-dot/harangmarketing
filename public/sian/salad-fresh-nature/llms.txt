@@ -1,9 +1,9 @@
-# 견본 브런치 A
+# ○○브런치 A
 
-> 포항 견본 브런치 A. 샐러드 · 포케 · 브런치 · 정기 배송.
+> 포항 ○○브런치 A. 샐러드 · 포케 · 브런치 · 정기 배송.
 
 ## 핵심 사실
-- 상호: 견본 브런치 A
+- 상호: ○○브런치 A
 - 업종: 샐러드 · 브런치
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 단체 주문은 며칠 전에 하나요? 3일 전까지 말씀 주세요.
 
 ## 주요 페이지
-- [포항 브런치 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/)
-- [서비스 안내 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/services/)
-- [포항 샐러드 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/services/salad/)
-- [포항 포케 · 볼 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/services/poke/)
-- [포항 브런치 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/services/brunch/)
-- [포항 정기 배송 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/services/subscribe/)
-- [포항 브런치 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/area/pohang/)
-- [경주 브런치 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/area/gyeongju/)
-- [울산 브런치 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/area/ulsan/)
-- [견본 브런치 A 소개 | 포항 브런치](https://demo.example.kr/salad-fresh-nature/about/)
-- [자주 묻는 질문 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/faq/)
-- [오시는 길 · 문의 | 견본 브런치 A](https://demo.example.kr/salad-fresh-nature/contact/)
+- [포항 브런치 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/)
+- [서비스 안내 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/services/)
+- [포항 샐러드 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/services/salad/)
+- [포항 포케 · 볼 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/services/poke/)
+- [포항 브런치 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/services/brunch/)
+- [포항 정기 배송 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/services/subscribe/)
+- [포항 브런치 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/area/pohang/)
+- [경주 브런치 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/area/gyeongju/)
+- [울산 브런치 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/area/ulsan/)
+- [○○브런치 A 소개 | 포항 브런치](https://demo.example.kr/salad-fresh-nature/about/)
+- [자주 묻는 질문 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/faq/)
+- [오시는 길 · 문의 | ○○브런치 A](https://demo.example.kr/salad-fresh-nature/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

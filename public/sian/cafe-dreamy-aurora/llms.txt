@@ -1,9 +1,9 @@
-# 견본 카페 C
+# ○○카페 C
 
-> 부천 카페 견본 카페 C. 창가 자리 · 주차 · 단체 주문 안내.
+> 부천 카페 ○○카페 C. 창가 자리 · 주차 · 단체 주문 안내.
 
 ## 핵심 사실
-- 상호: 견본 카페 C
+- 상호: ○○카페 C
 - 업종: 카페 · 디저트
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 뒤 전용 주차장 10대입니다.
 
 ## 주요 페이지
-- [부천 카페 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/)
-- [서비스 안내 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/)
-- [부천 디저트 · 베이커리 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/dessert/)
-- [부천 단체 · 선물 주문 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/order/)
-- [부천 공간 안내 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/space/)
-- [부천 시그니처 메뉴 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/signature/)
-- [부천 카페 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/area/bucheon/)
-- [인천 부평 카페 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/area/bupyeong/)
-- [서울 구로 카페 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/area/guro/)
-- [견본 카페 C 소개 | 부천 카페](https://demo.example.kr/cafe-dreamy-aurora/about/)
-- [자주 묻는 질문 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/faq/)
-- [오시는 길 · 문의 | 견본 카페 C](https://demo.example.kr/cafe-dreamy-aurora/contact/)
+- [부천 카페 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/)
+- [서비스 안내 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/)
+- [부천 디저트 · 베이커리 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/dessert/)
+- [부천 단체 · 선물 주문 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/order/)
+- [부천 공간 안내 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/space/)
+- [부천 시그니처 메뉴 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/services/signature/)
+- [부천 카페 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/area/bucheon/)
+- [인천 부평 카페 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/area/bupyeong/)
+- [서울 구로 카페 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/area/guro/)
+- [○○카페 C 소개 | 부천 카페](https://demo.example.kr/cafe-dreamy-aurora/about/)
+- [자주 묻는 질문 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/faq/)
+- [오시는 길 · 문의 | ○○카페 C](https://demo.example.kr/cafe-dreamy-aurora/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

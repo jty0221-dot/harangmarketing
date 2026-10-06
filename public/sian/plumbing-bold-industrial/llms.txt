@@ -1,9 +1,9 @@
-# 견본 설비 B
+# ○○설비 B
 
 > 부천 누수탐지 · 배관 · 하수구 막힘. 전화 주시면 40분 안팎에 도착합니다.
 
 ## 핵심 사실
-- 상호: 견본 설비 B
+- 상호: ○○설비 B
 - 업종: 설비 · 누수
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
@@ -26,18 +26,18 @@
 - 보험 처리가 되나요? 일상생활배상책임 보험 대상인 경우가 많습니다. 보험 청구에 필요한 사진과 작업 내역서를 드립니다.
 
 ## 주요 페이지
-- [부천 누수탐지 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/)
-- [서비스 안내 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/services/)
-- [부천 누수탐지 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/services/leak/)
-- [부천 하수구 · 변기 막힘 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/services/drain/)
-- [부천 배관 교체 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/services/pipe/)
-- [부천 수전 · 보일러 배관 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/services/faucet/)
-- [부천 누수탐지 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/area/bucheon/)
-- [인천 부평 누수탐지 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/area/bupyeong/)
-- [서울 구로 누수탐지 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/area/guro/)
-- [견본 설비 B 소개 | 부천 누수탐지](https://demo.example.kr/plumbing-bold-industrial/about/)
-- [자주 묻는 질문 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/faq/)
-- [오시는 길 · 문의 | 견본 설비 B](https://demo.example.kr/plumbing-bold-industrial/contact/)
+- [부천 누수탐지 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/)
+- [서비스 안내 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/services/)
+- [부천 누수탐지 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/services/leak/)
+- [부천 하수구 · 변기 막힘 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/services/drain/)
+- [부천 배관 교체 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/services/pipe/)
+- [부천 수전 · 보일러 배관 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/services/faucet/)
+- [부천 누수탐지 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/area/bucheon/)
+- [인천 부평 누수탐지 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/area/bupyeong/)
+- [서울 구로 누수탐지 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/area/guro/)
+- [○○설비 B 소개 | 부천 누수탐지](https://demo.example.kr/plumbing-bold-industrial/about/)
+- [자주 묻는 질문 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/faq/)
+- [오시는 길 · 문의 | ○○설비 B](https://demo.example.kr/plumbing-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

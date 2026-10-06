@@ -1,9 +1,9 @@
-# 견본 바 B
+# ○○바 B
 
-> 강남 바 견본 바 B. 시그니처 칵테일 · 위스키 · 와인. 예약과 대관 안내.
+> 강남 바 ○○바 B. 시그니처 칵테일 · 위스키 · 와인. 예약과 대관 안내.
 
 ## 핵심 사실
-- 상호: 견본 바 B
+- 상호: ○○바 B
 - 업종: 바 · 라운지 · 와인바
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -24,18 +24,18 @@
 - 예약이 필요한가요? 주말은 예약을 권합니다.
 
 ## 주요 페이지
-- [강남 바 | 견본 바 B](https://demo.example.kr/bar-dark-premium/)
-- [서비스 안내 | 견본 바 B](https://demo.example.kr/bar-dark-premium/services/)
-- [강남 위스키 · 와인 | 견본 바 B](https://demo.example.kr/bar-dark-premium/services/bottle/)
-- [강남 대관 · 프라이빗 파티 | 견본 바 B](https://demo.example.kr/bar-dark-premium/services/private/)
-- [강남 안주 메뉴 | 견본 바 B](https://demo.example.kr/bar-dark-premium/services/food/)
-- [강남 시그니처 칵테일 | 견본 바 B](https://demo.example.kr/bar-dark-premium/services/cocktail/)
-- [강남 바 | 견본 바 B](https://demo.example.kr/bar-dark-premium/area/gangnam/)
-- [서초 바 | 견본 바 B](https://demo.example.kr/bar-dark-premium/area/seocho/)
-- [송파 바 | 견본 바 B](https://demo.example.kr/bar-dark-premium/area/songpa/)
-- [견본 바 B 소개 | 강남 바](https://demo.example.kr/bar-dark-premium/about/)
-- [자주 묻는 질문 | 견본 바 B](https://demo.example.kr/bar-dark-premium/faq/)
-- [오시는 길 · 문의 | 견본 바 B](https://demo.example.kr/bar-dark-premium/contact/)
+- [강남 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/)
+- [서비스 안내 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/)
+- [강남 위스키 · 와인 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/bottle/)
+- [강남 대관 · 프라이빗 파티 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/private/)
+- [강남 안주 메뉴 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/food/)
+- [강남 시그니처 칵테일 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/cocktail/)
+- [강남 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/gangnam/)
+- [서초 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/seocho/)
+- [송파 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/songpa/)
+- [○○바 B 소개 | 강남 바](https://demo.example.kr/bar-dark-premium/about/)
+- [자주 묻는 질문 | ○○바 B](https://demo.example.kr/bar-dark-premium/faq/)
+- [오시는 길 · 문의 | ○○바 B](https://demo.example.kr/bar-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

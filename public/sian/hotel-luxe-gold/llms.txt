@@ -1,9 +1,9 @@
-# 견본 호텔 C
+# ○○호텔 C
 
-> 강남 견본 호텔 C. 객실 · 요금 · 주차 · 대실 안내.
+> 강남 ○○호텔 C. 객실 · 요금 · 주차 · 대실 안내.
 
 ## 핵심 사실
-- 상호: 견본 호텔 C
+- 상호: ○○호텔 C
 - 업종: 호텔 · 모텔
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -23,17 +23,17 @@
 - 주차가 되나요? 무료 주차 30대입니다.
 
 ## 주요 페이지
-- [강남 호텔 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/)
-- [서비스 안내 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/services/)
-- [강남 대실 · 숙박 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/services/stay/)
-- [강남 비즈니스 장기 투숙 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/services/long-stay/)
-- [강남 객실 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/services/rooms/)
-- [강남 호텔 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/area/gangnam/)
-- [서초 호텔 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/area/seocho/)
-- [송파 호텔 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/area/songpa/)
-- [견본 호텔 C 소개 | 강남 호텔](https://demo.example.kr/hotel-luxe-gold/about/)
-- [자주 묻는 질문 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/faq/)
-- [오시는 길 · 문의 | 견본 호텔 C](https://demo.example.kr/hotel-luxe-gold/contact/)
+- [강남 호텔 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/)
+- [서비스 안내 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/services/)
+- [강남 대실 · 숙박 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/services/stay/)
+- [강남 비즈니스 장기 투숙 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/services/long-stay/)
+- [강남 객실 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/services/rooms/)
+- [강남 호텔 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/area/gangnam/)
+- [서초 호텔 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/area/seocho/)
+- [송파 호텔 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/area/songpa/)
+- [○○호텔 C 소개 | 강남 호텔](https://demo.example.kr/hotel-luxe-gold/about/)
+- [자주 묻는 질문 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/faq/)
+- [오시는 길 · 문의 | ○○호텔 C](https://demo.example.kr/hotel-luxe-gold/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

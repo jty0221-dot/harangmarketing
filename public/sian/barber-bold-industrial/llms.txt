@@ -1,9 +1,9 @@
-# 견본 바버샵 B
+# ○○바버샵 B
 
-> 대구 견본 바버샵 B. 남성 커트 · 펌 · 면도 · 예약 안내.
+> 대구 ○○바버샵 B. 남성 커트 · 펌 · 면도 · 예약 안내.
 
 ## 핵심 사실
-- 상호: 견본 바버샵 B
+- 상호: ○○바버샵 B
 - 업종: 바버샵 · 남성 커트
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 가격표가 있나요? 기장 · 모질에 따라 달라 네이버 예약에 기본 가격을 올려 두었습니다.
 
 ## 주요 페이지
-- [대구 바버샵 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/)
-- [서비스 안내 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/services/)
-- [대구 다운펌 · 볼륨펌 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/services/perm/)
-- [대구 습식 면도 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/services/shave/)
-- [대구 두피 케어 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/services/scalp/)
-- [대구 남성 커트 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/services/cut/)
-- [대구 바버샵 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/area/daegu/)
-- [경산 바버샵 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/area/gyeongsan/)
-- [수성 바버샵 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/area/suseong/)
-- [견본 바버샵 B 소개 | 대구 바버샵](https://demo.example.kr/barber-bold-industrial/about/)
-- [자주 묻는 질문 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/faq/)
-- [오시는 길 · 문의 | 견본 바버샵 B](https://demo.example.kr/barber-bold-industrial/contact/)
+- [대구 바버샵 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/)
+- [서비스 안내 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/services/)
+- [대구 다운펌 · 볼륨펌 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/services/perm/)
+- [대구 습식 면도 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/services/shave/)
+- [대구 두피 케어 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/services/scalp/)
+- [대구 남성 커트 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/services/cut/)
+- [대구 바버샵 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/area/daegu/)
+- [경산 바버샵 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/area/gyeongsan/)
+- [수성 바버샵 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/area/suseong/)
+- [○○바버샵 B 소개 | 대구 바버샵](https://demo.example.kr/barber-bold-industrial/about/)
+- [자주 묻는 질문 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/faq/)
+- [오시는 길 · 문의 | ○○바버샵 B](https://demo.example.kr/barber-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

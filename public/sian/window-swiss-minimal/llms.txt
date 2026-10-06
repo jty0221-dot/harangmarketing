@@ -1,9 +1,9 @@
-# 견본 샷시 A
+# ○○샷시 A
 
-> 대구 견본 샷시 A. 샷시 교체 · 방충망 · 단열 창호 상담.
+> 대구 ○○샷시 A. 샷시 교체 · 방충망 · 단열 창호 상담.
 
 ## 핵심 사실
-- 상호: 견본 샷시 A
+- 상호: ○○샷시 A
 - 업종: 창호 · 샷시
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 자재는 직접 사야 하나요? 저희가 준비해 드립니다. 원하시는 제품이 있으면 그 제품으로 시공합니다.
 
 ## 주요 페이지
-- [대구 샷시 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/)
-- [서비스 안내 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/services/)
-- [대구 샷시 교체 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/services/sash/)
-- [대구 방충망 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/services/screen/)
-- [대구 단열 창호 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/services/insulate/)
-- [대구 부속 수리 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/services/repair/)
-- [대구 샷시 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/area/daegu/)
-- [경산 샷시 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/area/gyeongsan/)
-- [수성 샷시 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/area/suseong/)
-- [견본 샷시 A 소개 | 대구 샷시](https://demo.example.kr/window-swiss-minimal/about/)
-- [자주 묻는 질문 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/faq/)
-- [오시는 길 · 문의 | 견본 샷시 A](https://demo.example.kr/window-swiss-minimal/contact/)
+- [대구 샷시 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/)
+- [서비스 안내 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/services/)
+- [대구 샷시 교체 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/services/sash/)
+- [대구 방충망 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/services/screen/)
+- [대구 단열 창호 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/services/insulate/)
+- [대구 부속 수리 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/services/repair/)
+- [대구 샷시 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/area/daegu/)
+- [경산 샷시 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/area/gyeongsan/)
+- [수성 샷시 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/area/suseong/)
+- [○○샷시 A 소개 | 대구 샷시](https://demo.example.kr/window-swiss-minimal/about/)
+- [자주 묻는 질문 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/faq/)
+- [오시는 길 · 문의 | ○○샷시 A](https://demo.example.kr/window-swiss-minimal/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

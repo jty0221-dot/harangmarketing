@@ -1,1 +1,1 @@
-{"name": "견본 샷시 A", "short_name": "견본 샷시 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0A0A0A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "○○샷시 A", "short_name": "○○샷시 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#0A0A0A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

@@ -1,9 +1,9 @@
-# 견본 마사지샵 B
+# ○○마사지샵 B
 
-> 포항 스파 · 아로마 마사지 견본 마사지샵 B. 1인실 · 커플룸 · 예약제.
+> 포항 스파 · 아로마 마사지 ○○마사지샵 B. 1인실 · 커플룸 · 예약제.
 
 ## 핵심 사실
-- 상호: 견본 마사지샵 B
+- 상호: ○○마사지샵 B
 - 업종: 스파 · 마사지 · 아로마
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 예약 없이 가도 되나요? 예약제로 운영합니다.
 
 ## 주요 페이지
-- [포항 마사지 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/)
-- [서비스 안내 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/)
-- [포항 스포츠 마사지 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/sports/)
-- [포항 커플 · 프라이빗 룸 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/couple/)
-- [포항 헤드 스파 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/head/)
-- [포항 아로마 테라피 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/aroma/)
-- [포항 마사지 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/pohang/)
-- [경주 마사지 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/gyeongju/)
-- [울산 마사지 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/ulsan/)
-- [견본 마사지샵 B 소개 | 포항 마사지](https://demo.example.kr/spa-dreamy-aurora/about/)
-- [자주 묻는 질문 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/faq/)
-- [오시는 길 · 문의 | 견본 마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/contact/)
+- [포항 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/)
+- [서비스 안내 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/)
+- [포항 스포츠 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/sports/)
+- [포항 커플 · 프라이빗 룸 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/couple/)
+- [포항 헤드 스파 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/head/)
+- [포항 아로마 테라피 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/aroma/)
+- [포항 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/pohang/)
+- [경주 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/gyeongju/)
+- [울산 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/ulsan/)
+- [○○마사지샵 B 소개 | 포항 마사지](https://demo.example.kr/spa-dreamy-aurora/about/)
+- [자주 묻는 질문 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/faq/)
+- [오시는 길 · 문의 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

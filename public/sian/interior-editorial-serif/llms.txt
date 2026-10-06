@@ -1,9 +1,9 @@
-# 견본 인테리어 C
+# ○○인테리어 C
 
 > 강남 아파트 · 상가 인테리어. 실측부터 마감까지 한 팀이 끝까지 봅니다.
 
 ## 핵심 사실
-- 상호: 견본 인테리어 C
+- 상호: ○○인테리어 C
 - 업종: 인테리어 · 리모델링
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -25,18 +25,18 @@
 - 관리사무소 신고는 누가 하나요? 공사 신고와 이웃 동의서는 저희가 준비해 드립니다.
 
 ## 주요 페이지
-- [강남 인테리어 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/)
-- [서비스 안내 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/services/)
-- [강남 아파트 전체 리모델링 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/services/full/)
-- [강남 부분 인테리어 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/services/partial/)
-- [강남 상가 · 사무실 인테리어 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/services/commercial/)
-- [강남 3D 시안 설계 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/services/design/)
-- [강남 인테리어 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/area/gangnam/)
-- [서초 인테리어 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/area/seocho/)
-- [송파 인테리어 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/area/songpa/)
-- [견본 인테리어 C 소개 | 강남 인테리어](https://demo.example.kr/interior-editorial-serif/about/)
-- [자주 묻는 질문 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/faq/)
-- [오시는 길 · 문의 | 견본 인테리어 C](https://demo.example.kr/interior-editorial-serif/contact/)
+- [강남 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/)
+- [서비스 안내 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/)
+- [강남 아파트 전체 리모델링 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/full/)
+- [강남 부분 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/partial/)
+- [강남 상가 · 사무실 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/commercial/)
+- [강남 3D 시안 설계 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/design/)
+- [강남 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/gangnam/)
+- [서초 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/seocho/)
+- [송파 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/songpa/)
+- [○○인테리어 C 소개 | 강남 인테리어](https://demo.example.kr/interior-editorial-serif/about/)
+- [자주 묻는 질문 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/faq/)
+- [오시는 길 · 문의 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

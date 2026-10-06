@@ -1,9 +1,9 @@
-# 견본 수학학원 A
+# ○○수학학원 A
 
-> 수원 견본 수학학원 A. 초등 · 중등 · 고등 수학 반 편성 · 상담 안내.
+> 수원 ○○수학학원 A. 초등 · 중등 · 고등 수학 반 편성 · 상담 안내.
 
 ## 핵심 사실
-- 상호: 견본 수학학원 A
+- 상호: ○○수학학원 A
 - 업종: 수학학원
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -24,18 +24,18 @@
 - 보강이 되나요? 결석 시 주 1회 보강합니다.
 
 ## 주요 페이지
-- [수원 수학학원 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/)
-- [서비스 안내 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/services/)
-- [수원 초등 수학 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/services/elem/)
-- [수원 중등 수학 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/services/middle/)
-- [수원 고등 수학 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/services/high/)
-- [수원 오답 클리닉 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/services/clinic/)
-- [수원 수학학원 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/area/suwon/)
-- [용인 수학학원 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/area/yongin/)
-- [화성 수학학원 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/area/hwaseong/)
-- [견본 수학학원 A 소개 | 수원 수학학원](https://demo.example.kr/math-swiss-minimal/about/)
-- [자주 묻는 질문 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/faq/)
-- [오시는 길 · 문의 | 견본 수학학원 A](https://demo.example.kr/math-swiss-minimal/contact/)
+- [수원 수학학원 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/)
+- [서비스 안내 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/services/)
+- [수원 초등 수학 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/services/elem/)
+- [수원 중등 수학 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/services/middle/)
+- [수원 고등 수학 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/services/high/)
+- [수원 오답 클리닉 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/services/clinic/)
+- [수원 수학학원 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/area/suwon/)
+- [용인 수학학원 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/area/yongin/)
+- [화성 수학학원 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/area/hwaseong/)
+- [○○수학학원 A 소개 | 수원 수학학원](https://demo.example.kr/math-swiss-minimal/about/)
+- [자주 묻는 질문 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/faq/)
+- [오시는 길 · 문의 | ○○수학학원 A](https://demo.example.kr/math-swiss-minimal/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

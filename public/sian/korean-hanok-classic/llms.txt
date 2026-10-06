@@ -1,9 +1,9 @@
-# 견본 한정식 B
+# ○○한정식 B
 
 > 포항 한정식. 계절 재료로 차리는 코스와 조용한 룸.
 
 ## 핵심 사실
-- 상호: 견본 한정식 B
+- 상호: ○○한정식 B
 - 업종: 한식 · 한정식
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -23,17 +23,17 @@
 - 채식 메뉴가 되나요? 미리 말씀 주시면 맞춰 준비합니다.
 
 ## 주요 페이지
-- [포항 한정식 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/)
-- [서비스 안내 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/services/)
-- [포항 코스 한정식 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/services/course/)
-- [포항 상견례 · 돌잔치 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/services/event/)
-- [포항 점심 정식 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/services/lunch/)
-- [포항 한정식 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/area/pohang/)
-- [경주 한정식 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/area/gyeongju/)
-- [울산 한정식 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/area/ulsan/)
-- [견본 한정식 B 소개 | 포항 한정식](https://demo.example.kr/korean-hanok-classic/about/)
-- [자주 묻는 질문 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/faq/)
-- [오시는 길 · 문의 | 견본 한정식 B](https://demo.example.kr/korean-hanok-classic/contact/)
+- [포항 한정식 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/)
+- [서비스 안내 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/services/)
+- [포항 코스 한정식 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/services/course/)
+- [포항 상견례 · 돌잔치 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/services/event/)
+- [포항 점심 정식 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/services/lunch/)
+- [포항 한정식 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/area/pohang/)
+- [경주 한정식 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/area/gyeongju/)
+- [울산 한정식 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/area/ulsan/)
+- [○○한정식 B 소개 | 포항 한정식](https://demo.example.kr/korean-hanok-classic/about/)
+- [자주 묻는 질문 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/faq/)
+- [오시는 길 · 문의 | ○○한정식 B](https://demo.example.kr/korean-hanok-classic/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

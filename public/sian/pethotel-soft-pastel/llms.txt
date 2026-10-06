@@ -1,9 +1,9 @@
-# 견본 애견유치원 A
+# ○○애견유치원 A
 
-> 강남 견본 애견유치원 A. 애견 유치원 · 호텔 · 놀이방 · 픽업 안내.
+> 강남 ○○애견유치원 A. 애견 유치원 · 호텔 · 놀이방 · 픽업 안내.
 
 ## 핵심 사실
-- 상호: 견본 애견유치원 A
+- 상호: ○○애견유치원 A
 - 업종: 애견호텔 · 유치원
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -24,18 +24,18 @@
 - 접종 확인이 필요한가요? 호텔 이용 시 종합 백신 접종 기록을 확인합니다.
 
 ## 주요 페이지
-- [강남 애견유치원 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/)
-- [서비스 안내 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/)
-- [강남 애견 유치원 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/daycare/)
-- [강남 애견 호텔 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/hotel/)
-- [강남 놀이 · 산책 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/play/)
-- [강남 픽업 서비스 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/pickup/)
-- [강남 애견유치원 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/gangnam/)
-- [서초 애견유치원 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/seocho/)
-- [송파 애견유치원 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/songpa/)
-- [견본 애견유치원 A 소개 | 강남 애견유치원](https://demo.example.kr/pethotel-soft-pastel/about/)
-- [자주 묻는 질문 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/faq/)
-- [오시는 길 · 문의 | 견본 애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/contact/)
+- [강남 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/)
+- [서비스 안내 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/)
+- [강남 애견 유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/daycare/)
+- [강남 애견 호텔 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/hotel/)
+- [강남 놀이 · 산책 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/play/)
+- [강남 픽업 서비스 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/pickup/)
+- [강남 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/gangnam/)
+- [서초 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/seocho/)
+- [송파 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/songpa/)
+- [○○애견유치원 A 소개 | 강남 애견유치원](https://demo.example.kr/pethotel-soft-pastel/about/)
+- [자주 묻는 질문 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/faq/)
+- [오시는 길 · 문의 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

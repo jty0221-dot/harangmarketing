@@ -1,9 +1,9 @@
-# 견본 네일샵 B
+# ○○네일샵 B
 
-> 부천 네일 · 속눈썹 연장 견본 네일샵 B. 1인 예약제로 기다림이 없습니다.
+> 부천 네일 · 속눈썹 연장 ○○네일샵 B. 1인 예약제로 기다림이 없습니다.
 
 ## 핵심 사실
-- 상호: 견본 네일샵 B
+- 상호: ○○네일샵 B
 - 업종: 네일 · 속눈썹
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 지하 주차 1시간 무료입니다.
 
 ## 주요 페이지
-- [부천 네일샵 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/)
-- [서비스 안내 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/services/)
-- [부천 젤 네일 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/services/gel/)
-- [부천 속눈썹 연장 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/services/lash/)
-- [부천 케어 · 제거 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/services/care/)
-- [부천 패디큐어 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/services/pedi/)
-- [부천 네일샵 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bucheon/)
-- [인천 부평 네일샵 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bupyeong/)
-- [서울 구로 네일샵 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/area/guro/)
-- [견본 네일샵 B 소개 | 부천 네일샵](https://demo.example.kr/nail-soft-pastel/about/)
-- [자주 묻는 질문 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/faq/)
-- [오시는 길 · 문의 | 견본 네일샵 B](https://demo.example.kr/nail-soft-pastel/contact/)
+- [부천 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/)
+- [서비스 안내 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/)
+- [부천 젤 네일 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/gel/)
+- [부천 속눈썹 연장 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/lash/)
+- [부천 케어 · 제거 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/care/)
+- [부천 패디큐어 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/pedi/)
+- [부천 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bucheon/)
+- [인천 부평 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bupyeong/)
+- [서울 구로 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/guro/)
+- [○○네일샵 B 소개 | 부천 네일샵](https://demo.example.kr/nail-soft-pastel/about/)
+- [자주 묻는 질문 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/faq/)
+- [오시는 길 · 문의 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

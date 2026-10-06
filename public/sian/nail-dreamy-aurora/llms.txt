@@ -1,9 +1,9 @@
-# 견본 네일샵 C
+# ○○네일샵 C
 
-> 포항 네일 · 속눈썹 연장 견본 네일샵 C. 1인 예약제로 기다림이 없습니다.
+> 포항 네일 · 속눈썹 연장 ○○네일샵 C. 1인 예약제로 기다림이 없습니다.
 
 ## 핵심 사실
-- 상호: 견본 네일샵 C
+- 상호: ○○네일샵 C
 - 업종: 네일 · 속눈썹
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 디자인은 어떻게 고르나요? 인스타그램 디자인을 보여 주셔도 되고 상담 중 추천해 드립니다.
 
 ## 주요 페이지
-- [포항 네일샵 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/)
-- [서비스 안내 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/)
-- [포항 속눈썹 연장 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/lash/)
-- [포항 케어 · 제거 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/care/)
-- [포항 패디큐어 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/pedi/)
-- [포항 젤 네일 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/gel/)
-- [포항 네일샵 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/area/pohang/)
-- [경주 네일샵 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/area/gyeongju/)
-- [울산 네일샵 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/area/ulsan/)
-- [견본 네일샵 C 소개 | 포항 네일샵](https://demo.example.kr/nail-dreamy-aurora/about/)
-- [자주 묻는 질문 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/faq/)
-- [오시는 길 · 문의 | 견본 네일샵 C](https://demo.example.kr/nail-dreamy-aurora/contact/)
+- [포항 네일샵 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/)
+- [서비스 안내 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/)
+- [포항 속눈썹 연장 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/lash/)
+- [포항 케어 · 제거 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/care/)
+- [포항 패디큐어 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/pedi/)
+- [포항 젤 네일 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/services/gel/)
+- [포항 네일샵 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/area/pohang/)
+- [경주 네일샵 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/area/gyeongju/)
+- [울산 네일샵 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/area/ulsan/)
+- [○○네일샵 C 소개 | 포항 네일샵](https://demo.example.kr/nail-dreamy-aurora/about/)
+- [자주 묻는 질문 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/faq/)
+- [오시는 길 · 문의 | ○○네일샵 C](https://demo.example.kr/nail-dreamy-aurora/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

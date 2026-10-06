@@ -1,9 +1,9 @@
-# 견본 빵집 A
+# ○○빵집 A
 
-> 수원 베이커리 견본 빵집 A. 갓 나온 시간표와 예약 · 선물 세트 안내.
+> 수원 베이커리 ○○빵집 A. 갓 나온 시간표와 예약 · 선물 세트 안내.
 
 ## 핵심 사실
-- 상호: 견본 빵집 A
+- 상호: ○○빵집 A
 - 업종: 베이커리 · 빵집
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -24,18 +24,18 @@
 - 알레르기 정보는요? 제품마다 원재료와 알레르기 유발 성분을 표시해 두었습니다.
 
 ## 주요 페이지
-- [수원 빵집 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/)
-- [서비스 안내 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/services/)
-- [수원 오늘의 빵 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/services/bread/)
-- [수원 케이크 예약 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/services/cake/)
-- [수원 선물 세트 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/services/gift/)
-- [수원 택배 주문 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/services/delivery/)
-- [수원 빵집 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/area/suwon/)
-- [용인 빵집 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/area/yongin/)
-- [화성 빵집 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/area/hwaseong/)
-- [견본 빵집 A 소개 | 수원 빵집](https://demo.example.kr/bakery-warm-local/about/)
-- [자주 묻는 질문 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/faq/)
-- [오시는 길 · 문의 | 견본 빵집 A](https://demo.example.kr/bakery-warm-local/contact/)
+- [수원 빵집 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/)
+- [서비스 안내 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/services/)
+- [수원 오늘의 빵 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/services/bread/)
+- [수원 케이크 예약 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/services/cake/)
+- [수원 선물 세트 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/services/gift/)
+- [수원 택배 주문 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/services/delivery/)
+- [수원 빵집 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/area/suwon/)
+- [용인 빵집 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/area/yongin/)
+- [화성 빵집 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/area/hwaseong/)
+- [○○빵집 A 소개 | 수원 빵집](https://demo.example.kr/bakery-warm-local/about/)
+- [자주 묻는 질문 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/faq/)
+- [오시는 길 · 문의 | ○○빵집 A](https://demo.example.kr/bakery-warm-local/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

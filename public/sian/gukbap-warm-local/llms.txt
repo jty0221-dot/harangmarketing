@@ -1,9 +1,9 @@
-# 견본 국밥 A
+# ○○국밥 A
 
-> 강남 견본 국밥 A. 돼지국밥 · 순대국 · 해장국 · 포장 안내.
+> 강남 ○○국밥 A. 돼지국밥 · 순대국 · 해장국 · 포장 안내.
 
 ## 핵심 사실
-- 상호: 견본 국밥 A
+- 상호: ○○국밥 A
 - 업종: 국밥 · 해장국
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -25,18 +25,18 @@
 - 브레이크 타임이 있나요? 평일 15시~17시입니다.
 
 ## 주요 페이지
-- [강남 국밥 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/)
-- [서비스 안내 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/services/)
-- [강남 돼지국밥 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/services/pork/)
-- [강남 순대국 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/services/sundae/)
-- [강남 해장국 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/services/hangover/)
-- [강남 포장 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/services/takeout/)
-- [강남 국밥 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/area/gangnam/)
-- [서초 국밥 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/area/seocho/)
-- [송파 국밥 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/area/songpa/)
-- [견본 국밥 A 소개 | 강남 국밥](https://demo.example.kr/gukbap-warm-local/about/)
-- [자주 묻는 질문 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/faq/)
-- [오시는 길 · 문의 | 견본 국밥 A](https://demo.example.kr/gukbap-warm-local/contact/)
+- [강남 국밥 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/)
+- [서비스 안내 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/services/)
+- [강남 돼지국밥 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/services/pork/)
+- [강남 순대국 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/services/sundae/)
+- [강남 해장국 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/services/hangover/)
+- [강남 포장 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/services/takeout/)
+- [강남 국밥 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/area/gangnam/)
+- [서초 국밥 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/area/seocho/)
+- [송파 국밥 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/area/songpa/)
+- [○○국밥 A 소개 | 강남 국밥](https://demo.example.kr/gukbap-warm-local/about/)
+- [자주 묻는 질문 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/faq/)
+- [오시는 길 · 문의 | ○○국밥 A](https://demo.example.kr/gukbap-warm-local/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

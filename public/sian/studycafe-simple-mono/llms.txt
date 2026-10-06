@@ -1,9 +1,9 @@
-# 견본 스터디카페 A
+# ○○스터디카페 A
 
-> 대구 견본 스터디카페 A. 1인석 · 스터디룸 · 정기권 · 24시간 운영.
+> 대구 ○○스터디카페 A. 1인석 · 스터디룸 · 정기권 · 24시간 운영.
 
 ## 핵심 사실
-- 상호: 견본 스터디카페 A
+- 상호: ○○스터디카페 A
 - 업종: 스터디카페
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 주차 2시간 지원합니다.
 
 ## 주요 페이지
-- [대구 스터디카페 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/)
-- [서비스 안내 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/)
-- [대구 1인 집중석 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/seat/)
-- [대구 스터디룸 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/room/)
-- [대구 정기권 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/pass/)
-- [대구 음료 · 휴게 공간 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/lounge/)
-- [대구 스터디카페 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/area/daegu/)
-- [경산 스터디카페 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/area/gyeongsan/)
-- [수성 스터디카페 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/area/suseong/)
-- [견본 스터디카페 A 소개 | 대구 스터디카페](https://demo.example.kr/studycafe-simple-mono/about/)
-- [자주 묻는 질문 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/faq/)
-- [오시는 길 · 문의 | 견본 스터디카페 A](https://demo.example.kr/studycafe-simple-mono/contact/)
+- [대구 스터디카페 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/)
+- [서비스 안내 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/)
+- [대구 1인 집중석 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/seat/)
+- [대구 스터디룸 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/room/)
+- [대구 정기권 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/pass/)
+- [대구 음료 · 휴게 공간 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/services/lounge/)
+- [대구 스터디카페 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/area/daegu/)
+- [경산 스터디카페 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/area/gyeongsan/)
+- [수성 스터디카페 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/area/suseong/)
+- [○○스터디카페 A 소개 | 대구 스터디카페](https://demo.example.kr/studycafe-simple-mono/about/)
+- [자주 묻는 질문 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/faq/)
+- [오시는 길 · 문의 | ○○스터디카페 A](https://demo.example.kr/studycafe-simple-mono/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

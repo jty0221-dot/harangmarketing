@@ -1,9 +1,9 @@
-# 견본 파스타 A
+# ○○파스타 A
 
-> 강남 견본 파스타 A. 파스타 · 피자 · 와인 · 예약 안내.
+> 강남 ○○파스타 A. 파스타 · 피자 · 와인 · 예약 안내.
 
 ## 핵심 사실
-- 상호: 견본 파스타 A
+- 상호: ○○파스타 A
 - 업종: 파스타 · 이탈리안
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -25,18 +25,18 @@
 - 브레이크 타임이 있나요? 평일 15시~17시입니다.
 
 ## 주요 페이지
-- [강남 파스타 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/)
-- [서비스 안내 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/services/)
-- [강남 파스타 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/services/pasta/)
-- [강남 화덕 피자 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/services/pizza/)
-- [강남 와인 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/services/wine/)
-- [강남 기념일 예약 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/services/event/)
-- [강남 파스타 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/area/gangnam/)
-- [서초 파스타 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/area/seocho/)
-- [송파 파스타 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/area/songpa/)
-- [견본 파스타 A 소개 | 강남 파스타](https://demo.example.kr/italian-editorial-serif/about/)
-- [자주 묻는 질문 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/faq/)
-- [오시는 길 · 문의 | 견본 파스타 A](https://demo.example.kr/italian-editorial-serif/contact/)
+- [강남 파스타 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/)
+- [서비스 안내 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/services/)
+- [강남 파스타 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/services/pasta/)
+- [강남 화덕 피자 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/services/pizza/)
+- [강남 와인 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/services/wine/)
+- [강남 기념일 예약 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/services/event/)
+- [강남 파스타 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/area/gangnam/)
+- [서초 파스타 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/area/seocho/)
+- [송파 파스타 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/area/songpa/)
+- [○○파스타 A 소개 | 강남 파스타](https://demo.example.kr/italian-editorial-serif/about/)
+- [자주 묻는 질문 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/faq/)
+- [오시는 길 · 문의 | ○○파스타 A](https://demo.example.kr/italian-editorial-serif/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

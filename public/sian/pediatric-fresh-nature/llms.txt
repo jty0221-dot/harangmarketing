@@ -1,9 +1,9 @@
-# 견본 소아청소년과 B
+# ○○소아청소년과 B
 
-> 포항 견본 소아청소년과 B. 진료 시간 · 예방접종 · 오시는 길 안내.
+> 포항 ○○소아청소년과 B. 진료 시간 · 예방접종 · 오시는 길 안내.
 
 ## 핵심 사실
-- 상호: 견본 소아청소년과 B
+- 상호: ○○소아청소년과 B
 - 업종: 소아청소년과
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 점심시간이 언제인가요? 13시~14시입니다.
 
 ## 주요 페이지
-- [포항 소아청소년과 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/)
-- [서비스 안내 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/)
-- [포항 예방접종 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/vaccine/)
-- [포항 영유아 검진 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/checkup/)
-- [포항 야간 · 주말 진료 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/hours/)
-- [포항 소아 진료 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/general/)
-- [포항 소아청소년과 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/pohang/)
-- [경주 소아청소년과 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/gyeongju/)
-- [울산 소아청소년과 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/ulsan/)
-- [견본 소아청소년과 B 소개 | 포항 소아청소년과](https://demo.example.kr/pediatric-fresh-nature/about/)
-- [자주 묻는 질문 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/faq/)
-- [오시는 길 · 문의 | 견본 소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/contact/)
+- [포항 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/)
+- [서비스 안내 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/)
+- [포항 예방접종 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/vaccine/)
+- [포항 영유아 검진 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/checkup/)
+- [포항 야간 · 주말 진료 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/hours/)
+- [포항 소아 진료 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/general/)
+- [포항 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/pohang/)
+- [경주 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/gyeongju/)
+- [울산 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/ulsan/)
+- [○○소아청소년과 B 소개 | 포항 소아청소년과](https://demo.example.kr/pediatric-fresh-nature/about/)
+- [자주 묻는 질문 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/faq/)
+- [오시는 길 · 문의 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

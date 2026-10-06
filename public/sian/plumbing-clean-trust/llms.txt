@@ -1,9 +1,9 @@
-# 견본 설비 C
+# ○○설비 C
 
 > 포항 누수탐지 · 배관 · 하수구 막힘. 전화 주시면 40분 안팎에 도착합니다.
 
 ## 핵심 사실
-- 상호: 견본 설비 C
+- 상호: ○○설비 C
 - 업종: 설비 · 누수
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -26,18 +26,18 @@
 - 출장비가 있나요? 진단 후 시공하시면 출장비는 따로 받지 않습니다. 진단만 받으시는 경우 미리 안내드립니다.
 
 ## 주요 페이지
-- [포항 누수탐지 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/)
-- [서비스 안내 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/services/)
-- [포항 하수구 · 변기 막힘 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/services/drain/)
-- [포항 배관 교체 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/services/pipe/)
-- [포항 수전 · 보일러 배관 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/services/faucet/)
-- [포항 누수탐지 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/services/leak/)
-- [포항 누수탐지 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/area/pohang/)
-- [경주 누수탐지 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/area/gyeongju/)
-- [울산 누수탐지 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/area/ulsan/)
-- [견본 설비 C 소개 | 포항 누수탐지](https://demo.example.kr/plumbing-clean-trust/about/)
-- [자주 묻는 질문 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/faq/)
-- [오시는 길 · 문의 | 견본 설비 C](https://demo.example.kr/plumbing-clean-trust/contact/)
+- [포항 누수탐지 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/)
+- [서비스 안내 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/services/)
+- [포항 하수구 · 변기 막힘 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/services/drain/)
+- [포항 배관 교체 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/services/pipe/)
+- [포항 수전 · 보일러 배관 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/services/faucet/)
+- [포항 누수탐지 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/services/leak/)
+- [포항 누수탐지 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/area/pohang/)
+- [경주 누수탐지 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/area/gyeongju/)
+- [울산 누수탐지 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/area/ulsan/)
+- [○○설비 C 소개 | 포항 누수탐지](https://demo.example.kr/plumbing-clean-trust/about/)
+- [자주 묻는 질문 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/faq/)
+- [오시는 길 · 문의 | ○○설비 C](https://demo.example.kr/plumbing-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

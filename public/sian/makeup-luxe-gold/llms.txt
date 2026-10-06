@@ -1,9 +1,9 @@
-# 견본 메이크업 A
+# ○○메이크업 A
 
-> 수원 견본 메이크업 A. 웨딩 · 촬영 · 행사 메이크업 · 헤어 · 출장 안내.
+> 수원 ○○메이크업 A. 웨딩 · 촬영 · 행사 메이크업 · 헤어 · 출장 안내.
 
 ## 핵심 사실
-- 상호: 견본 메이크업 A
+- 상호: ○○메이크업 A
 - 업종: 메이크업 · 웨딩헤어
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -24,18 +24,18 @@
 - 시술 후 마음에 안 들면요? 7일 안에 말씀 주시면 수정해 드립니다.
 
 ## 주요 페이지
-- [수원 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/)
-- [서비스 안내 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/)
-- [수원 웨딩 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/wedding/)
-- [수원 혼주 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/family/)
-- [수원 촬영 · 행사 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/event/)
-- [수원 출장 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/visit/)
-- [수원 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/suwon/)
-- [용인 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/yongin/)
-- [화성 메이크업 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/hwaseong/)
-- [견본 메이크업 A 소개 | 수원 메이크업](https://demo.example.kr/makeup-luxe-gold/about/)
-- [자주 묻는 질문 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/faq/)
-- [오시는 길 · 문의 | 견본 메이크업 A](https://demo.example.kr/makeup-luxe-gold/contact/)
+- [수원 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/)
+- [서비스 안내 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/)
+- [수원 웨딩 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/wedding/)
+- [수원 혼주 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/family/)
+- [수원 촬영 · 행사 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/event/)
+- [수원 출장 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/visit/)
+- [수원 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/suwon/)
+- [용인 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/yongin/)
+- [화성 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/hwaseong/)
+- [○○메이크업 A 소개 | 수원 메이크업](https://demo.example.kr/makeup-luxe-gold/about/)
+- [자주 묻는 질문 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/faq/)
+- [오시는 길 · 문의 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

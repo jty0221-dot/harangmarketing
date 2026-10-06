@@ -1,9 +1,9 @@
-# 견본 타이어 A
+# ○○타이어 A
 
-> 강남 견본 타이어 A. 타이어 · 휠 얼라인먼트 · 엔진오일 · 배터리.
+> 강남 ○○타이어 A. 타이어 · 휠 얼라인먼트 · 엔진오일 · 배터리.
 
 ## 핵심 사실
-- 상호: 견본 타이어 A
+- 상호: ○○타이어 A
 - 업종: 타이어 · 경정비
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -24,18 +24,18 @@
 - 부품을 가져가도 되나요? 지참 부품 장착이 가능합니다.
 
 ## 주요 페이지
-- [강남 타이어 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/)
-- [서비스 안내 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/)
-- [강남 타이어 교체 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/tire/)
-- [강남 휠 얼라인먼트 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/align/)
-- [강남 엔진오일 교환 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/oil/)
-- [강남 배터리 교체 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/battery/)
-- [강남 타이어 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/area/gangnam/)
-- [서초 타이어 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/area/seocho/)
-- [송파 타이어 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/area/songpa/)
-- [견본 타이어 A 소개 | 강남 타이어](https://demo.example.kr/car-tire-bold-industrial/about/)
-- [자주 묻는 질문 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/faq/)
-- [오시는 길 · 문의 | 견본 타이어 A](https://demo.example.kr/car-tire-bold-industrial/contact/)
+- [강남 타이어 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/)
+- [서비스 안내 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/)
+- [강남 타이어 교체 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/tire/)
+- [강남 휠 얼라인먼트 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/align/)
+- [강남 엔진오일 교환 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/oil/)
+- [강남 배터리 교체 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/services/battery/)
+- [강남 타이어 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/area/gangnam/)
+- [서초 타이어 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/area/seocho/)
+- [송파 타이어 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/area/songpa/)
+- [○○타이어 A 소개 | 강남 타이어](https://demo.example.kr/car-tire-bold-industrial/about/)
+- [자주 묻는 질문 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/faq/)
+- [오시는 길 · 문의 | ○○타이어 A](https://demo.example.kr/car-tire-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

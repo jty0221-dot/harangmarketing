@@ -1,9 +1,9 @@
-# 견본 미용실 B
+# ○○미용실 B
 
-> 일산 미용실 견본 미용실 B. 커트 · 펌 · 염색 · 클리닉. 네이버 예약으로 기다림 없이.
+> 일산 미용실 ○○미용실 B. 커트 · 펌 · 염색 · 클리닉. 네이버 예약으로 기다림 없이.
 
 ## 핵심 사실
-- 상호: 견본 미용실 B
+- 상호: ○○미용실 B
 - 업종: 미용실 · 헤어
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
@@ -24,18 +24,18 @@
 - 가격표가 있나요? 기장 · 모질에 따라 달라 네이버 예약에 기본 가격을 올려 두었습니다.
 
 ## 주요 페이지
-- [일산 미용실 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/)
-- [서비스 안내 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/services/)
-- [일산 펌 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/services/perm/)
-- [일산 염색 · 탈색 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/services/color/)
-- [일산 두피 · 모발 클리닉 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/services/clinic/)
-- [일산 커트 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/services/cut/)
-- [일산 미용실 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/area/ilsan/)
-- [파주 미용실 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/area/paju/)
-- [김포 미용실 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/area/gimpo/)
-- [견본 미용실 B 소개 | 일산 미용실](https://demo.example.kr/hair-simple-mono/about/)
-- [자주 묻는 질문 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/faq/)
-- [오시는 길 · 문의 | 견본 미용실 B](https://demo.example.kr/hair-simple-mono/contact/)
+- [일산 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/)
+- [서비스 안내 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/)
+- [일산 펌 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/perm/)
+- [일산 염색 · 탈색 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/color/)
+- [일산 두피 · 모발 클리닉 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/clinic/)
+- [일산 커트 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/cut/)
+- [일산 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/ilsan/)
+- [파주 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/paju/)
+- [김포 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/gimpo/)
+- [○○미용실 B 소개 | 일산 미용실](https://demo.example.kr/hair-simple-mono/about/)
+- [자주 묻는 질문 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/faq/)
+- [오시는 길 · 문의 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

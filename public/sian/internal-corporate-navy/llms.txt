@@ -1,9 +1,9 @@
-# 견본 내과 A
+# ○○내과 A
 
-> 일산 견본 내과 A. 진료 과목 · 건강검진 · 진료 시간.
+> 일산 ○○내과 A. 진료 과목 · 건강검진 · 진료 시간.
 
 ## 핵심 사실
-- 상호: 견본 내과 A
+- 상호: ○○내과 A
 - 업종: 내과 · 건강검진
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 주차장 1시간 무료입니다.
 
 ## 주요 페이지
-- [일산 내과 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/)
-- [서비스 안내 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/services/)
-- [일산 내과 진료 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/services/general/)
-- [일산 건강검진 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/services/checkup/)
-- [일산 내시경 검사 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/services/scope/)
-- [일산 검진 결과 상담 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/services/result/)
-- [일산 내과 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/area/ilsan/)
-- [파주 내과 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/area/paju/)
-- [김포 내과 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/area/gimpo/)
-- [견본 내과 A 소개 | 일산 내과](https://demo.example.kr/internal-corporate-navy/about/)
-- [자주 묻는 질문 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/faq/)
-- [오시는 길 · 문의 | 견본 내과 A](https://demo.example.kr/internal-corporate-navy/contact/)
+- [일산 내과 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/)
+- [서비스 안내 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/services/)
+- [일산 내과 진료 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/services/general/)
+- [일산 건강검진 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/services/checkup/)
+- [일산 내시경 검사 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/services/scope/)
+- [일산 검진 결과 상담 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/services/result/)
+- [일산 내과 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/area/ilsan/)
+- [파주 내과 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/area/paju/)
+- [김포 내과 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/area/gimpo/)
+- [○○내과 A 소개 | 일산 내과](https://demo.example.kr/internal-corporate-navy/about/)
+- [자주 묻는 질문 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/faq/)
+- [오시는 길 · 문의 | ○○내과 A](https://demo.example.kr/internal-corporate-navy/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

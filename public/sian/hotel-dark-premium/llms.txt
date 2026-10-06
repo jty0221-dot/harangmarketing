@@ -1,9 +1,9 @@
-# 견본 호텔 B
+# ○○호텔 B
 
-> 수원 견본 호텔 B. 객실 · 요금 · 주차 · 대실 안내.
+> 수원 ○○호텔 B. 객실 · 요금 · 주차 · 대실 안내.
 
 ## 핵심 사실
-- 상호: 견본 호텔 B
+- 상호: ○○호텔 B
 - 업종: 호텔 · 모텔
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -23,17 +23,17 @@
 - 조식이 있나요? 간단한 조식이 제공됩니다.
 
 ## 주요 페이지
-- [수원 호텔 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/)
-- [서비스 안내 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/services/)
-- [수원 객실 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/services/rooms/)
-- [수원 대실 · 숙박 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/services/stay/)
-- [수원 비즈니스 장기 투숙 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/services/long-stay/)
-- [수원 호텔 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/area/suwon/)
-- [용인 호텔 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/area/yongin/)
-- [화성 호텔 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/area/hwaseong/)
-- [견본 호텔 B 소개 | 수원 호텔](https://demo.example.kr/hotel-dark-premium/about/)
-- [자주 묻는 질문 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/faq/)
-- [오시는 길 · 문의 | 견본 호텔 B](https://demo.example.kr/hotel-dark-premium/contact/)
+- [수원 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/)
+- [서비스 안내 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/)
+- [수원 객실 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/rooms/)
+- [수원 대실 · 숙박 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/stay/)
+- [수원 비즈니스 장기 투숙 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/long-stay/)
+- [수원 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/suwon/)
+- [용인 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/yongin/)
+- [화성 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/hwaseong/)
+- [○○호텔 B 소개 | 수원 호텔](https://demo.example.kr/hotel-dark-premium/about/)
+- [자주 묻는 질문 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/faq/)
+- [오시는 길 · 문의 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

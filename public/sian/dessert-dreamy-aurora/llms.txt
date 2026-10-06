@@ -1,9 +1,9 @@
-# 견본 디저트 B
+# ○○디저트 B
 
-> 부천 견본 디저트 B. 주문 케이크 · 마카롱 · 구움과자 · 픽업 예약.
+> 부천 ○○디저트 B. 주문 케이크 · 마카롱 · 구움과자 · 픽업 예약.
 
 ## 핵심 사실
-- 상호: 견본 디저트 B
+- 상호: ○○디저트 B
 - 업종: 디저트 · 케이크
 - 지역: 부천시
 - 서비스 지역: 부천 · 인천 부평 · 서울 구로
@@ -24,18 +24,18 @@
 - 빵 나오는 시간이 정해져 있나요? 오전 8시 · 11시 · 오후 3시에 주요 빵이 나옵니다.
 
 ## 주요 페이지
-- [부천 디저트 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/)
-- [서비스 안내 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/)
-- [부천 마카롱 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/macaron/)
-- [부천 구움과자 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/baked/)
-- [부천 선물 포장 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/gift/)
-- [부천 주문 케이크 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/cake/)
-- [부천 디저트 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/area/bucheon/)
-- [인천 부평 디저트 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/area/bupyeong/)
-- [서울 구로 디저트 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/area/guro/)
-- [견본 디저트 B 소개 | 부천 디저트](https://demo.example.kr/dessert-dreamy-aurora/about/)
-- [자주 묻는 질문 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/faq/)
-- [오시는 길 · 문의 | 견본 디저트 B](https://demo.example.kr/dessert-dreamy-aurora/contact/)
+- [부천 디저트 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/)
+- [서비스 안내 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/)
+- [부천 마카롱 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/macaron/)
+- [부천 구움과자 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/baked/)
+- [부천 선물 포장 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/gift/)
+- [부천 주문 케이크 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/services/cake/)
+- [부천 디저트 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/area/bucheon/)
+- [인천 부평 디저트 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/area/bupyeong/)
+- [서울 구로 디저트 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/area/guro/)
+- [○○디저트 B 소개 | 부천 디저트](https://demo.example.kr/dessert-dreamy-aurora/about/)
+- [자주 묻는 질문 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/faq/)
+- [오시는 길 · 문의 | ○○디저트 B](https://demo.example.kr/dessert-dreamy-aurora/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

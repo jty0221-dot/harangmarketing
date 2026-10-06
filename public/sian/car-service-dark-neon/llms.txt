@@ -1,9 +1,9 @@
-# 견본 정비소 D
+# ○○정비소 D
 
-> 포항 정비 · 엔진오일 · 광택 · 썬팅 견본 정비소 D. 작업 전 견적 확정.
+> 포항 정비 · 엔진오일 · 광택 · 썬팅 ○○정비소 D. 작업 전 견적 확정.
 
 ## 핵심 사실
-- 상호: 견본 정비소 D
+- 상호: ○○정비소 D
 - 업종: 자동차 정비 · 세차 · 광택
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
 
 ## 주요 페이지
-- [포항 자동차정비 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/)
-- [서비스 안내 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/services/)
-- [포항 광택 · 코팅 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/services/polish/)
-- [포항 썬팅 · PPF | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/services/film/)
-- [포항 실내 세차 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/services/interior/)
-- [포항 일반 정비 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/services/repair/)
-- [포항 자동차정비 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/area/pohang/)
-- [경주 자동차정비 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/area/gyeongju/)
-- [울산 자동차정비 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/area/ulsan/)
-- [견본 정비소 D 소개 | 포항 자동차정비](https://demo.example.kr/car-service-dark-neon/about/)
-- [자주 묻는 질문 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/faq/)
-- [오시는 길 · 문의 | 견본 정비소 D](https://demo.example.kr/car-service-dark-neon/contact/)
+- [포항 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/)
+- [서비스 안내 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/)
+- [포항 광택 · 코팅 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/polish/)
+- [포항 썬팅 · PPF | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/film/)
+- [포항 실내 세차 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/interior/)
+- [포항 일반 정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/repair/)
+- [포항 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/pohang/)
+- [경주 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/gyeongju/)
+- [울산 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/ulsan/)
+- [○○정비소 D 소개 | 포항 자동차정비](https://demo.example.kr/car-service-dark-neon/about/)
+- [자주 묻는 질문 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/faq/)
+- [오시는 길 · 문의 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,9 +1,9 @@
-# 견본 중식당 B
+# ○○중식당 B
 
-> 강남 견본 중식당 B. 식사 · 요리 · 코스 · 단체 예약.
+> 강남 ○○중식당 B. 식사 · 요리 · 코스 · 단체 예약.
 
 ## 핵심 사실
-- 상호: 견본 중식당 B
+- 상호: ○○중식당 B
 - 업종: 중식
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -25,18 +25,18 @@
 - 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
 
 ## 주요 페이지
-- [강남 중식당 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/)
-- [서비스 안내 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/services/)
-- [강남 요리 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/services/dish/)
-- [강남 코스 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/services/course/)
-- [강남 룸 · 단체 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/services/room/)
-- [강남 식사 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/services/meal/)
-- [강남 중식당 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/area/gangnam/)
-- [서초 중식당 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/area/seocho/)
-- [송파 중식당 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/area/songpa/)
-- [견본 중식당 B 소개 | 강남 중식당](https://demo.example.kr/chinese-warm-local/about/)
-- [자주 묻는 질문 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/faq/)
-- [오시는 길 · 문의 | 견본 중식당 B](https://demo.example.kr/chinese-warm-local/contact/)
+- [강남 중식당 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/)
+- [서비스 안내 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/services/)
+- [강남 요리 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/services/dish/)
+- [강남 코스 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/services/course/)
+- [강남 룸 · 단체 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/services/room/)
+- [강남 식사 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/services/meal/)
+- [강남 중식당 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/area/gangnam/)
+- [서초 중식당 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/area/seocho/)
+- [송파 중식당 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/area/songpa/)
+- [○○중식당 B 소개 | 강남 중식당](https://demo.example.kr/chinese-warm-local/about/)
+- [자주 묻는 질문 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/faq/)
+- [오시는 길 · 문의 | ○○중식당 B](https://demo.example.kr/chinese-warm-local/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

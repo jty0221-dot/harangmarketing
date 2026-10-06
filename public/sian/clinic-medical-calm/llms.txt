@@ -1,9 +1,9 @@
-# 견본 의원 B
+# ○○의원 B
 
-> 인천 구월 견본 의원 B. 진료 과목과 접수 방법을 안내합니다.
+> 인천 구월 ○○의원 B. 진료 과목과 접수 방법을 안내합니다.
 
 ## 핵심 사실
-- 상호: 견본 의원 B
+- 상호: ○○의원 B
 - 업종: 의원 · 병원
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
@@ -23,17 +23,17 @@
 - 주차가 되나요? 건물 주차장 1시간 무료입니다.
 
 ## 주요 페이지
-- [인천 구월 의원 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/)
-- [서비스 안내 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/services/)
-- [인천 구월 내과 진료 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-1/)
-- [인천 구월 건강검진 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-2/)
-- [인천 구월 예방접종 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-3/)
-- [인천 구월 의원 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/area/incheon-guwol/)
-- [부평 의원 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/area/bupyeong/)
-- [송도 의원 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/area/songdo/)
-- [견본 의원 B 소개 | 인천 구월 의원](https://demo.example.kr/clinic-medical-calm/about/)
-- [자주 묻는 질문 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/faq/)
-- [오시는 길 · 문의 | 견본 의원 B](https://demo.example.kr/clinic-medical-calm/contact/)
+- [인천 구월 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/)
+- [서비스 안내 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/)
+- [인천 구월 내과 진료 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-1/)
+- [인천 구월 건강검진 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-2/)
+- [인천 구월 예방접종 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-3/)
+- [인천 구월 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/incheon-guwol/)
+- [부평 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/bupyeong/)
+- [송도 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/songdo/)
+- [○○의원 B 소개 | 인천 구월 의원](https://demo.example.kr/clinic-medical-calm/about/)
+- [자주 묻는 질문 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/faq/)
+- [오시는 길 · 문의 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

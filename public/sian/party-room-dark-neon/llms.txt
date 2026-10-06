@@ -1,9 +1,9 @@
-# 견본 파티룸 B
+# ○○파티룸 B
 
-> 인천 구월 파티룸 견본 파티룸 B. 생일 · 브라이덜 샤워 · 소모임 · 촬영 대관.
+> 인천 구월 파티룸 ○○파티룸 B. 생일 · 브라이덜 샤워 · 소모임 · 촬영 대관.
 
 ## 핵심 사실
-- 상호: 견본 파티룸 B
+- 상호: ○○파티룸 B
 - 업종: 파티룸 · 스튜디오 대여
 - 지역: 남동구
 - 서비스 지역: 인천 구월 · 부평 · 송도
@@ -24,18 +24,18 @@
 - 최대 인원은요? 최대 15명입니다.
 
 ## 주요 페이지
-- [인천 구월 파티룸 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/)
-- [서비스 안내 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/services/)
-- [인천 구월 이용 요금 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/services/price/)
-- [인천 구월 데코 옵션 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/services/deco/)
-- [인천 구월 촬영 대관 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/services/shoot/)
-- [인천 구월 공간 안내 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/services/space/)
-- [인천 구월 파티룸 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/area/incheon-guwol/)
-- [부평 파티룸 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/area/bupyeong/)
-- [송도 파티룸 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/area/songdo/)
-- [견본 파티룸 B 소개 | 인천 구월 파티룸](https://demo.example.kr/party-room-dark-neon/about/)
-- [자주 묻는 질문 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/faq/)
-- [오시는 길 · 문의 | 견본 파티룸 B](https://demo.example.kr/party-room-dark-neon/contact/)
+- [인천 구월 파티룸 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/)
+- [서비스 안내 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/services/)
+- [인천 구월 이용 요금 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/services/price/)
+- [인천 구월 데코 옵션 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/services/deco/)
+- [인천 구월 촬영 대관 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/services/shoot/)
+- [인천 구월 공간 안내 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/services/space/)
+- [인천 구월 파티룸 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/area/incheon-guwol/)
+- [부평 파티룸 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/area/bupyeong/)
+- [송도 파티룸 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/area/songdo/)
+- [○○파티룸 B 소개 | 인천 구월 파티룸](https://demo.example.kr/party-room-dark-neon/about/)
+- [자주 묻는 질문 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/faq/)
+- [오시는 길 · 문의 | ○○파티룸 B](https://demo.example.kr/party-room-dark-neon/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

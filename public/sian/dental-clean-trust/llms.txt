@@ -1,9 +1,9 @@
-# 견본 치과 C
+# ○○치과 C
 
-> 대구 견본 치과 C. 진료 과목 · 진료 시간 · 오시는 길 안내.
+> 대구 ○○치과 C. 진료 과목 · 진료 시간 · 오시는 길 안내.
 
 ## 핵심 사실
-- 상호: 견본 치과 C
+- 상호: ○○치과 C
 - 업종: 치과
 - 지역: 수성구
 - 서비스 지역: 대구 · 경산 · 수성
@@ -24,18 +24,18 @@
 - 야간 진료를 하나요? 화요일 · 목요일 21시까지 진료합니다.
 
 ## 주요 페이지
-- [대구 치과 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/)
-- [서비스 안내 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/services/)
-- [대구 임플란트 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/services/implant/)
-- [대구 치아교정 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/services/ortho/)
-- [대구 소아 치과 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/services/kids/)
-- [대구 일반 진료 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/services/general/)
-- [대구 치과 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/area/daegu/)
-- [경산 치과 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/area/gyeongsan/)
-- [수성 치과 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/area/suseong/)
-- [견본 치과 C 소개 | 대구 치과](https://demo.example.kr/dental-clean-trust/about/)
-- [자주 묻는 질문 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/faq/)
-- [오시는 길 · 문의 | 견본 치과 C](https://demo.example.kr/dental-clean-trust/contact/)
+- [대구 치과 | ○○치과 C](https://demo.example.kr/dental-clean-trust/)
+- [서비스 안내 | ○○치과 C](https://demo.example.kr/dental-clean-trust/services/)
+- [대구 임플란트 | ○○치과 C](https://demo.example.kr/dental-clean-trust/services/implant/)
+- [대구 치아교정 | ○○치과 C](https://demo.example.kr/dental-clean-trust/services/ortho/)
+- [대구 소아 치과 | ○○치과 C](https://demo.example.kr/dental-clean-trust/services/kids/)
+- [대구 일반 진료 | ○○치과 C](https://demo.example.kr/dental-clean-trust/services/general/)
+- [대구 치과 | ○○치과 C](https://demo.example.kr/dental-clean-trust/area/daegu/)
+- [경산 치과 | ○○치과 C](https://demo.example.kr/dental-clean-trust/area/gyeongsan/)
+- [수성 치과 | ○○치과 C](https://demo.example.kr/dental-clean-trust/area/suseong/)
+- [○○치과 C 소개 | 대구 치과](https://demo.example.kr/dental-clean-trust/about/)
+- [자주 묻는 질문 | ○○치과 C](https://demo.example.kr/dental-clean-trust/faq/)
+- [오시는 길 · 문의 | ○○치과 C](https://demo.example.kr/dental-clean-trust/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

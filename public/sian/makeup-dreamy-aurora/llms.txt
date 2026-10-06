@@ -1,9 +1,9 @@
-# 견본 메이크업 B
+# ○○메이크업 B
 
-> 강남 견본 메이크업 B. 웨딩 · 촬영 · 행사 메이크업 · 헤어 · 출장 안내.
+> 강남 ○○메이크업 B. 웨딩 · 촬영 · 행사 메이크업 · 헤어 · 출장 안내.
 
 ## 핵심 사실
-- 상호: 견본 메이크업 B
+- 상호: ○○메이크업 B
 - 업종: 메이크업 · 웨딩헤어
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -24,18 +24,18 @@
 - 가격표가 있나요? 기장 · 모질에 따라 달라 네이버 예약에 기본 가격을 올려 두었습니다.
 
 ## 주요 페이지
-- [강남 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/)
-- [서비스 안내 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/)
-- [강남 혼주 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/family/)
-- [강남 촬영 · 행사 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/event/)
-- [강남 출장 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/visit/)
-- [강남 웨딩 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/wedding/)
-- [강남 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/gangnam/)
-- [서초 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/seocho/)
-- [송파 메이크업 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/songpa/)
-- [견본 메이크업 B 소개 | 강남 메이크업](https://demo.example.kr/makeup-dreamy-aurora/about/)
-- [자주 묻는 질문 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/faq/)
-- [오시는 길 · 문의 | 견본 메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/contact/)
+- [강남 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/)
+- [서비스 안내 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/)
+- [강남 혼주 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/family/)
+- [강남 촬영 · 행사 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/event/)
+- [강남 출장 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/visit/)
+- [강남 웨딩 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/wedding/)
+- [강남 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/gangnam/)
+- [서초 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/seocho/)
+- [송파 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/songpa/)
+- [○○메이크업 B 소개 | 강남 메이크업](https://demo.example.kr/makeup-dreamy-aurora/about/)
+- [자주 묻는 질문 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/faq/)
+- [오시는 길 · 문의 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

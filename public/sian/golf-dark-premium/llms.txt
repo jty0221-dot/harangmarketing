@@ -1,9 +1,9 @@
-# 견본 골프연습장 A
+# ○○골프연습장 A
 
-> 강남 견본 골프연습장 A. 스크린 타석 · 레슨 · 시간 예약 안내.
+> 강남 ○○골프연습장 A. 스크린 타석 · 레슨 · 시간 예약 안내.
 
 ## 핵심 사실
-- 상호: 견본 골프연습장 A
+- 상호: ○○골프연습장 A
 - 업종: 실내 골프
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -24,18 +24,18 @@
 - 주차가 되나요? 건물 지하 주차 2시간 지원합니다.
 
 ## 주요 페이지
-- [강남 골프연습장 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/)
-- [서비스 안내 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/services/)
-- [강남 스크린 타석 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/services/bay/)
-- [강남 골프 레슨 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/services/lesson/)
-- [강남 스윙 분석 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/services/analysis/)
-- [강남 월 회원권 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/services/member/)
-- [강남 골프연습장 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/area/gangnam/)
-- [서초 골프연습장 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/area/seocho/)
-- [송파 골프연습장 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/area/songpa/)
-- [견본 골프연습장 A 소개 | 강남 골프연습장](https://demo.example.kr/golf-dark-premium/about/)
-- [자주 묻는 질문 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/faq/)
-- [오시는 길 · 문의 | 견본 골프연습장 A](https://demo.example.kr/golf-dark-premium/contact/)
+- [강남 골프연습장 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/)
+- [서비스 안내 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/services/)
+- [강남 스크린 타석 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/services/bay/)
+- [강남 골프 레슨 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/services/lesson/)
+- [강남 스윙 분석 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/services/analysis/)
+- [강남 월 회원권 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/services/member/)
+- [강남 골프연습장 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/area/gangnam/)
+- [서초 골프연습장 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/area/seocho/)
+- [송파 골프연습장 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/area/songpa/)
+- [○○골프연습장 A 소개 | 강남 골프연습장](https://demo.example.kr/golf-dark-premium/about/)
+- [자주 묻는 질문 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/faq/)
+- [오시는 길 · 문의 | ○○골프연습장 A](https://demo.example.kr/golf-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

@@ -1,9 +1,9 @@
-# 견본 족발 B
+# ○○족발 B
 
-> 수원 견본 족발 B. 족발 · 보쌈 · 막국수 · 포장 · 배달.
+> 수원 ○○족발 B. 족발 · 보쌈 · 막국수 · 포장 · 배달.
 
 ## 핵심 사실
-- 상호: 견본 족발 B
+- 상호: ○○족발 B
 - 업종: 족발 · 보쌈
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -25,18 +25,18 @@
 - 예약이 되나요? 네이버 예약과 전화 예약 모두 받습니다. 단체는 하루 전까지 말씀 주세요.
 
 ## 주요 페이지
-- [수원 족발 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/)
-- [서비스 안내 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/services/)
-- [수원 보쌈 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/services/bossam/)
-- [수원 막국수 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/services/noodle/)
-- [수원 포장 · 배달 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/services/delivery/)
-- [수원 족발 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/services/jokbal/)
-- [수원 족발 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/area/suwon/)
-- [용인 족발 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/area/yongin/)
-- [화성 족발 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/area/hwaseong/)
-- [견본 족발 B 소개 | 수원 족발](https://demo.example.kr/jokbal-warm-local/about/)
-- [자주 묻는 질문 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/faq/)
-- [오시는 길 · 문의 | 견본 족발 B](https://demo.example.kr/jokbal-warm-local/contact/)
+- [수원 족발 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/)
+- [서비스 안내 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/services/)
+- [수원 보쌈 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/services/bossam/)
+- [수원 막국수 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/services/noodle/)
+- [수원 포장 · 배달 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/services/delivery/)
+- [수원 족발 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/services/jokbal/)
+- [수원 족발 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/area/suwon/)
+- [용인 족발 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/area/yongin/)
+- [화성 족발 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/area/hwaseong/)
+- [○○족발 B 소개 | 수원 족발](https://demo.example.kr/jokbal-warm-local/about/)
+- [자주 묻는 질문 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/faq/)
+- [오시는 길 · 문의 | ○○족발 B](https://demo.example.kr/jokbal-warm-local/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

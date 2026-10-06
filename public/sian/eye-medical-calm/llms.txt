@@ -1,9 +1,9 @@
-# 견본 안과 B
+# ○○안과 B
 
-> 강남 견본 안과 B. 진료 과목 · 검사 안내 · 진료 시간.
+> 강남 ○○안과 B. 진료 과목 · 검사 안내 · 진료 시간.
 
 ## 핵심 사실
-- 상호: 견본 안과 B
+- 상호: ○○안과 B
 - 업종: 안과
 - 지역: 강남구
 - 서비스 지역: 강남 · 서초 · 송파
@@ -24,18 +24,18 @@
 - 점심시간이 언제인가요? 13시~14시입니다.
 
 ## 주요 페이지
-- [강남 안과 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/)
-- [서비스 안내 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/services/)
-- [강남 시력 · 안압 검사 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/services/exam/)
-- [강남 백내장 상담 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/services/cataract/)
-- [강남 소아 시력 검사 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/services/kids/)
-- [강남 일반 안과 진료 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/services/general/)
-- [강남 안과 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/area/gangnam/)
-- [서초 안과 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/area/seocho/)
-- [송파 안과 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/area/songpa/)
-- [견본 안과 B 소개 | 강남 안과](https://demo.example.kr/eye-medical-calm/about/)
-- [자주 묻는 질문 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/faq/)
-- [오시는 길 · 문의 | 견본 안과 B](https://demo.example.kr/eye-medical-calm/contact/)
+- [강남 안과 | ○○안과 B](https://demo.example.kr/eye-medical-calm/)
+- [서비스 안내 | ○○안과 B](https://demo.example.kr/eye-medical-calm/services/)
+- [강남 시력 · 안압 검사 | ○○안과 B](https://demo.example.kr/eye-medical-calm/services/exam/)
+- [강남 백내장 상담 | ○○안과 B](https://demo.example.kr/eye-medical-calm/services/cataract/)
+- [강남 소아 시력 검사 | ○○안과 B](https://demo.example.kr/eye-medical-calm/services/kids/)
+- [강남 일반 안과 진료 | ○○안과 B](https://demo.example.kr/eye-medical-calm/services/general/)
+- [강남 안과 | ○○안과 B](https://demo.example.kr/eye-medical-calm/area/gangnam/)
+- [서초 안과 | ○○안과 B](https://demo.example.kr/eye-medical-calm/area/seocho/)
+- [송파 안과 | ○○안과 B](https://demo.example.kr/eye-medical-calm/area/songpa/)
+- [○○안과 B 소개 | 강남 안과](https://demo.example.kr/eye-medical-calm/about/)
+- [자주 묻는 질문 | ○○안과 B](https://demo.example.kr/eye-medical-calm/faq/)
+- [오시는 길 · 문의 | ○○안과 B](https://demo.example.kr/eye-medical-calm/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

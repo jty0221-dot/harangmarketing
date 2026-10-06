@@ -1,1 +1,1 @@
-{"name": "견본 메이크업 A", "short_name": "견본 메이크업 A", "start_url": "./", "display": "standalone", "background_color": "#FBF7EE", "theme_color": "#A9813A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "○○메이크업 A", "short_name": "○○메이크업 A", "start_url": "./", "display": "standalone", "background_color": "#FBF7EE", "theme_color": "#A9813A", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}

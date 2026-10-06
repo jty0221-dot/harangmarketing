@@ -1,9 +1,9 @@
-# 견본 학원 C
+# ○○학원 C
 
 > 일산 초 · 중 · 고 수학 · 영어 학원. 레벨 테스트와 상담 예약.
 
 ## 핵심 사실
-- 상호: 견본 학원 C
+- 상호: ○○학원 C
 - 업종: 입시 · 보습 학원
 - 지역: 고양시
 - 서비스 지역: 일산 · 파주 · 김포
@@ -24,18 +24,18 @@
 - 레벨 테스트는 무료인가요? 네, 무료입니다.
 
 ## 주요 페이지
-- [일산 학원 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/)
-- [서비스 안내 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/services/)
-- [일산 중등 과정 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/services/middle/)
-- [일산 고등 과정 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/services/high/)
-- [일산 레벨 테스트 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/services/level-test/)
-- [일산 초등 과정 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/services/elementary/)
-- [일산 학원 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/area/ilsan/)
-- [파주 학원 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/area/paju/)
-- [김포 학원 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/area/gimpo/)
-- [견본 학원 C 소개 | 일산 학원](https://demo.example.kr/academy-bento-modern/about/)
-- [자주 묻는 질문 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/faq/)
-- [오시는 길 · 문의 | 견본 학원 C](https://demo.example.kr/academy-bento-modern/contact/)
+- [일산 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/)
+- [서비스 안내 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/)
+- [일산 중등 과정 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/middle/)
+- [일산 고등 과정 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/high/)
+- [일산 레벨 테스트 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/level-test/)
+- [일산 초등 과정 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/elementary/)
+- [일산 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/ilsan/)
+- [파주 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/paju/)
+- [김포 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/gimpo/)
+- [○○학원 C 소개 | 일산 학원](https://demo.example.kr/academy-bento-modern/about/)
+- [자주 묻는 질문 | ○○학원 C](https://demo.example.kr/academy-bento-modern/faq/)
+- [오시는 길 · 문의 | ○○학원 C](https://demo.example.kr/academy-bento-modern/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

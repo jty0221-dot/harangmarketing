@@ -1,9 +1,9 @@
-# 견본 필라테스 B
+# ○○필라테스 B
 
-> 수원 필라테스 · 요가 견본 필라테스 B. 1:1 · 그룹 레슨, 체험 수업 예약.
+> 수원 필라테스 · 요가 ○○필라테스 B. 1:1 · 그룹 레슨, 체험 수업 예약.
 
 ## 핵심 사실
-- 상호: 견본 필라테스 B
+- 상호: ○○필라테스 B
 - 업종: 필라테스 · 요가
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -24,18 +24,18 @@
 - 처음인데 따라갈 수 있나요? 첫 수업에서 체형과 운동 경험을 보고 강도를 맞춥니다.
 
 ## 주요 페이지
-- [수원 필라테스 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/)
-- [서비스 안내 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/)
-- [수원 그룹 레슨 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/group/)
-- [수원 체형 교정 프로그램 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/posture/)
-- [수원 체험 수업 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/trial/)
-- [수원 1:1 개인 레슨 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/private/)
-- [수원 필라테스 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/area/suwon/)
-- [용인 필라테스 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/area/yongin/)
-- [화성 필라테스 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/area/hwaseong/)
-- [견본 필라테스 B 소개 | 수원 필라테스](https://demo.example.kr/pilates-dreamy-mist/about/)
-- [자주 묻는 질문 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/faq/)
-- [오시는 길 · 문의 | 견본 필라테스 B](https://demo.example.kr/pilates-dreamy-mist/contact/)
+- [수원 필라테스 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/)
+- [서비스 안내 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/)
+- [수원 그룹 레슨 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/group/)
+- [수원 체형 교정 프로그램 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/posture/)
+- [수원 체험 수업 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/trial/)
+- [수원 1:1 개인 레슨 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/services/private/)
+- [수원 필라테스 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/area/suwon/)
+- [용인 필라테스 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/area/yongin/)
+- [화성 필라테스 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/area/hwaseong/)
+- [○○필라테스 B 소개 | 수원 필라테스](https://demo.example.kr/pilates-dreamy-mist/about/)
+- [자주 묻는 질문 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/faq/)
+- [오시는 길 · 문의 | ○○필라테스 B](https://demo.example.kr/pilates-dreamy-mist/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

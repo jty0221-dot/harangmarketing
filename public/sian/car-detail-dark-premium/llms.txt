@@ -1,9 +1,9 @@
-# 견본 디테일링 B
+# ○○디테일링 B
 
-> 포항 견본 디테일링 B. 손세차 · 실내 클리닝 · 광택 · 유리막 코팅.
+> 포항 ○○디테일링 B. 손세차 · 실내 클리닝 · 광택 · 유리막 코팅.
 
 ## 핵심 사실
-- 상호: 견본 디테일링 B
+- 상호: ○○디테일링 B
 - 업종: 디테일링 · 세차
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 예약 없이 가도 되나요? 간단한 정비는 가능하지만 예약을 권합니다.
 
 ## 주요 페이지
-- [포항 디테일링 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/)
-- [서비스 안내 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/)
-- [포항 실내 클리닝 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/interior/)
-- [포항 광택 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/polish/)
-- [포항 유리막 코팅 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/coating/)
-- [포항 프리미엄 손세차 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/wash/)
-- [포항 디테일링 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/area/pohang/)
-- [경주 디테일링 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/area/gyeongju/)
-- [울산 디테일링 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/area/ulsan/)
-- [견본 디테일링 B 소개 | 포항 디테일링](https://demo.example.kr/car-detail-dark-premium/about/)
-- [자주 묻는 질문 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/faq/)
-- [오시는 길 · 문의 | 견본 디테일링 B](https://demo.example.kr/car-detail-dark-premium/contact/)
+- [포항 디테일링 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/)
+- [서비스 안내 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/)
+- [포항 실내 클리닝 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/interior/)
+- [포항 광택 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/polish/)
+- [포항 유리막 코팅 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/coating/)
+- [포항 프리미엄 손세차 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/services/wash/)
+- [포항 디테일링 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/area/pohang/)
+- [경주 디테일링 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/area/gyeongju/)
+- [울산 디테일링 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/area/ulsan/)
+- [○○디테일링 B 소개 | 포항 디테일링](https://demo.example.kr/car-detail-dark-premium/about/)
+- [자주 묻는 질문 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/faq/)
+- [오시는 길 · 문의 | ○○디테일링 B](https://demo.example.kr/car-detail-dark-premium/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

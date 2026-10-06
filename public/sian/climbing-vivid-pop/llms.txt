@@ -1,9 +1,9 @@
-# 견본 클라이밍 A
+# ○○클라이밍 A
 
-> 수원 견본 클라이밍 A. 볼더링 · 리드 · 초보 강습 · 일일 체험.
+> 수원 ○○클라이밍 A. 볼더링 · 리드 · 초보 강습 · 일일 체험.
 
 ## 핵심 사실
-- 상호: 견본 클라이밍 A
+- 상호: ○○클라이밍 A
 - 업종: 클라이밍
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -24,18 +24,18 @@
 - 일일권이 있나요? 일일권이 있습니다.
 
 ## 주요 페이지
-- [수원 클라이밍 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/)
-- [서비스 안내 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/)
-- [수원 볼더링 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/boulder/)
-- [수원 리드 클라이밍 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/lead/)
-- [수원 초보 강습 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/lesson/)
-- [수원 일일 체험 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/trial/)
-- [수원 클라이밍 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/suwon/)
-- [용인 클라이밍 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/yongin/)
-- [화성 클라이밍 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/hwaseong/)
-- [견본 클라이밍 A 소개 | 수원 클라이밍](https://demo.example.kr/climbing-vivid-pop/about/)
-- [자주 묻는 질문 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/faq/)
-- [오시는 길 · 문의 | 견본 클라이밍 A](https://demo.example.kr/climbing-vivid-pop/contact/)
+- [수원 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/)
+- [서비스 안내 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/)
+- [수원 볼더링 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/boulder/)
+- [수원 리드 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/lead/)
+- [수원 초보 강습 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/lesson/)
+- [수원 일일 체험 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/trial/)
+- [수원 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/suwon/)
+- [용인 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/yongin/)
+- [화성 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/hwaseong/)
+- [○○클라이밍 A 소개 | 수원 클라이밍](https://demo.example.kr/climbing-vivid-pop/about/)
+- [자주 묻는 질문 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/faq/)
+- [오시는 길 · 문의 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

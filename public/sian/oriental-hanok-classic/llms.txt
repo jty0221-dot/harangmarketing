@@ -1,9 +1,9 @@
-# 견본 한의원 A
+# ○○한의원 A
 
-> 수원 견본 한의원 A. 침 · 뜸 · 추나 · 한약 진료 안내.
+> 수원 ○○한의원 A. 침 · 뜸 · 추나 · 한약 진료 안내.
 
 ## 핵심 사실
-- 상호: 견본 한의원 A
+- 상호: ○○한의원 A
 - 업종: 한의원
 - 지역: 수원시
 - 서비스 지역: 수원 · 용인 · 화성
@@ -23,17 +23,17 @@
 - 야간 진료를 하나요? 월 · 수 20시까지입니다.
 
 ## 주요 페이지
-- [수원 한의원 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/)
-- [서비스 안내 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/services/)
-- [수원 침 · 뜸 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/services/acupuncture/)
-- [수원 추나 요법 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/services/chuna/)
-- [수원 한약 처방 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/services/herbal/)
-- [수원 한의원 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/area/suwon/)
-- [용인 한의원 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/area/yongin/)
-- [화성 한의원 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/area/hwaseong/)
-- [견본 한의원 A 소개 | 수원 한의원](https://demo.example.kr/oriental-hanok-classic/about/)
-- [자주 묻는 질문 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/faq/)
-- [오시는 길 · 문의 | 견본 한의원 A](https://demo.example.kr/oriental-hanok-classic/contact/)
+- [수원 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/)
+- [서비스 안내 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/)
+- [수원 침 · 뜸 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/acupuncture/)
+- [수원 추나 요법 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/chuna/)
+- [수원 한약 처방 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/herbal/)
+- [수원 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/suwon/)
+- [용인 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/yongin/)
+- [화성 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/hwaseong/)
+- [○○한의원 A 소개 | 수원 한의원](https://demo.example.kr/oriental-hanok-classic/about/)
+- [자주 묻는 질문 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/faq/)
+- [오시는 길 · 문의 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

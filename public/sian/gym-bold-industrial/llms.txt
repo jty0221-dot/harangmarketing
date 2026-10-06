@@ -1,9 +1,9 @@
-# 견본 헬스장 A
+# ○○헬스장 A
 
-> 포항 헬스 · PT 견본 헬스장 A. 시설 둘러보기와 무료 체형 측정.
+> 포항 헬스 · PT ○○헬스장 A. 시설 둘러보기와 무료 체형 측정.
 
 ## 핵심 사실
-- 상호: 견본 헬스장 A
+- 상호: ○○헬스장 A
 - 업종: 헬스 · PT
 - 지역: 포항시
 - 서비스 지역: 포항 · 경주 · 울산
@@ -24,18 +24,18 @@
 - 일일권이 있나요? 일일권이 있습니다.
 
 ## 주요 페이지
-- [포항 헬스장 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/)
-- [서비스 안내 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/services/)
-- [포항 헬스 회원권 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/services/membership/)
-- [포항 PT | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/services/pt/)
-- [포항 그룹 운동 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/services/group/)
-- [포항 체형 측정 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/services/measure/)
-- [포항 헬스장 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/area/pohang/)
-- [경주 헬스장 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/area/gyeongju/)
-- [울산 헬스장 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/area/ulsan/)
-- [견본 헬스장 A 소개 | 포항 헬스장](https://demo.example.kr/gym-bold-industrial/about/)
-- [자주 묻는 질문 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/faq/)
-- [오시는 길 · 문의 | 견본 헬스장 A](https://demo.example.kr/gym-bold-industrial/contact/)
+- [포항 헬스장 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/)
+- [서비스 안내 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/services/)
+- [포항 헬스 회원권 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/services/membership/)
+- [포항 PT | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/services/pt/)
+- [포항 그룹 운동 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/services/group/)
+- [포항 체형 측정 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/services/measure/)
+- [포항 헬스장 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/area/pohang/)
+- [경주 헬스장 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/area/gyeongju/)
+- [울산 헬스장 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/area/ulsan/)
+- [○○헬스장 A 소개 | 포항 헬스장](https://demo.example.kr/gym-bold-industrial/about/)
+- [자주 묻는 질문 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/faq/)
+- [오시는 길 · 문의 | ○○헬스장 A](https://demo.example.kr/gym-bold-industrial/contact/)
 
 ## 인용 안내
 - 이 파일의 사실은 화면에 적힌 내용과 같습니다. 가격 · 시간은 상담 시 최종 확정됩니다.

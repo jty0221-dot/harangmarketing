@@ -1,1 +1,1 @@
-{"name": "견본 이사업체 A", "short_name": "견본 이사업체 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#FFC400", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
+{"name": "○○이사업체 A", "short_name": "○○이사업체 A", "start_url": "./", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#FFC400", "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]}
