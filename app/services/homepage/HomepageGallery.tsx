@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ExternalLink, Search } from "lucide-react";
 import { HP_DRAFTS, HP_GROUPS, HP_MOODS, hpDemoUrl, hpThumb } from "../../lib/homepage-portfolio";
 
@@ -15,6 +15,18 @@ export default function HomepageGallery() {
   const [mood, setMood] = useState("all");
   const [q, setQ] = useState("");
   const [shown, setShown] = useState(PAGE);
+
+  // 광고 · 홍보 링크가 업종으로 바로 열리게 ?group=medical · ?q=피부과 를 읽는다
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const g = sp.get("group");
+    const query = sp.get("q");
+    if (!g && !query) return;
+    queueMicrotask(() => {
+      if (g && HP_GROUPS.some((x) => x.key === g)) setGroup(g);
+      if (query) setQ(query.slice(0, 30));
+    });
+  }, []);
 
   const visible = useMemo(() => {
     const key = q.trim().toLowerCase();
@@ -99,7 +111,7 @@ export default function HomepageGallery() {
                   {d.name}
                 </p>
                 <p className="w-caption-1 mt-1 flex-1" style={{ color: "var(--w-label-alt)" }}>
-                  {d.real ? `실사형 레이아웃 · ${d.design}` : `디자인 · ${d.design}`}
+                  {d.real ? "실사형 레이아웃" : `디자인 · ${d.design}`}
                 </p>
                 <span className="w-caption-1 mt-3 inline-flex items-center gap-1 font-bold" style={{ color: "var(--w-primary)" }}>
                   시안 열어 보기
