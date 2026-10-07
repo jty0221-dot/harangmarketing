@@ -43,8 +43,22 @@ export default function HeroSection({
   // null 이면 방문자가 아직 버튼을 누르지 않은 것이다. 그때는 동작 줄이기 설정을 따른다
   const [pauseChoice, setPauseChoice] = useState<boolean | null>(null);
   const paused = pauseChoice ?? reduceMotion;
+  // 반복 장식(영상 확대 · 필름 그레인 · 통계 카드 둥실 · 스크롤 표시)은 페이지가 다 뜨고 1.5초 뒤에 튼다.
+  // 처음부터 돌리면 휴대폰에서 첫 화면을 그리는 동안 그레인 합성 · 흐림 효과를 매 프레임 다시 그려
+  // 스타일 · 배치 1.9초 · 그리기 1.7초가 첫 화면을 붙잡았다 (2026-10-07 라이트하우스 실측 · 속도 3회차).
+  // 등장 애니메이션은 그대로 돈다. 모양은 같고 움직임만 조금 늦게 시작한다
+  const [motionReady, setMotionReady] = useState(false);
+  const loopPaused = paused || !motionReady;
   // 아래 재생 재시도 효과는 videoSpeed 가 바뀔 때만 다시 걸리므로, 멈춤 여부는 ref 로 읽는다
   const pausedRef = useRef(paused);
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const go = () => { t = setTimeout(() => setMotionReady(true), 1500); };
+    if (document.readyState === "complete") go();
+    else window.addEventListener("load", go, { once: true });
+    return () => { if (t) clearTimeout(t); window.removeEventListener("load", go); };
+  }, []);
 
   // 이 효과가 재생 재시도 효과보다 먼저 선언돼야 첫 렌더에서 pausedRef 가 먼저 맞춰진다
   useEffect(() => {
@@ -197,7 +211,7 @@ export default function HeroSection({
             objectPosition: "50% 46%",
             willChange: "transform",
             animation: "haZoom 34s ease-in-out infinite alternate",
-            animationPlayState: paused ? "paused" : "running",
+            animationPlayState: loopPaused ? "paused" : "running",
           }}
         >
           <source src="/hero-v4.mp4" type="video/mp4" />
@@ -278,7 +292,7 @@ export default function HeroSection({
               opacity: 0.09,
               mixBlendMode: "overlay",
               animation: "haGrainShift 1.6s steps(2) infinite",
-              animationPlayState: paused ? "paused" : "running",
+              animationPlayState: loopPaused ? "paused" : "running",
               backgroundImage:
                 "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22140%22 height=%22140%22 filter=%22url(%23n)%22/></svg>')",
             }}
@@ -464,7 +478,7 @@ export default function HeroSection({
                 boxShadow: "0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15)",
                 animation: `haStatIn .9s cubic-bezier(.2,.7,.2,1) ${stat.delay} both, ${stat.anim} 5s ease-in-out ${stat.delay} infinite`,
                 // 등장(haStatIn)은 끝까지 보내고 떠다니는 반복만 멈춘다
-                animationPlayState: paused ? "running, paused" : "running, running",
+                animationPlayState: loopPaused ? "running, paused" : "running, running",
                 transformStyle: "preserve-3d",
               }}
             >
@@ -522,7 +536,7 @@ export default function HeroSection({
               fontSize: 16,
               lineHeight: 1,
               animation: "haCue 1.8s ease-in-out infinite",
-              animationPlayState: paused ? "paused" : "running",
+              animationPlayState: loopPaused ? "paused" : "running",
             }}
           >
             ↓
