@@ -130,7 +130,7 @@ export default function HomepageServicePage() {
             </h1>
             <p className="w-body-1 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
               네이버가 통합검색에서 홈페이지를 같이 보여 주는 쪽으로 바뀌고 있습니다. 업종별로 시안을 미리 만들어 두었으니
-              아래에서 직접 눌러 보시고, 마음에 드는 시안을 고르시면 대표님 업체로 바꿔 15영업일 안에 넘겨 드립니다.
+              아래에서 직접 눌러 보시고, 마음에 드는 시안을 고르시면 대표님 업체로 바꿔, 계약금 입금일부터 15영업일 안에 넘겨 드립니다.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               <a href="#gallery" className="w-btn w-btn-primary min-h-[44px]">
