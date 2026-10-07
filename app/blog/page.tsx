@@ -48,7 +48,7 @@ export default async function BlogPage() {
                 href="https://blog.naver.com/harangmarketing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-600 text-white font-bold text-sm hover:bg-green-500 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-700 text-white font-bold text-sm hover:bg-green-800 transition-colors shadow-sm"
               >
                 <span className="w-5 h-5 rounded bg-white/20 flex items-center justify-center font-black text-xs">N</span>
                 네이버 블로그 전체 보기
@@ -108,9 +108,9 @@ export default async function BlogPage() {
         <section className="py-10 bg-[var(--w-primary)]">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-5 md:gap-10">
             <div className="flex-1 text-center md:text-left">
-              <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>
+              <p className="text-white text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>
               <h3 className="text-white font-black text-lg md:text-xl mb-1">매주 소상공인 마케팅 인사이트를 카카오로 받아보세요</h3>
-              <p className="text-blue-100 text-sm">매주 1회 · 10년 경력 실무진 직접 작성 · 비용 없음</p>
+              <p className="text-white text-sm">매주 1회 · 10년 경력 실무진 직접 작성 · 비용 없음</p>
             </div>
             <a
               href="https://pf.kakao.com/_MuUkG/chat"

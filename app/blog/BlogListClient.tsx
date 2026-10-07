@@ -321,7 +321,7 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
                 <span className="whitespace-nowrap">{tab.label}</span>
                 {countMap[tab.key] > 0 && (
                   <span className={`text-[11px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${
-                    isActive ? "bg-blue-100 text-blue-600" : "bg-gray-200 text-gray-500"
+                    isActive ? "bg-blue-100 text-blue-700" : "bg-gray-200 text-gray-700"
                   }`}>
                     {countMap[tab.key]}
                   </span>

@@ -1342,7 +1342,7 @@ export default function ServicesPage() {
                 >
                   <div className={`px-6 py-6 ${pkg.highlight ? "bg-blue-600" : "bg-gray-900"}`}>
                     {pkg.highlight && (
-                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-[11px] font-black mb-3">
+                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/20 text-white text-[11px] font-black mb-3">
                         기본 추천
                       </div>
                     )}
@@ -1544,7 +1544,7 @@ export default function ServicesPage() {
                 <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1">
                   우리 매장엔 뭐가 필요한지 모르겠다면?
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-600">
                   업종·상권·경쟁 상황마다 필요한 게 다릅니다. 매장을 보고 맞춤으로 제안드립니다.
                 </p>
               </div>

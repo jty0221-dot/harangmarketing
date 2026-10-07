@@ -249,14 +249,14 @@ export default function AboutPage() {
                 )}
                 <div className="w-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-4 text-center">
                   <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
-                  <div className="text-xs text-[var(--w-primary)] font-bold">하랑마케팅 대표</div>
+                  <div className="text-xs text-[var(--w-primary-strong)] font-bold">하랑마케팅 대표</div>
                   <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년 · {companyYear()}년차 대표</div>
                 </div>
               </div>
 
               {/* Story */}
               <div>
-                <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-4">대표 스토리</p>
+                <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-4">대표 스토리</p>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 leading-snug">
                   실패해 본 마케터가<br /><span className="text-[var(--w-primary)]">성공하는 길을 가장 잘 압니다</span>
                 </h2>
@@ -274,7 +274,7 @@ export default function AboutPage() {
                   <p className="text-sm text-[var(--w-primary-heavy)] leading-relaxed font-medium italic">
                     &lsquo;음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.&rsquo;
                   </p>
-                  <p className="text-xs text-[var(--w-primary)] mt-2 font-bold">대표 전태영</p>
+                  <p className="text-xs text-[var(--w-primary-strong)] mt-2 font-bold">대표 전태영</p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -299,7 +299,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">하랑의 약속</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">하랑의 약속</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">왜 하랑마케팅을 선택해야 할까요?</h2>
               <p className="text-gray-500 text-sm mt-2">미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다</p>
             </div>
@@ -319,7 +319,7 @@ export default function AboutPage() {
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="text-lg font-black hidden sm:block" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
                           <h3 className="font-black text-gray-900 text-base">{p.title}</h3>
-                          <span className="px-2 py-0.5 rounded-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] text-[var(--w-primary)] text-[11px] font-black">{p.badge}</span>
+                          <span className="px-2 py-0.5 rounded-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] text-[var(--w-primary-strong)] text-[11px] font-black">{p.badge}</span>
                         </div>
                         <p className="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
                       </div>
@@ -335,7 +335,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-24 bg-white border-t border-gray-100">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">All-in-One 서비스</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">All-in-One 서비스</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">하랑을 통하면 원스텝으로 해결됩니다</h2>
               <p className="text-gray-500 text-sm mt-2">복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다</p>
             </div>
@@ -383,18 +383,18 @@ export default function AboutPage() {
             <div className="w-10 h-10 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center mb-6 shadow-sm">
               <Quote size={17} className="text-white" />
             </div>
-            <p className="text-xs font-bold text-[var(--w-blue-90)] uppercase tracking-widest mb-5">대표의 편지</p>
+            <p className="text-xs font-bold text-white uppercase tracking-widest mb-5">대표의 편지</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-6 leading-relaxed">
               광고비는 나가는데 전화는 울리지 않던 달, 저도 겪었습니다
             </h2>
-            <div className="space-y-4 text-[var(--w-blue-95)] text-base leading-relaxed mb-8">
+            <div className="space-y-4 text-white text-base leading-relaxed mb-8">
               <p>가게 문을 닫고 그날 매출을 정산하다 보면 압니다. 오늘 들어온 손님 중에 처음 온 사람이 몇인지. 그 숫자가 며칠째 그대로일 때의 기분을요. 저는 그게 맛 때문인 줄 알았습니다. 아니었습니다. 그 골목에 우리 가게가 있다는 걸 아무도 몰랐을 뿐입니다.</p>
               <p>그때 맡겨봤던 대행사는 물어봐야 답이 왔습니다. 이번 달에 무엇을 했고 무엇이 달라졌는지는 끝까지 알 수 없었습니다. 나중에 그 안으로 들어가 일해보고 나서야 알았습니다. <strong className="text-white">답을 안 준 게 아니라, 보여드릴 것이 없었던 겁니다.</strong></p>
               <p>그래서 하랑은 순서를 뒤집었습니다. 물어보시기 전에 먼저 말씀드리고, 안 된 것은 안 됐다고 적습니다. 순위가 내려간 주에도 그대로 보내드립니다. 좋은 소식만 골라 보내면 그건 보고가 아니라 광고입니다.</p>
               <p>전화를 받는 사람도 접니다. 상담한 사람이 그대로 끝까지 맡습니다. 계약하자마자 처음 보는 담당자로 바뀌는 일은 없습니다.</p>
             </div>
-            <div className="bg-white/10 border border-white/20 rounded-2xl p-5 mb-8">
-              <p className="text-sm text-[var(--w-blue-95)] font-medium leading-relaxed">
+            <div className="bg-black/10 border border-white/20 rounded-2xl p-5 mb-8">
+              <p className="text-sm text-white font-medium leading-relaxed">
                 오늘 계약하지 않으셔도 됩니다. 지금 어디에서 돈이 새고 있는지만 듣고 가셔도 괜찮습니다. 대표님이 지금 넣고 계신 그 돈이, 제가 카페에 넣었던 돈과 다르지 않다는 걸 아니까요.
               </p>
               <p className="text-xs text-[var(--w-blue-80)] mt-2 font-bold">하랑마케팅 대표 전태영</p>
@@ -435,7 +435,7 @@ export default function AboutPage() {
         <section className="py-14 md:py-20 bg-white border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">Why Harang</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">Why Harang</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
                 대행사, 어디를 골라야 할까요?
               </h2>
@@ -491,7 +491,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-[var(--w-primary)] uppercase tracking-widest mb-3">자주 묻는 질문</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">자주 묻는 질문</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">상담 전 미리 확인하세요</h2>
             </div>
             <div className="space-y-3">
@@ -527,10 +527,10 @@ export default function AboutPage() {
                   ].map((item) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
                       <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-[var(--w-blue-60)] flex items-center justify-center shrink-0 z-10">
-                        <span className="text-[11px] font-black text-[var(--w-primary)]">{item.year.slice(2)}</span>
+                        <span className="text-[11px] font-black text-[var(--w-primary-strong)]">{item.year.slice(2)}</span>
                       </div>
                       <div className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                        <div className="text-[11px] font-bold text-[var(--w-primary)] mb-1">{item.year}</div>
+                        <div className="text-[11px] font-bold text-[var(--w-primary-strong)] mb-1">{item.year}</div>
                         <div className="font-black text-gray-900 text-sm mb-1">{item.event}</div>
                         <div className="text-xs text-gray-500">{item.note}</div>
                       </div>
@@ -566,7 +566,7 @@ export default function AboutPage() {
             <div className="mb-14">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-6 h-[2px] bg-[var(--w-primary)]" />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[var(--w-primary)]">Corporate Identity</span>
+                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[var(--w-primary-strong)]">Corporate Identity</span>
                 <div className="w-6 h-[2px] bg-[var(--w-primary)]" />
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3" style={{ letterSpacing: "-0.03em" }}>CI 소개</h2>
