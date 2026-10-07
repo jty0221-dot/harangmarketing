@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [펌](https://demo.example.kr/hair-simple-mono/services/perm/): 매직 · 볼륨 · 디지털 펌
@@ -30,9 +30,9 @@
 - [일산 염색 · 탈색 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/color/)
 - [일산 두피 · 모발 클리닉 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/clinic/)
 - [일산 커트 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/services/cut/)
-- [일산 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/ilsan/)
-- [파주 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/paju/)
-- [김포 미용실 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/gimpo/)
+- [일산 염색잘하는곳 안내 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/ilsan/)
+- [파주 미용실 지역 안내 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/paju/)
+- [김포 미용실 지역 안내 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/area/gimpo/)
 - [○○미용실 B 소개 | 일산 미용실](https://demo.example.kr/hair-simple-mono/about/)
 - [자주 묻는 질문 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/faq/)
 - [오시는 길 · 문의 | ○○미용실 B](https://demo.example.kr/hair-simple-mono/contact/)

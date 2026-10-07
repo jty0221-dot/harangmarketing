@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [볼더링](https://demo.example.kr/climbing-vivid-pop/services/boulder/): 낮은 벽 문제 풀기
@@ -30,9 +30,9 @@
 - [수원 리드 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/lead/)
 - [수원 초보 강습 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/lesson/)
 - [수원 일일 체험 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/services/trial/)
-- [수원 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/suwon/)
-- [용인 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/yongin/)
-- [화성 클라이밍 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/hwaseong/)
+- [수원 클라이밍 위치 안내 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/suwon/)
+- [용인 클라이밍 지역 안내 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/yongin/)
+- [화성 클라이밍 지역 안내 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/area/hwaseong/)
 - [○○클라이밍 A 소개 | 수원 클라이밍](https://demo.example.kr/climbing-vivid-pop/about/)
 - [자주 묻는 질문 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/faq/)
 - [오시는 길 · 문의 | ○○클라이밍 A](https://demo.example.kr/climbing-vivid-pop/contact/)

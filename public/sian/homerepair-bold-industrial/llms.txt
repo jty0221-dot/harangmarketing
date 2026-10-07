@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [필름 · 도배](https://demo.example.kr/homerepair-bold-industrial/services/film/): 문짝 · 몰딩 필름과 부분 도배
@@ -30,9 +30,9 @@
 - [수원 욕실 부분 수리 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/bath/)
 - [수원 샷시 · 방충망 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/window/)
 - [수원 문 · 문틀 교체 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/services/door/)
-- [수원 집수리 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/suwon/)
-- [용인 집수리 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/yongin/)
-- [화성 집수리 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/hwaseong/)
+- [수원 문교체 안내 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/suwon/)
+- [용인 집수리 지역 안내 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/yongin/)
+- [화성 집수리 지역 안내 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/area/hwaseong/)
 - [○○집수리 C 소개 | 수원 집수리](https://demo.example.kr/homerepair-bold-industrial/about/)
 - [자주 묻는 질문 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/faq/)
 - [오시는 길 · 문의 | ○○집수리 C](https://demo.example.kr/homerepair-bold-industrial/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [소모품 교체](https://demo.example.kr/car-import-midnight-tech/services/parts/): 오일 · 브레이크 · 필터
@@ -30,9 +30,9 @@
 - [수원 엔진 · 미션 정비 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/services/engine/)
 - [수원 하체 점검 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/services/chassis/)
 - [수원 전자 진단 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/services/diag/)
-- [수원 수입차정비 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/area/suwon/)
-- [용인 수입차정비 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/area/yongin/)
-- [화성 수입차정비 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/area/hwaseong/)
+- [수원 수입차엔진오일 안내 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/area/suwon/)
+- [용인 수입차정비 지역 안내 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/area/yongin/)
+- [화성 수입차정비 지역 안내 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/area/hwaseong/)
 - [○○수입차 정비소 B 소개 | 수원 수입차정비](https://demo.example.kr/car-import-midnight-tech/about/)
 - [자주 묻는 질문 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/faq/)
 - [오시는 길 · 문의 | ○○수입차 정비소 B](https://demo.example.kr/car-import-midnight-tech/contact/)

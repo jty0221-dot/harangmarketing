@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [매물 보기](https://demo.example.kr/car-used-clean-trust/services/stock/): 차종 · 연식 · 주행거리
@@ -30,9 +30,9 @@
 - [포항 성능점검 기록 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/services/check/)
 - [포항 할부 · 리스 상담 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/services/finance/)
 - [포항 내 차 매입 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/services/buy/)
-- [포항 중고차 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/area/pohang/)
-- [경주 중고차 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/area/gyeongju/)
-- [울산 중고차 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/area/ulsan/)
+- [포항 중고차 위치 안내 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/area/pohang/)
+- [경주 중고차 지역 안내 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/area/gyeongju/)
+- [울산 중고차 지역 안내 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/area/ulsan/)
 - [○○중고차 A 소개 | 포항 중고차](https://demo.example.kr/car-used-clean-trust/about/)
 - [자주 묻는 질문 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○중고차 A](https://demo.example.kr/car-used-clean-trust/contact/)

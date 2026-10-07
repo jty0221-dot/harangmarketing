@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [블랙박스](https://demo.example.kr/car-tint-midnight-tech/services/dashcam/): 전후방 · 주차 녹화
@@ -29,10 +29,10 @@
 - [일산 블랙박스 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/services/dashcam/)
 - [일산 하이패스 · 내비 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/services/hipass/)
 - [일산 전장 시공 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/services/electric/)
-- [일산 썬팅 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/services/tint/)
-- [일산 썬팅 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/area/ilsan/)
-- [파주 썬팅 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/area/paju/)
-- [김포 썬팅 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/area/gimpo/)
+- [일산 썬팅 비용 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/services/tint/)
+- [일산 하이패스설치 안내 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/area/ilsan/)
+- [파주 썬팅 지역 안내 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/area/paju/)
+- [김포 썬팅 지역 안내 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/area/gimpo/)
 - [○○썬팅 B 소개 | 일산 썬팅](https://demo.example.kr/car-tint-midnight-tech/about/)
 - [자주 묻는 질문 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/faq/)
 - [오시는 길 · 문의 | ○○썬팅 B](https://demo.example.kr/car-tint-midnight-tech/contact/)

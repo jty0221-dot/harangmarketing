@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [일반 정비](https://demo.example.kr/car-service-bold-industrial/services/repair/): 엔진오일 · 브레이크 · 타이어
@@ -30,9 +30,9 @@
 - [부천 광택 · 코팅 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/services/polish/)
 - [부천 썬팅 · PPF | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/services/film/)
 - [부천 실내 세차 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/services/interior/)
-- [부천 자동차정비 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/area/bucheon/)
-- [인천 부평 자동차정비 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/area/bupyeong/)
-- [서울 구로 자동차정비 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/area/guro/)
+- [부천 엔진오일교환 안내 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/area/bucheon/)
+- [인천 부평 자동차정비 지역 안내 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/area/bupyeong/)
+- [서울 구로 자동차정비 지역 안내 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/area/guro/)
 - [○○정비소 C 소개 | 부천 자동차정비](https://demo.example.kr/car-service-bold-industrial/about/)
 - [자주 묻는 질문 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/faq/)
 - [오시는 길 · 문의 | ○○정비소 C](https://demo.example.kr/car-service-bold-industrial/contact/)

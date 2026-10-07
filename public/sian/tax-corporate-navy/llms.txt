@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [종합소득세 신고](https://demo.example.kr/tax-corporate-navy/services/income-tax/): 5월 신고 대행
@@ -30,9 +30,9 @@
 - [인천 구월 부가가치세 신고 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/services/vat/)
 - [인천 구월 양도 · 상속 · 증여 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/services/property/)
 - [인천 구월 기장 대리 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/services/bookkeeping/)
-- [인천 구월 세무사 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/area/incheon-guwol/)
-- [부평 세무사 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/area/bupyeong/)
-- [송도 세무사 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/area/songdo/)
+- [인천 구월 부가세신고 안내 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/area/incheon-guwol/)
+- [부평 세무사 지역 안내 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/area/bupyeong/)
+- [송도 세무사 지역 안내 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/area/songdo/)
 - [○○세무사무소 C 소개 | 인천 구월 세무사](https://demo.example.kr/tax-corporate-navy/about/)
 - [자주 묻는 질문 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/faq/)
 - [오시는 길 · 문의 | ○○세무사무소 C](https://demo.example.kr/tax-corporate-navy/contact/)

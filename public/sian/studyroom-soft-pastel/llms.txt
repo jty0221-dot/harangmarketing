@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [초등 전과목](https://demo.example.kr/studyroom-soft-pastel/services/elem/): 숙제 · 복습
@@ -30,9 +30,9 @@
 - [강남 중등 국영수 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/services/middle/)
 - [강남 숙제 관리 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/services/homework/)
 - [강남 학부모 상담 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/services/parent/)
-- [강남 공부방 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/area/gangnam/)
-- [서초 공부방 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/area/seocho/)
-- [송파 공부방 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/area/songpa/)
+- [강남 과외 안내 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/area/gangnam/)
+- [서초 공부방 지역 안내 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/area/seocho/)
+- [송파 공부방 지역 안내 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/area/songpa/)
 - [○○공부방 A 소개 | 강남 공부방](https://demo.example.kr/studyroom-soft-pastel/about/)
 - [자주 묻는 질문 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/faq/)
 - [오시는 길 · 문의 | ○○공부방 A](https://demo.example.kr/studyroom-soft-pastel/contact/)

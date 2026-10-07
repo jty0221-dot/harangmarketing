@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [케이크 예약](https://demo.example.kr/bakery-vivid-pop/services/cake/): 생일 · 기념일 케이크 주문
@@ -30,9 +30,9 @@
 - [강남 선물 세트 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/services/gift/)
 - [강남 택배 주문 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/services/delivery/)
 - [강남 오늘의 빵 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/services/bread/)
-- [강남 빵집 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/area/gangnam/)
-- [서초 빵집 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/area/seocho/)
-- [송파 빵집 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/area/songpa/)
+- [강남 베이커리 안내 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/area/gangnam/)
+- [서초 빵집 지역 안내 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/area/seocho/)
+- [송파 빵집 지역 안내 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/area/songpa/)
 - [○○빵집 B 소개 | 강남 빵집](https://demo.example.kr/bakery-vivid-pop/about/)
 - [자주 묻는 질문 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/faq/)
 - [오시는 길 · 문의 | ○○빵집 B](https://demo.example.kr/bakery-vivid-pop/contact/)

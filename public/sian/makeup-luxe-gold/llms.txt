@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [웨딩 메이크업](https://demo.example.kr/makeup-luxe-gold/services/wedding/): 본식 · 촬영
@@ -30,9 +30,9 @@
 - [수원 혼주 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/family/)
 - [수원 촬영 · 행사 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/event/)
 - [수원 출장 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/services/visit/)
-- [수원 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/suwon/)
-- [용인 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/yongin/)
-- [화성 메이크업 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/hwaseong/)
+- [수원 메이크업 위치 안내 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/suwon/)
+- [용인 메이크업 지역 안내 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/yongin/)
+- [화성 메이크업 지역 안내 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/area/hwaseong/)
 - [○○메이크업 A 소개 | 수원 메이크업](https://demo.example.kr/makeup-luxe-gold/about/)
 - [자주 묻는 질문 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/faq/)
 - [오시는 길 · 문의 | ○○메이크업 A](https://demo.example.kr/makeup-luxe-gold/contact/)

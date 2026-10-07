@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [아파트 매매 · 전월세](https://demo.example.kr/realestate-clean-trust/services/apartment/): 단지별 시세와 매물
@@ -27,9 +27,9 @@
 - [인천 구월 아파트 매매 · 전월세 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/services/apartment/)
 - [인천 구월 상가 · 사무실 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/services/commercial/)
 - [인천 구월 분양 상담 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/services/presale/)
-- [인천 구월 부동산 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/area/incheon-guwol/)
-- [부평 부동산 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/area/bupyeong/)
-- [송도 부동산 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/area/songdo/)
+- [인천 구월 공인중개사 안내 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/area/incheon-guwol/)
+- [부평 부동산 지역 안내 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/area/bupyeong/)
+- [송도 부동산 지역 안내 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/area/songdo/)
 - [○○부동산 B 소개 | 인천 구월 부동산](https://demo.example.kr/realestate-clean-trust/about/)
 - [자주 묻는 질문 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○부동산 B](https://demo.example.kr/realestate-clean-trust/contact/)

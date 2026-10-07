@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [혼주 메이크업](https://demo.example.kr/makeup-dreamy-aurora/services/family/): 혼주 · 가족
@@ -30,9 +30,9 @@
 - [강남 촬영 · 행사 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/event/)
 - [강남 출장 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/visit/)
 - [강남 웨딩 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/services/wedding/)
-- [강남 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/gangnam/)
-- [서초 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/seocho/)
-- [송파 메이크업 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/songpa/)
+- [강남 메이크업 위치 안내 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/gangnam/)
+- [서초 메이크업 지역 안내 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/seocho/)
+- [송파 메이크업 지역 안내 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/area/songpa/)
 - [○○메이크업 B 소개 | 강남 메이크업](https://demo.example.kr/makeup-dreamy-aurora/about/)
 - [자주 묻는 질문 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/faq/)
 - [오시는 길 · 문의 | ○○메이크업 B](https://demo.example.kr/makeup-dreamy-aurora/contact/)

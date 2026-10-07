@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [상담 예약](https://demo.example.kr/plastic-luxe-gold/services/consult/): 원장 상담 후 진료 계획 설명
@@ -30,9 +30,9 @@
 - [인천 구월 눈 · 코 진료 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/services/face/)
 - [인천 구월 리프팅 진료 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/services/lifting/)
 - [인천 구월 진료비 · 회복 안내 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/services/care/)
-- [인천 구월 성형외과 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/area/incheon-guwol/)
-- [부평 성형외과 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/area/bupyeong/)
-- [송도 성형외과 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/area/songdo/)
+- [인천 구월 성형외과 오시는 길 안내 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/area/incheon-guwol/)
+- [부평 성형외과 지역 안내 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/area/bupyeong/)
+- [송도 성형외과 지역 안내 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/area/songdo/)
 - [○○성형외과 A 소개 | 인천 구월 성형외과](https://demo.example.kr/plastic-luxe-gold/about/)
 - [자주 묻는 질문 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/faq/)
 - [오시는 길 · 문의 | ○○성형외과 A](https://demo.example.kr/plastic-luxe-gold/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [중등 국영수](https://demo.example.kr/studyroom-fresh-nature/services/middle/): 내신 대비
@@ -30,9 +30,9 @@
 - [인천 구월 숙제 관리 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/services/homework/)
 - [인천 구월 학부모 상담 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/services/parent/)
 - [인천 구월 초등 전과목 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/services/elem/)
-- [인천 구월 공부방 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/area/incheon-guwol/)
-- [부평 공부방 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/area/bupyeong/)
-- [송도 공부방 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/area/songdo/)
+- [인천 구월 과외 안내 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/area/incheon-guwol/)
+- [부평 공부방 지역 안내 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/area/bupyeong/)
+- [송도 공부방 지역 안내 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/area/songdo/)
 - [○○공부방 B 소개 | 인천 구월 공부방](https://demo.example.kr/studyroom-fresh-nature/about/)
 - [자주 묻는 질문 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/faq/)
 - [오시는 길 · 문의 | ○○공부방 B](https://demo.example.kr/studyroom-fresh-nature/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [공산품 · 소스](https://demo.example.kr/foodsupply-corporate-navy/services/goods/): 식당용 대용량
@@ -30,9 +30,9 @@
 - [대구 냉장 · 냉동 배송 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/services/cold/)
 - [대구 거래처 관리 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/services/account/)
 - [대구 농산물 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/services/veg/)
-- [대구 식자재 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/area/daegu/)
-- [경산 식자재 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/area/gyeongsan/)
-- [수성 식자재 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/area/suseong/)
+- [대구 식자재 위치 안내 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/area/daegu/)
+- [경산 식자재 지역 안내 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/area/gyeongsan/)
+- [수성 식자재 지역 안내 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/area/suseong/)
 - [○○식자재 업체 B 소개 | 대구 식자재](https://demo.example.kr/foodsupply-corporate-navy/about/)
 - [자주 묻는 질문 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/faq/)
 - [오시는 길 · 문의 | ○○식자재 업체 B](https://demo.example.kr/foodsupply-corporate-navy/contact/)

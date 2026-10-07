@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [법인 등기](https://demo.example.kr/judicial-corporate-navy/services/corp/): 설립 · 변경 등기
@@ -29,9 +29,9 @@
 - [일산 소송 서류 작성 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/services/docs/)
 - [일산 개인회생 · 파산 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/services/rehab/)
 - [일산 부동산 등기 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/services/estate/)
-- [일산 법무사 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/area/ilsan/)
-- [파주 법무사 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/area/paju/)
-- [김포 법무사 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/area/gimpo/)
+- [일산 법인설립 안내 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/area/ilsan/)
+- [파주 법무사 지역 안내 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/area/paju/)
+- [김포 법무사 지역 안내 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/area/gimpo/)
 - [○○법무사 B 소개 | 일산 법무사](https://demo.example.kr/judicial-corporate-navy/about/)
 - [자주 묻는 질문 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/faq/)
 - [오시는 길 · 문의 | ○○법무사 B](https://demo.example.kr/judicial-corporate-navy/contact/)

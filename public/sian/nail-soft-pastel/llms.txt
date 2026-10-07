@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [젤 네일](https://demo.example.kr/nail-soft-pastel/services/gel/): 기본 컬러부터 아트까지
@@ -30,9 +30,9 @@
 - [부천 속눈썹 연장 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/lash/)
 - [부천 케어 · 제거 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/care/)
 - [부천 패디큐어 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/services/pedi/)
-- [부천 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bucheon/)
-- [인천 부평 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bupyeong/)
-- [서울 구로 네일샵 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/guro/)
+- [부천 네일아트 안내 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bucheon/)
+- [인천 부평 네일샵 지역 안내 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/bupyeong/)
+- [서울 구로 네일샵 지역 안내 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/area/guro/)
 - [○○네일샵 B 소개 | 부천 네일샵](https://demo.example.kr/nail-soft-pastel/about/)
 - [자주 묻는 질문 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/faq/)
 - [오시는 길 · 문의 | ○○네일샵 B](https://demo.example.kr/nail-soft-pastel/contact/)

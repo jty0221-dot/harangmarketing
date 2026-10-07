@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [용달 · 소형 화물](https://demo.example.kr/logistics-corporate-navy/services/small/): 1톤 · 소량
@@ -27,12 +27,12 @@
 - [일산 화물운송 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/)
 - [서비스 안내 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/services/)
 - [일산 용달 · 소형 화물 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/services/small/)
-- [일산 화물 운송 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/services/cargo/)
+- [일산 화물 운송 비용 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/services/cargo/)
 - [일산 창고 보관 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/services/storage/)
 - [일산 정기 배송 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/services/route/)
-- [일산 화물운송 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/area/ilsan/)
-- [파주 화물운송 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/area/paju/)
-- [김포 화물운송 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/area/gimpo/)
+- [일산 물류창고 안내 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/area/ilsan/)
+- [파주 화물운송 지역 안내 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/area/paju/)
+- [김포 화물운송 지역 안내 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/area/gimpo/)
 - [○○화물업체 A 소개 | 일산 화물운송](https://demo.example.kr/logistics-corporate-navy/about/)
 - [자주 묻는 질문 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/faq/)
 - [오시는 길 · 문의 | ○○화물업체 A](https://demo.example.kr/logistics-corporate-navy/contact/)

@@ -1,3 +1,4 @@
+@font-face { font-family: "Pretendard Variable"; src: url("fonts/pretendard.woff2") format("woff2"); font-weight: 45 930; font-style: normal; font-display: swap; }
 :root {
   --bg: #0E0E10;
   --surface: #18181B;
@@ -117,7 +118,7 @@ mark.slot { background: #FFF3B0; color: #5A4500; border-radius: 4px; padding: 0 
 /* 사진 자리 */
 .ph { aspect-ratio: 4/3; border-radius: var(--radius); background: repeating-linear-gradient(135deg, var(--surface) 0 14px, color-mix(in srgb, var(--line) 70%, var(--surface)) 14px 28px); border: 1px dashed var(--line); display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 14px; padding: 16px; }
 .ph .ico { margin: 0 auto 8px; }
-.pic { margin: 0; } .pic img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); background: var(--surface); }
+.pic { margin: 0; } .pic img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); background: var(--surface); }
 .pic figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
 .hero .art img { display: block; width: 100%; height: 100%; aspect-ratio: 16/10; object-fit: cover; }
 .hero-fullbleed .art:has(img) { opacity: .28; }
@@ -135,7 +136,7 @@ mark.slot { background: #FFF3B0; color: #5A4500; border-radius: 4px; padding: 0 
 .faq details[open] summary::after { content: "-"; }
 .faq .a { color: var(--muted); padding: 0 0 18px; }
 .cta { background: var(--primary); color: var(--primary-ink); border-radius: var(--radius); padding: 56px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
-.cta h2 { margin: 0; } .cta p { margin: 6px 0 0; opacity: .85; }
+.cta h2 { margin: 0; } .cta p { margin: 6px 0 0; }
 .cta .btn { background: var(--primary-ink); color: var(--primary); }
 @media (max-width: 620px) { .cta { padding: 32px 24px; } }
 

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [애견 유치원](https://demo.example.kr/pethotel-soft-pastel/services/daycare/): 평일 등원
@@ -26,13 +26,13 @@
 ## 주요 페이지
 - [강남 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/)
 - [서비스 안내 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/)
-- [강남 애견 유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/daycare/)
+- [강남 애견 유치원 비용 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/daycare/)
 - [강남 애견 호텔 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/hotel/)
 - [강남 놀이 · 산책 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/play/)
 - [강남 픽업 서비스 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/services/pickup/)
-- [강남 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/gangnam/)
-- [서초 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/seocho/)
-- [송파 애견유치원 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/songpa/)
+- [강남 강아지호텔 안내 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/gangnam/)
+- [서초 애견유치원 지역 안내 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/seocho/)
+- [송파 애견유치원 지역 안내 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/area/songpa/)
 - [○○애견유치원 A 소개 | 강남 애견유치원](https://demo.example.kr/pethotel-soft-pastel/about/)
 - [자주 묻는 질문 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/faq/)
 - [오시는 길 · 문의 | ○○애견유치원 A](https://demo.example.kr/pethotel-soft-pastel/contact/)

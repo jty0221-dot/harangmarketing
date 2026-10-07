@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [누전 · 차단기](https://demo.example.kr/electric-bold-industrial/services/leak/): 원인 점검 후 수리
@@ -30,9 +30,9 @@
 - [인천 구월 조명 교체 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/services/light/)
 - [인천 구월 콘센트 · 스위치 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/services/outlet/)
 - [인천 구월 상가 전기공사 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/services/shop/)
-- [인천 구월 전기공사 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/area/incheon-guwol/)
-- [부평 전기공사 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/area/bupyeong/)
-- [송도 전기공사 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/area/songdo/)
+- [인천 구월 전기수리 안내 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/area/incheon-guwol/)
+- [부평 전기공사 지역 안내 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/area/bupyeong/)
+- [송도 전기공사 지역 안내 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/area/songdo/)
 - [○○전기공사 A 소개 | 인천 구월 전기공사](https://demo.example.kr/electric-bold-industrial/about/)
 - [자주 묻는 질문 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/faq/)
 - [오시는 길 · 문의 | ○○전기공사 A](https://demo.example.kr/electric-bold-industrial/contact/)

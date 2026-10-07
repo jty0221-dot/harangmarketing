@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [시승 예약](https://demo.example.kr/car-dealer-midnight-tech/services/test-drive/): 원하는 날짜에 시승
@@ -30,9 +30,9 @@
 - [일산 리스 · 할부 상담 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/services/finance/)
 - [일산 출고 기록 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/services/delivery/)
 - [일산 모델별 견적 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/services/quote/)
-- [일산 자동차 견적 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/area/ilsan/)
-- [파주 자동차 견적 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/area/paju/)
-- [김포 자동차 견적 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/area/gimpo/)
+- [일산 수입차견적 안내 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/area/ilsan/)
+- [파주 자동차 견적 지역 안내 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/area/paju/)
+- [김포 자동차 견적 지역 안내 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/area/gimpo/)
 - [○○자동차 딜러 C 소개 | 일산 자동차 견적](https://demo.example.kr/car-dealer-midnight-tech/about/)
 - [자주 묻는 질문 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/faq/)
 - [오시는 길 · 문의 | ○○자동차 딜러 C](https://demo.example.kr/car-dealer-midnight-tech/contact/)

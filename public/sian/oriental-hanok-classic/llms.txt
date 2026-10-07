@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [침 · 뜸](https://demo.example.kr/oriental-hanok-classic/services/acupuncture/): 근골격 통증 진료
@@ -28,9 +28,9 @@
 - [수원 침 · 뜸 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/acupuncture/)
 - [수원 추나 요법 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/chuna/)
 - [수원 한약 처방 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/services/herbal/)
-- [수원 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/suwon/)
-- [용인 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/yongin/)
-- [화성 한의원 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/hwaseong/)
+- [수원 한의원 오시는 길 안내 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/suwon/)
+- [용인 한의원 지역 안내 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/yongin/)
+- [화성 한의원 지역 안내 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/area/hwaseong/)
 - [○○한의원 A 소개 | 수원 한의원](https://demo.example.kr/oriental-hanok-classic/about/)
 - [자주 묻는 질문 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/faq/)
 - [오시는 길 · 문의 | ○○한의원 A](https://demo.example.kr/oriental-hanok-classic/contact/)

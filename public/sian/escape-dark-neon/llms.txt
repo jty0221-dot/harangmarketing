@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [공포 테마](https://demo.example.kr/escape-dark-neon/services/horror/): 심장 약한 분 주의
@@ -30,9 +30,9 @@
 - [부천 추리 테마 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/services/mystery/)
 - [부천 입문 테마 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/services/easy/)
 - [부천 단체 예약 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/services/group/)
-- [부천 방탈출 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/area/bucheon/)
-- [인천 부평 방탈출 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/area/bupyeong/)
-- [서울 구로 방탈출 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/area/guro/)
+- [부천 데이트코스 안내 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/area/bucheon/)
+- [인천 부평 방탈출 지역 안내 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/area/bupyeong/)
+- [서울 구로 방탈출 지역 안내 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/area/guro/)
 - [○○방탈출 카페 A 소개 | 부천 방탈출](https://demo.example.kr/escape-dark-neon/about/)
 - [자주 묻는 질문 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/faq/)
 - [오시는 길 · 문의 | ○○방탈출 카페 A](https://demo.example.kr/escape-dark-neon/contact/)

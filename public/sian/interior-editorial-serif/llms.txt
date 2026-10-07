@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [아파트 전체 리모델링](https://demo.example.kr/interior-editorial-serif/services/full/): 구조 · 동선부터 다시 짜는 전체 공사
@@ -31,9 +31,9 @@
 - [강남 부분 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/partial/)
 - [강남 상가 · 사무실 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/commercial/)
 - [강남 3D 시안 설계 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/services/design/)
-- [강남 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/gangnam/)
-- [서초 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/seocho/)
-- [송파 인테리어 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/songpa/)
+- [강남 아파트리모델링 안내 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/gangnam/)
+- [서초 인테리어 지역 안내 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/seocho/)
+- [송파 인테리어 지역 안내 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/area/songpa/)
 - [○○인테리어 C 소개 | 강남 인테리어](https://demo.example.kr/interior-editorial-serif/about/)
 - [자주 묻는 질문 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/faq/)
 - [오시는 길 · 문의 | ○○인테리어 C](https://demo.example.kr/interior-editorial-serif/contact/)

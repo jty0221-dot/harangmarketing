@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [화물 운송](https://demo.example.kr/logistics-bold-industrial/services/cargo/): 2.5톤 이상
@@ -26,13 +26,13 @@
 ## 주요 페이지
 - [수원 화물운송 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/)
 - [서비스 안내 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/services/)
-- [수원 화물 운송 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/services/cargo/)
+- [수원 화물 운송 비용 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/services/cargo/)
 - [수원 창고 보관 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/services/storage/)
 - [수원 정기 배송 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/services/route/)
 - [수원 용달 · 소형 화물 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/services/small/)
-- [수원 화물운송 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/area/suwon/)
-- [용인 화물운송 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/area/yongin/)
-- [화성 화물운송 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/area/hwaseong/)
+- [수원 물류창고 안내 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/area/suwon/)
+- [용인 화물운송 지역 안내 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/area/yongin/)
+- [화성 화물운송 지역 안내 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/area/hwaseong/)
 - [○○화물업체 B 소개 | 수원 화물운송](https://demo.example.kr/logistics-bold-industrial/about/)
 - [자주 묻는 질문 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/faq/)
 - [오시는 길 · 문의 | ○○화물업체 B](https://demo.example.kr/logistics-bold-industrial/contact/)

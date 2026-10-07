@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [임금 체불 · 노동 사건](https://demo.example.kr/law-swiss-minimal/services/area-1/): 절차 안내와 대리
@@ -27,9 +27,9 @@
 - [일산 임금 체불 · 노동 사건 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/services/area-1/)
 - [일산 인허가 · 행정 심판 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/services/area-2/)
 - [일산 기업 자문 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/services/area-3/)
-- [일산 법률상담 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/area/ilsan/)
-- [파주 법률상담 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/area/paju/)
-- [김포 법률상담 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/area/gimpo/)
+- [일산 노무사 안내 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/area/ilsan/)
+- [파주 법률상담 지역 안내 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/area/paju/)
+- [김포 법률상담 지역 안내 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/area/gimpo/)
 - [○○행정사무소 A 소개 | 일산 법률상담](https://demo.example.kr/law-swiss-minimal/about/)
 - [자주 묻는 질문 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/faq/)
 - [오시는 길 · 문의 | ○○행정사무소 A](https://demo.example.kr/law-swiss-minimal/contact/)

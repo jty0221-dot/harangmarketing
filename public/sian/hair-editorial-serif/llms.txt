@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [커트](https://demo.example.kr/hair-editorial-serif/services/cut/): 얼굴형과 모질을 보고 정하는 커트
@@ -30,9 +30,9 @@
 - [대구 펌 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/services/perm/)
 - [대구 염색 · 탈색 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/services/color/)
 - [대구 두피 · 모발 클리닉 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/services/clinic/)
-- [대구 미용실 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/area/daegu/)
-- [경산 미용실 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/area/gyeongsan/)
-- [수성 미용실 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/area/suseong/)
+- [대구 염색잘하는곳 안내 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/area/daegu/)
+- [경산 미용실 지역 안내 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/area/gyeongsan/)
+- [수성 미용실 지역 안내 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/area/suseong/)
 - [○○미용실 A 소개 | 대구 미용실](https://demo.example.kr/hair-editorial-serif/about/)
 - [자주 묻는 질문 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/faq/)
 - [오시는 길 · 문의 | ○○미용실 A](https://demo.example.kr/hair-editorial-serif/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [스드메 상담](https://demo.example.kr/wedding-dreamy-aurora/services/sdm/): 스튜디오 · 드레스 · 메이크업 연계
@@ -30,9 +30,9 @@
 - [일산 돌잔치 · 연회 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/services/party/)
 - [일산 투어 예약 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/services/tour/)
 - [일산 웨딩 예식 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/services/wedding/)
-- [일산 웨딩 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/area/ilsan/)
-- [파주 웨딩 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/area/paju/)
-- [김포 웨딩 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/area/gimpo/)
+- [일산 연회장 안내 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/area/ilsan/)
+- [파주 웨딩 지역 안내 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/area/paju/)
+- [김포 웨딩 지역 안내 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/area/gimpo/)
 - [○○웨딩 C 소개 | 일산 웨딩](https://demo.example.kr/wedding-dreamy-aurora/about/)
 - [자주 묻는 질문 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/faq/)
 - [오시는 길 · 문의 | ○○웨딩 C](https://demo.example.kr/wedding-dreamy-aurora/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [단기 렌트](https://demo.example.kr/rentcar-clean-trust/services/short/): 하루 · 주말
@@ -30,9 +30,9 @@
 - [대구 월 렌트 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/services/month/)
 - [대구 장기 렌트 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/services/long/)
 - [대구 배차 · 반납 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/services/delivery/)
-- [대구 렌터카 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/area/daegu/)
-- [경산 렌터카 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/area/gyeongsan/)
-- [수성 렌터카 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/area/suseong/)
+- [대구 렌트카 안내 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/area/daegu/)
+- [경산 렌터카 지역 안내 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/area/gyeongsan/)
+- [수성 렌터카 지역 안내 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/area/suseong/)
 - [○○렌터카 A 소개 | 대구 렌터카](https://demo.example.kr/rentcar-clean-trust/about/)
 - [자주 묻는 질문 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○렌터카 A](https://demo.example.kr/rentcar-clean-trust/contact/)

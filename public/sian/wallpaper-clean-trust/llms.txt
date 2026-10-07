@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [장판](https://demo.example.kr/wallpaper-clean-trust/services/floor/): 두께 · 무늬 선택
@@ -30,10 +30,10 @@
 - [강남 장판 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/services/floor/)
 - [강남 마루 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/services/wood/)
 - [강남 샘플 상담 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/services/sample/)
-- [강남 도배 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/services/wallpaper/)
-- [강남 도배 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/area/gangnam/)
-- [서초 도배 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/area/seocho/)
-- [송파 도배 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/area/songpa/)
+- [강남 도배 비용 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/services/wallpaper/)
+- [강남 실크벽지 안내 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/area/gangnam/)
+- [서초 도배 지역 안내 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/area/seocho/)
+- [송파 도배 지역 안내 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/area/songpa/)
 - [○○도배 B 소개 | 강남 도배](https://demo.example.kr/wallpaper-clean-trust/about/)
 - [자주 묻는 질문 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○도배 B](https://demo.example.kr/wallpaper-clean-trust/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [객실](https://demo.example.kr/hotel-dark-premium/services/rooms/): 객실 타입별 안내
@@ -28,9 +28,9 @@
 - [수원 객실 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/rooms/)
 - [수원 대실 · 숙박 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/stay/)
 - [수원 비즈니스 장기 투숙 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/services/long-stay/)
-- [수원 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/suwon/)
-- [용인 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/yongin/)
-- [화성 호텔 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/hwaseong/)
+- [수원 모텔 안내 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/suwon/)
+- [용인 호텔 지역 안내 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/yongin/)
+- [화성 호텔 지역 안내 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/area/hwaseong/)
 - [○○호텔 B 소개 | 수원 호텔](https://demo.example.kr/hotel-dark-premium/about/)
 - [자주 묻는 질문 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/faq/)
 - [오시는 길 · 문의 | ○○호텔 B](https://demo.example.kr/hotel-dark-premium/contact/)

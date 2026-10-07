@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [안경 맞춤](https://demo.example.kr/optician-simple-mono/services/glasses/): 테 · 렌즈 상담
@@ -30,9 +30,9 @@
 - [인천 구월 콘택트렌즈 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/services/contact/)
 - [인천 구월 선글라스 · 도수 선글라스 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/services/sun/)
 - [인천 구월 시력 검사 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/services/exam/)
-- [인천 구월 안경원 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/area/incheon-guwol/)
-- [부평 안경원 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/area/bupyeong/)
-- [송도 안경원 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/area/songdo/)
+- [인천 구월 안경점 안내 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/area/incheon-guwol/)
+- [부평 안경원 지역 안내 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/area/bupyeong/)
+- [송도 안경원 지역 안내 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/area/songdo/)
 - [○○안경원 B 소개 | 인천 구월 안경원](https://demo.example.kr/optician-simple-mono/about/)
 - [자주 묻는 질문 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/faq/)
 - [오시는 길 · 문의 | ○○안경원 B](https://demo.example.kr/optician-simple-mono/contact/)

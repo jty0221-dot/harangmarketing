@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [회식 · 단체](https://demo.example.kr/bbq-dark-premium/services/group/): 룸 · 단체석과 코스 구성
@@ -30,9 +30,9 @@
 - [수원 점심 메뉴 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/services/lunch/)
 - [수원 포장 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/services/takeout/)
 - [수원 대표 고기 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/services/meat/)
-- [수원 고기집 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/area/suwon/)
-- [용인 고기집 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/area/yongin/)
-- [화성 고기집 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/area/hwaseong/)
+- [수원 갈비맛집 안내 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/area/suwon/)
+- [용인 고기집 지역 안내 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/area/yongin/)
+- [화성 고기집 지역 안내 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/area/hwaseong/)
 - [○○고기집 B 소개 | 수원 고기집](https://demo.example.kr/bbq-dark-premium/about/)
 - [자주 묻는 질문 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/faq/)
 - [오시는 길 · 문의 | ○○고기집 B](https://demo.example.kr/bbq-dark-premium/contact/)

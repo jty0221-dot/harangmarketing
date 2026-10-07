@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [휠 얼라인먼트](https://demo.example.kr/car-tire-clean-trust/services/align/): 장비로 측정 후 조정
@@ -30,9 +30,9 @@
 - [인천 구월 엔진오일 교환 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/services/oil/)
 - [인천 구월 배터리 교체 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/services/battery/)
 - [인천 구월 타이어 교체 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/services/tire/)
-- [인천 구월 타이어 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/area/incheon-guwol/)
-- [부평 타이어 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/area/bupyeong/)
-- [송도 타이어 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/area/songdo/)
+- [인천 구월 타이어 위치 안내 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/area/incheon-guwol/)
+- [부평 타이어 지역 안내 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/area/bupyeong/)
+- [송도 타이어 지역 안내 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/area/songdo/)
 - [○○타이어 B 소개 | 인천 구월 타이어](https://demo.example.kr/car-tire-clean-trust/about/)
 - [자주 묻는 질문 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○타이어 B](https://demo.example.kr/car-tire-clean-trust/contact/)

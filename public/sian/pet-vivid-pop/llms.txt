@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [애견 호텔](https://demo.example.kr/pet-vivid-pop/services/hotel/): 1박 · 장기 돌봄
@@ -27,10 +27,10 @@
 - [서비스 안내 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/services/)
 - [일산 애견 호텔 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/services/hotel/)
 - [일산 용품 · 사료 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/services/shop/)
-- [일산 애견 미용 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/services/grooming/)
-- [일산 애견미용 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/area/ilsan/)
-- [파주 애견미용 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/area/paju/)
-- [김포 애견미용 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/area/gimpo/)
+- [일산 애견 미용 비용 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/services/grooming/)
+- [일산 펫샵 안내 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/area/ilsan/)
+- [파주 애견미용 지역 안내 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/area/paju/)
+- [김포 애견미용 지역 안내 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/area/gimpo/)
 - [○○애견미용 B 소개 | 일산 애견미용](https://demo.example.kr/pet-vivid-pop/about/)
 - [자주 묻는 질문 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/faq/)
 - [오시는 길 · 문의 | ○○애견미용 B](https://demo.example.kr/pet-vivid-pop/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [광택 · 코팅](https://demo.example.kr/car-service-dark-neon/services/polish/): 유리막 · 세라믹 코팅
@@ -30,9 +30,9 @@
 - [포항 썬팅 · PPF | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/film/)
 - [포항 실내 세차 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/interior/)
 - [포항 일반 정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/services/repair/)
-- [포항 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/pohang/)
-- [경주 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/gyeongju/)
-- [울산 자동차정비 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/ulsan/)
+- [포항 엔진오일교환 안내 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/pohang/)
+- [경주 자동차정비 지역 안내 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/gyeongju/)
+- [울산 자동차정비 지역 안내 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/area/ulsan/)
 - [○○정비소 D 소개 | 포항 자동차정비](https://demo.example.kr/car-service-dark-neon/about/)
 - [자주 묻는 질문 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/faq/)
 - [오시는 길 · 문의 | ○○정비소 D](https://demo.example.kr/car-service-dark-neon/contact/)

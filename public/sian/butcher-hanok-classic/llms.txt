@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [한우](https://demo.example.kr/butcher-hanok-classic/services/beef/): 부위별 손질
@@ -30,9 +30,9 @@
 - [인천 구월 한돈 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/services/pork/)
 - [인천 구월 선물세트 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/services/gift/)
 - [인천 구월 택배 · 배달 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/services/delivery/)
-- [인천 구월 정육점 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/area/incheon-guwol/)
-- [부평 정육점 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/area/bupyeong/)
-- [송도 정육점 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/area/songdo/)
+- [인천 구월 정육점 위치 안내 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/area/incheon-guwol/)
+- [부평 정육점 지역 안내 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/area/bupyeong/)
+- [송도 정육점 지역 안내 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/area/songdo/)
 - [○○정육점 A 소개 | 인천 구월 정육점](https://demo.example.kr/butcher-hanok-classic/about/)
 - [자주 묻는 질문 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/faq/)
 - [오시는 길 · 문의 | ○○정육점 A](https://demo.example.kr/butcher-hanok-classic/contact/)

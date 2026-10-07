@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [배터리 출동](https://demo.example.kr/towing-dark-neon/services/battery/): 점프 · 교체
@@ -29,10 +29,10 @@
 - [포항 배터리 출동 | ○○견인 B](https://demo.example.kr/towing-dark-neon/services/battery/)
 - [포항 타이어 긴급 | ○○견인 B](https://demo.example.kr/towing-dark-neon/services/tire/)
 - [포항 차량 이송 | ○○견인 B](https://demo.example.kr/towing-dark-neon/services/transport/)
-- [포항 견인 | ○○견인 B](https://demo.example.kr/towing-dark-neon/services/tow/)
-- [포항 견인 | ○○견인 B](https://demo.example.kr/towing-dark-neon/area/pohang/)
-- [경주 견인 | ○○견인 B](https://demo.example.kr/towing-dark-neon/area/gyeongju/)
-- [울산 견인 | ○○견인 B](https://demo.example.kr/towing-dark-neon/area/ulsan/)
+- [포항 견인 비용 | ○○견인 B](https://demo.example.kr/towing-dark-neon/services/tow/)
+- [포항 레커 안내 | ○○견인 B](https://demo.example.kr/towing-dark-neon/area/pohang/)
+- [경주 견인 지역 안내 | ○○견인 B](https://demo.example.kr/towing-dark-neon/area/gyeongju/)
+- [울산 견인 지역 안내 | ○○견인 B](https://demo.example.kr/towing-dark-neon/area/ulsan/)
 - [○○견인 B 소개 | 포항 견인](https://demo.example.kr/towing-dark-neon/about/)
 - [자주 묻는 질문 | ○○견인 B](https://demo.example.kr/towing-dark-neon/faq/)
 - [오시는 길 · 문의 | ○○견인 B](https://demo.example.kr/towing-dark-neon/contact/)

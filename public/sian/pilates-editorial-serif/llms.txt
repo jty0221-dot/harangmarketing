@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [1:1 개인 레슨](https://demo.example.kr/pilates-editorial-serif/services/private/): 체형 분석 후 맞춤 수업
@@ -30,9 +30,9 @@
 - [일산 그룹 레슨 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/services/group/)
 - [일산 체형 교정 프로그램 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/services/posture/)
 - [일산 체험 수업 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/services/trial/)
-- [일산 필라테스 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/area/ilsan/)
-- [파주 필라테스 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/area/paju/)
-- [김포 필라테스 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/area/gimpo/)
+- [일산 요가 안내 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/area/ilsan/)
+- [파주 필라테스 지역 안내 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/area/paju/)
+- [김포 필라테스 지역 안내 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/area/gimpo/)
 - [○○필라테스 A 소개 | 일산 필라테스](https://demo.example.kr/pilates-editorial-serif/about/)
 - [자주 묻는 질문 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/faq/)
 - [오시는 길 · 문의 | ○○필라테스 A](https://demo.example.kr/pilates-editorial-serif/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [보험 점검](https://demo.example.kr/insurance-clean-trust/services/check/): 가입 중인 보험 보장 분석
@@ -27,9 +27,9 @@
 - [포항 보험 점검 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/services/check/)
 - [포항 화재 · 사업장 보험 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/services/business/)
 - [포항 보상 청구 도움 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/services/claim/)
-- [포항 보험상담 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/area/pohang/)
-- [경주 보험상담 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/area/gyeongju/)
-- [울산 보험상담 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/area/ulsan/)
+- [포항 화재보험 안내 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/area/pohang/)
+- [경주 보험상담 지역 안내 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/area/gyeongju/)
+- [울산 보험상담 지역 안내 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/area/ulsan/)
 - [○○보험설계 B 소개 | 포항 보험상담](https://demo.example.kr/insurance-clean-trust/about/)
 - [자주 묻는 질문 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○보험설계 B](https://demo.example.kr/insurance-clean-trust/contact/)

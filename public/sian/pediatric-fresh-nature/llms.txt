@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [예방접종](https://demo.example.kr/pediatric-fresh-nature/services/vaccine/): 접종 일정 안내
@@ -30,9 +30,9 @@
 - [포항 영유아 검진 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/checkup/)
 - [포항 야간 · 주말 진료 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/hours/)
 - [포항 소아 진료 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/services/general/)
-- [포항 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/pohang/)
-- [경주 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/gyeongju/)
-- [울산 소아청소년과 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/ulsan/)
+- [포항 소아청소년과 오시는 길 안내 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/pohang/)
+- [경주 소아청소년과 지역 안내 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/gyeongju/)
+- [울산 소아청소년과 지역 안내 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/area/ulsan/)
 - [○○소아청소년과 B 소개 | 포항 소아청소년과](https://demo.example.kr/pediatric-fresh-nature/about/)
 - [자주 묻는 질문 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/faq/)
 - [오시는 길 · 문의 | ○○소아청소년과 B](https://demo.example.kr/pediatric-fresh-nature/contact/)

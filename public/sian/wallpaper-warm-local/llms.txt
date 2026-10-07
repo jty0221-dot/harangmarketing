@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [도배](https://demo.example.kr/wallpaper-warm-local/services/wallpaper/): 실크 · 합지
@@ -27,13 +27,13 @@
 ## 주요 페이지
 - [수원 도배 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/)
 - [서비스 안내 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/services/)
-- [수원 도배 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/services/wallpaper/)
+- [수원 도배 비용 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/services/wallpaper/)
 - [수원 장판 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/services/floor/)
 - [수원 마루 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/services/wood/)
 - [수원 샘플 상담 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/services/sample/)
-- [수원 도배 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/area/suwon/)
-- [용인 도배 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/area/yongin/)
-- [화성 도배 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/area/hwaseong/)
+- [수원 실크벽지 안내 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/area/suwon/)
+- [용인 도배 지역 안내 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/area/yongin/)
+- [화성 도배 지역 안내 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/area/hwaseong/)
 - [○○도배 A 소개 | 수원 도배](https://demo.example.kr/wallpaper-warm-local/about/)
 - [자주 묻는 질문 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/faq/)
 - [오시는 길 · 문의 | ○○도배 A](https://demo.example.kr/wallpaper-warm-local/contact/)

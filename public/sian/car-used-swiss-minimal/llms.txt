@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [성능점검 기록](https://demo.example.kr/car-used-swiss-minimal/services/check/): 기록부 확인
@@ -30,9 +30,9 @@
 - [대구 할부 · 리스 상담 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/services/finance/)
 - [대구 내 차 매입 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/services/buy/)
 - [대구 매물 보기 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/services/stock/)
-- [대구 중고차 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/area/daegu/)
-- [경산 중고차 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/area/gyeongsan/)
-- [수성 중고차 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/area/suseong/)
+- [대구 중고차 위치 안내 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/area/daegu/)
+- [경산 중고차 지역 안내 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/area/gyeongsan/)
+- [수성 중고차 지역 안내 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/area/suseong/)
 - [○○중고차 B 소개 | 대구 중고차](https://demo.example.kr/car-used-swiss-minimal/about/)
 - [자주 묻는 질문 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/faq/)
 - [오시는 길 · 문의 | ○○중고차 B](https://demo.example.kr/car-used-swiss-minimal/contact/)

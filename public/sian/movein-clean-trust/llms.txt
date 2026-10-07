@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-08
 
 ## 서비스
 - [이사 청소](https://demo.example.kr/movein-clean-trust/services/moving/): 이사 전후
@@ -30,10 +30,10 @@
 - [대구 이사 청소 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/services/moving/)
 - [대구 준공 청소 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/services/build/)
 - [대구 새집 증후군 케어 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/services/air/)
-- [대구 입주 청소 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/services/movein/)
-- [대구 입주청소 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/area/daegu/)
-- [경산 입주청소 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/area/gyeongsan/)
-- [수성 입주청소 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/area/suseong/)
+- [대구 입주 청소 비용 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/services/movein/)
+- [대구 입주청소 위치 안내 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/area/daegu/)
+- [경산 입주청소 지역 안내 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/area/gyeongsan/)
+- [수성 입주청소 지역 안내 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/area/suseong/)
 - [○○입주청소 B 소개 | 대구 입주청소](https://demo.example.kr/movein-clean-trust/about/)
 - [자주 묻는 질문 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○입주청소 B](https://demo.example.kr/movein-clean-trust/contact/)

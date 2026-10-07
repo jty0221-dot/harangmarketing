@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [생일 파티](https://demo.example.kr/kids-soft-pastel/services/birthday/): 파티룸 · 케이크 · 진행
@@ -30,9 +30,9 @@
 - [인천 구월 체험 클래스 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/services/class/)
 - [인천 구월 보호자 공간 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/services/parents/)
 - [인천 구월 놀이 시설 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/services/play/)
-- [인천 구월 키즈카페 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/area/incheon-guwol/)
-- [부평 키즈카페 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/area/bupyeong/)
-- [송도 키즈카페 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/area/songdo/)
+- [인천 구월 실내놀이터 안내 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/area/incheon-guwol/)
+- [부평 키즈카페 지역 안내 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/area/bupyeong/)
+- [송도 키즈카페 지역 안내 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/area/songdo/)
 - [○○키즈카페 B 소개 | 인천 구월 키즈카페](https://demo.example.kr/kids-soft-pastel/about/)
 - [자주 묻는 질문 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/faq/)
 - [오시는 길 · 문의 | ○○키즈카페 B](https://demo.example.kr/kids-soft-pastel/contact/)

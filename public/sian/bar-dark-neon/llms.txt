@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [시그니처 칵테일](https://demo.example.kr/bar-dark-neon/services/cocktail/): 바텐더가 직접 만드는 대표 칵테일
@@ -30,9 +30,9 @@
 - [수원 위스키 · 와인 | ○○바 A](https://demo.example.kr/bar-dark-neon/services/bottle/)
 - [수원 대관 · 프라이빗 파티 | ○○바 A](https://demo.example.kr/bar-dark-neon/services/private/)
 - [수원 안주 메뉴 | ○○바 A](https://demo.example.kr/bar-dark-neon/services/food/)
-- [수원 바 | ○○바 A](https://demo.example.kr/bar-dark-neon/area/suwon/)
-- [용인 바 | ○○바 A](https://demo.example.kr/bar-dark-neon/area/yongin/)
-- [화성 바 | ○○바 A](https://demo.example.kr/bar-dark-neon/area/hwaseong/)
+- [수원 바 위치 안내 | ○○바 A](https://demo.example.kr/bar-dark-neon/area/suwon/)
+- [용인 바 지역 안내 | ○○바 A](https://demo.example.kr/bar-dark-neon/area/yongin/)
+- [화성 바 지역 안내 | ○○바 A](https://demo.example.kr/bar-dark-neon/area/hwaseong/)
 - [○○바 A 소개 | 수원 바](https://demo.example.kr/bar-dark-neon/about/)
 - [자주 묻는 질문 | ○○바 A](https://demo.example.kr/bar-dark-neon/faq/)
 - [오시는 길 · 문의 | ○○바 A](https://demo.example.kr/bar-dark-neon/contact/)

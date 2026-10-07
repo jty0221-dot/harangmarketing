@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [위스키 · 와인](https://demo.example.kr/bar-dark-premium/services/bottle/): 보유 리스트와 병 보관
@@ -30,9 +30,9 @@
 - [강남 대관 · 프라이빗 파티 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/private/)
 - [강남 안주 메뉴 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/food/)
 - [강남 시그니처 칵테일 | ○○바 B](https://demo.example.kr/bar-dark-premium/services/cocktail/)
-- [강남 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/gangnam/)
-- [서초 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/seocho/)
-- [송파 바 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/songpa/)
+- [강남 바 위치 안내 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/gangnam/)
+- [서초 바 지역 안내 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/seocho/)
+- [송파 바 지역 안내 | ○○바 B](https://demo.example.kr/bar-dark-premium/area/songpa/)
 - [○○바 B 소개 | 강남 바](https://demo.example.kr/bar-dark-premium/about/)
 - [자주 묻는 질문 | ○○바 B](https://demo.example.kr/bar-dark-premium/faq/)
 - [오시는 길 · 문의 | ○○바 B](https://demo.example.kr/bar-dark-premium/contact/)

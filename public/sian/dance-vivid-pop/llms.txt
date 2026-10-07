@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [방송 댄스](https://demo.example.kr/dance-vivid-pop/services/basic/): 기초부터
@@ -30,9 +30,9 @@
 - [대구 입시 · 오디션 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/exam/)
 - [대구 성인 취미반 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/adult/)
 - [대구 K-POP 커버 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/services/kpop/)
-- [대구 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/daegu/)
-- [경산 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/gyeongsan/)
-- [수성 댄스학원 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/suseong/)
+- [대구 K-POP댄스 안내 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/daegu/)
+- [경산 댄스학원 지역 안내 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/gyeongsan/)
+- [수성 댄스학원 지역 안내 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/area/suseong/)
 - [○○댄스학원 B 소개 | 대구 댄스학원](https://demo.example.kr/dance-vivid-pop/about/)
 - [자주 묻는 질문 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/faq/)
 - [오시는 길 · 문의 | ○○댄스학원 B](https://demo.example.kr/dance-vivid-pop/contact/)

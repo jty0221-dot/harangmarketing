@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [내과 진료](https://demo.example.kr/clinic-medical-calm/services/dept-1/): 감기 · 만성질환 관리
@@ -28,9 +28,9 @@
 - [인천 구월 내과 진료 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-1/)
 - [인천 구월 건강검진 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-2/)
 - [인천 구월 예방접종 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/services/dept-3/)
-- [인천 구월 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/incheon-guwol/)
-- [부평 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/bupyeong/)
-- [송도 의원 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/songdo/)
+- [인천 구월 의원 오시는 길 안내 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/incheon-guwol/)
+- [부평 의원 지역 안내 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/bupyeong/)
+- [송도 의원 지역 안내 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/area/songdo/)
 - [○○의원 B 소개 | 인천 구월 의원](https://demo.example.kr/clinic-medical-calm/about/)
 - [자주 묻는 질문 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/faq/)
 - [오시는 길 · 문의 | ○○의원 B](https://demo.example.kr/clinic-medical-calm/contact/)

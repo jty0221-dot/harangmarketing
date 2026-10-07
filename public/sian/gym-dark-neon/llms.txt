@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [PT](https://demo.example.kr/gym-dark-neon/services/pt/): 1:1 트레이닝
@@ -30,9 +30,9 @@
 - [대구 그룹 운동 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/group/)
 - [대구 체형 측정 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/measure/)
 - [대구 헬스 회원권 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/services/membership/)
-- [대구 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/daegu/)
-- [경산 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/gyeongsan/)
-- [수성 헬스장 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/suseong/)
+- [대구 피트니스 안내 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/daegu/)
+- [경산 헬스장 지역 안내 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/gyeongsan/)
+- [수성 헬스장 지역 안내 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/area/suseong/)
 - [○○헬스장 B 소개 | 대구 헬스장](https://demo.example.kr/gym-dark-neon/about/)
 - [자주 묻는 질문 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/faq/)
 - [오시는 길 · 문의 | ○○헬스장 B](https://demo.example.kr/gym-dark-neon/contact/)

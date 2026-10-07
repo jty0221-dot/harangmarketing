@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [주문 케이크](https://demo.example.kr/dessert-soft-pastel/services/cake/): 도안 상담 후 제작
@@ -30,9 +30,9 @@
 - [인천 구월 마카롱 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/services/macaron/)
 - [인천 구월 구움과자 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/services/baked/)
 - [인천 구월 선물 포장 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/services/gift/)
-- [인천 구월 디저트 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/area/incheon-guwol/)
-- [부평 디저트 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/area/bupyeong/)
-- [송도 디저트 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/area/songdo/)
+- [인천 구월 주문제작케이크 안내 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/area/incheon-guwol/)
+- [부평 디저트 지역 안내 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/area/bupyeong/)
+- [송도 디저트 지역 안내 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/area/songdo/)
 - [○○디저트 A 소개 | 인천 구월 디저트](https://demo.example.kr/dessert-soft-pastel/about/)
 - [자주 묻는 질문 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/faq/)
 - [오시는 길 · 문의 | ○○디저트 A](https://demo.example.kr/dessert-soft-pastel/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [전체 PPF](https://demo.example.kr/car-ppf-midnight-tech/services/full/): 도장면 전체 보호 필름
@@ -30,9 +30,9 @@
 - [수원 부분 PPF | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/services/part/)
 - [수원 컬러 랩핑 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/services/wrap/)
 - [수원 생활 보호 필름 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/services/guard/)
-- [수원 PPF | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/area/suwon/)
-- [용인 PPF | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/area/yongin/)
-- [화성 PPF | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/area/hwaseong/)
+- [수원 자동차랩핑 안내 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/area/suwon/)
+- [용인 PPF 지역 안내 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/area/yongin/)
+- [화성 PPF 지역 안내 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/area/hwaseong/)
 - [○○PPF A 소개 | 수원 PPF](https://demo.example.kr/car-ppf-midnight-tech/about/)
 - [자주 묻는 질문 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/faq/)
 - [오시는 길 · 문의 | ○○PPF A](https://demo.example.kr/car-ppf-midnight-tech/contact/)

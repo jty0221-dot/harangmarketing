@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [건강검진](https://demo.example.kr/clinic-clean-trust/services/dept-2/): 국가 건강검진 · 종합검진
@@ -28,9 +28,9 @@
 - [부천 건강검진 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/services/dept-2/)
 - [부천 예방접종 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/services/dept-3/)
 - [부천 내과 진료 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/services/dept-1/)
-- [부천 의원 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/area/bucheon/)
-- [인천 부평 의원 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/area/bupyeong/)
-- [서울 구로 의원 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/area/guro/)
+- [부천 의원 오시는 길 안내 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/area/bucheon/)
+- [인천 부평 의원 지역 안내 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/area/bupyeong/)
+- [서울 구로 의원 지역 안내 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/area/guro/)
 - [○○의원 C 소개 | 부천 의원](https://demo.example.kr/clinic-clean-trust/about/)
 - [자주 묻는 질문 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/faq/)
 - [오시는 길 · 문의 | ○○의원 C](https://demo.example.kr/clinic-clean-trust/contact/)

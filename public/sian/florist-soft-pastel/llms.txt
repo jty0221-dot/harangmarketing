@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [꽃다발](https://demo.example.kr/florist-soft-pastel/services/bouquet/): 기념일 · 프러포즈
@@ -30,9 +30,9 @@
 - [수원 축하 · 근조 화환 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/services/wreath/)
 - [수원 개업 · 승진 화분 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/services/plant/)
 - [수원 정기 꽃 구독 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/services/subscription/)
-- [수원 꽃집 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/area/suwon/)
-- [용인 꽃집 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/area/yongin/)
-- [화성 꽃집 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/area/hwaseong/)
+- [수원 꽃배달 안내 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/area/suwon/)
+- [용인 꽃집 지역 안내 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/area/yongin/)
+- [화성 꽃집 지역 안내 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/area/hwaseong/)
 - [○○꽃집 B 소개 | 수원 꽃집](https://demo.example.kr/florist-soft-pastel/about/)
 - [자주 묻는 질문 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/faq/)
 - [오시는 길 · 문의 | ○○꽃집 B](https://demo.example.kr/florist-soft-pastel/contact/)

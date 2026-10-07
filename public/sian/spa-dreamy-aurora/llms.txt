@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [스포츠 마사지](https://demo.example.kr/spa-dreamy-aurora/services/sports/): 근육 피로 관리
@@ -30,9 +30,9 @@
 - [포항 커플 · 프라이빗 룸 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/couple/)
 - [포항 헤드 스파 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/head/)
 - [포항 아로마 테라피 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/services/aroma/)
-- [포항 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/pohang/)
-- [경주 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/gyeongju/)
-- [울산 마사지 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/ulsan/)
+- [포항 마사지 위치 안내 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/pohang/)
+- [경주 마사지 지역 안내 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/gyeongju/)
+- [울산 마사지 지역 안내 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/area/ulsan/)
 - [○○마사지샵 B 소개 | 포항 마사지](https://demo.example.kr/spa-dreamy-aurora/about/)
 - [자주 묻는 질문 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/faq/)
 - [오시는 길 · 문의 | ○○마사지샵 B](https://demo.example.kr/spa-dreamy-aurora/contact/)

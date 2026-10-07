@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [중고등 영어](https://demo.example.kr/english-vivid-pop/services/teen/): 내신 · 문법 · 독해
@@ -30,9 +30,9 @@
 - [포항 성인 회화 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/services/adult/)
 - [포항 온라인 수업 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/services/online/)
 - [포항 유초등 영어 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/services/kids/)
-- [포항 영어학원 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/area/pohang/)
-- [경주 영어학원 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/area/gyeongju/)
-- [울산 영어학원 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/area/ulsan/)
+- [포항 영어회화 안내 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/area/pohang/)
+- [경주 영어학원 지역 안내 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/area/gyeongju/)
+- [울산 영어학원 지역 안내 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/area/ulsan/)
 - [○○영어학원 C 소개 | 포항 영어학원](https://demo.example.kr/english-vivid-pop/about/)
 - [자주 묻는 질문 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/faq/)
 - [오시는 길 · 문의 | ○○영어학원 C](https://demo.example.kr/english-vivid-pop/contact/)

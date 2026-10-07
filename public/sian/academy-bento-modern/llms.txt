@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [중등 과정](https://demo.example.kr/academy-bento-modern/services/middle/): 내신 대비와 선행
@@ -30,9 +30,9 @@
 - [일산 고등 과정 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/high/)
 - [일산 레벨 테스트 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/level-test/)
 - [일산 초등 과정 | ○○학원 C](https://demo.example.kr/academy-bento-modern/services/elementary/)
-- [일산 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/ilsan/)
-- [파주 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/paju/)
-- [김포 학원 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/gimpo/)
+- [일산 학원 위치 안내 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/ilsan/)
+- [파주 학원 지역 안내 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/paju/)
+- [김포 학원 지역 안내 | ○○학원 C](https://demo.example.kr/academy-bento-modern/area/gimpo/)
 - [○○학원 C 소개 | 일산 학원](https://demo.example.kr/academy-bento-modern/about/)
 - [자주 묻는 질문 | ○○학원 C](https://demo.example.kr/academy-bento-modern/faq/)
 - [오시는 길 · 문의 | ○○학원 C](https://demo.example.kr/academy-bento-modern/contact/)

@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [남성 커트](https://demo.example.kr/barber-dark-premium/services/cut/): 두상 맞춤 커트
@@ -30,9 +30,9 @@
 - [포항 다운펌 · 볼륨펌 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/services/perm/)
 - [포항 습식 면도 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/services/shave/)
 - [포항 두피 케어 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/services/scalp/)
-- [포항 바버샵 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/area/pohang/)
-- [경주 바버샵 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/area/gyeongju/)
-- [울산 바버샵 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/area/ulsan/)
+- [포항 남자커트 안내 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/area/pohang/)
+- [경주 바버샵 지역 안내 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/area/gyeongju/)
+- [울산 바버샵 지역 안내 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/area/ulsan/)
 - [○○바버샵 A 소개 | 포항 바버샵](https://demo.example.kr/barber-dark-premium/about/)
 - [자주 묻는 질문 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/faq/)
 - [오시는 길 · 문의 | ○○바버샵 A](https://demo.example.kr/barber-dark-premium/contact/)

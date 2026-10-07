@@ -10,7 +10,7 @@
 - 전화: 010-0000-0000
 - 주소: 확인 중
 - 영업시간: 평일 09:00 ~ 18:00
-- 최종 갱신: 2026-10-06
+- 최종 갱신: 2026-10-07
 
 ## 서비스
 - [스터디룸](https://demo.example.kr/studycafe-swiss-minimal/services/room/): 2~6인 룸
@@ -30,9 +30,9 @@
 - [일산 정기권 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/pass/)
 - [일산 음료 · 휴게 공간 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/lounge/)
 - [일산 1인 집중석 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/services/seat/)
-- [일산 스터디카페 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/ilsan/)
-- [파주 스터디카페 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/paju/)
-- [김포 스터디카페 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/gimpo/)
+- [일산 독서실 안내 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/ilsan/)
+- [파주 스터디카페 지역 안내 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/paju/)
+- [김포 스터디카페 지역 안내 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/area/gimpo/)
 - [○○스터디카페 B 소개 | 일산 스터디카페](https://demo.example.kr/studycafe-swiss-minimal/about/)
 - [자주 묻는 질문 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/faq/)
 - [오시는 길 · 문의 | ○○스터디카페 B](https://demo.example.kr/studycafe-swiss-minimal/contact/)
