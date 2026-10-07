@@ -6,7 +6,7 @@ const URL = `${SITE.base}${PATH}`;
 
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
-  title: "인스타그램 계정 관리 · 하이라이트 세팅 · 릴스",
+  title: "인스타그램마케팅 · 계정 관리 · 하이라이트 · 릴스",
   description:
     "인스타그램 계정을 30개 항목으로 실측해 막힌 곳부터 찾고 하이라이트 세팅과 릴스 발행을 합니다. 팔로워는 사지 않으며 상담·진단은 0원입니다.",
   keywords: [

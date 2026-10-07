@@ -62,7 +62,7 @@ import Link from "next/link";
 import { ArrowRight, UtensilsCrossed, TrendingUp, Star, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "음식점·식당 마케팅 대행사 | 네이버 플레이스 상위노출 전문",
+  title: "음식점마케팅 · 식당 마케팅 대행사 | 네이버 플레이스 상위노출",
   description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅입니다. 네이버 플레이스 SEO, 블로그 체험단, 맘카페 바이럴을 하며 상권 진단은 0원입니다.",
   keywords: ["음식점 마케팅", "식당 마케팅 대행사", "맛집 마케팅", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {

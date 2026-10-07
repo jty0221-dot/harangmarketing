@@ -144,7 +144,7 @@ const MEDICAL_PROCESS = [
 ];
 
 export const metadata: Metadata = {
-  title: "의원·한의원·피부과 마케팅 | 의료법 준수 · 플레이스 SEO · 블로그",
+  title: "병원마케팅 · 의원 · 한의원 · 피부과 | 의료법 준수 플레이스 · 블로그",
   description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 무료 상담이 가능합니다.",
   keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행"],
   openGraph: {

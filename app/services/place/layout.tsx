@@ -6,7 +6,7 @@ const URL = `${SITE.base}${PATH}`;
 
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
-  title: "네이버 플레이스 상위노출 · 지도 등록 대행",
+  title: "플레이스마케팅 · 네이버 플레이스 상위노출 · 지도 등록 대행",
   description:
     "네이버 플레이스·지도 등록 다음 일을 합니다. 오후 2~3시에 순위를 재서 밀린 키워드를 손보고 몇 위까지 올린다는 말은 하지 않습니다. 상담 0원.",
   keywords: [
