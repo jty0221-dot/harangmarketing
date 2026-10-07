@@ -42,7 +42,15 @@ def upload(path):
         return json.loads(r.read())["file_id"]
 
 
+# hp01 (업종시안) 은 이미 켜진 '서비스_홈페이지 제작' 광고그룹 A 광고 (업종별 시안 255개) 와 겹쳐 뺀다 (2026-10-06 계정 실측)
+SKIP = {"hp01"}
+# 보류 (H-1160 · D-0619 · 2026-10-06) : 개인정보 처리방침에 OpenAI 고지가 시행된 뒤에 돌린다 (공고 7일 뒤).
+# 시행일이 지나 대표가 등록을 정하면 --policy-ok 를 붙여 실행한다.
+if "--policy-ok" not in sys.argv:
+    raise SystemExit("보류 중 : 처리방침 OpenAI 고지 시행 뒤에 --policy-ok 를 붙여 실행한다 (H-1160 · D-0619)")
 for key, name, img, url, title, body, hints in GROUPS:
+    if key in SKIP:
+        continue
     assert 3 <= len(title) <= 50 and len(body) <= 100, (key, len(title), len(body))
     status = "active" if (ACTIVE and key != "hp02") else "paused"
     rec = done.setdefault(key, {})
