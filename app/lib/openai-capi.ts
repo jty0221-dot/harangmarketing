@@ -1,4 +1,5 @@
 import "server-only";
+import { OPENAI_MEASUREMENT_ON } from "./ads-measurement";
 
 /**
  * ChatGPT 광고 Conversions API (서버 → OpenAI).
@@ -54,6 +55,7 @@ export async function sendOpenAIConversion(opts: {
   const pid = process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID;
   // 픽셀 아이디는 layout.tsx 와 같은 형식일 때만 쓴다 (형권 2026-10-07 · SEC-040 남은작업 5).
   // 화면에 픽셀이 안 심기는 값이면 서버도 보내지 않는다. 화면과 서버가 따로 놀지 않게 한다.
+  if (!OPENAI_MEASUREMENT_ON) return; // 측정 스위치 꺼짐 (app/lib/ads-measurement.ts · D-0619)
   if (!key || !pid || !PIXEL_ID_RE.test(pid)) return;
   const oppref = safeRef(opts.oppref);
   const obref = safeRef(opts.obref);

@@ -5,6 +5,7 @@ import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이�
 import SiteChrome from "./components/SiteChrome";
 import JsonLd from "./components/JsonLd";
 import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES, companyYear } from "./lib/seo";
+import { OPENAI_MEASUREMENT_ON } from "./lib/ads-measurement";
 
 /**
  * GA4 측정 ID.
@@ -24,7 +25,8 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-L1NX7TPP9Z";
  * 브라우저에 그대로 보이는 공개 식별자다 (API 키와 다르다).
  * 형식이 아닌 값이 들어가 스크립트 문자열이 깨지지 않게 영문·숫자·_- 만 통과시킨다.
  */
-const OPENAI_PIXEL_ID = /^[A-Za-z0-9_-]{4,80}$/.test(process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID ?? "")
+// 측정 스위치가 꺼져 있으면 환경변수가 있어도 심지 않는다 (app/lib/ads-measurement.ts · D-0619)
+const OPENAI_PIXEL_ID = OPENAI_MEASUREMENT_ON && /^[A-Za-z0-9_-]{4,80}$/.test(process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID ?? "")
   ? process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID
   : undefined;
 
