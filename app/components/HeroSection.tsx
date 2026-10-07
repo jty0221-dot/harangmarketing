@@ -63,12 +63,13 @@ export default function HeroSection({
     const r = isFinite(videoSpeed) && videoSpeed > 0 ? videoSpeed : 1;
     v.playbackRate = r;
 
-    // Chrome MEI 차단 시 비디오 데이터 다운로드도 막힘 → 명시적 load() 호출
-    v.load();
+    // 영상(약 2.7MB)은 페이지가 다 뜬 뒤에 받는다. 그 전에는 포스터가 보인다.
+    // 처음부터 받으면 휴대폰에서 글자 · 스크립트와 회선을 다퉈 첫 화면이 늦어졌다 (2026-10-07 실측)
+    let ready = false;
 
     const tryPlay = () => {
-      // 방문자가 멈췄거나 동작 줄이기를 켰으면 다시 틀지 않는다
-      if (pausedRef.current) return;
+      // 아직 받을 차례가 아니거나, 방문자가 멈췄거나 동작 줄이기를 켰으면 틀지 않는다
+      if (!ready || pausedRef.current) return;
       // 데이터 미로드 상태면 load() 재호출 후 canplay 이벤트에서 재시도
       if (v.readyState === 0) {
         v.load();
@@ -78,8 +79,12 @@ export default function HeroSection({
       }
     };
 
-    // 1차: 즉시 시도
-    tryPlay();
+    // 1차: 페이지가 다 뜨고 1.2초 뒤 받기 시작 (Chrome MEI 차단 시 다운로드도 막히므로 명시적 load())
+    let startTimer: ReturnType<typeof setTimeout> | undefined;
+    const start = () => { ready = true; v.load(); tryPlay(); };
+    const schedule = () => { startTimer = setTimeout(start, 1200); };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
 
     // 2차: 사용자 첫 상호작용(스크롤·클릭·터치) 시 재시도 — Chrome MEI 정책 우회
     const onInteract = () => tryPlay();
@@ -94,6 +99,8 @@ export default function HeroSection({
     io.observe(v);
 
     return () => {
+      if (startTimer) clearTimeout(startTimer);
+      window.removeEventListener("load", schedule);
       EVENTS.forEach(e => document.removeEventListener(e, onInteract));
       io.disconnect();
     };
@@ -116,6 +123,12 @@ export default function HeroSection({
         @keyframes haFadeUp {
           from { opacity: 0; transform: translateY(26px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        /* H1 전용 : 투명도는 건드리지 않고 위치만 올린다. 투명하게 시작한 글자는 LCP(가장 큰 그림) 후보에서 빠져
+           화면이 붙은 뒤에 뜨는 공지 띠가 LCP 로 잡혔다 (2026-10-07 라이트하우스 실측 · 모바일 7.0초) */
+        @keyframes haRise {
+          from { transform: translateY(26px); }
+          to   { transform: translateY(0); }
         }
         @keyframes haLineGrow {
           from { transform: scaleX(0); }
@@ -173,7 +186,7 @@ export default function HeroSection({
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
           poster="/hero-v4-poster.jpg"
           style={{
             position: "absolute",
@@ -325,7 +338,7 @@ export default function HeroSection({
               letterSpacing: "-0.03em",
               fontSize: "clamp(28px,4.7vw,74px)",
               textShadow: "0 2px 30px rgba(5,12,32,0.4)",
-              animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .28s both",
+              animation: "haRise .9s cubic-bezier(.2,.7,.2,1) .28s both",
             }}
           >
             광고비를 더 쓰기 전에,<br />

@@ -6,6 +6,20 @@ import SiteChrome from "./components/SiteChrome";
 import JsonLd from "./components/JsonLd";
 import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES, companyYear } from "./lib/seo";
 import { OPENAI_MEASUREMENT_ON } from "./lib/ads-measurement";
+import { Black_Han_Sans } from "next/font/google";
+
+/**
+ * Black Han Sans — 카페 배포 상세 · 레퍼런스 · 서비스 허브의 대형 헤드라인 · 숫자 전용 (본문 사용 금지).
+ * 빌드 때 받아 우리 주소에서 낸다. 한글 글꼴이라 미리 받기(preload)는 끈다 (쓰는 페이지에서만 글자 범위별로 받는다).
+ * globals.css 의 .cd-display · .cd-num 이 --font-black-han 을 쓴다.
+ */
+const blackHanSans = Black_Han_Sans({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  variable: "--font-black-han",
+});
 
 /**
  * GA4 측정 ID.
@@ -135,7 +149,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full">
+    <html lang="ko" className={`h-full ${blackHanSans.variable}`}>
       <head>
         {/* ChatGPT 광고 측정 픽셀 — 문서 권고대로 head 맨 위. 랜딩 URL 의 oppref 를 __oppref 쿠키로 받아 둔다.
             코드 출처: developers.openai.com/ads/measurement-pixel (2026-10-02 확인) */}
@@ -158,13 +172,8 @@ oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}"});`,
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
         />
-        {/* Black Han Sans — 카페 배포 상세/레퍼런스의 대형 헤드라인·숫자 전용 (본문 사용 금지) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
-        />
+        {/* Black Han Sans 는 next/font 로 빌드 때 받아 우리 주소에서 낸다 (위 blackHanSans).
+            구글 폰트 CSS 를 모든 페이지에서 렌더 차단으로 받던 것을 걷어냈다 (2026-10-07 라이트하우스 실측) */}
         {/* 네이버 서치어드바이저 소유권 확인 */}
         <meta name="naver-site-verification" content="5e058632e3ac9891ac91638c144b083a4d694d0b" />
         {/* Bing Webmaster Tools — NEXT_PUBLIC_BING_VERIFICATION 설정 시에만 삽입 */}

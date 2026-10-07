@@ -547,12 +547,12 @@ body { overflow-x: hidden; }
 /* 대형 헤드라인·숫자 전용 디스플레이 서체.
    한글 대형 텍스트는 letter-spacing 음수값이 필수 — 빠지면 완전히 다른 디자인이 된다. */
 .cd-display {
-  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-family: var(--font-black-han), "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
   font-weight: 400;
   letter-spacing: -0.03em;
 }
 .cd-num {
-  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-family: var(--font-black-han), "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
