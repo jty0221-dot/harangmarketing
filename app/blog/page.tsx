@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, BookOpen, TrendingUp, MapPin, Star, MessageCircle } from "lucide-react";
 import BlogListClient from "./BlogListClient";
 import { getAllPosts } from "../lib/blog-posts";
+import { BLOG_META } from "../lib/blog-meta";
 import { getNaverBlogPosts } from "../lib/naver-blog";
 import { ogImage } from "../lib/seo";
 
@@ -24,7 +25,16 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const dynamicPosts = getAllPosts().map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, date: p.date }));
+  // 사이트 안 글 (관리자 작성 + 코드에 있는 글) 을 목록에 그린다. 내린 글(unlisted)은 뺀다.
+  // 2026-10-08 전 페이지 점검 : 이 목록이 네이버 블로그 글(바깥 링크)만 그려서 사이트 안 글 14편이
+  // 어느 페이지에서도 링크되지 않았다 (검색로봇이 사이트맵으로만 찾았다)
+  const seen = new Set<string>();
+  const dynamicPosts = [
+    ...getAllPosts().map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, date: p.date })),
+    ...BLOG_META.filter((m) => !m.unlisted).map((m) => ({ slug: m.slug, title: m.title, excerpt: m.excerpt, date: m.date })),
+  ]
+    .filter((p) => (seen.has(p.slug) ? false : (seen.add(p.slug), true)))
+    .sort((a, b) => b.date.localeCompare(a.date));
   const naverPosts = await getNaverBlogPosts();
 
   return (

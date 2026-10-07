@@ -21,8 +21,9 @@ export function generateStaticParams() { return PHOTO_PORTFOLIOS.map(({ type, id
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { type, id } = await params;
   const { portfolio } = getPortfolio(type, id);
-  const title = portfolio.name + ' 촬영 포트폴리오';
-  const description = portfolioSummary(portfolio);
+  // 검색 제목에 업종 키워드를 넣는다 (2026-10-08 전 페이지 점검 · 짧은 제목 26곳)
+  const title = portfolio.name + (type === 'food' ? ' · 음식사진촬영 포트폴리오' : ' · 숙소 사진촬영 포트폴리오');
+  const description = portfolioSummary(portfolio) + ' 하랑마케팅 매장 사진촬영 사례입니다.';
   const path = '/services/photo/' + type + '/' + id;
   return photoMetadata(path, title, description, portfolio.cover);
 }
@@ -40,6 +41,7 @@ export default async function PhotoDetailPage({ params }: { params: Params }) {
       <Link href={'/services/photo/' + type} className="inline-flex min-h-11 items-center gap-2 w-label1 text-[var(--w-label-alt)]"><ArrowLeft size={16} />{PHOTO_TYPES[type].label} 목록</Link>
       <header className="pb-8 pt-6 text-center md:pb-10"><p className="mb-3 w-caption1 tracking-widest text-[var(--w-primary)]">{type === 'stay' ? 'STAY PHOTOGRAPHY' : 'FOOD PHOTOGRAPHY'}</p><h1 className="w-display3 font-bold text-[var(--w-label-strong)]">{portfolio.name}</h1>{portfolio.description && <p className="mt-3 w-body2 text-[var(--w-label-alt)]">{portfolio.description}</p>}</header>
       <p className="mb-6 w-body2 text-[var(--w-label-alt)]">{portfolioSummary(portfolio)}</p>
+      <h2 className="sr-only">{portfolio.name} 촬영 사진</h2>
       <PhotoSlideshow key={portfolio.type + portfolio.id} name={portfolio.name} images={portfolio.images} />
       <nav aria-label="다음 촬영 사례" className="mt-10 flex flex-col justify-between gap-4 border-t border-[var(--w-line)] pt-6 sm:flex-row"><Link href={'/services/photo/price#' + type} className="inline-flex min-h-11 items-center gap-2 w-label1 font-semibold text-[var(--w-primary)]">촬영 구성과 가격 보기<ArrowRight size={16} /></Link><Link href={'/services/photo/' + type + '/' + next.id} className="inline-flex min-h-11 items-center gap-2 w-label1">다음 사례 · {next.name}<ArrowRight size={16} /></Link></nav>
     </div>

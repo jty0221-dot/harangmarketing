@@ -15,7 +15,10 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
   const { type } = await params;
   if (!isPhotoType(type)) notFound();
   const data = PHOTO_TYPES[type];
-  return photoMetadata('/services/photo/' + type, data.title, data.description, portfoliosFor(type)[0].cover);
+  // 검색 제목 · 설명은 키워드를 앞에 둔다 (2026-10-08 전 페이지 점검 · 음식사진촬영 월 320회). 화면 문구는 그대로다
+  const seoTitle = type === 'food' ? '음식사진촬영 포트폴리오 · 메뉴 · 매장 촬영 사례' : '숙소 · 펜션 사진촬영 포트폴리오 · 시설 촬영 사례';
+  const seoDesc = data.description + ' 하랑마케팅이 진행한 매장 사진촬영 사례를 모아 사진 수와 촬영 구성, 가격까지 함께 보여 드립니다.';
+  return photoMetadata('/services/photo/' + type, seoTitle, seoDesc, portfoliosFor(type)[0].cover);
 }
 export default async function PhotoPortfolioPage({ params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;

@@ -730,7 +730,8 @@ export async function generateMetadata(
     title: `${post.title} · 하랑마케팅 블로그`,
     // 내린 글은 URL 은 살아 있으나 검색엔진에 올리지 않는다 (H-0081)
     robots: meta?.unlisted ? { index: false, follow: false } : undefined,
-    description: post.summary,
+    // 검색 결과 설명은 70~160자 (2026-10-08 전 페이지 점검 · 짧은 요약 5편) · 짧으면 주제 한 줄을 붙인다
+    description: [...post.summary].length < 70 ? `${post.summary} ${post.tag} 실무 노하우를 하랑마케팅이 정리했습니다.` : post.summary,
     keywords: ["소상공인 마케팅", "하랑마케팅", post.tag, "마케팅 노하우", post.title],
     authors: [{ name: "하랑마케팅" }],
     alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },

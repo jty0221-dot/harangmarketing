@@ -80,10 +80,30 @@ async function call(url, init, kind) {
 
 const strip = (s) => String(s || "").replace(/<[^>]+>/g, "").replace(/&quot;/g, '"').replace(/&amp;/g, "&");
 
-async function search(kind, query, display = 10) {
-  const q = new URLSearchParams({ query, display: String(display), start: "1", sort: kind === "local" ? "random" : "date" });
+async function search(kind, query, display = 10, sort) {
+  const q = new URLSearchParams({ query, display: String(display), start: "1" });
+  // 웹문서(webkr)는 정렬 값이 없다. 순위를 잴 때는 정확도순(sim)으로 부른다
+  if (kind !== "webkr") q.set("sort", sort || (kind === "local" ? "random" : "date"));
   if (kind !== "local") q.set("format", "json");
   return call(`${HUB}/search/v1/${kind}?${q}`, { method: "GET" }, "hub");
+}
+
+/**
+ * 순위 재기 : 키워드마다 웹문서 · 블로그 정확도순 100건 안에서 우리 주소가 몇 번째인지 본다.
+ * 검색 API 결과는 실제 검색 화면 순서와 다를 수 있다 (같은 날 같은 방법으로 재서 흐름을 본다).
+ */
+async function rank(keywords, site = "harangmarketing.com", blogId = "harangmarketing") {
+  const rows = [];
+  for (const k of keywords) {
+    const pos = async (kind, match) => {
+      const r = await search(kind, k, 100, "sim");
+      if (r.status !== 200) return `HTTP${r.status}`;
+      const i = (r.body.items || []).findIndex((it) => match(String(it.link || "")));
+      return i < 0 ? "100밖" : String(i + 1);
+    };
+    rows.push([k, await pos("webkr", (l) => l.includes(site)), await pos("blog", (l) => l.includes(`blog.naver.com/${blogId}`))]);
+  }
+  return rows;
 }
 
 async function trend(startDate, endDate, timeUnit, groups) {
@@ -163,6 +183,11 @@ async function main() {
     for (const g of r.body.results || []) {
       console.log(`[${g.title}] ` + g.data.map((d) => `${d.period} ${d.ratio}`).join(" · "));
     }
+    return;
+  }
+  if (cmd === "rank") {
+    console.log("키워드\t웹문서 순위\t블로그 순위");
+    for (const row of await rank(args)) console.log(row.join("\t"));
     return;
   }
   if (cmd === "geocode") {
