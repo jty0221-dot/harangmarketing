@@ -187,19 +187,19 @@ oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}"});`,
         <meta name="geo.position" content={`${SITE.geo.lat};${SITE.geo.lng}`} />
         <meta name="ICBM" content={`${SITE.geo.lat}, ${SITE.geo.lng}`} />
 
-        {/* Google tag (gtag.js) — GA4.
-            명령(dataLayer)은 바로 쌓고, 태그 스크립트는 페이지가 다 뜨고 2초 뒤에 받는다 (대표 결정 「속도 우선」 · 2026-10-07).
-            처음부터 받으면 휴대폰에서 메인 스레드를 0.4초 막았다. 그 2초 안에 나간 방문은 통계에서 빠질 수 있다 */}
+        {/* Google tag (gtag.js) — GA4 */}
         {GA_ID && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GA_ID}');
-window.addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_ID}';document.head.appendChild(s);},2000);});`,
-            }}
-          />
+gtag('config', '${GA_ID}');`,
+              }}
+            />
+          </>
         )}
       </head>
       <body className="min-h-full flex flex-col">
