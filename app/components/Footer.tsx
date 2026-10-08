@@ -94,7 +94,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="md:col-span-1">
               <Link href="/" className="flex items-center gap-2.5 mb-4 w-fit min-h-11">
-                <img src="/harang-icon-on-dark.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
+                <img src="/harang-icon-on-dark.svg" alt="하랑마케팅 로고" width={32} height={32} className="w-8 h-8" />
                 <span className="font-black text-white text-[17px]">하랑마케팅</span>
               </Link>
               <p className="text-sm text-gray-400 leading-relaxed mb-5">

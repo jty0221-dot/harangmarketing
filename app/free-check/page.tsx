@@ -119,7 +119,7 @@ export default function FreeCheckPage() {
       {/* Top bar */}
       <div className="bg-gray-950 border-b border-white/5 py-3 px-4 flex items-center justify-between max-w-5xl mx-auto">
         <Link href="/" className="flex items-center gap-2 min-h-11">
-          <img src="/harang-icon-on-dark.svg" alt="하랑마케팅 로고" className="w-7 h-7" />
+          <img src="/harang-icon-on-dark.svg" alt="하랑마케팅 로고" width={28} height={28} className="w-7 h-7" />
           <span className="text-white font-black text-[15px]">하랑<span className="text-[var(--w-blue-70)]">마케팅</span></span>
         </Link>
         <a

@@ -15,7 +15,7 @@ import {
 
 const PORTFOLIO_TITLE = "업종별 마케팅 사례";
 const PORTFOLIO_DESCRIPTION =
-  "음식점·카페·병원·미용실·학원부터 인테리어·여행까지, 하랑마케팅이 직접 진행한 업종별 마케팅 사례를 모았습니다.";
+  "음식점·카페·병원·미용실·학원부터 인테리어·여행까지, 하랑마케팅이 직접 진행한 업종별 마케팅 사례를 모았습니다. 업종을 고르면 그 업종에서 한 일과 결과를 바로 볼 수 있습니다.";
 const PORTFOLIO_URL = "https://www.harangmarketing.com/portfolio";
 
 export const metadata: Metadata = {
