@@ -97,7 +97,7 @@ const LD = [
       lowPrice: PRICE_MIN,
       highPrice: PRICE_MAX,
       offerCount: PACKAGES.length * 2 + CAFE_TIERS.length + 1,
-      description: "표기 금액은 부가세 별도입니다.",
+      description: "표기 금액은 부가세 포함입니다.",
       offers: [
         ...PACKAGES.map((p) => ({
           "@type": "Offer",
@@ -340,7 +340,7 @@ export default function CafeDistributionPage() {
             </div>
 
             <p className="mt-6 text-[13px] leading-relaxed md:text-[14px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              {PRICE_REVISED_AT} 개정 단가 기준. 표기 금액은 부가세 별도이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.
+              {PRICE_REVISED_AT} 개정 단가 기준. 표기 금액은 부가세 포함이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.
             </p>
           </div>
         </section>
@@ -734,7 +734,7 @@ export default function CafeDistributionPage() {
               </div>
               <div className="md:text-right">
                 <p className="text-[13px]" style={{ color: "var(--cd-on-dark-3)" }}>
-                  시작가 · 부가세 별도
+                  시작가 · 부가세 포함
                 </p>
                 <p className="cd-num mt-1 whitespace-nowrap text-[30px] leading-none text-white md:text-[36px]">
                   월 {won(MONTHLY_MIN)}
@@ -1038,7 +1038,7 @@ export default function CafeDistributionPage() {
             </div>
 
             <p className="mt-8 text-[13px] leading-relaxed" style={{ color: "var(--cd-on-dark-4)" }}>
-              하랑마케팅 · 표기 금액 부가세 별도
+              하랑마케팅 · 표기 금액 부가세 포함
               <br />
               진행 전 상담을 통해 업종별 가능 여부를 확인해 드립니다.
             </p>

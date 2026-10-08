@@ -8,11 +8,14 @@
  * 가격 갱신: 2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS
  */
 
+import { withVat } from "./vat";
+
 /* ─────────────────────────────────────────────────────────
    패키지 가격 (2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS)
 
    구성은 사는 것과 파는 것을 같게 둔다 — 10건 · 30건 × 최블형 · 혼합형 · 카페형.
    가격은 두 열이다 : 원고 작성을 맡기는 경우(withCopy) · 원고를 직접 주는 경우(withoutCopy).
+   금액은 부가세 포함으로 적는다 (2026-10-09 (금) 대표 결정). withVat() 안 숫자가 공급가 원본이다.
    이벤트가 · 회차 · 잔여 슬롯 같은 장치는 두지 않는다 — 화면에 적힌 숫자는 대표가 한 약속이 된다.
    ───────────────────────────────────────────────────────── */
 export type PackageSize = 10 | 30;
@@ -27,23 +30,23 @@ export interface CafePackage {
   blog: number;
   /** 카페 건수 */
   cafe: number;
-  /** 원고 작성 포함 가격 (원, 부가세 별도) */
+  /** 원고 작성 포함 가격 (원, 부가세 포함 · 괄호 안 숫자가 공급가) */
   withCopy: number;
-  /** 원고를 직접 주는 경우 가격 (원, 부가세 별도) */
+  /** 원고를 직접 주는 경우 가격 (원, 부가세 포함 · 괄호 안 숫자가 공급가) */
   withoutCopy: number;
   /** 상담에서 먼저 권하는 구성 */
   featured?: boolean;
 }
 
 export const PACKAGES: CafePackage[] = [
-  { size: 10, kind: "최블형", blog: 10, cafe: 0,  withCopy: 336000,  withoutCopy: 276000 },
-  { size: 10, kind: "혼합형", blog: 5,  cafe: 5,  withCopy: 456000,  withoutCopy: 396000, featured: true },
-  { size: 10, kind: "카페형", blog: 0,  cafe: 10, withCopy: 600000,  withoutCopy: 540000 },
-  { size: 30, kind: "최블형", blog: 30, cafe: 0,  withCopy: 960000,  withoutCopy: 780000 },
-  { size: 30, kind: "혼합형", blog: 20, cafe: 10, withCopy: 1200000, withoutCopy: 1020000 },
-  { size: 30, kind: "혼합형", blog: 15, cafe: 15, withCopy: 1260000, withoutCopy: 1080000 },
-  { size: 30, kind: "혼합형", blog: 10, cafe: 20, withCopy: 1440000, withoutCopy: 1260000, featured: true },
-  { size: 30, kind: "카페형", blog: 0,  cafe: 30, withCopy: 1680000, withoutCopy: 1500000 },
+  { size: 10, kind: "최블형", blog: 10, cafe: 0,  withCopy: withVat(336000), withoutCopy: withVat(276000) },
+  { size: 10, kind: "혼합형", blog: 5,  cafe: 5,  withCopy: withVat(456000), withoutCopy: withVat(396000), featured: true },
+  { size: 10, kind: "카페형", blog: 0,  cafe: 10, withCopy: withVat(600000), withoutCopy: withVat(540000) },
+  { size: 30, kind: "최블형", blog: 30, cafe: 0,  withCopy: withVat(960000), withoutCopy: withVat(780000) },
+  { size: 30, kind: "혼합형", blog: 20, cafe: 10, withCopy: withVat(1200000), withoutCopy: withVat(1020000) },
+  { size: 30, kind: "혼합형", blog: 15, cafe: 15, withCopy: withVat(1260000), withoutCopy: withVat(1080000) },
+  { size: 30, kind: "혼합형", blog: 10, cafe: 20, withCopy: withVat(1440000), withoutCopy: withVat(1260000), featured: true },
+  { size: 30, kind: "카페형", blog: 0,  cafe: 30, withCopy: withVat(1680000), withoutCopy: withVat(1500000) },
 ];
 
 export const PACKAGE_SIZES: PackageSize[] = [10, 30];
@@ -79,7 +82,7 @@ const BLOG10 = PACKAGES.find((p) => p.size === 10 && p.kind === "최블형") ?? 
 export const BLOG_UNIT_WITH_COPY = unitPrice(BLOG10.withCopy, BLOG10.size);
 export const BLOG_UNIT_WITHOUT_COPY = unitPrice(BLOG10.withoutCopy, BLOG10.size);
 
-/* 카페만 단건으로 진행할 때 — 카페 등급별 건당 단가 (원, 부가세 별도) */
+/* 카페만 단건으로 진행할 때 — 카페 등급별 건당 단가 (원, 부가세 포함 · 괄호 안 숫자가 공급가) */
 export interface CafeTier {
   grade: string;
   desc: string;
@@ -89,13 +92,13 @@ export interface CafeTier {
 }
 
 export const CAFE_TIERS: CafeTier[] = [
-  { grade: "지역 · 주제 카페", desc: "지역과 관심사로 모인 카페. 동네 상권 키워드와 맞습니다.", price: 24000, topics: ["인테리어", "청소", "수리", "여행", "셀프 피부관리", "생활 정보"] },
-  { grade: "리뷰 · 문화 카페", desc: "맛집과 문화 후기가 모이는 카페. 후기형 원고와 맞습니다.", price: 36000, topics: ["맛집 후기", "카페 후기", "문화 후기"] },
-  { grade: "대형 카페", desc: "그 주제에서 회원이 많고 매일 새 글이 올라오는 대표 카페. 핵심 키워드 한 건을 크게 올릴 때 씁니다.", price: 60000, topics: ["결혼 준비", "지역 맘카페", "쇼핑 정보", "취미", "문화"] },
+  { grade: "지역 · 주제 카페", desc: "지역과 관심사로 모인 카페. 동네 상권 키워드와 맞습니다.", price: withVat(24000), topics: ["인테리어", "청소", "수리", "여행", "셀프 피부관리", "생활 정보"] },
+  { grade: "리뷰 · 문화 카페", desc: "맛집과 문화 후기가 모이는 카페. 후기형 원고와 맞습니다.", price: withVat(36000), topics: ["맛집 후기", "카페 후기", "문화 후기"] },
+  { grade: "대형 카페", desc: "그 주제에서 회원이 많고 매일 새 글이 올라오는 대표 카페. 핵심 키워드 한 건을 크게 올릴 때 씁니다.", price: withVat(60000), topics: ["결혼 준비", "지역 맘카페", "쇼핑 정보", "취미", "문화"] },
 ];
 
 /** 카페 단건에 원고 작성까지 맡길 때 건당 추가 */
-export const CAFE_COPY_FEE = 6000;
+export const CAFE_COPY_FEE = withVat(6000);
 
 /** 카페 단건 가장 낮은 단가 */
 export const CAFE_TIER_MIN = Math.min(...CAFE_TIERS.map((t) => t.price));
@@ -134,7 +137,7 @@ export const PRICE_REVISION_REASON =
 
 export const PRICE_NOTE = [
   `${PRICE_REVISED_AT}에 개정한 단가입니다.`,
-  "표기 금액은 부가세 별도입니다.",
+  "표기 금액은 부가세 포함입니다.",
   "원고를 직접 주시면 오른쪽 금액이 적용됩니다.",
   "카페만 진행할 때는 카페 등급별 건당 단가가 적용됩니다.",
 ];
@@ -146,8 +149,8 @@ export const PRICE_NOTE = [
    시작가만 적는다. 금액은 지역 · 키워드마다 다르므로 상담에서 확정한다.
    ───────────────────────────────────────────────────────── */
 
-/** 월 단위 진행 시작가 (원 · 월 · 부가세 별도) */
-export const MONTHLY_MIN = 396000;
+/** 월 단위 진행 시작가 (원 · 월 · 부가세 포함 · 괄호 안 숫자가 공급가) */
+export const MONTHLY_MIN = withVat(396000);
 
 export interface MonthlyGroup {
   /** 묶음 이름. 화면에는 앞에 '지역 + ' 를 붙여 보여준다 */
@@ -1453,7 +1456,7 @@ export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
 export const GUARANTEES = [
   { title: "게시 URL 전체 전달", desc: "진행한 건마다 실제 게시 링크를 정리해 드립니다. 확인 못 하는 작업은 없습니다." },
   { title: "발행 뒤 노출 위치 확인", desc: "올린 건마다 키워드로 검색해 어디에 떴는지 확인하고 보고서에 적습니다." },
-  { title: "표기 금액 부가세 별도", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
+  { title: "표기 금액 부가세 포함", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
   { title: "상담·업종 가능 여부 진단 0원", desc: "진행이 어려운 업종이면 계약 전에 솔직하게 말씀드립니다." },
 ];
 

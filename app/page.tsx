@@ -1382,7 +1382,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
                   { label: "견적 방식", value: "항목 조합", note: "필요한 항목만 합산" },
-                  { label: "기준 단가", value: "블로그 4만원", note: "1편 기준 · 업종별 조정 · 부가세 별도" },
+                  { label: "기준 단가", value: "블로그 44,000원", note: "1편 기준 · 업종별 조정 · 부가세 포함" },
                   { label: "상담 · 현황 진단", value: "0원", note: "견적 받고 안 하셔도 됩니다" },
                 ].map((item) => (
                   <div key={item.label}>
@@ -1393,7 +1393,7 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-xs text-gray-600 text-center mt-4">
-                * 단가는 실제로 나간 견적서에 쓴 금액 그대로입니다. 부가세 별도이고 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
+                * 단가는 실제로 나간 견적서 금액에 부가세를 더한 값입니다. 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
               </p>
             </div>
 

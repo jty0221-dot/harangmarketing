@@ -11,11 +11,12 @@ const PATH = "/services/homepage";
 const TITLE = "홈페이지 제작, 업종별 시안부터 보고 고르세요";
 const DESC = `업종 ${HP_STATS.industries}개 · 시안 ${HP_STATS.drafts}개를 미리 만들어 두었습니다. 네이버 통합검색과 AI 답변 노출 기본 세팅까지 넣어 15영업일 안에 대표님 명의로 넘겨 드립니다.`;
 
-/* 가격 : 홈페이지 공장 data/pricing.json 과 같은 숫자 (2026-10-04 · 근거 data/price_market.md). 바꾸면 C 결재 */
+/* 가격 : 홈페이지 공장 data/pricing.json 과 같은 숫자 (2026-10-04 · 근거 data/price_market.md). 바꾸면 C 결재
+   월 관리비는 공급가 50,000 · 100,000 · 200,000 에 부가세를 더해 적는다 (2026-10-09 (금) 대표 결정 · 제작비는 원래 부가세 포함) */
 const TIERS = [
-  { name: "라이트", build: "1,100,000원", monthly: "월 50,000원", pages: "메인 + 서브 3장", points: ["문의 전환 동선 포함", "검색 노출 기본 세팅", "수정 월 1회 (관리 선택 시)"] },
-  { name: "스탠다드", build: "1,650,000원", monthly: "월 100,000원", pages: "메인 + 서브 5장", points: ["관리자 화면 · 블로그 연동", "키워드 노출 리포트 (관리)", "수정 월 3회 (관리 선택 시)"], rec: true },
-  { name: "프리미엄", build: "2,200,000원", monthly: "월 200,000원", pages: "메인 + 서브 10장", points: ["새 콘텐츠 페이지 월 1장 (관리)", "AI 답변 노출 점검 (관리)", "수정 월 10회 (관리 선택 시)"] },
+  { name: "라이트", build: "1,100,000원", monthly: "월 55,000원", pages: "메인 + 서브 3장", points: ["문의 전환 동선 포함", "검색 노출 기본 세팅", "수정 월 1회 (관리 선택 시)"] },
+  { name: "스탠다드", build: "1,650,000원", monthly: "월 110,000원", pages: "메인 + 서브 5장", points: ["관리자 화면 · 블로그 연동", "키워드 노출 리포트 (관리)", "수정 월 3회 (관리 선택 시)"], rec: true },
+  { name: "프리미엄", build: "2,200,000원", monthly: "월 220,000원", pages: "메인 + 서브 10장", points: ["새 콘텐츠 페이지 월 1장 (관리)", "AI 답변 노출 점검 (관리)", "수정 월 10회 (관리 선택 시)"] },
 ];
 
 /** desc 안의 bold 문장만 font-semibold 로 굵게 (발주서 '굵게 처리할 문장' 표) */
@@ -186,7 +187,7 @@ export default function HomepageServicePage() {
           <section className="mt-16">
             <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>제작 · 관리 가격</h2>
             <p className="w-body-2 mt-2" style={{ color: "var(--w-label-alt)" }}>
-              제작비는 부가세 포함, 월 관리비는 부가세 별도입니다. 도메인 · 서버 실비(연 수만 원)는 대표님 명의로 직접 결제하십니다.
+              제작비와 월 관리비 모두 부가세 포함입니다. 도메인 · 서버 실비(연 수만 원)는 대표님 명의로 직접 결제하십니다.
             </p>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
               {TIERS.map((t) => (

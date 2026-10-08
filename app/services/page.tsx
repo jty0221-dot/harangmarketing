@@ -154,7 +154,7 @@ const SERVICES = [
     title: "파워컨텐츠 원고 설계·검수", subtitle: "원고 설계와 검수 대응",
     desc: "파워컨텐츠 광고에 사용할 원고를 설계하고 검수 대응을 준비합니다.",
     timeline: "키워드와 원고 범위를 확인한 뒤 일정 협의",
-    deliverables: [{ label: "기준 단가", value: "1편 5만원", note: "부가세 별도" }, { label: "진행 범위", value: "원고 설계·검수 대응", note: "광고 집행은 별도 협의" }],
+    deliverables: [{ label: "기준 단가", value: "1편 55,000원", note: "부가세 포함" }, { label: "진행 범위", value: "원고 설계·검수 대응", note: "광고 집행은 별도 협의" }],
     features: ["광고에 사용할 원고 설계", "검수 대응을 위한 문구 확인"],
     rec: "파워컨텐츠 광고에 사용할 원고가 필요한 매장", result: "작업 범위를 정한 뒤 진행합니다",
   },
@@ -163,7 +163,7 @@ const SERVICES = [
     title: "네이버 광고 세팅·운영대행", subtitle: "광고 설정과 운영 관리",
     desc: "네이버 광고 세팅과 운영을 대행합니다. 운영대행비와 광고 집행비를 구분해 안내합니다.",
     timeline: "광고 계정과 진행 범위를 확인한 뒤 일정 협의",
-    deliverables: [{ label: "운영대행 기준", value: "월 15만원", note: "부가세 별도" }, { label: "광고 집행비", value: "실비 별도", note: "집행 예산은 상담 시 협의" }],
+    deliverables: [{ label: "운영대행 기준", value: "월 165,000원", note: "부가세 포함" }, { label: "광고 집행비", value: "실비 별도", note: "집행 예산은 상담 시 협의" }],
     features: ["네이버 광고 세팅", "광고 운영대행", "집행비와 운영대행비 구분 안내"],
     rec: "광고 설정과 운영 관리가 필요한 매장", result: "광고비와 대행비를 구분해 견적을 안내합니다",
   },
@@ -178,7 +178,7 @@ const SERVICES = [
     timeline: "게시 시작 3~7일 · 수량별 순차 진행",
     deliverables: [
       { label: "패키지", value: "10건 · 30건 · 월 단위", note: "원고 포함 · 직접 제공" },
-      { label: "1건당 단가", value: `${won(UNIT_MIN)}~`, note: `월 단위는 월 ${won(MONTHLY_MIN)}부터 · 부가세 별도` },
+      { label: "1건당 단가", value: `${won(UNIT_MIN)}~`, note: `월 단위는 월 ${won(MONTHLY_MIN)}부터 · 부가세 포함` },
       { label: "결과 보고", value: "게시 URL 전체", note: "노출 위치 확인 포함" },
     ],
     features: [
@@ -482,8 +482,8 @@ const SERVICES = [
     desc: "음식점 메뉴와 시설 공간을 촬영합니다. 상품별 제공 컷과 촬영 시간, 모델 유무를 비교하고 실제 촬영 사례를 확인할 수 있습니다.",
     timeline: "상품별 작업 기간 5~9일 · 촬영 일정 협의",
     deliverables: [
-      { label: "음식점 촬영", value: FOOD_PLANS.map(p => `${p.price / 10000}만원`).join(" · "), note: "상품별 구성 · 부가세 별도" },
-      { label: "시설·숙박 촬영", value: STAY_PLANS.map(p => `${p.price / 10000}만원`).join(" · "), note: "모델 유무·면적별 구성 · 부가세 별도" },
+      { label: "음식점 촬영", value: FOOD_PLANS.map(p => `${p.price.toLocaleString("ko-KR")}원`).join(" · "), note: "상품별 구성 · 부가세 포함" },
+      { label: "시설·숙박 촬영", value: STAY_PLANS.map(p => `${p.price.toLocaleString("ko-KR")}원`).join(" · "), note: "모델 유무·면적별 구성 · 부가세 포함" },
       { label: "보정·수정", value: "상품별 보정 · 수정 2회", note: "시설 촬영은 A컷 보정" },
     ],
     features: [
@@ -555,19 +555,19 @@ const INDUSTRY_LINKS = [
    ──────────────────────────────────────────────────────────── */
 
 const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[] = [
-  { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
+  { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "110,000~165,000원" },
   { item: "대표키워드 상위노출 관리", unit: "키워드 1개 · 월", price: "키워드 확인 후 안내" },
-  { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
+  { item: "블로그 관리대행", unit: "1편", price: "44,000원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
   { item: "최적화 블로그 배포", unit: "1건", price: won(BLOG_UNIT_WITH_COPY), note: `원고 작성 포함 10건 패키지 기준. 원고를 직접 주시면 ${won(BLOG_UNIT_WITHOUT_COPY)}.` },
   { item: "카페 단건 배포 (등급별)", unit: "1건", price: `${won(CAFE_TIER_MIN)}~`, note: `카페 등급별 ${CAFE_TIERS.map((t) => t.price.toLocaleString("ko-KR")).join(" · ")}원. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)} 추가.` },
   // 단가표 행을 고치면 llms.txt 단가표도 같이 맞춘다
   { item: "체험단", unit: "1회 (5~30명)", price: "상담 시 안내", note: "업종과 인원에 따라 달라집니다. 병·의원은 체험단을 권하지 않습니다." },
-  { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "5만원" },
-  { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "20만원", note: "PC 전용입니다." },
-  { item: "홈페이지형 블로그 디자인 DELUXE", unit: "1회", price: "20만원", note: "PC와 모바일, 위젯 5개까지입니다." },
-  { item: "홈페이지형 블로그 디자인 PREMIUM", unit: "1회", price: "30만원", note: "섹션과 위젯 수에 제한이 없습니다." },
+  { item: "파워컨텐츠 원고 설계·검수 대응", unit: "1편", price: "55,000원" },
+  { item: "홈페이지형 블로그 디자인 STANDARD", unit: "1회", price: "110,000원", note: "PC 전용입니다." },
+  { item: "홈페이지형 블로그 디자인 DELUXE", unit: "1회", price: "220,000원", note: "PC와 모바일, 위젯 15개 이하입니다." },
+  { item: "홈페이지형 블로그 디자인 PREMIUM", unit: "1회", price: "330,000원", note: "섹션과 위젯 수에 제한이 없습니다." },
   { item: "홈페이지 제작", unit: "건별", price: "1,100,000원부터", note: "부가세 포함 · 업종별 시안은 /services/homepage" },
-  { item: "네이버 광고 세팅·운영대행", unit: "월", price: "15만원" },
+  { item: "네이버 광고 세팅·운영대행", unit: "월", price: "165,000원" },
   { item: "키워드 설계 · 리뷰 동선 · 순위 모니터링", unit: "월", price: "계약 시 포함" },
 ];
 
@@ -585,12 +585,12 @@ const CALC_EXAMPLES: {
     title: "플레이스만 잡으면 되는 경우",
     sub: "대표키워드가 이미 3위라 순위를 밀어올리기만 하면 됐던 고깃집",
     lines: [
-      { label: "플레이스 SEO 최적화", calc: "15만원 × 1회", amount: "150,000" },
+      { label: "플레이스 SEO 최적화", calc: "165,000원 × 1회", amount: "165,000" },
       { label: "대표키워드 상위노출 관리", calc: "키워드 확인 후 안내", amount: "0" },
       { label: "리뷰 동선 · 소식/쿠폰 · 순위 모니터링", calc: "계약 포함", amount: "0" },
     ],
-    total: "150,000",
-    note: "부가세 포함 165,000원. 대표키워드 관리는 키워드를 확인한 뒤 금액을 안내드려 합계에 넣지 않았습니다.",
+    total: "165,000",
+    note: "부가세 포함 금액입니다. 대표키워드 관리는 키워드를 확인한 뒤 금액을 안내드려 합계에 넣지 않았습니다.",
   },
   {
     title: "글을 퍼뜨리기만 하면 되는 경우",
@@ -600,20 +600,20 @@ const CALC_EXAMPLES: {
       { label: "키워드 설계 · 촬영 가이드", calc: "계약 포함", amount: "0" },
     ],
     total: MIX10.withCopy.toLocaleString("ko-KR"),
-    note: `부가세 포함 ${Math.round(MIX10.withCopy * 1.1).toLocaleString("ko-KR")}원`,
+    note: "부가세 포함 금액입니다. 패키지 금액은 카페 배포 상세 가격표와 같습니다.",
   },
   {
     title: "바닥부터 만들어야 하는 경우",
     sub: "리뷰 0건 · 가격표 13개 중 10개가 공란이던 청소업체",
     lines: [
-      { label: "플레이스 SEO 최적화", calc: "10만원 × 1회", amount: "100,000" },
-      { label: "홈페이지형 블로그 디자인 DELUXE", calc: "20만원 × 1회", amount: "200,000" },
-      { label: "블로그 관리대행", calc: "기준 4만원 × 10편", amount: "400,000" },
-      { label: "파워컨텐츠 원고 설계·검수", calc: "5만원 × 1편", amount: "50,000" },
+      { label: "플레이스 SEO 최적화", calc: "110,000원 × 1회", amount: "110,000" },
+      { label: "홈페이지형 블로그 디자인 DELUXE", calc: "220,000원 × 1회", amount: "220,000" },
+      { label: "블로그 관리대행", calc: "기준 44,000원 × 10편", amount: "440,000" },
+      { label: "파워컨텐츠 원고 설계·검수", calc: "55,000원 × 1편", amount: "55,000" },
       { label: "네이버 광고 세팅·운영대행", calc: "계약 포함", amount: "0" },
     ],
-    total: "750,000",
-    note: "1회성 세팅비가 빠지는 2개월차부터 월 450,000원 (부가세 포함 495,000원)",
+    total: "825,000",
+    note: "부가세 포함 금액입니다. 1회성 세팅비가 빠지는 2개월차부터 월 495,000원",
   },
 ];
 
@@ -656,7 +656,7 @@ const INDUSTRY_PRICE_DIFF: { industry: string; behavior: string; channel: string
 const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   {
     title: "출발점이 다릅니다",
-    body: "리뷰가 0건이고 가격표가 비어 있으면 세팅부터 해야 합니다. 실제로 첫 달 75만원이던 견적이 세팅이 끝난 2개월차에 45만원으로 내려갔습니다. 이미 갖춰진 매장은 이 비용이 아예 붙지 않습니다.",
+    body: "리뷰가 0건이고 가격표가 비어 있으면 세팅부터 해야 합니다. 실제로 첫 달 825,000원이던 견적이 세팅이 끝난 2개월차에 495,000원으로 내려갔습니다 (부가세 포함). 이미 갖춰진 매장은 이 비용이 아예 붙지 않습니다.",
   },
   {
     title: "지금 순위가 다릅니다",
@@ -668,7 +668,7 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   },
   {
     title: "채널 수와 물량이 다릅니다",
-    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 4만원으로 잡아도 월 4편과 월 15편은 44만원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다. 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
+    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 44,000원으로 잡아도 월 4편과 월 15편은 484,000원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다. 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
   },
   {
     title: "심의와 계절이 다릅니다",
@@ -1045,7 +1045,7 @@ export default function ServicesPage() {
                 </table>
               </div>
               <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
-                모든 금액은 부가세 별도입니다. 네이버·인스타 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
+                모든 금액은 부가세 포함입니다. 네이버·인스타 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
               </p>
             </div>
 

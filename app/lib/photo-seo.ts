@@ -42,10 +42,10 @@ export function photoGalleryLd(portfolio: PhotoPortfolio) {
   };
 }
 
-const priceList = (plans: typeof FOOD_PLANS) => plans.map((plan) => (plan.price / 10000) + '만 원').join(', ');
+const priceList = (plans: typeof FOOD_PLANS) => plans.map((plan) => plan.price.toLocaleString('ko-KR') + '원').join(', ');
 export const PHOTO_FAQ = [
-  { q: '음식점 메뉴 사진촬영 가격은 얼마인가요?', a: `음식점 촬영은 ${priceList(FOOD_PLANS)}의 세 가지 구성입니다. 부가세는 별도이며 제공 컷과 촬영 시간은 상품마다 다릅니다.` },
-  { q: '시설과 숙박 공간 촬영 가격은 얼마인가요?', a: `시설과 숙박 촬영은 ${priceList(STAY_PLANS)}입니다. 부가세는 별도이며 모델 유무와 시설 면적에 따라 구성이 달라집니다.` },
+  { q: '음식점 메뉴 사진촬영 가격은 얼마인가요?', a: `음식점 촬영은 ${priceList(FOOD_PLANS)}의 세 가지 구성입니다. 부가세 포함 금액이며 제공 컷과 촬영 시간은 상품마다 다릅니다.` },
+  { q: '시설과 숙박 공간 촬영 가격은 얼마인가요?', a: `시설과 숙박 촬영은 ${priceList(STAY_PLANS)}입니다. 부가세 포함 금액이며 모델 유무와 시설 면적에 따라 구성이 달라집니다.` },
   { q: '촬영 시간과 작업 기간은 어떻게 되나요?', a: '음식점 촬영은 기본과 표준 구성이 90분 이내, 프리미엄은 300분입니다. 작업 기간은 기본과 표준 5일, 프리미엄 7일입니다. 시설 촬영은 상품별 180분부터 300분, 작업 기간은 5일부터 9일입니다.' },
   { q: '사진 보정과 수정은 포함되나요?', a: '음식점 촬영은 보정 작업을 진행하며 시설 촬영은 A컷을 보정합니다. 수정은 각 상품에 2회 포함됩니다.' },
 ];
@@ -60,7 +60,7 @@ export function photoOffersLd() {
       itemListElement: ([['food', FOOD_PLANS], ['stay', STAY_PLANS]] as const).flatMap(([type, plans]) => plans.map((plan) => ({
         '@type': 'Offer', name: PHOTO_TYPES[type].label + ' ' + plan.name,
         url: SITE.base + '/services/photo/price#' + type + '-' + plan.code.toLowerCase(),
-        priceSpecification: { '@type': 'UnitPriceSpecification', price: plan.price, priceCurrency: 'KRW', valueAddedTaxIncluded: false },
+        priceSpecification: { '@type': 'UnitPriceSpecification', price: plan.price, priceCurrency: 'KRW', valueAddedTaxIncluded: true },
         itemOffered: { '@type': 'Service', name: plan.name, description: [plan.description, ...plan.includes, '촬영 시간 ' + plan.time, '작업 기간 ' + plan.days, '수정 2회', ...(plan.model ? ['모델 ' + plan.model, '시설 면적 ' + plan.area] : [])].join('. ') },
       }))),
     },

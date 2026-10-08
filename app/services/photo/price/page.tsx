@@ -9,7 +9,7 @@ import { breadcrumbLd, webPageLd, faqLd, PAGE_UPDATED } from '../../../lib/seo';
 import { photoMetadata, photoOffersLd, PHOTO_FAQ } from '../../../lib/photo-seo';
 import { FOOD_PLANS, STAY_PLANS, type PhotoPlan } from '../../../lib/photo-pricing';
 
-export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '음식점 촬영 30만·70만·110만 원, 시설 촬영 70만·100만·120만 원. 부가세 별도. 상품별 사진과 촬영 조건을 확인하세요.', '/photo-pricing/standard.jpg');
+export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '음식점 촬영 330,000·770,000·1,210,000원, 시설 촬영 770,000·1,100,000·1,320,000원. 부가세 포함. 상품별 사진과 촬영 조건을 확인하세요.', '/photo-pricing/standard.jpg');
 const container = 'mx-auto max-w-6xl px-4 md:px-6 lg:px-8';
 const button = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white hover:bg-[var(--w-primary-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]';
 const outline = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--w-line)] bg-[var(--w-bg)] px-5 py-3 w-label1 font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]';
@@ -32,7 +32,7 @@ function PlanCard({ plan, type }: { plan: PhotoPlan; type: 'food' | 'stay' }) {
       {plan.extra && <p className="mt-3 w-caption1 text-[var(--w-label-alt)]">{plan.extra}</p>}
       <div className="mt-auto pt-8">
         <p className="w-display3 font-bold tabular-nums text-[var(--w-label-strong)]">{plan.price.toLocaleString('ko-KR')}<span className="ml-1 w-body1 font-semibold">원</span></p>
-        <p className="mt-1 w-caption1 text-[var(--w-label-alt)]">부가세 별도</p>
+        <p className="mt-1 w-caption1 text-[var(--w-label-alt)]">부가세 포함</p>
         <div className="my-6 border-t border-[var(--w-line)]" />
         <dl className="space-y-3 w-label1">{rows.map(([label, value]) => <div key={label} className="flex items-start justify-between gap-3"><dt className="shrink-0 text-[var(--w-label-alt)]">{label}</dt><dd className="text-right font-medium">{value}</dd></div>)}</dl>
         <Link href={'/contact?industry=' + encodeURIComponent(type === 'food' ? '음식점 사진촬영' : '시설·숙박 사진촬영') + '&plan=' + encodeURIComponent(plan.name)} className={button + ' mt-7 w-full'}>{plan.name} 상담<ArrowRight size={16} /></Link>

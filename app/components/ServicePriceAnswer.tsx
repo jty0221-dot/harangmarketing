@@ -15,9 +15,9 @@ type Line = { unit: string; price: string };
 type Row = { name: string; href?: string; lines: Line[] };
 
 const ROWS: Row[] = [
-  { name: "플레이스 SEO 최적화", href: "#place", lines: [{ unit: "1회", price: "10~15만원" }] },
+  { name: "플레이스 SEO 최적화", href: "#place", lines: [{ unit: "1회", price: "110,000~165,000원" }] },
   { name: "대표키워드 관리", lines: [{ unit: "", price: "키워드 확인 후 안내" }] },
-  { name: "블로그 관리대행", href: "#blog", lines: [{ unit: "편당", price: "4만원" }] },
+  { name: "블로그 관리대행", href: "#blog", lines: [{ unit: "편당", price: "44,000원" }] },
   {
     name: "최적화 블로그 배포",
     href: "#cafe-distribution",
@@ -27,13 +27,13 @@ const ROWS: Row[] = [
     ],
   },
   { name: "카페 단건 배포 (등급별)", href: "#cafe-distribution", lines: [{ unit: "건당", price: `${won(CAFE_TIER_MIN)}부터` }] },
-  { name: "파워컨텐츠", href: "#powercontents", lines: [{ unit: "편당", price: "5만원" }] },
+  { name: "파워컨텐츠", href: "#powercontents", lines: [{ unit: "편당", price: "55,000원" }] },
 ];
 
 const NOTES = [
   {
     title: "기준 단가는 고정가가 아닙니다",
-    body: "업종과 난이도에 따라 오르내립니다. 블로그 원고는 물량이 많거나 내용이 단순한 업종이면 4만원보다 낮아지고, 병의원처럼 의료광고 심의와 전문 용어 확인이 필요한 업종은 4만원보다 높아집니다.",
+    body: "업종과 난이도에 따라 오르내립니다. 블로그 원고는 물량이 많거나 내용이 단순한 업종이면 44,000원보다 낮아지고, 병의원처럼 의료광고 심의와 전문 용어 확인이 필요한 업종은 44,000원보다 높아집니다.",
   },
   {
     title: "월 계약 금액은 미리 정해두지 않습니다",
@@ -76,7 +76,7 @@ export default function ServicePriceAnswer() {
               style={{ background: "var(--h-bg)", color: "var(--h-muted)" }}
             >
               <span>항목</span>
-              <span>기준 단가 · 부가세 별도</span>
+              <span>기준 단가 · 부가세 포함</span>
             </div>
             <ul>
               {ROWS.map((r) => (
