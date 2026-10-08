@@ -150,7 +150,7 @@ const HP_CARD_COVERS: ServiceCover[] = HP_DRAFTS.filter((d, i, a) => a.findIndex
 
 const SERVICES = [
   {
-    id: "powercontents", icon: ScrollText, color: "bg-blue-700", tag: "광고 원고",
+    id: "powercontents", icon: ScrollText, color: "bg-blue-700", tag: "광고 원고", href: "/services/powercontents",
     title: "파워컨텐츠 원고 설계·검수", subtitle: "원고 설계와 검수 대응",
     desc: "파워컨텐츠 광고에 사용할 원고를 설계하고 검수 대응을 준비합니다.",
     timeline: "키워드와 원고 범위를 확인한 뒤 일정 협의",
@@ -292,6 +292,7 @@ const SERVICES = [
   },
   {
     id: "blog",
+    href: "/services/blog-marketing",
     icon: BookOpen,
     color: "bg-blue-600",
     tag: "SEO",

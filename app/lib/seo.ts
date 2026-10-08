@@ -115,6 +115,8 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/academy": "2026-09-25",
   "/services/shopping": "2026-10-02",
   "/services/review": "2026-10-02",
+  "/services/blog-marketing": "2026-10-08",
+  "/services/powercontents": "2026-10-08",
   "/services/place": "2026-10-02",
   "/services/instagram": "2026-09-24",
   "/services/detail-page": "2026-10-02",

@@ -32,6 +32,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/photo/stay`,     lastModified: lm("/services/photo/stay"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/services/academy`,        lastModified: lm("/services/academy"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/shopping`,       lastModified: lm("/services/shopping"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/blog-marketing`, lastModified: lm("/services/blog-marketing"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/powercontents`, lastModified: lm("/services/powercontents"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/services/review`,         lastModified: lm("/services/review"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/services/place`,          lastModified: new Date(updatedAt("/services/place", SNAPSHOT_DATE)), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/services/instagram`,      lastModified: lm("/services/instagram"), changeFrequency: "monthly", priority: 0.8 },
