@@ -26,7 +26,13 @@ if (!keyFile) {
 const KEY = keyFile.replace(/\.txt$/, "");
 
 (async () => {
-  let urls = process.argv.slice(2).map((p) => (p.startsWith("http") ? p : BASE + p));
+  // 윈도우 Git Bash 는 '/services/x' 같은 인자를 'C:/Program Files/Git/services/x' 로 바꿔 넘긴다 (422 원인 · 2026-10-08).
+  // 그 앞부분을 걷어내고, 앞에 / 가 없으면 붙인다
+  const norm = (p) => {
+    const q = p.replace(/^[A-Za-z]:[\\/].*?[\\/]Git(?=[\\/])/i, "").replace(/\\/g, "/");
+    return q.startsWith("/") ? q : "/" + q;
+  };
+  let urls = process.argv.slice(2).map((p) => (p.startsWith("http") ? p : BASE + norm(p)));
   if (urls.length === 0) {
     const sm = await (await fetch(`${BASE}/sitemap.xml`)).text();
     urls = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
