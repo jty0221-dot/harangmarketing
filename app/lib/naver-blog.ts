@@ -37,12 +37,14 @@ const BROWSER_HEADERS = {
 // ─── 유틸 ────────────────────────────────────────────────────────────────────
 
 function fmtDate(raw: string): string {
-  const s = String(raw ?? "").replace(/\D/g, "");
-  if (s.length >= 8) return `${s.slice(0,4)}.${s.slice(4,6)}.${s.slice(6,8)}`;
-  try {
-    const d = new Date(raw);
-    return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;
-  } catch { return raw.slice(0,10); }
+  const value = String(raw ?? "").trim();
+  const numeric = value.match(/^(\d{4})[.\-/]?(\d{2})[.\-/]?(\d{2})(?:$|[ T])/);
+  if (numeric) return `${numeric[1]}.${numeric[2]}.${numeric[3]}`;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit",
+  }).format(date).replace(/-/g, ".");
 }
 
 function stripHtml(html: string): string {
@@ -193,7 +195,15 @@ async function fetchAllPostsApi(thumbMap: Map<string, string>): Promise<NaverBlo
 
 export async function getNaverBlogPosts(): Promise<NaverBlogPost[]> {
   // 1. rss2json: 최신 100개 + 썸네일 맵 확보
-  const { posts: rssPosts, thumbMap } = await fetchRss();
+  const { posts: convertedPosts, thumbMap } = await fetchRss();
+  // Keep current posts available when the converter rejects its paid count option.
+  const directPosts = await directXmlFallback();
+  const convertedIds = new Set(convertedPosts.map(p => logNoFromUrl(p.link)));
+  const rssPosts = [...convertedPosts, ...directPosts.filter(p => !convertedIds.has(logNoFromUrl(p.link)))];
+  for (const post of directPosts) {
+    const id = logNoFromUrl(post.link);
+    if (id && post.thumbnail && !thumbMap.has(id)) thumbMap.set(id, post.thumbnail);
+  }
 
   const rssLogNos = new Set(rssPosts.map(p => logNoFromUrl(p.link)));
 
