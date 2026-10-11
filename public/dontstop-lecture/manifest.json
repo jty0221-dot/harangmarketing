@@ -1,0 +1,80 @@
+{
+  "version": "2026-10-11",
+  "documents": [
+    {
+      "id": "profile-institution",
+      "title": "박새미 강사 소개 및 출강 제안",
+      "audience": "기관 담당자를 위한 소개",
+      "pdf": "profile-institution.pdf",
+      "docx": "profile-institution.docx"
+    },
+    {
+      "id": "profile-friendly",
+      "title": "박새미와 함께 말해보는 영어",
+      "audience": "천천히, 편안하게, 생활 가까이",
+      "pdf": "profile-friendly.pdf",
+      "docx": "profile-friendly.docx"
+    },
+    {
+      "id": "proposal-institution",
+      "title": "중장년·어르신 생활·여행 영어",
+      "audience": "기관 단체 특강 제안서",
+      "pdf": "proposal-institution.pdf",
+      "docx": "proposal-institution.docx"
+    },
+    {
+      "id": "proposal-small-group",
+      "title": "친구·가족과 작은 영어 모임",
+      "audience": "두세 분이 함께하는 수업 제안",
+      "pdf": "proposal-small-group.pdf",
+      "docx": "proposal-small-group.docx"
+    }
+  ],
+  "files": [
+    {
+      "name": "lecture-kit.zip",
+      "bytes": 516816,
+      "sha256": "badec25f207b6e4b5709c07a98f9dddc17f07c5a09d333247767978f3fb64b96"
+    },
+    {
+      "name": "profile-friendly.docx",
+      "bytes": 36251,
+      "sha256": "60ccba40ed53e087fb6e26e8a3dea0be89b2124e52835721a7f7e05132b748f0"
+    },
+    {
+      "name": "profile-friendly.pdf",
+      "bytes": 94548,
+      "sha256": "18ea119d9ca0ff8cfbeb4e1e4b1001a9196a54e8d5949ebd0e57070c9181566f"
+    },
+    {
+      "name": "profile-institution.docx",
+      "bytes": 36293,
+      "sha256": "bb8cdac23e100d8e4fc02c420f8d713276c845fe0c2317a063f07275457c5738"
+    },
+    {
+      "name": "profile-institution.pdf",
+      "bytes": 95495,
+      "sha256": "fba646ce0a10883110db3e6bc43dc204b482a992c512e0bf8ed01b7f4f5783e9"
+    },
+    {
+      "name": "proposal-institution.docx",
+      "bytes": 36794,
+      "sha256": "6a7121a98a6b5683f7329e8d500ebfa39e3c5219929f970f63c0410147822e7d"
+    },
+    {
+      "name": "proposal-institution.pdf",
+      "bytes": 105233,
+      "sha256": "ffd60e7ba9fe8a56dc86025816bd0a457527e488622e9269b455172484725048"
+    },
+    {
+      "name": "proposal-small-group.docx",
+      "bytes": 36461,
+      "sha256": "224275199e4b5a4bae81f0719909d9303dddc035864f89e58163deeefe3d9a8b"
+    },
+    {
+      "name": "proposal-small-group.pdf",
+      "bytes": 100689,
+      "sha256": "8794745b38f708cf3c0a3683d5d3cbaf4e81f16ddf07c27acb0e0833e4f23598"
+    }
+  ]
+}
