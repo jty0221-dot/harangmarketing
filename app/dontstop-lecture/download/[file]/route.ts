@@ -8,7 +8,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ file
   const { file } = await params
   if (!allowedFiles.has(file)) return new Response("자료를 찾을 수 없습니다.", { status: 404 })
   const source = new URL(`/dontstop-lecture/${file}`, request.url)
-  const upstream = await fetch(source, { redirect: "error" })
+  const version = new URL(request.url).searchParams.get("v")
+  if (version && /^[a-z0-9-]{1,64}$/.test(version)) source.searchParams.set("v", version)
+  const upstream = await fetch(source, { redirect: "error", cache: "no-store" })
   if (!upstream.ok) return new Response("자료를 찾을 수 없습니다.", { status: 404 })
   const extension = file.split(".").pop()
   const mime = extension === "pdf" ? "application/pdf" : extension === "zip" ? "application/zip" : extension === "pptx" ? "application/vnd.openxmlformats-officedocument.presentationml.presentation" : "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -16,7 +18,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ file
     "Content-Type": mime,
     "Content-Disposition": `attachment; filename="${file}"`,
     "X-Content-Type-Options": "nosniff",
-    "Cache-Control": "public, max-age=300",
+    "Cache-Control": "no-store",
   } })
 }
 
