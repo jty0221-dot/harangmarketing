@@ -1,17 +1,17 @@
 {
-  "version": "2026-10-11",
+  "version": "2026-10-11-resume-v2",
   "documents": [
     {
       "id": "profile-institution",
-      "title": "박새미 강사 소개 및 출강 제안",
-      "audience": "기관 담당자를 위한 소개",
+      "title": "강사 프로필 · 기관 제출용 작성 양식",
+      "audience": "사진·학력·경력·자격·출강 이력 · 2쪽 상세형",
       "pdf": "profile-institution.pdf",
       "docx": "profile-institution.docx"
     },
     {
       "id": "profile-friendly",
-      "title": "박새미와 함께 말해보는 영어",
-      "audience": "천천히, 편안하게, 생활 가까이",
+      "title": "강사 이력 요약서",
+      "audience": "사진·주요 이력 · 1쪽 요약형",
       "pdf": "profile-friendly.pdf",
       "docx": "profile-friendly.docx"
     },
@@ -33,28 +33,28 @@
   "files": [
     {
       "name": "lecture-kit.zip",
-      "bytes": 516816,
-      "sha256": "badec25f207b6e4b5709c07a98f9dddc17f07c5a09d333247767978f3fb64b96"
+      "bytes": 502250,
+      "sha256": "5bf5ae41b84d55a5f800d862f659c7073ee085854442545cdb590aba4edc192e"
     },
     {
       "name": "profile-friendly.docx",
-      "bytes": 36251,
-      "sha256": "60ccba40ed53e087fb6e26e8a3dea0be89b2124e52835721a7f7e05132b748f0"
+      "bytes": 36468,
+      "sha256": "4e544fa8f128efa4de1e3197d56cb995853c7898f745a9448756c257b4438ba5"
     },
     {
       "name": "profile-friendly.pdf",
-      "bytes": 94548,
-      "sha256": "18ea119d9ca0ff8cfbeb4e1e4b1001a9196a54e8d5949ebd0e57070c9181566f"
+      "bytes": 72498,
+      "sha256": "edd6938e8d0b56724d5f984d933b30c64ebd09aa14858c697bc61b329f0d7e8d"
     },
     {
       "name": "profile-institution.docx",
-      "bytes": 36293,
-      "sha256": "bb8cdac23e100d8e4fc02c420f8d713276c845fe0c2317a063f07275457c5738"
+      "bytes": 36973,
+      "sha256": "6bf524d68f0cc24e6d0e40208bb48ada5b477b8244075f2407a4a25c29ca268b"
     },
     {
       "name": "profile-institution.pdf",
-      "bytes": 95495,
-      "sha256": "fba646ce0a10883110db3e6bc43dc204b482a992c512e0bf8ed01b7f4f5783e9"
+      "bytes": 100019,
+      "sha256": "bc885fe836a9475e81f5a8489a61674d9f8167ef1d177d3a9dffb9f13515b3a6"
     },
     {
       "name": "proposal-institution.docx",
