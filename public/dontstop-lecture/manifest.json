@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-11-portfolio-v3",
+  "version": "2026-10-12-pdf-redesign-v4",
   "documents": [
     {
       "id": "profile-institution",
@@ -41,13 +41,13 @@
   "files": [
     {
       "name": "institution-preview.jpg",
-      "bytes": 180604,
-      "sha256": "4f56e7003e2d982a6104a00bec51d1d04a72cbd2c1d690b19894af775a35db20"
+      "bytes": 170936,
+      "sha256": "8ee81d10db0723fc44ef15231dbcb3de71f1b236935cddb5ba5785ae8d20b97b"
     },
     {
       "name": "lecture-kit.zip",
-      "bytes": 10723798,
-      "sha256": "dc6cb0e62b5353ab006378324b74d943126516c5771e8697cb92c294d56ee486"
+      "bytes": 5888361,
+      "sha256": "5701e4c9fd34a02f4db1d957f729eb83b13bb1f686fc26e53d049ff6ee7c22f7"
     },
     {
       "name": "profile-friendly.docx",
@@ -56,8 +56,8 @@
     },
     {
       "name": "profile-friendly.pdf",
-      "bytes": 72498,
-      "sha256": "edd6938e8d0b56724d5f984d933b30c64ebd09aa14858c697bc61b329f0d7e8d"
+      "bytes": 58591,
+      "sha256": "540b38ff1317f58ab70156ef450c2286b060ba9cbd95b0ffdba5b9794384bcc1"
     },
     {
       "name": "profile-institution.docx",
@@ -66,8 +66,8 @@
     },
     {
       "name": "profile-institution.pdf",
-      "bytes": 100019,
-      "sha256": "bc885fe836a9475e81f5a8489a61674d9f8167ef1d177d3a9dffb9f13515b3a6"
+      "bytes": 74058,
+      "sha256": "e7ecf56477234b9cd2a4b4e67d487a6d8e635912d31935ef2f27b4992691902f"
     },
     {
       "name": "proposal-institution.docx",
@@ -76,13 +76,13 @@
     },
     {
       "name": "proposal-institution.pdf",
-      "bytes": 455896,
-      "sha256": "0d09dda6698fc33b2305b04a3a3a982ca711451357781357436431073e1469e7"
+      "bytes": 432276,
+      "sha256": "eb80dd924aab2c857b5a8d874e06ae663b84fb75f972dea271235b8e4bb73fdf"
     },
     {
       "name": "proposal-institution.pptx",
-      "bytes": 5033513,
-      "sha256": "a00c25ffa803527dc78f349132beb4bfe43732be9f21eb29060a8b2510bef103"
+      "bytes": 2681925,
+      "sha256": "cce71fdb2b103360fffdf8d2ff422ea2c8909ae17365e39fd57fcbbc4ba463a8"
     },
     {
       "name": "proposal-small-group.docx",
@@ -91,18 +91,18 @@
     },
     {
       "name": "proposal-small-group.pdf",
-      "bytes": 422944,
-      "sha256": "cd8e23fedae8b97e968cf96c8c4ffe0a891ba2e7e4daeec0cfef625a0ddb4216"
+      "bytes": 359160,
+      "sha256": "2ef8cd916742399e13b09031e56b883c70d24dccbfde7f7a957d8d1915d52787"
     },
     {
       "name": "proposal-small-group.pptx",
-      "bytes": 5331145,
-      "sha256": "6e4e14ba890ba954704f0443ebd169aa32636882be80e4abe2c9280fedda4415"
+      "bytes": 2323875,
+      "sha256": "fe53bb06eeb2c4cfd0bd2473cb54ef9dac282dba13f1a1cc206d99b7d619aa54"
     },
     {
       "name": "small-group-preview.jpg",
-      "bytes": 185047,
-      "sha256": "7e2e1eea165c32e3e296655f284e6bba092dd41af2e3c16195da5f94cdd4288b"
+      "bytes": 171543,
+      "sha256": "af01df31887c29e49690dd55f2031c55601d7a3e3482a5deb3cb4dba8a3640c4"
     }
   ]
 }
