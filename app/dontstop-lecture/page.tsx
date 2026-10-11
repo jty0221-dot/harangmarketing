@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
   description: "돈스탑 잉글리시 박새미의 중장년·어르신 영어 강의 소개와 기관·소규모 모임 제안 자료입니다.",
   alternates: { canonical: "/dontstop-lecture" },
-  openGraph: { title: "박새미 강의 소개와 제안 자료", description: "기관용·친근한 소개용·소규모 모임용 자료를 PDF와 Word로 확인하세요.", url: "/dontstop-lecture", type: "website" },
+  openGraph: { title: "박새미 강사 프로필과 강의 제안서", description: "사진과 이력란이 있는 기관 제출용·1쪽 요약 프로필, 강의 제안서를 PDF와 Word로 받으세요.", url: "/dontstop-lecture", type: "website" },
 }
 
 const documents = [
-  { key: "profile-institution", label: "강사 프로필", version: "기관 검토용", description: "담당자가 강사 소개와 수업 방향을 차분하게 살펴보는 자료입니다.", Icon: Building2 },
-  { key: "profile-friendly", label: "강사 프로필", version: "친근한 소개용", description: "처음 만나는 분에게 수업 분위기와 참여 방식을 소개하는 자료입니다.", Icon: BookOpen },
+  { key: "profile-institution", label: "강사 프로필", version: "기관 제출 양식", description: "사진칸과 학력·경력·자격·출강 이력표를 갖춘 공공기관 제출 준비용 양식입니다.", Icon: Building2 },
+  { key: "profile-friendly", label: "강사 프로필", version: "1쪽 요약 이력형", description: "사진과 주요 이력을 한쪽에 정리하는 간결한 프로필 양식입니다.", Icon: BookOpen },
   { key: "proposal-institution", label: "강의 제안서", version: "기관 단체용", description: "10명 이상 모임의 대상, 구성, 진행 방법을 검토하는 자료입니다.", Icon: FileText },
   { key: "proposal-small-group", label: "강의 제안서", version: "2~3인 모임용", description: "친구·부부·이웃과 함께하는 작은 모임을 위한 자료입니다.", Icon: Users },
 ]
@@ -30,6 +30,7 @@ export default function LecturesPage() {
     </section>
     <section aria-labelledby="documents" className="mx-auto max-w-6xl px-5 pb-12">
       <div className="mb-6"><h2 id="documents" className="text-2xl font-bold">목적에 맞는 자료 선택</h2><p className="mt-2 text-[var(--w-label-alt)]">바로 읽을 때는 PDF, 문서를 편집할 때는 Word를 선택하세요.</p></div>
+      <div className="mb-6 rounded-xl border border-[var(--w-line-strong)] bg-[var(--w-bg-elevated)] p-5 text-sm leading-relaxed text-[var(--w-label-alt)]"><h3 className="mb-2 font-bold text-[var(--w-label-strong)]">사진과 이력을 채운 뒤 제출하세요</h3><p>강사 프로필의 Word 파일에 본인 사진, 학력, 경력, 자격과 실제 출강 이력을 입력해 주세요. 기재한 이력과 증빙을 확인한 뒤 PDF로 저장해 제출하세요. 기관 지정 양식이 있으면 그 양식을 우선 사용합니다.</p></div>
       <div className="grid gap-5 md:grid-cols-2">{documents.map(({key, label, version, description, Icon}) => <article key={key} className="rounded-2xl border border-[var(--w-line)] bg-[var(--w-bg-elevated)] p-6 shadow-sm md:p-8"><div className="flex items-start justify-between gap-3"><span className="text-sm font-semibold text-[var(--w-primary)]">{version}</span><Icon size={24} className="text-[var(--w-label-alt)]" aria-hidden /></div><h3 className="mt-3 text-2xl font-bold">{label}</h3><p className="mb-6 mt-3 min-h-12 leading-relaxed text-[var(--w-label-alt)]">{description}</p><div className="flex flex-wrap gap-2"><a href={`/dontstop-lecture/${key}.pdf`} target="_blank" rel="noopener noreferrer" aria-label={`${version} ${label} PDF 보기`} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[var(--w-primary)] px-5 py-3 font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]">PDF 보기</a><a href={`/dontstop-lecture/download/${key}.pdf`} className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-[var(--w-line-strong)] px-4 py-3 font-semibold"><ArrowDownToLine size={17} aria-hidden />PDF 저장</a><a href={`/dontstop-lecture/download/${key}.docx`} className="inline-flex min-h-12 items-center rounded-xl px-3 py-3 font-semibold text-[var(--w-primary)] underline underline-offset-4">Word 저장</a></div></article>)}</div>
     </section>
     <section className="mx-auto max-w-6xl px-5 pb-16"><div className="flex flex-col justify-between gap-6 rounded-2xl bg-[var(--w-primary)] p-7 text-white md:flex-row md:items-center md:p-9"><div><h2 className="text-2xl font-bold">전체 자료 한 번에 받기</h2><p className="mt-2 text-white">네 가지 버전의 PDF와 편집용 Word를 함께 담았습니다.</p></div><a href="/dontstop-lecture/download/lecture-kit.zip" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--w-bg-elevated)] px-5 py-3 font-bold text-[var(--w-label-strong)]"><ArrowDownToLine size={18} aria-hidden />전체 ZIP 저장</a></div>
