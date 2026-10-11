@@ -1,19 +1,21 @@
 {
-  "version": "2026-10-12-pdf-redesign-v4",
+  "version": "20261012-editorial-v5",
   "documents": [
     {
       "id": "profile-institution",
       "title": "강사 프로필 · 기관 제출용 작성 양식",
       "audience": "사진·학력·경력·자격·출강 이력 · 2쪽 상세형",
       "pdf": "profile-institution.pdf",
-      "docx": "profile-institution.docx"
+      "docx": "profile-institution.docx",
+      "pages": 2
     },
     {
       "id": "profile-friendly",
       "title": "강사 이력 요약서",
       "audience": "사진·주요 이력 · 1쪽 요약형",
       "pdf": "profile-friendly.pdf",
-      "docx": "profile-friendly.docx"
+      "docx": "profile-friendly.docx",
+      "pages": 1
     },
     {
       "id": "proposal-institution",
@@ -22,9 +24,10 @@
       "pdf": "proposal-institution.pdf",
       "docx": "proposal-institution.docx",
       "pptx": "proposal-institution.pptx",
-      "pages": 12,
-      "format": "포트폴리오형 제안서",
-      "wordFormat": "운영 요약"
+      "pages": 8,
+      "format": "A4 세로 편집형 제안서",
+      "wordFormat": "제안서 원문 수정용",
+      "pptFormat": "발표용 · PDF 페이지 이미지 기반"
     },
     {
       "id": "proposal-small-group",
@@ -33,76 +36,77 @@
       "pdf": "proposal-small-group.pdf",
       "docx": "proposal-small-group.docx",
       "pptx": "proposal-small-group.pptx",
-      "pages": 8,
-      "format": "포트폴리오형 제안서",
-      "wordFormat": "운영 요약"
+      "pages": 6,
+      "format": "A4 세로 편집형 제안서",
+      "wordFormat": "제안서 원문 수정용",
+      "pptFormat": "발표용 · PDF 페이지 이미지 기반"
     }
   ],
   "files": [
     {
       "name": "institution-preview.jpg",
-      "bytes": 170936,
-      "sha256": "8ee81d10db0723fc44ef15231dbcb3de71f1b236935cddb5ba5785ae8d20b97b"
+      "bytes": 121736,
+      "sha256": "0cf85f9c4d5dbe15b49887831fdeeed48df3fff1133e138dd95055429f229b6e"
     },
     {
       "name": "lecture-kit.zip",
-      "bytes": 5888361,
-      "sha256": "5701e4c9fd34a02f4db1d957f729eb83b13bb1f686fc26e53d049ff6ee7c22f7"
+      "bytes": 13391752,
+      "sha256": "afd05c982ed9ac7e20e6a06faeeed2bf853bdd143be66e1fb7c2ebd1255efdcf"
     },
     {
       "name": "profile-friendly.docx",
-      "bytes": 37274,
-      "sha256": "658c635e644352d1fa0d04ead9360e5bb9d1a5b768f987498eeba783b1b700ff"
+      "bytes": 36989,
+      "sha256": "7f02946ca1ef4e02edc1fcecec88989eb04b8bfeb56188a79f391839fe57437a"
     },
     {
       "name": "profile-friendly.pdf",
-      "bytes": 58591,
-      "sha256": "540b38ff1317f58ab70156ef450c2286b060ba9cbd95b0ffdba5b9794384bcc1"
+      "bytes": 64689,
+      "sha256": "87a6c671113fd4bdf4a6ff3c21f4340c12b9d5630d8387e99fc8ad15ad7d8e1e"
     },
     {
       "name": "profile-institution.docx",
-      "bytes": 37783,
-      "sha256": "f0f1f8cdbaa0da70c8cb0d6b6a6c4fa242a09f01373116b9b8acc81b14792a66"
+      "bytes": 37303,
+      "sha256": "93e2ed098d99e3717adc47155e18a2d883c06ee80c29ee930c9d780d69dd30f7"
     },
     {
       "name": "profile-institution.pdf",
-      "bytes": 74058,
-      "sha256": "e7ecf56477234b9cd2a4b4e67d487a6d8e635912d31935ef2f27b4992691902f"
+      "bytes": 81109,
+      "sha256": "9ca43dddeee3bbf7cdef069bbb093e41daa0f3438ee759ab6101ab4190e9ef28"
     },
     {
       "name": "proposal-institution.docx",
-      "bytes": 36794,
-      "sha256": "6a7121a98a6b5683f7329e8d500ebfa39e3c5219929f970f63c0410147822e7d"
+      "bytes": 38744,
+      "sha256": "baf9cfe85a773f96ee16efaba271dd39e6187c26dc58ab16ca6583cfe8c87262"
     },
     {
       "name": "proposal-institution.pdf",
-      "bytes": 432276,
-      "sha256": "eb80dd924aab2c857b5a8d874e06ae663b84fb75f972dea271235b8e4bb73fdf"
+      "bytes": 4345469,
+      "sha256": "45235706cde134fe14426e9b83481b218257460c15d8ace0184f9aa4259a955c"
     },
     {
       "name": "proposal-institution.pptx",
-      "bytes": 2681925,
-      "sha256": "cce71fdb2b103360fffdf8d2ff422ea2c8909ae17365e39fd57fcbbc4ba463a8"
+      "bytes": 2556571,
+      "sha256": "498d42927fd949c6a6ca806885b3f0daa4b95c3383c3ffc2c355057482da93b6"
     },
     {
       "name": "proposal-small-group.docx",
-      "bytes": 36461,
-      "sha256": "224275199e4b5a4bae81f0719909d9303dddc035864f89e58163deeefe3d9a8b"
+      "bytes": 38166,
+      "sha256": "2ecf2213072591313efc091d927269cf326a3da139d15711e029157fc3d595e4"
     },
     {
       "name": "proposal-small-group.pdf",
-      "bytes": 359160,
-      "sha256": "2ef8cd916742399e13b09031e56b883c70d24dccbfde7f7a957d8d1915d52787"
+      "bytes": 4326634,
+      "sha256": "f8c24923d9206278f4bc53e8452ac9f3cb09a7cdff7898f9f9e90a26323d0b70"
     },
     {
       "name": "proposal-small-group.pptx",
-      "bytes": 2323875,
-      "sha256": "fe53bb06eeb2c4cfd0bd2473cb54ef9dac282dba13f1a1cc206d99b7d619aa54"
+      "bytes": 1908360,
+      "sha256": "d7d40c363a236010219b73c408090a6fa1b571d0c6b857a95619e57cca5e0fa3"
     },
     {
       "name": "small-group-preview.jpg",
-      "bytes": 171543,
-      "sha256": "af01df31887c29e49690dd55f2031c55601d7a3e3482a5deb3cb4dba8a3640c4"
+      "bytes": 120810,
+      "sha256": "50aa56d470a243d13fd4475f82e8c753a2e73781ae7d5ae2e22f6b08d0c80c36"
     }
   ]
 }
