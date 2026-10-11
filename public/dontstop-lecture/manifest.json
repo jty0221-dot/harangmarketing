@@ -33,13 +33,13 @@
   "files": [
     {
       "name": "lecture-kit.zip",
-      "bytes": 502250,
-      "sha256": "5bf5ae41b84d55a5f800d862f659c7073ee085854442545cdb590aba4edc192e"
+      "bytes": 503825,
+      "sha256": "041080b81d58944b23d5fe84e0e2203d80b7885268f6abe404393964d177cfbf"
     },
     {
       "name": "profile-friendly.docx",
-      "bytes": 36468,
-      "sha256": "4e544fa8f128efa4de1e3197d56cb995853c7898f745a9448756c257b4438ba5"
+      "bytes": 37274,
+      "sha256": "658c635e644352d1fa0d04ead9360e5bb9d1a5b768f987498eeba783b1b700ff"
     },
     {
       "name": "profile-friendly.pdf",
@@ -48,8 +48,8 @@
     },
     {
       "name": "profile-institution.docx",
-      "bytes": 36973,
-      "sha256": "6bf524d68f0cc24e6d0e40208bb48ada5b477b8244075f2407a4a25c29ca268b"
+      "bytes": 37783,
+      "sha256": "f0f1f8cdbaa0da70c8cb0d6b6a6c4fa242a09f01373116b9b8acc81b14792a66"
     },
     {
       "name": "profile-institution.pdf",
