@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-11-resume-v2",
+  "version": "2026-10-11-portfolio-v3",
   "documents": [
     {
       "id": "profile-institution",
@@ -20,21 +20,34 @@
       "title": "중장년·어르신 생활·여행 영어",
       "audience": "기관 단체 특강 제안서",
       "pdf": "proposal-institution.pdf",
-      "docx": "proposal-institution.docx"
+      "docx": "proposal-institution.docx",
+      "pptx": "proposal-institution.pptx",
+      "pages": 12,
+      "format": "포트폴리오형 제안서",
+      "wordFormat": "운영 요약"
     },
     {
       "id": "proposal-small-group",
       "title": "친구·가족과 작은 영어 모임",
       "audience": "두세 분이 함께하는 수업 제안",
       "pdf": "proposal-small-group.pdf",
-      "docx": "proposal-small-group.docx"
+      "docx": "proposal-small-group.docx",
+      "pptx": "proposal-small-group.pptx",
+      "pages": 8,
+      "format": "포트폴리오형 제안서",
+      "wordFormat": "운영 요약"
     }
   ],
   "files": [
     {
+      "name": "institution-preview.jpg",
+      "bytes": 180604,
+      "sha256": "4f56e7003e2d982a6104a00bec51d1d04a72cbd2c1d690b19894af775a35db20"
+    },
+    {
       "name": "lecture-kit.zip",
-      "bytes": 503825,
-      "sha256": "041080b81d58944b23d5fe84e0e2203d80b7885268f6abe404393964d177cfbf"
+      "bytes": 10723798,
+      "sha256": "dc6cb0e62b5353ab006378324b74d943126516c5771e8697cb92c294d56ee486"
     },
     {
       "name": "profile-friendly.docx",
@@ -63,8 +76,13 @@
     },
     {
       "name": "proposal-institution.pdf",
-      "bytes": 105233,
-      "sha256": "ffd60e7ba9fe8a56dc86025816bd0a457527e488622e9269b455172484725048"
+      "bytes": 455896,
+      "sha256": "0d09dda6698fc33b2305b04a3a3a982ca711451357781357436431073e1469e7"
+    },
+    {
+      "name": "proposal-institution.pptx",
+      "bytes": 5033513,
+      "sha256": "a00c25ffa803527dc78f349132beb4bfe43732be9f21eb29060a8b2510bef103"
     },
     {
       "name": "proposal-small-group.docx",
@@ -73,8 +91,18 @@
     },
     {
       "name": "proposal-small-group.pdf",
-      "bytes": 100689,
-      "sha256": "8794745b38f708cf3c0a3683d5d3cbaf4e81f16ddf07c27acb0e0833e4f23598"
+      "bytes": 422944,
+      "sha256": "cd8e23fedae8b97e968cf96c8c4ffe0a891ba2e7e4daeec0cfef625a0ddb4216"
+    },
+    {
+      "name": "proposal-small-group.pptx",
+      "bytes": 5331145,
+      "sha256": "6e4e14ba890ba954704f0443ebd169aa32636882be80e4abe2c9280fedda4415"
+    },
+    {
+      "name": "small-group-preview.jpg",
+      "bytes": 185047,
+      "sha256": "7e2e1eea165c32e3e296655f284e6bba092dd41af2e3c16195da5f94cdd4288b"
     }
   ]
 }
