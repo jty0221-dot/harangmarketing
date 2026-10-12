@@ -1,18 +1,18 @@
 {
-  "version": "20261012-editorial-v5",
+  "version": "20261013-profile-v6",
   "documents": [
     {
       "id": "profile-institution",
-      "title": "강사 프로필 · 기관 제출용 작성 양식",
-      "audience": "사진·학력·경력·자격·출강 이력 · 2쪽 상세형",
+      "title": "강사 소개 · 기관 제출 준비",
+      "audience": "시드니대학교 졸업 · 해외 생활 경험 · 2쪽 소개",
       "pdf": "profile-institution.pdf",
       "docx": "profile-institution.docx",
       "pages": 2
     },
     {
       "id": "profile-friendly",
-      "title": "강사 이력 요약서",
-      "audience": "사진·주요 이력 · 1쪽 요약형",
+      "title": "강사 소개 · 요약본",
+      "audience": "확인된 학력과 해외 생활 경험 · 1쪽 소개",
       "pdf": "profile-friendly.pdf",
       "docx": "profile-friendly.docx",
       "pages": 1
@@ -50,58 +50,58 @@
     },
     {
       "name": "lecture-kit.zip",
-      "bytes": 14768121,
-      "sha256": "7aa89ced9bcb376968afe934983b87194f51f36cffd7ec5d1e0240b66b5e67eb"
+      "bytes": 14772821,
+      "sha256": "d3878f5003fd18338a29377bb866259f1b4e9cd0371989bf67daed65a8c859af"
     },
     {
       "name": "profile-friendly.docx",
-      "bytes": 36989,
-      "sha256": "7f02946ca1ef4e02edc1fcecec88989eb04b8bfeb56188a79f391839fe57437a"
+      "bytes": 36977,
+      "sha256": "f866b36c105b3e16d2ae6acd3294a822a8df45343fbbd3f822415f6960c7f494"
     },
     {
       "name": "profile-friendly.pdf",
-      "bytes": 64689,
-      "sha256": "87a6c671113fd4bdf4a6ff3c21f4340c12b9d5630d8387e99fc8ad15ad7d8e1e"
+      "bytes": 64999,
+      "sha256": "383c13c963c49ad54a386921dea8f91d6f07244c4e6de0977358d662fc465ae8"
     },
     {
       "name": "profile-institution.docx",
-      "bytes": 37303,
-      "sha256": "93e2ed098d99e3717adc47155e18a2d883c06ee80c29ee930c9d780d69dd30f7"
+      "bytes": 37264,
+      "sha256": "b826f376a9d693991c04d1cd43e53b88ebf24aa6d815548b611cc4511e51e281"
     },
     {
       "name": "profile-institution.pdf",
-      "bytes": 81109,
-      "sha256": "9ca43dddeee3bbf7cdef069bbb093e41daa0f3438ee759ab6101ab4190e9ef28"
+      "bytes": 79120,
+      "sha256": "18a37cc5a4b012c469be41cda5f4f817b4e03f7c25501be8cbd227325c011bcf"
     },
     {
       "name": "proposal-institution.docx",
-      "bytes": 38744,
-      "sha256": "f07f7b391fb8ab2cab6e247513a07d8c6080d21d3a1ac61999c44a33d9512697"
+      "bytes": 38750,
+      "sha256": "4d458e9b9a91911e629b7716f54f63caff1c20254dbafffd62c7019d4c91e264"
     },
     {
       "name": "proposal-institution.pdf",
-      "bytes": 5776137,
-      "sha256": "05ed5789d732219a2fed870f51b5e7a8ef7bc0b954fe548a39dd7e711dc66863"
+      "bytes": 5776614,
+      "sha256": "979cd19935be234fb4654b1331bf31e6857da26d13dd37c59424f6780dec2388"
     },
     {
       "name": "proposal-institution.pptx",
-      "bytes": 2501550,
-      "sha256": "0d7184b13b8c5bc6652b0d7fbfe5091aba1aa2fafef1898959c51bd8ce00717a"
+      "bytes": 2504470,
+      "sha256": "042ef15a04f60e4236e646947c6dd51fc26f2466e7e0b6b3dd16ee261b8c23fa"
     },
     {
       "name": "proposal-small-group.docx",
-      "bytes": 38166,
-      "sha256": "49c42a335df30816af0fd28286fbd839900350df1dc02bf9fcd1f36d912cae7a"
+      "bytes": 38172,
+      "sha256": "d27848307e9cd36cfc8af4ff18d9d909e9bc15bebfefb73b052e2a7cdb9e399e"
     },
     {
       "name": "proposal-small-group.pdf",
-      "bytes": 4326634,
-      "sha256": "f8c24923d9206278f4bc53e8452ac9f3cb09a7cdff7898f9f9e90a26323d0b70"
+      "bytes": 4326920,
+      "sha256": "4c46777ccb08eaac7953737e93f11c96ef6524b4f3575816aa245d0da692bd5b"
     },
     {
       "name": "proposal-small-group.pptx",
-      "bytes": 1908360,
-      "sha256": "c4d66f31985f73bb6f3dca1837318e3e462c01b358081d468992691cf03ea662"
+      "bytes": 1911362,
+      "sha256": "a36ed36025f1cd80908d4a2827e01e7f882cc4a1d24b3a7c6689dc38a43e9a3f"
     },
     {
       "name": "small-group-preview.jpg",
