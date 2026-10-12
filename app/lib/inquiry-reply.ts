@@ -9,6 +9,8 @@
  *   병의원은 격식 존댓말이고 규정 안에서 가능한 범위만 말한다. 검수는 진우 몫이다.
  */
 
+import { extractInquiryLinks, type InquiryResearch } from "./inquiry-links";
+
 export type InquiryKind = "cafe" | "food" | "clean" | "beauty" | "medical" | "edu" | "shop" | "other";
 
 export interface InquiryReplyInput {
@@ -18,6 +20,7 @@ export interface InquiryReplyInput {
   message?: string | null;
   budget?: string | null;
   source?: string | null;
+  research?: InquiryResearch | null;
 }
 
 export interface InquiryReply {
@@ -27,6 +30,8 @@ export interface InquiryReply {
   kakao: string;
   /** 문자용 · 한 문단 · 짧게 */
   sms: string;
+  providedLinks: string[];
+  needsResearch: boolean;
 }
 
 export const INQUIRY_KIND_LABEL: Record<InquiryKind, string> = {
@@ -186,11 +191,42 @@ function goalsLine(goals: string | null | undefined): string {
  * 문의 본문은 문안에 옮겨 적지 않는다(고객이 쓴 글이 그대로 되돌아가면 기계 답으로 읽힌다).
  */
 export function buildInquiryReply(q: InquiryReplyInput): InquiryReply {
-  const kind = classifyIndustry(q.industry);
+  const industryKind = classifyIndustry(q.industry);
+  const links = extractInquiryLinks(q.message);
+  const kind = industryKind === "other" ? classifyIndustry(`${q.message || ""} ${q.goals || ""}`) : industryKind;
   const who = honorific(kind, q.name);
   const received = receivedLine(q.source);
 
   const head = `안녕하세요 ${who}, 마케팅 대행사 하랑 대표 전태영입니다.\n${received}`;
+  if (links.length) {
+    // Only use evidence for this inquiry's own URLs. Never say a page was read just because a URL exists.
+    const evidence = (q.research?.links || []).filter(e => links.includes(e.url));
+    const read = evidence.filter(e => e.state === "read");
+    const pending = links.length - evidence.length;
+    const failed = evidence.length - read.length;
+    const receivedLinks = `보내주신 링크 ${links.length}개와 문의 내용을 확인했습니다.`;
+    const observations = read.map(e => {
+      const products = e.products?.length ? ` 공개 상품 정보에는 ${e.products.slice(0, 3).join(", ")}이 표시돼 있습니다.` : "";
+      return `공개 페이지에서 ${e.title || "소개 정보"}를 확인했습니다.${products}`;
+    });
+    const access = failed ? `${failed}개 링크는 접속 제한이나 페이지 조회 오류로 내용을 읽지 못해, 상품 구성이나 리뷰 상태를 판단하지 않았습니다.` : "";
+    const awaiting = pending ? "보내주신 페이지는 아직 내용을 확인하지 못해 구체적인 진단은 확인 후 안내드리겠습니다." : "";
+    const purchaseAgency = /구매\s*대행/.test(q.message || "");
+    const items = [/(?:프라|플라)모델/.test(q.message || "") ? "프라모델" : "", /그릇/.test(q.message || "") ? "그릇" : ""].filter(Boolean);
+    const context = kind === "shop"
+      ? `${items.length ? `${items.join("·")} ${purchaseAgency ? "구매대행 " : ""}` : "온라인 판매 "}매출을 늘리는 방향으로 문의주셨습니다. 먼저 검색 유입이 적은지, 방문 후 구매로 이어지지 않는지를 나눠 보고 진행하는 것이 좋습니다.`
+      : `${goalsLine(q.goals)} 보내주신 내용에 맞춰 검색 유입과 문의 연결을 함께 살펴보겠습니다.`;
+    const plan = kind === "shop"
+      ? `우선 집중할 상품을 정한 뒤 상품명과 대표 이미지, 상세 설명의 정보 순서를 점검하는 방향을 제안드립니다.${purchaseAgency ? " 구매대행 상품은 모델·규격과 구성품, 예상 배송기간 및 교환 안내를 구매 전에 이해할 수 있도록 정리하는 것이 좋습니다." : ""} 이는 문의 내용을 바탕으로 제안드리는 점검 방향이며, 페이지의 문제점으로 확정한 내용은 아닙니다.`
+      : "공개 페이지에서 확인되는 정보와 문의주신 목표를 함께 보고 개선 순서를 안내드리겠습니다.";
+    const question = kind === "shop"
+      ? "우선 매출을 늘리고 싶은 상품군과 최근 한 달의 방문 수·주문 수를 알고 계시면 알려주세요. 없는 수치는 나중에 함께 확인해도 됩니다."
+      : "현재 가장 먼저 해결하고 싶은 부분과 통화가 편하신 시간을 알려주세요.";
+    const kakao = [head, `${receivedLinks} ${context}`, [...observations, access, awaiting, plan].filter(Boolean).join(" "),
+      `${question} ${budgetLine(q.budget)} 상담과 진단은 비용 없습니다.`].join("\n\n");
+    const sms = [head.replace(/\n/g, " "), receivedLinks, access || awaiting || "읽을 수 있는 공개 페이지 정보를 기준으로 검토했습니다.", context, question].join(" ");
+    return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao, sms, providedLinks: links, needsResearch: pending > 0 };
+  }
   const why = [goalsLine(q.goals), WHY[kind], messageLine(q.message)].filter(Boolean).join(" ");
   const ask = `${ASK[kind]} 보내 주시면 현재 상태를 제가 먼저 확인해서 되는 것과 안 되는 것부터 말씀드리겠습니다. ${budgetLine(q.budget)} 상담과 진단은 비용 없습니다.`;
   const kakao = [head, why, ask, CLOSE[kind]].join("\n\n");
@@ -203,7 +239,7 @@ export function buildInquiryReply(q: InquiryReplyInput): InquiryReply {
     kind === "medical" ? CLOSE_SMS_MEDICAL : CLOSE_SMS,
   ].join(" ");
 
-  return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao, sms };
+  return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao, sms, providedLinks: [], needsResearch: false };
 }
 
 /** 문자 앱을 여는 링크. 숫자만 남기고, 아이폰은 &body 그 외는 ?body 를 쓴다. */

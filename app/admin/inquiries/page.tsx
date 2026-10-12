@@ -10,7 +10,8 @@ import { AdminHeader, AdminFooter } from "../AdminNav";
 import {
   INQUIRY_MEMO_MAX, INQUIRY_STATUS_LABEL, inquirySourceLabel, type InquiryStatus,
 } from "../../lib/inquiry-status";
-import { buildInquiryReply, smsHref } from "../../lib/inquiry-reply";
+import { buildInquiryReply, smsHref, type InquiryReply } from "../../lib/inquiry-reply";
+import { extractInquiryLinks, type InquiryResearch } from "../../lib/inquiry-links";
 
 /**
  * 홈페이지 문의 목록 (관리자)
@@ -70,12 +71,31 @@ export default function AdminInquiriesPage() {
   const [openId, setOpenId] = useState<number | null>(null);
   const [replyChannel, setReplyChannel] = useState<ReplyChannel>("kakao");
   const [copied, setCopied] = useState<string | null>(null);
+  const [researchedReplies, setResearchedReplies] = useState<Record<number, { reply: InquiryReply; research: InquiryResearch }>>({});
+  const [researchErrors, setResearchErrors] = useState<Record<number, string>>({});
   // 저장 전 메모 입력값 (문의 번호별). 저장하면 지운다
   const [memoDrafts, setMemoDrafts] = useState<Record<number, string>>({});
   const [memoBusy, setMemoBusy] = useState<number | null>(null);
   const [memoSaved, setMemoSaved] = useState<number | null>(null);
   // 링크로 들어온 문의 번호 · 목록이 오면 그 카드로 한 번 스크롤한다
   const scrollTo = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (openId === null || researchedReplies[openId] || researchErrors[openId]) return;
+    const q = inquiries.find(row => row.id === openId);
+    if (!q || !extractInquiryLinks(q.message).length) return;
+    const controller = new AbortController();
+    fetch(`/api/admin/inquiries/research?id=${q.id}`, { cache: "no-store", signal: controller.signal })
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || "링크 내용을 확인하지 못했습니다");
+        if (!controller.signal.aborted) setResearchedReplies(prev => ({ ...prev, [q.id]: { reply: data.reply, research: data.research } }));
+      })
+      .catch(error => {
+        if (!controller.signal.aborted) setResearchErrors(prev => ({ ...prev, [q.id]: error instanceof Error ? error.message : "링크 내용을 확인하지 못했습니다" }));
+      });
+    return () => controller.abort();
+  }, [openId, inquiries, researchedReplies, researchErrors]);
 
   const load = useCallback(async (): Promise<Inquiry[] | null> => {
     setLoading(true);
@@ -267,7 +287,8 @@ export default function AdminInquiriesPage() {
             {shown.map((q) => {
               const open = openId === q.id;
               const working = busy === q.id;
-              const reply = open ? buildInquiryReply(q) : null;
+              const reply = open ? researchedReplies[q.id]?.reply || buildInquiryReply(q) : null;
+              const researching = open && !!reply?.providedLinks.length && !researchedReplies[q.id] && !researchErrors[q.id];
               const replyText = reply ? (replyChannel === "kakao" ? reply.kakao : reply.sms) : "";
               const copiedThis = copied === `${q.id}:${replyChannel}`;
               const memoText = memoDrafts[q.id] ?? q.memo ?? "";
@@ -342,6 +363,21 @@ export default function AdminInquiriesPage() {
                       </div>
                       {reply && (
                         <div className="rounded-xl bg-white ring-1 ring-gray-100 p-3 space-y-2">
+                          {reply.providedLinks.length > 0 && (
+                            <div className="rounded-lg bg-blue-50 p-3 text-xs text-gray-700 space-y-2">
+                              <p>{researching ? "보내주신 링크 내용을 읽고 있습니다." : "고객이 보내주신 링크를 기준으로 검토합니다."}</p>
+                              {reply.providedLinks.map(url => {
+                                const evidence = researchedReplies[q.id]?.research.links.find(item => item.url === url);
+                                return <div key={url} className="break-all">
+                                  <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">{url}</a>
+                                  <p className="mt-1 text-gray-500">{evidence ? (evidence.state === "read" ? `읽은 공개 정보: ${evidence.title || "소개 정보"}` : evidence.reason) : "페이지 내용 확인 전"}</p>
+                                  {evidence?.description && <p className="mt-1">{evidence.description}</p>}
+                                </div>;
+                              })}
+                              {researchedReplies[q.id]?.research.truncated && <p>앞의 다섯 링크를 확인했습니다. 나머지는 링크를 열어 검토해 주세요.</p>}
+                              {researchErrors[q.id] && <p className="text-amber-700">{researchErrors[q.id]} 제공된 링크를 직접 열어 확인해 주세요. 아래 문안은 문의 내용에 근거한 초안입니다.</p>}
+                            </div>
+                          )}
                           <div className="flex items-center justify-between gap-2 flex-wrap">
                             <div className="flex items-center gap-1.5 text-xs font-black text-gray-700">
                               <Send size={13} className="text-gray-400" />
@@ -371,13 +407,14 @@ export default function AdminInquiriesPage() {
                           <div className="flex flex-wrap gap-2">
                             <button
                               type="button"
+                              disabled={researching}
                               onClick={() => copyReply(q.id, replyChannel, replyText)}
-                              className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-black text-white hover:bg-blue-700"
+                              className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-black text-white hover:bg-blue-700 disabled:opacity-50"
                             >
                               {copiedThis ? <ClipboardCheck size={13} /> : <Copy size={13} />}
                               {copiedThis ? "복사했습니다" : "문안 복사"}
                             </button>
-                            {q.phone && (
+                            {q.phone && !researching && (
                               <a
                                 href={smsHref(q.phone, reply.sms)}
                                 className="flex items-center gap-1.5 rounded-xl bg-white ring-1 ring-gray-200 px-4 py-2.5 text-xs font-black text-gray-600 hover:bg-gray-100"
