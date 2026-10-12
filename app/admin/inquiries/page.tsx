@@ -11,7 +11,8 @@ import {
   INQUIRY_MEMO_MAX, INQUIRY_STATUS_LABEL, inquirySourceLabel, type InquiryStatus,
 } from "../../lib/inquiry-status";
 import { buildInquiryReply, smsHref, type InquiryReply } from "../../lib/inquiry-reply";
-import { extractInquiryLinks, type InquiryResearch } from "../../lib/inquiry-links";
+import { type InquiryResearch } from "../../lib/inquiry-links";
+import { inquiryServiceLabel } from "../../lib/inquiry-understanding";
 
 /**
  * 홈페이지 문의 목록 (관리자)
@@ -83,7 +84,7 @@ export default function AdminInquiriesPage() {
   useEffect(() => {
     if (openId === null || researchedReplies[openId] || researchErrors[openId]) return;
     const q = inquiries.find(row => row.id === openId);
-    if (!q || !extractInquiryLinks(q.message).length || buildInquiryReply(q).reviewed) return;
+    if (!q || !buildInquiryReply(q).needsResearch || buildInquiryReply(q).reviewed) return;
     const controller = new AbortController();
     fetch(`/api/admin/inquiries/research?id=${q.id}`, { cache: "no-store", signal: controller.signal })
       .then(async res => {
@@ -288,7 +289,7 @@ export default function AdminInquiriesPage() {
               const open = openId === q.id;
               const working = busy === q.id;
               const reply = open ? researchedReplies[q.id]?.reply || buildInquiryReply(q) : null;
-              const researching = open && !!reply?.providedLinks.length && !reply.reviewed && !researchedReplies[q.id] && !researchErrors[q.id];
+              const researching = open && !!reply?.needsResearch && !reply.reviewed && !researchedReplies[q.id] && !researchErrors[q.id];
               const replyText = reply ? (replyChannel === "kakao" ? reply.kakao : reply.sms) : "";
               const copiedThis = copied === `${q.id}:${replyChannel}`;
               const memoText = memoDrafts[q.id] ?? q.memo ?? "";
@@ -363,6 +364,15 @@ export default function AdminInquiriesPage() {
                       </div>
                       {reply && (
                         <div className="rounded-xl bg-white ring-1 ring-gray-100 p-3 space-y-2">
+                          {reply.assessment && (
+                            <div className="rounded-lg bg-gray-50 p-3 text-xs text-gray-600 space-y-1">
+                              {reply.assessment.services.length > 0 && <p>문의 서비스: {reply.assessment.services.map(inquiryServiceLabel).join(" · ")}</p>}
+                              {reply.assessment.supplied.length > 0 && <p>이미 받은 정보: {reply.assessment.supplied.join(" · ")}</p>}
+                              {reply.assessment.needsHumanReview && !reply.reviewed && <p className="text-amber-700">대표 확인 필요: {reply.assessment.reviewReasons.join(" · ")}</p>}
+                              {researching && <p>공개 안내와 제공 자료를 확인하고 있습니다.</p>}
+                              {researchErrors[q.id] && !reply.providedLinks.length && <p className="text-amber-700">{researchErrors[q.id]} 공개 안내를 직접 대조한 뒤 보내주세요.</p>}
+                            </div>
+                          )}
                           {reply.providedLinks.length > 0 && (
                             <div className="rounded-lg bg-blue-50 p-3 text-xs text-gray-700 space-y-2">
                               <p>{reply.reviewed ? "담당자가 실제 페이지를 확인한 검토 문안입니다." : researching ? "보내주신 링크 내용을 읽고 있습니다." : "고객이 보내주신 링크를 기준으로 검토합니다."}</p>

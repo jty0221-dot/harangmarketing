@@ -5,6 +5,7 @@ import { ADMIN_COOKIE_NAME, verifySessionToken } from "../../../../lib/admin-aut
 import { listInquiries } from "../../../../lib/inquiries";
 import { buildInquiryReply } from "../../../../lib/inquiry-reply";
 import { researchInquiryLinks } from "../../../../lib/inquiry-research";
+import { getPublicInquiryKnowledge } from "../../../../lib/inquiry-knowledge";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,8 +28,13 @@ export async function GET(req: NextRequest) {
   try {
     const inquiry = (await listInquiries(300)).find(q => q.id === id);
     if (!inquiry) return NextResponse.json({ ok: false, error: "문의를 찾을 수 없습니다" }, { status: 404 });
-    const research = await researchInquiryLinks(inquiry.message);
-    return NextResponse.json({ ok: true, research, reply: buildInquiryReply({ ...inquiry, research }) }, {
+    const initial = buildInquiryReply(inquiry);
+    const support = initial.assessment?.intents.some(i => ["refund", "complaint", "existing"].includes(i));
+    const [research, knowledge] = await Promise.all([
+      initial.reviewed || support ? Promise.resolve({ links: [], checkedAt: new Date().toISOString(), truncated: false }) : researchInquiryLinks(inquiry.message),
+      initial.assessment?.intents.includes("price") && !initial.reviewed && !support ? getPublicInquiryKnowledge() : Promise.resolve(null),
+    ]);
+    return NextResponse.json({ ok: true, research, reply: buildInquiryReply({ ...inquiry, research, knowledge }) }, {
       headers: { "Cache-Control": "private, no-store" },
     });
   } catch {

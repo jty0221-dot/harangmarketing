@@ -10,6 +10,8 @@
  */
 
 import { extractInquiryLinks, type InquiryResearch } from "./inquiry-links";
+import type { InquiryKnowledge } from "./inquiry-knowledge";
+import { composeUnderstoodReply, assessInquiry, type InquiryAssessment } from "./inquiry-understanding";
 
 export type InquiryKind = "cafe" | "food" | "clean" | "beauty" | "medical" | "edu" | "shop" | "other";
 
@@ -21,6 +23,7 @@ export interface InquiryReplyInput {
   budget?: string | null;
   source?: string | null;
   research?: InquiryResearch | null;
+  knowledge?: InquiryKnowledge | null;
   /** Administrator-only memo may contain a specifically delimited reviewed reply. */
   memo?: string | null;
 }
@@ -35,6 +38,7 @@ export interface InquiryReply {
   providedLinks: string[];
   needsResearch: boolean;
   reviewed?: boolean;
+  assessment?: InquiryAssessment;
 }
 
 export const INQUIRY_KIND_LABEL: Record<InquiryKind, string> = {
@@ -68,83 +72,6 @@ export function classifyIndustry(text: string | null | undefined): InquiryKind {
   return "other";
 }
 
-/** 상담 신청 폼의 '원하는 것' 항목을 문안에 들어갈 짧은 말로 바꾼다. 서버는 쉼표로 이어 붙여 저장한다. */
-const GOAL_WORDS: [string[], string][] = [
-  [["플레이스"], "플레이스 순위"],
-  [["리뷰", "후기"], "리뷰"],
-  [["sns", "팔로워", "인지도", "인스타"], "인스타그램"],
-  [["블로그"], "블로그 노출"],
-  [["방문"], "매장 방문"],
-  [["매출"], "온라인 매출"],
-  [["신뢰", "브랜드"], "브랜드 신뢰"],
-];
-
-function goalPhrases(goals: string | null | undefined): string[] {
-  const out: string[] = [];
-  for (const piece of (goals || "").split(",")) {
-    const p = piece.trim().toLowerCase();
-    if (!p) continue;
-    for (const [words, label] of GOAL_WORDS) {
-      if (words.some((w) => p.includes(w))) {
-        if (!out.includes(label)) out.push(label);
-        break;
-      }
-    }
-  }
-  return out;
-}
-
-/** 업종별 둘째 문단. 왜 그것부터 보는지를 한 문장으로 말한다. */
-const WHY: Record<InquiryKind, string> = {
-  cafe: "카페는 플레이스와 리뷰, 인스타그램이 같이 가야 해서, 지금 어느 키워드에서 몇 위에 있는지부터 보고 말씀드리는 게 맞는 거 같습니다.",
-  food: "음식점은 플레이스 순위와 리뷰가 손님을 부르는 쪽이라, 지금 어느 키워드에서 몇 위에 있는지부터 보고 말씀드리는 게 맞는 거 같습니다.",
-  clean: "청소·시설 쪽은 검색해서 바로 전화하는 손님이 많아서, 플레이스와 블로그에서 지금 어디에 뜨는지부터 보고 말씀드리는 게 맞는 거 같습니다.",
-  beauty: "미용·뷰티는 인스타그램과 플레이스가 같이 가야 해서, 지금 계정과 플레이스 상태부터 보고 말씀드리는 게 맞는 거 같습니다.",
-  medical: "병의원은 의료광고 규정 안에서 할 수 있는 것과 없는 것을 먼저 가르는 게 순서라, 지금 운영 중인 블로그와 플레이스 상태를 보고 가능한 범위부터 말씀드리겠습니다.",
-  edu: "학원은 학부모가 검색하는 블로그와 플레이스가 먼저라, 지금 동네 검색에서 어디에 뜨는지부터 보고 말씀드리는 게 맞는 거 같습니다.",
-  shop: "온라인 판매는 상세페이지와 블로그 검색 노출이 같이 가야 해서, 지금 스토어와 검색 상태부터 보고 말씀드리는 게 맞는 거 같습니다.",
-  other: "업종마다 먼저 할 일이 달라서, 지금 어디에 어떻게 노출되고 있는지부터 보고 말씀드리는 게 맞는 거 같습니다.",
-};
-
-/** 보내 달라는 것 (카톡용). 링크 하나면 되고 없으면 이름과 동네면 된다. */
-const ASK: Record<InquiryKind, string> = {
-  cafe: "네이버 플레이스 링크(없으면 매장 이름과 동네)만",
-  food: "네이버 플레이스 링크(없으면 매장 이름과 동네)만",
-  clean: "네이버 플레이스 링크(없으면 업체 이름과 주로 나가는 지역)만",
-  beauty: "네이버 플레이스 링크(없으면 매장 이름과 동네)만",
-  medical: "플레이스 링크(없으면 병원 이름과 지역)만",
-  edu: "네이버 플레이스 링크(없으면 학원 이름과 동네)만",
-  shop: "스토어 링크(없으면 브랜드 이름과 파는 상품)만",
-  other: "네이버 플레이스 링크(없으면 상호와 동네)만",
-};
-
-/** 보내 달라는 것 (문자용 · 더 짧게) */
-const ASK_SHORT: Record<InquiryKind, string> = {
-  cafe: "플레이스 링크나 매장 이름과 동네만",
-  food: "플레이스 링크나 매장 이름과 동네만",
-  clean: "플레이스 링크나 업체 이름과 지역만",
-  beauty: "플레이스 링크나 매장 이름과 동네만",
-  medical: "플레이스 링크나 병원 이름과 지역만",
-  edu: "플레이스 링크나 학원 이름과 동네만",
-  shop: "스토어 링크나 브랜드 이름만",
-  other: "플레이스 링크나 상호와 동네만",
-};
-
-/** 마무리 한 줄. 카페·음식점·미용·학원·판매·기타는 대표 말투 그대로, 청소는 짧게, 병의원은 격식. */
-const CLOSE: Record<InquiryKind, string> = {
-  cafe: "통화가 편하신 시간 알려 주시면 그 시간에 연락드리겠습니다^^",
-  food: "통화가 편하신 시간 알려 주시면 그 시간에 연락드리겠습니다^^",
-  clean: "통화 편하신 시간 알려 주시면 그때 연락드리겠습니다.",
-  beauty: "통화가 편하신 시간 알려 주시면 그 시간에 연락드리겠습니다^^",
-  medical: "통화가 편하신 시간을 알려 주시면 그 시간에 연락드리겠습니다.",
-  edu: "통화가 편하신 시간 알려 주시면 그 시간에 연락드리겠습니다^^",
-  shop: "통화가 편하신 시간 알려 주시면 그 시간에 연락드리겠습니다^^",
-  other: "통화가 편하신 시간 알려 주시면 그 시간에 연락드리겠습니다^^",
-};
-
-const CLOSE_SMS = "통화 편하신 시간 알려 주시면 그때 연락드리겠습니다.";
-const CLOSE_SMS_MEDICAL = "통화가 편하신 시간을 알려 주시면 그 시간에 연락드리겠습니다.";
-
 /** 이름 뒤에 붙여 적은 호칭은 떼고 붙인다. '홍길동 대표' 가 '홍길동 대표 대표님' 이 되지 않게. */
 function cleanName(name: string): string {
   return (name || "")
@@ -167,32 +94,7 @@ function receivedLine(source: string | null | undefined): string {
     : "홈페이지로 주신 상담 신청 확인했습니다.";
 }
 
-/** 무료 진단은 '현재 플레이스 순위: N위권' 을 message 로 보낸다. 그 숫자를 받아 준다. */
-function messageLine(message: string | null | undefined): string {
-  const m = (message || "").trim();
-  if (!m) return "";
-  const rank = m.match(/(\d{1,3})\s*위/);
-  if (rank) return `적어 주신 현재 순위(${rank[1]}위권)를 기준으로 왜 거기에 있는지부터 보겠습니다.`;
-  return "적어 주신 내용도 같이 봤습니다.";
-}
-
-function budgetLine(budget: string | null | undefined): string {
-  const b = (budget || "").trim();
-  if (!b || b.includes("미정")) return "예산은 상담하면서 같이 잡아도 됩니다.";
-  return "적어 주신 예산 안에서 먼저 할 것부터 순서를 잡아 드리겠습니다.";
-}
-
-function goalsLine(goals: string | null | undefined): string {
-  const g = goalPhrases(goals);
-  if (g.length === 0) return "";
-  return `${g.join(", ")} 쪽을 원하신다고 적어 주셨구요.`;
-}
-
-/**
- * 문의 한 건 → 카톡용 · 문자용 첫 답.
- * 답 먼저(확인했다) → 왜 그것부터 보나 → 보내 달라는 것 하나 → 통화 시간 되묻기. 다섯 단계 골격의 앞 넷이다.
- * 문의 본문은 문안에 옮겨 적지 않는다(고객이 쓴 글이 그대로 되돌아가면 기계 답으로 읽힌다).
- */
+/** Interpret the actual request before drafting. Reviewed replies remain authoritative. */
 export function buildInquiryReply(q: InquiryReplyInput): InquiryReply {
   const industryKind = classifyIndustry(q.industry);
   const links = extractInquiryLinks(q.message);
@@ -204,50 +106,10 @@ export function buildInquiryReply(q: InquiryReplyInput): InquiryReply {
   const reviewed = q.memo?.match(/(?:^|\n)\[검토 완료 문안\]\r?\n([\s\S]*?)\r?\n\[문안 끝\](?:\r?\n|$)/)?.[1]?.trim();
   if (reviewed) {
     return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao: reviewed, sms: reviewed.replace(/\s*\n\s*/g, " "),
-      providedLinks: links, needsResearch: false, reviewed: true };
+      providedLinks: links, needsResearch: false, reviewed: true, assessment: assessInquiry(q, kind, links) };
   }
-  if (links.length) {
-    // Only use evidence for this inquiry's own URLs. Never say a page was read just because a URL exists.
-    const evidence = (q.research?.links || []).filter(e => links.includes(e.url));
-    const read = evidence.filter(e => e.state === "read");
-    const pending = links.length - evidence.length;
-    const failed = evidence.length - read.length;
-    const receivedLinks = `보내주신 링크 ${links.length}개와 문의 내용을 확인했습니다.`;
-    const observations = read.map(e => {
-      const products = e.products?.length ? ` 공개 상품 정보에는 ${e.products.slice(0, 3).join(", ")}이 표시돼 있습니다.` : "";
-      return `공개 페이지에서 ${e.title || "소개 정보"}를 확인했습니다.${products}`;
-    });
-    const access = failed ? `${failed}개 링크는 접속 제한이나 페이지 조회 오류로 내용을 읽지 못해, 상품 구성이나 리뷰 상태를 판단하지 않았습니다.` : "";
-    const awaiting = pending ? "보내주신 페이지는 아직 내용을 확인하지 못해 구체적인 진단은 확인 후 안내드리겠습니다." : "";
-    const purchaseAgency = /구매\s*대행/.test(q.message || "");
-    const items = [/(?:프라|플라)모델/.test(q.message || "") ? "프라모델" : "", /그릇/.test(q.message || "") ? "그릇" : ""].filter(Boolean);
-    const context = kind === "shop"
-      ? `${items.length ? `${items.join("·")} ${purchaseAgency ? "구매대행 " : ""}` : "온라인 판매 "}매출을 늘리는 방향으로 문의주셨습니다. 먼저 검색 유입이 적은지, 방문 후 구매로 이어지지 않는지를 나눠 보고 진행하는 것이 좋습니다.`
-      : `${goalsLine(q.goals)} 보내주신 내용에 맞춰 검색 유입과 문의 연결을 함께 살펴보겠습니다.`;
-    const plan = kind === "shop"
-      ? `우선 집중할 상품을 정한 뒤 상품명과 대표 이미지, 상세 설명의 정보 순서를 점검하는 방향을 제안드립니다.${purchaseAgency ? " 구매대행 상품은 모델·규격과 구성품, 예상 배송기간 및 교환 안내를 구매 전에 이해할 수 있도록 정리하는 것이 좋습니다." : ""} 이는 문의 내용을 바탕으로 제안드리는 점검 방향이며, 페이지의 문제점으로 확정한 내용은 아닙니다.`
-      : "공개 페이지에서 확인되는 정보와 문의주신 목표를 함께 보고 개선 순서를 안내드리겠습니다.";
-    const question = kind === "shop"
-      ? "우선 매출을 늘리고 싶은 상품군과 최근 한 달의 방문 수·주문 수를 알고 계시면 알려주세요. 없는 수치는 나중에 함께 확인해도 됩니다."
-      : "현재 가장 먼저 해결하고 싶은 부분과 통화가 편하신 시간을 알려주세요.";
-    const kakao = [head, `${receivedLinks} ${context}`, [...observations, access, awaiting, plan].filter(Boolean).join(" "),
-      `${question} ${budgetLine(q.budget)} 상담과 진단은 비용 없습니다.`].join("\n\n");
-    const sms = [head.replace(/\n/g, " "), receivedLinks, access || awaiting || "읽을 수 있는 공개 페이지 정보를 기준으로 검토했습니다.", context, question].join(" ");
-    return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao, sms, providedLinks: links, needsResearch: pending > 0 };
-  }
-  const why = [goalsLine(q.goals), WHY[kind], messageLine(q.message)].filter(Boolean).join(" ");
-  const ask = `${ASK[kind]} 보내 주시면 현재 상태를 제가 먼저 확인해서 되는 것과 안 되는 것부터 말씀드리겠습니다. ${budgetLine(q.budget)} 상담과 진단은 비용 없습니다.`;
-  const kakao = [head, why, ask, CLOSE[kind]].join("\n\n");
-
-  const sms = [
-    `안녕하세요 ${who}, 마케팅 대행사 하랑 대표 전태영입니다.`,
-    received,
-    `${ASK_SHORT[kind]} 보내 주시면 현재 상태 먼저 확인해서 되는 것과 안 되는 것부터 말씀드리겠습니다.`,
-    "상담과 진단은 비용 없습니다.",
-    kind === "medical" ? CLOSE_SMS_MEDICAL : CLOSE_SMS,
-  ].join(" ");
-
-  return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao, sms, providedLinks: [], needsResearch: false };
+  const draft = composeUnderstoodReply(q, kind, head, links);
+  return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], providedLinks: links, ...draft };
 }
 
 /** 문자 앱을 여는 링크. 숫자만 남기고, 아이폰은 &body 그 외는 ?body 를 쓴다. */
