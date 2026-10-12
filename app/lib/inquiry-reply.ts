@@ -21,6 +21,8 @@ export interface InquiryReplyInput {
   budget?: string | null;
   source?: string | null;
   research?: InquiryResearch | null;
+  /** Administrator-only memo may contain a specifically delimited reviewed reply. */
+  memo?: string | null;
 }
 
 export interface InquiryReply {
@@ -32,6 +34,7 @@ export interface InquiryReply {
   sms: string;
   providedLinks: string[];
   needsResearch: boolean;
+  reviewed?: boolean;
 }
 
 export const INQUIRY_KIND_LABEL: Record<InquiryKind, string> = {
@@ -198,6 +201,11 @@ export function buildInquiryReply(q: InquiryReplyInput): InquiryReply {
   const received = receivedLine(q.source);
 
   const head = `안녕하세요 ${who}, 마케팅 대행사 하랑 대표 전태영입니다.\n${received}`;
+  const reviewed = q.memo?.match(/(?:^|\n)\[검토 완료 문안\]\r?\n([\s\S]*?)\r?\n\[문안 끝\](?:\r?\n|$)/)?.[1]?.trim();
+  if (reviewed) {
+    return { kind, kindLabel: INQUIRY_KIND_LABEL[kind], kakao: reviewed, sms: reviewed.replace(/\s*\n\s*/g, " "),
+      providedLinks: links, needsResearch: false, reviewed: true };
+  }
   if (links.length) {
     // Only use evidence for this inquiry's own URLs. Never say a page was read just because a URL exists.
     const evidence = (q.research?.links || []).filter(e => links.includes(e.url));

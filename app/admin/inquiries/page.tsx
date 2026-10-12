@@ -83,7 +83,7 @@ export default function AdminInquiriesPage() {
   useEffect(() => {
     if (openId === null || researchedReplies[openId] || researchErrors[openId]) return;
     const q = inquiries.find(row => row.id === openId);
-    if (!q || !extractInquiryLinks(q.message).length) return;
+    if (!q || !extractInquiryLinks(q.message).length || buildInquiryReply(q).reviewed) return;
     const controller = new AbortController();
     fetch(`/api/admin/inquiries/research?id=${q.id}`, { cache: "no-store", signal: controller.signal })
       .then(async res => {
@@ -288,7 +288,7 @@ export default function AdminInquiriesPage() {
               const open = openId === q.id;
               const working = busy === q.id;
               const reply = open ? researchedReplies[q.id]?.reply || buildInquiryReply(q) : null;
-              const researching = open && !!reply?.providedLinks.length && !researchedReplies[q.id] && !researchErrors[q.id];
+              const researching = open && !!reply?.providedLinks.length && !reply.reviewed && !researchedReplies[q.id] && !researchErrors[q.id];
               const replyText = reply ? (replyChannel === "kakao" ? reply.kakao : reply.sms) : "";
               const copiedThis = copied === `${q.id}:${replyChannel}`;
               const memoText = memoDrafts[q.id] ?? q.memo ?? "";
@@ -365,12 +365,12 @@ export default function AdminInquiriesPage() {
                         <div className="rounded-xl bg-white ring-1 ring-gray-100 p-3 space-y-2">
                           {reply.providedLinks.length > 0 && (
                             <div className="rounded-lg bg-blue-50 p-3 text-xs text-gray-700 space-y-2">
-                              <p>{researching ? "보내주신 링크 내용을 읽고 있습니다." : "고객이 보내주신 링크를 기준으로 검토합니다."}</p>
+                              <p>{reply.reviewed ? "담당자가 실제 페이지를 확인한 검토 문안입니다." : researching ? "보내주신 링크 내용을 읽고 있습니다." : "고객이 보내주신 링크를 기준으로 검토합니다."}</p>
                               {reply.providedLinks.map(url => {
                                 const evidence = researchedReplies[q.id]?.research.links.find(item => item.url === url);
                                 return <div key={url} className="break-all">
                                   <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">{url}</a>
-                                  <p className="mt-1 text-gray-500">{evidence ? (evidence.state === "read" ? `읽은 공개 정보: ${evidence.title || "소개 정보"}` : evidence.reason) : "페이지 내용 확인 전"}</p>
+                                  <p className="mt-1 text-gray-500">{reply.reviewed ? "담당자 검토 문안에 반영" : evidence ? (evidence.state === "read" ? `읽은 공개 정보: ${evidence.title || "소개 정보"}` : evidence.reason) : "페이지 내용 확인 전"}</p>
                                   {evidence?.description && <p className="mt-1">{evidence.description}</p>}
                                 </div>;
                               })}
