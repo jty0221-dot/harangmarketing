@@ -47,7 +47,7 @@ const LD = [
     author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     description:
-      "현장 사진을 한 번에 보정하고 영상을 GIF로 바꾸는 윈도우 프로그램입니다. " +
+      "이미 촬영한 사진·동영상을 보정·압축하고 GIF로 변환하는 윈도우 프로그램입니다. AI 영상 생성은 제공하지 않습니다. " +
       "파일을 외부 서버에 올리지 않고 사용자 컴퓨터 안에서 처리합니다. " +
       "사진 세탁, 워터마크, 비포·애프터 붙이기, 영상에서 사진 뽑기, 영상 압축을 하나로 묶었습니다.",
     featureList: FEATURES.map((f) => f.title),
@@ -73,7 +73,7 @@ const LD = [
     path: PATH,
     name: "하랑 스튜디오 | 동영상 GIF 변환 · 사진 세탁 프로그램",
     description:
-      `현장 사진 ${STUDIO.trialCount}장을 1분 안에 정리하고 영상을 움짤로 바꾸는 윈도우 프로그램. ` +
+      `이미 촬영한 사진·동영상을 보정·압축하고 GIF로 변환하는 윈도우 프로그램. AI 영상 생성은 제공하지 않습니다. ` +
       `업로드 없이 내 컴퓨터에서 처리합니다. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
     dateModified: updatedAt(PATH),
   }),
@@ -103,15 +103,17 @@ export default function StudioPage() {
                 </div>
 
                 <h1 className="mt-4 text-[28px] leading-[1.25] font-black tracking-tight text-gray-900 md:text-[40px] md:leading-[1.2]">
-                  동영상 GIF 변환,
+                  촬영한 영상은 GIF로,
                   <br />
-                  <span className="text-blue-600">사진 세탁</span>까지 한 번에
+                  <span className="text-blue-600">사진은 한 번에 보정</span>
                 </h1>
 
                 <p className="speakable mt-4 text-[15px] leading-relaxed text-gray-600 md:text-base">
-                  하랑 스튜디오는 현장 사진 {STUDIO.trialCount}장을 1분 안에 보정하고, 영상을 끌어다 놓으면
-                  움짤로 바꿔주는 윈도우 프로그램입니다. 파일을 어디에도 올리지 않고 내 컴퓨터
-                  안에서 처리하므로 클라이언트 사진이 밖으로 나가지 않습니다.
+                  하랑 스튜디오는 이미 촬영한 사진·동영상을 보정·압축하고 GIF로 변환하는 윈도우 프로그램입니다.
+                  파일은 외부 서버에 올리지 않고 내 컴퓨터에서 처리합니다.
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                  사진이나 글로 새 영상을 만드는 AI 영상 생성 기능은 제공하지 않습니다.
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -133,7 +135,7 @@ export default function StudioPage() {
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-blue-700"
                   >
                     <Download size={16} strokeWidth={2.2} />
-                    무료 체험판 받기
+                    윈도우 변환 프로그램 체험판 받기
                   </a>
                   <a
                     href="#price"
@@ -580,7 +582,7 @@ export default function StudioPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-black text-blue-700 shadow-sm transition hover:bg-blue-50"
               >
                 <MessageCircle size={16} strokeWidth={2.2} />
-                카카오톡으로 체험판 받기
+                윈도우 변환 프로그램 체험판 받기
               </a>
               <a
                 href={TEL}
