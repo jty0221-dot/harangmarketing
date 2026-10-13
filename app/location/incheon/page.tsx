@@ -67,7 +67,7 @@ export const metadata: Metadata = {
 const REGIONS = [
   { name: "부평·계산", focus: "구도심 생활 상권 · 플레이스와 블로그 비중이 높다", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "송도·연수", focus: "신도시 · 검색 유입과 인스타 비중이 함께 높다", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
-  { name: "검단·원당", focus: "신규 입주가 이어지는 상권 · 초기 노출 선점이 유리하다", color: "bg-purple-50 border-purple-100 text-purple-700" },
+  { name: "검단·원당", focus: "신규 입주가 이어지는 상권 · 초기 매장 정보 정비가 필요하다", color: "bg-purple-50 border-purple-100 text-purple-700" },
   { name: "구월·남동", focus: "인천 중심 상권 · 학원·병의원 경쟁 밀도가 높다", color: "bg-green-50 border-green-100 text-green-700" },
 ];
 

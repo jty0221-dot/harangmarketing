@@ -154,15 +154,7 @@ export default function StudioPage() {
 
               {/* 실제 화면이 넘어가는 움짤 */}
               <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
-                <img
-                  src="/studio/demo-flow.gif"
-                  alt="하랑 스튜디오 사용 순서. 사진을 넣고 세탁 강도를 고르고 실행합니다"
-                  width={1000}
-                  height={633}
-                  loading="eager"
-                  decoding="async"
-                  className="block w-full"
-                />
+                <p className="p-6 text-sm leading-relaxed text-gray-700">기존 사진의 밝기와 크기를 조정하고, 촬영한 동영상에서 GIF와 사진을 추출합니다. 원본은 보존하고 결과물을 별도로 저장합니다.</p>
                 <div className="border-t border-gray-100 px-4 py-3 text-xs text-gray-500">
                   사진을 넣고, 강도를 고르고, 실행을 누르면 끝입니다
                 </div>
@@ -244,7 +236,7 @@ export default function StudioPage() {
                       </ul>
                     </div>
                     <div className={`bg-gray-50 p-4 md:p-5 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                      <img
+                      {f.shot && <img
                         src={`/studio/${f.shot}`}
                         alt={f.alt}
                         width={1500}
@@ -252,7 +244,7 @@ export default function StudioPage() {
                         loading="lazy"
                         decoding="async"
                         className="block w-full rounded-xl ring-1 ring-gray-200"
-                      />
+                      />}
                     </div>
                   </div>
                 </article>
@@ -451,8 +443,7 @@ export default function StudioPage() {
                     각 플랫폼의 기준은 공개되어 있지 않고 저희도 확인할 방법이 없습니다.
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-gray-700">
-                    다만 {STUDIO.trialCount}장이 1분 안에 끝난다는 것과 결과물이 서로 다른
-                    파일이라는 것, 이 두 가지는 프로그램이 직접 보여드립니다.
+                    사진의 밝기와 크기를 조정하고 GIF로 변환하는 기능을 체험판에서 직접 확인하세요.
                     무료 {STUDIO.trialCount}장으로 그 부분만 확인해 보시고 판단하시면 됩니다.
                   </p>
                 </div>

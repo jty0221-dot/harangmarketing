@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: [
     "네이버 플레이스 순위",
-    "플레이스 상위노출 사례",
+    "플레이스 정보 정비 사례",
     "업종별 플레이스 순위 사례",
     "청소업체 플레이스 마케팅",
     "카페 플레이스 순위",

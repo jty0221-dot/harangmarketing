@@ -55,7 +55,7 @@ const ABOUT_LD = [
     knowsLanguage: ["ko"],
     knowsAbout: [
       "네이버 플레이스 SEO",
-      "네이버 플레이스 상위 노출",
+      "네이버 플레이스 정보 정비",
       "소상공인 마케팅",
       "블로그 마케팅",
       "체험단 마케팅",
@@ -129,11 +129,11 @@ const PROMISES = [
 ];
 
 const SERVICES_LIST = [
-  { icon: MapPin, color: "from-blue-500 to-blue-700", title: "네이버 플레이스 SEO", items: ["SEO 최적화", "상위 노출", "순위 관리", "네이버 예약 연동 세팅"] },
-  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 상위 노출", "최상위 블로그 배포", "기자단 배포"] },
+  { icon: MapPin, color: "from-blue-500 to-blue-700", title: "네이버 플레이스 SEO", items: ["SEO 최적화", "정보 정비", "순위 계측", "네이버 예약 연동 세팅"] },
+  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 원고 작성·게시 보고", "블로그 원고 배포", "기자단 배포"] },
   { icon: Users, color: "from-blue-500 to-blue-700", title: "바이럴 마케팅", items: ["맘카페 입소문 마케팅", "체험단 모집 (실사용자 기반)", "지역 커뮤니티 바이럴"] },
-  { icon: AtSign, color: "from-blue-700 to-indigo-700", title: "SNS 마케팅", items: ["인스타그램 계정 육성", "인기 게시물 노출", "리그램", "하이라이트 세팅"] },
-  { icon: MapPin, color: "from-blue-600 to-blue-800", title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 리뷰 (실유저)", "카카오맵 상위 노출"] },
+  { icon: AtSign, color: "from-blue-700 to-indigo-700", title: "SNS 마케팅", items: ["인스타그램 계정 육성", "게시물 구성·발행", "리그램", "하이라이트 세팅"] },
+  { icon: MapPin, color: "from-blue-600 to-blue-800", title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 후기 확인·답글", "카카오맵 정보 정비"] },
   { icon: Coffee, color: "from-blue-500 to-indigo-600", title: "창업 지원", items: ["홈페이지형 블로그 제작", "로고·명함 디자인", "메뉴판 제작"] },
 ];
 

@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 const PAGE_TITLE = "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단";
-const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 상위 노출, 포토리뷰 확보로 손님이 예약 전에 보는 자리를 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 정보 정비, 실제 방문 후기 안내로 손님이 예약 전에 보는 자리를 채웁니다. 무료 상담 가능.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -34,7 +34,7 @@ const SERVICES = [
     icon: MapPin,
     color: "from-pink-500 to-rose-600",
     title: "플레이스 SEO",
-    desc: "헤어·네일·피부 키워드 최적화 · 지역 상위 노출",
+    desc: "헤어·네일·피부 키워드 최적화 · 지역·매장 정보 정비",
   },
   {
     icon: Camera,
@@ -46,7 +46,7 @@ const SERVICES = [
     icon: Star,
     color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
-    desc: "뷰티 체험단 모집 · 포토리뷰 확보 전략",
+    desc: "뷰티 체험단 모집 · 실제 방문 후기 안내 전략",
   },
   {
     icon: MessageSquare,

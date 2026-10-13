@@ -54,7 +54,7 @@ const FOOD_FACTS = [
  */
 const FOOD_PAGE_LD = webPageLd({
   path: "/services/restaurant",
-  name: "음식점·식당 마케팅 대행 | 네이버 플레이스 상위노출 전문",
+  name: "음식점·식당 마케팅 대행 | 네이버 플레이스 정보 정비·순위 계측",
   description: `음식점·식당 전문 마케팅. 플레이스 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_STORY_SP}방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
   dateModified: PAGE_UPDATED["/services/restaurant"],
 });
@@ -62,7 +62,7 @@ import Link from "next/link";
 import { ArrowRight, UtensilsCrossed, TrendingUp, Star, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "음식점마케팅 · 식당 마케팅 대행사 | 네이버 플레이스 상위노출",
+  title: "음식점마케팅 · 식당 마케팅 대행사 | 네이버 플레이스 정보 정비",
   description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅입니다. 네이버 플레이스 SEO, 블로그 체험단, 맘카페 바이럴을 하며 상권 진단은 0원입니다.",
   keywords: ["음식점 마케팅", "식당 마케팅 대행사", "맛집 마케팅", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {

@@ -51,7 +51,7 @@ const CAFE_FACTS = [
 ];
 
 const PAGE_TITLE = "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그";
-const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 상위 노출, 포토리뷰 확보, 블로그·인스타 바이럴로 손님이 카페를 고르는 자리를 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 블로그·인스타 바이럴로 손님이 카페를 고르는 자리를 채웁니다. 무료 상담 가능.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   keywords: ["카페 마케팅", "카페 플레이스 SEO", "카페 리뷰 마케팅", "베이커리 마케팅", "네이버 플레이스 카페"],
   openGraph: {
     title: "카페·베이커리 마케팅 | 하랑마케팅",
-    description: "플레이스 상위 노출부터 포토리뷰 확보까지. 카페 전문 마케팅 전략.",
+    description: "플레이스 정보 정비부터 실제 방문 후기 안내까지. 카페 전문 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/cafe",
     images: [ogImage()],
   },
@@ -70,13 +70,13 @@ const SERVICES = [
     icon: MapPin,
     color: "from-blue-500 to-blue-700",
     title: "플레이스 SEO",
-    desc: "카페 키워드 최적화 · 상위 노출 · 경쟁사 분석",
+    desc: "카페 키워드 최적화 · 정보 정비 · 경쟁사 분석",
   },
   {
     icon: Star,
     color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
-    desc: "음료·디저트 체험단 운영 · 포토리뷰 확보",
+    desc: "음료·디저트 체험단 운영 · 실제 방문 후기 안내",
   },
   {
     icon: MessageSquare,
@@ -148,7 +148,7 @@ export default function CafeLandingPage() {
               <span className="text-blue-400">이렇게 하면 됩니다</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-              네이버 플레이스 상위 노출부터 포토리뷰 확보까지.<br />
+              네이버 플레이스 정보 정비부터 실제 방문 후기 안내까지.<br />
               전국 카페 30곳 이상을 직접 진행하며 정리한 전략.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -176,7 +176,7 @@ export default function CafeLandingPage() {
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="카페 마케팅은 어떻게 해야 효과가 있나요?"
-          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. ${CAFE_STORY} 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 인스타그램 비주얼 콘텐츠 세 가지입니다. 손님이 방문 전에 매장과 메뉴를 확인할 수 있게 자료를 정리합니다. ${CAFE_STORY} 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
           facts={CAFE_FACTS}
         />
 

@@ -2,7 +2,7 @@
 export const PUBLIC_SERVICES = [
   { id: 'place', title: '네이버 플레이스 SEO', href: '/services/place', icon: 'Search', desc: '매장 정보와 키워드를 정리하고 순위 변화를 계측합니다.' },
   { id: 'blog', title: '블로그 마케팅', href: '/services#blog', icon: 'BookOpen', desc: '업종과 지역에 맞는 원고를 작성하고 블로그를 관리합니다.' },
-  { id: 'cafe-distribution', title: '최적화 블로그 · 카페 배포', href: '/services/cafe-distribution', icon: 'Megaphone', desc: '블로그 기자단과 지역 카페에 맞춰 콘텐츠를 배포합니다.' },
+  { id: 'cafe-distribution', title: '블로그 원고 · 카페 게시 대행', href: '/services/cafe-distribution', icon: 'Megaphone', desc: '블로그 기자단과 지역 카페에 맞춰 콘텐츠를 배포합니다.' },
   { id: 'review', title: '리뷰 마케팅 · 체험단', href: '/services/review', icon: 'Users', desc: '체험단 모집과 방문 확인, 리뷰 링크 회수를 관리합니다.' },
   { id: 'sns', title: '인스타그램 마케팅', href: '/services/instagram', icon: 'AtSign', desc: '피드와 릴스 콘텐츠부터 계정 운영까지 안내합니다.' },
   { id: 'photo', title: '매장 사진촬영', href: '/services/photo', icon: 'Camera', desc: '음식점 메뉴와 시설 공간을 촬영합니다. 구성별 가격과 업체별 사진을 확인하세요.' },

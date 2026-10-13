@@ -4,8 +4,8 @@ import { ORG_ID, LOCAL_ID, breadcrumbLd, ogImage } from "../../lib/seo";
 
 export const metadata: Metadata = {
   title: "학원·교육 마케팅 대행 | 맘카페 · 블로그 · 플레이스 SEO",
-  description: "학원·교육기관 전문 마케팅. 맘카페 입소문, 홈페이지형 블로그, 지역 키워드 상위노출을 대표가 직접 진행합니다. 무료 상담 0원.",
-  keywords: ["학원 마케팅", "교육 마케팅", "학원 블로그 마케팅", "학원 맘카페 마케팅", "학원 플레이스 상위노출", "학원 상위노출", "교습소 마케팅", "학원 광고"],
+  description: "학원·교육기관 전문 마케팅. 맘카페 입소문, 홈페이지형 블로그, 지역 키워드 정보 정비을 대표가 직접 진행합니다. 무료 상담 0원.",
+  keywords: ["학원 마케팅", "교육 마케팅", "학원 블로그 마케팅", "학원 맘카페 마케팅", "학원 플레이스 정보 정비", "학원 정보 정비", "교습소 마케팅", "학원 광고"],
   alternates: { canonical: "https://www.harangmarketing.com/services/academy" },
   openGraph: {
     title: "학원·교육 마케팅 대행 | 하랑마케팅",

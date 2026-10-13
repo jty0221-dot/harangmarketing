@@ -82,7 +82,7 @@ export default function ReferenceClient({
             {cat.crumb}
           </span>
           <span className="text-[13px] md:text-[14px]" style={{ color: "#8f9cba" }}>
-            【 카페 상위 노출 배포 】 레퍼런스
+            【 카페 검색 결과 배포 】 레퍼런스
           </span>
         </div>
         <p className="mx-auto mt-2 w-full max-w-[1080px] text-[13px] leading-relaxed md:text-[14px]" style={{ color: "var(--cd-on-dark)" }}>

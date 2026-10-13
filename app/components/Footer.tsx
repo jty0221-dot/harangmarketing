@@ -43,10 +43,10 @@ export default function Footer() {
               신규 출시
             </span>
             <p className="text-[15px] font-black text-white md:text-[17px]">
-              최적화 블로그 · 카페 배포
+              블로그 원고 · 카페 게시 대행
             </p>
             <p className="text-[13px] text-white md:text-[14px]">
-              블로그 탭 + 카페 탭 동시 노출 · 패키지 {won(PRICE_MIN)}부터
+              원고 작성과 게시 URL 보고 · 패키지 {won(PRICE_MIN)}부터
             </p>
           </div>
           <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-black transition-transform group-hover:translate-x-0.5 md:text-[14px]"

@@ -1300,7 +1300,7 @@ export default function HomePage() {
                   <Search size={10} strokeWidth={2.5} /> 10년 노하우
                 </span>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">
-                  네이버 플레이스 상위 노출,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
+                  네이버 플레이스 정보 정비,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   많은 분들이 &lsquo;사진만 예쁘게 올리면 되는 거 아닌가요?&rsquo;라고 물어보세요.
@@ -1308,9 +1308,9 @@ export default function HomePage() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { rank: "1위", factor: "리뷰 수 · 최신성", desc: "리뷰가 많고 최근에 달린 매장이 위에 자주 보입니다. 답글까지 함께 챙깁니다." },
+                    { rank: "1위", factor: "리뷰 수 · 최신성", desc: "실제 방문자의 후기를 확인하고 문의와 답글을 챙깁니다. 리뷰 작성이나 평가를 강요하지 않습니다." },
                     { rank: "2위", factor: "키워드 일치도", desc: "업체명 · 카테고리 · 소개글에 검색어와 맞는 키워드가 들어 있는지 봅니다." },
-                    { rank: "3위", factor: "저장수 · 클릭률", desc: "저장과 클릭이 쌓인 매장이 위에 자주 보입니다." },
+                    { rank: "3위", factor: "문의 동선 · 정보 정확성", desc: "전화와 예약 링크가 작동하고 영업시간과 주차 안내가 실제 매장과 맞는지 확인합니다." },
                   ].map((f) => (
                     <div key={f.rank} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                       <div className="flex items-center justify-between mb-2">

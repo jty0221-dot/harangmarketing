@@ -45,7 +45,7 @@ const TABS: { key: Tab; label: string; icon: React.ReactNode; desc: string }[] =
   { key: "전체",   label: "전체",   icon: <LayoutGrid  size={14} strokeWidth={2.5} />, desc: "모든 마케팅 인사이트" },
   { key: "칼럼",   label: "칼럼",   icon: <Lightbulb   size={14} strokeWidth={2.5} />, desc: "마케팅 전략 & 트렌드 분석" },
   { key: "블로그", label: "블로그", icon: <FileText    size={14} strokeWidth={2.5} />, desc: "블로그 SEO & 콘텐츠 운영" },
-  { key: "플레이스",label:"플레이스",icon: <MapPin     size={14} strokeWidth={2.5} />, desc: "네이버 플레이스 상위노출 전략" },
+  { key: "플레이스",label:"플레이스",icon: <MapPin     size={14} strokeWidth={2.5} />, desc: "네이버 플레이스 정보 정비 전략" },
   { key: "인스타", label: "인스타", icon: <Camera     size={14} strokeWidth={2.5} />, desc: "인스타그램 & SNS 마케팅" },
   { key: "그외",   label: "그외",   icon: <BookOpen    size={14} strokeWidth={2.5} />, desc: "업종별 마케팅 사례 모음" },
 ];

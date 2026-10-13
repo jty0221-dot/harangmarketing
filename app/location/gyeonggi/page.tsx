@@ -41,7 +41,7 @@ const GYEONGGI_LD = {
     "postalCode": SITE.address.postalCode,
     "addressCountry": SITE.address.country,
   },
-  "description": "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 네이버 플레이스 상위노출, 리뷰 확보, SNS 운영까지.",
+  "description": "경기도 카페·음식점·미용·병원·학원 맞춤 마케팅. 일산·분당·수원·고양·성남·화성 지역 특화 전략으로 네이버 플레이스 정보 정비, 실제 이용 후기 안내, SNS 운영까지.",
   "areaServed": [
     { "@type": "State", "name": "경기도" },
     { "@type": "City", "name": "고양시" },
@@ -93,7 +93,7 @@ const REGIONS = [
   { name: "고양·일산", focus: "요식업 밀집 · 플레이스 리뷰 경쟁이 치열하다", color: "bg-slate-50 border-slate-100 text-slate-700" },
   { name: "안양·평촌", focus: "학원가·병의원 · 지역 커뮤니티 유입 비중이 크다", color: "bg-blue-50 border-blue-100 text-blue-700" },
   { name: "용인·수지", focus: "주거 신도시 · 재방문 고객 관리가 핵심이다", color: "bg-blue-50 border-blue-100 text-blue-700" },
-  { name: "파주·김포", focus: "신도시가 커지는 중 · 초기 노출 선점이 유리하다", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
+  { name: "파주·김포", focus: "신도시가 커지는 중 · 초기 매장 정보 정비가 필요하다", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
 ];
 
 const RESULTS = [

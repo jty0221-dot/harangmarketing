@@ -17,7 +17,7 @@ const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
   { icon: BarChart3, label: "콘텐츠 포화도", desc: "블로그·SNS 노출 공백 확인" },
-  { icon: Users, label: "경쟁사 3곳 비교", desc: "상위 노출 경쟁사 전략 분석" },
+  { icon: Users, label: "경쟁사 3곳 비교", desc: "정보 정비 경쟁사 전략 분석" },
   { icon: TrendingUp, label: "목표 기간 산정", desc: "이 상권이 어느 정도 걸리는 자리인지" },
 ];
 

@@ -177,7 +177,7 @@ export default function SeoulPage() {
                   icon: Star,
                   color: "from-blue-600 to-orange-600",
                   title: "리뷰 질 관리",
-                  desc: "서울 소비자는 리뷰 내용을 꼼꼼히 봅니다. 단순 별점이 아닌 신뢰도 높은 텍스트 리뷰 확보 전략이 필요합니다.",
+                  desc: "서울 소비자는 리뷰 내용을 꼼꼼히 봅니다. 단순 별점이 아닌 신뢰도 높은 텍스트 실제 이용 후기 안내 전략이 필요합니다.",
                 },
               ].map((s) => (
                 <div key={s.title} className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
