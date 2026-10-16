@@ -6,6 +6,7 @@ import { SITE, ORG_ID, LOCAL_ID, PAGE_UPDATED, faqLd, breadcrumbLd, webPageLd, t
 import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-notice";
 import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import CafeNoticeReopen from "../../components/CafeNoticeReopen";
+import { SEARCH_CARE_OFFER } from "../../lib/search-care-offer";
 import {
   PACKAGES,
   PACKAGE_SIZES,
@@ -574,7 +575,7 @@ export default function CafeDistributionPage() {
               구성과 가격
             </h2>
             <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
-              금액을 먼저 공개합니다. 10건 · 30건 패키지는 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다. 노출기간 약정의 신규 접수는 중단했습니다.
+              금액을 먼저 공개합니다. 10건 · 30건 패키지는 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다. 통합검색 월 관리는 키워드마다 단가가 달라 키워드를 받은 뒤 안내합니다.
               10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
               원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
             </p>
@@ -693,11 +694,12 @@ export default function CafeDistributionPage() {
 
         <section className="bg-white py-10" style={{ borderBottom: "1px solid var(--cd-border)" }}>
           <div className={INNER}>
-            <h2 className="text-xl font-bold" style={{ color: "var(--cd-ink)" }}>노출기간 약정의 신규 접수를 중단합니다</h2>
+            <h2 className="text-xl font-bold" style={{ color: "var(--cd-ink)" }}>건수 패키지와 통합검색 월 관리, 두 가지로 진행합니다</h2>
             <p className="mt-4 text-sm leading-relaxed" style={{ color: "var(--cd-body-2)" }}>
-              검색 결과에 일정 기간 글이 보이도록 약정하는 상품은 신규로 받지 않습니다.
-              원고 작성과 게시가 허용된 채널의 게시 대행만 확정한 건수와 작업 범위로 안내합니다.
-              기존 고객의 기간 연장과 이행 조건은 개별 계약을 확인해 처리합니다.
+              건수 패키지는 위 표대로 정한 건수의 원고를 쓰고 게시한 뒤 게시 주소를 보고합니다.
+              통합검색 월 관리는 키워드 하나를 25일 동안 매일 확인해 기록으로 보고하고, 기록을 확인하신 뒤 정산합니다.
+              월 {SEARCH_CARE_OFFER.price}이고 키워드마다 진행 가능 여부와 단가를 먼저 확인합니다.
+              검색 결과의 위치는 네이버가 정합니다. 몇 위에 오른다고 약속드리지 않습니다.
             </p>
           </div>
         </section>
