@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { X, Search, Check, MessageCircle } from "lucide-react";
 import { SITE } from "../lib/seo";
-import { noticeOccupies } from "../lib/cafe-notice";
+import { noticeOccupies, NOTICE_CLOSED_EVENT, NOTICE_OPEN_EVENT } from "../lib/cafe-notice";
 import {
   SEARCH_CARE_OFFER as O,
   SEARCH_CARE_STORAGE_KEY,
@@ -17,29 +17,63 @@ import {
  *
  * 자리는 카페 운영 공지(CafeNoticePopup)와 같은 상자를 쓴다. 하단 상담 바(모바일)와
  * 오른쪽 아래 플로팅 버튼 줄(데스크톱)을 덮지 않는 자리다.
- * 카페 배포 페이지에서 운영 공지가 아직 떠 있으면 이 팝업은 뜨지 않는다. 두 장이 겹치면
- * 뒤 카드가 앞 카드를 통째로 덮는다. 공지를 닫은 뒤 다음 방문부터 이 팝업이 뜬다.
+ * 카페 배포 페이지(레퍼런스 포함)에서는 운영 공지와 같이 뜬다 (2026-10-16 (금) 대표 지시
+ * 「레퍼런스에도 같이 뜨게 해줘 이전공지도 마찬가지고」).
+ *   · 넓은 화면(1100px 이상) : 공지는 오른쪽, 이 안내는 왼쪽 아래에 나란히 선다
+ *   · 좁은 화면 : 두 장이 같은 자리라 겹친다. 공지를 닫으면(NOTICE_CLOSED_EVENT) 이어서 뜬다
  *
  * X 는 이번 화면에서만 닫고, 「오늘은 그만 보기」 는 한국 시간 자정까지 다시 띄우지 않는다.
  * 문구와 금액은 app/lib/search-care-offer.ts 에 있다. 이 파일에는 문장을 적지 않는다.
  */
+const SIDE_BY_SIDE_QUERY = "(min-width: 1100px)";
+
 export default function SearchCarePopup() {
   const pathname = usePathname() || "";
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [left, setLeft] = useState(false);
   const onPath = searchCareShowsOn(pathname);
 
   useEffect(() => {
     if (!onPath) return;
-    if (noticeOccupies(pathname)) return;
     try {
       if (localStorage.getItem(SEARCH_CARE_STORAGE_KEY) === todayKst()) return;
     } catch {
       /* 저장소를 못 쓰는 브라우저. 그냥 띄운다 */
     }
-    const timer = setTimeout(() => setOpen(true), 1200);
-    return () => clearTimeout(timer);
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const show = (delay: number) => {
+      timer = setTimeout(() => setOpen(true), delay);
+    };
+
+    if (!noticeOccupies(pathname)) {
+      setLeft(false);
+      show(1200);
+      return () => clearTimeout(timer);
+    }
+    if (window.matchMedia(SIDE_BY_SIDE_QUERY).matches) {
+      // 공지가 오른쪽을 쓰니 이 안내는 왼쪽에 선다
+      setLeft(true);
+      show(1200);
+      return () => clearTimeout(timer);
+    }
+    // 좁은 화면 : 공지를 닫으면 같은 자리에 이어서 뜬다
+    setLeft(false);
+    const onClosed = () => show(250);
+    window.addEventListener(NOTICE_CLOSED_EVENT, onClosed, { once: true });
+    return () => {
+      window.removeEventListener(NOTICE_CLOSED_EVENT, onClosed);
+      clearTimeout(timer);
+    };
   }, [onPath, pathname]);
+
+  // 「카페 목록 다시 보기」 로 공지를 다시 열면, 같은 자리를 쓰는 좁은 화면에서는 이 안내가 비켜 준다
+  useEffect(() => {
+    if (left) return;
+    const yield_ = () => setOpen(false);
+    window.addEventListener(NOTICE_OPEN_EVENT, yield_);
+    return () => window.removeEventListener(NOTICE_OPEN_EVENT, yield_);
+  }, [left]);
 
   const close = (rememberToday: boolean) => {
     if (rememberToday) {
@@ -61,7 +95,11 @@ export default function SearchCarePopup() {
       onKeyDown={(e) => {
         if (e.key === "Escape" && !e.nativeEvent.isComposing) close(false);
       }}
-      className="pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 md:right-24 sm:top-32 sm:bottom-24 sm:w-[420px]"
+      className={
+        left
+          ? "pointer-events-none fixed z-[9998] left-6 top-32 bottom-24 flex w-[420px] items-end"
+          : "pointer-events-none fixed z-[9998] left-4 right-4 top-28 bottom-44 flex items-end sm:left-auto sm:right-6 md:right-24 sm:top-32 sm:bottom-24 sm:w-[420px]"
+      }
       style={{
         animation: closing
           ? "haOfferOut 0.18s ease both"

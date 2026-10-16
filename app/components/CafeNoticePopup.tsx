@@ -7,6 +7,7 @@ import { Megaphone, X, ArrowRight, ArrowLeft } from "lucide-react";
 import {
   CAFE_NOTICE,
   NOTICE_STORAGE_KEY,
+  NOTICE_CLOSED_EVENT,
   NOTICE_OPEN_EVENT,
   CAFE_PAGES,
   CAFE_GROUPS_TOTAL,
@@ -16,6 +17,7 @@ import {
   noticeShowsOn,
 } from "../lib/cafe-notice";
 import { won } from "../lib/cafe-distribution";
+import { todayKst } from "../lib/search-care-offer";
 
 /**
  * 대표카페 운영 공지 카드
@@ -75,7 +77,7 @@ export default function CafeNoticePopup() {
     // 시크릿 창이나 저장소 차단 설정에서는 읽기 자체가 예외를 던진다.
     // 기록을 못 읽는 것과 안 읽은 것은 다르지만, 공지는 한 번 더 뜨는 쪽이 낫다.
     try {
-      if (localStorage.getItem(NOTICE_STORAGE_KEY)) return;
+      if (localStorage.getItem(NOTICE_STORAGE_KEY) === todayKst()) return;
     } catch {
       /* 저장소를 못 쓰는 브라우저. 그냥 띄운다 */
     }
@@ -97,12 +99,16 @@ export default function CafeNoticePopup() {
 
   const dismiss = () => {
     try {
-      localStorage.setItem(NOTICE_STORAGE_KEY, "1");
+      localStorage.setItem(NOTICE_STORAGE_KEY, todayKst());
     } catch {
       /* 못 적어도 닫히기는 해야 한다 */
     }
     setClosing(true);
-    setTimeout(() => setOpen(false), 180);
+    setTimeout(() => {
+      setOpen(false);
+      // 같은 자리를 기다리던 통합검색 안내가 이어서 뜬다 (좁은 화면)
+      window.dispatchEvent(new Event(NOTICE_CLOSED_EVENT));
+    }, 180);
   };
 
   /** 장을 넘길 때 본문을 맨 위로 되돌린다. 2장 중간에서 시작하면 첫 줄을 놓친다 */

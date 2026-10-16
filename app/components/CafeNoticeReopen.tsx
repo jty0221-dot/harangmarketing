@@ -6,7 +6,7 @@ import { NOTICE_OPEN_EVENT } from "../lib/cafe-notice";
 /**
  * 카페 목록 다시 보기 버튼 (2026-09-20 · 요청 69)
  *
- * 대표카페 운영 변경 안내는 한 번 닫으면 다시 뜨지 않는다 (CafeNoticePopup · localStorage).
+ * 대표카페 운영 변경 안내는 닫으면 그날(한국 시간 자정까지)은 다시 뜨지 않는다 (CafeNoticePopup · localStorage).
  * 카페 배포 페이지의 카드에는 카페 이름을 찍지 않으므로 (2026-09-09 (수) 대표 지시),
  * 안내를 닫은 사람이 목록을 다시 보려면 길이 없었다. 이 버튼이 NOTICE_OPEN_EVENT 를 보내면
  * SiteChrome 이 항상 올려 두는 CafeNoticePopup 이 첫 장부터 다시 연다.
