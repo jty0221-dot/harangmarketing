@@ -15,7 +15,7 @@ import { withVat } from "./vat";
 
    구성은 사는 것과 파는 것을 같게 둔다 — 10건 · 30건 × 최블형 · 혼합형 · 카페형.
    가격은 두 열이다 : 원고 작성을 맡기는 경우(withCopy) · 원고를 직접 주는 경우(withoutCopy).
-   금액은 부가세 포함으로 적는다 (2026-10-09 (금) 대표 결정). withVat() 안 숫자가 공급가 원본이다.
+   금액은 부가세 포함으로 적는다 (2026-10-09 (금) 대표 결정). 2026-10-16 (금) 부터 건당 가격(UNIT_PRICE) × 건수로 만든다.
    이벤트가 · 회차 · 잔여 슬롯 같은 장치는 두지 않는다 — 화면에 적힌 숫자는 대표가 한 약속이 된다.
    ───────────────────────────────────────────────────────── */
 export type PackageSize = 10 | 30;
@@ -30,23 +30,45 @@ export interface CafePackage {
   blog: number;
   /** 카페 건수 */
   cafe: number;
-  /** 원고 작성 포함 가격 (원, 부가세 포함 · 괄호 안 숫자가 공급가) */
+  /** 원고 작성 포함 가격 (원, 부가세 포함) */
   withCopy: number;
-  /** 원고를 직접 주는 경우 가격 (원, 부가세 포함 · 괄호 안 숫자가 공급가) */
+  /** 원고를 직접 주는 경우 가격 (원, 부가세 포함) */
   withoutCopy: number;
   /** 상담에서 먼저 권하는 구성 */
   featured?: boolean;
 }
 
+/**
+ * 건당 가격 (원 · 원고 작성 포함 · 부가세 포함) · 2026-10-16 (금) 대표 결정 「이걸로 반영」
+ *
+ * 10건과 30건에 같은 마진을 얹으면 30건이 싼 정도가 실행사 할인율(5~8%)과 같아져
+ * 큰 묶음을 살 이유가 없었다 (대표 지적 「더 많은 걸 구매할 때 의미가 없을꺼」).
+ * 그래서 10건은 지금 가격 그대로(마진 약 20%) 두고, 30건은 마진을 약 12~13% 로 낮춰 건당 단가를 내렸다.
+ * 패키지 금액은 건당 가격 × 건수다. 화면에 적힌 계산이 곧 견적이다.
+ * 원가 대조와 마진 계산은 본부장\홈페이지\전달_2026-10-16_민수→준수_카페배포_가격개편.md
+ */
+export const UNIT_PRICE: Record<PackageSize, { blog: number; cafe: number }> = {
+  10: { blog: 37000, cafe: 66000 },
+  30: { blog: 33000, cafe: 58000 },
+};
+
+/** 원고를 직접 주실 때 건당 빠지는 금액 (원 · 부가세 포함). 실행가가 건당 5,000원 줄어드는 몫이다 */
+export const COPY_DISCOUNT_PER_ITEM = 6000;
+
+function pkg(size: PackageSize, kind: PackageKind, blog: number, cafe: number, featured?: boolean): CafePackage {
+  const withCopy = blog * UNIT_PRICE[size].blog + cafe * UNIT_PRICE[size].cafe;
+  return { size, kind, blog, cafe, withCopy, withoutCopy: withCopy - size * COPY_DISCOUNT_PER_ITEM, ...(featured ? { featured } : {}) };
+}
+
 export const PACKAGES: CafePackage[] = [
-  { size: 10, kind: "최블형", blog: 10, cafe: 0,  withCopy: withVat(336000), withoutCopy: withVat(276000) },
-  { size: 10, kind: "혼합형", blog: 5,  cafe: 5,  withCopy: withVat(456000), withoutCopy: withVat(396000), featured: true },
-  { size: 10, kind: "카페형", blog: 0,  cafe: 10, withCopy: withVat(600000), withoutCopy: withVat(540000) },
-  { size: 30, kind: "최블형", blog: 30, cafe: 0,  withCopy: withVat(960000), withoutCopy: withVat(780000) },
-  { size: 30, kind: "혼합형", blog: 20, cafe: 10, withCopy: withVat(1200000), withoutCopy: withVat(1020000) },
-  { size: 30, kind: "혼합형", blog: 15, cafe: 15, withCopy: withVat(1260000), withoutCopy: withVat(1080000) },
-  { size: 30, kind: "혼합형", blog: 10, cafe: 20, withCopy: withVat(1440000), withoutCopy: withVat(1260000), featured: true },
-  { size: 30, kind: "카페형", blog: 0,  cafe: 30, withCopy: withVat(1680000), withoutCopy: withVat(1500000) },
+  pkg(10, "최블형", 10, 0),
+  pkg(10, "혼합형", 5, 5, true),
+  pkg(10, "카페형", 0, 10),
+  pkg(30, "최블형", 30, 0),
+  pkg(30, "혼합형", 20, 10),
+  pkg(30, "혼합형", 15, 15),
+  pkg(30, "혼합형", 10, 20, true),
+  pkg(30, "카페형", 0, 30),
 ];
 
 export const PACKAGE_SIZES: PackageSize[] = [10, 30];
@@ -131,14 +153,15 @@ export const CAFE_HOW: { title: string; desc: string }[] = [
 ];
 
 /** 단가 개정 시점 · 사유 — 히어로 · 달라진 점 · 가격표 안내 · FAQ · 메타 설명이 같은 문장을 쓴다 (2026-09-08 (화) 대표 지시 · 같은 날 사유를 경쟁 심화 → 물가 상승 → 네이버 로직 변화 순으로 바꿈 · 금액은 그대로) */
-export const PRICE_REVISED_AT = "2026년 9월";
+export const PRICE_REVISED_AT = "2026년 10월";
 export const PRICE_REVISION_REASON =
-  "원고 작성과 게시 규정 확인, 실행 보고에 필요한 작업 범위를 단가에 반영합니다. 그 작업 비용을 반영해 단가를 조정했습니다.";
+  "건당 가격을 기준으로 단가를 다시 정리했습니다. 30건은 건당 가격을 낮춰 많이 맡기실수록 덜 드시게 했습니다.";
 
 export const PRICE_NOTE = [
   `${PRICE_REVISED_AT}에 개정한 단가입니다.`,
   "표기 금액은 부가세 포함입니다.",
-  "원고를 직접 주시면 오른쪽 금액이 적용됩니다.",
+  "패키지 금액은 건당 가격 × 건수입니다. 30건은 건당 가격이 더 낮습니다.",
+  `원고를 직접 주시면 건당 ${won(COPY_DISCOUNT_PER_ITEM)}씩 빠진 오른쪽 금액이 적용됩니다.`,
   "카페만 진행할 때는 카페 등급별 건당 단가가 적용됩니다.",
 ];
 
@@ -149,8 +172,8 @@ export const PRICE_NOTE = [
    시작가만 적는다. 금액은 지역 · 키워드마다 다르므로 상담에서 확정한다.
    ───────────────────────────────────────────────────────── */
 
-/** 월 단위 진행 시작가 (원 · 월 · 부가세 포함 · 괄호 안 숫자가 공급가) */
-export const MONTHLY_MIN = withVat(396000);
+/** 월 단위 진행 시작가 (원 · 월 · 부가세 포함) · 10건 혼합형을 원고 직접 제공으로 진행하는 금액과 같다 */
+export const MONTHLY_MIN = (PACKAGES.find((p) => p.size === 10 && p.kind === "혼합형") ?? PACKAGES[0]).withoutCopy;
 
 export interface MonthlyGroup {
   /** 묶음 이름. 화면에는 앞에 '지역 + ' 를 붙여 보여준다 */
@@ -217,8 +240,8 @@ export const CAFE_FAQ = [
     a: `같은 구성에서 10건은 ${won(copyDiscount(10))}, 30건은 ${won(copyDiscount(30))}이 내려갑니다. 초안이 이미 있거나 직접 쓰시는 대표님께 맞습니다. 카페별 게시 형식에 맞춘 편집은 그대로 하랑마케팅이 합니다.`,
   },
   {
-    q: "가격이 전보다 올랐는데 이유가 있나요?",
-    a: `원고 작성과 게시 규정 확인, 실행 보고에 필요한 작업 범위를 단가에 반영합니다. ${PRICE_REVISED_AT}부터 그 작업 비용을 반영해 단가를 조정했습니다. 대신 원고를 직접 주시면 10건 ${won(copyDiscount(10))}, 30건 ${won(copyDiscount(30))}이 내려가고, 카페만 필요하면 등급별 단건 단가로 진행할 수 있습니다. 표에 적힌 금액이 그대로 견적 기준입니다.`,
+    q: "10건과 30건은 건당 가격이 왜 다른가요?",
+    a: `${PRICE_REVISED_AT}부터 건당 가격으로 정리했고, 많이 맡기실수록 건당 가격을 낮췄습니다. 최블은 10건 패키지 건당 ${won(UNIT_PRICE[10].blog)} · 30건 패키지 건당 ${won(UNIT_PRICE[30].blog)}, 카페는 10건 건당 ${won(UNIT_PRICE[10].cafe)} · 30건 건당 ${won(UNIT_PRICE[30].cafe)}입니다. 원고를 직접 주시면 건당 ${won(COPY_DISCOUNT_PER_ITEM)}씩 빠지고, 카페만 필요하면 등급별 단건 단가로 진행할 수 있습니다. 표에 적힌 금액이 그대로 견적 기준입니다.`,
   },
   {
     q: "수량을 나눠서 진행할 수 있나요?",
