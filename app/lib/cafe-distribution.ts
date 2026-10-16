@@ -8,7 +8,6 @@
  * 가격 갱신: 2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS
  */
 
-import { withVat } from "./vat";
 import { SEARCH_CARE_OFFER } from "./search-care-offer";
 
 /* ─────────────────────────────────────────────────────────
@@ -16,7 +15,7 @@ import { SEARCH_CARE_OFFER } from "./search-care-offer";
 
    구성은 사는 것과 파는 것을 같게 둔다 — 10건 · 30건 × 최블형 · 혼합형 · 카페형.
    가격은 두 열이다 : 원고 작성을 맡기는 경우(withCopy) · 원고를 직접 주는 경우(withoutCopy).
-   금액은 부가세 포함으로 적는다 (2026-10-09 (금) 대표 결정). 2026-10-16 (금) 부터 건당 가격(UNIT_PRICE) × 건수로 만든다.
+   금액은 부가세 별도(공급가)로 적는다 (2026-10-16 (금) 대표 결정 「전부 부가세 미포함 기준으로 작성해」). 2026-10-16 (금) 부터 건당 가격(UNIT_PRICE) × 건수로 만든다.
    이벤트가 · 회차 · 잔여 슬롯 같은 장치는 두지 않는다 — 화면에 적힌 숫자는 대표가 한 약속이 된다.
    ───────────────────────────────────────────────────────── */
 export type PackageSize = 10 | 30;
@@ -31,16 +30,16 @@ export interface CafePackage {
   blog: number;
   /** 카페 건수 */
   cafe: number;
-  /** 원고 작성 포함 가격 (원, 부가세 포함) */
+  /** 원고 작성 포함 가격 (원, 부가세 별도) */
   withCopy: number;
-  /** 원고를 직접 주는 경우 가격 (원, 부가세 포함) */
+  /** 원고를 직접 주는 경우 가격 (원, 부가세 별도) */
   withoutCopy: number;
   /** 상담에서 먼저 권하는 구성 */
   featured?: boolean;
 }
 
 /**
- * 건당 가격 (원 · 원고 작성 포함 · 부가세 포함) · 2026-10-16 (금) 대표 결정 「이걸로 반영」
+ * 건당 가격 (원 · 원고 작성 포함 · 부가세 별도) · 2026-10-16 (금) 대표 결정 「이걸로 반영」
  *
  * 10건과 30건에 같은 마진을 얹으면 30건이 싼 정도가 실행사 할인율(5~8%)과 같아져
  * 큰 묶음을 살 이유가 없었다 (대표 지적 「더 많은 걸 구매할 때 의미가 없을꺼」).
@@ -53,7 +52,7 @@ export const UNIT_PRICE: Record<PackageSize, { blog: number; cafe: number }> = {
   30: { blog: 33000, cafe: 58000 },
 };
 
-/** 원고를 직접 주실 때 건당 빠지는 금액 (원 · 부가세 포함). 실행가가 건당 5,000원 줄어드는 몫이다 */
+/** 원고를 직접 주실 때 건당 빠지는 금액 (원 · 부가세 별도). 실행가가 건당 5,000원 줄어드는 몫이다 */
 export const COPY_DISCOUNT_PER_ITEM = 6000;
 
 function pkg(size: PackageSize, kind: PackageKind, blog: number, cafe: number, featured?: boolean): CafePackage {
@@ -105,7 +104,7 @@ const BLOG10 = PACKAGES.find((p) => p.size === 10 && p.kind === "최블형") ?? 
 export const BLOG_UNIT_WITH_COPY = unitPrice(BLOG10.withCopy, BLOG10.size);
 export const BLOG_UNIT_WITHOUT_COPY = unitPrice(BLOG10.withoutCopy, BLOG10.size);
 
-/* 카페만 단건으로 진행할 때 — 카페 등급별 건당 단가 (원, 부가세 포함 · 괄호 안 숫자가 공급가) */
+/* 카페만 단건으로 진행할 때 — 카페 등급별 건당 단가 (원, 부가세 별도) */
 export interface CafeTier {
   grade: string;
   desc: string;
@@ -115,13 +114,13 @@ export interface CafeTier {
 }
 
 export const CAFE_TIERS: CafeTier[] = [
-  { grade: "지역 · 주제 카페", desc: "지역과 관심사로 모인 카페. 동네 상권 키워드와 맞습니다.", price: withVat(24000), topics: ["인테리어", "청소", "수리", "여행", "셀프 피부관리", "생활 정보"] },
-  { grade: "리뷰 · 문화 카페", desc: "맛집과 문화 후기가 모이는 카페. 후기형 원고와 맞습니다.", price: withVat(36000), topics: ["맛집 후기", "카페 후기", "문화 후기"] },
-  { grade: "대형 카페", desc: "그 주제에서 회원이 많고 매일 새 글이 올라오는 대표 카페. 핵심 키워드 한 건을 크게 올릴 때 씁니다.", price: withVat(60000), topics: ["결혼 준비", "지역 맘카페", "쇼핑 정보", "취미", "문화"] },
+  { grade: "지역 · 주제 카페", desc: "지역과 관심사로 모인 카페. 동네 상권 키워드와 맞습니다.", price: 24000, topics: ["인테리어", "청소", "수리", "여행", "셀프 피부관리", "생활 정보"] },
+  { grade: "리뷰 · 문화 카페", desc: "맛집과 문화 후기가 모이는 카페. 후기형 원고와 맞습니다.", price: 36000, topics: ["맛집 후기", "카페 후기", "문화 후기"] },
+  { grade: "대형 카페", desc: "그 주제에서 회원이 많고 매일 새 글이 올라오는 대표 카페. 핵심 키워드 한 건을 크게 올릴 때 씁니다.", price: 60000, topics: ["결혼 준비", "지역 맘카페", "쇼핑 정보", "취미", "문화"] },
 ];
 
 /** 카페 단건에 원고 작성까지 맡길 때 건당 추가 */
-export const CAFE_COPY_FEE = withVat(6000);
+export const CAFE_COPY_FEE = 6000;
 
 /** 카페 단건 가장 낮은 단가 */
 export const CAFE_TIER_MIN = Math.min(...CAFE_TIERS.map((t) => t.price));
@@ -160,7 +159,7 @@ export const PRICE_REVISION_REASON =
 
 export const PRICE_NOTE = [
   `${PRICE_REVISED_AT}에 개정한 단가입니다.`,
-  "표기 금액은 부가세 포함입니다.",
+  "표기 금액은 부가세 별도입니다.",
   "패키지 금액은 건당 가격 × 건수입니다. 30건은 건당 가격이 더 낮습니다.",
   `원고를 직접 주시면 건당 ${won(COPY_DISCOUNT_PER_ITEM)}씩 빠진 오른쪽 금액이 적용됩니다.`,
   "카페만 진행할 때는 카페 등급별 건당 단가가 적용됩니다.",
@@ -173,7 +172,7 @@ export const PRICE_NOTE = [
    시작가만 적는다. 금액은 지역 · 키워드마다 다르므로 상담에서 확정한다.
    ───────────────────────────────────────────────────────── */
 
-/** 월 단위 진행 시작가 (원 · 월 · 부가세 포함) · 10건 혼합형을 원고 직접 제공으로 진행하는 금액과 같다 */
+/** 월 단위 진행 시작가 (원 · 월 · 부가세 별도) · 10건 혼합형을 원고 직접 제공으로 진행하는 금액과 같다 */
 export const MONTHLY_MIN = (PACKAGES.find((p) => p.size === 10 && p.kind === "혼합형") ?? PACKAGES[0]).withoutCopy;
 
 export interface MonthlyGroup {
@@ -1454,7 +1453,7 @@ export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
 export const GUARANTEES = [
   { title: "게시 URL 전체 전달", desc: "진행한 건마다 실제 게시 링크를 정리해 드립니다. 확인 못 하는 작업은 없습니다." },
   { title: "발행 뒤 노출 위치 확인", desc: "올린 건마다 키워드로 검색해 어디에 떴는지 확인하고 보고서에 적습니다." },
-  { title: "표기 금액 부가세 포함", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
+  { title: "표기 금액 부가세 별도", desc: "결제 단계에서 금액이 달라지지 않도록 기준을 먼저 밝힙니다." },
   { title: "상담·업종 가능 여부 진단 0원", desc: "진행이 어려운 업종이면 계약 전에 솔직하게 말씀드립니다." },
 ];
 
