@@ -74,7 +74,7 @@ function buildLd(version: string) {
         name: p.label ? `${p.name} (${p.label})` : p.name,
         price: p.price,
         priceCurrency: "KRW",
-        description: `${p.days}일 · PC ${p.pcs}대 · 부가세 포함.`,
+        description: `${p.days}일 · PC ${p.pcs}대 · 부가세 별도.`,
         availability: "https://schema.org/InStock",
         seller: { "@id": ORG_ID },
       })),
@@ -396,7 +396,7 @@ export default async function KakaoSenderPage() {
               <h2 className="text-xl font-black text-gray-900 md:text-2xl">가격</h2>
             </div>
             <p className="mb-6 text-sm text-gray-600">
-              부가세 포함 가격입니다. 기간 안에는 방 수와 건수 제한이 없습니다. 먼저 무료 {KS.trialCount}건
+              부가세 별도 가격입니다. 기간 안에는 방 수와 건수 제한이 없습니다. 먼저 무료 {KS.trialCount}건
               (방 1곳에 한 번 보낸 것이 1건)으로 써 보시고 결정하셔도 됩니다.
             </p>
 

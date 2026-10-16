@@ -15,9 +15,9 @@ type Line = { unit: string; price: string };
 type Row = { name: string; href?: string; lines: Line[] };
 
 const ROWS: Row[] = [
-  { name: "플레이스 SEO 최적화", href: "#place", lines: [{ unit: "1회", price: "10~15만원" }] },
+  { name: "플레이스 SEO 최적화", href: "#place", lines: [{ unit: "1회", price: "10~15만원 (업종별)" }] },
   { name: "대표키워드 관리", lines: [{ unit: "", price: "키워드 확인 후 안내" }] },
-  { name: "블로그 관리대행", href: "#blog", lines: [{ unit: "편당", price: "4만원" }] },
+  { name: "블로그 관리대행", href: "#blog", lines: [{ unit: "편당", price: "평균 3~5만원" }] },
   {
     name: "최적화 블로그 배포",
     href: "#cafe-distribution",
@@ -33,7 +33,7 @@ const ROWS: Row[] = [
 const NOTES = [
   {
     title: "기준 단가는 고정가가 아닙니다",
-    body: "업종과 난이도에 따라 오르내립니다. 블로그 원고는 물량이 많거나 내용이 단순한 업종이면 4만원보다 낮아지고, 병의원처럼 의료광고 심의와 전문 용어 확인이 필요한 업종은 4만원보다 높아집니다.",
+    body: "업종마다 다릅니다. 블로그 원고는 평균 3~5만원이고, 병원 · 법률처럼 단가가 높은 키워드는 확인할 것이 많아 따로 안내합니다. 플레이스 SEO 도 업종마다 다르고, 음식점 · 카페는 메뉴를 전부 넣고 메뉴마다 설명을 써야 해 작업이 더 많습니다.",
   },
   {
     title: "월 계약 금액은 미리 정해두지 않습니다",

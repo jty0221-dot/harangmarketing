@@ -272,7 +272,7 @@ const SERVICES = [
     timeline: "PC 에서 내려받아 바로 사용",
     deliverables: [
       { label: "무료 체험", value: `${KS.trialCount}건`, note: "방 1곳에 한 번이 1건" },
-      { label: "명절 한 달권", value: `${ksWon(KS_PLANS[0].price)}원`, note: `1년 ${ksWon(KS_PLANS[2].price)}원 · 부가세 포함` },
+      { label: "명절 한 달권", value: `${ksWon(KS_PLANS[0].price)}원`, note: `1년 ${ksWon(KS_PLANS[2].price)}원 · 부가세 별도` },
       { label: "사무실 PC 3대", value: `${ksWon(KS_PLANS[3].price)}원`, note: "1년 기준" },
     ],
     features: [
@@ -555,9 +555,9 @@ const INDUSTRY_LINKS = [
    ──────────────────────────────────────────────────────────── */
 
 const UNIT_PRICES: { item: string; unit: string; price: string; note?: string }[] = [
-  { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원" },
+  { item: "플레이스 SEO 최적화", unit: "1회 세팅", price: "10~15만원", note: "업종마다 다릅니다. 음식점 · 카페는 메뉴를 전부 넣고 메뉴마다 설명을 써야 해 작업이 더 많습니다." },
   { item: "대표키워드 정보 정비·계측", unit: "키워드 1개 · 월", price: "키워드 확인 후 안내" },
-  { item: "블로그 관리대행", unit: "1편", price: "4만원", note: "기준 단가입니다. 물량이 많거나 원고가 단순한 업종은 내려가고, 병의원처럼 의료광고 심의·전문 용어 확인이 붙는 업종은 올라갑니다." },
+  { item: "블로그 관리대행", unit: "1편", price: "평균 3~5만원", note: "업종마다 다릅니다. 병원 · 법률처럼 단가가 높은 키워드는 확인할 것이 많아 따로 안내합니다." },
   { item: "블로그 원고·게시 대행", unit: "1건", price: won(BLOG_UNIT_WITH_COPY), note: `원고 작성 포함 10건 패키지 기준. 원고를 직접 주시면 ${won(BLOG_UNIT_WITHOUT_COPY)}.` },
   { item: "카페 단건 배포 (등급별)", unit: "1건", price: `${won(CAFE_TIER_MIN)}~`, note: `카페 등급별 ${CAFE_TIERS.map((t) => t.price.toLocaleString("ko-KR")).join(" · ")}원. 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)} 추가.` },
   // 단가표 행을 고치면 llms.txt 단가표도 같이 맞춘다
@@ -608,7 +608,7 @@ const CALC_EXAMPLES: {
     lines: [
       { label: "플레이스 SEO 최적화", calc: "10만원 × 1회", amount: "100,000" },
       { label: "홈페이지형 블로그 디자인 DELUXE", calc: "20만원 × 1회", amount: "200,000" },
-      { label: "블로그 관리대행", calc: "기준 4만원 × 10편", amount: "400,000" },
+      { label: "블로그 관리대행", calc: "평균 4만원 × 10편", amount: "400,000" },
       { label: "파워컨텐츠 원고 설계·검수", calc: "5만원 × 1편", amount: "50,000" },
       { label: "네이버 광고 세팅·운영대행", calc: "계약 포함", amount: "0" },
     ],
@@ -668,7 +668,7 @@ const WHY_PRICE_DIFFERS: { title: string; body: string }[] = [
   },
   {
     title: "채널 수와 물량이 다릅니다",
-    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 기준 단가 4만원으로 잡아도 월 4편과 월 15편은 440,000원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다. 원고가 단순하면 내려가고 병의원처럼 심의가 걸리면 올라갑니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
+    body: "단가가 채널별 · 건별로 붙습니다. 블로그를 평균 4만원으로 잡아도 월 4편과 월 15편은 440,000원 차이가 납니다. 게다가 그 단가 자체가 업종을 탑니다. 병원 · 법률처럼 단가가 높은 키워드는 따로 안내합니다. 플레이스만 하는 것과 블로그 · 카페 · 파워컨텐츠 · 광고를 같이 도는 것은 항목 수부터 다릅니다.",
   },
   {
     title: "심의와 계절이 다릅니다",

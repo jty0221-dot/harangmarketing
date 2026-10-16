@@ -21,7 +21,7 @@ const CURRICULUM = [
     stepColor: "bg-blue-600",
     videoId: "1oiqvVTtF_w",
     title: "네이버 플레이스 등록부터 SEO 최적화 세팅까지, 이 영상 하나로 종결",
-    desc: "플레이스 신규 등록 방법과 정보 정비을 위한 SEO 세팅 완전 정복. 대행사에 맡기기 전 이것만 알아도 됩니다.",
+    desc: "플레이스 신규 등록 방법과 정보 정비를 위한 SEO 세팅 완전 정복. 대행사에 맡기기 전 이것만 알아도 됩니다.",
     duration: "11분 43초",
     badge: "플레이스 기초",
   },

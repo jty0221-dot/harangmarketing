@@ -68,7 +68,7 @@ export type KsPlan = {
 };
 
 /**
- * 요금제 넷 (부가세 포함 · 판매설정.json 요금제 그대로).
+ * 요금제 넷 (부가세 별도 · 공급가). 2026-10-16 (금) 대표 결정 「전부 부가세 미포함 기준」 으로 판매설정.json 의 부가세 포함 금액(5,500 · 27,500 · 49,500 · 110,000)을 공급가로 적는다. 받는 돈은 같다.
  * 추천은 1개월(명절 한 달권) · 2026-10-03 (토) 대표 확정 '명절 그거 좋은거 같아 진행'.
  * 한 달 환산가 같은 파생 숫자는 만들지 않는다. 화면의 숫자는 이 넷뿐이다.
  */
@@ -79,7 +79,7 @@ export const KS_PLANS: KsPlan[] = [
     label: "명절 한 달권",
     days: 30,
     pcs: 1,
-    price: 5500,
+    price: 5000,
     best: true,
     note: "설 · 추석 · 연말처럼 인사를 몰아서 보내는 달에 한 달만 쓰시는 분께 맞습니다.",
   },
@@ -88,7 +88,7 @@ export const KS_PLANS: KsPlan[] = [
     name: "6개월",
     days: 180,
     pcs: 1,
-    price: 27500,
+    price: 25000,
     best: false,
     note: "회원방 공지처럼 달마다 보내는 글이 있는 분께 맞습니다.",
   },
@@ -97,7 +97,7 @@ export const KS_PLANS: KsPlan[] = [
     name: "1년",
     days: 365,
     pcs: 1,
-    price: 49500,
+    price: 45000,
     best: false,
     note: "명절 인사와 정기 공지를 일 년 내내 이 프로그램으로 보내시는 분께 맞습니다.",
   },
@@ -107,7 +107,7 @@ export const KS_PLANS: KsPlan[] = [
     label: "사무실용",
     days: 365,
     pcs: 3,
-    price: 110000,
+    price: 100000,
     best: false,
     note: "사무실 PC 여러 대에서 같이 쓰시는 보험 · 딜러 · 대행사 사무실용입니다. PC 마다 기기 코드를 따로 받습니다.",
   },
