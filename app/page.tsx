@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
 import {
   ArrowRight, CheckCircle2, X, Phone, MessageCircle,
@@ -6,8 +9,8 @@ import {
   ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
   UtensilsCrossed, ShoppingBag, Sparkles, Store,
+  Pause, Play,
 } from "lucide-react";
-import TrustTicker from "./components/TrustTicker";
 import ServiceFinder from "./components/ServiceFinder";
 import PhotoServicePreview from "./components/PhotoServicePreview";
 import Header from "./components/Header";
@@ -342,6 +345,41 @@ const TICKER = [
  * 움직임 줄이기를 켠 방문자에게는 globals.css 가 애니메이션을 끄므로 단추도 숨긴다.
  * 끊김 없이 흐르게 두 벌 그리는 뒤쪽 한 벌은 화면 낭독기가 두 번 읽지 않게 가린다.
  */
+function TrustTicker() {
+  const [paused, setPaused] = React.useState(false);
+  return (
+    <div className="flex items-stretch" style={{ background: "var(--h-navy)" }}>
+      <div className="flex-1 min-w-0 overflow-hidden py-3">
+        <div
+          className="flex animate-marquee whitespace-nowrap"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
+          {[...TICKER, ...TICKER].map((text, i) => (
+            <span
+              key={i}
+              aria-hidden={i >= TICKER.length ? true : undefined}
+              className="flex items-center gap-3 px-6 text-xs text-white font-semibold"
+            >
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${i % 2 ? "bg-blue-200" : "bg-white/60"}`} />
+              {text}
+            </span>
+          ))}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        aria-label="흐르는 문구 멈추기"
+        title={paused ? "다시 흐르게 하기" : "흐르는 문구 멈추기"}
+        className="ticker-toggle shrink-0 w-11 min-h-11 flex items-center justify-center border-l border-white/15 text-white/80 hover:text-white transition-colors motion-reduce:hidden"
+      >
+        {paused ? <Play size={16} strokeWidth={2.5} /> : <Pause size={16} strokeWidth={2.5} />}
+      </button>
+    </div>
+  );
+}
+
 // 메인은 서비스 선택과 검증에 집중한다. 회사 소개·진행 과정·채널 콘텐츠처럼
 // 전용 페이지가 있는 보조 내용은 해당 페이지에서 제공한다.
 const SHOW_SECONDARY_HOME_CONTENT = false;
@@ -374,7 +412,7 @@ export default function HomePage() {
         <CustomerConfidenceSection />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
-        <TrustTicker items={TICKER} />
+        <TrustTicker />
 
         {/* ══ 플랫폼 신뢰 스트립 ══ */}
         <section className="py-7 bg-white border-b" style={{ borderColor: "var(--h-border)" }}>
