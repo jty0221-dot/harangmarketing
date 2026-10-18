@@ -41,7 +41,7 @@
     "title": "뷰티 · 취향에서 시작하는 룩북",
     "subtitle": "취향 상담형 룩북",
     "url": "/sian/premium/beauty/index.html",
-    "image": "/sian/premium/beauty/assets/0.jpg",
+    "image": "/sian/premium/beauty/assets/1.jpg",
     "decisionLed": true
   },
   {
@@ -59,7 +59,7 @@
     "title": "제조 · 사양에서 시작하는 기술 협의",
     "subtitle": "도면 · 납기 검토형",
     "url": "/sian/premium/b2b/index.html",
-    "image": "/sian/premium/b2b/assets/0.jpg",
+    "image": "/sian/premium/assets/new-hero/b2b.webp",
     "decisionLed": true
   },
   {
@@ -95,7 +95,7 @@
     "title": "운동 · 프로그램과 주간 스케줄",
     "subtitle": "프로그램 · 주간 스케줄",
     "url": "/sian/premium/fitness/index.html",
-    "image": "/sian/premium/fitness/assets/0.jpg",
+    "image": "/sian/premium/assets/new-hero/fitness.webp",
     "decisionLed": true
   },
   {
@@ -104,7 +104,7 @@
     "title": "자동차 · 증상과 점검 범위",
     "subtitle": "증상 정리 · 작업 범위",
     "url": "/sian/premium/car/index.html",
-    "image": "/sian/premium/car/assets/0.jpg",
+    "image": "/sian/premium/assets/new-hero/car.webp",
     "decisionLed": true
   },
   {
@@ -113,7 +113,7 @@
     "title": "전문 상담 · 분야와 준비 서류",
     "subtitle": "상담 분야 · 준비 자료",
     "url": "/sian/premium/pro/index.html",
-    "image": "/sian/premium/pro/assets/0.jpg",
+    "image": "/sian/premium/assets/new-hero/pro.webp",
     "decisionLed": true
   },
   {
