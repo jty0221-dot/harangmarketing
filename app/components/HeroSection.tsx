@@ -45,6 +45,7 @@ export default function HeroSection({
   const paused = pauseChoice ?? reduceMotion;
   // 아래 재생 재시도 효과는 videoSpeed 가 바뀔 때만 다시 걸리므로, 멈춤 여부는 ref 로 읽는다
   const pausedRef = useRef(paused);
+  const readyRef = useRef(false);
 
   // 이 효과가 재생 재시도 효과보다 먼저 선언돼야 첫 렌더에서 pausedRef 가 먼저 맞춰진다
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function HeroSection({
     const v = vidRef.current;
     if (!v) return;
     if (paused) v.pause();
-    else v.play().catch(() => {});
+    else if (readyRef.current) v.play().catch(() => {});
   }, [paused]);
 
   useEffect(() => {
@@ -65,15 +66,19 @@ export default function HeroSection({
 
     // 영상(약 2.7MB)은 페이지가 다 뜬 뒤에 받는다. 그 전에는 포스터가 보인다.
     // 처음부터 받으면 휴대폰에서 글자 · 스크립트와 회선을 다퉈 첫 화면이 늦어졌다 (2026-10-07 실측)
-    let ready = false;
+    readyRef.current = false;
+    const onCanPlay = () => {
+      if (readyRef.current && !pausedRef.current) v.play().catch(() => {});
+    };
 
     const tryPlay = () => {
       // 아직 받을 차례가 아니거나, 방문자가 멈췄거나 동작 줄이기를 켰으면 틀지 않는다
-      if (!ready || pausedRef.current) return;
+      if (!readyRef.current || pausedRef.current) return;
       // 데이터 미로드 상태면 load() 재호출 후 canplay 이벤트에서 재시도
       if (v.readyState === 0) {
         v.load();
-        v.addEventListener("canplay", () => { if (!pausedRef.current) v.play().catch(() => {}); }, { once: true });
+        v.removeEventListener("canplay", onCanPlay);
+        v.addEventListener("canplay", onCanPlay, { once: true });
       } else {
         v.play().catch(() => {});
       }
@@ -81,7 +86,7 @@ export default function HeroSection({
 
     // 1차: 페이지가 다 뜨고 1.2초 뒤 받기 시작 (Chrome MEI 차단 시 다운로드도 막히므로 명시적 load())
     let startTimer: ReturnType<typeof setTimeout> | undefined;
-    const start = () => { ready = true; v.load(); tryPlay(); };
+    const start = () => { readyRef.current = true; tryPlay(); };
     const schedule = () => { startTimer = setTimeout(start, 1200); };
     if (document.readyState === "complete") schedule();
     else window.addEventListener("load", schedule, { once: true });
@@ -99,6 +104,8 @@ export default function HeroSection({
     io.observe(v);
 
     return () => {
+      readyRef.current = false;
+      v.removeEventListener("canplay", onCanPlay);
       if (startTimer) clearTimeout(startTimer);
       window.removeEventListener("load", schedule);
       EVENTS.forEach(e => document.removeEventListener(e, onInteract));
