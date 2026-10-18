@@ -1,6 +1,7 @@
 import { PUBLIC_SERVICES, isProgram } from "./lib/service-catalog";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./fonts/pretendard.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
 import SiteChrome from "./components/SiteChrome";
 import JsonLd from "./components/JsonLd";
@@ -161,17 +162,6 @@ oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}"});`,
             }}
           />
         )}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        <link
-          rel="preload"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
-        />
         {/* Black Han Sans 는 next/font 로 빌드 때 받아 우리 주소에서 낸다 (위 blackHanSans).
             구글 폰트 CSS 를 모든 페이지에서 렌더 차단으로 받던 것을 걷어냈다 (2026-10-07 라이트하우스 실측) */}
         {/* 네이버 서치어드바이저 소유권 확인 */}
