@@ -120,7 +120,7 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/place": "2026-10-02",
   "/services/instagram": "2026-09-24",
   "/services/detail-page": "2026-10-02",
-  "/services/homepage": "2026-10-04",
+  "/services/homepage": "2026-10-19",
   "/services/detail-page/reference": "2026-09-30",
   "/services/cafe-distribution": "2026-10-02",
   "/services/cafe-distribution/reference": "2026-10-01",

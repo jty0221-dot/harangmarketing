@@ -13,3 +13,7 @@
 .hd-draft.min{width:auto;padding:8px 12px} .hd-draft.min .hd-info,.hd-draft.min .hd-nav{display:none}
 .hl-demo,.demo-bar{display:none!important}
 @media(max-width:700px){.hd-draft{bottom:60px;font-size:13px}.hd-draft select{max-width:150px}}
+
+.demo-bar{display:none!important}
+
+@media(max-width:700px){.hd-draft.min{left:auto;right:10px;bottom:14px;transform:none;width:auto;padding:4px 8px}.hd-draft.min>*:not(.hd-x){display:none!important}.hd-draft.min .hd-x{display:block;min-height:40px;color:#fff}.hd-draft:not(.min){max-height:45vh;overflow:auto}}

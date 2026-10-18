@@ -18,6 +18,9 @@ export default function HomepageGallery() {
   const [mood, setMood] = useState("all");
   const [q, setQ] = useState("");
   const [shown, setShown] = useState(PAGE);
+  const [petKind,setPetKind]=useState("all");
+  const [archiveOpen,setArchiveOpen]=useState(false);
+  const browsePets=(query:string)=>{setQ(query);setGroup("all");setMood("all");setPetKind("all");setShown(PAGE);setArchiveOpen(true);setTimeout(()=>document.getElementById("legacy-gallery")?.scrollIntoView({block:"start"}),0)};
 
   // 광고 · 홍보 링크가 업종으로 바로 열리게 ?group=medical · ?q=피부과 를 읽는다
   useEffect(() => {
@@ -37,8 +40,9 @@ export default function HomepageGallery() {
     const key = q.trim().toLowerCase();
     return HP_DRAFTS.filter((d) => group === "all" || d.group === group)
       .filter((d) => mood === "all" || d.moods.includes(mood))
-      .filter((d) => !key || `${d.name} ${d.industry} ${d.design} ${d.moods.join(" ")}`.toLowerCase().includes(key));
-  }, [group, mood, q]);
+      .filter((d)=>petKind==="all"||d.slug.startsWith(petKind+"-"))
+      .filter((d) => !key || (["반려동물","펫","애견","pet","동물"].includes(key)?/^(pet|vet|pethotel)-/.test(d.slug):`${d.name} ${d.industry} ${d.design} ${d.moods.join(" ")}`.toLowerCase().includes(key)));
+  }, [group, mood, q,petKind]);
 
   const pick = (fn: () => void) => {
     fn();
@@ -47,8 +51,8 @@ export default function HomepageGallery() {
 
   return (
     <>
-      <PremiumGallery />
-      <details className="mt-10" open={Boolean(q || group !== "all")}><summary className="w-heading-3 mb-6 cursor-pointer">기존 업종별 시안 {HP_DRAFTS.length}개 더 살펴보기</summary>
+      <PremiumGallery onBrowseArchive={browsePets} />
+      <details id="legacy-gallery" className="mt-10" open={archiveOpen||Boolean(q || group !== "all")} onToggle={e=>setArchiveOpen(e.currentTarget.open)}><summary className="w-heading-3 mb-6 cursor-pointer">기존 업종별 시안 {HP_DRAFTS.length}개 더 살펴보기</summary>
       <div className="relative mb-4">
         <Search size={16} strokeWidth={2.5} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--w-label-assistive)" }} />
         <input
@@ -72,6 +76,7 @@ export default function HomepageGallery() {
         ))}
       </div>
 
+      <div className="mb-4"><label className="w-caption-1" htmlFor="pet-kind">반려동물 세부 업종</label><select id="pet-kind" value={petKind} onChange={e=>pick(()=>{setPetKind(e.target.value);setGroup("all");setMood("all");setQ(e.target.value==="all"?"":"반려동물")})} className="w-input mt-2"><option value="all">모든 세부 업종</option><option value="pet">반려동물 미용 · 2개</option><option value="vet">동물병원 · 2개</option><option value="pethotel">호텔·유치원 · 2개</option></select></div>
       <div className="mb-6 flex gap-1.5 overflow-x-auto scrollbar-hide pb-1" aria-label="무드">
         {["all", ...HP_MOODS].map((m) => (
           <button key={m} onClick={() => pick(() => setMood(m))} aria-pressed={mood === m} className="w-btn w-btn-sm shrink-0 min-h-[44px] md:min-h-0" style={mood === m ? { ...on, background: "var(--w-primary)" } : off}>
@@ -81,7 +86,7 @@ export default function HomepageGallery() {
       </div>
 
       <p className="w-caption-1 mb-4" style={{ color: "var(--w-label-alt)" }}>
-        시안 {visible.length}개 · 업체명과 수치는 가상입니다
+        시안 {visible.length}개
       </p>
 
       {visible.length === 0 ? (
