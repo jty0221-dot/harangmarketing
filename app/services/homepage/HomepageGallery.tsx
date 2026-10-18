@@ -5,6 +5,8 @@ import { ExternalLink, Search } from "lucide-react";
 import { HP_DRAFTS, HP_GROUPS, HP_MOODS, hpDemoUrl, hpThumb } from "../../lib/homepage-portfolio";
 import { GA_EVENTS } from "../../components/Analytics";
 
+import PremiumGallery from "./PremiumGallery";
+
 const PAGE = 24;
 
 const on = { background: "var(--w-label-strong)", color: "#fff" } as const;
@@ -45,6 +47,8 @@ export default function HomepageGallery() {
 
   return (
     <>
+      <PremiumGallery />
+      <details className="mt-10" open={Boolean(q || group !== "all")}><summary className="w-heading-3 mb-6 cursor-pointer">기존 업종별 시안 {HP_DRAFTS.length}개 더 살펴보기</summary>
       <div className="relative mb-4">
         <Search size={16} strokeWidth={2.5} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "var(--w-label-assistive)" }} />
         <input
@@ -134,6 +138,7 @@ export default function HomepageGallery() {
           </button>
         </div>
       )}
+      </details>
     </>
   );
 }

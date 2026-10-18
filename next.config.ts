@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      { source: "/sian/premium/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }] },
       {
         source: "/hero-v4.mp4",
         headers: [

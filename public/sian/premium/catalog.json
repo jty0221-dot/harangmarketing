@@ -1,0 +1,137 @@
+[
+  {
+    "slug": "home",
+    "group": "home",
+    "title": "설비 · 증상부터 해결 방향 찾기",
+    "subtitle": "긴급 문제 해결형",
+    "url": "/sian/premium/home/index.html",
+    "image": "/sian/premium/home/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "home-project",
+    "group": "home",
+    "title": "설비 · 공사 범위와 과정",
+    "subtitle": "공사 전문형",
+    "url": "/sian/premium/home-project/index.html",
+    "image": "/sian/premium/home-project/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "food",
+    "group": "food",
+    "title": "카페 · 따뜻한 동네의 하루",
+    "subtitle": "따뜻한 동네 카페",
+    "url": "/sian/premium/food/index.html",
+    "image": "/sian/premium/food/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "food-roastery",
+    "group": "food",
+    "title": "카페 · 디자인 로스터리",
+    "subtitle": "디자인 로스터리",
+    "url": "/sian/premium/food-roastery/index.html",
+    "image": "/sian/premium/food-roastery/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "beauty",
+    "group": "beauty",
+    "title": "뷰티 · 취향에서 시작하는 룩북",
+    "subtitle": "취향 상담형 룩북",
+    "url": "/sian/premium/beauty/index.html",
+    "image": "/sian/premium/beauty/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "stay",
+    "group": "stay",
+    "title": "숙박 · 객실 비교와 머무는 조건",
+    "subtitle": "객실 선택형 스테이",
+    "url": "/sian/premium/stay/index.html",
+    "image": "/sian/premium/stay/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "b2b",
+    "group": "b2b",
+    "title": "제조 · 사양에서 시작하는 기술 협의",
+    "subtitle": "도면 · 납기 검토형",
+    "url": "/sian/premium/b2b/index.html",
+    "image": "/sian/premium/b2b/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "clean",
+    "group": "clean",
+    "title": "청소 · 공간에 맞춰 작업 범위 찾기",
+    "subtitle": "공간 진단 · 작업 범위",
+    "url": "/sian/premium/clean/index.html",
+    "image": "/sian/premium/clean/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "medical",
+    "group": "medical",
+    "title": "의료 · 진료 안내와 방문 준비",
+    "subtitle": "진료 항목 · 방문 순서",
+    "url": "/sian/premium/medical/index.html",
+    "image": "/sian/premium/medical/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "edu",
+    "group": "edu",
+    "title": "교육 · 학습 대상과 강좌 보드",
+    "subtitle": "강좌 탐색 · 수업 시간표",
+    "url": "/sian/premium/edu/index.html",
+    "image": "/sian/premium/edu/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "fitness",
+    "group": "fitness",
+    "title": "운동 · 프로그램과 주간 스케줄",
+    "subtitle": "프로그램 · 주간 스케줄",
+    "url": "/sian/premium/fitness/index.html",
+    "image": "/sian/premium/fitness/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "car",
+    "group": "car",
+    "title": "자동차 · 증상과 점검 범위",
+    "subtitle": "증상 정리 · 작업 범위",
+    "url": "/sian/premium/car/index.html",
+    "image": "/sian/premium/car/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "pro",
+    "group": "pro",
+    "title": "전문 상담 · 분야와 준비 서류",
+    "subtitle": "상담 분야 · 준비 자료",
+    "url": "/sian/premium/pro/index.html",
+    "image": "/sian/premium/pro/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "retail",
+    "group": "retail",
+    "title": "상점 · 상품 카탈로그와 수령 조건",
+    "subtitle": "컬렉션 · 주문 준비",
+    "url": "/sian/premium/retail/index.html",
+    "image": "/sian/premium/retail/assets/0.jpg",
+    "decisionLed": true
+  },
+  {
+    "slug": "leisure",
+    "group": "leisure",
+    "title": "공간 대여 · 목적과 인원으로 선택",
+    "subtitle": "공간 사진 · 모임 준비",
+    "url": "/sian/premium/leisure/index.html",
+    "image": "/sian/premium/leisure/assets/0.jpg",
+    "decisionLed": true
+  }
+]
