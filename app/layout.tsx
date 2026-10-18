@@ -1,5 +1,6 @@
 import { PUBLIC_SERVICES, isProgram } from "./lib/service-catalog";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import "./fonts/pretendard.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
@@ -180,7 +181,7 @@ oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}"});`,
         {/* Google tag (gtag.js) — GA4 */}
         {GA_ID && (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+            <Script id="ga4-sdk" strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
             <script
               dangerouslySetInnerHTML={{
                 __html: `window.dataLayer = window.dataLayer || [];

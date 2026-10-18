@@ -120,6 +120,7 @@ export default function HeroSection({
         @media (min-width: 768px) {
           .ha-hero-pause { top: 124px; }
         }
+        @media (max-width: 767px) { .ha-film-grain { display: none; } }
         @keyframes haFadeUp {
           from { opacity: 0; transform: translateY(26px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -271,6 +272,7 @@ export default function HeroSection({
         {/* ── 필름 그레인 ── */}
         {filmGrain && (
           <div
+            className="ha-film-grain"
             style={{
               position: "absolute",
               inset: "-6%",
