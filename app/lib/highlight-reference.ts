@@ -32,6 +32,31 @@ export interface HlWork {
 }
 
 export const HL_WORKS: HlWork[] = [
+  // 2026-10-22 (목) 수동 추가 · 지은 인계 · 대표 지시 · 실제 계정에 걸린 5칸 12장
+  // 재료는 익명 처리본(두꺼비홈케어 / 인스타 작업물 / 09_포트폴리오_익명_20261022)만 쓴다.
+  // 로고 · 상호 · 계정 · 연락처 · 링크 · 작업복 무늬 · 예약 화면 업체명은 모자이크. 표기는 청소업체 A (C-52)
+  {
+    slug: "clean1",
+    title: "청소업체 A",
+    industry: "생활 · 홈케어 청소",
+    covers: [],
+    stories: [
+      { file: "clean1-s01.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s02.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s03.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s04.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s05.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s06.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s07.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s08.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s09.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s10.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s11.webp", kind: "story", w: 720, h: 1280 },
+      { file: "clean1-s12.webp", kind: "story", w: 720, h: 1280 },
+    ],
+    band: { file: "clean1.webp", w: 540, h: 110 },
+    menu: ["서비스", "사례", "예약", "거주/입주청소", "문의"],
+  },
   {
     slug: "beauty1",
     title: "속눈썹 연장 전문점",
