@@ -77,6 +77,9 @@ export const HL_WORKS: HlWork[] = [
       { file: "beauty1-s06.jpg", kind: "story", w: 540, h: 960 },
       { file: "beauty1-s07.jpg", kind: "story", w: 540, h: 960 },
     ],
+    // 2026-10-23 (금) TR-0006 · 지은 2차 세팅 후 휴대폰 화면에서 하이라이트 줄만 잘라 왔다 (프로필 줄은 잘라냄)
+    band: { file: "beauty1.webp", w: 592, h: 168 },
+    menu: ["리뷰", "이벤트", "가격", "찾아오시는길"],
   },
   {
     slug: "beauty2",
@@ -103,7 +106,12 @@ export const HL_WORKS: HlWork[] = [
     slug: "beauty3",
     title: "왁싱 전문점",
     industry: "뷰티 · 왁싱",
-    covers: [],
+    // 2026-10-23 (금) TR-0006 · 실계정 칸별 커버 4장 중 상호가 든 1번은 빼고 3장 (공개 화면 최대 150px)
+    covers: [
+      { file: "beauty3-c01.webp", kind: "cover", w: 150, h: 150 },
+      { file: "beauty3-c02.webp", kind: "cover", w: 150, h: 150 },
+      { file: "beauty3-c03.webp", kind: "cover", w: 150, h: 150 },
+    ],
     stories: [
       { file: "beauty3-s01.jpg", kind: "story", w: 540, h: 960 },
       { file: "beauty3-s02.jpg", kind: "story", w: 540, h: 960 },
@@ -130,11 +138,6 @@ export const HL_WORKS: HlWork[] = [
       { file: "travel1-c02.jpg", kind: "cover", w: 720, h: 720 },
       { file: "travel1-c03.jpg", kind: "cover", w: 720, h: 720 },
       { file: "travel1-c04.jpg", kind: "cover", w: 720, h: 720 },
-      { file: "travel1-c05.jpg", kind: "cover", w: 720, h: 720 },
-      { file: "travel1-c06.jpg", kind: "cover", w: 720, h: 720 },
-      { file: "travel1-c07.jpg", kind: "cover", w: 720, h: 720 },
-      { file: "travel1-c08.jpg", kind: "cover", w: 720, h: 720 },
-      { file: "travel1-c09.jpg", kind: "cover", w: 720, h: 720 },
     ],
     stories: [
       { file: "travel1-s01.jpg", kind: "story", w: 540, h: 960 },
@@ -145,7 +148,22 @@ export const HL_WORKS: HlWork[] = [
       { file: "travel1-s06.jpg", kind: "story", w: 540, h: 960 },
       { file: "travel1-s07.jpg", kind: "story", w: 540, h: 960 },
     ],
-    band: { file: "travel1.jpg", w: 432, h: 109 },
+    // 2026-10-23 (금) Q-0707 정정 · c05~c09 와 프로필 줄은 다른 숙소(travel3) 것이 섞여 있었다 (지은 2차 대조)
+  },
+  {
+    slug: "travel3",
+    title: "펜션",
+    industry: "숙박 · 펜션",
+    // 2026-10-23 (금) Q-0707 · travel1 에서 떼어 냈다. 파일은 그대로이고 이름만 travel3 로 옮겼다
+    covers: [
+      { file: "travel3-c01.webp", kind: "cover", w: 720, h: 720 },
+      { file: "travel3-c02.webp", kind: "cover", w: 720, h: 720 },
+      { file: "travel3-c03.webp", kind: "cover", w: 720, h: 720 },
+      { file: "travel3-c04.webp", kind: "cover", w: 720, h: 720 },
+      { file: "travel3-c05.webp", kind: "cover", w: 720, h: 720 },
+    ],
+    stories: [],
+    band: { file: "travel3.webp", w: 432, h: 109 },
     menu: ["후기", "이용 안내", "이용 안내", "추천 장소"],
   },
   {
@@ -179,7 +197,26 @@ export const HL_WORKS: HlWork[] = [
       { file: "food1-c04.jpg", kind: "cover", w: 720, h: 720 },
       { file: "food1-c05.jpg", kind: "cover", w: 720, h: 720 },
     ],
-    stories: [],
+    // 2026-10-23 (금) TR-0006 · 지은 2차 · 로고 · 업체명 · 지역명을 가린 안쪽 스토리 17장
+    stories: [
+      { file: "food1-s01.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s02.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s03.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s04.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s05.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s06.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s07.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s08.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s09.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s10.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s11.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s12.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s13.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s14.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s15.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s16.webp", kind: "story", w: 720, h: 1280 },
+      { file: "food1-s17.webp", kind: "story", w: 720, h: 1280 },
+    ],
     band: { file: "food1.jpg", w: 540, h: 154 },
     menu: ["만두 전문점", "메뉴소개", "리얼 후기", "방송출연"],
   },
@@ -210,9 +247,30 @@ export const HL_WORKS: HlWork[] = [
       { file: "cafe1-c04.jpg", kind: "cover", w: 720, h: 720 },
       { file: "cafe1-c05.jpg", kind: "cover", w: 720, h: 720 },
     ],
-    stories: [],
+    // 2026-10-23 (금) TR-0006 · 지은 2차 · 상호를 가린 시그니처 메뉴 스토리 4장
+    stories: [
+      { file: "cafe1-s01.webp", kind: "story", w: 720, h: 1280 },
+      { file: "cafe1-s02.webp", kind: "story", w: 720, h: 1280 },
+      { file: "cafe1-s03.webp", kind: "story", w: 720, h: 1280 },
+      { file: "cafe1-s04.webp", kind: "story", w: 720, h: 1280 },
+    ],
     band: { file: "cafe1.jpg", w: 540, h: 140 },
     menu: ["Cafe", "Signature", "Reviews", "Location"],
+  },
+  // 2026-10-23 (금) TR-0006 신규 · 지은 2차 · 실계정 공개 화면 칸별 커버 10장 중 5장 (공개 화면 최대 150px)
+  // 원단 브랜드 로고 · 상자가 든 3장과 모자이크가 남은 2장은 뺐다. 프로필 줄 캡처는 가려지지 않은 글자가 있어 쓰지 않는다
+  {
+    slug: "suit1",
+    title: "맞춤 정장",
+    industry: "패션 · 맞춤정장",
+    covers: [
+      { file: "suit1-c01.webp", kind: "cover", w: 150, h: 150 },
+      { file: "suit1-c02.webp", kind: "cover", w: 150, h: 150 },
+      { file: "suit1-c03.webp", kind: "cover", w: 150, h: 150 },
+      { file: "suit1-c04.webp", kind: "cover", w: 150, h: 150 },
+      { file: "suit1-c05.webp", kind: "cover", w: 150, h: 150 },
+    ],
+    stories: [],
   },
 ];
 
@@ -225,8 +283,10 @@ export const HL_BANDS = HL_WORKS.filter((w) => w.band);
 export const HL_INDUSTRIES = Array.from(new Set(HL_WORKS.map((w) => w.industry)));
 
 // 첫 컷만 뽑은 대표 이미지. 커버가 없는 곳은 스토리 첫 장으로 대신한다.
+// 공개 화면에서 받은 150px 커버는 큰 카드에서 뭉개지므로 대표 이미지로 쓰지 않는다 (2026-10-23 (금) TR-0006).
+const HL_MIN_COVER_W = 300;
 export const HL_COVERS = HL_WORKS.map((w) => {
-  const s = w.covers[0] ?? w.stories[0];
+  const s = w.covers.find((c) => c.w >= HL_MIN_COVER_W) ?? w.stories[0] ?? w.covers[0];
   return {
     src: `/highlight-ref/${s.file}`,
     alt: `${w.industry} 하이라이트 세팅 실제 납품물`,
