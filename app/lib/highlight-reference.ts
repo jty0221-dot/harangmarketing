@@ -150,42 +150,7 @@ export const HL_WORKS: HlWork[] = [
     ],
     // 2026-10-23 (금) Q-0707 정정 · c05~c09 와 프로필 줄은 다른 숙소(travel3) 것이 섞여 있었다 (지은 2차 대조)
   },
-  {
-    slug: "travel3",
-    title: "펜션",
-    industry: "숙박 · 펜션",
-    // 2026-10-23 (금) Q-0707 · travel1 에서 떼어 냈다. 파일은 그대로이고 이름만 travel3 로 옮겼다
-    covers: [
-      { file: "travel3-c01.webp", kind: "cover", w: 720, h: 720 },
-      { file: "travel3-c02.webp", kind: "cover", w: 720, h: 720 },
-      { file: "travel3-c03.webp", kind: "cover", w: 720, h: 720 },
-      { file: "travel3-c04.webp", kind: "cover", w: 720, h: 720 },
-      { file: "travel3-c05.webp", kind: "cover", w: 720, h: 720 },
-    ],
-    stories: [],
-    band: { file: "travel3.webp", w: 432, h: 109 },
-    menu: ["후기", "이용 안내", "이용 안내", "추천 장소"],
-  },
-  {
-    slug: "travel2",
-    title: "펜션",
-    industry: "숙박",
-    covers: [],
-    stories: [
-      { file: "travel2-s01.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s02.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s03.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s04.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s05.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s06.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s07.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s08.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s09.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s10.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s11.jpg", kind: "story", w: 540, h: 960 },
-      { file: "travel2-s12.jpg", kind: "story", w: 540, h: 960 },
-    ],
-  },
+  // 2026-10-23 (금) 펜션 두 곳(travel3 · travel2)은 대표 지시로 내렸다 '펜션 저따구로 올릴꺼면 올리지마'. 커버를 다시 만들기 전에는 올리지 않는다
   {
     slug: "food1",
     title: "만두 전문점",
