@@ -6,19 +6,14 @@ import JsonLd from "../../components/JsonLd";
 import { SITE, breadcrumbLd, faqLd, webPageLd, updatedAt } from "../../lib/seo";
 import { HP_DATA_DATE, HP_STATS } from "../../lib/homepage-portfolio";
 import HomepageGallery from "./HomepageGallery";
+import { HOMEPAGE_TIERS } from "../../lib/homepage-pricing";
 
 const PATH = "/services/homepage";
 const TITLE = "홈페이지 제작, 검색에서 발견되고 문의하기까지";
 const DESC = "업종별 디자인에 SEO·GEO·AEO를 고려한 정보 구성과 문의 동선을 함께 설계합니다. 실제 시안을 비교하고 대표님 업체에 필요한 제작 범위를 확인하세요";
 
-/* 가격 : 홈페이지 공장 data/pricing.json 과 같은 숫자 (2026-10-04 · 근거 data/price_market.md). 바꾸면 C 결재
-   2026-10-16 (금) 대표 결정 「홈페이지까지 전부 미포함」 : 제작비 1,100,000 · 1,650,000 · 2,200,000 은 부가세 포함 금액이었고
-   받는 돈은 그대로 두고 공급가(1,000,000 · 1,500,000 · 2,000,000) 부가세 별도로 적는다. 월 관리비도 부가세 별도 */
-const TIERS = [
-  { name: "라이트", build: "1,000,000원", monthly: "월 50,000원", pages: "메인 + 서브 3장", points: ["문의 전환 동선 포함", "검색 노출 기본 세팅", "수정 월 1회 (관리 선택 시)"] },
-  { name: "스탠다드", build: "1,500,000원", monthly: "월 100,000원", pages: "메인 + 서브 5장", points: ["관리자 화면 · 블로그 연동", "키워드 노출 리포트 (관리)", "수정 월 3회 (관리 선택 시)"], rec: true },
-  { name: "프리미엄", build: "2,000,000원", monthly: "월 200,000원", pages: "메인 + 서브 10장", points: ["새 콘텐츠 페이지 월 1장 (관리)", "AI 답변 노출 점검 (관리)", "수정 월 10회 (관리 선택 시)"] },
-];
+/* 가격은 app/lib/homepage-pricing.ts 한 곳에서 온다 (pricing.json 과 같은 숫자 · 바꾸면 C 결재) */
+const TIERS = HOMEPAGE_TIERS;
 
 /** desc 안의 bold 문장만 font-semibold 로 굵게 (발주서 '굵게 처리할 문장' 표) */
 type Card = { icon: typeof Search; title: string; desc: string; bold?: string };
@@ -177,6 +172,20 @@ export default function HomepageServicePage() {
             <p className="w-body-2 mt-2 mb-6 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
               색상만 비교하지 마세요. 첫 화면에서 묻는 질문, 정보를 보여주는 순서와 고객의 다음 행동이 어떻게 다른지 확인해 보세요. 프리미엄 15개 안과 기존 251개 시안을 둘러보고 업체에 맞는 구조를 함께 정합니다
             </p>
+            <Link
+              href="/services/homepage/tax"
+              className="w-card mb-6 flex flex-wrap items-center justify-between gap-3 p-5 transition-shadow hover:shadow-[var(--w-shadow-md)]"
+            >
+              <div className="min-w-0">
+                <p className="w-caption-1 font-bold" style={{ color: "var(--w-primary)" }}>업종별 소개</p>
+                <p className="w-title-3 mt-1" style={{ color: "var(--w-label-strong)" }}>세무사 · 세무법인 홈페이지</p>
+                <p className="w-body-2 mt-1" style={{ color: "var(--w-label-alt)" }}>상담 세무사 소개 · 기장료 안내 · 서비스별 페이지를 갖춘 세무 틀과 분석 · 개선안 사례를 모았습니다</p>
+              </div>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
+                자세히 보기
+                <ArrowRight size={14} strokeWidth={2.5} />
+              </span>
+            </Link>
             <HomepageGallery />
           </section>
 

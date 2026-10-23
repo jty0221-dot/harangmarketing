@@ -299,6 +299,7 @@ ${faq}
 - [블로그 원고 · 카페 게시 대행](${B}/services/cafe-distribution): 블로그 원고 · 카페 게시 대행 상품 구성·가격·프로세스 · 카페 등급별 단가와 대표 카페 · 통합검색 월 관리(25일 기록 기준) 안내
 - [카페 배포 레퍼런스](${B}/services/cafe-distribution/reference): ${REF_CATEGORIES.length}개 업종 실사 노출 캡처 · 협력 배포망의 게시 실적
 - [홈페이지 제작](${B}/services/homepage): 업종별 시안 ${HP_STATS.drafts}개 (판매용으로 미리 만든 시안 · 업체명과 사진은 예시) · 3단 가격 · 월 관리 · 15영업일 제작 순서 · 대표님 명의 도메인
+- [세무사 홈페이지 제작](${B}/services/homepage/tax): 세무 · 회계 사무소용 홈페이지 틀 · 서비스 6쪽 · 지역 쪽 · 자주 묻는 질문 · 가상 시안 미리보기 · 동의 받은 세무법인 홈페이지 분석 · 개선안 사례 (상호 · 지역 비공개)
 - [스마트스토어 상세페이지 제작](${B}/services/detail-page): 세 등급과 브랜드 패키지 단가·제작 순서·수정 규정
 - [상세페이지 레퍼런스](${B}/services/detail-page/reference): ${DP_REF_CATEGORIES.length}개 종류 ${DP_REF_TOTAL}건의 상세페이지 실물을 처음부터 끝까지 공개
 - [카페·베이커리 마케팅](${B}/services/cafe)

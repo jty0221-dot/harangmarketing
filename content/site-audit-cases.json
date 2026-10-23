@@ -1,0 +1,38 @@
+{
+  "_note": "홈페이지 분석 · 개선안 사례. 손으로 적는 파일이다. consent 가 true 인 것만 화면에 오른다 (app/lib/site-audit-cases.ts). 하랑이 만든 사이트가 아니면 madeByHarang 을 false 로 두고 화면에 제작 · 리뉴얼이라고 쓰지 않는다. 상호 · 지역 · 사람 · 연락처 · 도메인 · 요금 숫자는 적지 않는다. 근거 E:/하랑/홈페이지공장/out/asung-daegu/분석보고_20261023.md · portfolio/카드문안.md",
+  "cases": [
+    {
+      "slug": "tax-audit-1",
+      "title": "세무법인 홈페이지 분석 · 개선안 사례",
+      "industry": "세무 · 회계",
+      "region": "비공개",
+      "kind": "분석 · 개선안 사례",
+      "madeByHarang": false,
+      "consent": true,
+      "consentNote": "대표 확인 2026-10-23 (금) · 고객 동의 · 상호 · 지역 · 사람 · 연락처는 가린 채로만",
+      "measuredAt": "2026-10-23",
+      "work": ["공개 홈페이지 진단", "휴대폰 속도 측정", "같은 화면 흐름의 세무 홈페이지 틀 제작"],
+      "good": [
+        "상담 흐름대로 한 쪽에 이어 붙인 구성이라 처음 온 손님이 스크롤만으로 상담 버튼까지 갑니다.",
+        "월 기장료 시작가를 공개해 세무 업종에서 가장 많이 묻는 질문에 먼저 답합니다.",
+        "원본 HTML 에 본문이 다 들어 있어 네이버 로봇이 글을 그대로 읽습니다."
+      ],
+      "issues": [
+        "휴대폰 첫 화면 큰 요소가 뜨기까지 6.2초가 걸렸습니다.",
+        "한 번 열 때 받는 양이 13.7MB 였고 사무실 영상 하나가 31.8MB 였습니다.",
+        "10월인데 7월 신고 기한 안내 창이 첫 화면을 덮고 있었습니다.",
+        "숫자가 올라가는 효과 때문에 검색 로봇이 읽는 원본에는 절약 금액이 0원으로 찍혀 있었습니다.",
+        "쪽이 하나뿐이라 법인설립, 세무조사 같은 서비스 검색어로 들어올 자리가 없었습니다."
+      ],
+      "before": { "label": "지금 사이트", "performance": 71, "lcp": "6.2초", "weight": "13.7MB", "pages": "1쪽" },
+      "after": { "label": "새 틀 (가상 시안)", "performance": 99, "lcp": "1.9초", "weight": "183KB", "pages": "17쪽" },
+      "afterNote": "새 틀 숫자는 이 고객 사이트가 아니라 같은 흐름으로 새로 짠 가상 시안에서 잰 값입니다. 라이트하우스 휴대폰 3회 중앙값입니다.",
+      "images": {
+        "before": { "src": "/portfolio/site-audit/tax-a-before-pc.webp", "w": 960, "h": 570, "alt": "지금 세무법인 사이트의 관리 방식 안내 화면 · 상호와 지역은 가림" },
+        "after": { "src": "/portfolio/site-audit/tax-a-after-pc.webp", "w": 960, "h": 600, "alt": "같은 흐름으로 새로 짠 가상 세무법인 시안의 첫 화면" }
+      },
+      "demo": "/sian/tax-firm-b-w8k3qz/index.html",
+      "service": "/services/homepage/tax"
+    }
+  ]
+}

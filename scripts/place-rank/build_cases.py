@@ -242,6 +242,10 @@ cands = [CAND[_key] for _key in sorted(CAND)]
 
 # ---------- 7. 판정 ----------
 MEDICAL = {"치과", "피부과", "한의원", "의원", "성형외과", "정형외과"}
+# 같은 /portfolio 쪽에 익명 분석 사례(content/site-audit-cases.json)가 있는 업종 (2026-10-23 (금) · 민수)
+# 분석 사례는 지역을 비공개로 실었다. 이 업종 순위 카드가 00시 세무사 처럼 행정단위를 달고 오르면
+# 두 카드를 맞대서 업체가 드러날 수 있어, 이 업종은 행정단위까지 빼고 키워드 유형만 남긴다.
+AUDIT_ANON = ("세무",)
 passed, held = [], []
 
 for c in cands:
@@ -300,7 +304,8 @@ for c in cands:
         "store": store,  # 내부 확인용 — JSON 으로 나가지 않는다
         "industry": ind,
         "storeLabel": "00" + ind.replace(" ", ""),
-        "keywordLabel": ("00" + unit + " " + detail) if unit else ("00 " + detail),
+        "keywordLabel": ("00 " + detail) if any(w in ind for w in AUDIT_ANON)
+                        else (("00" + unit + " " + detail) if unit else ("00 " + detail)),
         "from": start,
         "to": cur["rank"],
         # 올라간 건과 지킨 건을 한 칸으로 구분한다. 화면에서 문장이 달라진다 —

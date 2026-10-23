@@ -7,6 +7,7 @@ import { getPortfolio } from "../lib/portfolio";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
 import HighlightCase from "./HighlightCase";
+import SiteAuditCase from "./SiteAuditCase";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import JsonLd from "../components/JsonLd";
 import { breadcrumbLd, webPageLd, updatedAt, ogImage } from "../lib/seo";
@@ -75,6 +76,9 @@ export default function PortfolioPage() {
 
           {/* 인스타그램 하이라이트 세팅 사례 · 2026-10-22 · 이미지와 칸 이름은 HL_WORKS 에서 온다 */}
           <HighlightCase />
+
+          {/* 홈페이지 분석 · 개선안 사례 · 2026-10-23 · consent 가 있는 것만 content/site-audit-cases.json 에서 온다 */}
+          <SiteAuditCase />
 
           {/* 순위 계측 사례 — 블로그 사례와 채널이 다른 실적이다.
               숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
