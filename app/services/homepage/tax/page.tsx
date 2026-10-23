@@ -53,12 +53,12 @@ const SEES: Item[] = [
 
 const DOES: Item[] = [
   { icon: Gauge, title: "빠른 속도", desc: "사진은 WebP 로 화면 폭에 맞게 줄이고 무거운 영상과 숫자가 올라가는 효과는 넣지 않습니다. 휴대폰 데이터로 들어온 손님도 첫 화면을 바로 봅니다" },
-  { icon: FileSearch, title: "서비스별 페이지", desc: "기장 대리 · 절세 상담 · 세무조사 대응 · 법인설립 · 양도 상속 증여 · 4대보험 인사노무를 각각 한 쪽으로 나눕니다. 서비스 검색어로 들어올 자리가 생깁니다" },
+  { icon: FileSearch, title: "서비스별 페이지", desc: "기장 대리 · 신고와 절세 · 세무조사 대응 · 법인설립 · 양도 상속 증여를 각각 한 쪽으로 나눕니다. 서비스 검색어로 들어올 자리가 생기고, 등급에 따라 라이트 3쪽 · 스탠다드 5쪽 · 프리미엄 10쪽으로 넣습니다" },
   { icon: Search, title: "검색 · AI 기본 세팅", desc: "페이지마다 제목과 설명, 세무 사무소 구조화 데이터, 자주 묻는 질문, sitemap · RSS · llms.txt 를 넣고 네이버 서치어드바이저와 구글 서치콘솔에 등록합니다" },
   { icon: KeyRound, title: "대표님이 직접 가지는 홈페이지", desc: "도메인과 서버는 대표님 명의로 등록하고 계정도 대표님이 가지십니다. 요금표 · 공지 · 세무 일정은 월 관리에서 고쳐 드리고 계약이 끝나도 홈페이지는 그대로 대표님 것입니다" },
 ];
 
-const SIAN_PAGES = ["홈", "서비스 안내", "서비스 6쪽", "지역 안내 3쪽", "사무소 소개", "자주 묻는 질문", "세무 블로그", "오시는 길 · 문의"];
+const SIAN_PAGES = ["홈 (인사 · 요금 · 자주 묻는 질문 · 오시는 길)", "기장 대리", "신고와 절세", "세무조사 대응", "법인설립", "양도 · 상속 · 증여", "세무 블로그"];
 
 const STEPS: { title: string; desc: string }[] = [
   { title: "시안 확인", desc: "아래 세무 시안을 둘러보고 남길 구성과 바꿀 구성을 고릅니다" },
@@ -107,8 +107,8 @@ export default function TaxHomepagePage() {
   const stats = [
     { label: "라이트하우스 성능", value: "99", unit: "점" },
     { label: "접근성", value: "100", unit: "점" },
-    { label: "첫 화면 큰 요소", value: "1.9", unit: "초" },
-    { label: "한 번 열 때 받는 양", value: "183", unit: "KB" },
+    { label: "첫 화면 큰 요소", value: "1.95", unit: "초" },
+    { label: "한 번 열 때 받는 양", value: "182", unit: "KB" },
   ];
 
   return (
@@ -201,14 +201,14 @@ export default function TaxHomepagePage() {
               세무 시안을 직접 눌러 보세요
             </h2>
             <p className="w-body-2 mt-3 max-w-[720px]" style={{ color: "var(--w-label-alt)" }}>
-              가상의 세무법인으로 만든 시안입니다. 서비스 쪽과 지역 쪽, 자주 묻는 질문까지 실제 홈페이지와 같은 구조로 들어 있고 검색에는 잡히지 않게 막아 두었습니다.
+              가상의 세무법인으로 만든 스탠다드 기준 시안입니다. 홈 한 쪽에 대표 세무사 인사 · 요금 · 자주 묻는 질문 · 오시는 길을 담고 서비스 5쪽을 따로 두었습니다. 검색에는 잡히지 않게 막아 두었습니다.
             </p>
             <div className="w-card mt-6 grid grid-cols-1 gap-6 p-5 md:grid-cols-[1fr_200px] md:p-6">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="w-title-3" style={{ color: "var(--w-label-strong)" }}>○○ 세무법인 B</h3>
                   <span className="w-chip w-chip-neutral">세무 · 회계</span>
-                  <span className="w-chip w-chip-neutral">17쪽</span>
+                  <span className="w-chip w-chip-neutral">홈과 서비스 5쪽</span>
                 </div>
                 <ul className="mt-4 flex flex-wrap gap-1.5">
                   {SIAN_PAGES.map((p) => (
@@ -229,7 +229,7 @@ export default function TaxHomepagePage() {
                   ))}
                 </div>
                 <p className="w-caption-1 mt-3" style={{ color: "var(--w-label-alt)" }}>
-                  가상 시안을 라이트하우스 휴대폰 기준으로 3회 잰 중앙값입니다 (2026.10.23). 실제 사무소 홈페이지는 사진과 내용에 따라 달라집니다.
+                  가상 시안 홈을 라이트하우스 휴대폰 기준으로 3회 잰 중앙값입니다 (2026.10.23). 서비스 쪽은 1.97초 · 206KB 였고, 실제 사무소 홈페이지는 사진과 내용에 따라 달라집니다.
                 </p>
                 <a href={SIAN} target="_blank" rel="noopener noreferrer" className="w-btn w-btn-primary mt-5 min-h-[44px]">
                   시안 둘러보기
@@ -276,7 +276,7 @@ export default function TaxHomepagePage() {
             <h2 id="tax-price" className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>제작 · 관리 가격</h2>
             <p className="w-body-2 mt-2 max-w-[760px]" style={{ color: "var(--w-label-alt)" }}>
               홈페이지 제작과 같은 가격표이고 제작비와 월 관리비 모두 부가세 별도입니다.
-              시안처럼 서비스 쪽과 지역 쪽을 모두 넣으면 쪽 수가 등급 기준보다 많아질 수 있어, 넣을 쪽은 상담에서 함께 정합니다.
+              서비스 쪽은 등급에 따라 라이트 3쪽 · 스탠다드 5쪽 · 프리미엄 10쪽이 들어갑니다. 위 시안이 스탠다드 5쪽 기준입니다.
             </p>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
               {HOMEPAGE_TIERS.map((t) => (

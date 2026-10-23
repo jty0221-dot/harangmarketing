@@ -25,8 +25,8 @@
         "쪽이 하나뿐이라 법인설립, 세무조사 같은 서비스 검색어로 들어올 자리가 없었습니다."
       ],
       "before": { "label": "지금 사이트", "performance": 71, "lcp": "6.2초", "weight": "13.7MB", "pages": "1쪽" },
-      "after": { "label": "새 틀 (가상 시안)", "performance": 99, "lcp": "1.9초", "weight": "183KB", "pages": "17쪽" },
-      "afterNote": "새 틀 숫자는 이 고객 사이트가 아니라 같은 흐름으로 새로 짠 가상 시안에서 잰 값입니다. 라이트하우스 휴대폰 3회 중앙값입니다.",
+      "after": { "label": "새 틀 (가상 시안)", "performance": 99, "lcp": "1.95초", "weight": "182KB", "pages": "홈과 서비스 5쪽" },
+      "afterNote": "새 틀 숫자는 이 고객 사이트가 아니라 같은 흐름으로 새로 짠 가상 시안에서 잰 값입니다. 라이트하우스 휴대폰 3회 중앙값입니다. 쪽 수는 스탠다드 5쪽 기준이고 라이트는 3쪽, 프리미엄은 10쪽입니다.",
       "images": {
         "before": { "src": "/portfolio/site-audit/tax-a-before-pc.webp", "w": 960, "h": 570, "alt": "지금 세무법인 사이트의 관리 방식 안내 화면 · 상호와 지역은 가림" },
         "after": { "src": "/portfolio/site-audit/tax-a-after-pc.webp", "w": 960, "h": 600, "alt": "같은 흐름으로 새로 짠 가상 세무법인 시안의 첫 화면" }

@@ -202,6 +202,7 @@ mark.slot { background: #FFF3B0; color: #5A4500; border-radius: 4px; padding: 0 
 .hero-trust { display: flex; flex-wrap: wrap; gap: 10px 24px; padding: 0; margin: 28px 0 0; list-style: none; font-weight: 600; font-size: 15px; }
 .hero-trust li { display: inline-flex; align-items: center; gap: 8px; } .hero-trust .ico { color: var(--accent); }
 .tx-home .hero-trust .ico { color: #7FD3C2; }
+section[id] { scroll-margin-top: 84px; }
 .tx-band { background: var(--primary); color: var(--primary-ink); }
 .tx-band .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
 .tx-band div { padding: 26px 24px; border-left: 1px solid color-mix(in srgb, var(--primary-ink) 18%, transparent); }
