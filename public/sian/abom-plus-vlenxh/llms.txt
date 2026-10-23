@@ -1,0 +1,47 @@
+# 에이봄의원 (A.BOM Clinic)
+
+> 경기도 하남시 위례에 있는 피부 시술 의원입니다. 대표원장은 박상아입니다. 이 파일은 병원 기본 정보와 홈페이지 주요 쪽 목록만 담습니다. 시술별 자세한 내용과 비용은 각 쪽을 보거나 병원에 직접 확인해 주세요.
+
+## 기본 정보
+
+- 병원명: 에이봄의원 (A.BOM Clinic)
+- 대표원장: 박상아
+- 주소: 경기도 하남시 위례학암로14번길 35, 3층
+- 전화: 02-2039-7878
+- 팩스: 02-2039-7874
+- 진료시간: 월 · 금 10:00-20:00 / 화 · 수 · 목 10:00-19:00 / 토 09:00-15:00 / 일요일 휴무 / 점심시간 13:00-14:00
+- 홈페이지: https://abomclinic.com/
+
+## 주요 쪽
+
+- [홈](https://abomclinic.com/)
+- [병원 소개 (A.BOM 브랜드 스토리 · 의료진)](https://abomclinic.com/About/)
+- [Signature 시술 목록](https://abomclinic.com/SIGNATURE/)
+- [공지사항](https://abomclinic.com/Notice/)
+- [이벤트 게시판 (기간이 지난 이벤트가 섞여 있으니 병원에 확인)](https://abomclinic.com/PROMOTION/)
+
+## 시술 안내 쪽
+
+- [엠페이스](https://abomclinic.com/1847059257/view-10.html)
+- [리팟레이저](https://abomclinic.com/44/view-3.html)
+- [울쎄라피프라임](https://abomclinic.com/45/view-4.html)
+- [써마지 FLX](https://abomclinic.com/46/view-5.html)
+- [티타늄 리프팅](https://abomclinic.com/47/view-6.html)
+- [포텐자 엑소좀](https://abomclinic.com/48/view-7.html)
+- [쥬베룩](https://abomclinic.com/49/view-8.html)
+- [레디어스](https://abomclinic.com/50/view-9.html)
+- [쥬브젠](https://abomclinic.com/52/view-12.html)
+- [루비레이저](https://abomclinic.com/54/view-11.html)
+
+## 안내 글
+
+- [에이봄의원 새로운 의료진을 소개합니다.](https://abomclinic.com/Notice/view-172455052.html) (2026-10-15)
+- [에이봄의원 새로운 의료진 합류 안내](https://abomclinic.com/Notice/view-175096935.html) (2026-10-14)
+- [비급여항목 안내](https://abomclinic.com/Notice/view-64740645.html) (2026-09-30)
+
+## 바로가기
+
+- [네이버 블로그](https://blog.naver.com/drclaire_)
+- [유튜브 채널](https://www.youtube.com/@abomclinic)
+- [카카오톡 채널 상담](https://pf.kakao.com/_PxmxnIb)
+- [네이버 지도 · 예약](https://map.naver.com/p/entry/place/1704194358)
