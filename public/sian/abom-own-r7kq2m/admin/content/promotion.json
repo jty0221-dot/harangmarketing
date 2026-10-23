@@ -1,0 +1,105 @@
+{
+ "title": "Promotion",
+ "subtitle": "에이봄 프로모션 이벤트를 만나보세요",
+ "banner": "/img/8108eb4359889.webp",
+ "categories": [
+  {
+   "id": "K4Nh5L5TM6",
+   "name": "Monthly"
+  },
+  {
+   "id": "31c6PF22Qd",
+   "name": "Seasonal"
+  }
+ ],
+ "posts": [
+  {
+   "id": "175179286",
+   "category": "Monthly",
+   "title": "신규 진료 기념 스페셜 이벤트",
+   "thumb": "/img/a1059b7d01399.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/d365403c3e54b.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/8eaa57f28a254.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "174272663",
+   "category": "Monthly",
+   "title": "9월 체험이벤트",
+   "thumb": "/img/3e8c44a283c2b.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/bbdce9dddf279.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/73fef0b3af835.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "173691757",
+   "category": "Seasonal",
+   "title": "가을 이벤트",
+   "thumb": "/img/4df27f5cf6d56.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><br></p><p style=\"text-align:left\"><img src=\"/img/e4504ef2dd19b.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/98609986364bc.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "173453967",
+   "category": "Seasonal",
+   "title": "브이올렛",
+   "thumb": "/img/6a1cbef2a62b7.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/244ae7955ea32.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/85e2df8d91496.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "173453945",
+   "category": "Seasonal",
+   "title": "엑스인젝터",
+   "thumb": "/img/579ff4d92c758.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/a6c993133ae07.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/58835b2406f2a.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "173453918",
+   "category": "Seasonal",
+   "title": "튼살피부 프로그램",
+   "thumb": "/img/cb78cc6ae7963.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/4dcbddcc257a9.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/ec9d6131ce202.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "172714854",
+   "category": "Monthly",
+   "title": "8월 1회 체험 이벤트",
+   "thumb": "/img/2b1f2fbe04846.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/17c81fc7ef44e.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/3832e8e36af92.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "171359600",
+   "category": "Seasonal",
+   "title": "레이저제모 이벤트",
+   "thumb": "/img/20a306c877252.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/2b513f2f199a3.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/bf8d1d685904b.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "170860917",
+   "category": "Seasonal",
+   "title": "루비레이저 주근깨 잡티 이벤트",
+   "thumb": "/img/2c5993a650fc4.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/2f5a4b50e4259.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/8ddc77c395d32.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "170542791",
+   "category": "Seasonal",
+   "title": "SPRING LIFT UP in A.BOM",
+   "thumb": "/img/44db856cc1a0e.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/6218adbd31aaf.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/79902ff713207.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/14a6eaa0429a9.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/24a4c511c904b.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/ff79a59a06338.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/2339737f43afb.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  },
+  {
+   "id": "164463990",
+   "category": "Monthly",
+   "title": "엠페이스 런칭 이벤트",
+   "thumb": "/img/ee7fb84481e6d.webp",
+   "pinned": true,
+   "body": "<p><p style=\"text-align:left\"><img src=\"/img/f6e6e0f49fc76.webp\" alt=\"\" loading=\"lazy\"></p><p style=\"text-align:left\"><img src=\"/img/11fb9d70cf508.webp\" alt=\"\" loading=\"lazy\"></p></p><p></p>"
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+{
+ "title": "About",
+ "subtitle": "브랜드 스토리",
+ "rows": [
+  {
+   "image": "/img/e366292cec7da.webp",
+   "mobileImage": "/img/1fbe1a9d9837d.jpg",
+   "side": "left",
+   "title": "A.BOM clinic",
+   "text": [
+    "에이봄의원은 여의사가 진심을 다해 진료하고 시술합니다."
+   ],
+   "en": [
+    "A.BOM clinic does not compromise on quality and results.",
+    "We focus on each patient and pursue high-quality results."
+   ]
+  },
+  {
+   "image": "/img/28ee5e47c9929.webp",
+   "mobileImage": "/img/a1b54c73c1944.jpg",
+   "side": "right",
+   "title": "대표원장과 상담을 어렵지 않게 할 수 있는 의원",
+   "text": [
+    "상담실장이 대부분의 상담을 진행하는 다른 의원들과는 다릅니다.",
+    "대표원장이 직접 내원하신 분들의 니즈와 문제점을 파악하여",
+    "필요한 시술이나 치료방법을 추천합니다."
+   ],
+   "en": [
+    "At our clinic, the chief director personally meets with each patient to understand",
+    "their needs and concerns, and recommends the most suitable procedures or treatments."
+   ]
+  },
+  {
+   "image": "/img/7687509fc99bb.webp",
+   "mobileImage": "/img/7e6cb7fa852b1.jpg",
+   "side": "left",
+   "title": "항상 연구하고 공부하는 의원",
+   "text": [
+    "다양한 학회활동을 통한 지식 함양과 시술케이스, 피부과 상식 공유를 통해",
+    "끊임없이 노력합니다."
+   ],
+   "en": [
+    "We continuously strive for growth by expanding our knowledge through participation in various academic conferences and by sharing treatment cases and insights through a variety of channels."
+   ]
+  }
+ ],
+ "doctor": {
+  "bg": "/img/72eb791fe0632.webp",
+  "mobileImage": "/img/7fca51eaaa51d.webp",
+  "title": "Doctors",
+  "subtitle": "의료진 소개",
+  "name": "박 상 아",
+  "role": "대표원장",
+  "careers_pc": [
+   [
+    "현 에이봄의원 대표원장",
+    "전 다시봄날의원 원장",
+    "전 데이원클리닉 원장",
+    "전 자연예쁨의원 원장",
+    "멀츠코리아 울쎄라 공식 인증의",
+    "써마지 공식 인증의",
+    "Alma 티타늄 공식 인증의",
+    "리쥬란 공식 Expert"
+   ],
+   [
+    "대한미용성형레이저의학회 회원",
+    "대한비만미용치료학회 회원",
+    "대한레이저피부모발학회 회원",
+    "한양대학교 의과대학 졸업",
+    "한양대학교 의과대학 Summa Cum Laude",
+    "(상위 10% 우수졸업)"
+   ]
+  ],
+  "careers_mobile": [
+   "현 에이봄의원 대표원장",
+   "전 다시봄날의원 위례점 원장",
+   "전 데이원클리닉 원장",
+   "전 자연예쁨의원 원장",
+   "전 뽐므의원 원장",
+   "멀츠코리아 울쎄라 공식 인증의",
+   "쥬베룩 공식 인증의",
+   "리쥬란 공식 Expert",
+   "대한미용성형레이저의학회 회원",
+   "대한비만미용치료학회 회원",
+   "대한레이저피부모발학회 회원",
+   "한양대학교 의과대학 졸업",
+   "한양대학교 의과대학 Summa Cum Laude",
+   "(상위 10% 우수졸업)"
+  ]
+ },
+ "location": {
+  "title": "Location",
+  "subtitle": "오시는 길·진료안내",
+  "mapQuery": "경기도 하남시 위례학암로14번길 35",
+  "way": [
+   [
+    "주소",
+    [
+     "경기도 하남시 위례학암로 14번길 35 경서타워 1 3층"
+    ]
+   ],
+   [
+    "주차",
+    [
+     "에이봄의원이 위치한 건물 (경서타워 1) 지하주차장 이용가능",
+     "에이봄의원 건물 주차장 만차시, 도보 200m 이내에 위치한 위례풍경채 어바니티",
+     "(경기도 하남시 위례대로 350) 건물의 지하주차장을 이용가능",
+     "※ 귀가전 데스크에서 주차등록 필요."
+    ]
+   ],
+   [
+    "지하철",
+    [
+     "5호선 마천역 도보 15분"
+    ]
+   ],
+   [
+    "버스",
+    [
+     "위례01번, 31번, 33번, 36번, 200번 위례로제비앙역에서 도보 1분"
+    ]
+   ]
+  ],
+  "hours": [
+   [
+    "월. 금",
+    [
+     "10:00 - 20:00"
+    ]
+   ],
+   [
+    "화. 수. 목",
+    [
+     "10:00 - 19:00"
+    ]
+   ],
+   [
+    "토요일",
+    [
+     "09:00 - 15:00"
+    ]
+   ],
+   [
+    "휴무일",
+    [
+     "일요일. 공휴일 휴진",
+     "대체공휴일 휴진 여부는 미리 공지합니다."
+    ]
+   ]
+  ],
+  "tel": "02-2039-7878",
+  "button": {
+   "label": "이달의 진료 일정 확인하기",
+   "href": "/Notice/"
+  }
+ }
+}

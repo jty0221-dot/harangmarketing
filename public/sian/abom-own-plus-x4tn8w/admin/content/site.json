@@ -1,0 +1,243 @@
+{
+ "name": "에이봄의원",
+ "title": "A.BOM Clinic | 에이봄의원",
+ "description": "하남 위례 에이봄의원 · 대표원장 박상아 · 경기도 하남시 위례학암로 14번길 35 경서타워 1 3층 · 02-2039-7878",
+ "url": "https://abomclinic.com",
+ "logo": {
+  "pc": "/img/3489eac0b876b.png",
+  "mobile": "/img/c763887df4334.png",
+  "footer": "/img/59dab6051d5dc.png"
+ },
+ "nav": [
+  {
+   "label": "About",
+   "href": "/About/"
+  },
+  {
+   "label": "Signature",
+   "href": "/SIGNATURE/",
+   "children": [
+    {
+     "label": "흑자레이저 리팟",
+     "href": "/44/"
+    },
+    {
+     "label": "루비레이저",
+     "href": "/54/"
+    },
+    {
+     "label": "울쎄라피프라임",
+     "href": "/45/"
+    },
+    {
+     "label": "써마지 FLX",
+     "href": "/46/"
+    },
+    {
+     "label": "티타늄 리프팅",
+     "href": "/47/"
+    },
+    {
+     "label": "엠페이스",
+     "href": "/1847059257/"
+    },
+    {
+     "label": "쥬브젠 자가진피재생술",
+     "href": "/52/"
+    },
+    {
+     "label": "포텐자 엑소좀",
+     "href": "/48/"
+    },
+    {
+     "label": "쥬베룩",
+     "href": "/49/"
+    },
+    {
+     "label": "레디어스",
+     "href": "/50/"
+    }
+   ]
+  },
+  {
+   "label": "Promotion",
+   "href": "/PROMOTION/"
+  },
+  {
+   "label": "Before&After",
+   "href": "/BA/"
+  },
+  {
+   "label": "Notice",
+   "href": "/Notice/"
+  }
+ ],
+ "links": {
+  "kakao": "https://pf.kakao.com/_PxmxnIb",
+  "booking": "https://map.naver.com/p/entry/place/1704194358?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=127.1580961&lat=37.4876845&c=15.00",
+  "map": "https://map.naver.com/p/entry/place/1704194358?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=127.1580961&lat=37.4876845&c=15.00",
+  "blog": "https://blog.naver.com/drclaire_",
+  "youtube": "https://www.youtube.com/@abomclinic",
+  "tel": "tel:02-2039-7878",
+  "bookingFooter": "https://map.naver.com/p/entry/place/1890542103?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=127.1580961&lat=37.4876845&c=15.00"
+ },
+ "floating": [
+  {
+   "label": "오시는 길",
+   "icon": "/img/b316777a8e653.png",
+   "href": "map"
+  },
+  {
+   "label": "전화상담",
+   "icon": "/img/beb6ab1ab61de.png",
+   "href": "tel",
+   "mobileOnly": true
+  },
+  {
+   "label": "카톡상담",
+   "icon": "/img/4f13ccdb85597.png",
+   "href": "kakao"
+  },
+  {
+   "label": "네이버 예약",
+   "icon": "/img/d593a25ee932e.png",
+   "href": "booking"
+  },
+  {
+   "label": "네이버 블로그",
+   "icon": "/img/566009263c993.png",
+   "href": "blog"
+  },
+  {
+   "label": "유튜브 채널",
+   "icon": "/img/9f8813cbc1ded.png",
+   "href": "youtube"
+  }
+ ],
+ "footer": {
+  "info": [
+   [
+    "대표",
+    "박상아"
+   ],
+   [
+    "사업자번호등록번호",
+    "318-52-00555"
+   ],
+   [
+    "주소",
+    "경기도 하남시 위례학암로14번길 35, 3층"
+   ],
+   [
+    "대표번호",
+    "02-2039-7878"
+   ],
+   [
+    "팩스",
+    "02-2039-7874"
+   ]
+  ],
+  "copyright": "Copyright ⓒ A.BOM clinic All Rights Reserved.",
+  "hours": [
+   [
+    "월 금",
+    [
+     "10:00 - 20:00 | 19:30 접수마감",
+     "월요일은 점심 휴게시간 없이 진료"
+    ]
+   ],
+   [
+    "화 수 목",
+    [
+     "10:00 - 19:00 | 18:30 접수마감"
+    ]
+   ],
+   [
+    "토요일",
+    [
+     "09:00 - 15:00 | 14:30 접수마감",
+     "점심 휴게시간 없이 진료"
+    ]
+   ],
+   [
+    "일요일",
+    [
+     "정기휴무"
+    ]
+   ],
+   [
+    "휴게시간",
+    [
+     "13:00 - 14:00"
+    ]
+   ]
+  ],
+  "contact": [
+   {
+    "label": "네이버 예약하기",
+    "href": "bookingFooter"
+   },
+   {
+    "label": "카카오톡 상담",
+    "href": "kakao"
+   },
+   {
+    "label": "네이버 블로그",
+    "href": "blog"
+   }
+  ],
+  "legal": [
+   "상호명: 에이봄의원",
+   "대표자: 박상아",
+   "사업장주소: 경기 하남시 위례학암로14번길 35 (학암동, 경서타워1) 304~308호",
+   "연락처: 02-2039-7878",
+   "사업자등록번호: 3185200555",
+   "대표자 이메일: psa8711@naver.com"
+  ],
+  "nonPayNotice": "64740645"
+ },
+ "clinic": {
+  "address": {
+   "streetAddress": "위례학암로14번길 35 경서타워1 3층",
+   "addressLocality": "하남시",
+   "addressRegion": "경기도",
+   "addressCountry": "KR"
+  },
+  "geo": {
+   "latitude": 37.4876845,
+   "longitude": 127.1580961
+  },
+  "telephone": "+82-2-2039-7878",
+  "faxNumber": "+82-2-2039-7874",
+  "hours": [
+   {
+    "days": [
+     "Monday",
+     "Friday"
+    ],
+    "opens": "10:00",
+    "closes": "20:00"
+   },
+   {
+    "days": [
+     "Tuesday",
+     "Wednesday",
+     "Thursday"
+    ],
+    "opens": "10:00",
+    "closes": "19:00"
+   },
+   {
+    "days": [
+     "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "15:00"
+   }
+  ],
+  "founder": "박상아",
+  "specialty": "Dermatology",
+  "area": "하남 위례",
+  "specialtyConfirmed": false
+ }
+}
