@@ -272,6 +272,21 @@ export const HL_WORKS: HlWork[] = [
     ],
     stories: [],
   },
+  // 2026-10-23 (금) TR-0014 신규 · 지은 3차 · 통일 글자 커버 6칸 중 5장 (공개 화면 최대 150px)
+  // 제품 브랜드명이 적힌 1장은 뺐다. 프로필 줄 캡처도 같은 브랜드명이 보여 쓰지 않는다
+  {
+    slug: "pmu1",
+    title: "반영구 메이크업",
+    industry: "뷰티 · 반영구",
+    covers: [
+      { file: "pmu1-c01.webp", kind: "cover", w: 150, h: 150 },
+      { file: "pmu1-c02.webp", kind: "cover", w: 150, h: 150 },
+      { file: "pmu1-c03.webp", kind: "cover", w: 150, h: 150 },
+      { file: "pmu1-c04.webp", kind: "cover", w: 150, h: 150 },
+      { file: "pmu1-c05.webp", kind: "cover", w: 150, h: 150 },
+    ],
+    stories: [],
+  },
 ];
 
 export const HL_TOTAL = HL_WORKS.reduce((n, w) => n + w.covers.length + w.stories.length, 0);
