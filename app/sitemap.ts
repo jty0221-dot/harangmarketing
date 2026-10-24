@@ -11,10 +11,10 @@ const BASE = SITE.base;
 
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  // 바뀐 날을 아는 페이지는 그 날을, 모르는 페이지는 오늘을 적는다 (app/lib/seo.ts PAGE_UPDATED).
-  // 전부 오늘로 적으면 검색엔진이 어느 페이지가 진짜 바뀌었는지 구분하지 못한다.
-  const lm = (path: string): Date => (PAGE_UPDATED[path] ? new Date(PAGE_UPDATED[path]) : now);
+  // 실제 수정일을 모르는 페이지에는 lastModified를 넣지 않는다.
+  // 매 요청 시 현재 날짜를 기록하면 변경되지 않은 페이지도 갱신된 것처럼 보일 수 있다.
+  const lm = (path: string): Date | undefined =>
+    PAGE_UPDATED[path] ? new Date(PAGE_UPDATED[path]) : undefined;
   // 순위 데이터가 따로 갱신되는 네 페이지는 그 데이터 날짜까지 같이 본다 (updatedAt · 2026-09-20 · 요청 69 · 09-21 요청 70 에 portfolio · cases 추가).
 
   const allStaticPages: MetadataRoute.Sitemap = [
