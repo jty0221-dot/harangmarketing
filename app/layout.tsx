@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
 import SiteChrome from "./components/SiteChrome";
+import Motion from "./components/Motion";
 import JsonLd from "./components/JsonLd";
 import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES, companyYear } from "./lib/seo";
 import { OPENAI_MEASUREMENT_ON } from "./lib/ads-measurement";
@@ -149,8 +150,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`h-full ${blackHanSans.variable}`}>
+    <html lang="ko" className={`h-full ${blackHanSans.variable}`} suppressHydrationWarning>
       <head>
+        {/* 움직임 스위치 (TR-0057 · 기준 홈페이지공장\움직임_적용기준.md). 이 클래스가 있을 때만 스크롤 전 요소를 숨긴다.
+            동작 줄이기 · 자동 캡처(navigator.webdriver) · ?nomo 면 붙이지 않아 처음부터 다 보인다.
+            화면을 그리기 전에 붙여야 깜빡이지 않아서 head 에 둔다. suppressHydrationWarning 은 이 클래스 때문이다 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!navigator.webdriver&&"IntersectionObserver" in window&&location.search.indexOf("nomo")<0)document.documentElement.classList.add("mo")}catch(e){}`,
+          }}
+        />
         {/* ChatGPT 광고 측정 픽셀 — 문서 권고대로 head 맨 위. 랜딩 URL 의 oppref 를 __oppref 쿠키로 받아 둔다.
             코드 출처: developers.openai.com/ads/measurement-pixel (2026-10-02 확인) */}
         {OPENAI_PIXEL_ID && (
@@ -410,6 +419,7 @@ gtag('config', '${GA_ID}');`,
         {children}
         {/* 영업용 플로팅 요소 — 고객 전용 보고서(/r/…)에서는 뜨지 않는다 */}
         <SiteChrome />
+        <Motion />
       </body>
     </html>
   );

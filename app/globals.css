@@ -261,7 +261,7 @@ body { overflow-x: hidden; }
 /* ═══════════════════════════════════════
    SCROLL REVEAL
 ═══════════════════════════════════════ */
-.reveal-item {
+.mo .reveal-item {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
@@ -271,7 +271,7 @@ body { overflow-x: hidden; }
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-left {
+.mo .reveal-left {
   opacity: 0;
   transform: translateX(-32px);
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
@@ -281,7 +281,7 @@ body { overflow-x: hidden; }
   opacity: 1;
   transform: translateX(0);
 }
-.reveal-right {
+.mo .reveal-right {
   opacity: 0;
   transform: translateX(32px);
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
@@ -291,7 +291,7 @@ body { overflow-x: hidden; }
   opacity: 1;
   transform: translateX(0);
 }
-.reveal-scale {
+.mo .reveal-scale {
   opacity: 0;
   transform: scale(0.92);
   transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
@@ -315,8 +315,26 @@ body { overflow-x: hidden; }
   1023px 이하에서는 좌우 이동을 세로 페이드로 대체해 넘침을 원천 차단한다.
 */
 @media (max-width: 1023px) {
-  .reveal-left, .reveal-right { transform: translateY(24px); }
+  .mo .reveal-left, .mo .reveal-right { transform: translateY(24px); }
   .reveal-left.revealed, .reveal-right.revealed { transform: translateY(0); }
+}
+
+/*
+  움직임 (TR-0057 · 2026-10-24). 위 .reveal-* 와 아래 [data-fx] 는 <html class="mo"> 일 때만 숨긴다.
+  mo 는 layout head 스크립트가 붙인다 (동작 줄이기 · 자동 캡처 · ?nomo 면 안 붙음 → 처음부터 보임).
+  JS 가 안 돌아도 글은 보인다. transform · opacity 만 쓴다 (CLS 0).
+  [data-fx] 는 components/Motion.tsx 가 붙이고, 다 나타나면 걷는다. 길이 0.7s 는 Motion.tsx 의 DUR 과 같아야 한다.
+  transition 의 !important 는 카드(Card3DTilt)가 인라인으로 거는 transition 을 나타나는 동안만 이기려고 둔다.
+*/
+.mo [data-fx] {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--mo-delay, 0s),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--mo-delay, 0s) !important;
+}
+.mo [data-fx="up"] { transform: translateY(24px); }
+.mo [data-fx].in { opacity: 1; transform: none; }
+@media print {
+  .reveal-item, .reveal-left, .reveal-right, .reveal-scale, [data-fx] { opacity: 1 !important; transform: none !important; }
 }
 
 /* ═══════════════════════════════════════

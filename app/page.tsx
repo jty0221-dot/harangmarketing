@@ -1552,7 +1552,7 @@ export default function HomePage() {
                 전체 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5" data-stagger>
               {CASE_CARDS.map((c) => {
                 const Icon = c.icon;
                 return (
