@@ -20,7 +20,7 @@ import AttributionTracker from "./AttributionTracker";
  * CafeNoticePopup 만 성격이 다르다. 영업이 아니라 운영 공지라서 위 조건과 별개로
  * 뜨는 경로를 스스로 고른다. 그 목록은 app/lib/cafe-notice.ts 의 NOTICE_PATHS 다.
  */
-const HIDE_ON = ["/r/", "/admin", "/dontstop-lecture"];
+const HIDE_ON = ["/r/", "/admin", "/dontstop-lecture", "/tools/procurement"];
 
 export default function SiteChrome() {
   const pathname = usePathname() || "";
