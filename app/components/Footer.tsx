@@ -105,7 +105,7 @@ export default function Footer() {
                 {([
                   { label: "네이버 블로그", href: "https://blog.naver.com/harangmarketing", logo: "naver" },
                   { label: "카카오톡 채널", href: "https://pf.kakao.com/_MuUkG/chat", logo: "kakao" },
-                  { label: "인스타그램", href: "https://www.instagram.com/jty0221/", logo: "instagram" },
+                  { label: "인스타그램", href: "https://www.instagram.com/harang.marketing/", logo: "instagram" },
                   { label: "유튜브", href: SITE.youtube, logo: "youtube" },
                 ] as { label: string; href: string; logo: PlatformId }[]).map((s) => (
                   <a

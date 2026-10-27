@@ -186,6 +186,20 @@ export default function HomepageServicePage() {
                 <ArrowRight size={14} strokeWidth={2.5} />
               </span>
             </Link>
+            <Link
+              href="/services/homepage/clinic"
+              className="w-card mb-6 flex flex-wrap items-center justify-between gap-3 p-5 transition-shadow hover:shadow-[var(--w-shadow-md)]"
+            >
+              <div className="min-w-0">
+                <p className="w-caption-1 font-bold" style={{ color: "var(--w-primary)" }}>업종별 소개</p>
+                <p className="w-title-3 mt-1" style={{ color: "var(--w-label-strong)" }}>병원 · 의원 홈페이지</p>
+                <p className="w-body-2 mt-1" style={{ color: "var(--w-label-alt)" }}>진료과목 · 의료진 · 진료시간 정리와 의료법 문구 검수, 검색 기본 세팅을 함께 하는 병원 홈페이지 제작</p>
+              </div>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
+                자세히 보기
+                <ArrowRight size={14} strokeWidth={2.5} />
+              </span>
+            </Link>
             <HomepageGallery />
           </section>
 

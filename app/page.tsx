@@ -1219,7 +1219,7 @@ export default function HomePage() {
                   sub: "작업 포트폴리오",
                   desc: "진행 현장·성공 사례·최신 소식",
                   preview: "팔로우하면 매주 마케팅 팁 무료 제공",
-                  href: "https://www.instagram.com/jty0221/",
+                  href: "https://www.instagram.com/harang.marketing/",
                   logo: "instagram" as PlatformId,
                 },
               ].map((s) => (

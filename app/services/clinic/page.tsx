@@ -109,8 +109,7 @@ import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Stethoscope, MessageSquare,
   ShieldCheck, ScrollText,
-  ClipboardCheck, Images, UserX, CalendarClock,
-} from "lucide-react";
+  ClipboardCheck, Images, UserX, CalendarClock, Globe2 } from "lucide-react";
 
 /*
  * 의료광고 검수 공정 — 진우(병·의원 팀장) 인계서 제5절 문장 그대로다.
@@ -444,6 +443,33 @@ export default function ClinicLandingPage() {
                     어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 의료법 제57조와
                     시행령 제24조 순서대로 정리했습니다. 채널 16곳 판정과 금지 15가지, 전후 사진 요건,
                     심의 유효기간까지 조문 번호와 함께 적었습니다.
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="/services/homepage/clinic"
+              className="group block mt-4 bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
+            >
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--w-primary)" }}
+                >
+                  <Globe2 size={16} className="text-white" strokeWidth={2.5} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-base md:text-lg font-black text-gray-900 mb-1.5 flex items-center gap-1.5">
+                    병원 홈페이지 제작
+                    <ArrowRight
+                      size={15}
+                      className="text-gray-500 group-hover:text-blue-600 transition-colors"
+                    />
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    진료과목 · 의료진 · 진료시간 · 오시는 길을 환자가 찾기 쉽게 정리하고, 의료법 문구 검수와
+                    검색 기본 세팅을 함께 합니다. 플레이스와 홈페이지의 병원 정보를 같게 맞춥니다.
                   </p>
                 </div>
               </div>

@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/services/instagram`,      lastModified: lm("/services/instagram"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/homepage`,        lastModified: lm("/services/homepage"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/homepage/tax`,    lastModified: lm("/services/homepage/tax"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/services/homepage/clinic`, lastModified: lm("/services/homepage/clinic"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/detail-page`,     lastModified: lm("/services/detail-page"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/services/detail-page/reference`,       lastModified: lm("/services/detail-page/reference"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/services/cafe-distribution`,           lastModified: lm("/services/cafe-distribution"), changeFrequency: "weekly",  priority: 0.9 },
