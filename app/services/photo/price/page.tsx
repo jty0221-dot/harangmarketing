@@ -9,7 +9,7 @@ import { breadcrumbLd, webPageLd, faqLd, PAGE_UPDATED } from '../../../lib/seo';
 import { photoMetadata, photoOffersLd, PHOTO_FAQ } from '../../../lib/photo-seo';
 import { FOOD_PLANS, STAY_PLANS, type PhotoPlan } from '../../../lib/photo-pricing';
 
-export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '음식점과 시설·숙박 촬영의 부가세 포함 가격과 제공 범위를 확인하세요. 원거리 출장과 장비 운반 등 추가 비용은 촬영 장소 확인 후 사전에 안내하고 별도로 협의합니다.', '/photo-pricing/standard.jpg');
+export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '음식점 촬영 30만·70만·110만 원, 시설 촬영 70만·100만·120만 원. 부가세 별도. 원거리 출장과 장비 운반 등 추가 비용은 촬영 장소 확인 후 사전에 안내합니다.', '/photo-pricing/standard.jpg');
 const container = 'mx-auto max-w-6xl px-4 md:px-6 lg:px-8';
 const button = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white hover:bg-[var(--w-primary-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]';
 const outline = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--w-line)] bg-[var(--w-bg)] px-5 py-3 w-label1 font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]';
@@ -32,7 +32,7 @@ function PlanCard({ plan, type }: { plan: PhotoPlan; type: 'food' | 'stay' }) {
       {plan.extra && <p className="mt-3 w-caption1 text-[var(--w-label-alt)]">{plan.extra}</p>}
       <div className="mt-auto pt-8">
         <p className="w-display3 font-bold tabular-nums text-[var(--w-label-strong)]">{plan.price.toLocaleString('ko-KR')}<span className="ml-1 w-body1 font-semibold">원</span></p>
-        <p className="mt-1 w-caption1 text-[var(--w-label-alt)]">부가세 포함</p>
+        <p className="mt-1 w-caption1 text-[var(--w-label-alt)]">부가세 별도</p>
         <div className="my-6 border-t border-[var(--w-line)]" />
         <dl className="space-y-3 w-label1">{rows.map(([label, value]) => <div key={label} className="flex items-start justify-between gap-3"><dt className="shrink-0 text-[var(--w-label-alt)]">{label}</dt><dd className="text-right font-medium">{value}</dd></div>)}</dl>
         <Link href={'/contact?industry=' + encodeURIComponent(type === 'food' ? '음식점 사진촬영' : '시설·숙박 사진촬영') + '&plan=' + encodeURIComponent(plan.name)} className={button + ' mt-7 w-full'}>{plan.name} 상담<ArrowRight size={16} /></Link>
@@ -51,7 +51,7 @@ export default function PhotoPricePage() {
       <div className="mb-6 flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--w-primary)] shadow-sm"><Camera size={16} className="text-white" strokeWidth={2.5} /></span><p className="w-label1 font-semibold text-[var(--w-primary)]">매장 사진촬영 가격표</p></div>
       <h1 className="w-display2 max-w-4xl font-bold text-[var(--w-label-strong)]">메뉴와 공간에 맞는<br />촬영 구성을 선택하세요</h1>
       <p className="mt-5 max-w-2xl w-body1 text-[var(--w-label-alt)]">음식점은 메뉴와 인테리어를, 시설·숙박은 공간과 머무는 장면을 중심으로 촬영합니다. 상품별 사진과 제공 범위를 확인해 주세요.</p>
-      <p className="mt-3 max-w-2xl w-body2 text-[var(--w-label-alt)]">표시 금액은 부가세 포함입니다. 원거리 출장과 장비 운반 등 추가 비용은 촬영 장소 확인 후 사전에 안내하고 별도로 협의합니다.</p>
+      <p className="mt-3 max-w-2xl w-body2 text-[var(--w-label-alt)]">표시 금액은 부가세 별도입니다. 원거리 출장과 장비 운반 등 추가 비용은 촬영 장소 확인 후 사전에 안내하고 별도로 협의합니다.</p>
       <nav aria-label="촬영 가격 구분" className="mt-8 flex flex-wrap gap-3"><a href="#food" className={button}><UtensilsCrossed size={16} />음식점 촬영</a><a href="#stay" className={outline}><Building2 size={16} />시설·숙박 촬영</a></nav>
     </div></section>
     {([{ type: 'food', title: '음식점 촬영', english: 'PLACE PHOTOGRAPHY', plans: FOOD_PLANS, description: '메뉴 사진부터 플레이스에 사용할 사진까지, 세 가지 구성으로 안내합니다.' }, { type: 'stay', title: '시설·숙박 촬영', english: 'STAY PHOTOGRAPHY', plans: STAY_PLANS, description: '모델 유무와 시설 면적에 맞춰 촬영 구성을 선택할 수 있습니다.' }] as const).map((section) =>
