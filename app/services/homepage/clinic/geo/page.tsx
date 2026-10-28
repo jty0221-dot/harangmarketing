@@ -22,7 +22,7 @@ function HarangSelfCheck() {
     { label: "사이트맵에 올린 주소", value: `${sitemap().length}개` },
     { label: "질문과 답으로 정리한 문답", value: `${CORE_FAQ.length}개` },
     { label: "용어 정의", value: `${DEFINITIONS.length}개` },
-    { label: "AI 가 읽는 안내 파일", value: "llms.txt 공개" },
+    { label: "AI 참고용 안내 파일", value: "llms.txt 공개" },
   ];
   return (
     <section className="py-14 md:py-20 bg-gray-50">

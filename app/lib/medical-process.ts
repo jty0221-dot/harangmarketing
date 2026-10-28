@@ -27,7 +27,7 @@ export const MEDICAL_PROCESS = [
   },
   {
     icon: CalendarClock,
-    title: "심의 유효기간을 대장으로 셈니다",
+    title: "심의 유효기간을 대장으로 셉니다",
     desc: "사전심의 대상 광고는 승인 유효기간 3년을 대장으로 관리합니다.",
   },
 ];
