@@ -51,14 +51,14 @@ const CAFE_FACTS = [
 ];
 
 const PAGE_TITLE = "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그";
-const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 블로그·인스타 바이럴로 손님이 카페를 고르는 자리를 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 블로그·인스타 바이럴로 손님이 카페를 고르는 자리를 채웁니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["카페 마케팅", "카페 플레이스 SEO", "카페 리뷰 마케팅", "베이커리 마케팅", "네이버 플레이스 카페"],
   openGraph: {
-    title: "카페·베이커리 마케팅 | 하랑마케팅",
+    title: "손님이 카페를 고르는 자리를 채우는 카페 마케팅 · 하랑마케팅",
     description: "플레이스 정보 정비부터 실제 방문 후기 안내까지. 카페 전문 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/cafe",
     images: [ogImage()],

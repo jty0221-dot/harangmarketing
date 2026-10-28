@@ -120,7 +120,7 @@ export const metadata: Metadata = {
   description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 상담과 진단은 0원입니다.", // N-31 · layout 과 한 벌
   keywords: ["병원마케팅", "치과마케팅", "의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행", "병원마케팅 대행사"],
   openGraph: {
-    title: "의원·한의원·피부과 마케팅 | 하랑마케팅",
+    title: "의료법 검수부터 거치는 병원마케팅 · 하랑마케팅",
     description: "의료법을 준수하며 진행하는 병원 마케팅 전략입니다.",
     url: "https://www.harangmarketing.com/services/clinic",
     images: [ogImage()],

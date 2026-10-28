@@ -23,7 +23,7 @@ const PATH = "/services/homepage/tax";
 const URL = `${SITE.base}${PATH}`;
 const TITLE = "세무사 홈페이지 제작, 상담 전에 신뢰를 만드는 사무소 홈페이지";
 const DESC =
-  "세무 · 회계 사무소용 홈페이지 틀을 미리 만들어 두었습니다. 상담 세무사 소개, 관리 방식, 기장료 안내, 서비스별 페이지와 검색 · AI 기본 세팅까지 사무소에 맞게 바꿔 15영업일 안에 엽니다";
+  "세무사 홈페이지 제작. 사무소용 틀에 세무사 소개, 기장료 안내, 서비스별 페이지와 검색 · AI 기본 세팅을 맞춰 15영업일 안에 엽니다.";
 const SIAN = "/sian/tax-firm-b-w8k3qz/index.html";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     type: "website",
-    title: "세무사 홈페이지 제작 | 하랑마케팅",
+    title: "상담 전에 신뢰를 만드는 세무사 홈페이지 제작 · 하랑마케팅",
     description: DESC,
     url: URL,
     images: [ogImage("하랑마케팅 세무사 홈페이지 제작")],

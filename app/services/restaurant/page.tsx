@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   description: "음식점·한식당·중식당·일식당·분식집 맞춤 마케팅입니다. 네이버 플레이스 SEO, 블로그 체험단, 맘카페 바이럴을 하며 상권 진단은 0원입니다.",
   keywords: ["음식점 마케팅", "식당 마케팅 대행사", "맛집 마케팅", "음식점 플레이스 SEO", "식당 블로그 마케팅"],
   openGraph: {
-    title: "음식점·식당 마케팅 대행사 | 하랑마케팅",
+    title: "손님이 검색할 때 보이게, 음식점 마케팅 · 하랑마케팅",
     description: "네이버 플레이스와 블로그로 음식점 검색 노출을 만듭니다.",
     url: "https://www.harangmarketing.com/services/restaurant",
     images: [ogImage("음식점 마케팅 하랑마케팅")],

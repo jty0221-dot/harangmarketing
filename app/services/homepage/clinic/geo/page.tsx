@@ -4,16 +4,16 @@ import KeywordServicePage from "../../../../components/KeywordServicePage";
 import JsonLd from "../../../../components/JsonLd";
 import sitemap from "../../../../sitemap";
 import { SITE, ogImage, CORE_FAQ, DEFINITIONS, definitionsLd } from "../../../../lib/seo";
-import { CLINIC_GEO, CLINIC_GEO_PATH, CLINIC_GEO_TITLE, CLINIC_GEO_DESC, CLINIC_GEO_KEYWORDS } from "../../../../lib/clinic-homepage";
+import { CLINIC_GEO, CLINIC_GEO_PATH, CLINIC_GEO_TITLE, CLINIC_GEO_META, CLINIC_GEO_OG_TITLE, CLINIC_GEO_KEYWORDS } from "../../../../lib/clinic-homepage";
 
 const URL = `${SITE.base}${CLINIC_GEO_PATH}`;
 
 export const metadata: Metadata = {
   title: { absolute: `${CLINIC_GEO_TITLE} | 하랑마케팅` },
-  description: CLINIC_GEO_DESC,
+  description: CLINIC_GEO_META,
   keywords: CLINIC_GEO_KEYWORDS,
   alternates: { canonical: URL },
-  openGraph: { type: "website", title: CLINIC_GEO_TITLE, description: CLINIC_GEO_DESC, url: URL, images: [ogImage(CLINIC_GEO_TITLE)] },
+  openGraph: { type: "website", title: CLINIC_GEO_OG_TITLE, description: CLINIC_GEO_META, url: URL, images: [ogImage(CLINIC_GEO_TITLE)] },
 };
 
 /** 하랑 사례 절 (세팅안 나-3) · 숫자는 빌드 때 사이트 코드에서 센다. 다른 병원 수치는 넣지 않는다 */

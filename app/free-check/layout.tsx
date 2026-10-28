@@ -4,10 +4,10 @@ import { SITE, ORG_ID, webPageLd, updatedAt, breadcrumbLd, ogImage } from "../li
 
 export const metadata: Metadata = {
   title: "무료 플레이스 진단 | 지금 내 매장 순위 확인",
-  description: "내 매장의 네이버 플레이스·블로그·리뷰 현황을 무료로 진단해드립니다. 경쟁사 대비 어디가 부족한지 안내해드립니다. 진단 비용은 0원이고 계약 의무가 없습니다.",
+  description: "무료 플레이스 진단. 내 매장의 네이버 플레이스·블로그·리뷰 현황과 경쟁사 대비 부족한 곳을 안내합니다. 진단 비용 0원, 계약 의무 없음.",
   alternates: { canonical: `${SITE.base}/free-check` },
   openGraph: {
-    title: "무료 플레이스 진단 신청 | 하랑마케팅",
+    title: "지금 내 매장 순위부터 보는 무료 플레이스 진단 · 하랑마케팅",
     description: "지금 내 매장 순위, 리뷰, 경쟁사 비교까지 무료로 확인하세요.",
     url: "https://www.harangmarketing.com/free-check",
     images: [ogImage("무료 플레이스 진단 | 하랑마케팅")],

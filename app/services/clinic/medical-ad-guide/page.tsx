@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE.base}${PATH}` },
   openGraph: {
-    title: "의료광고 심의 대상 판정 자료 | 하랑마케팅",
+    title: "심의가 필요한 의료광고인지 먼저 보는 판정 자료 · 하랑마케팅",
     description: DESCRIPTION,
     url: `${SITE.base}${PATH}`,
     images: [ogImage("하랑마케팅 의료광고 심의 판정 자료")],

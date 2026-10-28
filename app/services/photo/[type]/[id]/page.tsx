@@ -7,7 +7,7 @@ import Footer from '../../../../components/Footer';
 import PhotoSlideshow from '../../../../components/PhotoSlideshow';
 import JsonLd from '../../../../components/JsonLd';
 import { photoMetadata, photoGalleryLd, portfolioSummary } from '../../../../lib/photo-seo';
-import { breadcrumbLd } from '../../../../lib/seo';
+import { breadcrumbLd, fitDesc } from '../../../../lib/seo';
 import { isPhotoType, PHOTO_TYPES, PHOTO_PORTFOLIOS, portfoliosFor } from '../../../../lib/photo-portfolios';
 
 type Params = Promise<{ type: string; id: string }>;
@@ -23,7 +23,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { portfolio } = getPortfolio(type, id);
   // 검색 제목에 업종 키워드를 넣는다 (2026-10-08 전 페이지 점검 · 짧은 제목 26곳)
   const title = portfolio.name + (type === 'food' ? ' · 음식사진촬영 포트폴리오' : ' · 숙소 사진촬영 포트폴리오');
-  const description = portfolioSummary(portfolio) + ' 하랑마케팅 매장 사진촬영 사례입니다.';
+  // 80자 안에서 문장 단위로 붙인다 (2026-10-28 · 넘는 문장은 건너뛴다 · 화면 문구는 그대로)
+  const description = fitDesc(portfolioSummary(portfolio), '하랑마케팅 ' + (type === 'food' ? '음식사진촬영' : '숙소 사진촬영') + ' 사례입니다.');
   const path = '/services/photo/' + type + '/' + id;
   return photoMetadata(path, title, description, portfolio.cover);
 }

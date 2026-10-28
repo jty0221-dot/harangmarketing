@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check:meta": "node scripts/meta-length.test.mjs && node scripts/check-meta-length.mjs",
     "refs:collect": "python scripts/cafe-ref/collect.py",
     "refs:apply": "python scripts/cafe-ref/apply.py",
     "refs:verify": "python scripts/cafe-ref/apply.py --verify",

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     type: "website",
-    title: "하랑마케팅 블로그 체험단 · 인플루언서 체험단",
+    title: "실제 방문한 사람이 쓰는 블로그 체험단 모집 대행 · 하랑마케팅",
     description:
       "실제로 방문한 사람이 실제로 쓴 글만 남깁니다. 대가를 숨기지 않고, 병원에는 체험단을 하지 않습니다.",
     url: URL,

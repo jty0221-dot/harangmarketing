@@ -49,6 +49,10 @@ export const C05: FaqItem = { q: "AI 답변에 우리 병원이 나오게 할 �
 /* ── 허브 ── */
 export const CLINIC_HOMEPAGE_TITLE = "병원 홈페이지 제작 · 진료과목별 시안 · 의료법 검수"; // H-01
 export const CLINIC_HOMEPAGE_DESC = "진료과목 · 의료진 · 진료시간 · 위치를 글자와 구조화 데이터로 정리하는 병원 홈페이지 제작입니다. 문구는 의료법 검수를 거치고 도메인은 원장님 명의로 등록합니다."; // H-03
+/** meta · og 설명 (80자 상한) · H-03 첫 문장을 글자 그대로 잘라 씀 */
+export const CLINIC_HOMEPAGE_META = "진료과목 · 의료진 · 진료시간 · 위치를 글자와 구조화 데이터로 정리하는 병원 홈페이지 제작입니다.";
+/** 공유 미리보기 제목 · 진우 검수 대상 (메타설명_80자_진우검수_20261028.md OT-03) */
+export const CLINIC_HOMEPAGE_OG_TITLE = "의료법 검수를 거쳐 공개하는 병원 홈페이지 제작 · 하랑마케팅";
 export const CLINIC_HOMEPAGE_KEYWORDS = ["병원 홈페이지 제작", "병원 홈페이지", "병원 홈페이지 제작 업체", "병원 홈페이지 제작 비용", "의원 홈페이지 제작", "개원 홈페이지 제작", "병원 홈페이지 리뉴얼", "병원 홈페이지 유지관리"];
 
 export const CLINIC_HOMEPAGE: KeywordServiceData = {
@@ -117,6 +121,10 @@ export const CLINIC_HOMEPAGE: KeywordServiceData = {
 export const CLINIC_GEO_PATH = `${CLINIC_HUB_PATH}/geo`;
 export const CLINIC_GEO_TITLE = "병원 GEO · AEO 세팅 · AI 가 읽는 병원 홈페이지"; // G-01
 export const CLINIC_GEO_DESC = "검색엔진이 찾는 기초(SEO) 위에 AI 브리핑이 인용할 수 있는 답(AEO)과 생성형 AI 가 병원을 설명할 근거(GEO)를 차례로 쌓는 병원 홈페이지 세팅입니다."; // G-03
+/** meta · og 설명 (80자 상한) · G-03 이 한 문장 92자라 줄여 새로 씀 · 진우 검수 대상 (M-01) */
+export const CLINIC_GEO_META = "병원 GEO · AEO 세팅입니다. SEO 기초 위에 AI 브리핑이 인용할 수 있는 답과 생성형 AI 가 병원을 설명할 근거를 차례로 쌓습니다.";
+/** 공유 미리보기 제목 · 진우 검수 대상 (OT-04) */
+export const CLINIC_GEO_OG_TITLE = "AI 브리핑이 인용할 수 있는 답을 쌓는 병원 GEO · 하랑마케팅";
 export const CLINIC_GEO_KEYWORDS = ["병원 GEO", "병원 AEO", "병원 SEO", "병원 AI 검색 최적화", "병원 AI 브리핑", "GEO 뜻", "AEO 뜻", "생성형 엔진 최적화"];
 
 /* C-07 · C-08 · C-09 · seo.ts DEFINITIONS 와 같은 글자 */
@@ -166,13 +174,14 @@ export const CLINIC_GEO: KeywordServiceData = {
 export type ClinicSubjectKey = "dental" | "derma" | "plastic" | "oriental";
 
 export const CLINIC_SUBJECTS: Record<ClinicSubjectKey, {
-  name: string; title: string; desc: string; keywords: string[]; prefixes: string[]; data: KeywordServiceData;
+  name: string; title: string; ogTitle: string; desc: string; keywords: string[]; prefixes: string[]; data: KeywordServiceData;
 }> = {} as never;
 
-const SUBJECT_SRC: { key: ClinicSubjectKey; name: string; title: string; h1: string; intro: string; faq: FaqItem; keywords: string[]; prefixes: string[] }[] = [
+const SUBJECT_SRC: { key: ClinicSubjectKey; name: string; title: string; ogTitle: string; h1: string; intro: string; faq: FaqItem; keywords: string[]; prefixes: string[] }[] = [
   {
     key: "dental", name: "치과",
     title: "치과 홈페이지 제작 · 진료 안내를 글자로", // P-01
+    ogTitle: "진료 안내를 글자로 정리하는 치과 홈페이지 제작 · 하랑마케팅", // OT-05 진우 검수 대상
     h1: "치과 홈페이지, 진료 안내를 글자로 정리합니다",
     intro: "치과 홈페이지는 진료 항목과 의료진, 진료시간과 위치를 환자가 글자로 확인하는 자리입니다. 하랑마케팅은 치과 시안에서 골라 시작하고, 의료진 소개에는 확인한 지정과 자격만 적습니다. 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다.", // N-21
     faq: { q: "임플란트 전문 같은 표현을 써도 되나요?", a: "전문병원 지정 · 전문의 자격 · 의료기관 인증처럼 지정받은 사실은 쓸 수 있지만, 임플란트 전문 같은 표현은 자격이 아니라 표현이라 의료법 제56조 제2항 제9호에 걸릴 수 있습니다. 홈페이지에는 어느 지정 · 어느 자격인지 확인한 사실만 적습니다." }, // P-02
@@ -182,6 +191,7 @@ const SUBJECT_SRC: { key: ClinicSubjectKey; name: string; title: string; h1: str
   {
     key: "derma", name: "피부과",
     title: "피부과 홈페이지 제작 · 전후 사진 기준까지", // P-03
+    ogTitle: "전후 사진 기준부터 정하는 피부과 홈페이지 제작 · 하랑마케팅", // OT-06 진우 검수 대상
     h1: "피부과 홈페이지, 사진보다 기준이 먼저입니다",
     intro: "피부과 홈페이지에서 먼저 정해야 할 것은 전후 사진 기준입니다. 하랑마케팅은 피부과 시안에서 골라 시작하고, 사진은 시술명 · 시술일자 · 부작용 경고가 함께 있을 때만 싣는 기준을 먼저 정한 뒤 화면을 짭니다. 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다.", // N-22
     faq: { q: "시술 전후 사진을 홈페이지에 올려도 되나요?", a: "시술명 · 시술일자 · 부작용 경고 세 가지가 함께 있을 때만 싣습니다(의료법 제56조 제2항 제7호). 사진은 같은 조명 · 각도 · 배경에서 찍고 결과를 부풀리는 보정은 하지 않습니다. 시술 장면을 직접 보여 주는 사진은 제6호로 따로 금지되고, 환자 얼굴이 나온 사진은 서면 동의를 확인하기 전까지 쓰지 않습니다." }, // P-04
@@ -191,6 +201,7 @@ const SUBJECT_SRC: { key: ClinicSubjectKey; name: string; title: string; h1: str
   {
     key: "plastic", name: "성형외과",
     title: "성형외과 홈페이지 제작 · 의료법 검수", // P-05
+    ogTitle: "후기 칸 없이 설계하는 성형외과 홈페이지 제작 · 하랑마케팅", // OT-07 진우 검수 대상
     h1: "성형외과 홈페이지, 후기 칸 없이 설계합니다",
     intro: "성형외과 홈페이지는 후기를 모으는 칸 없이 설계합니다. 하랑마케팅은 성형외과 시안에서 골라 시작하고, 수술 정보와 의료진 · 진료시간 · 위치를 글자로 정리합니다. 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다.", // N-23
     faq: { q: "수술 후기나 사례를 홈페이지에 모아도 되나요?", a: "치료경험담은 의료법 제56조 제2항 제2호가 금지하는 항목이라 후기 칸을 만들지 않습니다. 전후 사진은 시술명 · 시술일자 · 부작용 경고가 함께 있을 때만 싣고(제7호), 수술 장면은 싣지 않습니다(제6호)." }, // P-06
@@ -200,6 +211,7 @@ const SUBJECT_SRC: { key: ClinicSubjectKey; name: string; title: string; h1: str
   {
     key: "oriental", name: "한의원",
     title: "한의원 홈페이지 제작 · 진료 과정을 글자로", // P-07
+    ogTitle: "진료 과정을 사실대로 적는 한의원 홈페이지 제작 · 하랑마케팅", // OT-08 진우 검수 대상
     h1: "한의원 홈페이지, 진료 과정을 사실대로 적습니다",
     intro: "한의원 홈페이지는 진료 과정과 진료 방식을 사실대로 적는 자리입니다. 하랑마케팅은 한의원 시안에서 골라 시작하고, 치료 효과를 단정하는 문장 없이 진료과목 · 의료진 · 진료시간 · 위치를 글자로 정리합니다. 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다.", // N-24
     faq: { q: "한약이나 침 치료 효과를 적어도 되나요?", a: "치료 효과를 단정하거나 다른 진료법과 견주거나 깎아내리는 문장은 쓰지 않습니다. 의료법 제56조 제2항 제8호(과장) · 제4호(비교) · 제5호(비방)에 걸리기 때문입니다. 진료 과정과 진료 방식을 사실대로 적고, 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다." }, // P-08 (2절)
@@ -211,7 +223,7 @@ const SUBJECT_SRC: { key: ClinicSubjectKey; name: string; title: string; h1: str
 for (const s of SUBJECT_SRC) {
   const path = `${CLINIC_HUB_PATH}/${s.key}`;
   CLINIC_SUBJECTS[s.key] = {
-    name: s.name, title: s.title, desc: s.intro, keywords: s.keywords, prefixes: s.prefixes,
+    name: s.name, title: s.title, ogTitle: s.ogTitle, desc: s.intro, keywords: s.keywords, prefixes: s.prefixes,
     data: {
       path,
       badge: `${s.name} 홈페이지 제작`,

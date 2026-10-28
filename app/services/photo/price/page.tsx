@@ -9,7 +9,7 @@ import { breadcrumbLd, webPageLd, faqLd, PAGE_UPDATED } from '../../../lib/seo';
 import { photoMetadata, photoOffersLd, PHOTO_FAQ } from '../../../lib/photo-seo';
 import { FOOD_PLANS, STAY_PLANS, type PhotoPlan } from '../../../lib/photo-pricing';
 
-export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '음식점 촬영 30만·70만·110만 원, 시설 촬영 70만·100만·120만 원. 부가세 별도. 원거리 출장과 장비 운반 등 추가 비용은 촬영 장소 확인 후 사전에 안내합니다.', '/photo-pricing/standard.jpg');
+export const metadata: Metadata = photoMetadata('/services/photo/price', '매장 사진촬영 가격표 | 음식점 · 시설 촬영', '매장 사진촬영 가격표. 음식점 30만·70만·110만 원, 시설 70만·100만·120만 원(부가세 별도). 추가 비용은 미리 안내합니다.', '/photo-pricing/standard.jpg', '구성별 가격을 먼저 보는 매장 사진촬영 가격표 · 하랑마케팅');
 const container = 'mx-auto max-w-6xl px-4 md:px-6 lg:px-8';
 const button = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--w-primary)] px-5 py-3 w-label1 font-semibold text-white hover:bg-[var(--w-primary-strong)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--w-primary)]';
 const outline = 'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--w-line)] bg-[var(--w-bg)] px-5 py-3 w-label1 font-semibold text-[var(--w-label)] hover:bg-[var(--w-bg-alt)]';

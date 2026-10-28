@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: BLOG_MARKETING_TITLE,
   description: BLOG_MARKETING_DESC,
   alternates: { canonical: URL },
-  openGraph: { type: "website", title: BLOG_MARKETING_TITLE, description: BLOG_MARKETING_DESC, url: URL, images: [ogImage(BLOG_MARKETING_TITLE)] },
+  openGraph: { type: "website", title: "게시 URL과 월간 순위로 확인하는 블로그마케팅 · 하랑마케팅", description: BLOG_MARKETING_DESC, url: URL, images: [ogImage(BLOG_MARKETING_TITLE)] },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

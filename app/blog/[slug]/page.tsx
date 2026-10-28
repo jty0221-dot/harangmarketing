@@ -7,7 +7,7 @@ import ScrollProgressBar from "../../components/ScrollProgressBar";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "../../lib/blog-posts";
 import { BLOG_META } from "../../lib/blog-meta";
-import { ogImage } from "../../lib/seo";
+import { ogImage, fitDesc } from "../../lib/seo";
 
 const POSTS: Record<string, {
   title: string;
@@ -707,13 +707,13 @@ export async function generateMetadata(
   if (dynamicPost) {
     return {
       title: `${dynamicPost.title} · 하랑마케팅 블로그`,
-      description: dynamicPost.excerpt,
+      description: fitDesc(dynamicPost.excerpt),
       keywords: ["소상공인 마케팅", "하랑마케팅", "마케팅 노하우", dynamicPost.title],
       authors: [{ name: "하랑마케팅" }],
       alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
       openGraph: {
         title: dynamicPost.title,
-        description: dynamicPost.excerpt,
+        description: fitDesc(dynamicPost.excerpt),
         url: `https://www.harangmarketing.com/blog/${slug}`,
         type: "article",
         publishedTime: dynamicPost.date,
@@ -730,14 +730,14 @@ export async function generateMetadata(
     title: `${post.title} · 하랑마케팅 블로그`,
     // 내린 글은 URL 은 살아 있으나 검색엔진에 올리지 않는다 (H-0081)
     robots: meta?.unlisted ? { index: false, follow: false } : undefined,
-    // 검색 결과 설명은 70~160자 (2026-10-08 전 페이지 점검 · 짧은 요약 5편) · 짧으면 주제 한 줄을 붙인다
-    description: [...post.summary].length < 70 ? `${post.summary} ${post.tag} 실무 노하우를 하랑마케팅이 정리했습니다.` : post.summary,
+    // 검색 결과 설명은 80자 안 (2026-10-28 · 네이버 서치어드바이저). 요약을 문장 경계에서 자르고, 남는 자리에만 주제 한 줄을 붙인다
+    description: fitDesc(post.summary, `${post.tag} 실무 노하우를 하랑마케팅이 정리했습니다.`),
     keywords: ["소상공인 마케팅", "하랑마케팅", post.tag, "마케팅 노하우", post.title],
     authors: [{ name: "하랑마케팅" }],
     alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
     openGraph: {
       title: post.title,
-      description: post.summary,
+      description: fitDesc(post.summary),
       url: `https://www.harangmarketing.com/blog/${slug}`,
       type: "article",
       publishedTime: meta?.date,

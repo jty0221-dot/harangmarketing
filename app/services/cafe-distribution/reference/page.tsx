@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: URL },
   openGraph: {
-    title: "카페 배포 레퍼런스 | 업종별 검색 결과 실사 캡처",
+    title: "검색 화면 그대로 보는 카페 배포 레퍼런스 · 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 노출 화면을 그대로 공개합니다.`,
     url: URL,
     images: [ogImage("카페 배포 협력망 노출 캡처")],

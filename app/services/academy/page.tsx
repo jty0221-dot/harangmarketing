@@ -13,14 +13,14 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, TrendingUp, Users, Star, CheckCircle2 } from "lucide-react";
 
 const PAGE_TITLE = "학원·교육 마케팅 대행사 | 학원 플레이스 · 블로그 전문";
-const PAGE_DESCRIPTION = "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 학부모가 학원을 찾는 검색 자리부터 채웁니다. 무료 상담.";
+const PAGE_DESCRIPTION = "학원·공부방·과외·교습소 맞춤 마케팅. 네이버 플레이스 SEO, 블로그, 카카오채널 운영 전문. 학부모가 학원을 찾는 검색 자리부터 채웁니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["학원 마케팅", "교육 마케팅 대행사", "학원 수강생 늘리기", "학원 플레이스 SEO", "공부방 마케팅"],
   openGraph: {
-    title: "학원·교육 마케팅 대행사 | 하랑마케팅",
+    title: "학부모가 검색하는 자리를 채우는 학원 마케팅 · 하랑마케팅",
     description: "학부모가 검색하는 자리를 채우는 학원 마케팅 전략. 하랑 대표가 직접 상담합니다.",
     url: "https://www.harangmarketing.com/services/academy",
     images: [ogImage("학원 마케팅 하랑마케팅")],

@@ -10,7 +10,7 @@ import type { KeywordServiceData } from "../components/KeywordServicePage";
 
 export const BLOG_MARKETING_TITLE = "블로그마케팅 대행 · 지역 키워드 원고와 월간 순위 리포트";
 export const BLOG_MARKETING_DESC =
-  "블로그마케팅은 네이버 블로그 검색 현황 점검을 목표로 지역 키워드에 맞춰 글을 쌓는 일입니다. 월 4~8건 원고, 게시 URL 공개, 월 1회 순위 리포트. 무료 진단 상담부터 신청하세요.";
+  "블로그마케팅 대행. 지역 키워드에 맞춰 월 4~8건 원고를 쌓고 게시 URL을 공개하며, 월 1회 순위 리포트를 드립니다.";
 
 export const BLOG_MARKETING: KeywordServiceData = {
   path: "/services/blog-marketing",
@@ -79,7 +79,7 @@ export const BLOG_MARKETING: KeywordServiceData = {
 
 export const POWERCONTENTS_TITLE = "파워컨텐츠 원고 대행 · 원고 설계와 검수 대응";
 export const POWERCONTENTS_DESC =
-  "파워컨텐츠는 네이버 검색광고 상품으로, 등록한 원고가 검수를 거쳐 노출됩니다. 하랑은 원고 설계와 검수 대응을 맡고 광고 집행은 별도 협의합니다. 상담에서 범위를 확인하세요.";
+  "파워컨텐츠 원고 대행. 네이버 검색광고 파워컨텐츠의 원고 설계와 검수 대응을 하랑이 맡고, 광고 집행은 별도 협의합니다.";
 
 export const POWERCONTENTS: KeywordServiceData = {
   path: "/services/powercontents",

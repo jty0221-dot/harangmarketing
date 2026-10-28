@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://www.harangmarketing.com/services" },
   openGraph: {
-    title: "하랑마케팅 서비스 | 소상공인 맞춤 마케팅",
+    title: "진단 후 업종에 맞춰 고르는 마케팅 서비스 · 하랑마케팅",
     description: "플레이스 SEO부터 블로그·SNS까지. 10년 노하우 기반 업종별 맞춤 마케팅 서비스. 견적은 진단 후 산정, 상담 무료.",
     url: "https://www.harangmarketing.com/services",
     images: [ogImage()],

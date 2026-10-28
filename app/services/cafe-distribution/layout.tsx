@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     type: "website",
-    title: "블로그 원고 · 카페 게시 대행 | 하랑마케팅",
+    title: "게시 URL까지 보고하는 블로그 원고 · 카페 게시 대행 · 하랑마케팅",
     description:
       `원고 작성과 게시 URL 보고. 10건 · 30건 패키지 ${won(PRICE_MIN)}부터, 카페 단건 ${won(CAFE_TIER_MIN)}부터. ${PRICE_REVISED_AT} 개정 단가.`,
     url: URL,

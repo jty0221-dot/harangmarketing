@@ -13,14 +13,14 @@ import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
 const PAGE_TITLE = "쇼핑몰·소매점 마케팅 대행사 | 스마트스토어 · 인스타 · 플레이스";
-const PAGE_DESCRIPTION = "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온라인 스토어와 오프라인 매장을 한 흐름으로 묶어 설계합니다.";
+const PAGE_DESCRIPTION = "쇼핑몰·소매점 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO로 온라인 스토어와 오프라인 매장을 한 흐름으로 묶어 설계합니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["쇼핑몰 마케팅", "소매점 마케팅", "의류 마케팅 대행사", "스마트스토어 마케팅", "인스타 쇼핑 마케팅"],
   openGraph: {
-    title: "쇼핑몰·소매점 마케팅 대행사 | 하랑마케팅",
+    title: "스마트스토어와 매장을 한 흐름으로, 쇼핑몰 마케팅 · 하랑마케팅",
     description: "스마트스토어부터 매장 집객까지 온·오프라인을 함께 챙기는 쇼핑몰 마케팅.",
     url: "https://www.harangmarketing.com/services/shopping",
     images: [ogImage("쇼핑몰 마케팅 하랑마케팅")],

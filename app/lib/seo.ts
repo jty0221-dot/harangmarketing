@@ -537,3 +537,7 @@ export function itemListLd(opts: {
     })),
   };
 }
+
+
+/* meta description · og:description 80자 상한 (2026-10-28 · 네이버 서치어드바이저 경고). 본체는 meta-length.ts */
+export { META_DESC_MAX, metaDesc, fitDesc } from "./meta-length";

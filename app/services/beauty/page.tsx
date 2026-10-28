@@ -15,14 +15,14 @@ import {
 } from "lucide-react";
 
 const PAGE_TITLE = "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단";
-const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 정보 정비, 실제 방문 후기 안내로 손님이 예약 전에 보는 자리를 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 정보 정비, 방문 후기 안내로 손님이 예약 전에 보는 자리를 채웁니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["미용실 마케팅", "네일샵 마케팅", "피부샵 마케팅", "뷰티샵 플레이스 SEO", "헤어샵 인스타그램"],
   openGraph: {
-    title: "미용·네일·피부샵 마케팅 | 하랑마케팅",
+    title: "예약 전에 손님이 보는 곳을 채우는 미용실 마케팅 · 하랑마케팅",
     description: "손님이 예약 전에 보는 인스타그램·플레이스를 함께 채우는 뷰티샵 마케팅.",
     url: "https://www.harangmarketing.com/services/beauty",
     images: [ogImage()],

@@ -17,8 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
   const data = PHOTO_TYPES[type];
   // 검색 제목 · 설명은 키워드를 앞에 둔다 (2026-10-08 전 페이지 점검 · 음식사진촬영 월 320회). 화면 문구는 그대로다
   const seoTitle = type === 'food' ? '음식사진촬영 포트폴리오 · 메뉴 · 매장 촬영 사례' : '숙소 · 펜션 사진촬영 포트폴리오 · 시설 촬영 사례';
-  const seoDesc = data.description + ' 하랑마케팅이 진행한 매장 사진촬영 사례를 모아 사진 수와 촬영 구성, 가격까지 함께 보여 드립니다.';
-  return photoMetadata('/services/photo/' + type, seoTitle, seoDesc, portfoliosFor(type)[0].cover);
+  // 설명은 80자 안 (2026-10-28 · 네이버 서치어드바이저). og:title 은 공유 미리보기용으로 따로 둔다
+  const seoDesc = type === 'food' ? '음식사진촬영 포트폴리오. 메뉴와 상차림, 매장 분위기를 담은 촬영 사례를 사진 수와 촬영 구성, 가격까지 함께 보여 드립니다.' : '숙소 · 펜션 사진촬영 포트폴리오. ' + data.description;
+  const ogTitle = type === 'food' ? '사진 수와 구성까지 보는 음식사진촬영 사례 · 하랑마케팅' : '공간과 머무는 장면을 담은 숙소 사진촬영 사례 · 하랑마케팅';
+  return photoMetadata('/services/photo/' + type, seoTitle, seoDesc, portfoliosFor(type)[0].cover, ogTitle);
 }
 export default async function PhotoPortfolioPage({ params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
