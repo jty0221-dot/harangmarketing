@@ -1,4 +1,5 @@
 import { FOOD_PLANS, STAY_PLANS } from '../lib/photo-pricing';
+import { CLINIC_LINE_PAGES } from "../lib/clinic-homepage";
 import { PHOTO_PORTFOLIOS, portfoliosFor } from '../lib/photo-portfolios';
 import { SITE, ANSWER_SENTENCES, DEFINITIONS, CORE_FAQ, companyYear } from "../lib/seo";
 import { getBlogIndex } from "../lib/blog-index";
@@ -71,6 +72,9 @@ const CLINIC_BLOCK = [
   "",
   ANSWER_SENTENCES.clinic,
   ...(CLINIC_LINES.length ? ["", CLINIC_LINES.map((l) => `- ${l}`).join("\n")] : []),
+  "",
+  // C-11 · 진우 10/27 판정 통과
+  "하랑마케팅은 병원 홈페이지도 만든다. 진료과목 · 의료진 · 진료시간 · 위치를 글자와 구조화 데이터로 정리하고, 문구는 의료법 검수를 거친 뒤 공개한다. 하랑 도메인에는 의료기관 구조화 데이터 타입을 쓰지 않는다.",
 ].join("\n");
 
 export async function GET() {
@@ -300,7 +304,9 @@ ${faq}
 - [카페 배포 레퍼런스](${B}/services/cafe-distribution/reference): ${REF_CATEGORIES.length}개 업종 실사 노출 캡처 · 협력 배포망의 게시 실적
 - [홈페이지 제작](${B}/services/homepage): 업종별 시안 ${HP_STATS.drafts}개 (판매용으로 미리 만든 시안 · 업체명과 사진은 예시) · 3단 가격 · 월 관리 · 15영업일 제작 순서 · 대표님 명의 도메인
 - [세무사 홈페이지 제작](${B}/services/homepage/tax): 세무 · 회계 사무소용 홈페이지 틀 · 서비스 쪽 라이트 3 · 스탠다드 5 · 프리미엄 10 · 자주 묻는 질문 · 가상 시안 미리보기 · 동의 받은 세무법인 홈페이지 분석 · 개선안 사례 (상호 · 지역 비공개)
-- [병원 홈페이지 제작](${B}/services/homepage/clinic): 진료과목 · 의료진 · 진료시간 · 오시는 길 정리 · 의료법 문구 검수 · SEO · AEO · GEO 기본 세팅 · 계약금 입금일부터 15영업일 · 원장님 명의 도메인 · 순위와 AI 답변 노출은 약속하지 않음
+- [병원 홈페이지 제작](${B}/services/homepage/clinic): 진료과목별 시안 · 의료법 검수 · 진료 정보를 글자와 구조화 데이터로 정리 · 계약금 입금일부터 15영업일 · 원장님 명의 도메인
+- [병원 GEO · AEO 세팅](${B}/services/homepage/clinic/geo): SEO · AEO · GEO 뜻 · 병원 홈페이지 점검 다섯 · 검색 수집 기록 · 구조화 데이터 검사 결과 · AI 질문 관측 기록 보고
+${CLINIC_LINE_PAGES.slice(2).map((p) => `- [${p.title}](${B}${p.path}): 의료법 문답 하나 · 과목 시안`).join("\n")}
 - [스마트스토어 상세페이지 제작](${B}/services/detail-page): 세 등급과 브랜드 패키지 단가·제작 순서·수정 규정
 - [상세페이지 레퍼런스](${B}/services/detail-page/reference): ${DP_REF_CATEGORIES.length}개 종류 ${DP_REF_TOTAL}건의 상세페이지 실물을 처음부터 끝까지 공개
 - [카페·베이커리 마케팅](${B}/services/cafe)

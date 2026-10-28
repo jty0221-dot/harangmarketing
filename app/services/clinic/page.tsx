@@ -109,43 +109,16 @@ import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Stethoscope, MessageSquare,
   ShieldCheck, ScrollText,
-  ClipboardCheck, Images, UserX, CalendarClock, Globe2 } from "lucide-react";
+  Globe2 } from "lucide-react";
+import { MEDICAL_PROCESS } from "../../lib/medical-process";
+import { C04, C05, CLINIC_HUB_PATH, CLINIC_GEO_PATH } from "../../lib/clinic-homepage";
 
-/*
- * 의료광고 검수 공정 — 진우(병·의원 팀장) 인계서 제5절 문장 그대로다.
- * 정본 : E:\하랑\본부장\병의원\인계_홈페이지_병의원_2026-09-05.md
- *
- * 읽기 좋게 다듬지 않는다. 네 줄은 의료법 조문에서 나온 것이라
- * 문장을 부드럽게 고치는 순간 우리가 지키겠다고 적은 것과 실제가 어긋난다.
- * 고치려면 진우 검수가 먼저다 (C-50).
- */
-const MEDICAL_PROCESS = [
-  {
-    icon: ClipboardCheck,
-    title: "쓰는 사람과 보는 사람을 나눕니다",
-    desc: "병원 · 의원 원고는 의료법 검수를 따로 거칩니다.",
-  },
-  {
-    icon: Images,
-    title: "전후 사진은 세 가지가 함께 있어야 합니다",
-    desc: "전후 사진은 시술명 · 시술일자 · 부작용 경고 세 가지가 함께 있어야 게시합니다.",
-  },
-  {
-    icon: UserX,
-    title: "체험단은 병원에 제안하지 않습니다",
-    desc: "치료경험담을 대가로 받는 체험단은 병원에 제안하지 않습니다.",
-  },
-  {
-    icon: CalendarClock,
-    title: "심의 유효기간을 대장으로 셈니다",
-    desc: "사전심의 대상 광고는 승인 유효기간 3년을 대장으로 관리합니다.",
-  },
-];
+// 의료광고 검수 공정 네 줄은 app/lib/medical-process.ts (허브와 같이 쓴다 · 글자 변경 0)
 
 export const metadata: Metadata = {
-  title: "병원마케팅 · 의원 · 한의원 · 피부과 | 의료법 준수 플레이스 · 블로그",
-  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 무료 상담이 가능합니다.",
-  keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행"],
+  title: "병원마케팅 · 치과 · 피부과 · 한의원 · 의료법 검수 플레이스 · 블로그 · 홈페이지", // C-03
+  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 상담과 진단은 0원입니다.", // N-31 · layout 과 한 벌
+  keywords: ["병원마케팅", "치과마케팅", "의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행", "병원마케팅 대행사"],
   openGraph: {
     title: "의원·한의원·피부과 마케팅 | 하랑마케팅",
     description: "의료법을 준수하며 진행하는 병원 마케팅 전략입니다.",
@@ -178,6 +151,13 @@ const SERVICES = [
     color: "from-green-500 to-green-700",
     title: "신뢰도 콘텐츠",
     desc: "원장님 진료 원칙 소개 · 진료 과정 안내 콘텐츠",
+  },
+  {
+    icon: Globe2,
+    color: "",
+    title: "병원 홈페이지 · AI 읽기 정비", // C-01
+    desc: "진료 정보를 글자와 구조화 데이터로 정리하는 홈페이지 제작과 정비", // C-02
+    href: CLINIC_HUB_PATH,
   },
 ];
 
@@ -213,6 +193,8 @@ const SERVICE_FAQ: FaqItem[] = [
     a:
       CLINIC_RANK_ANSWER,
   },
+  C04,
+  C05,
   {
     q: "광고에 문제가 생기면 누가 책임지나요?",
     a:
@@ -366,17 +348,25 @@ export default function ClinicLandingPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-8">의원 전용 마케팅 패키지</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {SERVICES.map((s, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
-                    <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
-                    <p className="text-xs text-gray-500">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
+              {SERVICES.map((s, i) => {
+                const body = (
+                  <>
+                    <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
+                      <s.icon size={16} className="text-white" strokeWidth={2.5} />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
+                      <p className="text-xs text-gray-500">{s.desc}</p>
+                    </div>
+                  </>
+                );
+                const cls = "bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4";
+                return s.href ? (
+                  <Link key={i} href={s.href} className={`${cls} hover:border-blue-200 transition-colors`}>{body}</Link>
+                ) : (
+                  <div key={i} className={cls}>{body}</div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -474,6 +464,25 @@ export default function ClinicLandingPage() {
                 </div>
               </div>
             </Link>
+          </div>
+        </section>
+
+        {/* 이어서 볼 곳 (세팅안 다-5 · N-32) */}
+        <section className="py-10 md:py-12 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <h2 className="text-lg md:text-xl font-black text-gray-900 mb-4">이어서 볼 곳</h2>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { label: "병원 홈페이지 제작", href: CLINIC_HUB_PATH },
+                { label: "병원 GEO · AEO 세팅", href: CLINIC_GEO_PATH },
+                { label: "의료광고 심의 판정 자료", href: "/services/clinic/medical-ad-guide" },
+                { label: "네이버 플레이스 SEO", href: "/services/place" },
+              ].map((l) => (
+                <Link key={l.href} href={l.href} className="inline-flex items-center min-h-11 px-4 rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  {l.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

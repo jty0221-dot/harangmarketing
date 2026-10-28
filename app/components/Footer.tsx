@@ -256,6 +256,15 @@ export default function Footer() {
               ],
             },
             {
+              // 병원 홈페이지 허브로 가는 길을 모든 쪽 하단에 둔다 (TR-0080 · 내부 링크로 발견되게)
+              title: "홈페이지",
+              items: [
+                { label: "홈페이지 제작", href: "/services/homepage" },
+                { label: "병원 홈페이지", href: "/services/homepage/clinic" },
+                { label: "세무사 홈페이지", href: "/services/homepage/tax" },
+              ],
+            },
+            {
               title: "지역별",
               items: [
                 { label: "지역 안내 전체", href: "/location" },

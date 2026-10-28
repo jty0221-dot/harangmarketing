@@ -1583,6 +1583,25 @@ export default function ServicesPage() {
               ))}
             </div>
 
+            {/* 병원 홈페이지 허브 (TR-0080 · 제목 C-01 · 설명 C-02 · 진우 10/27 통과) */}
+            <Link
+              href="/services/homepage/clinic"
+              className="group mt-4 flex items-start gap-4 p-4 md:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-white hover:shadow-md transition-all"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
+                <Globe2 size={16} className="text-white" strokeWidth={2.5} />
+              </div>
+              <div className="min-w-0">
+                <div className="font-black text-gray-900 text-sm flex items-center gap-1.5">
+                  병원 홈페이지 · AI 읽기 정비
+                  <ArrowRight size={14} className="text-gray-500 group-hover:text-gray-700 transition-colors" />
+                </div>
+                <div className="text-xs text-gray-500 mt-1 leading-relaxed">
+                  진료 정보를 글자와 구조화 데이터로 정리하는 홈페이지 제작과 정비
+                </div>
+              </div>
+            </Link>
+
             {/* 병·의원 자료 — 본문은 /services/clinic/medical-ad-guide 가 정본이다 (HP/MED) */}
             <Link
               href="/services/clinic/medical-ad-guide"

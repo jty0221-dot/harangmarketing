@@ -23,11 +23,15 @@ export interface KeywordServiceData {
   facts: { label: string; value: string }[];
   serviceName: string;
   serviceDesc: string;
-  includes: { title: string; body: string }[];
-  steps: { name: string; text: string }[];
-  costFactors: string[];
-  never: { title: string; body: string }[];
-  report: string;
+  includes?: { title: string; body: string }[];
+  includesTitle?: string;
+  steps?: { name: string; text: string }[];
+  stepsTitle?: string;
+  costFactors?: string[];
+  never?: { title: string; body: string }[];
+  report?: string;
+  /** 빵부스러기 경로. 없으면 홈 › 서비스 › badge */
+  crumbs?: { name: string; path: string }[];
   faqs: FaqItem[];
   faqTitle: string;
   ctaTitle: string;
@@ -36,7 +40,7 @@ export interface KeywordServiceData {
   related: { label: string; href: string }[];
 }
 
-export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
+export default function KeywordServicePage({ d, children }: { d: KeywordServiceData; children?: React.ReactNode }) {
   const URL = `${SITE.base}${d.path}`;
   const LD = [
     webPageLd({ path: d.path, name: d.h1, description: d.intro, dateModified: updatedAt(d.path) }),
@@ -56,9 +60,9 @@ export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
         serviceLocation: { "@id": LOCAL_ID },
       },
     },
-    howToLd({ path: d.path, name: `${d.badge} 진행 순서`, description: `${d.badge}를 어떤 순서로 진행하는지 정리했습니다.`, steps: d.steps.map((s) => ({ name: s.name, text: s.text })) }),
+    ...(d.steps?.length ? [howToLd({ path: d.path, name: d.stepsTitle ?? `${d.badge} 진행 순서`, description: `${d.badge}를 어떤 순서로 진행하는지 정리했습니다.`, steps: d.steps.map((s) => ({ name: s.name, text: s.text })) })] : []),
     faqLd(d.faqs, URL),
-    breadcrumbLd([
+    breadcrumbLd(d.crumbs ?? [
       { name: "홈", path: "/" },
       { name: "서비스", path: "/services" },
       { name: d.badge, path: d.path },
@@ -108,9 +112,9 @@ export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
         <AnswerBlock question={d.answer.question} answer={d.answer.answer} facts={d.facts} />
 
         {/* 포함 항목 */}
-        <section className="py-14 md:py-20 bg-white">
+        {d.includes?.length ? <section className="py-14 md:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-8 md:mb-10">무엇이 포함되나요</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-8 md:mb-10">{d.includesTitle ?? "무엇이 포함되나요"}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {d.includes.map((k) => (
                 <div key={k.title} className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 shadow-sm">
@@ -123,12 +127,14 @@ export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
               ))}
             </div>
           </div>
-        </section>
+        </section> : null}
+
+        {children}
 
         {/* 진행 순서 */}
-        <section className="py-14 md:py-20 bg-gray-50">
+        {d.steps?.length ? <section className="py-14 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-8 md:mb-10">진행 순서</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-8 md:mb-10">{d.stepsTitle ?? "진행 순서"}</h2>
             <ol className="space-y-3 md:space-y-4">
               {d.steps.map((s, i) => (
                 <li key={s.name} className="rounded-2xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm">
@@ -143,10 +149,10 @@ export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
               ))}
             </ol>
           </div>
-        </section>
+        </section> : null}
 
         {/* 비용을 정하는 것 */}
-        <section className="py-14 md:py-20 bg-white">
+        {d.costFactors?.length ? <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex items-start gap-3 mb-6">
               <div className="w-9 h-9 rounded-xl bg-[var(--w-primary)] shadow-sm flex items-center justify-center shrink-0">
@@ -166,10 +172,10 @@ export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
               항목별 단가 보기 <ArrowRight size={14} />
             </Link>
           </div>
-        </section>
+        </section> : null}
 
         {/* 하지 않는 것 */}
-        <section className="py-14 md:py-20 bg-gray-950">
+        {d.never?.length ? <section className="py-14 md:py-20 bg-gray-950">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl font-black text-white mb-8 md:mb-10">하지 않는 것</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
@@ -184,18 +190,18 @@ export default function KeywordServicePage({ d }: { d: KeywordServiceData }) {
               ))}
             </div>
           </div>
-        </section>
+        </section> : null}
 
-        {/* 결과 보고 */}
+        {/* 결과 보고 · 없으면 관련 링크만 */}
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex items-start gap-3 mb-4">
               <div className="w-9 h-9 rounded-xl bg-[var(--w-primary)] shadow-sm flex items-center justify-center shrink-0">
                 <ClipboardList size={16} className="text-white" strokeWidth={2.5} />
               </div>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900">결과는 이렇게 보고합니다</h2>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900">{d.report ? "결과는 이렇게 보고합니다" : "이어서 볼 곳"}</h2>
             </div>
-            <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-3xl">{d.report}</p>
+            {d.report && <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-3xl">{d.report}</p>}
             {d.related.length > 0 && (
               <div className="mt-6 flex flex-wrap gap-2">
                 {d.related.map((r) => (

@@ -15,6 +15,7 @@ import { PUBLIC_SERVICES, isProgram } from "./service-catalog";
  *    AI 는 이 파일의 문장을 요약하지 않고 통째로 따가므로 여기가 제일 먼 곳까지 나간다 (C-50).
  */
 
+import { CLINIC_DEFINITIONS } from "./clinic-homepage";
 import { CLINIC_NOTE } from "./rank-records";
 import { BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIER_MIN, won } from "./cafe-distribution";
 import { TRACK_TOTALS } from "./track-record";
@@ -100,12 +101,12 @@ export function ogImage(alt?: string): { url: string; width: number; height: num
  * 새로 재는 페이지는 아래 updatedAt 으로 데이터 날짜까지 같이 본다 (2026-09-20 · 요청 69).
  */
 export const PAGE_UPDATED: Record<string, string> = {
-  "/": "2026-10-02",
+  "/": "2026-10-28",
   "/about": "2026-10-02",
-  "/services": "2026-10-04",
+  "/services": "2026-10-28",
   "/services/cafe": "2026-10-02",
-  "/services/clinic": "2026-09-25",
-  "/services/clinic/medical-ad-guide": "2026-09-25",
+  "/services/clinic": "2026-10-28",
+  "/services/clinic/medical-ad-guide": "2026-10-28",
   "/services/beauty": "2026-10-02",
   "/services/restaurant": "2026-10-02",
   "/services/photo": "2026-09-24",
@@ -121,7 +122,12 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/services/instagram": "2026-09-24",
   "/services/detail-page": "2026-10-02",
   "/services/homepage/tax": "2026-10-23",
-  "/services/homepage/clinic": "2026-10-27",
+  "/services/homepage/clinic": "2026-10-28",
+  "/services/homepage/clinic/geo": "2026-10-28",
+  "/services/homepage/clinic/dental": "2026-10-28",
+  "/services/homepage/clinic/derma": "2026-10-28",
+  "/services/homepage/clinic/plastic": "2026-10-28",
+  "/services/homepage/clinic/oriental": "2026-10-28",
   "/services/homepage": "2026-10-27",
   "/services/detail-page/reference": "2026-09-30",
   "/services/cafe-distribution": "2026-10-02",
@@ -246,6 +252,8 @@ export const DEFINITIONS: { term: string; definition: string }[] = [
     definition:
       "환자가 치료 경험이나 결과를 말하는 내용. 의료법 제56조 제2항 제2호가 금지하는 광고 유형이며, 병원이 대가를 주고 받은 후기는 제27조 제3항의 유인에 해당할 수 있다.",
   },
+  /* GEO · AEO · llms.txt 정의 셋 (세팅안 C-07 ~ C-09 · 진우 10/27 판정 통과 · 글자는 lib/clinic-homepage.ts 한 곳) */
+  ...CLINIC_DEFINITIONS,
 ];
 
 /* ────────────────────────────────────────────────────────────
@@ -377,6 +385,11 @@ export const CORE_FAQ: FaqItem[] = [
   {
     q: "병원에 체험단을 쓸 수 있나요?",
     a: "하랑마케팅은 병원에 체험단을 제안하지 않습니다. 후기는 의료법 제56조 제2항 제2호가 금지하는 치료경험담에 해당하고, 시술이나 진료를 대가로 후기를 받는 구조는 제27조 제3항의 유인에 해당해 제안한 대행사도 함께 문제가 됩니다. 대신 원장님 명의의 진료 정보 글과 주차·대기시간·예약 편의 같은 비진료 영역, 자연히 쌓인 리뷰 관리로 진행합니다.",
+  },
+  /* C-10 · 진우 10/27 판정 통과 · 맨 끝에 둔다 (홈 FAQ 묶음이 번호로 고른다 · app/page.tsx) */
+  {
+    q: "하랑마케팅은 병원 홈페이지도 만드나요?",
+    a: "만듭니다. 진료과목별 시안에서 골라 진료 정보를 글자와 구조화 데이터로 정리하고, 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다. 제작 기간은 계약금 입금일부터 15영업일이고 도메인은 원장님 명의로 등록합니다.",
   },
 ];
 

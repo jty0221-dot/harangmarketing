@@ -1,5 +1,7 @@
 import { getBlogIndex } from "../lib/blog-index";
 import { PLACE_RANK_GENERATED } from "../lib/place-rank-cases";
+import { CLINIC_LINE_PAGES } from "../lib/clinic-homepage";
+import { PAGE_UPDATED } from "../lib/seo";
 
 export const revalidate = 86400;
 
@@ -49,7 +51,17 @@ export async function GET() {
     })
     .join("\n");
 
-  const items = [rankItem, postItems].filter(Boolean).join("\n");
+  // 병원 홈페이지 라인 여섯 쪽 (TR-0080) · RSS 를 서치어드바이저에 내면 사이트맵과 별도로 발견 경로가 하나 더 생긴다
+  const clinicItems = CLINIC_LINE_PAGES.map((p) => `    <item>
+      <title>${escapeXml(p.title)}</title>
+      <link>${BASE}${p.path}</link>
+      <description>${escapeXml(p.desc)}</description>
+      <pubDate>${toRfc822(PAGE_UPDATED[p.path] ?? PLACE_RANK_GENERATED)}</pubDate>
+      <guid isPermaLink="false">${BASE}${p.path}?d=${PAGE_UPDATED[p.path] ?? ""}</guid>
+      <category>서비스 안내</category>
+    </item>`).join("\n");
+
+  const items = [rankItem, clinicItems, postItems].filter(Boolean).join("\n");
 
   // 계측 기록이 글보다 최신일 수 있어 둘 중 나중 날짜를 쓴다 (YYYY-MM-DD 는 사전순 = 시간순)
   const newest = [PLACE_RANK_GENERATED, sorted[0]?.date]

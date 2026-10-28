@@ -17,7 +17,7 @@ import { ogImage } from "../../lib/seo";
  */
 export const metadata: Metadata = {
   title: "의원·한의원·피부과 마케팅 대행 | 의료법 준수 · 플레이스 SEO",
-  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 상담은 0원입니다.",
+  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 상담과 진단은 0원입니다.",
   keywords: ["병원 마케팅", "의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 네이버 플레이스", "한의원 블로그 마케팅", "의료광고 심의", "의원 플레이스 관리"],
   alternates: { canonical: "https://www.harangmarketing.com/services/clinic" },
   openGraph: {

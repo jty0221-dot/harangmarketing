@@ -1708,7 +1708,7 @@ export default function HomePage() {
             { label: '상담 · 진행 · 개업 준비', items: [0, 8, 14, 15, 18].map(index => CORE_FAQ[index]) },
             { label: '검색 노출 · 성과', items: [2, 3, 5, 6, 16, 21].map(index => CORE_FAQ[index]) },
             { label: '채널별 마케팅', items: [9, 10, 11, 12, 13, 17].map(index => CORE_FAQ[index]) },
-            { label: '병원 · 치과 마케팅', items: [22, 23, 24].map(index => CORE_FAQ[index]) },
+            { label: '병원 · 치과 마케팅', items: [22, 23, 24, 25].map(index => CORE_FAQ[index]) },
           ]}
           title="대표님들이 가장 많이 묻는 질문"
           subtitle="궁금한 주제를 선택해 질문을 확인하세요."
