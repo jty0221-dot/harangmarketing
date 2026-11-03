@@ -96,7 +96,7 @@ export function ogImage(alt?: string): { url: string; width: number; height: num
 
 /**
  * 페이지가 마지막으로 바뀐 날 (ISO 날짜). sitemap 의 lastModified 와 각 페이지 WebPage 의 dateModified 가
- * 이 표 한 곳을 읽는다 (2026-09-20 · 요청 68). 표에 없는 경로는 sitemap 이 오늘 날짜를 쓴다.
+ * 이 표 한 곳을 읽는다 (2026-09-20 · 요청 68). 표에 없는 경로는 sitemap 에 수정일을 생략한다.
  * 값은 git 의 마지막 커밋일이다. 손으로 앞당기지 않는다. 순위 사례처럼 코드는 그대로인데 데이터 파일만
  * 새로 재는 페이지는 아래 updatedAt 으로 데이터 날짜까지 같이 본다 (2026-09-20 · 요청 69).
  */

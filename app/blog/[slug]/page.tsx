@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollProgressBar from "../../components/ScrollProgressBar";
+import JsonLd from "../../components/JsonLd";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "../../lib/blog-posts";
 import { BLOG_META } from "../../lib/blog-meta";
@@ -795,7 +796,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (dynamicPost) {
     return (
       <>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd(slug, dynamicPost.title, dynamicPost.excerpt, "마케팅 인사이트", dynamicPost.date)) }} />
+        <JsonLd data={blogPostingLd(slug, dynamicPost.title, dynamicPost.excerpt, "마케팅 인사이트", dynamicPost.date)} />
         <ScrollProgressBar />
         <Header />
         <main className="pt-[104px] md:pt-[108px]">
@@ -874,10 +875,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd(slug, post.title, post.summary, post.tag, meta?.date)) }}
-      />
+      <JsonLd data={blogPostingLd(slug, post.title, post.summary, post.tag, meta?.date)} />
       <ScrollProgressBar />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">

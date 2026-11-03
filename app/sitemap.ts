@@ -12,10 +12,11 @@ const BASE = SITE.base;
 
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  // 바뀐 날을 아는 페이지는 그 날을, 모르는 페이지는 오늘을 적는다 (app/lib/seo.ts PAGE_UPDATED).
-  // 전부 오늘로 적으면 검색엔진이 어느 페이지가 진짜 바뀌었는지 구분하지 못한다.
-  const lm = (path: string): Date => (PAGE_UPDATED[path] ? new Date(PAGE_UPDATED[path]) : now);
+  const blogIndex = getBlogIndex();
+  const blogUpdated = updatedAt("/blog", ...blogIndex.map(post => post.date));
+  // 실제 수정일을 모르는 페이지에는 날짜를 생략한다. 빌드 시각은 콘텐츠 수정일이 아니다.
+  const lm = (path: string): Date | undefined =>
+    PAGE_UPDATED[path] ? new Date(PAGE_UPDATED[path]) : undefined;
   // 순위 데이터가 따로 갱신되는 네 페이지는 그 데이터 날짜까지 같이 본다 (updatedAt · 2026-09-20 · 요청 69 · 09-21 요청 70 에 portfolio · cases 추가).
 
   const allStaticPages: MetadataRoute.Sitemap = [
@@ -57,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/free-check`,              lastModified: lm("/free-check"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/process`,                 lastModified: lm("/process"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/faq`,                     lastModified: lm("/faq"), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/blog`,                    lastModified: lm("/blog"), changeFrequency: "weekly",  priority: 0.7 },
+    { url: `${BASE}/blog`,                    lastModified: blogUpdated ? new Date(blogUpdated) : undefined, changeFrequency: "weekly",  priority: 0.7 },
     { url: `${BASE}/location`,                lastModified: lm("/location"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/location/gyeonggi`,       lastModified: lm("/location/gyeonggi"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/location/seoul`,          lastModified: lm("/location/seoul"), changeFrequency: "monthly", priority: 0.8 },
@@ -72,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 
   // /admin 발행 글 + 기존 정적 글을 함께 포함한다 (getBlogIndex 참고)
-  const blogPages: MetadataRoute.Sitemap = getBlogIndex().map((post) => ({
+  const blogPages: MetadataRoute.Sitemap = blogIndex.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly",
