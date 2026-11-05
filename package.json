@@ -41,5 +41,16 @@
     "eslint-config-next": "16.4.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "zod": "^4.6.6",
+    "eslint": {
+      "minimatch": {
+        "brace-expansion": "^1.1.21"
+      }
+    },
+    "eslint-config-next": {
+      "brace-expansion": "^5.0.12"
+    }
   }
 }
