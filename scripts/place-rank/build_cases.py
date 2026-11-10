@@ -149,6 +149,9 @@ for kw, unit, detail, why in plain(MASK, 4):
 
 # ---------- 6. 스냅샷 — 현재 순위 ----------
 SRC = {"애드랭크": MON / "snapshots", "루메인": MON / "snapshots_lumain"}
+# 스냅샷에 매장 이름이 업종명으로만 적힌 줄을 대장의 매장 이름에 잇는다 (키워드까지 맞을 때만).
+# 같은 업종명 매장이 여럿이라 이름만으로는 잇지 않는다. 근거 : 세영 확인 2026-11-10 (화).
+STORE_ALIAS = {("입주청소", "군포입주청소"): "두꺼비홈케어"}
 seen = collections.defaultdict(dict)    # (매장, 키워드) -> {출처: (날짜, 오늘)}
 covered = collections.defaultdict(set)  # 출처 -> {(매장, 키워드)}
 # 스냅샷에도 시작 · 시작일 칸이 있다. 대장에 없는 키워드도 이걸로 상승 판정이 된다.
@@ -162,6 +165,7 @@ for src, folder in SRC.items():
         day = path.stem
         for r in rows(path):
             store, kw, today = r.get("매장", ""), r.get("키워드", ""), r.get("오늘", "")
+            store = STORE_ALIAS.get((store, kw), store)
             if not store or not kw or not today.strip().isdigit():
                 continue
             covered[src].add((store, kw))
@@ -288,6 +292,14 @@ for c in cands:
     # 루메인은 아래 cross 로 교차 확인만 하고 JSON 으로 내보내지 않는다.
     if cur["src"] != "애드랭크":
         held.append((tag, "애드랭크가 이 키워드를 재고 있지 않다 — 루메인만 있다"))
+        continue
+
+    # 계측이 끊긴 키워드의 옛 순위를 '현재 순위' 로 싣지 않는다 (2026-11-10 민수 · 대표 지시 '현재 몇위인지 체크')
+    stale = (datetime.date.fromisoformat(latest_file["애드랭크"])
+             - datetime.date.fromisoformat(cur["asOf"].replace(".", "-"))).days
+    if stale > 14:
+        held.append((tag, "마지막 계측 " + cur["asOf"] + " · 최신 계측보다 " + str(stale)
+                     + "일 전이라 현재 순위로 볼 수 없다"))
         continue
 
     start = c["start"]
