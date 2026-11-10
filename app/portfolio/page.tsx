@@ -93,7 +93,7 @@ export default function PortfolioPage() {
               </h2>
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
                 위가 블로그에 글로 공개한 사례라면, 여기는 순위를 재서 스냅샷으로 남긴 기록입니다.
-                {" "}오후 2~3시에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나입니다. {PLACE_RANK_AS_OF} 계측분입니다.
+                {" "}오후 2~3시에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나이고, 카드마다 마지막으로 잰 날짜를 적었습니다(가장 최근 계측 {PLACE_RANK_AS_OF}).
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>

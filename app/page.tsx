@@ -448,7 +448,7 @@ export default function HomePage() {
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드별 순위, 잰 그대로 적었습니다"
-          description={`정해진 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
+          description={`정해진 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. 카드마다 마지막으로 잰 날짜를 적었고, 가장 최근 계측은 ${PLACE_RANK_AS_OF} 입니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />

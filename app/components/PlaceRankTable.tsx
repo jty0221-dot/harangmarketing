@@ -70,7 +70,7 @@ export default function PlaceRankTable({
           </p>
           <h2 className="text-xl md:text-2xl font-black text-gray-900">{title}</h2>
           <p className={`mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl ${center ? "mx-auto" : ""}`}>
-            {PLACE_RANK_AS_OF} 계측분에서 1~5위 안에 있는 키워드입니다. 시작 순위와 최근 순위,
+            마지막 계측에서 1~5위 안에 있는 키워드입니다(가장 최근 계측 {PLACE_RANK_AS_OF}). 시작 순위와 최근 순위,
             계측 기간만 적었습니다.
           </p>
         </div>

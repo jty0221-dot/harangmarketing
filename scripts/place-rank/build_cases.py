@@ -257,7 +257,10 @@ for c in cands:
     tag = wid + " " + store + " · " + kw
 
     d = deal.get(store)
-    if d is None or d["kind"] not in DEAL_OK:
+    # 대표 지시 2026-11-10 (화) '애드랭크에 있는 것들 잘 가져와서 올려' —
+    # 계약구분이 미확인 · 없음이어도 애드랭크가 재고 있는 매장 키워드는 싣는다. 대대행은 그대로 막는다.
+    adrank_ok = (store, kw) in covered["애드랭크"] and (d is None or d["kind"] == "미확인")
+    if (d is None or d["kind"] not in DEAL_OK) and not adrank_ok:
         kind = d["kind"] if d else "없음"
         # 막는 이유가 구분마다 다르다. 한 문장으로 뭉치면 대장이 거짓을 적는다 —
         # 대대행은 우리가 올린 순위가 맞고, 그 가게가 우리 고객이 아닌 것이다.
@@ -294,13 +297,8 @@ for c in cands:
         held.append((tag, "애드랭크가 이 키워드를 재고 있지 않다 — 루메인만 있다"))
         continue
 
-    # 계측이 끊긴 키워드의 옛 순위를 '현재 순위' 로 싣지 않는다 (2026-11-10 민수 · 대표 지시 '현재 몇위인지 체크')
-    stale = (datetime.date.fromisoformat(latest_file["애드랭크"])
-             - datetime.date.fromisoformat(cur["asOf"].replace(".", "-"))).days
-    if stale > 14:
-        held.append((tag, "마지막 계측 " + cur["asOf"] + " · 최신 계측보다 " + str(stale)
-                     + "일 전이라 현재 순위로 볼 수 없다"))
-        continue
+    # 계측이 끝난 키워드도 오른 것은 싣는다 — 카드마다 마지막으로 잰 날짜가 붙는다
+    # (대표 지시 2026-11-10 (화) '계측 끝난건 순위 상승 된거 쭉 올려')
 
     start = c["start"]
     if cur["rank"] > start:

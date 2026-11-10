@@ -172,7 +172,7 @@ const CasesPage: FC = () => {
               </p>
               <h2 className="text-xl md:text-2xl font-black text-gray-900">키워드마다 한 장씩 실은 계측 기록</h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-                {PLACE_RANK_AS_OF} 계측분에서 1~5위 안에 있던 키워드를 한 장에 하나씩 옮겼습니다.
+                마지막 계측에서 1~5위 안에 있던 키워드를(가장 최근 계측 {PLACE_RANK_AS_OF}) 한 장에 하나씩 옮겼습니다.
                 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 카드도 셋으로 남습니다.
               </p>
               <Link
@@ -259,7 +259,7 @@ const CasesPage: FC = () => {
 
             {filtered.length > 0 && (
               <p className="mt-5 text-xs text-gray-500 leading-relaxed">
-                {PLACE_RANK_AS_OF} 기준 계측값입니다. {PLACE_RANK_NOTE} {PLACE_RANK_LABEL_NOTE}
+                가장 최근 계측은 {PLACE_RANK_AS_OF} 이고, 카드마다 마지막으로 잰 날짜를 적었습니다. {PLACE_RANK_NOTE} {PLACE_RANK_LABEL_NOTE}
               </p>
             )}
 
