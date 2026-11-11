@@ -9,41 +9,56 @@ const STYLES = [
 
 const W = 480;
 const H = 260;
-const PAD = { top: 16, right: 18, bottom: 44, left: 60 };
+const PAD = { top: 16, right: 18, bottom: 44, left: 76 }; // 왼쪽은 폰 글자 크기로 "1000회" 가 들어갈 만큼
 
 /** 세로축 눈금 4개 안팎. 1 은 순위의 꼭대기라 항상 넣는다 */
-function ticks(min: number, max: number) {
+function ticks(min: number, max: number, roundUp = false) {
   if (max <= min) return [min];
   const raw = (max - min) / 3;
   const mag = 10 ** Math.floor(Math.log10(raw));
-  const step = [1, 2, 5, 10].map((m) => m * mag).find((s) => s >= raw) ?? raw;
+  const step = Math.max(1, [1, 2, 5, 10].map((m) => m * mag).find((s) => s >= raw) ?? raw); // 순위 · 횟수에 1.5 같은 눈금은 없다
   const out = [min];
   for (let t = Math.ceil(min / step) * step; t <= max; t += step) if (t > min) out.push(t);
-  if (out[out.length - 1] < max) out.push(max);
+  if (out[out.length - 1] < max) out.push(roundUp ? Math.ceil(max / step) * step : max);
   return out;
 }
 
 export default function RankChart({ series }: { series: RankSeries[] }) {
   const lines = series.slice(0, STYLES.length);
-  // 가로축 = 모든 선의 날짜를 합쳐 정렬한 것. 한 선에 그 날짜가 없으면 그 자리에서 선을 끊는다
-  // shortcut: 날짜 간격이 아니라 순서대로 고르게 놓고 글자 정렬한다(MM/DD). 해를 넘기는 사례가 오면 실제 날짜 축으로 바꾼다
+  // 가로축 = 모든 선의 날짜를 합쳐 정렬하고 실제 날짜 간격으로 놓는다. 선마다 계측일이 달라도 자기 점끼리 잇고, 값이 null 인 점에서만 끊는다
+  // shortcut: 날짜는 MM/DD 로 같은 해라고 본다. 해를 넘기는 사례가 오면 자료에 연도를 넣는다
   const days = [...new Set(lines.flatMap((s) => s.points.map((p) => p.d)))].sort();
+  const dayNum = (d: string) => {
+    const [m, dd] = d.split("/").map(Number);
+    return Date.UTC(2026, m - 1, dd) / 864e5;
+  };
+  const dated = days.every((d) => /^\d{1,2}\/\d{1,2}$/.test(d));
+  const pos = (d: string) => (dated ? dayNum(d) : days.indexOf(d));
   const values = lines.flatMap((s) => s.points.map((p) => p.v).filter((v): v is number => v != null));
   if (days.length === 0 || values.length === 0) return null;
 
   const invert = lines.every((s) => s.unit === "위"); // 순위는 작을수록 위
   const lo = invert ? 1 : Math.min(0, ...values);
   const hi = Math.max(...values);
-  const yTicks = ticks(lo, hi);
+  const yTicks = ticks(lo, hi, !invert);
   const top = yTicks[yTicks.length - 1];
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
-  const x = (i: number) => PAD.left + (days.length === 1 ? plotW / 2 : (i / (days.length - 1)) * plotW);
+  const p0 = pos(days[0]);
+  const span = pos(days[days.length - 1]) - p0;
+  const x = (d: string) => PAD.left + (span === 0 ? plotW / 2 : ((pos(d) - p0) / span) * plotW);
   const y = (v: number) => {
     const r = top === lo ? 0.5 : (v - lo) / (top - lo);
     return PAD.top + (invert ? r : 1 - r) * plotH;
   };
-  const xLabelEvery = Math.ceil(days.length / 6);
+  // 날짜 글자는 앞 글자와 72 단위 넘게 떨어질 때만 쓴다. 마지막 날짜는 늘 쓰고 그 앞에서 겹치는 것을 뺀다
+  const lastX = x(days[days.length - 1]);
+  const xLabels: string[] = [];
+  for (const d of days) {
+    const xd = x(d);
+    const prev = xLabels.length ? x(xLabels[xLabels.length - 1]) : -Infinity;
+    if (d === days[days.length - 1] || (xd - prev >= 72 && lastX - xd >= 72)) xLabels.push(d);
+  }
   const unit = lines[0].unit;
 
   return (
@@ -69,26 +84,21 @@ export default function RankChart({ series }: { series: RankSeries[] }) {
               </text>
             </g>
           ))}
-          {days.map((d, i) =>
-            // 마지막 날짜는 늘 쓰고, 그 바로 앞 눈금은 겹치면 뺀다
-            (i % xLabelEvery === 0 && days.length - 1 - i >= xLabelEvery) || i === days.length - 1 ? (
-              <text key={d} x={x(i)} y={H - 10} textAnchor={i === days.length - 1 && i > 0 ? "end" : "middle"} fill="var(--w-label-alt)">
-                {d}
-              </text>
-            ) : null,
-          )}
+          {xLabels.map((d, i) => (
+            <text key={d} x={x(d)} y={H - 10} textAnchor={i === xLabels.length - 1 && i > 0 ? "end" : "middle"} fill="var(--w-label-alt)">
+              {d}
+            </text>
+          ))}
           {lines.map((s, k) => {
-            const byDay = new Map(s.points.map((p) => [p.d, p.v]));
-            const pts = days.map((d, i) => {
-              const v = byDay.get(d);
-              return v == null ? null : ([x(i), y(v)] as const);
-            });
-            // 이웃한 두 날짜에 다 값이 있을 때만 잇는다
+            const pts = [...s.points]
+              .sort((a, b) => pos(a.d) - pos(b.d))
+              .map((p) => (p.v == null ? null : ([x(p.d), y(p.v)] as const)));
+            // 같은 선의 앞뒤 점에 다 값이 있을 때만 잇는다 (null 이 끊는 자리)
             const segs = pts.slice(1).map((p, i) => (p && pts[i] ? `M${pts[i]![0]},${pts[i]![1]}L${p[0]},${p[1]}` : "")).join("");
             return (
               <g key={s.label}>
                 {segs && <path d={segs} fill="none" stroke={STYLES[k].color} strokeWidth="2.5" strokeLinecap="round" strokeDasharray={STYLES[k].dash} />}
-                {pts.map((p, i) => p && <circle key={days[i]} cx={p[0]} cy={p[1]} r="3.5" fill="var(--w-bg)" stroke={STYLES[k].color} strokeWidth="2" />)}
+                {pts.map((p, i) => p && <circle key={i} cx={p[0]} cy={p[1]} r="3.5" fill="var(--w-bg)" stroke={STYLES[k].color} strokeWidth="2" />)}
               </g>
             );
           })}

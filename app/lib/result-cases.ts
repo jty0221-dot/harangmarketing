@@ -54,9 +54,8 @@ export const RESULT_CASES: ResultCase[] = (raw as (ResultCase & { source?: unkno
 export const getResultCase = (id: string) => RESULT_CASES.find((c) => c.id === id);
 
 // 목록 구역 소개 문장 : 아론 본부장\블로그\성과사례_목록소개_20261111.md 발행 본문 세 줄.
-// 건수('네 곳')가 바뀌면 같이 고친다
 export const RESULT_CASES_INTRO = [
-  "하랑이 실제로 맡았던 업체 네 곳의 기록입니다. 상호와 지역, 검색어 원문은 가렸고, 숫자는 그 업체 대표님께 드린 보고서와 매일 자동으로 잰 순위 기록에서 그대로 옮겼습니다.",
+  "하랑이 실제로 맡았던 여러 업체의 기록입니다. 상호와 지역, 검색어 원문은 가렸고, 숫자는 그 업체 대표님께 드린 보고서와 매일 자동으로 잰 순위 기록에서 그대로 옮겼습니다.",
   "좋았던 날만 고르지 않았습니다. 순위가 내려간 날과 아직 돌아오지 못한 숫자도 같은 그래프와 표에 그대로 남겼습니다.",
   "순위는 검색하는 위치와 시간에 따라 달라지며, 같은 결과를 약속드리는 자료가 아닙니다.",
 ];
@@ -75,7 +74,7 @@ export function leadFigure(c: ResultCase) {
   const h = c.headline?.[0];
   if (h) return { value: h.value, label: h.label };
   const r = c.results[0];
-  return r ? { value: `${r.before} → ${r.after}`, label: r.label } : null;
+  return r ? { value: r.before ? `${r.before} → ${r.after}` : r.after, label: r.label } : null;
 }
 
 // 진행한 서비스 이름 → 이미 있는 서비스 안내 주소. 안내 쪽이 없는 서비스(블로그 · 광고 · 계측)는 링크를 걸지 않는다

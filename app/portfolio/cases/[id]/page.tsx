@@ -54,7 +54,8 @@ export default async function ResultCasePage({ params }: { params: Params }) {
   // 큰 숫자 줄 : headline 이 없는 사례는 결과 표 앞 세 줄을 그대로 올린다 (같은 값 · 새 숫자를 만들지 않는다)
   const figures = c.headline?.length
     ? c.headline.slice(0, 3)
-    : c.results.slice(0, 3).map((r) => ({ value: `${r.before} → ${r.after}`, label: r.label }));
+    : c.results.slice(0, 3).map((r) => ({ value: r.before ? `${r.before} → ${r.after}` : r.after, label: r.label }));
+  const rankChart = c.series?.every((s) => s.unit === "위") ?? false;
   const links = serviceLinks(c.services);
   const quote = visibleQuoteItems(c);
   const others = otherCases(c);
@@ -125,14 +126,14 @@ export default async function ResultCasePage({ params }: { params: Params }) {
           )}
 
           {c.series && c.series.length > 0 && (
-            <Card title="날짜별 순위">
-              <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-alt)" }}>
-                위로 갈수록 높은 순위입니다. 계측하지 않은 날은 선을 잇지 않았습니다.
-              </p>
+            <Card title={rankChart ? "날짜별 순위" : "날짜별 기록"}>
+              {rankChart && (
+                <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-alt)" }}>위로 갈수록 높은 순위입니다.</p>
+              )}
               <RankChart series={c.series} />
               <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-assistive)" }}>
-                {c.series_note && <>{c.series_note} </>}
-                그래프에는 며칠 간격으로 골라 점을 찍었습니다.
+                {c.series_note}
+                {rankChart && <> 그래프에는 며칠 간격으로 골라 점을 찍었습니다.</>}
               </p>
             </Card>
           )}
@@ -285,8 +286,12 @@ export default async function ResultCasePage({ params }: { params: Params }) {
                 <li key={r.label} className={`py-3 ${i > 0 ? "border-t" : ""}`} style={{ borderColor: "var(--w-line)" }}>
                   <p className="w-label-1 font-semibold" style={{ color: "var(--w-label-strong)" }}>{r.label}</p>
                   <p className="w-body-2 w-num mt-1" style={{ color: "var(--w-label-alt)" }}>
-                    {r.before}
-                    <ArrowRight size={14} className="mx-1.5 inline" />
+                    {r.before && (
+                      <>
+                        {r.before}
+                        <ArrowRight size={14} className="mx-1.5 inline" />
+                      </>
+                    )}
                     <span className="font-semibold" style={{ color: "var(--w-primary)" }}>{r.after}</span>
                   </p>
                   {r.note && <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-alt)" }}>{r.note}</p>}
