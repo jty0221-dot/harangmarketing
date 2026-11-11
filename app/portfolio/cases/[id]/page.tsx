@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, MessageCircle, TrendingDown } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MessageCircle, Quote, TrendingDown } from "lucide-react";
+import RankChart from "../RankChart";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import { breadcrumbLd, webPageLd, ogImage, SITE } from "../../../lib/seo";
-import { RESULT_CASES, getResultCase } from "../../../lib/result-cases";
+import { RESULT_CASES, getResultCase, leadFigure, otherCases, serviceLinks } from "../../../lib/result-cases";
 
 type Params = Promise<{ id: string }>;
 
@@ -34,9 +36,27 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
+function Card({ title, icon, children }: { title: string; icon?: ReactNode; children: ReactNode }) {
+  return (
+    <section className="w-card mt-4 p-5 md:p-6">
+      <h2 className="flex items-center gap-2 w-title-3" style={{ color: "var(--w-label-strong)" }}>
+        {icon}
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
+}
+
 export default async function ResultCasePage({ params }: { params: Params }) {
   const c = load((await params).id);
   const path = `/portfolio/cases/${c.id}`;
+  // 큰 숫자 줄 : headline 이 없는 사례는 결과 표 앞 세 줄을 그대로 올린다 (같은 값 · 새 숫자를 만들지 않는다)
+  const figures = c.headline?.length
+    ? c.headline.slice(0, 3)
+    : c.results.slice(0, 3).map((r) => ({ value: `${r.before} → ${r.after}`, label: r.label }));
+  const links = serviceLinks(c.services);
+  const others = otherCases(c);
 
   return (
     <>
@@ -79,16 +99,104 @@ export default async function ResultCasePage({ params }: { params: Params }) {
                 진행한 서비스 · {c.services.join(" · ")}
               </p>
             )}
+            {c.scope && c.scope.length > 0 && (
+              <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="진행 범위">
+                {c.scope.map((s) => (
+                  <li key={s} className="w-chip w-chip-neutral">{s}</li>
+                ))}
+              </ul>
+            )}
           </header>
 
-          <section className="w-card mt-8 p-5 md:p-6">
-            <h2 className="w-title-3" style={{ color: "var(--w-label-strong)" }}>시작할 때 상태</h2>
-            <p className="w-body-2 mt-2" style={{ color: "var(--w-label)" }}>{c.before}</p>
-          </section>
+          {figures.length > 0 && (
+            <section aria-label="핵심 숫자" className="w-card mt-8 grid grid-cols-1 sm:grid-cols-3">
+              {figures.map((h, i) => (
+                <div
+                  key={h.label}
+                  className={`min-w-0 px-5 py-5 md:px-6 ${i > 0 ? "border-t sm:border-l sm:border-t-0" : ""}`}
+                  style={{ borderColor: "var(--w-line)" }}
+                >
+                  <p className="w-heading-2 w-num" style={{ color: "var(--w-primary)" }}>{h.value}</p>
+                  <p className="w-label-1 mt-1" style={{ color: "var(--w-label-alt)" }}>{h.label}</p>
+                </div>
+              ))}
+            </section>
+          )}
 
-          <section className="w-card mt-4 p-5 md:p-6">
-            <h2 className="w-title-3" style={{ color: "var(--w-label-strong)" }}>한 일</h2>
-            <ul className="mt-3 space-y-2">
+          {c.series && c.series.length > 0 && (
+            <Card title="날짜별 순위">
+              <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-alt)" }}>
+                위로 갈수록 높은 순위입니다. 계측하지 않은 날은 선을 잇지 않았습니다.
+              </p>
+              <RankChart series={c.series} />
+              {c.series_note && (
+                <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-assistive)" }}>{c.series_note}</p>
+              )}
+            </Card>
+          )}
+
+          {c.beforeAfter && c.beforeAfter.length > 0 && (
+            <Card title="전후 비교">
+              <ul className="mt-4 space-y-6">
+                {c.beforeAfter.map((b) => (
+                  <li key={b.before}>
+                    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                      {[
+                        ["전", b.beforeDate, b.before],
+                        ["후", b.afterDate, b.after],
+                      ].map(([k, when, src]) => (
+                        <figure key={k} className="min-w-0">
+                          <p className="w-caption-1 font-semibold" style={{ color: k === "후" ? "var(--w-primary)" : "var(--w-label-alt)" }}>
+                            {k} · {when}
+                          </p>
+                          {/* 누르면 원본 크기로 연다 (끌어서 비교하는 장치는 폰에서 헷갈려 넣지 않는다) */}
+                          <a href={src} target="_blank" rel="noopener" className="mt-1.5 block" aria-label={`${b.caption} ${k} 사진 크게 보기`}>
+                            {/* eslint-disable-next-line @next/next/no-img-element -- 캡처 비율이 제각각이라 원본 비율 그대로 */}
+                            <img src={src} alt={`${b.caption} (${k})`} loading="lazy" className="w-full rounded-lg border" style={{ borderColor: "var(--w-line)" }} />
+                          </a>
+                        </figure>
+                      ))}
+                    </div>
+                    <p className="w-body-2 mt-2" style={{ color: "var(--w-label)" }}>{b.caption}</p>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          )}
+
+          {c.diagnosis && c.diagnosis.length > 0 && (
+            <Card title="무엇이 문제였고 무엇을 바꿨나">
+              <ol className="mt-2">
+                {c.diagnosis.map((g, i) => (
+                  <li
+                    key={g.problem}
+                    className={`grid grid-cols-1 gap-2 py-4 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-start md:gap-3 ${i > 0 ? "border-t" : ""}`}
+                    style={{ borderColor: "var(--w-line)" }}
+                  >
+                    {[
+                      ["문제", g.problem],
+                      ["한 일", g.action],
+                      ["달라진 것", g.result],
+                    ].map(([k, v], j) => (
+                      <div key={k} className="contents">
+                        {j > 0 && (
+                          <ArrowRight size={16} aria-hidden="true" className="mt-0.5 hidden md:block" style={{ color: "var(--w-label-assistive)" }} />
+                        )}
+                        <div className="min-w-0">
+                          <p className="w-caption-1 font-semibold" style={{ color: j === 2 ? "var(--w-primary)" : "var(--w-label-assistive)" }}>{k}</p>
+                          <p className="w-body-2 mt-0.5" style={{ color: j === 2 ? "var(--w-label-strong)" : "var(--w-label)" }}>{v}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </li>
+                ))}
+              </ol>
+            </Card>
+          )}
+
+          <Card title="시작할 때 상태와 한 일">
+            <p className="w-body-2 mt-2" style={{ color: "var(--w-label)" }}>{c.before}</p>
+            <ul className="mt-4 space-y-2">
               {c.did.map((d) => (
                 <li key={d} className="flex gap-2 w-body-2" style={{ color: "var(--w-label)" }}>
                   <Check size={16} className="mt-1 shrink-0" style={{ color: "var(--w-primary)" }} strokeWidth={2.5} />
@@ -96,11 +204,29 @@ export default async function ResultCasePage({ params }: { params: Params }) {
                 </li>
               ))}
             </ul>
-          </section>
+          </Card>
 
-          <section className="w-card mt-4 p-5 md:p-6">
-            <h2 className="w-title-3" style={{ color: "var(--w-label-strong)" }}>전후 숫자</h2>
-            {/* PC 는 표, 폰은 카드 */}
+          {c.timeline && c.timeline.length > 0 && (
+            <Card title="진행 순서">
+              <ol className="mt-4">
+                {c.timeline.map((t, i, all) => (
+                  <li key={`${t.when}-${i}`} className="relative flex gap-4 pb-5 last:pb-0">
+                    {i < all.length - 1 && (
+                      <span aria-hidden="true" className="absolute left-[5px] top-4 bottom-0 w-px" style={{ background: "var(--w-line-strong)" }} />
+                    )}
+                    <span aria-hidden="true" className="relative mt-1.5 h-[11px] w-[11px] shrink-0 rounded-full" style={{ background: "var(--w-primary)" }} />
+                    <div className="min-w-0">
+                      <p className="w-label-1 w-num font-semibold" style={{ color: "var(--w-label-strong)" }}>{t.when}</p>
+                      <p className="w-body-2 mt-0.5" style={{ color: "var(--w-label)" }}>{t.what}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Card>
+          )}
+
+          <Card title="전후 숫자">
+            {/* PC 는 표, 폰은 줄 목록 */}
             <table className="mt-4 hidden w-full text-left md:table">
               <thead>
                 <tr className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>
@@ -121,9 +247,9 @@ export default async function ResultCasePage({ params }: { params: Params }) {
                 ))}
               </tbody>
             </table>
-            <ul className="mt-4 space-y-2 md:hidden">
-              {c.results.map((r) => (
-                <li key={r.label} className="rounded-lg px-4 py-3" style={{ background: "var(--w-bg-alt)" }}>
+            <ul className="mt-2 md:hidden">
+              {c.results.map((r, i) => (
+                <li key={r.label} className={`py-3 ${i > 0 ? "border-t" : ""}`} style={{ borderColor: "var(--w-line)" }}>
                   <p className="w-label-1 font-semibold" style={{ color: "var(--w-label-strong)" }}>{r.label}</p>
                   <p className="w-body-2 w-num mt-1" style={{ color: "var(--w-label-alt)" }}>
                     {r.before}
@@ -135,19 +261,41 @@ export default async function ResultCasePage({ params }: { params: Params }) {
               ))}
             </ul>
             <p className="w-caption-1 mt-4" style={{ color: "var(--w-label-alt)" }}>
-              고객 정보 보호를 위해 상호와 지역은 가렸습니다. 숫자는 고객께 드린 보고서의 값 그대로입니다.
-              결과는 업종과 지역에 따라 다릅니다.
+              상호는 가리고 지역은 넓게 적었습니다. 숫자는 고객께 드린 보고서의 값 그대로입니다. 결과는 업종과 지역에 따라 다릅니다
             </p>
-          </section>
+          </Card>
 
           {c.low && (
-            <section className="w-card mt-4 p-5 md:p-6">
-              <h2 className="flex items-center gap-2 w-title-3" style={{ color: "var(--w-label-strong)" }}>
-                <TrendingDown size={18} style={{ color: "var(--w-label-alt)" }} />
-                중간에 내려갔던 구간
-              </h2>
+            <Card title="중간에 내려갔던 구간" icon={<TrendingDown size={18} style={{ color: "var(--w-label-alt)" }} />}>
               <p className="w-body-2 mt-2" style={{ color: "var(--w-label)" }}>{c.low}</p>
-            </section>
+            </Card>
+          )}
+
+          {c.voice && (
+            <figure className="w-card mt-4 p-5 md:p-6">
+              <Quote size={20} aria-hidden="true" style={{ color: "var(--w-primary)" }} />
+              <blockquote className="w-body-1 mt-2" style={{ color: "var(--w-label-strong)" }}>{c.voice.text}</blockquote>
+              <figcaption className="w-caption-1 mt-3" style={{ color: "var(--w-label-alt)" }}>{c.voice.who}</figcaption>
+            </figure>
+          )}
+
+          {links.length > 0 && (
+            <Card title="이 사례와 같은 일을 맡기려면">
+              <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="flex min-h-11 items-center justify-between gap-2 rounded-xl border px-4 py-3 w-label-1 font-semibold"
+                      style={{ borderColor: "var(--w-line-strong)", color: "var(--w-label-strong)" }}
+                    >
+                      {l.name} 안내
+                      <ArrowRight size={16} style={{ color: "var(--w-primary)" }} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Card>
           )}
 
           <div
@@ -176,6 +324,38 @@ export default async function ResultCasePage({ params }: { params: Params }) {
               </a>
             </div>
           </div>
+
+          {others.length > 0 && (
+            <section className="mt-12">
+              <h2 className="w-title-2" style={{ color: "var(--w-label-strong)" }}>다른 성과 사례</h2>
+              <ul className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {others.map((o) => {
+                  const f = leadFigure(o);
+                  return (
+                    <li key={o.id} className="min-w-0">
+                      <Link href={`/portfolio/cases/${o.id}`} className="w-card flex h-full flex-col p-5 md:p-6">
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <span className="w-chip w-chip-neutral">{o.industry}</span>
+                          <span className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>{o.period}</span>
+                        </div>
+                        <h3 className="w-title-3 mt-3" style={{ color: "var(--w-label-strong)" }}>{o.label}</h3>
+                        {f && (
+                          <>
+                            <p className="w-title-1 w-num mt-3" style={{ color: "var(--w-primary)" }}>{f.value}</p>
+                            <p className="w-caption-1 mt-0.5" style={{ color: "var(--w-label-alt)" }}>{f.label}</p>
+                          </>
+                        )}
+                        <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
+                          사례 보기
+                          <ArrowRight size={14} />
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
         </div>
       </main>
       <Footer />
