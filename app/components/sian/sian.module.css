@@ -4,13 +4,13 @@
  */
 .root {
   --blue: var(--w-blue-50, #0066FF);
-  --blue-ink: var(--w-primary-strong, #0052CC);
+  --blue-ink: var(--w-primary-strong);
   --ink: var(--w-cn-10, #171719);
-  --text: #2E2F33;
+  --text: var(--w-cn-22);
   --muted: var(--h-muted, #5F6168);
   --line: var(--h-border, #E1E2E4);
   --soft: var(--h-bg, #F7F7F8);
-  --navy: #0B1526;
+  --navy: var(--h-dark);
   --on-dark-2: rgba(255, 255, 255, .72);
   --on-dark-line: rgba(255, 255, 255, .22);
   color: var(--text);
@@ -34,14 +34,14 @@
 .note { color: var(--muted); font-size: 14px; margin-top: 16px !important; }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 26px; border-radius: 12px; font-weight: 700; font-size: 17px; transition: transform .15s; }
 .btn:hover { transform: translateY(-1px); }
-.btnWhite { background: #fff; color: var(--ink); }
+.btnWhite { background: #fff; color: var(--h-dark); }
 .btnLine { border: 1px solid rgba(255, 255, 255, .5); color: #fff; }
 .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px; margin-top: 36px; }
 
 /* 머리 · 어두운 바탕 · 왼쪽 정렬 */
 .head { background: var(--navy); color: #fff; }
 .head .wrap { padding-top: 168px; }
-.where { display: block; font-size: 15px; font-weight: 700; color: #6FA8FF; margin-bottom: 18px; }
+.where { display: block; font-size: 15px; font-weight: 700; color: var(--h-blue-light); margin-bottom: 18px; }
 .head h1 { margin: 0; color: #fff; font-size: clamp(34px, 4.4vw, 60px); font-weight: 800; line-height: 1.17; letter-spacing: -.02em; max-width: 15em; text-wrap: balance; }
 .lead { margin-top: 22px !important; font-size: clamp(17px, 1.4vw, 20px); color: var(--on-dark-2); max-width: 38em; }
 .textLink { font-weight: 700; border-bottom: 1px solid var(--on-dark-line); padding: 12px 0 3px; color: #fff; }

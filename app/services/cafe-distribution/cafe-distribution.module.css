@@ -1,17 +1,17 @@
 /* 카페 배포 페이지에만 쓰는 몇 줄 · 색은 공통 틀(sian.module.css)과 같은 값 */
-.p { color: #5F6168; }
+.p { color: var(--h-muted); }
 .p + .p { margin-top: 12px !important; }
-.h3 { margin: 48px 0 6px !important; font-size: 21px; font-weight: 800; color: #171719; letter-spacing: -.02em; }
-.sub { margin: 12px 0 16px !important; font-size: 15px; color: #5F6168; }
-.note { margin-top: 24px !important; font-size: 14px; color: #5F6168; }
+.h3 { margin: 48px 0 6px !important; font-size: 21px; font-weight: 800; color: var(--w-label-strong); letter-spacing: -.02em; }
+.sub { margin: 12px 0 16px !important; font-size: 15px; color: var(--h-muted); }
+.note { margin-top: 24px !important; font-size: 14px; color: var(--h-muted); }
 .gap { margin-top: 32px; }
-.notice { margin-top: 28px; padding: 20px 0; border-top: 2px solid #171719; border-bottom: 1px solid #E1E2E4; color: #5F6168; }
+.notice { margin-top: 28px; padding: 20px 0; border-top: 2px solid var(--w-label-strong); border-bottom: 1px solid var(--h-border); color: var(--h-muted); }
 .notice p + p { margin-top: 8px !important; }
-.noticeTitle { font-weight: 700; color: #171719; }
-.best { display: inline-block; margin-left: 8px; font-style: normal; font-size: 13px; font-weight: 700; color: #0052CC; white-space: nowrap; }
+.noticeTitle { font-weight: 700; color: var(--w-label-strong); }
+.best { display: inline-block; margin-left: 8px; font-style: normal; font-size: 13px; font-weight: 700; color: var(--w-primary-strong); white-space: nowrap; }
 .num { white-space: nowrap; font-variant-numeric: tabular-nums; }
-.topics { display: block; margin-top: 4px; font-size: 13px; color: #5F6168; }
-.fig { margin: 0 0 16px; border: 1px solid #E1E2E4; border-radius: 12px; overflow: hidden; background: #fff; }
-.fig figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 10px 14px; font-size: 14px; font-weight: 700; color: #171719; border-bottom: 1px solid #E1E2E4; }
-.fig figcaption a { color: #0052CC; white-space: nowrap; }
+.topics { display: block; margin-top: 4px; font-size: 13px; color: var(--h-muted); }
+.fig { margin: 0 0 16px; border: 1px solid var(--h-border); border-radius: 12px; overflow: hidden; background: #fff; }
+.fig figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 10px 14px; font-size: 14px; font-weight: 700; color: var(--w-label-strong); border-bottom: 1px solid var(--h-border); }
+.fig figcaption a { color: var(--w-primary-strong); white-space: nowrap; }
 .fig img { display: block; width: 100%; height: auto; }
