@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Clock, ShieldCheck, Store } from "lucide-react";
+import { ArrowRight, Check, Clock, Search, ShieldCheck, Store } from "lucide-react";
 import {
   PLACE_RANK_AS_OF,
   PLACE_RANK_LABEL_NOTE,
@@ -56,6 +56,12 @@ export function PlaceRankCaseCards({
                   <Store size={11} strokeWidth={2.5} className="shrink-0" />
                   <span className="truncate">{c.label}</span>
                 </p>
+                {c.volumeLabel && (
+                  <p className="mt-1 flex items-center gap-1 text-xs font-semibold text-gray-700">
+                    <Search size={11} strokeWidth={2.5} className="shrink-0" />
+                    <span className="tabular-nums">{c.volumeLabel} 검색</span>
+                  </p>
+                )}
               </div>
               {c.page1 && (
                 <span className="shrink-0 inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
@@ -144,7 +150,7 @@ export default function PlaceRankCasesSection({
         <PlaceRankCaseCards cases={cases} columns={columns} />
 
         <p className="mt-5 text-xs text-gray-500 leading-relaxed">
-          가장 최근 계측은 {PLACE_RANK_AS_OF} 이고, 카드마다 마지막으로 잰 날짜를 적었습니다. {PLACE_RANK_NOTE}
+          {PLACE_RANK_NOTE}
           {!compact && ` ${PLACE_RANK_LABEL_NOTE}`}
         </p>
       </div>

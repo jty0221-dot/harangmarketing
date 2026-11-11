@@ -18,13 +18,15 @@ import raw from "../../content/place-rank-cases.json";
  *    보장 · 확약 · 며칠 만에 몇 위 같은 말을 붙이지 않고, 평균 몇 계단 같은 집계값도 만들지 않는다.
  * 4) medical 이 true 인 카드는 진우 검수를 통과하기 전까지 화면에 오르지 않는다.
  *    생성기가 pendingReview 로 빼내므로 cases 에는 애초에 오지 않는다.
- * 5) 표기 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다.
- *    한 번 1위를 찍고 지금 12위인 곳을 1위로 적지 않는다 (2026-09-04 (금) 대표 지시).
+ * 5) 카드마다 그 순위를 잰 날짜(asOf)를 적는다. 그 뒤 순위가 내려간 건은 내려가기 전에 게시한
+ *    순위와 그 계측일을 그대로 둔다 (2026-11-12 (목) 대표 지시 '떨어진건 그냥 이전 좋은 순위로 냅두고').
+ *    kept 가 true 인 카드가 그것이다. 지금 순위처럼 읽히지 않게 날짜를 늘 붙인다.
+ *    (2026-09-04 대표 지시 '현재 순위만' 은 이 지시로 바뀌었다)
  * 6) 올라간 건과 지키고 있는 건을 함께 싣는다 (2026-09-05 (토) 대표 지시).
- *    떨어진 건만 뺀다. trend 가 유지인 카드에 올랐다고 적지 않는다 — 3위에서 3위는 지킨 것이다.
- * 7) 카드 순서의 기본은 키워드 월 검색수다 (같은 대표 지시).
- *    검색수는 content/keyword-volume.tsv 실측값이고 화면에 숫자로 적지 않는다.
- *    많이 찾는 키워드를 앞에 두는 정렬 기준일 뿐, 성과의 크기가 아니다.
+ *    시작보다 떨어진 건만 뺀다. trend 가 유지인 카드에 올랐다고 적지 않는다 — 3위에서 3위는 지킨 것이다.
+ * 7) 카드 순서의 기본은 그 키워드의 실제 월 검색수다 (2026-11-12 (목) 대표 지시 '검색량이 얼마인지 측정해서').
+ *    화면에는 내림한 값(volumeLabel · 월 8만 회 이상)만 적는다. 정확한 값은 지역을 되짚게 해서 내보내지 않는다.
+ *    키워드 표기는 00맛집 꼴이고 행정단위도 적지 않는다 (같은 대표 지시).
  *
  * 한 카드가 한 작품이다. 같은 매장이 키워드 셋을 올렸으면 카드도 셋이고,
  * 표기가 겹쳐도 묶지 않는다 — 대표 지시가 겹치는 게 있다면 그래도 추가해 별도의 작품이니깐 이다.
@@ -65,8 +67,12 @@ export interface PlaceRankCase {
   code: string;
   /** 상승 · 유지 — 떨어진 건은 애초에 오지 않는다 */
   trend: "상승" | "유지";
-  /** 이 키워드 종류의 월 검색수. 정렬용이고 화면에 적지 않는다 */
+  /** 이 키워드의 월 검색수를 내림한 값. 정렬용 */
   volume: number;
+  /** 화면에 적는 검색량 문구. `월 8만 회 이상` · 없으면 빈 문자열 */
+  volumeLabel: string;
+  /** 내려가기 전에 게시한 순위를 그대로 둔 카드인가 */
+  kept: boolean;
   /** 가림 처리된 키워드 종류. `맛집` `청소업체` — 지역명이 빠진 형태다 */
   keywordType: string;
 }
@@ -85,6 +91,8 @@ interface RawCase {
   grade: string;
   trend: "상승" | "유지";
   volume: number;
+  volumeLabel?: string;
+  kept?: boolean;
   keywordType: string;
 }
 
@@ -143,12 +151,13 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
     code: c.id,
     trend: c.trend,
     volume: c.volume,
+    volumeLabel: c.volumeLabel ?? "",
+    kept: c.kept ?? false,
     keywordType: c.keywordType,
   };
 })
-  // 가장 최근 계측에 없는 키워드도 대장에는 남기고 화면에서만 뺀다.
-  // 안내 문구가 카드 순위를 PLACE_RANK_AS_OF 계측분이라고 말하기 때문이다 (2026-09-24 (목) 코드 리뷰)
-  .filter((c) => c.best.to <= SHOW_WITHIN && c.asOf === PLACE_RANK_AS_OF);
+  // 카드마다 계측일을 적으므로 최근 계측일이 아닌 카드도 올린다 (2026-11-12 (목) 대표 지시 · 규칙 5).
+  .filter((c) => c.best.to <= SHOW_WITHIN);
 
 /** 검색수를 잰 날 */
 export const PLACE_RANK_VOLUME_AS_OF = FILE.volumeAsOf;
@@ -269,13 +278,14 @@ export function byDepth(limit?: number, skip = 0): PlaceRankCase[] {
  * 하루 한 번 이라고만 적던 자리를 전부 이 문장으로 바꾼다. 재는 시각을 적어야 잰 값으로 읽힌다.
  * 2026-09-25 (금) 결재 : 09/21 · 09/22 스냅샷이 비어 있어 「매일」은 뺐다. 시각만 적는다.
  */
-export const PLACE_RANK_MEASURE_TIME = `오후 2~3시`;
+export const PLACE_RANK_MEASURE_TIME = `네이버 순위가 바뀌는 자정 이후`;
 
 /** 화면 · JSON-LD · llms.txt 가 같은 문장을 쓰도록 한 곳에서 만든다 */
 export const PLACE_RANK_NOTE =
   `애드랭크 순위 계측 데이터를 기준으로 한 네이버 플레이스 실측값입니다. ` +
-  `${PLACE_RANK_MEASURE_TIME} 사이에 재서 그날 값으로 남기고, 재지 못한 날은 빈칸으로 둡니다. ` +
-  `표시된 순위는 최고 기록이 아니라 ${PLACE_RANK_AS_OF} 계측분의 현재 순위이고, ` +
+  `${PLACE_RANK_MEASURE_TIME}에 재서 그날 값으로 남기고, 재지 못한 날은 빈칸으로 둡니다. ` +
+  `카드마다 그 순위를 잰 날짜를 적었고(가장 최근 계측 ${PLACE_RANK_AS_OF}), 그 뒤 순위가 내려간 건은 내려가기 전 계측 순위와 날짜를 그대로 둡니다. ` +
+  `검색량은 그 키워드의 네이버 월 검색수를 ${FILE.volumeAsOf}에 잰 값을 내림해 적었고, ` +
   `괄호 안 일수는 계측을 시작한 날부터 그 순위가 확인된 날까지의 기간입니다. ` +
   `업종 · 지역 경쟁 강도에 따라 결과는 달라집니다. 몇 위까지 올려 드린다는 말을 하지 않습니다.`;
 
@@ -288,7 +298,7 @@ export const PLACE_RANK_NOTE =
  */
 export const PLACE_RANK_PAGE1_NOTE =
   `네이버 플레이스 1페이지는 광고 지면 3개와 순위 1~5위로 구성됩니다. ` +
-  `아래 카드는 ${PLACE_RANK_AS_OF} 계측분에서 그 1~5위 안에 있던 키워드를 한 장에 하나씩 옮긴 것입니다.`;
+  `아래 카드는 계측에서 그 1~5위 안에 든 키워드를 한 장에 하나씩 옮긴 것이고, 카드마다 잰 날짜를 적었습니다.`;
 
 export const PLACE_RANK_LABEL_NOTE =
   `상호와 지역명은 적지 않고 업종과 행정단위까지만 적었습니다. ` +
@@ -329,9 +339,10 @@ export const PLACE_RANK_EXCLUSIONS: { title: string; body: string }[] = [
       `업종과 행정단위까지만 적습니다. 상호는 서면으로 공개에 동의하신 곳만 따로 적습니다.`,
   },
   {
-    title: `최고 기록이 아니라 지금 순위입니다`,
+    title: `카드마다 잰 날짜를 적습니다`,
     body:
-      `한 번 찍힌 최고 순위를 적지 않습니다. ${PLACE_RANK_AS_OF} 계측분 스냅샷에 있는 현재 순위를 그대로 옮깁니다.`,
+      `카드의 순위는 그 아래 적힌 날짜에 잰 값입니다. 그 뒤 순위가 내려간 키워드는 내려가기 전에 잰 순위와 날짜를 그대로 둡니다. ` +
+      `가장 최근 계측은 ${PLACE_RANK_AS_OF} 입니다.`,
   },
   {
     title: `방문객과 매출은 적지 않습니다`,

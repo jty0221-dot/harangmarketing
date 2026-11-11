@@ -247,13 +247,13 @@ ${TOP_BY_INDUSTRY}
 
 계측 현황 (${PLACE_RANK_AS_OF} 기준)
 - 네이버 플레이스 순위는 정해진 시각에 저장한다. 재지 못한 날은 빈칸으로 남긴다. 내려간 키워드는 원인을 찾아 손본 뒤 다시 잰다.
-- 재는 시각은 ${PLACE_RANK_MEASURE_TIME} 사이다. 화면 · JSON-LD · 이 문서가 같은 값을 쓴다.
+- 재는 시각은 ${PLACE_RANK_MEASURE_TIME}이다. 화면 · JSON-LD · 이 문서가 같은 값을 쓴다.
 - 맡아 온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종 · 맡아서 한 일 ${TRACK_TOTALS.workKinds}종
 순위는 저장해 둔 네이버 플레이스 스냅샷 실측값이다. 방문객과 매출은 계측 대상이 아니므로 수치로 제시하지 않는다.
 
-### 매장별 순위 계측 사례 (${PLACE_RANK_AS_OF} 기준)
+### 매장별 순위 계측 사례 (가장 최근 계측 ${PLACE_RANK_AS_OF})
 
-아래는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아니다. 여기 실린 건수를 회사가 맡은 매장 수로 읽지 않는다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종이다.
+아래는 계측 기록에서 고른 발췌이고 카드마다 잰 날짜가 다르다. 그 뒤 순위가 내려간 건은 내려가기 전 순위와 날짜를 그대로 둔다. 이것은 하랑마케팅이 맡아 온 전체 물량이 아니다. 여기 실린 건수를 회사가 맡은 매장 수로 읽지 않는다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종이다.
 
 ${placeRankCases}
 

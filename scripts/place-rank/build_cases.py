@@ -65,8 +65,16 @@ OUT = REPO / "content" / "place-rank-cases.json"
 MASK = REPO / "content" / "place-rank-mask.local.tsv"
 # 이쪽은 지역명이 없어 커밋한다 — 키워드 유형별 월 검색수
 VOL = REPO / "content" / "keyword-volume.tsv"
+# 실제 키워드별 월 검색수 (루미 · 순위모니터\검색량\volume_YYYY-MM-DD.tsv) — 가장 최근 파일을 쓴다
+VOL_DIR = MON / "검색량"
+# 지난 회차에 게시한 순위 기록 — 실제 매장 · 키워드가 적혀 있어 커밋하지 않는다 (.gitignore)
+# 대표 지시 2026-11-12 (목) '떨어진건 그냥 이전 좋은 순위로 냅두고'
+HIST = REPO / "content" / "place-rank-published.local.tsv"
 
 WRITE = "--write" in sys.argv
+# --seed : 게시 기록만 새로 쓴다 (JSON 은 안 쓴다) · --until YYYY-MM-DD : 그날까지의 스냅샷만 본다
+SEED = "--seed" in sys.argv
+UNTIL = sys.argv[sys.argv.index("--until") + 1] if "--until" in sys.argv else None
 
 
 def rows(path):
@@ -159,7 +167,7 @@ covered = collections.defaultdict(set)  # 출처 -> {(매장, 키워드)}
 snap_start = {}                         # (매장, 키워드) -> (날짜, 시작순위, 시작일)
 latest_file = {}
 for src, folder in SRC.items():
-    files = sorted(folder.glob("*.tsv"))
+    files = sorted(f for f in folder.glob("*.tsv") if UNTIL is None or f.stem <= UNTIL)
     latest_file[src] = files[-1].stem if files else None
     for path in files:
         day = path.stem
@@ -205,13 +213,40 @@ def current(store, kw):
 # 이 저장소는 공개라 그런 키가 커밋되면 어느 가게인지 좁혀진다.
 # 조회일을 손으로 적지 않는다. 적어 둔 날짜는 다음 사람이 안 고친다 —
 # 표를 다시 뽑으면 asOf 도 같이 움직여야 화면 숫자와 근거 날짜가 어긋나지 않는다.
-volume = {}
+#
+# 2026-11-12 (목) 대표 지시 '검색량이 얼마인지 측정해서 대단한것을 보여줘' — 유형값(맛집 전체)이 아니라
+# 그 카드의 실제 키워드 월 검색수를 쓴다. 실제 키워드는 저장소에 남기지 않고, 화면에는 내림한 꼴만 나간다
+# (87,800 → 월 8만 회 이상). 정확한 값을 적으면 검색량으로 지역이 되짚인다.
+_vol_files = sorted(VOL_DIR.glob("volume_*.tsv"))
+volume_real = {}
 volume_asof = ""
-for kind, mv, asof in plain(VOL, 3):
-    if mv.strip().isdigit():
-        volume[kind] = int(mv)
-        if asof.strip() > volume_asof:
-            volume_asof = asof.strip()
+if _vol_files:
+    volume_asof = _vol_files[-1].stem.replace("volume_", "")
+    for r in rows(_vol_files[-1]):
+        v = r.get("총검색수", "").replace(",", "").strip()
+        volume_real[r.get("키워드", "").strip()] = int(v) if v.isdigit() else (5 if v.startswith("<") else 0)
+
+
+def vol_bucket(v):
+    """내림한 정렬값과 화면 문구 — 정확한 값은 내보내지 않는다"""
+    if v >= 10000:
+        return v // 10000 * 10000, "월 " + str(v // 10000) + "만 회 이상"
+    if v >= 1000:
+        return v // 1000 * 1000, "월 " + str(v // 1000) + "천 회 이상"
+    if v >= 10:
+        step = 100 if v >= 100 else 10
+        return v // step * step, "월 " + str(v // step * step) + "회 이상"
+    if v > 0:
+        return 1, "월 10회 미만"
+    return 0, ""
+
+
+# ---------- 6-A. 지난 게시 기록 ----------
+history = {}
+if HIST.exists() and not SEED:
+    for store, kw, to, asof in plain(HIST, 4):
+        if to.strip().isdigit():
+            history[(store, kw)] = (int(to), asof.strip())
 
 
 # ---------- 6-C. 후보 ----------
@@ -287,20 +322,26 @@ for c in cands:
         continue
 
     cur = current(store, kw)
-    if cur is None:
-        held.append((tag, "스냅샷에 이 키워드가 없다 — 현재 순위를 확인할 수 없다"))
-        continue
     # 대표 지시 — 애드랭크 참고했다고만하고 루메인은 표기상으론 안보이게 해줘.
-    # 화면에 애드랭크라고 적을 것이므로 애드랭크가 실제로 재고 있는 것만 싣는다.
+    # 화면에 애드랭크라고 적을 것이므로 애드랭크가 실제로 잰 값만 싣는다.
     # 루메인은 아래 cross 로 교차 확인만 하고 JSON 으로 내보내지 않는다.
-    if cur["src"] != "애드랭크":
-        held.append((tag, "애드랭크가 이 키워드를 재고 있지 않다 — 루메인만 있다"))
-        continue
+    start = c["start"]
 
     # 계측이 끝난 키워드도 오른 것은 싣는다 — 카드마다 마지막으로 잰 날짜가 붙는다
     # (대표 지시 2026-11-10 (화) '계측 끝난건 순위 상승 된거 쭉 올려')
-
-    start = c["start"]
+    # 내려간 건은 지난번 게시한 순위와 그 계측일을 그대로 둔다 — 지금 순위와 지난 게시 순위 가운데 좋은 쪽
+    # (대표 지시 2026-11-12 (목) '떨어진건 그냥 이전 좋은 순위로 냅두고' · 매장 + 키워드로 맞춘다)
+    prev = history.get((store, kw))
+    kept = False
+    if prev and (cur is None or cur["src"] != "애드랭크" or prev[0] < cur["rank"]):
+        cur = {"src": "애드랭크", "asOf": prev[1], "rank": prev[0], "cross": None}
+        kept = True
+    if cur is None:
+        held.append((tag, "스냅샷에 이 키워드가 없다 — 현재 순위를 확인할 수 없다"))
+        continue
+    if cur["src"] != "애드랭크":
+        held.append((tag, "애드랭크가 이 키워드를 재고 있지 않다 — 루메인만 있다"))
+        continue
     if cur["rank"] > start:
         held.append((tag, "현재 " + str(cur["rank"]) + "위로 시작 " + str(start)
                      + "위보다 떨어졌다 (" + cur["asOf"] + " 기준 · 대표 지시)"))
@@ -314,15 +355,20 @@ for c in cands:
         "store": store,  # 내부 확인용 — JSON 으로 나가지 않는다
         "industry": ind,
         "storeLabel": "00" + ind.replace(" ", ""),
-        "keywordLabel": ("00 " + detail) if any(w in ind for w in AUDIT_ANON)
-                        else (("00" + unit + " " + detail) if unit else ("00 " + detail)),
+        # 2026-11-12 (목) 대표 지시 '인천맛집, 홍대맛집 이런건 00맛집으로' — 행정단위도 적지 않는다.
+        # 지역이 안 붙은 키워드(아시바 등)는 가릴 것이 없어 그대로 둔다.
+        "keywordLabel": ("00" + detail.replace(" ", "")) if (unit or any(w in ind for w in AUDIT_ANON))
+                        else detail,
+        "kept": kept,
         "from": start,
         "to": cur["rank"],
         # 올라간 건과 지킨 건을 한 칸으로 구분한다. 화면에서 문장이 달라진다 —
         # 3위에서 3위는 올랐다 가 아니라 지키고 있다 이다.
         "trend": "상승" if cur["rank"] < start else "유지",
-        "volume": volume.get(detail, 0),
+        "volume": vol_bucket(volume_real.get(kw, 0))[0],
+        "volumeLabel": vol_bucket(volume_real.get(kw, 0))[1],
         "keywordType": detail,
+        "kw": kw,  # 내부 확인용 — JSON 으로 나가지 않는다
         "origin": c["origin"],
         "days": (d1 - d0).days,
         "startDate": c["startDate"],
@@ -421,6 +467,8 @@ def public(p):
         "to": p["to"],
         "trend": p["trend"],
         "volume": p["volume"],
+        "volumeLabel": p["volumeLabel"],
+        "kept": p["kept"],
         "keywordType": p["keywordType"],
         "days": p["days"],
         "startDate": p["startDate"],
@@ -433,10 +481,10 @@ def public(p):
 doc = {
     "generated": datetime.date.today().isoformat(),
     "source": "E:/하랑/순위모니터/성과대장.tsv (세영 · 애드랭크 순위 계측)",
-    "note": ("상호와 지역명을 쓰지 않는다. 업종과 행정단위까지만 공개한다 (2026-09-04 (금) 대표 지시). "
-             "실리는 순위는 최고 기록이 아니라 최신 스냅샷의 현재 순위다. "
-             "올라간 건과 지키고 있는 건을 함께 싣고 떨어진 건만 뺀다 (2026-09-05 (토) 대표 지시). "
-             "순서는 키워드 월 검색수가 큰 쪽부터다 — content/keyword-volume.tsv."),
+    "note": ("상호와 지역명을 쓰지 않는다. 키워드는 00맛집 꼴로 행정단위도 적지 않는다 (2026-11-12 (목) 대표 지시). "
+             "카드마다 마지막으로 잰 순위와 계측일을 싣는다. 그 뒤 순위가 내려간 건은 내려가기 전 게시한 순위와 "
+             "그 계측일을 그대로 둔다 (2026-11-12 (목) 대표 지시). 시작보다 떨어진 건은 싣지 않는다. "
+             "순서는 그 키워드의 실제 월 검색수가 큰 쪽부터이고 화면에는 내림한 값만 적는다."),
     "volumeAsOf": volume_asof,
     "monitoring": monitoring,
     # 검색량이 큰 키워드가 앞에 선다. 같으면 많이 올라온 쪽이 앞이다.
@@ -445,7 +493,20 @@ doc = {
     "pendingReview": pending,
 }
 
-if WRITE:
+def save_history():
+    """이번에 게시한 순위를 다음 회차의 '이전 좋은 순위' 로 남긴다 (병 · 의원 포함 · 내부 기록)"""
+    lines = ["# 지난 게시 순위 기록 — build_cases.py 가 쓴다 · 손으로 고치지 않는다 · 커밋하지 않는다",
+             "# 형식: 매장<탭>키워드<탭>게시순위<탭>계측일"]
+    for p in sorted(passed, key=lambda x: (x["store"], x["kw"])):
+        lines.append("\t".join([p["store"], p["kw"], str(p["to"]), p["asOf"]]))
+    HIST.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print("[게시 기록] " + str(HIST) + " · " + str(len(passed)) + "줄")
+
+
+if SEED:
+    save_history()
+elif WRITE:
+    save_history()
     prev = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
     nl = "\r\n" if prev and prev.count("\r\n") > prev.count("\n") / 2 else "\n"
     with open(OUT, "w", encoding="utf-8", newline="") as f:

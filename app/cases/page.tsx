@@ -76,7 +76,7 @@ const CASES_LD = [
     type: "CollectionPage",
     name: "순위 계측 기록 · 하랑마케팅",
     description:
-      "하랑마케팅이 직접 잰 네이버 플레이스 순위 기록. 키워드마다 시작 순위 · 현재 순위 · 계측 일수만 적었습니다.",
+      "하랑마케팅이 직접 잰 네이버 플레이스 순위 기록. 키워드마다 시작 순위 · 확인된 순위 · 계측 일수만 적었습니다.",
     dateModified: updatedAt("/cases", PLACE_RANK_GENERATED),
   }),
   breadcrumbLd([

@@ -40,9 +40,9 @@ const PATH = "/cases/place-rank";
 const RANK_FAQ: FaqItem[] = [
   {
     q: "순위는 언제 재나요?",
-    a: `${PLACE_RANK_MEASURE_TIME} 사이에 재서 그날 값으로 남깁니다. 재지 못한 날은 빈칸으로 두고, 내려간 키워드는 원인을 찾아 손본 뒤 다시 잽니다.`,
+    a: `${PLACE_RANK_MEASURE_TIME}에 재서 그날 값으로 남깁니다. 재지 못한 날은 빈칸으로 두고, 내려간 키워드는 원인을 찾아 손본 뒤 다시 잽니다.`,
   },
-  { q: "여기 적힌 순위는 최고 기록인가요?", a: PLACE_RANK_EXCLUSIONS[2].body },
+  { q: "여기 적힌 순위는 언제 잰 값인가요?", a: PLACE_RANK_EXCLUSIONS[2].body },
   { q: "상호와 지역명은 왜 없나요?", a: PLACE_RANK_EXCLUSIONS[1].body },
   { q: "1페이지는 어디까지인가요?", a: PLACE_RANK_EXCLUSIONS[0].body },
   { q: "방문객이나 매출도 보여 주시나요?", a: PLACE_RANK_EXCLUSIONS[3].body },
@@ -134,7 +134,7 @@ export default function PlaceRankCasesPage() {
 
         <AnswerBlock
           question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
-          answer={`직접 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. ${PLACE_RANK_AS_OF} 계측분에서는 ${PLACE_RANK_CASES.slice(0, 4)
+          answer={`직접 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. 검색량이 큰 키워드부터 보면 ${PLACE_RANK_CASES.slice(0, 4)
             .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
             .join(", ")}. ${PLACE_RANK_NOTE}`}
           facts={[

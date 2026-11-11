@@ -28,6 +28,7 @@ const dependencies = {
   './lib/photo-seo': {PHOTO_UPDATED:'2026-09-23'},
   './lib/photo-portfolios': {PHOTO_PORTFOLIOS:[{type:'food',id:'fixture',images:[{src:'/photo.jpg'}]}]},
   './lib/clinic-homepage': {CLINIC_LINE_PAGES:[{path:'/services/homepage/clinic'},{path:'/services/homepage/clinic/geo'}]},
+  './lib/result-cases': {RESULT_CASES:[]},
 };
 // Different build clocks must not pretend that untouched content changed.
 class FutureDate extends Date { constructor(...args) { super(...(args.length ? args : ['2030-01-01'])); }}

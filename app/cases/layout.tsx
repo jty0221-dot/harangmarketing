@@ -11,7 +11,7 @@ const OG_LINE = ["음식점", "청소"]
 
 export const metadata: Metadata = {
   title: "마케팅 성공 사례 | 카페·청소·미용·꽃집 진행 기록",
-  description: "마케팅 성공 사례. 네이버 플레이스 순위를 직접 계측해 키워드별 시작 순위 · 현재 순위 · 계측 일수를 업종별로 그대로 공개합니다.",
+  description: "마케팅 성공 사례. 네이버 플레이스 순위를 직접 계측해 키워드별 시작 순위 · 확인된 순위 · 계측 일수를 업종별로 그대로 공개합니다.",
   keywords: ["마케팅 성공사례", "소상공인 마케팅 사례", "플레이스 SEO 사례", "카페 마케팅 사례", "음식점 마케팅 성과", "하랑마케팅 포트폴리오"],
   alternates: { canonical: "https://www.harangmarketing.com/cases" },
   openGraph: {

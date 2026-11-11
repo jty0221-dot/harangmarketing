@@ -521,7 +521,7 @@ export default function PlaceServicePage() {
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드 하나하나를 따로 잰 기록"
-          description={`오후 2~3시에 잰 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
+          description={`정해진 시각에 잰 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 기록도 셋으로 남습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           background="bg-white"
         />

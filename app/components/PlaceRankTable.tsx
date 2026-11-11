@@ -142,7 +142,7 @@ export default function PlaceRankTable({
           className={`mt-4 max-w-4xl ${center ? "mx-auto" : ""} flex flex-col gap-3 md:flex-row md:items-start md:justify-between`}
         >
           <p className="text-xs text-gray-500 leading-relaxed text-left">
-            {PLACE_RANK_MEASURE_TIME} 사이에 잰 애드랭크 계측값입니다. 계측 기간은 계측을 시작한 날부터
+            {PLACE_RANK_MEASURE_TIME}에 잰 애드랭크 계측값입니다. 계측 기간은 계측을 시작한 날부터
             그 순위가 확인된 날까지입니다. 상호와 지역명은 적지 않았습니다.
           </p>
           {more && (
