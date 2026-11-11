@@ -36,6 +36,8 @@ export interface ResultCase {
   scope?: string[];
   voice?: { text: string; who: string };
   // 전후 사진 : 연진 manifest(본부장\영상\성과사례_전후_*) 기준 · 그림은 public/cases/<id>/ 로 복사해 쓴다
+  // 견적서 항목별로 한 일 (금액 없음) · sensitive 는 대표 결정 전까지 화면에 내지 않는다
+  quoteItems?: { item: string; qty: string; done: string[]; result?: string; sensitive?: boolean }[];
   beforeAfter?: { caption: string; before: string; after: string; beforeDate: string; afterDate: string }[];
 }
 
@@ -58,6 +60,15 @@ export const RESULT_CASES_INTRO = [
   "좋았던 날만 고르지 않았습니다. 순위가 내려간 날과 아직 돌아오지 못한 숫자도 같은 그래프와 표에 그대로 남겼습니다.",
   "순위는 검색하는 위치와 시간에 따라 달라지며, 같은 결과를 약속드리는 자료가 아닙니다.",
 ];
+
+/** 화면에 내도 되는 견적 항목만 */
+export const visibleQuoteItems = (c: ResultCase) => (c.quoteItems ?? []).filter((q) => !q.sensitive);
+
+/** 목록 카드의 서비스 줄 : 견적 항목이 있으면 그 이름, 없으면 진행한 서비스 */
+export const serviceNames = (c: ResultCase) => {
+  const q = visibleQuoteItems(c);
+  return q.length > 0 ? q.map((x) => x.item) : c.services;
+};
 
 /** 대표 숫자 한 줄 : headline 첫 칸이 있으면 그것, 없으면 첫 결과 줄 */
 export function leadFigure(c: ResultCase) {

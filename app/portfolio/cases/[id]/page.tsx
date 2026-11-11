@@ -8,7 +8,7 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import { breadcrumbLd, webPageLd, ogImage, SITE } from "../../../lib/seo";
-import { RESULT_CASES, getResultCase, leadFigure, otherCases, serviceLinks } from "../../../lib/result-cases";
+import { RESULT_CASES, getResultCase, leadFigure, otherCases, serviceLinks, visibleQuoteItems } from "../../../lib/result-cases";
 
 type Params = Promise<{ id: string }>;
 
@@ -56,6 +56,7 @@ export default async function ResultCasePage({ params }: { params: Params }) {
     ? c.headline.slice(0, 3)
     : c.results.slice(0, 3).map((r) => ({ value: `${r.before} → ${r.after}`, label: r.label }));
   const links = serviceLinks(c.services);
+  const quote = visibleQuoteItems(c);
   const others = otherCases(c);
 
   return (
@@ -165,6 +166,21 @@ export default async function ResultCasePage({ params }: { params: Params }) {
             </Card>
           )}
 
+          {/* 견적 항목이 있으면 한 일 목록은 그 구역과 겹쳐 시작할 때 상태만 남긴다 */}
+          <Card title={quote.length > 0 ? "시작할 때 상태" : "시작할 때 상태와 한 일"}>
+            <p className="w-body-2 mt-2" style={{ color: "var(--w-label)" }}>{c.before}</p>
+            {quote.length === 0 && (
+              <ul className="mt-4 space-y-2">
+                {c.did.map((d) => (
+                  <li key={d} className="flex gap-2 w-body-2" style={{ color: "var(--w-label)" }}>
+                    <Check size={16} className="mt-1 shrink-0" style={{ color: "var(--w-primary)" }} strokeWidth={2.5} />
+                    <span className="min-w-0">{d}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+
           {c.diagnosis && c.diagnosis.length > 0 && (
             <Card title="무엇이 문제였고 무엇을 바꿨나">
               <ol className="mt-2">
@@ -195,17 +211,33 @@ export default async function ResultCasePage({ params }: { params: Params }) {
             </Card>
           )}
 
-          <Card title="시작할 때 상태와 한 일">
-            <p className="w-body-2 mt-2" style={{ color: "var(--w-label)" }}>{c.before}</p>
-            <ul className="mt-4 space-y-2">
-              {c.did.map((d) => (
-                <li key={d} className="flex gap-2 w-body-2" style={{ color: "var(--w-label)" }}>
-                  <Check size={16} className="mt-1 shrink-0" style={{ color: "var(--w-primary)" }} strokeWidth={2.5} />
-                  <span className="min-w-0">{d}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
+          {quote.length > 0 && (
+            <section className="mt-10 mb-6">
+              <h2 className="w-title-2" style={{ color: "var(--w-label-strong)" }}>견적서 항목별로 한 일</h2>
+              <p className="w-body-2 mt-1" style={{ color: "var(--w-label-alt)" }}>견적서에 넣은 항목을 그대로 옮겼습니다. 금액은 뺐습니다</p>
+              <ul className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {quote.map((q) => (
+                  <li key={q.item} className="w-card flex min-w-0 flex-col p-5 md:p-6">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <h3 className="w-title-3 min-w-0" style={{ color: "var(--w-label-strong)" }}>{q.item}</h3>
+                      {q.qty && <span className="w-chip w-chip-neutral shrink-0">{q.qty}</span>}
+                    </div>
+                    <ul className="mt-3 space-y-1.5">
+                      {q.done.map((d) => (
+                        <li key={d} className="flex gap-2 w-body-2" style={{ color: "var(--w-label)" }}>
+                          <Check size={16} className="mt-1 shrink-0" style={{ color: "var(--w-primary)" }} strokeWidth={2.5} />
+                          <span className="min-w-0">{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {q.result && (
+                      <p className="w-label-1 w-num mt-auto pt-4 font-semibold" style={{ color: "var(--w-primary)" }}>{q.result}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {c.timeline && c.timeline.length > 0 && (
             <Card title="진행 순서">
