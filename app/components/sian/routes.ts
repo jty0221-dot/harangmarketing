@@ -11,4 +11,13 @@ export const SIAN_ROUTES: ReadonlySet<string> = new Set([
   "/services/restaurant",
   "/services/academy",
   "/services/shopping",
+  "/services/place",
+  "/services/blog-marketing",
+  "/services/powercontents",
+  "/services/review",
+  "/services/instagram",
+  "/services/homepage",
+  "/services/detail-page",
+  "/services/cafe-distribution",
+  "/services/photo",
 ]);

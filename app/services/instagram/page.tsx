@@ -1,15 +1,11 @@
-import Link from "next/link";
 import Image from "next/image";
-import {
-  AtSign, ClipboardList, Layers, Camera, TrendingUp, Ban, ShieldCheck,
-  Phone, ArrowRight, Search, MessageCircle, Link2, Image as ImageIcon,
-  BarChart3, Clock, Users, Target, Sparkles, ListOrdered,
-} from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import AnswerBlock from "../../components/AnswerBlock";
-import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
+import {
+  SianMain, PageHead, AnswerRow, Section, ItemList, Steps,
+  QuestionList, CostLine, CloseBand, Fold, Table,
+} from "../../components/sian/Sian";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, itemListLd, type FaqItem, PAGE_UPDATED,
 } from "../../lib/seo";
@@ -47,7 +43,6 @@ import { HL_WORKS, HL_TOTAL, HL_SHOP_TOTAL } from "../../lib/highlight-reference
 const PATH = "/services/instagram";
 const URL = `${SITE.base}${PATH}`;
 const CTA_HREF = "/contact?service=instagram";
-const KAKAO_HREF = SITE.kakaoChat;
 
 /* 이 페이지의 뼈대. 순서가 거꾸로면 돈이 샌다는 것을 두 줄로 보여 준다. */
 const ORDER_WRONG = [
@@ -68,28 +63,24 @@ const ORDER_RIGHT = [
 /* 대표가 말한 네 가지를 하는 일 로 바꿔 적은 것 */
 const WORKS = [
   {
-    icon: ClipboardList,
     name: "계정 진단과 최적화",
     lead: "지금 무엇이 막고 있는지부터 잽니다",
     body:
       "프로필부터 계정 안전까지 30개 항목 점검표로 재고, 업종과 지금 계정 상태에 맞는 것을 골라 고칩니다. 문제 다섯 가지와 4주 실행표로 정리하고, 확인할 수 없는 값은 그렇다고 적어 둡니다.",
   },
   {
-    icon: Layers,
     name: "하이라이트 세팅",
     lead: "프로필에 들어온 사람이 나가기 전에 거치는 복도입니다",
     body:
       "칸 수와 순서를 업종과 방문자가 묻는 순서에 맞춰 정합니다. 커버 시안 중 하나를 고르시면 그 계열로 맞추고, 칸마다 스토리를 서너 장씩 채웁니다.",
   },
   {
-    icon: Camera,
     name: "콘텐츠 정기 발행",
     lead: "피드와 스토리와 릴스를 정해진 간격으로 올립니다",
     body:
       "무엇을 언제 올릴지 저희가 정하고 릴스는 영상팀이 만듭니다. 반응이 났던 글을 다시 쓰고, 몰아 올리고 비우지 않습니다.",
   },
   {
-    icon: TrendingUp,
     name: "콘텐츠 반응 분석",
     lead: "조회·저장·문의 동선을 보고 다음 콘텐츠를 준비합니다",
     body:
@@ -109,17 +100,14 @@ const HIGHLIGHT_SLOTS = [
 
 const HIGHLIGHT_RULES = [
   {
-    icon: ListOrdered,
     title: "첫 줄에 보이는 칸이 중요합니다",
     body: "휴대폰 첫 줄에는 네 칸 반 정도가 보이고 나머지는 옆으로 밀어야 나옵니다. 칸 수는 업종에 맞춰 정하되 손님이 가장 많이 묻는 것을 첫 줄에 둡니다.",
   },
   {
-    icon: Search,
     title: "이름은 여덟 자를 넘기지 않습니다",
     body: "넘으면 말줄임으로 잘려서 무슨 칸인지 알아볼 수 없게 됩니다.",
   },
   {
-    icon: MessageCircle,
     title: "연락할 길은 꼭 남깁니다",
     body: "칸이든 프로필 링크든 여기까지 본 사람이 바로 연락할 길이 있어야 합니다. 예약 · 위치 · 카카오 채널처럼 업종에 맞는 이름으로 둡니다.",
   },
@@ -130,22 +118,18 @@ const HIGHLIGHT_RULES = [
    이건 그 03 안에서 실제로 손이 가는 순서다. 대표 지시 어떤식으로 구축하고 보일지. */
 const HL_STEPS = [
   {
-    icon: Search,
     title: "지금 프로필부터 셉니다",
     body: "칸이 몇 개인지, 이름이 잘리는지, 커버 톤이 제각각인지 먼저 봅니다. 여기서 고칠 것이 정해집니다.",
   },
   {
-    icon: ListOrdered,
     title: "칸 이름을 업종에 맞춰 정합니다",
     body: "아래 실제 화면의 칸 수와 이름이 곳마다 다른 이유입니다. 펜션에서는 이용 안내를 묻고 왁싱에서는 가격을 먼저 묻습니다.",
   },
   {
-    icon: ImageIcon,
     title: "커버를 한 벌로 그립니다",
     body: "아이콘과 여백과 글자 크기를 같은 값으로 맞춥니다. 한 장씩 예쁜 것보다 모든 칸이 한 벌로 보이는 것이 먼저입니다.",
   },
   {
-    icon: Layers,
     title: "칸 안까지 채우고 프로필에서 확인합니다",
     body: "커버만 드리고 끝내지 않습니다. 칸 안에 들어갈 장면까지 올린 뒤 프로필에서 실제로 어떻게 보이는지 보고 마칩니다.",
   },
@@ -154,31 +138,26 @@ const HL_STEPS = [
 /* 진단 30항목. 8+6+5+6+5 = 30 */
 const DIAG_GROUPS = [
   {
-    icon: Target,
     name: "프로필",
     count: 8,
     items: ["계정 유형", "검색되는 이름 칸", "소개글 첫 줄", "소개글 마지막 줄", "링크 도착지", "액션 버튼", "프로필 사진", "연결 계정"],
   },
   {
-    icon: ImageIcon,
     name: "콘텐츠",
     count: 6,
     items: ["최근 게시일", "발행 간격의 규칙성", "릴스 비중", "첫 화면 세 장", "캡션 첫 두 줄", "해시태그"],
   },
   {
-    icon: Layers,
     name: "하이라이트",
     count: 5,
     items: ["칸 개수와 순서", "커버 통일", "이름 길이", "안쪽 스토리 장수", "문의 동선"],
   },
   {
-    icon: BarChart3,
     name: "지표",
     count: 6,
     items: ["도달", "프로필 방문", "저장", "공유", "외부 링크 클릭", "참여율"],
   },
   {
-    icon: ShieldCheck,
     name: "계정 안전",
     count: 5,
     items: ["2단계 인증", "권한 위임 방식", "연동 앱 정리", "제재 이력", "복구 수단"],
@@ -215,10 +194,10 @@ const NOT_DOING = [
 
 /* 숫자를 지어내지 않기 위한 자리. 무엇을 재는지만 적는다. */
 const REPORT_METRICS = [
-  { icon: Users, label: "도달", note: "몇 명에게 닿았는지" },
-  { icon: AtSign, label: "프로필 방문", note: "글을 보고 프로필까지 들어온 수" },
-  { icon: Sparkles, label: "저장과 공유", note: "다시 보려고 담아 둔 수" },
-  { icon: Link2, label: "링크 클릭", note: "예약과 상담으로 넘어간 수" },
+  { label: "도달", note: "몇 명에게 닿았는지" },
+  { label: "프로필 방문", note: "글을 보고 프로필까지 들어온 수" },
+  { label: "저장과 공유", note: "다시 보려고 담아 둔 수" },
+  { label: "링크 클릭", note: "예약과 상담으로 넘어간 수" },
 ];
 
 const STEPS = [
@@ -344,60 +323,20 @@ const LD = [
 ];
 
 export default function InstagramServicePage() {
+  /* 실제 화면은 줄 캡처가 있는 넷만 펼쳐 둔다. 나머지는 접힌 목록 (ItemList 구조화 데이터의 #hl- 앵커는 둘 다에 남는다) */
+  const shown = HL_WORKS.filter((w) => w.band).slice(0, 4);
+  const folded = HL_WORKS.filter((w) => !shown.includes(w));
   return (
     <>
       <JsonLd data={LD} />
       <Header />
-
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* 히어로 */}
-        <section className="bg-gray-950 py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <div className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-1.5 mb-6">
-              <AtSign size={14} className="text-blue-400" strokeWidth={2.5} />
-              <span className="text-xs md:text-[13px] font-semibold text-blue-200">
-                인스타그램 · 계정 운영
-              </span>
-            </div>
-
-            <h1 className="text-2xl md:text-4xl font-black text-white leading-snug tracking-tight">
-              숫자를 늘리기 전에
-              <br />
-              계정부터 고칩니다
-            </h1>
-
-            <p className="mt-5 text-sm md:text-base text-gray-300 leading-relaxed max-w-2xl">
-              프로필에 들어온 사람이 나가는 이유는 대개 게시물이 아니라 세팅입니다. 뭐 하는 곳인지 바로 안 보이고, 하이라이트가 비었고, 링크가 상담으로 안 이어집니다. 업체에 맞는 항목을 골라 막힌 곳부터 찾습니다.
-            </p>
-
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Link
-                href={CTA_HREF}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-blue-700"
-              >
-                계정 진단 받기
-                <ArrowRight size={16} strokeWidth={2.5} />
-              </Link>
-              <a
-                href={KAKAO_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/20"
-              >
-                <MessageCircle size={16} strokeWidth={2.5} />
-                카카오톡으로 묻기
-              </a>
-            </div>
-
-            <p className="mt-4 text-xs md:text-[13px] text-gray-500">
-              상담과 계정 진단 비용은 0원입니다.
-            </p>
-          </div>
-        </section>
-
-        <AnswerBlock
-          question="인스타그램 계정 최적화는 무슨 작업인가요?"
-          answer="인스타그램 계정 최적화는 방문자가 프로필에서 나가는 지점을 찾아 고치는 작업입니다. 프로필과 콘텐츠와 하이라이트와 지표와 계정 안전 다섯 갈래 30개 항목 점검표를 기본으로 두고, 업종과 지금 계정 상태에 맞춰 손볼 곳을 고릅니다. 하랑마케팅은 문제 다섯 가지와 4주 실행표를 드리고, 업종에 맞춘 하이라이트를 세팅한 다음 피드와 스토리와 릴스를 정기 발행합니다. 좋아요나 팔로워는 무작정 늘리지 않고 업체에 필요할 때 세팅 뒤 보조로만 쓰며, 몇 번째로 올려 드린다는 말은 하지 않습니다."
+      <SianMain>
+        <PageHead
+          where="서비스 · 인스타그램 · 계정 운영"
+          title={<>숫자를 늘리기 전에<br />계정부터 고칩니다</>}
+          lead="프로필에 들어온 사람이 나가는 이유는 대개 게시물이 아니라 세팅입니다. 뭐 하는 곳인지 바로 안 보이고, 하이라이트가 비었고, 링크가 상담으로 안 이어집니다. 업체에 맞는 항목을 골라 막힌 곳부터 찾습니다."
+          primary={{ href: CTA_HREF, label: "계정 진단 받기" }}
+          link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={[
             { label: "점검표", value: `${DIAG_TOTAL}개 항목` },
             { label: "하이라이트", value: "업종별 칸 구성" },
@@ -405,539 +344,165 @@ export default function InstagramServicePage() {
           ]}
         />
 
-        {/* 순서 · 이 페이지의 뼈대 */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              순서가 거꾸로면 돈이 샙니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              광고로 데려오는 것과 데려온 사람이 남는 것은 다른 일입니다. 계정이 준비되지 않으면 들어온 사람이 그대로 나가서 진단부터 합니다.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 md:p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-9 h-9 rounded-xl bg-gray-400 shadow-sm flex items-center justify-center shrink-0">
-                    <Ban size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <p className="text-base md:text-lg font-bold text-gray-700">흔한 순서</p>
-                </div>
-                <ol className="space-y-3">
-                  {ORDER_WRONG.map((t, i) => (
-                    <li key={t} className="flex gap-3 text-sm text-gray-600 leading-relaxed">
-                      <span className="shrink-0 font-bold text-gray-400 tabular-nums">{i + 1}</span>
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <div className="rounded-2xl border border-blue-200 bg-blue-50 p-4 md:p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0">
-                    <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <p className="text-base md:text-lg font-bold text-gray-900">저희 순서</p>
-                </div>
-                <ol className="space-y-3">
-                  {ORDER_RIGHT.map((t, i) => (
-                    <li key={t} className="flex gap-3 text-sm text-gray-700 leading-relaxed">
-                      <span className="shrink-0 font-bold text-blue-600 tabular-nums">{i + 1}</span>
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 네 가지 작업 */}
-        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              하는 일은 네 가지입니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              앞의 둘이 세팅이고 뒤의 둘이 운영입니다.
-              세팅을 건너뛰고 운영만 하면 올리는 만큼 나가고, 세팅만 하고 멈추면 그 자리에 그대로 있습니다.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              {WORKS.map((w) => (
-                <div
-                  key={w.name}
-                  className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
-                  style={{ border: "1px solid var(--h-border)" }}
-                >
-                  <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center mb-4">
-                    <w.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <h3 className="text-base md:text-lg font-bold text-gray-900">{w.name}</h3>
-                  <p className="mt-1.5 text-sm font-semibold text-blue-700">{w.lead}</p>
-                  <p className="mt-3 text-sm text-gray-600 leading-relaxed">{w.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 진단 30항목 */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              무엇을 재는지 먼저 보여 드립니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              감으로 좋다 나쁘다를 말하지 않기 위해 점검표를 미리 정해 두었습니다.
-              다섯 갈래 {DIAG_TOTAL}개 항목을 다 같은 무게로 보지 않고, 업종과 계정 상태에 따라 먼저 손볼 곳을 고릅니다.
-              로그인 없이 되는 범위는 상담 전에 먼저 재 보고, 확인할 수 없는 값은 아는 척하지 않고 그렇다고 적어 둡니다.
-            </p>
-
-            <div className="mt-8 space-y-4">
-              {DIAG_GROUPS.map((g) => (
-                <div
-                  key={g.name}
-                  className="rounded-2xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center shrink-0">
-                      <g.icon size={16} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-base md:text-lg font-bold text-gray-900">{g.name}</p>
-                      <p className="text-xs md:text-[13px] text-gray-500 tabular-nums">{g.count}개 항목</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {g.items.map((it) => (
-                      <span
-                        key={it}
-                        className="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs md:text-[13px] font-medium text-gray-700"
-                      >
-                        {it}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 하이라이트 칸 구성 */}
-        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              하이라이트는 장식이 아니라 복도입니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              프로필에 들어온 사람은 게시물을 처음부터 보지 않습니다.
-              하이라이트를 눌러 보고 남을지 나갈지를 정합니다.
-              그래서 방문자가 묻는 순서에 맞춰 칸을 세웁니다. 아래 표는 예시 한 벌이고, 실제 칸 수와 이름은 업종마다 다릅니다.
-            </p>
-
-            <div className="mt-8 overflow-x-auto">
-              <table className="w-full min-w-[560px] border-collapse text-left">
-                <thead>
-                  <tr className="border-b border-gray-300">
-                    <th className="py-3 pr-3 text-xs md:text-[13px] font-bold text-gray-500 w-10">칸</th>
-                    <th className="py-3 pr-3 text-xs md:text-[13px] font-bold text-gray-500">방문자가 묻는 것</th>
-                    <th className="py-3 pr-3 text-xs md:text-[13px] font-bold text-gray-500">이름</th>
-                    <th className="py-3 text-xs md:text-[13px] font-bold text-gray-500">안에 넣는 것</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {HIGHLIGHT_SLOTS.map((s) => (
-                    <tr key={s.no} className="border-b border-gray-200">
-                      <td className="py-3 pr-3 text-sm font-bold text-blue-600 tabular-nums align-top">{s.no}</td>
-                      <td className="py-3 pr-3 text-sm text-gray-700 align-top">{s.ask}</td>
-                      <td className="py-3 pr-3 text-sm font-semibold text-gray-900 align-top whitespace-nowrap">{s.name}</td>
-                      <td className="py-3 text-sm text-gray-600 align-top">{s.fill}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              {HIGHLIGHT_RULES.map((r) => (
-                <div
-                  key={r.title}
-                  className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
-                  style={{ border: "1px solid var(--h-border)" }}
-                >
-                  <div className="w-9 h-9 rounded-xl bg-gray-900 shadow-sm flex items-center justify-center mb-3">
-                    <r.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <p className="text-sm md:text-base font-bold text-gray-900">{r.title}</p>
-                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">{r.body}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 md:p-6">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-500 shadow-sm flex items-center justify-center shrink-0">
-                  <Clock size={16} className="text-white" strokeWidth={2.5} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm md:text-base font-bold text-gray-900">
-                    인스타에는 하이라이트를 손으로 정렬하는 기능이 없습니다
-                  </p>
-                  <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-                    최근에 스토리를 담은 칸이 왼쪽으로 옵니다.
-                    그래서 원하는 순서의 역순으로 올려야 합니다.
-                    맨 왼쪽에 둘 칸을 가장 나중에 만듭니다.
-                    이걸 모르고 순서대로 만들면 맨 끝에 둘 칸이 맨 왼쪽에 서게 됩니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 하이라이트 세팅 포트폴리오 · 3층
-            대표 지시 2026-09-07 (월) 세 줄로 이 구조가 정해졌다.
-              1) 각 업체 인스타도 들어가서 보여주는 형태로 이미지도 확립했으면 좋겠음
-                 → 커버 낱장이 아니라 프로필에 걸린 줄(band)을 그대로 건다.
-              2) 단순하게 커버만 보여줄게 아니라 어떤식으로 구축하고 보일지에 대한 포트폴리오
-                 → 만드는 순서(4단계) → 완성 화면(밴드) → 칸 이름(목차) → 커버·스토리 순으로 쌓았다.
-              3) 업체명이 오픈되는 건 없애라 · 아래 상세설명이든
-                 → 화면 · 파일명 · alt · 칸 이름 어디에도 상호를 넣지 않는다.
-                    사진 안 원에 박힌 워드마크는 모자이크로 지웠고, 칸 이름이 상호였던 곳은
-                    그 자리에 업종을 다시 써 넣었다(만두 전문점 · Cafe).
-                    가려도 화면이 남지 않는 컷은 아예 뺐다.
-            밴드는 업체마다 원본 크기가 달라서 한 틀에 맞추지 않는다. maxWidth 를 원본 폭으로
-            잡아 확대를 막고, 그 아래에서만 폭에 맞춰 줄어들게 뒀다. 늘리면 칸 이름이 뭉갠다.
-            밴드 캡처가 없는 곳은 band 가 undefined 라 밴드 · 목차를 통째로 안 그린다
-            (C-42 : 모르면 비워둔다. 없는 화면을 그려 넣지 않는다).
-            곳 수 · 장수는 손으로 적지 않는다. HL_SHOP_TOTAL · HL_TOTAL 이 데이터에서 온다.
-            가격은 이 페이지에 넣지 않는다 (머리 주석 참조). */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              하이라이트 한 벌은 이렇게 만듭니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              커버 몇 장을 그리는 일이 아닙니다.
-              무엇을 묻는지 먼저 세고, 칸 이름을 정하고, 그다음에 그립니다.
-              올린 뒤 프로필에서 실제로 어떻게 보이는지까지 확인하고 끝냅니다.
-            </p>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {HL_STEPS.map((st, i) => (
-                <div
-                  key={st.title}
-                  className="rounded-2xl bg-white p-4 md:p-5 shadow-sm"
-                  style={{ border: "1px solid var(--h-border)" }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center shrink-0"
-                      style={{ background: "var(--h-blue)" }}
-                    >
-                      <st.icon size={16} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm md:text-base font-bold text-gray-900 leading-snug">
-                        <span className="tabular-nums" style={{ color: "var(--h-blue)" }}>
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="ml-2">{st.title}</span>
-                      </p>
-                      <p className="mt-2 text-sm text-gray-600 leading-relaxed">{st.body}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              실제로 세팅한 곳입니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              프로필에 걸린 줄을 그대로 가져왔습니다. 업종마다 방문자가 묻는 것이 달라 칸 이름과 장면도 다릅니다. 지금까지 {HL_SHOP_TOTAL}곳에 {HL_TOTAL}장을 만들었습니다.
-            </p>
-
-            <div className="mt-8 space-y-4">
-              {HL_WORKS.map((w) => {
-                const shots = [...w.covers, ...w.stories];
-                const shown = shots.slice(0, 6);
-                const rest = shots.length - shown.length;
-                return (
-                  <div
-                    key={w.slug}
-                    id={`hl-${w.slug}`}
-                    className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
-                    style={{ border: "1px solid var(--h-border)" }}
-                  >
-                    <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-sm md:text-base font-bold text-gray-900">{w.title}</p>
-                      {/* 제목이 이미 업종이라 칩이 같은 말이면 안 그린다 (카페 · 카페 로 두 번 서던 자리) */}
-                      {w.industry !== w.title && (
-                        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-medium text-gray-700">
-                          {w.industry}
-                        </span>
-                      )}
-                      <span
-                        className="inline-flex items-center rounded-lg bg-blue-50 px-2 py-1 text-[11px] font-bold tabular-nums"
-                        style={{ color: "var(--h-blue)" }}
-                      >
-                        {shots.length}장
-                      </span>
-                    </div>
-
-                    {w.band ? (
-                      <>
-                        <div
-                          className="mt-4 overflow-hidden rounded-xl"
-                          style={{ border: "1px solid var(--h-border)", maxWidth: w.band.w }}
-                        >
-                          <Image
-                            src={`/highlight-ref/band/${w.band.file}`}
-                            alt={`${w.industry} 프로필에 걸린 하이라이트 줄`}
-                            width={w.band.w}
-                            height={w.band.h}
-                            sizes="(max-width: 640px) 92vw, 540px"
-                            className="w-full h-auto"
-                          />
-                        </div>
-                        {w.menu && w.menu.length > 0 && (
-                          <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                            <span className="text-[11px] font-medium text-gray-500 mr-0.5">칸 이름</span>
-                            {w.menu.map((m, k) => (
-                              <span
-                                key={`${w.slug}-m${k}`}
-                                className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-medium text-gray-700"
-                              >
-                                {m}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <p className="mt-3 text-[13px] text-gray-500 leading-relaxed">
-                        세팅한 커버와 칸 안 장면입니다.
-                      </p>
-                    )}
-
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {shown.map((sh) => (
-                        <div
-                          key={sh.file}
-                          className={`relative h-24 sm:h-28 overflow-hidden rounded-lg ${
-                            sh.kind === "cover" ? "aspect-square" : "aspect-[9/16]"
-                          }`}
-                          style={{ background: "var(--h-surface)" }}
-                        >
-                          <Image
-                            src={`/highlight-ref/${sh.file}`}
-                            alt={`${w.industry} 하이라이트 ${sh.kind === "cover" ? "커버" : "스토리"}`}
-                            fill
-                            sizes="120px"
-                            className="object-cover"
-                          />
-                        </div>
-                      ))}
-                      {rest > 0 && (
-                        <div
-                          className="flex h-24 sm:h-28 w-16 items-center justify-center rounded-lg text-[12px] font-bold tabular-nums text-gray-500"
-                          style={{ background: "var(--h-surface)" }}
-                        >
-                          +{rest}장
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-white p-4 md:p-6 shadow-sm" style={{ border: "1px solid var(--h-border)" }}>
-              <div className="w-9 h-9 rounded-xl bg-gray-900 shadow-sm flex items-center justify-center shrink-0">
-                <ShieldCheck size={16} className="text-white" strokeWidth={2.5} />
-              </div>
-              <div className="min-w-0">
-                <p className="text-sm md:text-base font-bold text-gray-900">
-                  업체명은 저희가 먼저 공개하지 않습니다
-                </p>
-                <p className="mt-2 text-sm text-gray-700 leading-relaxed">
-                  화면에 상호가 보이던 자리는 전부 가려 두었습니다.
-                  칸 이름이 상호였던 곳은 그 자리에 업종을 대신 적었습니다.
-                  가려도 화면이 남지 않는 컷은 아예 빼고 올렸습니다.
-                  맡겨 주신 곳의 상호는 동의를 받기 전에는 내보내지 않습니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 확산의 원칙 */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              좋아요와 팔로워는 업체에 맞을 때만 씁니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              숫자를 무작정 늘리는 일은 하지 않습니다. 다만 업종과 계정 상황에 따라 숫자가 필요한 때가 있어서, 아래 세 가지를 지키며 필요한 곳에만 보조로 씁니다.
-            </p>
-
-            <div className="mt-8 space-y-3">
-              {SPREAD_RULES.map((r, i) => (
-                <div
-                  key={r.title}
-                  className="rounded-2xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm"
-                >
-                  <div className="flex gap-3">
-                    <span className="shrink-0 text-sm font-black text-blue-600 tabular-nums pt-0.5">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm md:text-base font-bold text-gray-900">{r.title}</p>
-                      <p className="mt-2 text-sm text-gray-600 leading-relaxed">{r.body}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 무엇을 보고하는가. 사례 수치는 인스타 팀장에게 받아 이 아래에 붙인다 */}
-        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              매달 무엇이 움직였는지 재서 드립니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              팔로워 수만으로는 손님이 늘었는지 알 수 없어서 맨 앞에 두지 않습니다. 대신 아래 넷을 보고, 재지 않은 숫자는 말씀드리지 않습니다.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {REPORT_METRICS.map((m) => (
-                <div
-                  key={m.label}
-                  className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
-                  style={{ border: "1px solid var(--h-border)" }}
-                >
-                  <div className="w-9 h-9 rounded-xl bg-blue-600 shadow-sm flex items-center justify-center mb-3">
-                    <m.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <p className="text-sm md:text-base font-bold text-gray-900">{m.label}</p>
-                  <p className="mt-1.5 text-xs md:text-[13px] text-gray-500 leading-relaxed">{m.note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 안 하는 일 */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              안 하는 일을 먼저 말씀드립니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
-              할 수 있는 것보다 안 하는 것을 먼저 말하는 편이 나중에 서로 덜 곤란합니다.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              {NOT_DOING.map((n) => (
-                <div
-                  key={n.title}
-                  className="rounded-2xl border border-gray-200 bg-gray-50 p-4 md:p-6"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-gray-900 shadow-sm flex items-center justify-center shrink-0">
-                      <Ban size={16} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm md:text-base font-bold text-gray-900">{n.title}</p>
-                      <p className="mt-2 text-sm text-gray-600 leading-relaxed">{n.body}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 진행 순서 */}
-        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-3xl font-black text-gray-900 leading-snug tracking-tight">
-              진행은 이 순서로 갑니다
-            </h2>
-
-            <div className="mt-8 space-y-3">
-              {STEPS.map((s) => (
-                <div
-                  key={s.no}
-                  className="rounded-2xl bg-white p-4 md:p-6 shadow-sm"
-                  style={{ border: "1px solid var(--h-border)" }}
-                >
-                  <div className="flex gap-4">
-                    <span className="shrink-0 text-lg md:text-xl font-black text-blue-600 tabular-nums">
-                      {s.no}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-base md:text-lg font-bold text-gray-900">{s.name}</p>
-                      <p className="mt-2 text-sm text-gray-600 leading-relaxed">{s.text}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <FaqAccordion
-          items={FAQS}
-          title="인스타그램 운영에서 자주 받는 질문"
-          subtitle="상담 때 가장 많이 나오는 것들을 그대로 적었습니다."
-          showMoreHref="/faq"
+        <AnswerRow
+          question="인스타그램 계정 최적화는 무슨 작업인가요?"
+          answer="인스타그램 계정 최적화는 방문자가 프로필에서 나가는 지점을 찾아 고치는 작업입니다. 프로필과 콘텐츠와 하이라이트와 지표와 계정 안전 다섯 갈래 30개 항목 점검표를 기본으로 두고, 업종과 지금 계정 상태에 맞춰 손볼 곳을 고릅니다. 하랑마케팅은 문제 다섯 가지와 4주 실행표를 드리고, 업종에 맞춘 하이라이트를 세팅한 다음 피드와 스토리와 릴스를 정기 발행합니다. 좋아요나 팔로워는 무작정 늘리지 않고 업체에 필요할 때 세팅 뒤 보조로만 쓰며, 몇 번째로 올려 드린다는 말은 하지 않습니다."
         />
 
-        {/* CTA */}
-        <section className="bg-gray-950 py-14 md:py-20">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-xl md:text-3xl font-black text-white leading-snug tracking-tight">
-              지금 계정이 어디가 막혀 있는지부터 재 드립니다
-            </h2>
-            <p className="mt-4 text-sm md:text-base text-gray-300 leading-relaxed">
-              계정 아이디만 알려 주시면 로그인 없이 되는 범위까지 먼저 재 봅니다.
-              진단서를 보고 진행 여부를 정하시면 됩니다.
-              상담하는 사람이 그대로 끝까지 맡습니다.
+        <Section
+          soft
+          title="순서가 거꾸로면 돈이 샙니다"
+          desc="광고로 데려오는 것과 데려온 사람이 남는 것은 다른 일입니다. 계정이 준비되지 않으면 들어온 사람이 그대로 나가서 진단부터 합니다."
+        >
+          <ItemList
+            one
+            items={[
+              { title: "흔한 순서", desc: ORDER_WRONG.join(" → ") },
+              { title: "저희 순서", desc: ORDER_RIGHT.join(" → ") },
+            ]}
+          />
+        </Section>
+
+        <Section
+          title="하는 일은 네 가지입니다"
+          desc="앞의 둘이 세팅이고 뒤의 둘이 운영입니다. 세팅을 건너뛰고 운영만 하면 올리는 만큼 나가고, 세팅만 하고 멈추면 그 자리에 그대로 있습니다."
+        >
+          <ItemList items={WORKS.map((w) => ({ title: w.name, desc: `${w.lead}. ${w.body}` }))} />
+        </Section>
+
+        <Section
+          soft
+          title="무엇을 재는지 먼저 보여 드립니다"
+          desc={`감으로 좋다 나쁘다를 말하지 않기 위해 점검표를 미리 정해 두었습니다. 다섯 갈래 ${DIAG_TOTAL}개 항목을 다 같은 무게로 보지 않고, 업종과 계정 상태에 따라 먼저 손볼 곳을 고릅니다. 로그인 없이 되는 범위는 상담 전에 먼저 재 보고, 확인할 수 없는 값은 아는 척하지 않고 그렇다고 적어 둡니다.`}
+        >
+          <Table
+            label="인스타그램 계정 점검표"
+            head={["갈래", "항목 수", "항목"]}
+            rows={DIAG_GROUPS.map((g) => [g.name, `${g.count}개`, g.items.join(" · ")])}
+          />
+        </Section>
+
+        <Section
+          title="하이라이트는 장식이 아니라 복도입니다"
+          desc="프로필에 들어온 사람은 게시물을 처음부터 보지 않습니다. 하이라이트를 눌러 보고 남을지 나갈지를 정합니다. 그래서 방문자가 묻는 순서에 맞춰 칸을 세웁니다. 아래 표는 예시 한 벌이고, 실제 칸 수와 이름은 업종마다 다릅니다."
+        >
+          <Table
+            label="하이라이트 칸 구성 예시"
+            head={["칸", "방문자가 묻는 것", "이름", "안에 넣는 것"]}
+            rows={HIGHLIGHT_SLOTS.map((h) => [h.no, h.ask, h.name, h.fill])}
+          />
+          <Fold summary="칸을 세우는 규칙">
+            {HIGHLIGHT_RULES.map((r) => (
+              <p key={r.title}><span className="font-semibold">{r.title}.</span> {r.body}</p>
+            ))}
+            <p>
+              <span className="font-semibold">인스타에는 하이라이트를 손으로 정렬하는 기능이 없습니다.</span>{" "}
+              최근에 스토리를 담은 칸이 왼쪽으로 옵니다. 그래서 원하는 순서의 역순으로 올려야 합니다. 맨 왼쪽에 둘 칸을 가장 나중에 만듭니다. 이걸 모르고 순서대로 만들면 맨 끝에 둘 칸이 맨 왼쪽에 서게 됩니다.
             </p>
+          </Fold>
+          <Fold summary="하이라이트 한 벌은 이렇게 만듭니다">
+            <p>커버 몇 장을 그리는 일이 아닙니다. 무엇을 묻는지 먼저 세고, 칸 이름을 정하고, 그다음에 그립니다. 올린 뒤 프로필에서 실제로 어떻게 보이는지까지 확인하고 끝냅니다.</p>
+            {HL_STEPS.map((st, i) => (
+              <p key={st.title}><span className="font-semibold">{String(i + 1).padStart(2, "0")} {st.title}.</span> {st.body}</p>
+            ))}
+          </Fold>
+        </Section>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href={CTA_HREF}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-blue-700"
-              >
-                계정 진단 받기
-                <ArrowRight size={16} strokeWidth={2.5} />
-              </Link>
-              <a
-                href={`tel:${SITE.phone}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/20"
-              >
-                <Phone size={16} strokeWidth={2.5} />
-                전화로 묻기
-              </a>
-            </div>
+        {/* 하이라이트 세팅 포트폴리오 · 업체명은 화면 · 파일명 · alt · 칸 이름 어디에도 넣지 않는다 (2026-09-07 대표 지시).
+            곳 수 · 장수는 HL_SHOP_TOTAL · HL_TOTAL 이 데이터에서 온다. 커버 · 스토리 낱장은 /portfolio 에서 본다 */}
+        <Section
+          soft
+          title="실제로 세팅한 곳입니다"
+          desc={`프로필에 걸린 줄을 그대로 가져왔습니다. 업종마다 방문자가 묻는 것이 달라 칸 이름과 장면도 다릅니다. 지금까지 ${HL_SHOP_TOTAL}곳에 ${HL_TOTAL}장을 만들었습니다.`}
+          more={{ href: "/portfolio", label: "작업 사례 전체 보기" }}
+        >
+          <div className="grid gap-8">
+            {shown.map((w) => (
+              <div key={w.slug} id={`hl-${w.slug}`} className="min-w-0">
+                <p className="font-semibold">
+                  {w.title}
+                  {w.industry !== w.title && ` · ${w.industry}`} · {w.covers.length + w.stories.length}장
+                </p>
+                {w.band && (
+                  <div className="mt-3 overflow-hidden rounded-lg" style={{ border: "1px solid var(--h-border)", maxWidth: w.band.w }}>
+                    <Image
+                      src={`/highlight-ref/band/${w.band.file}`}
+                      alt={`${w.industry} 프로필에 걸린 하이라이트 줄`}
+                      width={w.band.w}
+                      height={w.band.h}
+                      sizes="(max-width: 640px) 92vw, 540px"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                )}
+                {w.menu && w.menu.length > 0 && (
+                  <p className="mt-2 text-sm" style={{ color: "var(--h-muted)" }}>칸 이름 · {w.menu.join(" · ")}</p>
+                )}
+              </div>
+            ))}
           </div>
-        </section>
-      </main>
+          <div className="mt-8">
+            <Fold summary={`나머지 ${folded.length}곳 보기`}>
+              {folded.map((w) => (
+                <p key={w.slug} id={`hl-${w.slug}`}>
+                  <span className="font-semibold">{w.title}</span>
+                  {w.industry !== w.title && ` · ${w.industry}`} · {w.covers.length + w.stories.length}장
+                  {w.menu && w.menu.length > 0 && ` · 칸 이름 ${w.menu.join(" · ")}`}
+                </p>
+              ))}
+            </Fold>
+            <Fold summary="업체명은 저희가 먼저 공개하지 않습니다">
+              <p>화면에 상호가 보이던 자리는 전부 가려 두었습니다. 칸 이름이 상호였던 곳은 그 자리에 업종을 대신 적었습니다. 가려도 화면이 남지 않는 컷은 아예 빼고 올렸습니다. 맡겨 주신 곳의 상호는 동의를 받기 전에는 내보내지 않습니다.</p>
+            </Fold>
+          </div>
+        </Section>
 
-      <Footer />
+        {/* 무엇을 보고하는가. 사례 수치는 인스타 팀장에게 받아 이 아래에 붙인다 */}
+        <Section
+          title="매달 무엇이 움직였는지 재서 드립니다"
+          desc="팔로워 수만으로는 손님이 늘었는지 알 수 없어서 맨 앞에 두지 않습니다. 대신 아래 넷을 보고, 재지 않은 숫자는 말씀드리지 않습니다."
+        >
+          <ItemList items={REPORT_METRICS.map((m) => ({ title: m.label, desc: m.note }))} />
+        </Section>
+
+        <Section
+          soft
+          title="안 하는 일을 먼저 말씀드립니다"
+          desc="할 수 있는 것보다 안 하는 것을 먼저 말하는 편이 나중에 서로 덜 곤란합니다."
+        >
+          <ItemList items={NOT_DOING.map((n) => ({ title: n.title, desc: n.body }))} />
+          <div className="mt-8">
+            <Fold summary="좋아요와 팔로워는 업체에 맞을 때만 씁니다">
+              <p>숫자를 무작정 늘리는 일은 하지 않습니다. 다만 업종과 계정 상황에 따라 숫자가 필요한 때가 있어서, 아래 세 가지를 지키며 필요한 곳에만 보조로 씁니다.</p>
+              {SPREAD_RULES.map((r, i) => (
+                <p key={r.title}><span className="font-semibold">{String(i + 1).padStart(2, "0")} {r.title}.</span> {r.body}</p>
+              ))}
+            </Fold>
+          </div>
+        </Section>
+
+        <Section title="진행은 이 순서로 갑니다">
+          <Steps steps={STEPS.map((s) => ({ title: s.name, desc: s.text }))} />
+        </Section>
+
+        <Section
+          soft
+          id="faq"
+          title="인스타그램 운영에서 자주 받는 질문"
+          desc="상담 때 가장 많이 나오는 것들을 그대로 적었습니다."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+          footer={<CostLine text="상담과 계정 진단 비용 0원. 업종과 진행 범위에 따라 견적을 드립니다." />}
+        >
+          <QuestionList items={FAQS} />
+        </Section>
+
+        <CloseBand
+          title="지금 계정이 어디가 막혀 있는지부터 재 드립니다"
+          text="계정 아이디만 알려 주시면 로그인 없이 되는 범위까지 먼저 재 봅니다. 진단서를 보고 진행 여부를 정하시면 됩니다. 상담하는 사람이 그대로 끝까지 맡습니다."
+          primary={{ href: CTA_HREF, label: "계정 진단 받기" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

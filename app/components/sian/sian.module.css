@@ -102,6 +102,13 @@
 .acc details[open] summary::after { content: "\2212"; }
 .acc summary:hover { color: var(--blue-ink); }
 .acc details p { padding: 0 40px 24px 0; color: var(--muted); }
+.foldBody { padding: 0 0 24px; color: var(--muted); }
+.foldBody > * + * { margin-top: 12px; }
+.tblWrap { overflow-x: auto; border-top: 2px solid var(--ink); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 16px; }
+.tbl th { text-align: left; padding: 14px 16px 14px 0; font-size: 14px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl td { padding: 18px 16px 18px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--text); }
+.tbl td:first-child { font-weight: 700; color: var(--ink); }
 .cost { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); padding: 24px 0; margin-top: 64px; }
 .cost p { font-weight: 600; color: var(--ink); }
 .cost a { font-weight: 700; color: var(--blue-ink); border-bottom: 1px solid currentColor; padding-bottom: 2px; white-space: nowrap; }

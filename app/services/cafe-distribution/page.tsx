@@ -4,7 +4,11 @@ import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import { SITE, ORG_ID, LOCAL_ID, PAGE_UPDATED, faqLd, breadcrumbLd, webPageLd, type FaqItem } from "../../lib/seo";
 import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-notice";
-import { ArrowLeft, Check, ChevronDown } from "lucide-react";
+import {
+  SianMain, PageHead, AnswerRow, Section, ItemList, LinkList, Steps,
+  QuestionList, CostLine, CloseBand, Fold, Table,
+} from "../../components/sian/Sian";
+import c from "./cafe-distribution.module.css";
 import CafeNoticeReopen from "../../components/CafeNoticeReopen";
 import { SEARCH_CARE_OFFER } from "../../lib/search-care-offer";
 import {
@@ -15,6 +19,7 @@ import {
   PRICE_NOTE,
   PRICE_MIN,
   PRICE_MAX,
+  CAFE_TIER_MIN,
   packageLabel,
   unitPrice,
   copyDiscount,
@@ -29,18 +34,13 @@ import {
   PRICE_REVISED_AT,
   PRICE_NOTICE,
   CAFE_HOW,
-  type CafePackage,
-  type CafeTier,
 } from "../../lib/cafe-distribution";
 
 /**
  * 블로그 원고 · 카페 게시 대행 상품 상세페이지
  *
- * design_handoff_cafe_distribution 의 Cafe-Detail-Page 를 그대로 재현한다.
- * - 기준 폭 860px 중앙 정렬 (모바일에서만 폭·패딩 축소)
- * - 색상은 .cafe-dist 스코프의 --cd-* 토큰 = README Design Tokens 원본값
- * - 대형 헤드라인·숫자는 .cd-display / .cd-num (Black Han Sans)
- * 사이트 공통 토큰(--h-*)이나 max-w-4xl 컨테이너로 바꾸지 말 것. 디자인이 무너진다.
+ * 2026-11-12 (목) 세부 카테고리 시안 틀(app/components/sian)로 옮겼다 (TR-0214). 예전 860px 인계 디자인은 git 이력에 있다.
+ * .cafe-dist 토큰은 이제 카페 목록 다시 보기 버튼만 읽는다.
  * 2026-09-07 (월) 가격·구성 갱신 — 이벤트·회차·잔여 슬롯 장치를 걷고 10건·30건 패키지 두 가격 체계로 바꿨다.
  * 2026-09-08 (화) 대표 지시 — 히어로 후킹 문장 · 달라진 점(UPDATE) 섹션 · 단가 조정 안내 · FAQ 문답을 더했다.
  * 2026-09-08 (화) 대표 지시 — 단가 조정 사유를 경쟁 심화에서 물가 상승으로 바꿨다. 금액은 그대로다.
@@ -67,7 +67,6 @@ const PAGE_FAQ: FaqItem[] = [
 ];
 
 const CTA_HREF = "/contact?service=cafe-distribution";
-const KAKAO_HREF = "https://pf.kakao.com/_MuUkG/chat";
 
 const LD = [
   {
@@ -153,798 +152,196 @@ const LD = [
   },
 ];
 
-/** 섹션 내부 폭 — 데스크톱 860px 기준, 모바일에서 패딩만 축소 */
-const INNER = "mx-auto w-full max-w-[860px] px-5 md:px-[60px]";
-
-/* ─── 패키지 한 줄 — 구성 · 원고 작성 포함 · 원고 직접 제공 · 1건당 ─── */
-function PackageRow({ p }: { p: CafePackage }) {
-  const unit = unitPrice(p.withCopy, p.size);
-  return (
-    <div
-      className="rounded-[20px] bg-white md:rounded-[16px]"
-      style={
-        p.featured
-          ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(0,102,255,.14)" }
-          : { border: "1px solid var(--cd-border)" }
-      }
-    >
-      <div className="grid grid-cols-2 items-center gap-x-4 gap-y-4 px-4 py-4 md:grid-cols-[1fr_140px_140px_110px] md:px-7 md:py-5">
-        <div className="col-span-2 flex flex-wrap items-center gap-2 md:col-span-1">
-          <span
-            className="inline-flex items-center justify-center rounded-[10px] px-3 py-1.5 text-[14px] font-black md:text-[15px]"
-            style={
-              p.featured
-                ? { background: "var(--cd-primary)", color: "#fff" }
-                : { background: "var(--cd-tint-2)", color: "var(--cd-primary-deep)" }
-            }
-          >
-            {p.kind}
-          </span>
-          <span className="text-[16px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>
-            {packageLabel(p)}
-          </span>
-          {p.featured && (
-            <span
-              className="rounded-full px-2.5 py-1 text-[11px] font-black md:text-[12px]"
-              style={{ background: "var(--cd-tint-2)", color: "var(--cd-primary)" }}
-            >
-              먼저 권하는 구성
-            </span>
-          )}
-        </div>
-        <div className="md:text-right">
-          <div className="mb-1 text-[12px]" style={{ color: "var(--cd-muted-2)" }}>원고 작성 포함</div>
-          <div className="cd-num whitespace-nowrap text-[18px] leading-none sm:text-[22px]" style={{ color: "var(--cd-ink-3)" }}>
-            {won(p.withCopy)}
-          </div>
-        </div>
-        <div className="md:text-right">
-          <div className="mb-1 text-[12px]" style={{ color: "var(--cd-muted-2)" }}>원고 직접 제공</div>
-          <div className="cd-num whitespace-nowrap text-[18px] leading-none sm:text-[22px]" style={{ color: "var(--cd-primary-deep)" }}>
-            {won(p.withoutCopy)}
-          </div>
-        </div>
-        <div
-          className="col-span-2 flex items-baseline justify-between text-[13px] md:col-span-1 md:block md:text-right md:text-[14px]"
-          style={{ color: "var(--cd-muted-2)" }}
-        >
-          <span className="md:hidden">1건당 · 원고 포함 기준</span>
-          <span className="font-bold" style={{ color: "var(--cd-body)" }}>{won(unit)}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ─── 카페 단건 한 줄 — 등급 · 설명 · 건당 ─── */
-function CafeTierRow({ t }: { t: CafeTier }) {
-  return (
-    <div
-      className="grid grid-cols-1 items-center gap-3 rounded-[20px] bg-white px-4 py-4 md:grid-cols-[170px_1fr_140px] md:gap-5 md:rounded-[16px] md:px-7 md:py-5"
-      style={{ border: "1px solid var(--cd-border)" }}
-    >
-      <span
-        className="inline-flex w-fit items-center justify-center rounded-[10px] px-3 py-1.5 text-[14px] font-black md:text-[15px]"
-        style={{ background: "var(--cd-tint-3)", color: "var(--cd-body)" }}
-      >
-        {t.grade}
-      </span>
-      <div className="min-w-0">
-        <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-          {t.desc}
-        </p>
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {t.topics.map((k) => (
-            <span
-              key={k}
-              className="rounded-full px-2.5 py-1 text-[12px] font-bold"
-              style={{ border: "1px solid var(--cd-border)", color: "var(--cd-muted-2)" }}
-            >
-              {k}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="flex items-baseline gap-2 md:justify-end">
-        <span className="cd-num whitespace-nowrap text-[20px] leading-none md:text-[22px]" style={{ color: "var(--cd-ink-3)" }}>
-          {won(t.price)}
-        </span>
-        <span className="text-[12px]" style={{ color: "var(--cd-muted-2)" }}>
-          건당
-        </span>
-      </div>
-    </div>
-  );
-}
+/* 2026-11-12 시안 틀로 옮김 (TR-0214). 가격 · 먼저 권하는 구성 표시 · 부가세 별도 문구는 lib 값을 그대로 찍는다.
+   팝업 둘(SearchCarePopup · CafeNoticePopup)은 SiteChrome 이 경로를 보고 띄운다. 이 페이지는 다시 보기 버튼만 둔다. */
+const PACKAGE_HEAD = ["구성", "원고 작성 포함", "원고 직접 제공", "1건당 · 원고 포함"];
 
 export default function CafeDistributionPage() {
   return (
     <>
       <JsonLd data={LD} />
       <Header />
+      <SianMain>
+        <PageHead
+          where="서비스 · 네이버 블로그 원고 · 카페 게시 대행"
+          title={<>블로그 원고 · 카페 게시 대행,<br />발행 뒤 노출 확인까지</>}
+          lead="블로그 탭에서 멈추는 고객도, 카페 탭까지 넘어가는 고객도 있습니다. 두 곳 모두에 우리 이야기를 두는 배포입니다."
+          primary={{ href: CTA_HREF, label: "가능 여부 문의하기" }}
+          link={{ href: "#price", label: "구성과 가격 보기" }}
+          facts={[
+            { label: "패키지", value: "10건 · 30건 · 월 단위" },
+            { label: "가격", value: "원고 포함 · 직접 제공" },
+            { label: "카페 단건", value: "등급별 건당 단가" },
+            { label: "결과", value: "노출 확인 · URL 보고" },
+          ]}
+        />
 
-      <main className="cafe-dist pt-[104px] md:pt-[108px]" style={{ background: "#fff" }}>
+        <AnswerRow
+          question="블로그는 올리고 있는데 왜 문의는 그대로일까요"
+          answer="블로그 탭에서 본 사람은 이미 봤습니다. 문제는 블로그를 건너뛰고 카페 탭부터 여는 사람들입니다. 후기를 찾는 그 자리에 우리 이야기가 없습니다."
+        />
 
-        {/* ══ 1. 히어로 ══ */}
-        <section
-          className="px-5 py-14 text-center md:px-[60px] md:pb-[90px] md:pt-[70px]"
-          style={{ background: "var(--cd-dark-2)" }}
+        <Section
+          soft
+          title="소비자의 검색은 블로그 한 곳에서 끝나지 않습니다"
+          desc="같은 키워드라도 카페 탭까지 넘어가 보는 사람이 따로 있습니다. 실사용자 후기가 모이는 자리라 여기서 한 번 더 보이면 신뢰가 달라집니다."
         >
-          <div className="mx-auto w-full max-w-[860px]">
-            <div className="mb-7 flex justify-start">
-              <Link
-                href="/services"
-                className="-my-3 inline-flex min-h-[44px] items-center gap-1.5 py-3 text-xs transition-colors hover:text-white"
-                style={{ color: "var(--cd-on-dark-2)" }}
-              >
-                <ArrowLeft size={13} /> 서비스 전체
-              </Link>
-            </div>
+          <ItemList
+            items={[
+              { title: "블로그만 진행했을 때", desc: "블로그 탭에서만 노출. 카페 탭으로 넘어간 고객에게는 우리 매장이 보이지 않습니다." },
+              { title: "카페 배포를 함께 했을 때", desc: "블로그와 카페에 게시. 어느 탭을 열든 우리 이야기가 한 번은 보입니다." },
+              ...WHY_CAFE.map((w) => ({ title: w.title, desc: w.desc })),
+            ]}
+          />
+        </Section>
 
-            <span
-              className="inline-block rounded-full px-6 py-2.5 text-[15px] font-black text-white md:px-[34px] md:py-3 md:text-[19px]"
-              style={{ background: "var(--cd-primary-lt)" }}
-            >
-              네이버 블로그 원고 · 카페 게시 대행
-            </span>
+        <Section
+          id="proof"
+          title="말로 설명하지 않겠습니다. 실제 검색 화면입니다"
+          desc="몇 건 올렸는지보다 어디에 떴는지가 결과를 가릅니다. 그래서 발행 뒤 키워드마다 노출 위치를 확인하고 캡처와 URL을 남깁니다."
+          more={{ href: `${PATH}/reference`, label: `레퍼런스 ${REF_TOTAL}건 전체 보기` }}
+        >
+          <p className={c.p}>
+            아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
+            보정하지 않았습니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 이런 캡처와 게시 URL을 함께 드립니다.
+          </p>
+          <p className={c.p}>
+            모바일 통합검색 카페 영역 노출 · 실제 게시 화면을 캡처한 자료 · 지역맘 카페 · 대형 카페 커뮤니티 배포.
+            이 외에 {REF_CATEGORIES.length}개 업종 {REF_TOTAL}개 키워드를 모두 공개하고 있습니다.
+          </p>
+          <Fold summary={`업종별 대표 캡처 ${PROOF_SAMPLES.length}장 보기`}>
+            {PROOF_SAMPLES.map((s) => (
+              <figure key={s.image} className={c.fig}>
+                <figcaption>
+                  <span>{s.keyword}</span>
+                  <Link href={`${PATH}/reference?category=${s.slug}`}>{s.industry} {s.count}건 보기</Link>
+                </figcaption>
+                <img
+                  src={s.image}
+                  alt={`'${s.keyword}' 검색 시 네이버 카페 영역 노출 화면 (${s.industry})`}
+                  width={1000}
+                  height={290}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ))}
+          </Fold>
+          <h3 className={c.h3}>업종별 레퍼런스</h3>
+          <LinkList
+            links={REF_CATEGORIES.map((cat) => ({
+              href: `${PATH}/reference?category=${cat.slug}`,
+              label: `${cat.label} ${cat.keywords.length}`,
+            }))}
+          />
+        </Section>
 
-            {/* 로고 카드 — 로고가 흰 배경 JPG라 반드시 흰 카드 안에 넣는다 */}
-            <div
-              className="mx-auto mt-8 flex h-[128px] w-[128px] items-center justify-center rounded-[26px] bg-white md:mt-10 md:h-[172px] md:w-[172px] md:rounded-[34px]"
-              style={{ boxShadow: "0 18px 50px rgba(0,102,255,.35)" }}
-            >
-              <img
-                src="/harang-icon.svg"
-                alt="하랑마케팅"
-                width={132}
-                height={132}
-                className="h-[96px] w-[96px] object-contain md:h-[132px] md:w-[132px]"
+        <Section
+          soft
+          id="price"
+          title="구성과 가격"
+          desc={`금액을 먼저 공개합니다. ${PRICE_REVISED_AT} 개정 단가 기준. 표기 금액은 부가세 별도이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.`}
+        >
+          <p className={c.p}>
+            10건 · 30건 패키지는 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다. 통합검색 월 관리는 키워드마다 단가가 달라 키워드를 받은 뒤 안내합니다.
+            10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
+            원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
+          </p>
+          <div className={c.notice}>
+            <p className={c.noticeTitle}>{PRICE_NOTICE.title}</p>
+            {PRICE_NOTICE.lines.map((line) => <p key={line}>{line}</p>)}
+          </div>
+
+          {PACKAGE_SIZES.map((size) => (
+            <div key={size}>
+              <h3 className={c.h3}>{size}건 패키지</h3>
+              <p className={c.sub}>원고를 직접 주시면 {won(copyDiscount(size))} 내려갑니다</p>
+              <Table
+                label={`${size}건 패키지 가격`}
+                head={PACKAGE_HEAD}
+                rows={PACKAGES.filter((p) => p.size === size).map((p) => [
+                  <span key="k">
+                    {p.kind} · {packageLabel(p)}
+                    {p.featured && <em className={c.best}>먼저 권하는 구성</em>}
+                  </span>,
+                  <b key="a" className={c.num}>{won(p.withCopy)}</b>,
+                  <b key="b" className={c.num}>{won(p.withoutCopy)}</b>,
+                  <span key="u" className={c.num}>{won(unitPrice(p.withCopy, p.size))}</span>,
+                ])}
               />
             </div>
+          ))}
+          <p className={c.sub}>표에 없는 건수도 상담에서 조합해 드립니다.</p>
 
-            <h1
-              className="cd-display mt-8 text-[40px] leading-[1.06] text-white md:mt-10 md:text-[62px]"
-              style={{ letterSpacing: "-2px" }}
-            >
-              블로그 원고 · 카페 게시 대행
-              <br />
-              <span style={{ color: "var(--cd-primary-lt3)" }}>발행 뒤 노출 확인까지</span>
-            </h1>
+          <h3 className={c.h3}>카페만 단건으로</h3>
+          <p className={c.sub}>원고 작성까지 맡기시면 건당 {won(CAFE_COPY_FEE)} 추가</p>
+          <Table
+            label="카페 단건 등급별 건당 단가"
+            head={["등급", "설명 · 카페 주제", "건당"]}
+            rows={CAFE_TIERS.map((t) => [
+              t.grade,
+              <span key="d">{t.desc}<small className={c.topics}>{t.topics.join(" · ")}</small></span>,
+              <b key="p" className={c.num}>{won(t.price)}</b>,
+            ])}
+          />
 
-            <p className="mx-auto mt-6 max-w-[640px] text-pretty text-[16px] leading-[1.7] md:mt-8 md:text-[19px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              블로그 탭에서 멈추는 고객도, 카페 탭까지 넘어가는 고객도 있습니다.{" "}
-              <br className="hidden md:block" />
-              두 곳 모두에 우리 이야기를 두는 배포입니다.
-            </p>
-
-            <div className="mx-auto mt-7 flex max-w-[620px] flex-col gap-3 md:mt-8">
-              {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고"].map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full px-5 py-3 text-[15px] font-bold text-white md:px-8 md:py-3.5 md:text-[21px]"
-                  style={{ background: "rgba(255,255,255,.08)", border: "1px solid rgba(127,166,255,.4)" }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <p className="mt-6 text-[13px] leading-relaxed md:text-[14px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              {PRICE_REVISED_AT} 개정 단가 기준. 표기 금액은 부가세 별도이며, 업종에 따라 진행이 어려운 경우 상담 때 먼저 말씀드립니다.
-            </p>
+          {/* 대표 카페 안내 · 카페 이름은 적지 않고 고르는 기준과 올리는 순서만 밝힌다 (2026-09-09 (수) 대표 지시) */}
+          <div className={c.gap}>
+            <Fold summary="카페는 이렇게 고르고 이렇게 올립니다">
+              <p>
+                대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페입니다.{" "}
+                등급마다 어떤 주제의 카페가 있는지 위 표에 적었고, 카페를 고르는 기준과 올리는 순서는 아래와 같습니다.
+              </p>
+              <ItemList one items={CAFE_HOW.map((h) => ({ title: h.title, desc: h.desc }))} />
+            </Fold>
           </div>
-        </section>
+          <p className={c.sub}>
+            지금 올릴 수 있는 카페 목록은 대표카페 운영 변경 안내에 있습니다. 닫았던 안내는 아래 버튼으로 다시 열 수 있습니다.
+          </p>
+          {/* 버튼 색이 .cafe-dist 의 --cd-* 토큰을 읽는다 */}
+          <div className="cafe-dist"><CafeNoticeReopen /></div>
 
-        {/* ══ 2. 요약 스트립 — 상품의 뼈대 네 가지 ══ */}
-        <section
-          className="px-5 py-8 md:px-[60px]"
-          style={{ background: "var(--cd-dark)", borderTop: "1px solid rgba(255,255,255,.06)" }}
+          <p className={c.note}>{PRICE_NOTE.map((n) => `· ${n}`).join(" ")}</p>
+
+          <h3 className={c.h3}>건수 패키지와 통합검색 월 관리, 두 가지로 진행합니다</h3>
+          <p className={c.p}>
+            건수 패키지는 위 표대로 정한 건수의 원고를 쓰고 게시한 뒤 게시 주소를 보고합니다.
+            통합검색 월 관리는 키워드 하나를 25일 동안 매일 확인해 기록으로 보고하고, 기록을 확인하신 뒤 정산합니다.
+            월 {SEARCH_CARE_OFFER.price}이고 키워드마다 진행 가능 여부와 단가를 먼저 확인합니다.
+            검색 결과의 위치는 네이버가 정합니다. 몇 위에 오른다고 약속드리지 않습니다.
+          </p>
+        </Section>
+
+        <Section title="결제 전에 먼저 밝히는 것들" desc="업종과 목표 키워드만 알려주시면 가능 여부를 먼저 알려드립니다. 상담 0원.">
+          <ItemList items={GUARANTEES} />
+        </Section>
+
+        <Section soft title="신청부터 보고까지 4단계">
+          <Steps steps={PROCESS_STEPS.map((s) => ({ title: s.title, desc: s.desc }))} />
+        </Section>
+
+        {/* FAQ · LD 의 faqLd(PAGE_FAQ) 와 짝 */}
+        <Section
+          id="faq"
+          title="자주 묻는 질문"
+          more={{ href: "/services", label: "서비스 전체 보기" }}
+          footer={
+            <CostLine
+              text={`10건 · 30건 패키지 ${won(PRICE_MIN)}부터, 카페 단건 ${won(CAFE_TIER_MIN)}부터. 표기 금액은 부가세 별도입니다.`}
+              link={{ href: "#price", label: "구성과 가격 보기" }}
+            />
+          }
         >
-          <div className="mx-auto w-full max-w-[860px]">
-            <dl className="grid grid-cols-2 gap-y-6 md:grid-cols-4">
-              {[
-                { label: "패키지", value: "10건 · 30건 · 월 단위" },
-                { label: "가격", value: "원고 포함 · 직접 제공" },
-                { label: "카페 단건", value: "등급별 건당 단가" },
-                { label: "결과", value: "노출 확인 · URL 보고" },
-              ].map((m, i) => (
-                <div
-                  key={m.label}
-                  className={`px-2 text-center ${i % 2 === 1 ? "border-l border-white/10" : ""} ${i === 2 ? "md:border-l md:border-white/10" : ""}`}
-                >
-                  <dt className="mb-1.5 text-[12px] md:text-[13px]" style={{ color: "var(--cd-on-dark-3)" }}>
-                    {m.label}
-                  </dt>
-                  <dd className="text-[15px] font-black text-white md:text-[17px]">{m.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
+          <QuestionList items={PAGE_FAQ} />
+        </Section>
 
-        {/* ══ 3. 문제 제기 — 스크롤 서사의 출발점 ══ */}
-        <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-dark-2)" }}>
-          <div className={INNER}>
-            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary-lt3)" }}>
-              PROBLEM
-            </p>
-            <h2
-              className="cd-display text-[28px] leading-[1.25] text-white md:text-[42px]"
-              style={{ letterSpacing: "-1.5px" }}
-            >
-              블로그는 올리고 있는데
-              <br />
-              왜 문의는 그대로일까요
-            </h2>
-
-            <p className="mt-6 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
-              블로그 탭에서 본 사람은 이미 봤습니다. 문제는 <strong className="font-bold text-white">블로그를 건너뛰고 카페 탭부터 여는 사람들</strong>입니다. 후기를 찾는 그 자리에 우리 이야기가 없습니다.
-            </p>
-
-            {/* 있음 / 없음 대비 */}
-            <div className="mt-9 grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
-              <div
-                className="rounded-[18px] p-5 md:p-7"
-                style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.12)" }}
-              >
-                <p className="mb-2 text-[13px] font-bold" style={{ color: "var(--cd-on-dark-2)" }}>
-                  블로그만 진행했을 때
-                </p>
-                <p className="cd-display text-[22px] leading-tight md:text-[26px]" style={{ color: "#8f9cba" }}>
-                  블로그 탭에서만 노출
-                </p>
-                <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: "var(--cd-on-dark-2)" }}>
-                  카페 탭으로 넘어간 고객에게는 우리 매장이 보이지 않습니다.
-                </p>
-              </div>
-
-              <div
-                className="rounded-[18px] p-5 md:p-7"
-                style={{ background: "rgba(0,102,255,.18)", border: "1px solid rgba(127,166,255,.45)" }}
-              >
-                <p className="mb-2 text-[13px] font-bold" style={{ color: "var(--cd-primary-lt3)" }}>
-                  카페 배포를 함께 했을 때
-                </p>
-                <p className="cd-display text-[22px] leading-tight text-white md:text-[26px]">
-                  블로그와 카페에 게시
-                </p>
-                <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: "var(--cd-on-dark)" }}>
-                  어느 탭을 열든 우리 이야기가 한 번은 보입니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ══ 4. WHY CAFE ══ */}
-        <section className="bg-white py-14 md:py-[66px]">
-          <div className={INNER}>
-            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              WHY CAFE
-            </p>
-            <h2
-              className="cd-display text-[30px] leading-[1.25] md:text-[42px]"
-              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
-            >
-              소비자의 검색은
-              <br />
-              블로그 한 곳에서 끝나지 않습니다
-            </h2>
-            <p
-              className="mt-6 text-[16px] leading-[1.8] md:text-[18px]"
-              style={{ color: "var(--cd-body-2)", textWrap: "pretty" }}
-            >
-              같은 키워드라도 카페 탭까지 넘어가 보는 사람이 따로 있습니다. 실사용자 후기가 모이는 자리라 여기서 한 번 더 보이면 신뢰가 달라집니다.
-            </p>
-
-            <div className="mt-9 grid grid-cols-1 gap-[18px] md:grid-cols-3">
-              {WHY_CAFE.map((w) => (
-                <div
-                  key={w.no}
-                  className="rounded-[18px] px-6 py-7 md:px-6 md:py-[30px]"
-                  style={{ background: "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}
-                >
-                  <div className="cd-num mb-3 text-[30px] md:text-[34px]" style={{ color: "var(--cd-primary)" }}>
-                    {w.no}
-                  </div>
-                  <h3 className="mb-2 text-[17px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
-                    {w.title}
-                  </h3>
-                  <p className="text-[15px] leading-[1.7]" style={{ color: "var(--cd-body-2)" }}>{w.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══ 5. 실제 노출 증거 — 가격을 보기 전에 실물을 먼저 보여준다 ══ */}
-        <section className="bg-white pb-14 md:pb-[66px]">
-          <div className={INNER}>
-            <div className="rounded-[20px] p-5 md:p-8" style={{ background: "var(--cd-dark)" }}>
-              <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary-lt3)" }}>
-                PROOF
-              </p>
-              <h2
-                className="cd-display text-[24px] leading-[1.25] text-white md:text-[34px]"
-                style={{ letterSpacing: "-1.5px" }}
-              >
-                말로 설명하지 않겠습니다.
-                <br />
-                실제 검색 화면입니다
-              </h2>
-              <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
-                아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
-                보정하지 않았습니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 이런 캡처와 게시 URL을 함께 드립니다.
-              </p>
-              <p className="mt-3 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
-                몇 건 올렸는지보다 어디에 떴는지가 결과를 가릅니다. 그래서 발행 뒤 키워드마다 노출 위치를 확인하고 캡처와 URL을 남깁니다.
-              </p>
-
-              {/* 배포 기준 — 레퍼런스 배너와 동일한 지표 */}
-              <div className="mt-6 flex flex-col gap-2.5">
-                {[
-                  "모바일 통합검색 카페 영역 노출",
-                  "실제 게시 화면을 캡처한 자료",
-                  "지역맘 카페 · 대형 카페 커뮤니티 배포",
-                ].map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full bg-white px-4 py-2.5 text-center text-[13px] font-black md:px-6 md:py-3 md:text-[16px]"
-                    style={{ color: "var(--cd-primary-deep)" }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* 업종별 대표 캡처 — 각 업종 링크는 레퍼런스 해당 탭으로 바로 보낸다 */}
-              <div className="mt-7 flex flex-col gap-3 md:gap-4">
-                {PROOF_SAMPLES.map((s) => (
-                  <figure key={s.image} className="overflow-hidden rounded-[14px] bg-white">
-                    <figcaption
-                      className="flex items-center gap-2.5 px-3 py-2.5 md:px-[18px] md:py-3"
-                      style={{ background: "var(--cd-tint)", borderBottom: "1px solid var(--cd-border-2)" }}
-                    >
-                      <span
-                        className="shrink-0 rounded-[5px] px-2 py-1 text-[11px] font-black text-white"
-                        style={{ background: "var(--cd-primary)" }}
-                      >
-                        N
-                      </span>
-                      <span
-                        className="min-w-0 flex-1 truncate text-[14px] font-bold md:text-[16px]"
-                        style={{ color: "var(--cd-ink-2)" }}
-                        title={s.keyword}
-                      >
-                        {s.keyword}
-                      </span>
-                      <Link
-                        href={`${PATH}/reference?category=${s.slug}`}
-                        className="hidden shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-bold transition-colors hover:opacity-80 sm:inline-flex"
-                        style={{ background: "#fff", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }}
-                      >
-                        {s.industry}
-                        <span style={{ color: "var(--cd-primary)" }}>{s.count}</span>
-                      </Link>
-                    </figcaption>
-                    <img
-                      src={s.image}
-                      alt={`'${s.keyword}' 검색 시 네이버 카페 영역 노출 화면 (${s.industry})`}
-                      width={1000}
-                      height={290}
-                      loading="lazy"
-                      decoding="async"
-                      className="block h-auto w-full"
-                    />
-                    {/* 모바일에서는 업종 칩을 캡처 아래로 내린다 (헤더가 좁아 잘림) */}
-                    <Link
-                      href={`${PATH}/reference?category=${s.slug}`}
-                      className="flex min-h-[44px] items-center justify-between px-3 text-[13px] font-bold sm:hidden"
-                      style={{ background: "var(--cd-tint)", borderTop: "1px solid var(--cd-border-2)", color: "var(--cd-body-2)" }}
-                    >
-                      <span>{s.industry}</span>
-                      <span style={{ color: "var(--cd-primary)" }}>{s.count}건 보기</span>
-                    </Link>
-                  </figure>
-                ))}
-              </div>
-
-              <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
-                <p className="text-[14px]" style={{ color: "var(--cd-on-dark-2)" }}>
-                  이 외에 {REF_CATEGORIES.length}개 업종 {REF_TOTAL}개 키워드를 모두 공개하고 있습니다.
-                </p>
-                <Link
-                  href={`${PATH}/reference`}
-                  className="inline-flex w-full shrink-0 items-center justify-center rounded-full px-6 py-3 text-[15px] font-black text-white transition-opacity hover:opacity-90 sm:w-auto"
-                  style={{ background: "var(--cd-primary)" }}
-                >
-                  레퍼런스 {REF_TOTAL}건 전체 보기
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ══ 6. PRICE — 구성과 가격 ══ */}
-        <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-tint)" }}>
-          <div className={INNER}>
-            <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              PRICE
-            </p>
-            <h2 className="cd-display text-[28px] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
-              구성과 가격
-            </h2>
-            <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
-              금액을 먼저 공개합니다. 10건 · 30건 패키지는 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다. 통합검색 월 관리는 키워드마다 단가가 달라 키워드를 받은 뒤 안내합니다.
-              10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
-              원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
-            </p>
-            <div
-              className="mt-6 rounded-[18px] px-5 py-5 md:px-7 md:py-6"
-              style={{ background: "#fff", border: "1px solid var(--cd-border-2)" }}
-            >
-              <p className="text-[15px] font-bold md:text-[16px]" style={{ color: "var(--cd-ink-2)" }}>
-                {PRICE_NOTICE.title}
-              </p>
-              {PRICE_NOTICE.lines.map((line) => (
-                <p
-                  key={line}
-                  className="mt-2 text-[14px] leading-[1.75] md:text-[15px]"
-                  style={{ color: "var(--cd-body-2)" }}
-                >
-                  {line}
-                </p>
-              ))}
-            </div>
-
-            {PACKAGE_SIZES.map((size) => (
-              <div key={size} className="mt-10">
-                <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)" }}>
-                    {size}건 패키지
-                  </h3>
-                  <span className="text-[13px] md:text-[14px]" style={{ color: "var(--cd-muted-2)" }}>
-                    원고를 직접 주시면 {won(copyDiscount(size))} 내려갑니다
-                  </span>
-                </div>
-                <div
-                  className="mb-2 hidden grid-cols-[1fr_140px_140px_110px] gap-4 px-7 text-[12px] font-bold md:grid"
-                  style={{ color: "var(--cd-muted-2)" }}
-                >
-                  <span>구성</span>
-                  <span className="text-right">원고 작성 포함</span>
-                  <span className="text-right">원고 직접 제공</span>
-                  <span className="text-right">1건당 · 원고 포함</span>
-                </div>
-                <div className="flex flex-col gap-[14px] md:gap-2.5">
-                  {PACKAGES.filter((p) => p.size === size).map((p) => (
-                    <PackageRow key={`${p.size}-${p.blog}-${p.cafe}`} p={p} />
-                  ))}
-                </div>
-              </div>
-            ))}
-
-            <p className="mt-6 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-              표에 없는 건수도 상담에서 조합해 드립니다.
-            </p>
-
-            <div className="mt-12">
-              <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)" }}>
-                  카페만 단건으로
-                </h3>
-                <span className="text-[13px] md:text-[14px]" style={{ color: "var(--cd-muted-2)" }}>
-                  원고 작성까지 맡기시면 건당 {won(CAFE_COPY_FEE)} 추가
-                </span>
-              </div>
-              <div className="flex flex-col gap-2.5">
-                {CAFE_TIERS.map((t) => (
-                  <CafeTierRow key={t.grade} t={t} />
-                ))}
-              </div>
-
-              {/* 대표 카페 안내 · 카페 이름은 적지 않고 고르는 기준과 올리는 순서만 밝힌다 (2026-09-09 (수) 대표 지시) */}
-              <div
-                className="mt-6 rounded-[20px] px-6 py-6 md:px-8 md:py-7"
-                style={{ background: "#fff", border: "1px solid var(--cd-border)" }}
-              >
-                <h4 className="text-[17px] font-black md:text-[20px]" style={{ color: "var(--cd-ink)", letterSpacing: "-0.5px" }}>
-                  카페는 이렇게 고르고 이렇게 올립니다
-                </h4>
-                <p className="mt-2 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-                  대표 카페는 그 주제에서 회원이 많고 매일 새 글이 올라오는 카페입니다.{" "}
-                  등급마다 어떤 주제의 카페가 있는지 위 표에 적었고, 카페를 고르는 기준과 올리는 순서는 아래와 같습니다.
-                </p>
-                <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
-                  {CAFE_HOW.map((h) => (
-                    <div
-                      key={h.title}
-                      className="flex items-start gap-3 rounded-[16px] p-5"
-                      style={{ background: "var(--cd-tint-2)", border: "1px solid var(--cd-border-2)" }}
-                    >
-                      <span
-                        className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                        style={{ background: "var(--cd-primary)" }}
-                      >
-                        <Check size={15} className="text-white" strokeWidth={3} />
-                      </span>
-                      <div className="min-w-0">
-                        <h5 className="mb-1 text-[15px] font-bold md:text-[16px]" style={{ color: "var(--cd-ink-2)" }}>
-                          {h.title}
-                        </h5>
-                        <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-                          {h.desc}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-5 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-                  지금 올릴 수 있는 카페 목록은 대표카페 운영 변경 안내에 있습니다. 닫았던 안내는 아래 버튼으로 다시 열 수 있습니다.
-                </p>
-                <CafeNoticeReopen />
-              </div>
-            </div>
-
-            <p className="mt-6 text-[13px] leading-relaxed" style={{ color: "var(--cd-muted-2)" }}>
-              {PRICE_NOTE.map((n) => `· ${n}`).join(" ")}
-            </p>
-          </div>
-        </section>
-
-        <section className="bg-white py-10" style={{ borderBottom: "1px solid var(--cd-border)" }}>
-          <div className={INNER}>
-            <h2 className="text-xl font-bold" style={{ color: "var(--cd-ink)" }}>건수 패키지와 통합검색 월 관리, 두 가지로 진행합니다</h2>
-            <p className="mt-4 text-sm leading-relaxed" style={{ color: "var(--cd-body-2)" }}>
-              건수 패키지는 위 표대로 정한 건수의 원고를 쓰고 게시한 뒤 게시 주소를 보고합니다.
-              통합검색 월 관리는 키워드 하나를 25일 동안 매일 확인해 기록으로 보고하고, 기록을 확인하신 뒤 정산합니다.
-              월 {SEARCH_CARE_OFFER.price}이고 키워드마다 진행 가능 여부와 단가를 먼저 확인합니다.
-              검색 결과의 위치는 네이버가 정합니다. 몇 위에 오른다고 약속드리지 않습니다.
-            </p>
-          </div>
-        </section>
-
-        {/* ══ 7. PROMISE — 가격을 본 직후의 망설임을 받아준다 ══ */}
-        <section className="bg-white py-14 md:py-[66px]">
-          <div className={INNER}>
-            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              PROMISE
-            </p>
-            <h2
-              className="cd-display mb-8 text-[28px] leading-[1.25] md:text-[38px]"
-              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
-            >
-              결제 전에 먼저 밝히는 것들
-            </h2>
-
-            <div className="flex flex-col gap-3">
-              {GUARANTEES.map((g) => (
-                <div
-                  key={g.title}
-                  className="flex items-start gap-4 rounded-[16px] p-5 md:p-6"
-                  style={{ background: "var(--cd-tint)" }}
-                >
-                  <span
-                    className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "var(--cd-primary)" }}
-                  >
-                    <Check size={15} className="text-white" strokeWidth={3} />
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="mb-1 text-[16px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
-                      {g.title}
-                    </h3>
-                    <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-                      {g.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 중간 CTA — 스크롤이 긴 상세페이지에서 이탈 지점을 잡아준다 */}
-            <div
-              className="mt-9 flex flex-col items-center gap-4 rounded-[20px] px-5 py-7 text-center md:px-8"
-              style={{ background: "var(--cd-tint-2)" }}
-            >
-              <p className="text-[16px] font-bold leading-[1.6] md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
-                내 업종도 카페 배포가 되는지부터 확인해 보세요
-              </p>
-              <p className="-mt-2 text-[14px]" style={{ color: "var(--cd-body-2)" }}>
-                업종과 목표 키워드만 알려주시면 가능 여부를 먼저 알려드립니다. 상담 0원.
-              </p>
-              <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
-                <Link
-                  href={CTA_HREF}
-                  className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-[15px] font-black text-white transition-opacity hover:opacity-90"
-                  style={{ background: "var(--cd-primary)" }}
-                >
-                  가능 여부 문의하기
-                </Link>
-                <a
-                  href={KAKAO_HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-[15px] font-bold text-gray-900 transition-opacity hover:opacity-90"
-                  style={{ background: "#FAE100" }}
-                >
-                  카카오톡으로 묻기
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ══ 9. PROCESS ══ */}
-        <section className="bg-white py-14 md:py-[66px]">
-          <div className={INNER}>
-            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              PROCESS
-            </p>
-            <h2
-              className="cd-display mb-9 text-[28px] md:text-[38px]"
-              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
-            >
-              신청부터 보고까지 4단계
-            </h2>
-
-            <ol className="grid grid-cols-1 gap-[14px] sm:grid-cols-2 lg:grid-cols-4">
-              {PROCESS_STEPS.map((s) => (
-                <li
-                  key={s.no}
-                  className="rounded-[16px] px-5 py-6 md:px-5 md:py-[26px]"
-                  style={{ border: "1px solid var(--cd-border-2)" }}
-                >
-                  <span
-                    className="mb-4 flex h-8 w-8 items-center justify-center rounded-full text-[14px] font-black text-white"
-                    style={{ background: "var(--cd-primary)" }}
-                  >
-                    {s.no}
-                  </span>
-                  <h3 className="mb-1.5 text-[17px] font-bold" style={{ color: "var(--cd-ink-2)" }}>{s.title}</h3>
-                  <p className="text-[14px] leading-[1.7]" style={{ color: "var(--cd-body-2)" }}>{s.desc}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* ══ 7. 레퍼런스 안내 ══ */}
-        <section className="py-14 md:py-[66px]" style={{ background: "var(--cd-tint)" }}>
-          <div className={INNER}>
-            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              REFERENCE
-            </p>
-            <h2
-              className="cd-display mb-4 text-[28px] leading-[1.25] md:text-[38px]"
-              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
-            >
-              노출된 결과만 증빙으로 남깁니다
-            </h2>
-            <p className="mb-7 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-body-2)" }}>
-              업종 {REF_CATEGORIES.length}개 · 키워드 {REF_TOTAL}개의 네이버 모바일 통합검색 카페 영역 노출 캡처를
-              그대로 공개합니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다.
-            </p>
-
-            {/* 업종이 14개라 정식 라벨을 쓰면 칩이 서너 줄로 늘어진다. 축약 라벨 사용. */}
-            <div className="mb-8 flex flex-wrap gap-2">
-              {REF_CATEGORIES.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`${PATH}/reference?category=${c.slug}`}
-                  title={c.label}
-                  className="whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-bold transition-colors hover:border-blue-300"
-                  style={{ background: "#fff", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }}
-                >
-                  {c.short}
-                  <span className="ml-1.5" style={{ color: "var(--cd-primary)" }}>{c.keywords.length}</span>
-                </Link>
-              ))}
-            </div>
-
-            <Link
-              href={`${PATH}/reference`}
-              className="inline-flex w-full items-center justify-center rounded-full px-8 py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:w-auto md:text-[19px]"
-              style={{ background: "var(--cd-primary)" }}
-            >
-              업종별 레퍼런스 전체 보기
-            </Link>
-          </div>
-        </section>
-
-        {/* ══ 8. FAQ — LD 의 faqLd(PAGE_FAQ) 와 짝 ══ */}
-        <section className="bg-white py-14 md:py-[66px]">
-          <div className={INNER}>
-            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              FAQ
-            </p>
-            <h2
-              className="cd-display mb-9 text-[28px] md:text-[38px]"
-              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
-            >
-              자주 묻는 질문
-            </h2>
-
-            <div className="flex flex-col gap-[14px]">
-              {PAGE_FAQ.map((f) => (
-                <details
-                  key={f.q}
-                  className="group rounded-[16px] px-5 py-5 md:px-[26px] md:py-6"
-                  style={{ background: "var(--cd-tint)" }}
-                >
-                  {/* -my-2 py-2 — 시각 여백은 그대로 두고 터치 영역만 44px 로 */}
-                  <summary className="-my-2 flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 py-2">
-                    <h3 className="text-[16px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>
-                      Q. {f.q}
-                    </h3>
-                    <ChevronDown
-                      size={18}
-                      className="mt-0.5 shrink-0 transition-transform duration-200 group-open:rotate-180"
-                      style={{ color: "var(--cd-muted)" }}
-                      strokeWidth={2.5}
-                    />
-                  </summary>
-                  <p className="speakable mt-4 text-[15px] leading-[1.8]" style={{ color: "var(--cd-body-2)" }}>
-                    {f.a}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══ 9. CTA ══ */}
-        <section
-          className="px-5 py-16 text-center md:px-[60px] md:py-20"
-          style={{ background: "var(--cd-dark-2)" }}
-        >
-          <div className="mx-auto w-full max-w-[860px]">
-            <span
-              className="mx-auto mb-7 flex h-[46px] w-[46px] items-center justify-center rounded-[12px]"
-              style={{ background: "var(--cd-primary-lt)" }}
-            >
-              <Check size={24} className="text-white" strokeWidth={3} />
-            </span>
-
-            <h2 className="text-[24px] font-bold leading-[1.4] text-white md:text-[30px]">
-              블로그와 카페 게시 대행으로
-              <br />
-              원고와 게시 계획을 상담하세요
-            </h2>
-
-            <p className="mt-4 text-[15px] md:text-[16px]" style={{ color: "var(--cd-on-dark-2)" }}>
-              진행 전 상담을 통해 업종별 가능 여부를 확인해 드립니다. 상담 비용 0원.
-            </p>
-
-            <div className="mx-auto mt-9 flex w-full max-w-[520px] flex-col gap-3">
-              <Link
-                href={CTA_HREF}
-                className="block rounded-full py-5 text-[20px] font-black text-white md:py-6 md:text-[24px]"
-                style={{ background: "var(--cd-primary-lt)" }}
-              >
-                구성 상담 신청하기
-              </Link>
-              <a
-                href={KAKAO_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-full py-4 text-[16px] font-bold text-gray-900 transition-colors hover:bg-yellow-300"
-                style={{ background: "#FAE100" }}
-              >
-                카카오톡으로 먼저 물어보기
-              </a>
-            </div>
-
-            <p className="mt-8 text-[13px] leading-relaxed" style={{ color: "var(--cd-on-dark-4)" }}>
-              하랑마케팅 · 표기 금액 부가세 별도
-              <br />
-              진행 전 상담을 통해 업종별 가능 여부를 확인해 드립니다.
-            </p>
-          </div>
-        </section>
-
-      </main>
-      <Footer />
+        <CloseBand
+          title="블로그와 카페 게시 대행으로 원고와 게시 계획을 상담하세요"
+          text="진행 전 상담을 통해 업종별 가능 여부를 확인해 드립니다. 상담 비용 0원."
+          primary={{ href: CTA_HREF, label: "구성 상담 신청하기" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

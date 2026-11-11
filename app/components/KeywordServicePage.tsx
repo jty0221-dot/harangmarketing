@@ -40,7 +40,8 @@ export interface KeywordServiceData {
   related: { label: string; href: string }[];
 }
 
-export default function KeywordServicePage({ d, children }: { d: KeywordServiceData; children?: React.ReactNode }) {
+/** 구조화 데이터 · 시안 틀(app/components/sian/KeywordSian.tsx)과 같이 쓴다 */
+export function keywordServiceLd(d: KeywordServiceData) {
   const URL = `${SITE.base}${d.path}`;
   const LD = [
     webPageLd({ path: d.path, name: d.h1, description: d.intro, dateModified: updatedAt(d.path) }),
@@ -68,6 +69,11 @@ export default function KeywordServicePage({ d, children }: { d: KeywordServiceD
       { name: d.badge, path: d.path },
     ]),
   ];
+  return LD;
+}
+
+export default function KeywordServicePage({ d, children }: { d: KeywordServiceData; children?: React.ReactNode }) {
+  const LD = keywordServiceLd(d);
 
   return (
     <>

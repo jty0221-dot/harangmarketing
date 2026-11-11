@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { ArrowRight, Bot, Camera, FileText, Globe2, ImageOff, LayoutGrid, MapPin, MessageCircle, Phone, Search, ShieldCheck, Smartphone, } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import { SianMain, PageHead, Section, ItemList, QuestionList, CloseBand } from "../../components/sian/Sian";
 import { SITE, breadcrumbLd, faqLd, webPageLd, updatedAt } from "../../lib/seo";
 import { HP_DATA_DATE, HP_STATS } from "../../lib/homepage-portfolio";
 import HomepageGallery from "./HomepageGallery";
 import { HOMEPAGE_TIERS } from "../../lib/homepage-pricing";
+import h from "./homepage.module.css";
 
 const PATH = "/services/homepage";
 const TITLE = "홈페이지 제작, 검색에서 발견되고 문의하기까지";
@@ -15,8 +15,8 @@ const DESC = "업종별 디자인에 SEO·GEO·AEO를 고려한 정보 구성과
 /* 가격은 app/lib/homepage-pricing.ts 한 곳에서 온다 (pricing.json 과 같은 숫자 · 바꾸면 C 결재) */
 const TIERS = HOMEPAGE_TIERS;
 
-/** desc 안의 bold 문장만 font-semibold 로 굵게 (발주서 '굵게 처리할 문장' 표) */
-type Card = { icon: typeof Search; title: string; desc: string; bold?: string };
+/** desc 안의 bold 문장만 굵게 (<b> · font-weight 600) (발주서 '굵게 처리할 문장' 표) */
+type Card = { title: string; desc: string; bold?: string };
 
 function Emph({ text, bold }: { text: string; bold?: string }) {
   if (!bold || !text.includes(bold)) return <>{text}</>;
@@ -24,25 +24,25 @@ function Emph({ text, bold }: { text: string; bold?: string }) {
   return (
     <>
       {before}
-      <span className="font-semibold" style={{ color: "var(--w-label-strong)" }}>{bold}</span>
+      <b>{bold}</b>
       {rest.join(bold)}
     </>
   );
 }
 
 const PHOTO_NOTES: Card[] = [
-  { icon: Smartphone, title: "휴대폰 사진이면 충분합니다", desc: "어떤 장면을 어떻게 찍으면 되는지 촬영 가이드를 보내 드립니다. 매장 · 작업 · 외관 몇 장이면 첫 화면을 채울 수 있습니다" },
-  { icon: Camera, title: "촬영이 필요하면 따로 상의합니다", desc: "직접 찍기 어려우시면 하랑 촬영을 따로 견적으로 안내해 드립니다. 촬영 없이 먼저 열고 사진은 나중에 바꿔도 됩니다" },
-  { icon: ImageOff, title: "사진 자리는 비워 두고 엽니다", desc: "사진이 늦어지면 그 자리는 깔끔하게 비워 두고 먼저 오픈합니다. 실제와 다른 사진으로 채우지 않습니다", bold: "실제와 다른 사진으로 채우지 않습니다" },
+  { title: "휴대폰 사진이면 충분합니다", desc: "어떤 장면을 어떻게 찍으면 되는지 촬영 가이드를 보내 드립니다. 매장 · 작업 · 외관 몇 장이면 첫 화면을 채울 수 있습니다" },
+  { title: "촬영이 필요하면 따로 상의합니다", desc: "직접 찍기 어려우시면 하랑 촬영을 따로 견적으로 안내해 드립니다. 촬영 없이 먼저 열고 사진은 나중에 바꿔도 됩니다" },
+  { title: "사진 자리는 비워 두고 엽니다", desc: "사진이 늦어지면 그 자리는 깔끔하게 비워 두고 먼저 오픈합니다. 실제와 다른 사진으로 채우지 않습니다", bold: "실제와 다른 사진으로 채우지 않습니다" },
 ];
 
 const INCLUDED: Card[] = [
-  { icon: Search, title: "검색 노출 기본 세팅", desc: "페이지마다 제목 · 설명 · 구조화 데이터 · 사이트맵 · RSS 를 넣고 네이버 서치어드바이저와 구글 서치콘솔에 등록합니다" },
-  { icon: Bot, title: "AI 검색을 고려한 정보 구성", desc: "확인된 업체·서비스 정보와 실제 고객 질문의 답을 정리합니다. AI가 내용을 파악할 수 있도록 준비하며, 추천이나 인용 여부는 각 플랫폼이 판단합니다" },
-  { icon: Phone, title: "문의 전환 동선", desc: "휴대폰 화면 아래에 전화 · 문자 버튼을 고정해, 보던 손님이 바로 연락할 수 있게 만듭니다" },
-  { icon: MapPin, title: "플레이스 정보 대조", desc: "확인된 상호 · 주소 · 전화 · 영업 정보를 홈페이지와 네이버 플레이스에 일관되게 안내합니다" },
-  { icon: FileText, title: "원고 · 사진 연결", desc: "업종에 맞는 문구 초안을 같이 만들고, 현장 사진은 보정만 해서 올립니다. 연출 사진을 실물처럼 쓰지 않습니다" },
-  { icon: ShieldCheck, title: "대표님 명의 · 보안 설정", desc: "도메인과 서버는 대표님 명의로 등록합니다. 보안 헤더와 수집 차단 설정까지 넣어 넘겨 드립니다" },
+  { title: "검색 노출 기본 세팅", desc: "페이지마다 제목 · 설명 · 구조화 데이터 · 사이트맵 · RSS 를 넣고 네이버 서치어드바이저와 구글 서치콘솔에 등록합니다" },
+  { title: "AI 검색을 고려한 정보 구성", desc: "확인된 업체·서비스 정보와 실제 고객 질문의 답을 정리합니다. AI가 내용을 파악할 수 있도록 준비하며, 추천이나 인용 여부는 각 플랫폼이 판단합니다" },
+  { title: "문의 전환 동선", desc: "휴대폰 화면 아래에 전화 · 문자 버튼을 고정해, 보던 손님이 바로 연락할 수 있게 만듭니다" },
+  { title: "플레이스 정보 대조", desc: "확인된 상호 · 주소 · 전화 · 영업 정보를 홈페이지와 네이버 플레이스에 일관되게 안내합니다" },
+  { title: "원고 · 사진 연결", desc: "업종에 맞는 문구 초안을 같이 만들고, 현장 사진은 보정만 해서 올립니다. 연출 사진을 실물처럼 쓰지 않습니다" },
+  { title: "대표님 명의 · 보안 설정", desc: "도메인과 서버는 대표님 명의로 등록합니다. 보안 헤더와 수집 차단 설정까지 넣어 넘겨 드립니다" },
 ];
 
 const STEPS: { title: string; desc: string; bold?: string }[] = [
@@ -74,216 +74,132 @@ const LD = [
   faqLd(FAQ, `${SITE.base}${PATH}`),
 ];
 
-/** '제작에 기본으로 들어가는 것' 과 같은 카드 : w-card · 단색 primary 아이콘 박스 · 흰 아이콘 */
-function CardGrid({ items }: { items: Card[] }) {
+/** 가는 선 목록 · desc 안의 bold 문장만 굵게 (발주서 '굵게 처리할 문장' 표). 카드 · 아이콘 상자는 걷었다 */
+function EmphList({ items }: { items: Card[] }) {
   return (
-    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <dl className={h.items}>
       {items.map((it) => (
-        <div key={it.title} className="w-card p-5 md:p-6">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "var(--w-primary)" }}>
-            <it.icon size={16} strokeWidth={2.5} color="#fff" />
-          </span>
-          <p className="w-title-3 mt-3" style={{ color: "var(--w-label-strong)" }}>{it.title}</p>
-          <p className="w-body-2 mt-1.5" style={{ color: "var(--w-label-alt)" }}>
-            <Emph text={it.desc} bold={it.bold} />
-          </p>
+        <div key={it.title}>
+          <dt>{it.title}</dt>
+          <dd><Emph text={it.desc} bold={it.bold} /></dd>
         </div>
       ))}
-    </div>
+    </dl>
   );
 }
 
 export default function HomepageServicePage() {
-  const stats = [
-    { label: "시안", value: HP_STATS.drafts, unit: "개" },
-    { label: "업종", value: HP_STATS.industries, unit: "종" },
-    { label: "디자인", value: HP_STATS.designs, unit: "가지" },
-    { label: "제작 기간", value: 15, unit: "영업일" },
+  const facts = [
+    { label: "시안", value: `${HP_STATS.drafts}개` },
+    { label: "업종", value: `${HP_STATS.industries}종` },
+    { label: "디자인", value: `${HP_STATS.designs}가지` },
+    { label: "제작 기간", value: "15영업일" },
   ];
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-[104px] md:pt-[108px]" style={{ background: "var(--w-bg-alt)" }}>
+      <SianMain>
         <JsonLd data={LD} />
-        <div className="mx-auto max-w-[1100px] px-5 py-12 md:py-16">
-          {/* 소개 */}
-          <section className="mb-10">
-            <span className="w-chip w-chip-blue">
-              <Globe2 size={12} strokeWidth={2.5} />
-              HOMEPAGE
-            </span>
-            <h1 className="w-heading-1 mt-3" style={{ color: "var(--w-label-strong)" }}>
-              예쁘게 만든 홈페이지,
-              <br />
-              고객이 찾고 문의할 수 있어야 합니다
-            </h1>
-            <p className="w-body-1 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
-              하랑은 업종에 맞는 디자인에 SEO·GEO·AEO와 상담 동선을 함께 설계합니다.
-              고객이 서비스를 발견하고, 필요한 내용을 이해하고, 문의할 수 있는 홈페이지를 만듭니다
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <a href="#gallery" className="w-btn w-btn-primary min-h-[44px]">
-                <LayoutGrid size={16} strokeWidth={2.5} />
-                우리 업종 시안 비교하기
-              </a>
-              <a href={SITE.kakaoChat} target="_blank" rel="noopener noreferrer" className="w-btn w-btn-secondary min-h-[44px]">
-                <MessageCircle size={16} strokeWidth={2.5} />
-                카카오톡 상담
-              </a>
-            </div>
-            <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-              {stats.map((s) => (
-                <div key={s.label} className="w-card px-4 py-4 md:px-5 md:py-5">
-                  <p className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>{s.label}</p>
-                  <p className="w-title-1 w-num mt-1" style={{ color: "var(--w-label-strong)" }}>
-                    {s.value}
-                    <span className="w-label-2 ml-0.5" style={{ color: "var(--w-label-alt)" }}>{s.unit}</span>
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
+        {/* 머리 · 단추는 시안 비교 하나. 카카오톡 상담은 맺음 띠에 있다 */}
+        <PageHead
+          where="홈페이지 제작"
+          title={<>예쁘게 만든 홈페이지,<br />고객이 찾고 문의할 수 있어야 합니다</>}
+          lead="하랑은 업종에 맞는 디자인에 SEO·GEO·AEO와 상담 동선을 함께 설계합니다. 고객이 서비스를 발견하고, 필요한 내용을 이해하고, 문의할 수 있는 홈페이지를 만듭니다"
+          primary={{ href: "#gallery", label: "우리 업종 시안 비교하기" }}
+          link={{ href: "#pricing", label: "제작 · 관리 가격 보기" }}
+          facts={facts}
+        />
 
-          <section className="mb-14" aria-labelledby="why-homepage">
-            <h2 id="why-homepage" className="w-heading-2">홈페이지는 고객이 판단하는 기준이 됩니다</h2>
-            <p className="w-body-2 mt-3 max-w-[780px]" style={{ color: "var(--w-label-alt)" }}>블로그·플레이스·SNS에서 관심을 가진 고객에게 서비스 범위, 선택 이유와 문의 방법을 한곳에서 안내할 수 있습니다. 검색 결과와 AI 답변에서 업체를 비교하는 고객에게도, 정확하고 확인 가능한 정보를 제공할 준비가 필요합니다. 디자인만으로는 검색 유입과 문의 전환까지 해결하기 어렵습니다</p>
-            <ol className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["검색에서 발견", "업종·서비스별 제목과 설명, 수집 가능한 페이지 구조로 찾을 기반을 준비합니다"],
-                ["내용을 이해", "누구를 위한 서비스인지, 어디까지 제공하는지, 어떤 조건인지 명확히 안내합니다"],
-                ["비교하고 신뢰", "확인된 업체 정보와 실제 사진·사례, 고객이 자주 묻는 질문을 연결합니다"],
-                ["편하게 문의", "고객이 정보를 읽는 흐름에 전화·카카오톡·문의 버튼과 준비할 내용을 배치합니다"],
-              ].map(([title,desc],i)=><li key={title} className="w-card p-5"><p className="w-caption-1 font-bold" style={{color:"var(--w-primary)"}}>{i+1}단계</p><h3 className="w-title-3 mt-2">{title}</h3><p className="w-body-2 mt-2" style={{color:"var(--w-label-alt)"}}>{desc}</p></li>)}
-            </ol>
-          </section>
-          <section className="mb-14" aria-labelledby="search-design">
-            <h2 id="search-design" className="w-heading-2">디자인과 함께 설계하는 검색·정보·문의 구조</h2>
-            <CardGrid items={[
-              {icon:Search,title:"SEO · 검색이 읽을 수 있도록",desc:"페이지별 제목·설명, 서비스별 정보 구조, 사이트맵과 검색 도구 등록을 준비합니다. 고객이 쓰는 검색어와 페이지 내용이 맞는지 확인합니다"},
-              {icon:Bot,title:"GEO · 업체와 서비스가 분명하도록",desc:"상호·위치·서비스·대상·제공 조건을 확인된 정보로 정리합니다. 다른 매체와의 정보 일관성과 설명을 뒷받침하는 근거를 함께 살핍니다"},
-              {icon:MessageCircle,title:"AEO · 질문에 명확히 답하도록",desc:"실제 상담에서 나오는 질문을 바탕으로 답과 적용 조건을 구성합니다. FAQ와 읽기 쉬운 문단 구조를 사용하고, 답을 확인한 뒤 문의할 수 있게 연결합니다"},
-            ]}/>
-            <div className="w-card mt-4 p-5"><h3 className="w-title-3">상담할 때 함께 정하는 제작 범위</h3><p className="w-body-2 mt-2" style={{color:"var(--w-label-alt)"}}>업종별 페이지 구성안, 제목·설명과 사업 정보 정리, 질문·답변 초안, 문의 버튼 위치, 모바일 화면과 기본 검색 설정을 확인합니다. 페이지 수·연동·콘텐츠 추가·운영 점검은 선택한 제작 및 관리 계약을 기준으로 정합니다</p><p className="w-caption-1 mt-3" style={{color:"var(--w-label-alt)"}}>검색 순위·AI 추천이나 인용·매출은 보장하지 않습니다. 오픈 후에도 실제 유입과 문의를 살펴 개선해야 합니다</p></div>
-          </section>
+        <Section
+          title="홈페이지는 고객이 판단하는 기준이 됩니다"
+          desc="블로그·플레이스·SNS에서 관심을 가진 고객에게 서비스 범위, 선택 이유와 문의 방법을 한곳에서 안내할 수 있습니다. 검색 결과와 AI 답변에서 업체를 비교하는 고객에게도, 정확하고 확인 가능한 정보를 제공할 준비가 필요합니다. 디자인만으로는 검색 유입과 문의 전환까지 해결하기 어렵습니다"
+        >
+          <ItemList items={[
+            { title: "검색에서 발견", desc: "업종·서비스별 제목과 설명, 수집 가능한 페이지 구조로 찾을 기반을 준비합니다" },
+            { title: "내용을 이해", desc: "누구를 위한 서비스인지, 어디까지 제공하는지, 어떤 조건인지 명확히 안내합니다" },
+            { title: "비교하고 신뢰", desc: "확인된 업체 정보와 실제 사진·사례, 고객이 자주 묻는 질문을 연결합니다" },
+            { title: "편하게 문의", desc: "고객이 정보를 읽는 흐름에 전화·카카오톡·문의 버튼과 준비할 내용을 배치합니다" },
+          ]} />
+        </Section>
 
-          {/* 시안 갤러리 */}
-          <section id="gallery" className="scroll-mt-28">
-            <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>업종별 시안</h2>
-            <p className="w-body-2 mt-2 mb-6 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
-              색상만 비교하지 마세요. 첫 화면에서 묻는 질문, 정보를 보여주는 순서와 고객의 다음 행동이 어떻게 다른지 확인해 보세요. 프리미엄 15개 안과 기존 251개 시안을 둘러보고 업체에 맞는 구조를 함께 정합니다
-            </p>
-            <Link
-              href="/services/homepage/tax"
-              className="w-card mb-6 flex flex-wrap items-center justify-between gap-3 p-5 transition-shadow hover:shadow-[var(--w-shadow-md)]"
-            >
-              <div className="min-w-0">
-                <p className="w-caption-1 font-bold" style={{ color: "var(--w-primary)" }}>업종별 소개</p>
-                <p className="w-title-3 mt-1" style={{ color: "var(--w-label-strong)" }}>세무사 · 세무법인 홈페이지</p>
-                <p className="w-body-2 mt-1" style={{ color: "var(--w-label-alt)" }}>상담 세무사 소개 · 기장료 안내 · 서비스별 페이지를 갖춘 세무 틀과 분석 · 개선안 사례를 모았습니다</p>
+        <Section soft title="디자인과 함께 설계하는 검색·정보·문의 구조">
+          <ItemList items={[
+            { title: "SEO · 검색이 읽을 수 있도록", desc: "페이지별 제목·설명, 서비스별 정보 구조, 사이트맵과 검색 도구 등록을 준비합니다. 고객이 쓰는 검색어와 페이지 내용이 맞는지 확인합니다" },
+            { title: "GEO · 업체와 서비스가 분명하도록", desc: "상호·위치·서비스·대상·제공 조건을 확인된 정보로 정리합니다. 다른 매체와의 정보 일관성과 설명을 뒷받침하는 근거를 함께 살핍니다" },
+            { title: "AEO · 질문에 명확히 답하도록", desc: "실제 상담에서 나오는 질문을 바탕으로 답과 적용 조건을 구성합니다. FAQ와 읽기 쉬운 문단 구조를 사용하고, 답을 확인한 뒤 문의할 수 있게 연결합니다" },
+            { title: "상담할 때 함께 정하는 제작 범위", desc: "업종별 페이지 구성안, 제목·설명과 사업 정보 정리, 질문·답변 초안, 문의 버튼 위치, 모바일 화면과 기본 검색 설정을 확인합니다. 페이지 수·연동·콘텐츠 추가·운영 점검은 선택한 제작 및 관리 계약을 기준으로 정합니다" },
+          ]} />
+          <p className={h.note}>검색 순위·AI 추천이나 인용·매출은 보장하지 않습니다. 오픈 후에도 실제 유입과 문의를 살펴 개선해야 합니다</p>
+        </Section>
+
+        {/* 시안 갤러리 · id="gallery" 는 HomepageGallery 가 광고 링크로 열릴 때 스크롤 대상으로 쓴다 */}
+        <Section
+          id="gallery"
+          title="업종별 시안"
+          desc="색상만 비교하지 마세요. 첫 화면에서 묻는 질문, 정보를 보여주는 순서와 고객의 다음 행동이 어떻게 다른지 확인해 보세요. 프리미엄 15개 안과 기존 251개 시안을 둘러보고 업체에 맞는 구조를 함께 정합니다"
+          footer={<div className={h.gallery}><HomepageGallery /></div>}
+        >
+          <ItemList one items={[
+            { title: "세무사 · 세무법인 홈페이지", href: "/services/homepage/tax", desc: "상담 세무사 소개 · 기장료 안내 · 서비스별 페이지를 갖춘 세무 틀과 분석 · 개선안 사례를 모았습니다" },
+            { title: "병원 · 의원 홈페이지", href: "/services/homepage/clinic", desc: "진료과목 · 의료진 · 진료시간 정리와 의료법 문구 검수, 검색 기본 세팅을 함께 하는 병원 홈페이지 제작" },
+          ]} />
+        </Section>
+
+        {/* 사진 안내 (발주 2026-10-04) */}
+        <Section soft title="사진이 없어도 시작할 수 있습니다">
+          <EmphList items={PHOTO_NOTES} />
+        </Section>
+
+        {/* 포함 사항 */}
+        <Section title="제작에 기본으로 들어가는 것">
+          <EmphList items={INCLUDED} />
+        </Section>
+
+        {/* 가격 · 숫자는 HOMEPAGE_TIERS 그대로 (바꾸면 C 결재) */}
+        <Section
+          soft
+          id="pricing"
+          title="제작 · 관리 가격"
+          desc="제작비와 월 관리비 모두 부가세 별도입니다. 도메인 · 서버 실비(연 수만 원)는 대표님 명의로 직접 결제하십니다"
+        >
+          <div className={h.tiers}>
+            {TIERS.map((t) => (
+              <div key={t.name} className={`${h.tier} ${t.rec ? h.rec : ""}`}>
+                <h3>{t.name}{t.rec && <span className={h.tag}>상담 기본</span>}</h3>
+                <p className={h.pages}>{t.pages}</p>
+                <p className={h.build}>{t.build}</p>
+                <p className={h.monthly}>관리 {t.monthly}</p>
+                <ul>{t.points.map((p) => <li key={p}>{p}</li>)}</ul>
               </div>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
-                자세히 보기
-                <ArrowRight size={14} strokeWidth={2.5} />
-              </span>
-            </Link>
-            <Link
-              href="/services/homepage/clinic"
-              className="w-card mb-6 flex flex-wrap items-center justify-between gap-3 p-5 transition-shadow hover:shadow-[var(--w-shadow-md)]"
-            >
-              <div className="min-w-0">
-                <p className="w-caption-1 font-bold" style={{ color: "var(--w-primary)" }}>업종별 소개</p>
-                <p className="w-title-3 mt-1" style={{ color: "var(--w-label-strong)" }}>병원 · 의원 홈페이지</p>
-                <p className="w-body-2 mt-1" style={{ color: "var(--w-label-alt)" }}>진료과목 · 의료진 · 진료시간 정리와 의료법 문구 검수, 검색 기본 세팅을 함께 하는 병원 홈페이지 제작</p>
-              </div>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
-                자세히 보기
-                <ArrowRight size={14} strokeWidth={2.5} />
-              </span>
-            </Link>
-            <HomepageGallery />
-          </section>
-
-          {/* 사진 안내 (발주 2026-10-04) */}
-          <section className="mt-16">
-            <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>사진이 없어도 시작할 수 있습니다</h2>
-            <CardGrid items={PHOTO_NOTES} />
-          </section>
-
-          {/* 포함 사항 */}
-          <section className="mt-16">
-            <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>제작에 기본으로 들어가는 것</h2>
-            <CardGrid items={INCLUDED} />
-          </section>
-
-          {/* 가격 */}
-          <section className="mt-16">
-            <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>제작 · 관리 가격</h2>
-            <p className="w-body-2 mt-2" style={{ color: "var(--w-label-alt)" }}>
-              제작비와 월 관리비 모두 부가세 별도입니다. 도메인 · 서버 실비(연 수만 원)는 대표님 명의로 직접 결제하십니다
-            </p>
-            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-              {TIERS.map((t) => (
-                <div key={t.name} className="w-card flex flex-col p-5 md:p-6" style={t.rec ? { outline: "2px solid var(--w-primary)" } : undefined}>
-                  <div className="flex items-center gap-2">
-                    <p className="w-title-2" style={{ color: "var(--w-label-strong)" }}>{t.name}</p>
-                    {t.rec && <span className="w-chip w-chip-blue">상담 기본</span>}
-                  </div>
-                  <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-alt)" }}>{t.pages}</p>
-                  <p className="w-title-1 w-num mt-3" style={{ color: "var(--w-label-strong)" }}>{t.build}</p>
-                  <p className="w-label-1 w-num mt-1" style={{ color: "var(--w-primary)" }}>관리 {t.monthly}</p>
-                  <ul className="mt-4 space-y-1.5">
-                    {t.points.map((p) => (
-                      <li key={p} className="w-body-2" style={{ color: "var(--w-label-alt)" }}>· {p}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 진행 순서 */}
-          <section className="mt-16">
-            <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>15영업일 진행 순서</h2>
-            <ol className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-              {STEPS.map((s, i) => (
-                <li key={s.title} className="w-card p-5">
-                  <p className="w-caption-1 w-num font-bold" style={{ color: "var(--w-primary)" }}>{i + 1}단계</p>
-                  <p className="w-title-3 mt-1" style={{ color: "var(--w-label-strong)" }}>{s.title}</p>
-                  <p className="w-body-2 mt-1" style={{ color: "var(--w-label-alt)" }}>
-                    <Emph text={s.desc} bold={s.bold} />
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          {/* 자주 묻는 질문 (FAQPage 스키마와 같은 내용) */}
-          <section className="mt-16">
-            <h2 className="w-heading-2" style={{ color: "var(--w-label-strong)" }}>자주 묻는 질문</h2>
-            <div className="mt-6 space-y-3">
-              {FAQ.map((f) => (
-                <details key={f.q} className="w-card p-5">
-                  <summary className="w-title-3 cursor-pointer" style={{ color: "var(--w-label-strong)" }}>{f.q}</summary>
-                  <p className="w-body-2 mt-2" style={{ color: "var(--w-label-alt)" }}>{f.a}</p>
-                </details>
-              ))}
-            </div>
-          </section>
-
-          {/* 상담 */}
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 rounded-[16px] px-7 py-8" style={{ background: "var(--w-label-strong)" }}>
-            <div>
-              <p className="w-title-2" style={{ color: "#fff" }}>우리 업체에 필요한 홈페이지는 무엇일까요?</p>
-              <p className="w-body-2 mt-1.5" style={{ color: "var(--w-label-disable)" }}>업종 · 현재 운영 매체 · 고객 문의에서 자주 막히는 점을 알려 주세요. 필요한 구성부터 함께 정합니다</p>
-            </div>
-            <Link href="/contact" className="w-btn w-btn-primary min-h-[44px]">
-              상담 신청
-              <ArrowRight size={16} strokeWidth={2.5} />
-            </Link>
+            ))}
           </div>
-        </div>
-      </main>
-      <Footer />
+        </Section>
+
+        {/* 진행 순서 · 번호는 글자로만 */}
+        <Section title="15영업일 진행 순서">
+          <ol className={h.steps}>
+            {STEPS.map((s, i) => (
+              <li key={s.title}>
+                <span className={h.no}>{String(i + 1).padStart(2, "0")}</span>
+                <h3>{s.title}</h3>
+                <p><Emph text={s.desc} bold={s.bold} /></p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        {/* 자주 묻는 질문 (FAQPage 스키마와 같은 내용) */}
+        <Section soft id="faq" title="자주 묻는 질문" more={{ href: "/faq", label: "전체 질문 보기" }}>
+          <QuestionList items={FAQ} />
+        </Section>
+
+        <CloseBand
+          title="우리 업체에 필요한 홈페이지는 무엇일까요?"
+          text="업종 · 현재 운영 매체 · 고객 문의에서 자주 막히는 점을 알려 주세요. 필요한 구성부터 함께 정합니다"
+          primary={{ href: "/contact", label: "상담 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

@@ -1,6 +1,6 @@
-import KeywordServicePage from "../../components/KeywordServicePage";
+import KeywordSian from "../../components/sian/KeywordSian";
 import { BLOG_MARKETING } from "../../lib/keyword-pages";
 
 export default function Page() {
-  return <KeywordServicePage d={BLOG_MARKETING} />;
+  return <KeywordSian d={BLOG_MARKETING} />;
 }

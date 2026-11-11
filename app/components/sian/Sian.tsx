@@ -122,11 +122,11 @@ export function LinkList({ links }: { links: Href[] }) {
 }
 
 /** 진행 순서 · 번호는 글자로만 */
-export function Steps({ steps }: { steps: { title: string; desc: string }[] }) {
+export function Steps({ steps, idPrefix }: { steps: { title: string; desc: string }[]; /** HowTo 단계 url(#step-1 …)이 가리키는 자리 */ idPrefix?: string }) {
   return (
     <ol className={s.steps}>
       {steps.map((st, i) => (
-        <li key={st.title}>
+        <li key={st.title} id={idPrefix ? `${idPrefix}${i + 1}` : undefined}>
           <span className={s.no}>{String(i + 1).padStart(2, "0")}</span>
           <h3>{st.title}</h3>
           <p>{st.desc}</p>
@@ -143,24 +143,32 @@ function Move({ from, to }: { from: number; to: number }) {
 }
 
 /** 이 업종에서 잰 줄. 검색수가 큰 키워드부터 넷. 남의 업종 줄은 빌려오지 않는다 */
-export function rankRows(industries: string[], limit = 4) {
-  return byVolume().filter((c) => industries.includes(c.industry)).slice(0, limit);
+export function rankRows(industries?: string[], limit = 4) {
+  return byVolume().filter((c) => !industries || industries.includes(c.industry)).slice(0, limit);
 }
 
 /**
  * 순위 절 · 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
  * 그 업종 줄이 하나도 없으면 절이 통째로 빠진다 (C-42 · 틀린 값보다 빈 값).
  */
-export function RankSection({ industries, label, soft }: { industries: string[]; label: string; soft?: boolean }) {
+export function RankSection({ industries, label, soft, title, desc, more }: {
+  /** 비우면 업종을 가리지 않고 검색수가 큰 줄부터 넷 (플레이스 페이지) */
+  industries?: string[];
+  label: string;
+  soft?: boolean;
+  title?: string;
+  desc?: string;
+  more?: Href;
+}) {
   const rows = rankRows(industries);
   if (rows.length === 0) return null;
   return (
     <Section
       id="rank"
       soft={soft}
-      title={`${label} 매장에서 잰 순위`}
-      desc={`${label} 업종에서 잰 기록입니다. 줄 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다.`}
-      more={{ href: "/cases/place-rank", label: "다른 업종 기록도 보기" }}
+      title={title ?? `${label} 매장에서 잰 순위`}
+      desc={desc ?? `${label} 업종에서 잰 기록입니다. 줄 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다.`}
+      more={more ?? { href: "/cases/place-rank", label: "다른 업종 기록도 보기" }}
     >
       <div className={s.rank} role="table" aria-label={`${label} 키워드별 플레이스 순위`}>
         <div className={`${s.rankRow} ${s.rankHead}`} role="row">
@@ -202,6 +210,30 @@ export function QuestionList({ items }: { items: FaqItem[] }) {
           <p>{f.a}</p>
         </details>
       ))}
+    </div>
+  );
+}
+
+/** 접힌 설명 · 긴 설명을 본문 길이에서 빼되 DOM 에는 남긴다 (검색 · AI 인용용) */
+export function Fold({ summary, children, open }: { summary: string; children: ReactNode; open?: boolean }) {
+  return (
+    <div className={s.acc}>
+      <details open={open}>
+        <summary>{summary}</summary>
+        <div className={s.foldBody}>{children}</div>
+      </details>
+    </div>
+  );
+}
+
+/** 가는 선 표 · 좁은 화면에서는 표 안에서만 가로로 밀린다 (페이지는 넘치지 않는다) */
+export function Table({ head, rows, label }: { head: string[]; rows: ReactNode[][]; label: string }) {
+  return (
+    <div className={s.tblWrap}>
+      <table className={s.tbl} aria-label={label}>
+        <thead><tr>{head.map((h) => <th key={h} scope="col">{h}</th>)}</tr></thead>
+        <tbody>{rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>)}</tbody>
+      </table>
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import KeywordServicePage from "../../components/KeywordServicePage";
+import KeywordSian from "../../components/sian/KeywordSian";
 import { POWERCONTENTS } from "../../lib/keyword-pages";
 
 export default function Page() {
-  return <KeywordServicePage d={POWERCONTENTS} />;
+  return <KeywordSian d={POWERCONTENTS} />;
 }
