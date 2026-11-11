@@ -6,6 +6,7 @@ import { PLACE_RANK_GENERATED } from "./lib/place-rank-cases";
 import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 import { PHOTO_UPDATED } from './lib/photo-seo';
 import { PHOTO_PORTFOLIOS } from "./lib/photo-portfolios";
+import { RESULT_CASES } from "./lib/result-cases";
 
 const BASE = SITE.base;
 
@@ -77,5 +78,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly',
     priority: 0.6,
   }));
-  return [...staticPages, ...blogPages, ...photoPages];
+  // 가상 시안(sample) 은 사이트맵에 올리지 않는다
+  const resultCasePages: MetadataRoute.Sitemap = RESULT_CASES.filter((c) => !c.sample).map((c) => ({
+    url: `${BASE}/portfolio/cases/${c.id}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+  return [...staticPages, ...blogPages, ...photoPages, ...resultCasePages];
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Briefcase, LineChart, Store } from "lucide-react";
+import { ArrowRight, Briefcase, LineChart, Store, TrendingUp } from "lucide-react";
+import { RESULT_CASES } from "../lib/result-cases";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getPortfolio } from "../lib/portfolio";
@@ -69,6 +70,54 @@ export default function PortfolioPage() {
               업종을 고르면 우리 매장과 비슷한 곳이 어떻게 달라졌는지 바로 확인하실 수 있습니다.
             </p>
           </div>
+
+          {/* 성과 사례 : 고객 결과 보고서를 상호 · 지역을 가려 다시 쓴 것 (2026-11-11 (수) 대표 지시) */}
+          {RESULT_CASES.length > 0 && (
+            <section id="result-cases" className="mb-16 scroll-mt-28">
+              <div className="mb-6">
+                <span className="w-chip w-chip-blue">
+                  <TrendingUp size={12} strokeWidth={2.5} />
+                  RESULTS
+                </span>
+                <h2 className="w-heading-2 mt-3" style={{ color: "var(--w-label-strong)" }}>
+                  보고서로 남긴 성과 사례
+                </h2>
+                <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
+                  고객께 드린 결과 보고서를 상호와 지역을 가려 다시 정리했습니다. 숫자는 보고서의 값 그대로이고,
+                  결과는 업종과 지역에 따라 다릅니다.
+                </p>
+              </div>
+              <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {RESULT_CASES.map((c) => {
+                  const top = c.results[0];
+                  return (
+                    <li key={c.id} className="min-w-0">
+                      <Link href={`/portfolio/cases/${c.id}`} className="w-card flex h-full flex-col p-5 md:p-6">
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <span className="w-chip w-chip-neutral">{c.industry}</span>
+                          <span className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>{c.period}</span>
+                          {c.sample && <span className="w-chip w-chip-neutral">가상 시안</span>}
+                        </div>
+                        <h3 className="w-title-3 mt-3" style={{ color: "var(--w-label-strong)" }}>{c.label}</h3>
+                        <p className="w-body-2 mt-1.5 line-clamp-2" style={{ color: "var(--w-label-alt)" }}>{c.summary}</p>
+                        {top && (
+                          <p className="w-label-1 w-num mt-4" style={{ color: "var(--w-label-alt)" }}>
+                            {top.label} · {top.before}
+                            <ArrowRight size={13} className="mx-1 inline" />
+                            <span className="font-semibold" style={{ color: "var(--w-primary)" }}>{top.after}</span>
+                          </p>
+                        )}
+                        <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
+                          사례 보기
+                          <ArrowRight size={14} />
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
 
           <PortfolioGrid industries={industries} />
 
