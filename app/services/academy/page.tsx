@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import CaseShots from "../../components/sian/CaseShots";
 import {
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
@@ -111,6 +112,8 @@ export default function AcademyPage() {
 
         {/* 학원 업종에서 잰 줄만 싣는다. 지금은 1~5위 줄이 없어 절이 빠진다 · 남의 업종 줄은 빌려오지 않는다 */}
         <RankSection industries={ACADEMY_INDUSTRIES} label="학원" />
+
+        <CaseShots slug="academy" label="학원" />
 
         <Section title="학원 마케팅 핵심 전략" desc="학부모가 학원을 찾는 방식에 맞게 설계합니다.">
           <ItemList items={STRATEGY} one />

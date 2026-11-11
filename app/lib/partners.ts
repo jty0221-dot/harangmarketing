@@ -1,69 +1,59 @@
 /**
- * 함께한 브랜드 — 홈페이지 로고 슬라이더의 유일한 출처.
+ * 지금 함께하고 있는 곳 · 홈 로고 파노라마의 유일한 출처.
  *
- * 로고는 명함 뒷면 두 장에서 나왔다.
- *   · 하랑 명함 뒷면        → `scripts/partners/build_logos.py`
- *   · 청설모 명함 뒷면(주요 거래처) → `scripts/partners/build_logos_cheongsulmo.py`
- *     대표가 청설모 CMO 를 맡고 하랑이 청설모 마케팅을 함께 보고 있어 같이 싣는다.
+ * 2026-11-12 (목) 대표 지시 「나랑 지금 하고 있는 업체들 로고도 넣어서 파노라마 형식으로 보여줘」.
+ * 예전 목록(명함 뒷면 두 장 · 끝난 곳 포함)은 '함께 일했던 곳' 이었고, 이제 홈은 '지금 진행 중인 곳' 만 싣는다.
  *
- * 업체를 추가하려면
- *   1) 로고 파일을 `public/partners/` 에 넣는다. PNG 투명 배경, 384x144 권장.
- *      명함·인쇄물에서 잘라내야 한다면 위 스크립트가 배경을 알파로 빼고
- *      크기까지 맞춰준다.
- *   2) 아래 배열에 한 줄 추가한다. 순서가 곧 화면 순서다.
+ * 무엇이 '지금' 인가 (2026-11-12 대조)
+ *   · 구글 시트 「하랑 마케팅」 상태 '진행 중'
+ *   · .claude/skills/work-manager/references/contracts.md 진행 중 표 · 대장 밖 거래 고객 '진행'
+ *   · 세금계산서/data/clients.json active
+ *   셋 중 하나라도 종료 · 중단이면 넣지 않는다. '확인 필요' 인 곳도 넣지 않는다.
  *
- * 빼려면 그 줄만 지우면 된다. 컴포넌트는 손대지 않는다.
+ * 넣지 않는 것
+ *   · 대대행 파트너 고객 (권준수 · 이익관 · 이준혁 주문분) · 우리 직계약이 아니다
+ *   · 상호를 밖에 쓰지 않기로 한 곳 (세무법인 아성 대구점 · 바깥 글은 익명)
+ *   · 개인 영업자를 남의 상표로 보여 주게 되는 곳 (벤츠 신부장 · 메르세데스 로고는 그 회사가 고객이라는 뜻이 된다)
  *
- * 계약이 끝난 곳도 그대로 둔다 (2026-09-05 (토) 대표 지시).
- *   이 목록은 '지금 계약 중인 곳' 이 아니라 '함께 일했던 곳' 이다.
- *   상대가 문제 삼으면 그때 그 줄을 지운다. 미리 지우지 않고 미리 묻지도 않는다.
- *   C-25(재접촉 금지)는 영업을 하지 말라는 것이지 로고를 내리라는 것이 아니다.
- *   이 목록을 근거로 다시 결재를 올리지 않는다. H-0189 가 그렇게 올라갔다가 기각됐다.
+ * 로고 파일이 없는 곳은 file 을 비운다. 화면은 상호를 같은 칸에 글자로 적는다.
+ * 로고를 받으면 public/partners/ 에 PNG(투명 · 384x144)로 넣고 file 만 채운다.
+ * 병 · 의원은 로고만 싣고 옆에 성과 문구를 붙이지 않는다.
  */
 export type Partner = {
-  /** 관리용 이름. 화면에는 안 보이고 이미지 alt 로 들어간다 */
+  /** 화면에 글자로 나가는 상호 · 로고가 있으면 alt 로 들어간다 */
   name: string;
-  /** public/partners/ 안의 파일명 */
-  file: string;
-  /** 있으면 로고에 링크가 걸린다 */
-  url?: string;
+  /** public/partners/ 안의 파일명. 없으면 상호를 글자로 적는다 */
+  file?: string;
 };
 
-// 큰 마크와 동네 업체가 한쪽에 몰리지 않게 섞어 뒀다.
-// 컴포넌트가 홀·짝으로 갈라 두 줄에 담으므로 이 순서가 그대로 화면 순서가 된다.
+export const CLIENTS_AS_OF = "2026년 11월";
+
+// 로고와 글자 칸이 한쪽에 몰리지 않게 섞어 뒀다. 홈이 앞뒤 절반으로 갈라 두 줄에 담는다.
 export const PARTNERS: Partner[] = [
-  { name: "한화호텔&리조트", file: "hanwha-hotels-resorts.png" },
-  { name: "대한민국 해병대", file: "rok-marine-corps.png" },
-  { name: "한국수자원공사 K-water", file: "k-water.png" },
-  { name: "샤브올데이", file: "shabu-all-day.png" },
-  { name: "포항공과대학교 POSTECH", file: "postech.png" },
-  { name: "명륜진사갈비", file: "myeongryun-jinsa.png" },
-  { name: "KFC", file: "kfc.png" },
-  { name: "대한민국 해군", file: "rok-navy.png" },
-  { name: "투썸플레이스", file: "twosome-place.png" },
-  { name: "메르세데스-벤츠", file: "mercedes-benz.png" },
-  { name: "컴포즈커피", file: "compose-coffee.png" },
-  { name: "모텍스", file: "motex.png" },
-  { name: "한국지질자원연구원 KIGAM", file: "kigam.png" },
-  { name: "바른약속치과의원", file: "bareun-dental.png" },
-  { name: "파스쿠찌", file: "pascucci.png" },
-  { name: "서울특별시 소방재난본부", file: "seoul-fire-hq.png" },
-  { name: "종로엠스쿨", file: "jongro-m-school.png" },
-  { name: "소방", file: "sobang.png" },
-  { name: "쿠우쿠우", file: "kuu-kuu.png" },
-  { name: "베리굿 웨딩컴퍼니", file: "verygood-wedding.png" },
-  { name: "밴스의원", file: "vands-clinic.png" },
-  { name: "클린패스", file: "cleanpass.png" },
-  { name: "연우디자인스튜디오", file: "yeonwoo-design.png" },
-  { name: "타이백스트리트", file: "thai-back-street.png" },
-  { name: "모앤닷", file: "mo-and-dot.png" },
-  { name: "열정클린", file: "yeoljeong-clean.png" },
-  { name: "스킨뮤즈", file: "skinmuse.png" },
-  { name: "에이봄클리닉", file: "abom-clinic.png" },
-  { name: "미소가득치과", file: "misogadeuk-dental.png" },
-  { name: "DS ENGLISH", file: "ds-english.png" },
+  { name: "에이봄의원", file: "abom-clinic.png" },
+  { name: "소금정원" },
   { name: "청설모 토탈케어", file: "cheongseolmo.png" },
-  { name: "서원가설재", file: "sw-seowon.png" },
+  { name: "충무로 2층집" },
+  { name: "모앤도트", file: "mo-and-dot.png" },
+  { name: "LOCALS." },
+  { name: "타이백스트릿", file: "thai-back-street.png" },
+  { name: "미소나무치과" },
+  { name: "샤브올데이", file: "shabu-all-day.png" },
+  { name: "가츠오" },
+  { name: "서원가설", file: "sw-seowon.png" },
+  { name: "네일가영" },
+  { name: "클린패스", file: "cleanpass.png" },
+  { name: "미니데이카페" },
+  { name: "소방", file: "sobang.png" },
+  { name: "진갈매갈" },
+  { name: "베리굿 웨딩", file: "verygood-wedding.png" },
+  { name: "위드모터스" },
+  { name: "미소가득치과", file: "misogadeuk-dental.png" },
+  { name: "어사출또" },
+  { name: "DS ENGLISH", file: "ds-english.png" },
+  { name: "부천누수탐지" },
+  { name: "울산입주청소" },
+  { name: "의정부입주청소" },
 ];
 
 /** 로고 원본 크기. 전부 같아서 CSS 는 높이만 잡으면 된다 */

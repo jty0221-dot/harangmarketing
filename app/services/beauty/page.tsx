@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import CaseShots from "../../components/sian/CaseShots";
 import {
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
@@ -123,6 +124,8 @@ export default function BeautyLandingPage() {
 
         {/* 뷰티 업종에서 잰 줄만 싣는다. 없으면 절이 빠진다 · 남의 업종 줄은 빌려오지 않는다 */}
         <RankSection industries={BEAUTY_INDUSTRIES} label="뷰티샵" />
+
+        <CaseShots slug="beauty" label="뷰티샵" />
 
         <Section soft title="뷰티 전용 마케팅 패키지">
           <ItemList items={SERVICES} />

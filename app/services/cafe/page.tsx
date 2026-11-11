@@ -3,6 +3,7 @@ import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import CaseShots from "../../components/sian/CaseShots";
 import {
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
@@ -146,6 +147,8 @@ export default function CafeLandingPage() {
         {/* 카페 업종 계측 · 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
             예전 「카페·베이커리 순위 계측 기록 (09-23 스냅샷)」 절은 머리 사실 줄과 이 표로 합쳤다 */}
         <RankSection industries={["카페"]} label="카페" />
+
+        <CaseShots slug="cafe" label="카페" />
 
         <Section soft title="카페 전용 마케팅 패키지">
           <ItemList items={SERVICES} />

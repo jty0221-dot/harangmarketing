@@ -107,9 +107,16 @@
 .cmpHead .us { color: var(--h-blue-light); }
 
 /* 함께한 곳 */
-.logos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.logos li { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.logos img { display: block; width: 100%; height: 112px; padding: 26px 30px; object-fit: contain; filter: grayscale(1); opacity: .78; }
+/* 지금 함께하는 곳 · 두 줄 파노라마. 목록을 두 번 이어 붙여 -50% 만큼 흘리면 끊김 없이 돈다 */
+.pano { position: relative; margin-top: 48px; overflow: hidden; display: grid; gap: 12px; outline-offset: 6px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.track { list-style: none; margin: 0; padding: 0; display: flex; gap: 12px; width: max-content; animation: pano 60s linear infinite; }
+.rev { animation-direction: reverse; animation-duration: 70s; }
+.pano:hover .track, .pano:focus-within .track { animation-play-state: paused; }
+.track li { flex: none; width: 208px; height: 96px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.track img { display: block; width: 100%; height: 100%; padding: 12px 18px; object-fit: contain; }
+.word { padding: 0 16px; font-size: 19px; font-weight: 800; letter-spacing: -.02em; color: var(--w-cn-40); text-align: center; line-height: 1.3; }
+@keyframes pano { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .sumThree { margin-top: 64px; }
 
 /* 질문 · 펼치면 답이 보인다 (FAQPage 구조화 데이터와 짝 · 본문이 DOM 에 있어야 한다) */
@@ -162,14 +169,21 @@
   .who { min-height: 0; }
   .cmpHead { display: none; }
   .cmpRow { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 24px 0; }
-  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .logos img { height: 88px; padding: 20px 24px; }
+  .pano { margin-top: 32px; gap: 10px; }
+  .track { gap: 10px; }
+  .track li { width: 156px; height: 76px; }
+  .track img { padding: 8px 12px; }
+  .word { font-size: 16px; }
   .faq summary { font-size: 18px; }
   .links { grid-template-columns: minmax(0, 1fr); }
   .close { padding: 80px 0; }
   .close .acts .btn { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
+  /* 흐르지 않게 한 줄씩 감아 보여 주고 이어 붙인 사본은 숨긴다 */
+  .pano { -webkit-mask-image: none; mask-image: none; }
+  .track { animation: none; width: auto; flex-wrap: wrap; }
+  .track li[aria-hidden="true"] { display: none; }
   .btn { transition: none; }
   .btn:hover { transform: none; }
 }

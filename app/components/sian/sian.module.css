@@ -119,7 +119,17 @@
 .close p { margin-top: 18px; font-size: 19px; color: rgba(255, 255, 255, .86); max-width: 34em; }
 .tel { font-size: 22px; font-weight: 800; letter-spacing: -.01em; padding: 10px 0; color: #fff; }
 
+/* 업종 진행 사례 사진 · CaseShots.tsx */
+.shots { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+.shots a { display: block; }
+.shots img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; background: var(--soft); border: 1px solid var(--line); }
+.shots span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 14px; font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.45; }
+.shots a:hover span { color: var(--blue-ink); }
+.shots small { display: block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+
 @media (max-width: 900px) {
+  .shots { gap: 22px 14px; }
+  .shots span { font-size: 15px; }
   .root { font-size: 16px; }
   .wrap { padding: 0 20px; }
   .sec { padding: 72px 0; }

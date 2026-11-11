@@ -138,10 +138,13 @@ export default function HeroSection({ videoSpeed = 1 }: { videoSpeed?: number })
 
       <div className={s.wrap}>
         <h1>
-          광고비를 더 쓰기 전에,<br />
-          고객을 놓치는 곳부터 확인하세요.
+          매출을 장담하는 대신,<br />
+          될 확률을 높입니다.
         </h1>
-        <p className={s.lead}>현재 상태와 먼저 할 일, 다음에 확인할 숫자를 하랑 대표가 직접 설명합니다.</p>
+        <p className={s.lead}>
+          마케팅 비용은 광고비가 아니라 {SITE.stats.years} 동안 쌓은 경험과 문제를 푸는 시간입니다.
+          상품 · 가격 · 시장 · 고객 마음까지 따져, 지금 조건에서 가장 효율적인 길을 하랑 대표가 함께 찾습니다.
+        </p>
         <div className={s.acts}>
           <Link href="/free-check" className={`${s.btn} ${s.btnWhite}`}>내 매장 현재 상태 확인하기</Link>
           <Link href="/cases/place-rank" className={s.textLink}>실제 계측 사례 보기</Link>

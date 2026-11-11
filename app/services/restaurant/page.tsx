@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import CaseShots from "../../components/sian/CaseShots";
 import {
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
@@ -154,6 +155,8 @@ export default function RestaurantPage() {
         {/* 음식점 업종에서 잰 줄 · 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
             예전 「음식점·식당 순위 계측 기록 (09-23 스냅샷)」 절과 머리의 순위 칸 셋은 머리 사실 줄과 이 표로 합쳤다 */}
         <RankSection industries={FOOD_INDUSTRIES} label="음식점" />
+
+        <CaseShots slug="food" label="음식점" />
 
         <Section soft title="이렇게 해결합니다" desc="음식점 채널별 맞춤 전략.">
           <ItemList items={SOLUTIONS} one />

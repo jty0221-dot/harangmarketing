@@ -11,7 +11,7 @@ import {
   byVolume, fmtMove, PLACE_RANK_AS_OF, PLACE_RANK_VOLUME_AS_OF, PLACE_RANK_MONITORING,
 } from "./lib/place-rank-cases";
 import { TRACK_TOTALS } from "./lib/track-record";
-import { PARTNERS, PARTNER_LOGO } from "./lib/partners";
+import { PARTNERS, PARTNER_LOGO, CLIENTS_AS_OF, type Partner } from "./lib/partners";
 import s from "./home.module.css";
 
 /*
@@ -117,10 +117,27 @@ const COMPARISONS = [
   },
 ];
 
-/* 로고는 app/lib/partners.ts 한 곳에서 온다. 4x4 격자라 열여섯 장만 싣는다.
-   목록이 큰 마크와 동네 업체를 번갈아 섞어 둔 순서라 짝수 자리만 고르면 한쪽에 몰리지 않는다 (시안과 같은 열여섯 장).
-   shortcut: 로고가 32장보다 줄면 16칸이 안 찬다 · 그때는 앞에서 16장을 그대로 쓰도록 바꾼다 */
-const LOGOS = PARTNERS.filter((_, i) => i % 2 === 0).slice(0, 16);
+/* 로고는 app/lib/partners.ts 한 곳에서 온다. 앞 절반과 뒤 절반을 두 줄에 나눠 서로 반대로 흐르게 한다 */
+const HALF = Math.ceil(PARTNERS.length / 2);
+const LOGO_ROWS = [PARTNERS.slice(0, HALF), PARTNERS.slice(HALF)];
+
+/** 로고가 있으면 이미지, 없으면 같은 칸에 상호를 글자로 적는다 */
+function Tile({ p, hidden }: { p: Partner; hidden?: boolean }) {
+  return (
+    <li aria-hidden={hidden || undefined}>
+      {p.file
+        ? <img src={`/partners/${p.file}`} alt={hidden ? "" : `${p.name} 로고`} width={PARTNER_LOGO.w} height={PARTNER_LOGO.h} loading="lazy" decoding="async" />
+        : <span className={s.word}>{p.name}</span>}
+    </li>
+  );
+}
+
+/* 고객을 장담하지 않는 이유 · 2026-11-12 대표가 붙여 준 글을 세 줄로 줄였다 */
+const BELIEFS = [
+  { title: "결과를 움직이는 변수는 많습니다", text: "상품의 경쟁력, 가격, 시장 상황, 고객의 구매 심리까지. 좋은 마케터를 써도 매출이 저절로 오르지는 않습니다." },
+  { title: "그래서 가장 효율적인 방향부터 찾습니다", text: "주어진 조건에서 돈과 시간이 덜 새는 길을 먼저 고르고, 될 확률을 한 단계씩 높입니다." },
+  { title: "답은 대표님과 함께 찾습니다", text: "결과만 요구하는 일이 아니라, 전문성을 믿고 같이 답을 찾아가는 과정이라고 생각합니다." },
+];
 
 /* 묶음은 FAQ 페이지와 같은 주제 다섯 개. 질문 수는 묶음 길이에서 센다 */
 const FAQ_GROUPS = [
@@ -148,6 +165,25 @@ export default function HomePage() {
       <Header />
       <main className={s.root}>
         <HeroSection />
+
+        {/* 장담하지 않는 이유 */}
+        <section className={`${s.sec} ${s.soft}`} aria-labelledby="belief-heading">
+          <div className={`${s.wrap} ${s.two}`}>
+            <div className={s.side}>
+              <h2 id="belief-heading">마케팅 비용으로 사시는 것은 경험과 시간입니다</h2>
+              <p>광고를 대신 눌러 드리는 값이 아니라, 오래 쌓은 노하우와 대표님 문제를 푸는 데 쓰는 시간입니다.</p>
+            </div>
+            <ol className={s.checks}>
+              {BELIEFS.map((c, i) => (
+                <li key={c.title}>
+                  <span className={s.no}>0{i + 1}</span>
+                  <h3>{c.title}</h3>
+                  <p>{c.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
 
         {/* 키워드별 순위 */}
         <section className={s.sec} id="rank" aria-labelledby="rank-heading">
@@ -269,24 +305,23 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 함께한 곳 */}
+        {/* 지금 함께하는 곳 · 두 줄 파노라마. 마우스를 올리거나 초점이 들어오면 멈춘다 */}
         <section className={s.sec} aria-labelledby="partners-heading">
           <div className={s.wrap}>
-            <div className={s.two}>
-              <div className={s.side}>
-                <h2 id="partners-heading">이런 곳들과 일했습니다</h2>
-                <p>군 · 관공서와 대학, 프랜차이즈부터 동네 치과와 공방까지. 하랑과, 대표가 CMO 로 있는 청설모가 함께 맡아온 곳들입니다.</p>
-              </div>
-              <ul className={s.logos}>
-                {LOGOS.map((p) => (
-                  <li key={p.file}>
-                    <img src={`/partners/${p.file}`} alt={`${p.name} 로고`} width={PARTNER_LOGO.w} height={PARTNER_LOGO.h} loading="lazy" decoding="async" />
-                  </li>
-                ))}
-              </ul>
+            <div className={s.side}>
+              <h2 id="partners-heading">지금 함께하고 있는 곳들</h2>
+              <p>{CLIENTS_AS_OF} 기준, 하랑 대표가 직접 맡아 진행 중인 매장과 브랜드입니다. 음식점과 카페부터 치과 · 의원, 입주청소와 설비까지.</p>
+            </div>
+            <div className={s.pano} role="region" tabIndex={0} aria-label="지금 함께하고 있는 곳 로고 목록 · 초점이 들어오면 멈춥니다">
+              {LOGO_ROWS.map((row, r) => (
+                <ul key={r} className={`${s.track} ${r ? s.rev : ""}`}>
+                  {row.map((p) => <Tile key={p.name} p={p} />)}
+                  {row.map((p) => <Tile key={`${p.name}-2`} p={p} hidden />)}
+                </ul>
+              ))}
             </div>
             <dl className={`${s.sum} ${s.sumThree}`}>
-              <div><dt>{TRACK_TOTALS.stores}곳</dt><dd>맡아온 매장 · 계약 서류로 확인한 것만</dd></div>
+              <div><dt>{TRACK_TOTALS.stores}곳</dt><dd>지금까지 맡아온 매장 · 계약 대장 기준</dd></div>
               <div><dt>{TRACK_TOTALS.trades}종</dt><dd>업종 · 음식점부터 설비까지</dd></div>
               <div><dt>{TRACK_TOTALS.workKinds}종</dt><dd>맡아서 한 일 · 플레이스부터 영상까지</dd></div>
             </dl>

@@ -103,7 +103,7 @@ export default function CasesPage() {
             { label: "완료 프로젝트 · 10년 누적", value: "500+" },
             { label: "개업 · 2020년 4월", value: `${companyYear()}년차` },
             { label: "특화 업종", value: "6개+" },
-            { label: "맡아온 매장 · 계약 서류로 확인한 것만", value: `${TRACK_TOTALS.stores}곳` },
+            { label: "맡아온 매장 · 계약 대장 기준", value: `${TRACK_TOTALS.stores}곳` },
           ]}
         />
 
@@ -138,7 +138,7 @@ export default function CasesPage() {
           soft
           id="track-record"
           title="순위 말고, 맡아온 매장 자체를 세어 봤습니다"
-          desc="계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호 · 지점명 · 지역은 밝히지 않고 업종과 맡아서 한 일만 적습니다."
+          desc="계약 대장(구글 시트)과 견적 · 계약 서류를 맞대어 확인한 것만 옮겼습니다. 상호 · 지점명 · 지역은 밝히지 않고 업종과 맡아서 한 일만 적습니다."
           more={{ href: "/portfolio", label: "업종별 매장과 진행 항목 전부 보기" }}
         >
           <ul className="space-y-3">
