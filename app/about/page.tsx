@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Link from "next/link";
-import {
-  Shield, Target, TrendingUp, MessageCircle, Heart,
-  CheckCircle2, ArrowRight, Quote,
-  Phone, BookOpen, MapPin, AtSign, Coffee, Users,
-} from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 import YouTubeSection from "../components/YouTubeSection";
 import JsonLd from "../components/JsonLd";
-import AnswerBlock from "../components/AnswerBlock";
+import {
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Table, QuestionList, CloseBand,
+} from "../components/sian/Sian";
+import s from "../components/sian/sian.module.css";
 import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, companyYear } from "../lib/seo";
 
 const BASE = SITE.base;
@@ -87,41 +84,26 @@ export const metadata: Metadata = {
 
 const PROMISES = [
   {
-    num: "01",
-    icon: Shield,
-    color: "from-blue-500 to-blue-700",
     title: "투명하게 작업합니다",
     desc: "말로만 믿어달라고 하지 않습니다. 계약한 작업은 빠짐없이 진행하고, 게시한 글은 URL 을 전부 드려 직접 확인하실 수 있게 합니다. 좋은 숫자만 골라 보여드리지 않고 잰 결과를 그대로 공유합니다.",
     badge: "작업 내역 전량 공개",
   },
   {
-    num: "02",
-    icon: Target,
-    color: "from-blue-600 to-blue-800",
     title: "묶음 패키지 강요 없이, 꼭 필요한 것만",
     desc: "음식점과 학원, 쇼핑몰은 필요한 마케팅이 전혀 다릅니다. 불필요한 서비스를 끼워 넣지 않고 현재 상태와 예산에 맞는 항목만 제안합니다.",
     badge: "업종별 맞춤 설계",
   },
   {
-    num: "03",
-    icon: TrendingUp,
-    color: "from-blue-500 to-blue-700",
     title: "반짝 노출 NO, 지속 가능한 성장",
     desc: "단순 광고보다 검색 기록과 콘텐츠가 함께 쌓이는 구조를 만듭니다. 순위를 계속 확인하고 변화가 없으면 실행 항목을 다시 조정합니다.",
     badge: "장기 성장 설계",
   },
   {
-    num: "04",
-    icon: MessageCircle,
-    color: "from-blue-700 to-indigo-700",
     title: "대표님을 귀찮게 하는 파트너",
     desc: "계약 뒤에도 진행 내역과 결과를 같은 기준으로 공유합니다. 문의는 언제든 남기실 수 있고, 확인한 내용을 순서대로 답변드립니다.",
     badge: "문의 상시 접수",
   },
   {
-    num: "05",
-    icon: Heart,
-    color: "from-blue-600 to-blue-900",
     title: "실패 경험에서 나오는 진정성",
     desc: "하랑 대표는 카페 창업을 직접 했다가 실패한 경험이 있습니다. 마케팅이 단순한 비용이 아니라 생존을 위한 투자임을 누구보다 잘 압니다. 대표님의 돈을 제 돈처럼 무겁게 생각합니다.",
     badge: "대표가 직접 관리",
@@ -129,12 +111,12 @@ const PROMISES = [
 ];
 
 const SERVICES_LIST = [
-  { icon: MapPin, color: "from-blue-500 to-blue-700", title: "네이버 플레이스 SEO", items: ["SEO 최적화", "정보 정비", "순위 계측", "네이버 예약 연동 세팅"] },
-  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 원고 작성·게시 보고", "블로그 원고 배포", "기자단 배포"] },
-  { icon: Users, color: "from-blue-500 to-blue-700", title: "바이럴 마케팅", items: ["맘카페 입소문 마케팅", "체험단 모집 (실사용자 기반)", "지역 커뮤니티 바이럴"] },
-  { icon: AtSign, color: "from-blue-700 to-indigo-700", title: "SNS 마케팅", items: ["인스타그램 계정 육성", "게시물 구성·발행", "리그램", "하이라이트 세팅"] },
-  { icon: MapPin, color: "from-blue-600 to-blue-800", title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 후기 확인·답글", "카카오맵 정보 정비"] },
-  { icon: Coffee, color: "from-blue-500 to-indigo-600", title: "창업 지원", items: ["홈페이지형 블로그 제작", "로고·명함 디자인", "메뉴판 제작"] },
+  { title: "네이버 플레이스 SEO", items: ["SEO 최적화", "정보 정비", "순위 계측", "네이버 예약 연동 세팅"] },
+  { title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 원고 작성·게시 보고", "블로그 원고 배포", "기자단 배포"] },
+  { title: "바이럴 마케팅", items: ["맘카페 입소문 마케팅", "체험단 모집 (실사용자 기반)", "지역 커뮤니티 바이럴"] },
+  { title: "SNS 마케팅", items: ["인스타그램 계정 육성", "게시물 구성·발행", "리그램", "하이라이트 세팅"] },
+  { title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 후기 확인·답글", "카카오맵 정보 정비"] },
+  { title: "창업 지원", items: ["홈페이지형 블로그 제작", "로고·명함 디자인", "메뉴판 제작"] },
 ];
 
 const FAQS = [
@@ -160,403 +142,142 @@ const FAQS = [
   },
 ];
 
+/* 2026-11-12 시안 틀로 다시 짰다 (세부 카테고리 3차).
+   머리 숫자 칸 · 정답 상자 숫자 · 10년 수치 띠는 머리 사실 줄 하나로 합쳤다. 회사 숫자는 CLAUDE.md 1-C 그대로 */
+const PAINS = [
+  "마케팅, 해야 하는 건 아는데 막상 하려니 너무 어렵고 귀찮습니다.",
+  "광고비는 썼는데 효과는 없고, 돈만 날린 기분이에요.",
+  "내 가게처럼 꼼꼼히 관리해 주는 곳, 정말 없을까요?",
+];
+
+const COMPARE = [
+  { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "대표가 직접 관리 (처음부터 끝까지)" },
+  { item: "상담 비용", general: "유료 또는 계약 압박", harang: "완전 무료 · 계약 강요 없음" },
+  { item: "성과 보고", general: "업체마다 보고 기준이 다름", harang: "매월 순위 기록 · 게시 URL 리포트" },
+  { item: "작업 투명성", general: "게시 위치를 확인하기 어려운 경우가 있음", harang: "게시 URL 전체 전달" },
+  { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정 · 중도 해지 위약금 없음" },
+  { item: "순위 약속", general: "몇 위까지 올려준다고 약속", harang: "약속 대신 정해진 시각 계측 · 잰 숫자 그대로 공개" },
+  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 처음이면 2~3개월 이상" },
+];
+
+const HISTORY = [
+  { year: "2014~", event: "대학생 서포터즈 활동 · 마케팅 경력 시작", note: "브랜드 홍보, 콘텐츠 제작, 현장 마케팅 경험 축적" },
+  { year: "2018", event: "해병대 장교 전역 · 카페 창업 도전", note: "마케팅을 몰라 단기간 폐업. 소상공인의 아픔을 직접 경험" },
+  { year: "2018~", event: "마케팅 대행사 취업 · 팀장까지 근무", note: "내부에서 목격한 허위 보고·불성실 대응에 혐오감 → 직접 창업 결심" },
+  { year: "2020", event: "하랑마케팅 공식 설립 (4월 15일)", note: "'제대로 된 대행사를 만들자' · 소상공인 전문 마케팅 대행 시작" },
+  { year: "2024", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
+  { year: "2026", event: "대표 10년 경력 누적 500건 프로젝트", note: "7년차 · 대표가 직접 관리 원칙 유지 중" },
+];
+
+const PROSE = { display: "grid", gap: 16 } as const;
+const QUOTE = { margin: 0, paddingLeft: 20, borderLeft: "2px solid var(--ink)" } as const;
+const SIGN = { marginTop: 8, fontSize: 15 } as const;
+
 export default function AboutPage() {
   return (
     <>
       <JsonLd data={ABOUT_LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-
-        {/* Hero */}
-        <section className="bg-gray-950 py-20 md:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[var(--w-primary)]/7 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-[var(--w-primary)]/7 rounded-full blur-3xl" />
-            <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-          </div>
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-[var(--w-blue-70)] uppercase tracking-[0.2em] mb-6">About Us</p>
-            <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-black text-white mb-6 leading-[1.05] tracking-tight">
-              결과가 없으면<br />솔직히 말씀드립니다
-            </h1>
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mb-8">
-              수많은 대행사에 실망하셨던 그 마음, 누구보다 잘 알고 있습니다.
-              누적 500건의 프로젝트를 함께한 대표님들이 하랑마케팅을 선택하신 이유를 솔직하게 이야기합니다.
-            </p>
-            <div className="grid grid-cols-3 gap-4 max-w-md">
-              {[
-                { val: "500건", label: "누적 프로젝트" },
-                { val: `${companyYear()}년차`, label: "2020년 개업" },
-                { val: "10년", label: "경력" },
-              ].map(s => (
-                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 text-center">
-                  {/* 375px 3칸에서 칸 안쪽이 71px 뿐이라 '97.4%' 의 % 가 둘째 줄로 떨어졌다.
-                      숫자는 줄바꿈하지 않는다 (2026-08-27 (목) 수정) */}
-                  <div className="text-xl sm:text-2xl font-black text-white mb-0.5 whitespace-nowrap tabular-nums">{s.val}</div>
-                  <div className="text-xs text-gray-400">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* AEO — 회사·대표 정체성 한 줄 정답 */}
-        <AnswerBlock
-          question="하랑마케팅 대표는 누구이고, 회사는 어떤 곳인가요?"
-          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 매장을 직접 운영해 본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
+      <SianMain>
+        <PageHead
+          where="회사소개 · About Us"
+          title={<>결과가 없으면<br />솔직히 말씀드립니다</>}
+          lead="수많은 대행사에 실망하셨던 그 마음, 누구보다 잘 알고 있습니다. 누적 500건의 프로젝트를 함께한 대표님들이 하랑마케팅을 선택하신 이유를 솔직하게 이야기합니다."
+          primary={{ href: "/contact", label: "무료 상담 신청" }}
+          link={{ href: "/services", label: "서비스 상세 보기" }}
           facts={[
-            { label: "대표", value: "전태영" },
-            { label: "설립", value: "2020.04.15" },
-            { label: "담당 지역", value: "전국" },
-            { label: "누적 프로젝트", value: "500건+" },
+            { value: "10년", label: "마케팅 경력 · 서포터즈 활동부터" },
+            { value: "500건", label: "누적 프로젝트 · 대표 경력 10년 합산" },
+            { value: `${companyYear()}년차`, label: "2020.04.15 개업" },
+            { value: "0원", label: "상담 비용 · 계약 강요 없음" },
           ]}
         />
 
-        {/* Pain Points */}
-        <section className="py-14 md:py-20 bg-white border-b border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-red-700 uppercase tracking-widest mb-6 text-center">혹시 이런 고민 중이신가요?</p>
-            <div className="space-y-5">
-              {[
-                "마케팅, 해야 하는 건 아는데 막상 하려니 너무 어렵고 귀찮습니다.",
-                "광고비는 썼는데 효과는 없고, 돈만 날린 기분이에요.",
-                "내 가게처럼 꼼꼼히 관리해 주는 곳, 정말 없을까요?",
-              ].map((text, i) => (
-                <div key={i} className="relative pl-6 border-l-4 border-red-500">
-                  <div className="absolute -top-2 -left-1 text-red-500 text-5xl font-black leading-none select-none opacity-20">&ldquo;</div>
-                  <p className="text-lg md:text-xl font-black text-gray-900 leading-snug">{text}</p>
-                  <div className="absolute -bottom-1 left-0 w-1 h-3 bg-red-400 rounded-full opacity-50" />
-                </div>
-              ))}
-            </div>
+        {/* AEO · 회사 · 대표 정체성 한 줄 정답 (speakable) */}
+        <AnswerRow
+          question="하랑마케팅 대표는 누구이고, 회사는 어떤 곳인가요?"
+          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 매장을 직접 운영해 본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
+        />
+
+        <Section soft title="혹시 이런 고민 중이신가요?">
+          <LineList items={PAINS} />
+        </Section>
+
+        <Section
+          eyebrow="대표 스토리"
+          title="실패해 본 마케터가 성공하는 길을 가장 잘 압니다"
+          desc={<>전태영 · 하랑마케팅 대표<br />해병대 장교 출신 · 마케팅 경력 10년 · {companyYear()}년차 대표 · 담당 지역 전국</>}
+        >
+          {SHOW_PHOTO && (
+            <PhotoPlaceholder
+              label="대표 전태영 프로필 사진"
+              hint="정장 또는 캐주얼 정장 / 밝은 배경 / 세로형 인물 사진"
+              width="w-full"
+              height="h-64"
+              className="rounded-2xl"
+            />
+          )}
+          <div className={s.answer} style={PROSE}>
+            <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="font-semibold">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
+            <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="font-semibold">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, &lsquo;내가 직접 제대로 된 대행사를 만들자&rsquo;는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
+            <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 <strong className="font-semibold">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
+            <p>하랑이라는 이름은 순우리말로 <strong className="font-semibold">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 뜻입니다.</p>
+            <blockquote style={QUOTE}>
+              <p>&lsquo;음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.&rsquo;</p>
+              <p className="font-semibold" style={SIGN}>대표 전태영</p>
+            </blockquote>
           </div>
-        </section>
+        </Section>
 
-        {/* CEO Story */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 md:gap-14 items-start">
-              {/* Photo */}
-              <div className="flex flex-col items-center gap-4">
-                {SHOW_PHOTO && (
-                <PhotoPlaceholder
-                  label="대표 전태영 프로필 사진"
-                  hint="정장 또는 캐주얼 정장 / 밝은 배경 / 세로형 인물 사진"
-                  width="w-full"
-                  height="h-64"
-                  className="rounded-2xl"
-                />
-                )}
-                <div className="w-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-4 text-center">
-                  <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
-                  <div className="text-xs text-[var(--w-primary-strong)] font-bold">하랑마케팅 대표</div>
-                  <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년 · {companyYear()}년차 대표</div>
-                </div>
-              </div>
+        <Section soft title="왜 하랑마케팅을 선택해야 할까요?" desc="미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다">
+          <ItemList one items={PROMISES.map((p) => ({ title: p.title, desc: `${p.desc} (${p.badge})` }))} />
+        </Section>
 
-              {/* Story */}
-              <div>
-                <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-4">대표 스토리</p>
-                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 leading-snug">
-                  실패해 본 마케터가<br /><span className="text-[var(--w-primary)]">성공하는 길을 가장 잘 압니다</span>
-                </h2>
-                <div className="space-y-4 text-gray-600 text-base leading-relaxed">
-                  <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="text-gray-900">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
-                  <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="text-gray-900">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, &lsquo;내가 직접 제대로 된 대행사를 만들자&rsquo;는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
-                  <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 <strong className="text-gray-900">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
-                  <p>하랑이라는 이름은 순우리말로 <strong className="text-gray-900">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 뜻입니다.</p>
-                </div>
-
-                <div className="mt-7 p-5 rounded-2xl bg-[var(--w-blue-95)] border border-[var(--w-blue-90)]">
-                  <div className="w-7 h-7 rounded-lg bg-[var(--w-primary)] flex items-center justify-center mb-3 shadow-sm">
-                    <Quote size={12} className="text-white" />
-                  </div>
-                  <p className="text-sm text-[var(--w-primary-heavy)] leading-relaxed font-medium italic">
-                    &lsquo;음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.&rsquo;
-                  </p>
-                  <p className="text-xs text-[var(--w-primary-strong)] mt-2 font-bold">대표 전태영</p>
-                </div>
-
-                <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {[
-                    { val: "10년", label: "마케팅 경력" },
-                    { val: "500건", label: "누적 프로젝트" },
-                    { val: `${companyYear()}년차`, label: "2020년 개업" },
-                    { val: "24시간", label: "카카오톡 접수" },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
-                      <div className="text-lg font-black text-[var(--w-primary)]">{s.val}</div>
-                      <div className="text-[11px] text-gray-500">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 5 Promises */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">하랑의 약속</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900">왜 하랑마케팅을 선택해야 할까요?</h2>
-              <p className="text-gray-500 text-sm mt-2">미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다</p>
-            </div>
-            <div className="space-y-4">
-              {PROMISES.map((p) => {
-                const Icon = p.icon;
-                return (
-                  <div key={p.num} className="bg-white rounded-2xl p-6 md:p-7 border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                      <div className="flex items-center gap-3 sm:shrink-0">
-                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: "var(--w-primary)" }}>
-                          <Icon size={20} className="text-white" strokeWidth={2} />
-                        </div>
-                        <span className="text-lg font-black sm:hidden" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className="text-lg font-black hidden sm:block" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
-                          <h3 className="font-black text-gray-900 text-base">{p.title}</h3>
-                          <span className="px-2 py-0.5 rounded-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] text-[var(--w-primary-strong)] text-[11px] font-black">{p.badge}</span>
-                        </div>
-                        <p className="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* All-in-One Services */}
-        <section className="py-16 md:py-24 bg-white border-t border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">All-in-One 서비스</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900">하랑을 통하면 원스텝으로 해결됩니다</h2>
-              <p className="text-gray-500 text-sm mt-2">복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {SERVICES_LIST.map((s) => {
-                const Icon = s.icon;
-                return (
-                  <div key={s.title} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:bg-white hover:shadow-md transition-all">
-                    <div className="p-5">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                        <Icon size={17} className="text-white" strokeWidth={2} />
-                      </div>
-                      <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>
-                      <ul className="space-y-1">
-                        {s.items.map((item) => (
-                          <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
-                            <CheckCircle2 size={11} className="text-[var(--w-blue-70)] shrink-0" strokeWidth={2.5} />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="mt-8 text-center">
-              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-bold text-sm transition-colors shadow-sm">
-                서비스 상세 보기 <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <Section
+          title="하랑을 통하면 원스텝으로 해결됩니다"
+          desc="복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다"
+          more={{ href: "/services", label: "서비스 상세 보기" }}
+        >
+          <ItemList items={SERVICES_LIST.map((x) => ({ title: x.title, desc: x.items.join(" · ") }))} />
+        </Section>
 
         {/* 유튜브 최신 영상 (채널 RSS 로 자동 갱신) */}
         <YouTubeSection variant="latest" />
 
-        {/* CEO Letter */}
-        <section className="py-16 md:py-20 bg-[var(--w-primary)] relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[var(--w-blue-70)]/10 rounded-full blur-3xl" />
+        <Section soft eyebrow="대표의 편지" title="광고비는 나가는데 전화는 울리지 않던 달, 저도 겪었습니다">
+          <div className={s.answer} style={PROSE}>
+            <p>가게 문을 닫고 그날 매출을 정산하다 보면 압니다. 오늘 들어온 손님 중에 처음 온 사람이 몇인지. 그 숫자가 며칠째 그대로일 때의 기분을요. 저는 그게 맛 때문인 줄 알았습니다. 아니었습니다. 그 골목에 우리 가게가 있다는 걸 아무도 몰랐을 뿐입니다.</p>
+            <p>그때 맡겨봤던 대행사는 물어봐야 답이 왔습니다. 이번 달에 무엇을 했고 무엇이 달라졌는지는 끝까지 알 수 없었습니다. 나중에 그 안으로 들어가 일해보고 나서야 알았습니다. <strong className="font-semibold">답을 안 준 게 아니라, 보여드릴 것이 없었던 겁니다.</strong></p>
+            <p>그래서 하랑은 순서를 뒤집었습니다. 물어보시기 전에 먼저 말씀드리고, 안 된 것은 안 됐다고 적습니다. 순위가 내려간 주에도 그대로 보내드립니다. 좋은 소식만 골라 보내면 그건 보고가 아니라 광고입니다.</p>
+            <p>전화를 받는 사람도 접니다. 상담한 사람이 그대로 끝까지 맡습니다. 계약하자마자 처음 보는 담당자로 바뀌는 일은 없습니다.</p>
+            <blockquote style={QUOTE}>
+              <p>오늘 계약하지 않으셔도 됩니다. 지금 어디에서 돈이 새고 있는지만 듣고 가셔도 괜찮습니다. 대표님이 지금 넣고 계신 그 돈이, 제가 카페에 넣었던 돈과 다르지 않다는 걸 아니까요.</p>
+              <p className="font-semibold" style={SIGN}>하랑마케팅 대표 전태영</p>
+            </blockquote>
           </div>
-          <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="w-10 h-10 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center mb-6 shadow-sm">
-              <Quote size={17} className="text-white" />
-            </div>
-            <p className="text-xs font-bold text-white uppercase tracking-widest mb-5">대표의 편지</p>
-            <h2 className="text-xl md:text-2xl font-black text-white mb-6 leading-relaxed">
-              광고비는 나가는데 전화는 울리지 않던 달, 저도 겪었습니다
-            </h2>
-            <div className="space-y-4 text-white text-base leading-relaxed mb-8">
-              <p>가게 문을 닫고 그날 매출을 정산하다 보면 압니다. 오늘 들어온 손님 중에 처음 온 사람이 몇인지. 그 숫자가 며칠째 그대로일 때의 기분을요. 저는 그게 맛 때문인 줄 알았습니다. 아니었습니다. 그 골목에 우리 가게가 있다는 걸 아무도 몰랐을 뿐입니다.</p>
-              <p>그때 맡겨봤던 대행사는 물어봐야 답이 왔습니다. 이번 달에 무엇을 했고 무엇이 달라졌는지는 끝까지 알 수 없었습니다. 나중에 그 안으로 들어가 일해보고 나서야 알았습니다. <strong className="text-white">답을 안 준 게 아니라, 보여드릴 것이 없었던 겁니다.</strong></p>
-              <p>그래서 하랑은 순서를 뒤집었습니다. 물어보시기 전에 먼저 말씀드리고, 안 된 것은 안 됐다고 적습니다. 순위가 내려간 주에도 그대로 보내드립니다. 좋은 소식만 골라 보내면 그건 보고가 아니라 광고입니다.</p>
-              <p>전화를 받는 사람도 접니다. 상담한 사람이 그대로 끝까지 맡습니다. 계약하자마자 처음 보는 담당자로 바뀌는 일은 없습니다.</p>
-            </div>
-            <div className="bg-black/10 border border-white/20 rounded-2xl p-5 mb-8">
-              <p className="text-sm text-white font-medium leading-relaxed">
-                오늘 계약하지 않으셔도 됩니다. 지금 어디에서 돈이 새고 있는지만 듣고 가셔도 괜찮습니다. 대표님이 지금 넣고 계신 그 돈이, 제가 카페에 넣었던 돈과 다르지 않다는 걸 아니까요.
-              </p>
-              <p className="text-xs text-[var(--w-blue-80)] mt-2 font-bold">하랑마케팅 대표 전태영</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[var(--w-primary-strong)] font-black text-sm hover:bg-[var(--w-blue-95)] transition-colors shadow-lg">
-                무료 상담 신청 <ArrowRight size={14} />
-              </Link>
-              <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-sm hover:bg-white/18 transition-colors">
-                <MessageCircle size={14} /> 카카오톡 문의
-              </a>
-            </div>
-          </div>
-        </section>
+        </Section>
 
-        {/* 10년 수치 배너 */}
-        <section className="py-10 bg-gray-50 border-t border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {[
-                { value: "10년", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
-                { value: "500건", label: "누적 프로젝트", sub: "대표 경력 10년 합산" },
-                { value: `${companyYear()}년차`, label: "업력", sub: "2020년 4월 개업" },
-                { value: "0원", label: "상담 비용", sub: "계약 강요 없음" },
-              ].map((s) => (
-                <div key={s.label} className="bg-white rounded-2xl p-4 md:p-5 text-center border border-gray-100 shadow-sm">
-                  <div className="text-2xl md:text-3xl font-black text-[var(--w-primary)] mb-0.5">{s.value}</div>
-                  <div className="text-xs font-black text-gray-800">{s.label}</div>
-                  <div className="text-[11px] text-gray-500 mt-0.5">{s.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section
+          eyebrow="Why Harang"
+          title="대행사, 어디를 골라야 할까요?"
+          desc="실제 소상공인 대표님들이 대행사 선택에서 가장 많이 겪는 문제와 하랑의 차이를 정직하게 비교했습니다."
+        >
+          <Table
+            label="일반 대행사와 하랑마케팅 비교"
+            head={["항목", "일반 대행사", "하랑마케팅"]}
+            rows={COMPARE.map((r) => [r.item, r.general, <span key="h" className="font-semibold">{r.harang}</span>])}
+          />
+        </Section>
 
-        {/* 하랑 vs 일반 대행사 비교 */}
-        <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">Why Harang</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
-                대행사, 어디를 골라야 할까요?
-              </h2>
-              <p className="text-gray-500 text-sm">실제 소상공인 대표님들이 대행사 선택에서 가장 많이 겪는 문제와 하랑의 차이를 정직하게 비교했습니다.</p>
-            </div>
-            <div className="overflow-x-auto -mx-4 md:mx-0">
-              <div className="min-w-[600px] md:min-w-0 px-4 md:px-0">
-                {/* Header row */}
-                <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mb-1">
-                  <div className="py-3 px-4 text-xs font-black text-gray-500 uppercase tracking-widest">항목</div>
-                  <div className="py-3 px-4 rounded-t-2xl bg-gray-100 text-center text-xs font-black text-gray-600 uppercase tracking-widest">일반 대행사</div>
-                  <div className="py-3 px-4 rounded-t-2xl bg-[var(--w-primary)] text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
-                </div>
-                {[
-                  { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "대표가 직접 관리 (처음부터 끝까지)" },
-                  { item: "상담 비용", general: "유료 또는 계약 압박", harang: "완전 무료 · 계약 강요 없음" },
-                  { item: "성과 보고", general: "업체마다 보고 기준이 다름", harang: "매월 순위 기록 · 게시 URL 리포트" },
-                  { item: "작업 투명성", general: "게시 위치를 확인하기 어려운 경우가 있음", harang: "게시 URL 전체 전달" },
-                  { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정 · 중도 해지 위약금 없음" },
-                  { item: "순위 약속", general: "몇 위까지 올려준다고 약속", harang: "약속 대신 정해진 시각 계측 · 잰 숫자 그대로 공개" },
-                  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 처음이면 2~3개월 이상" },
-                ].map((row, i) => (
-                  <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] gap-0 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"}`}>
-                    <div className="py-4 px-4 text-sm font-bold text-gray-700 flex items-center border-b border-gray-100">{row.item}</div>
-                    <div className="py-4 px-4 text-sm text-gray-600 flex items-center border-b border-gray-100 bg-gray-100/50">
-                      <CheckCircle2 size={13} className="text-gray-600 shrink-0 mr-2" strokeWidth={2.5} />
-                      {row.general}
-                    </div>
-                    <div className="py-4 px-4 text-sm text-[var(--w-primary-strong)] font-semibold flex items-center border-b border-[var(--w-blue-95)] bg-[var(--w-blue-99)]">
-                      <CheckCircle2 size={13} className="text-[var(--w-blue-60)] shrink-0 mr-2" strokeWidth={2.5} />
-                      {row.harang}
-                    </div>
-                  </div>
-                ))}
-                {/* Footer row */}
-                <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mt-1">
-                  <div />
-                  <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-600 font-semibold">일반 대행사</div>
-                  <div className="rounded-b-2xl bg-[var(--w-primary)] py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 text-center">
-              <Link href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-black text-sm transition-colors shadow-sm">
-                무료 상담으로 직접 확인하기 <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <Section soft title="하랑마케팅 걸어온 길">
+          <ItemList one items={HISTORY.map((h) => ({ title: `${h.year} · ${h.event}`, desc: h.note }))} />
+        </Section>
 
-        {/* FAQ */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">자주 묻는 질문</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900">상담 전 미리 확인하세요</h2>
-            </div>
-            <div className="space-y-3">
-              {FAQS.map((faq, i) => (
-                <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-[var(--w-blue-90)] transition-colors">
-                  <summary className="flex items-center gap-3 p-5 cursor-pointer list-none select-none">
-                    <span className="w-6 h-6 rounded-lg bg-[var(--w-primary)] text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
-                    <span className="font-bold text-gray-800 text-sm flex-1">Q. {faq.q}</span>
-                    <svg className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </summary>
-                  <div className="px-5 pb-5 pt-3 ml-9 text-sm text-gray-500 leading-relaxed border-t border-[var(--w-blue-95)]">
-                    {faq.a}
-                  </div>
-                </details>
-              ))}
-            </div>
+        <Section id="faq" eyebrow="자주 묻는 질문" title="상담 전 미리 확인하세요" more={{ href: "/faq", label: "전체 질문 보기" }}>
+          <QuestionList items={FAQS} />
+        </Section>
 
-            {/* 연혁 타임라인 */}
-            <div className="mt-10 mb-10">
-              <h2 className="text-xl font-black text-gray-900 mb-6 text-center">하랑마케팅 걸어온 길</h2>
-              <div className="relative">
-                <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gray-100" />
-                <div className="space-y-6">
-                  {[
-                    { year: "2014~", event: "대학생 서포터즈 활동 · 마케팅 경력 시작", note: "브랜드 홍보, 콘텐츠 제작, 현장 마케팅 경험 축적" },
-                    { year: "2018", event: "해병대 장교 전역 · 카페 창업 도전", note: "마케팅을 몰라 단기간 폐업. 소상공인의 아픔을 직접 경험" },
-                    { year: "2018~", event: "마케팅 대행사 취업 · 팀장까지 근무", note: "내부에서 목격한 허위 보고·불성실 대응에 혐오감 → 직접 창업 결심" },
-                    { year: "2020", event: "하랑마케팅 공식 설립 (4월 15일)", note: "'제대로 된 대행사를 만들자' · 소상공인 전문 마케팅 대행 시작" },
-                    { year: "2024", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
-                    { year: "2026", event: "대표 10년 경력 누적 500건 프로젝트", note: "7년차 · 대표가 직접 관리 원칙 유지 중" },
-                  ].map((item) => (
-                    <div key={item.year} className="flex gap-5 relative pl-10">
-                      <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-[var(--w-blue-60)] flex items-center justify-center shrink-0 z-10">
-                        <span className="text-[11px] font-black text-[var(--w-primary-strong)]">{item.year.slice(2)}</span>
-                      </div>
-                      <div className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                        <div className="text-[11px] font-bold text-[var(--w-primary-strong)] mb-1">{item.year}</div>
-                        <div className="font-black text-gray-900 text-sm mb-1">{item.event}</div>
-                        <div className="text-xs text-gray-500">{item.note}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-6 text-center">
-              <p className="text-sm font-black text-gray-900 mb-1">더 궁금한 것이 있으신가요?</p>
-              <p className="text-xs text-gray-600 mb-4">카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 답변드립니다</p>
-              <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-sm transition-colors">
-                  <MessageCircle size={14} /> 카카오톡 문의
-                </a>
-                <a href="tel:010-7541-9054"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-bold text-sm transition-colors">
-                  <Phone size={14} /> 010-7541-9054
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        {/* CI 안내 · 지금은 꺼 둠 (SHOW_CI_GUIDE) */}
         {SHOW_CI_GUIDE && (<>
         {/* ══ CI 섹션 ══ */}
         <section className="py-16 md:py-24 bg-white border-t border-gray-100" id="ci">
@@ -707,8 +428,13 @@ export default function AboutPage() {
         </section>
         </>)}
 
-      </main>
-      <Footer />
+        <CloseBand
+          title="더 궁금한 것이 있으신가요?"
+          text="카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 답변드립니다"
+          primary={{ href: "/contact", label: "무료 상담 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

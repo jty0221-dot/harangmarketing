@@ -1,4 +1,3 @@
-import ServiceFinder from "../components/ServiceFinder";
 import { PUBLIC_SERVICES, isProgram } from "../lib/service-catalog";
 import { HP_DRAFTS, HP_STATS, hpThumb } from "../lib/homepage-portfolio";
 import { FOOD_PLANS, STAY_PLANS } from "../lib/photo-pricing";
@@ -7,23 +6,22 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import {
-  BookOpen, MapPin, Star, AtSign,
-  CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
-  ChevronDown, Users, BarChart3, MessageSquare,
-  Navigation, Palette, Layers, Calculator, ListChecks, LayoutTemplate, Globe2,
-  ScrollText, Camera, Calendar,
+  BookOpen, MapPin, Star, AtSign, BarChart3, MessageSquare,
+  Navigation, Palette, Layers, LayoutTemplate, Globe2, ScrollText, Camera,
 } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { UNIT_MIN, PACKAGES, BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIERS, CAFE_TIER_MIN, CAFE_COPY_FEE, MONTHLY_MIN, packageLabel, won } from "../lib/cafe-distribution";
 import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGORIES } from "../lib/detail-page-reference";
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
-import ServicePriceAnswer from "../components/ServicePriceAnswer";
 import { KS, KS_PLANS, won as ksWon } from "../lib/kakao-sender";
-import GlossarySection from "../components/GlossarySection";
-import { SITE, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage, companyYear } from "../lib/seo";
+import {
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, LinkList, Steps,
+  RankSection, QuestionList, CostLine, CloseBand, Fold, Table,
+} from "../components/sian/Sian";
+import s from "../components/sian/sian.module.css";
+import { SITE, DEFINITIONS, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage, companyYear } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
-import PlaceRankTable from "../components/PlaceRankTable";
 import { LANDING_RANK_PROOF } from "../lib/landing-gate";
 
 /*
@@ -705,925 +703,258 @@ const SERVICES_PAGE_LD = [
   definitionsLd("/services"),
 ];
 
+/* 2026-11-12 시안 3차 · 목록 페이지로 줄였다.
+   서비스마다 한 줄(제목 · 부제 · 일정)만 두고, 받게 되는 것 · 포함 항목은 접힌 표 하나에 모았다 (가격 문자열은 그대로 DOM 에 남는다).
+   카드 커버 사진 · 목적별 찾기(ServiceFinder) · 정답 상자(ServicePriceAnswer) · 용어 카드(GlossarySection) · 순위표(PlaceRankTable)는 걷었다.
+   서비스 줄마다 id 를 그대로 단다 (/services#blog · #naver-ads · #kakaomap · #startup · #sns · #powercontents 를 다른 파일이 가리킨다). */
+const GROUPS: { title: string; desc: string; ids: string[] }[] = [
+  { title: "채널 서비스", desc: "검색과 지도, 리뷰와 SNS 에서 손님이 지나는 자리를 채웁니다.", ids: ["place", "blog", "cafe-distribution", "review", "sns", "powercontents", "naver-ads", "kakaomap"] },
+  { title: "제작", desc: "홈페이지 · 상세페이지 · 사진 · 개업 준비물을 만들어 넘겨 드립니다.", ids: ["homepage", "detail-page", "photo", "startup"] },
+  { title: "프로그램", desc: "대행 일을 하면서 직접 만들어 쓰는 윈도우 프로그램입니다.", ids: ["studio", "kakao-sender"] },
+];
+
+const byId = (id: string) => SERVICES.find((v) => v.id === id)!;
+
+function ServiceRows({ ids }: { ids: string[] }) {
+  return (
+    <dl className={`${s.items} ${s.items1}`}>
+      {ids.map(byId).map((v) => (
+        <div key={v.id} id={v.id} style={{ scrollMarginTop: 96 }}>
+          <dt>{"href" in v && v.href ? <Link href={v.href}>{v.title}</Link> : v.title}</dt>
+          <dd>{v.subtitle} · {v.timeline}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+const PROMISES = [
+  { title: "월 1회 성과 리포트", desc: "순위 · 리뷰 수 · 게시 URL 처럼 직접 잰 숫자를 매월 그대로 공유합니다. 좋은 숫자만 보여드리지 않습니다." },
+  { title: "목표 미달 시 전략 즉시 조정", desc: "매월 순위 기록을 함께 보고, 목표에 못 미치는 부분은 다음 달 작업 계획에서 바로 고칩니다." },
+  { title: "계약 강요 없는 상담", desc: "상담 후 진행이 어렵다고 판단되면 직접 말씀드립니다. 계약을 위한 과장된 약속은 드리지 않습니다." },
+];
+
+const TIMELINE = [
+  { title: "1주차 · 분석 완료", desc: "업종·키워드·경쟁사 분석 리포트 + 전략 미팅" },
+  { title: "2~4주 · 첫 콘텐츠 발행", desc: "블로그·플레이스 초기 콘텐츠 세팅, 첫 글 발행과 노출 위치 확인 시작" },
+  { title: "1~2개월 · 순위 계측 공개", desc: "키워드별 순위를 정해진 시각에 재서 저장하고 월간 리포트로 확인" },
+  { title: "3개월+ · 누적 콘텐츠 관리", desc: "발행물이 쌓이며 검색 유입 경로가 늘어나는 구간" },
+];
+
+const COMBOS = [
+  { title: "한 채널 집중", desc: "이미 순위가 어느 정도 나오거나, 한 곳만 확실히 잡으면 되는 매장", services: ["플레이스 SEO 최적화 1회", "대표키워드 정보 정비·계측", "리뷰 유도 동선 설계", "순위 모니터링 · 경쟁업체 분석", "월 성과 리포트"], result: "대표 키워드 한 곳에 집중" },
+  { title: "두세 채널 묶음 (기본 추천)", desc: "검색 유입부터 만들어야 하는 매장 · 기본으로 권해 드리는 구성", services: ["플레이스 SEO 최적화", "블로그 관리대행", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"], result: "검색 유입부터 문의 동선까지 한 번에 세팅" },
+  { title: "전 채널 통합", desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드", services: ["블로그 · 카페 배포", "파워컨텐츠 원고", "플레이스 SEO · 주간 순위 관리", "인스타 피드 · 릴스", "광고 운영 (집행비 별도)", "주간 성과 리포트"], result: "지역 키워드 여러 구간 동시 공략" },
+];
+
+const COMPARE = [
+  ["담당자", "신입·인턴 가능, 자주 교체", "대표가 직접 관리 · 누적 500건"],
+  ["전략", "일괄 패키지 적용", "업종별 맞춤 전략 설계"],
+  ["성과 보고", "월 1회 수치 리포트", "직접 잰 순위 기록 + 게시 URL 전체 전달"],
+  ["소통", "이메일·티켓 시스템", "카카오 직통 · 하루 이내 답변"],
+  ["계약", "6개월~1년 장기 의무", "월 단위 · 처음이면 2~3개월 이상"],
+];
+
+const block = { display: "block" } as const;
+
 export default function ServicesPage() {
   return (
     <>
       <JsonLd data={SERVICES_PAGE_LD} />
       <Header />
-      {/* cafe-dist 스코프 — 카페 배포 상세페이지와 같은 토큰·서체를 쓴다 */}
-      <main className="cafe-dist pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section
-          className="relative overflow-hidden py-14 md:py-20"
-          style={{ background: "var(--h-dark)" }}
+      <SianMain>
+        <PageHead
+          where="서비스"
+          title={<>업종별로 다른 전략,<br />결과로 증명합니다</>}
+          lead={<>핵심 마케팅 채널을 단독 또는 패키지로 운영합니다.<br />모든 서비스는 대표가 직접 관리합니다.</>}
+          primary={{ href: "/contact", label: "무료 전략 진단 신청" }}
+          link={{ href: "#pricing", label: "항목별 단가 보기" }}
+          facts={[
+            { value: "500건", label: "누적 프로젝트" },
+            { value: "오후 2~3시", label: "순위 계측" },
+            { value: `${companyYear()}년차`, label: "2020년 개업" },
+            { value: "10년", label: "마케터 경력" },
+          ]}
+        />
+
+        {/* AEO · 서비스 · 가격 정답 (예전 ServicePriceAnswer 의 speakable 문장 그대로 · 단가는 아래 #pricing 표) */}
+        <AnswerRow
+          question="하랑마케팅은 어떤 서비스를 얼마에 제공하나요?"
+          answer="하랑마케팅은 패키지 정찰제가 아니라 항목별 단가를 조합해 견적을 냅니다. 광고 집행비는 실비로 별도이고 상담과 진단은 0원입니다."
+        />
+
+        {GROUPS.map((g, i) => (
+          <Section key={g.title} soft={i % 2 === 0} title={g.title} desc={g.desc}>
+            <ServiceRows ids={g.ids} />
+            {g.ids.includes("photo") && (
+              <LinkList links={[
+                { href: "/services/photo/price", label: "사진촬영 가격표" },
+                { href: "/services/photo/food", label: "음식점 촬영 사례" },
+                { href: "/services/photo/stay", label: "시설·숙박 촬영 사례" },
+              ]} />
+            )}
+          </Section>
+        ))}
+
+        <Section title="서비스별 받게 되는 것" desc="품목마다 받게 되는 것과 포함 항목입니다. 자세한 설명과 사례는 각 서비스 페이지에 있습니다.">
+          <Fold summary="받게 되는 것 · 포함 서비스 · 일정 전체 보기">
+            <Table
+              label="서비스별 받게 되는 것"
+              head={["서비스", "받게 되는 것", "포함 서비스", "일정"]}
+              rows={SERVICES.map((v) => [
+                <span key="t"><span className="font-semibold" style={block}>{v.title}</span><small style={block}>{v.rec}</small></span>,
+                v.deliverables.map((d) => <span key={d.label} style={block}>{d.label} {d.value} ({d.note})</span>),
+                v.features.join(" · "),
+                v.timeline,
+              ])}
+            />
+          </Fold>
+        </Section>
+
+        <Section
+          soft
+          title="업종별 페이지"
+          desc="업종마다 효과적인 채널과 전략이 다릅니다. 내 업종 전용 페이지를 확인하세요"
         >
-          <div className="pointer-events-none absolute right-1/3 top-0 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
-          <div className="relative mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
-            <p className="mb-4 text-[13px] font-bold tracking-[2px]" style={{ color: "var(--cd-primary-lt3)" }}>
-              SERVICES
-            </p>
-            <h1
-              className="cd-display mb-5 text-[34px] leading-[1.15] text-white md:text-[52px]"
-              style={{ letterSpacing: "-2px" }}
-            >
-              업종별로 다른 전략,
-              <br />
-              <span style={{ color: "var(--cd-primary-lt3)" }}>결과로 증명합니다</span>
-            </h1>
-            <p className="mb-8 max-w-xl text-[16px] leading-relaxed md:text-[18px]" style={{ color: "var(--cd-on-dark)" }}>
-              핵심 마케팅 채널을 단독 또는 패키지로 운영합니다.
-              <br />
-              모든 서비스는 대표가 직접 관리합니다.
-            </p>
-            <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 md:flex md:flex-wrap">
-              {SERVICES.map((s) => {
-                const Icon = s.icon;
-                return (
-                  <a key={s.id} href={`#${s.id}`}
-                    className="flex min-h-[44px] w-full items-center gap-1.5 rounded-xl border border-blue-400/30 bg-white/5 px-3.5 text-xs font-semibold text-blue-100 transition-colors hover:bg-white/10 md:w-auto">
-                    <Icon size={12} />
-                    {s.title}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+          <ItemList
+            one
+            items={[
+              ...INDUSTRY_LINKS.map((l) => ({ title: l.name, desc: l.desc, href: l.href })),
+              /* 병원 홈페이지 허브 (TR-0080 · 제목 C-01 · 설명 C-02 · 진우 10/27 통과) */
+              { title: "병원 홈페이지 · AI 읽기 정비", desc: "진료 정보를 글자와 구조화 데이터로 정리하는 홈페이지 제작과 정비", href: "/services/homepage/clinic" },
+              /* 병·의원 자료 · 본문은 /services/clinic/medical-ad-guide 가 정본이다 (HP/MED) */
+              { title: "의료광고 심의 대상 판정 자료", desc: "병원 · 치과 · 한의원 광고에서 어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 조문 번호와 함께 정리했습니다", href: "/services/clinic/medical-ad-guide" },
+            ]}
+          />
+          <Fold summary="내 업종엔 어떤 서비스가 맞나요? 업종별로 성과가 가장 빠른 서비스를 먼저 추천합니다">
+            <Table
+              label="업종별 추천 서비스"
+              head={["업종", "우선 추천", "추가 옵션", "기록"]}
+              rows={INDUSTRY_RECS.map((r) => [r.industry, r.firstRec, r.recs.join(" · "), r.result])}
+            />
+          </Fold>
+        </Section>
 
-        {/* AEO — 서비스·가격 정답 (단가표로 나눠 보여 준다 · 원문 문단은 /faq · llms.txt) */}
-        <ServicePriceAnswer />
-
-        {/* Key numbers */}
-        <section className="py-6 bg-white border-b border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { icon: Users, val: "500건", label: "누적 프로젝트", color: "text-blue-600" },
-                { icon: TrendingUp, val: "오후 2~3시", label: "순위 계측", color: "text-blue-600" },
-                { icon: Calendar, val: `${companyYear()}년차`, label: "2020년 개업", color: "text-blue-700" },
-                { icon: Clock, val: "10년", label: "마케터 경력", color: "text-indigo-600" },
-              ].map(({ icon: Icon, val, label, color }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <Icon size={18} className={color} strokeWidth={1.5} />
-                  <div>
-                    <div className={`text-xl font-black ${color}`}>{val}</div>
-                    <div className="text-xs text-gray-500">{label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white py-10 md:py-14" aria-labelledby="service-finder-title">
-          <div className="mx-auto max-w-5xl px-4 md:px-6 lg:px-8">
-            <h2 id="service-finder-title" className="mb-5 w-title2 text-[var(--w-label-strong)]">필요한 목적부터 찾아보세요</h2>
-            <ServiceFinder />
-          </div>
-        </section>
-
-        {/* Service cards */}
-        <section className="py-10 md:py-14 bg-gray-50">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 space-y-8">
-            {SERVICES.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.id}
-                  id={s.id}
-                  className="scroll-mt-32 overflow-hidden rounded-2xl bg-white shadow-sm"
-                  style={
-                    "href" in s && s.href
-                      ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(0,102,255,.14)" }
-                      : { border: "1px solid var(--cd-border)" }
-                  }
-                >
-                  {/* 커버 — 상품마다 자기 화면을 쓴다. 캡처를 공용으로 돌려 쓰면
-                      다른 서비스의 화면이 붙어 고객을 오인시킨다. 없으면 브랜드 밴드.
-                      세로로 긴 화면(상세페이지)은 한 장을 눕히면 여백만 남아서 여러 칸으로 세워 넣는다. */}
-                  {"covers" in s && s.covers ? (
-                    <div className="relative h-48 md:h-60 bg-gray-100 p-3">
-                      {/* 칸 수와 보여줄 장수를 같이 움직인다. 칸만 줄이면 나머지가 아랫줄로
-                          흘러 한 장이 납작해진다 — 좁은 화면에서는 아예 장수를 줄인다. */}
-                      <div className="grid h-full grid-cols-2 grid-rows-1 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                        {s.covers.map((c, i) => (
-                          <img
-                            key={c.src}
-                            src={c.src}
-                            alt={c.alt}
-                            width={c.w}
-                            height={c.h}
-                            loading="lazy"
-                            decoding="async"
-                            /* 세로로 긴 상세페이지는 위에서부터 잘라 담는다(cover).
-                               비율이 섞여 있는 커버는 잘리면 안에 넣은 글자가 날아가므로 통째로 담는다(contain). */
-                            className={`h-full w-full rounded-lg border border-gray-200 bg-white ${
-                              s.coverFit === "contain" ? "object-contain p-1" : "object-cover object-top"
-                            } ${
-                              i === 2 ? "hidden sm:block" : i === 3 ? "hidden md:block" : i >= 4 ? "hidden lg:block" : "block"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span
-                        className="absolute left-5 top-5 rounded-full px-3 py-1.5 text-[11px] font-black text-white"
-                        style={{ background: "var(--cd-primary)" }}
-                      >
-                        {s.coverBadge}
-                      </span>
-                    </div>
-                  ) : "cover" in s && s.cover ? (
-                    <div className="relative">
-                      <img
-                        src={s.cover}
-                        alt={s.coverAlt}
-                        width={1000}
-                        height={290}
-                        loading="lazy"
-                        decoding="async"
-                        className="block h-44 w-full object-cover object-top"
-                      />
-                      <span
-                        className="absolute left-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-black text-white"
-                        style={{ background: "var(--cd-primary)" }}
-                      >
-                        {s.coverBadge}
-                      </span>
-                    </div>
-                  ) : (
-                    <div
-                      className={`flex h-24 items-center gap-3 px-6 md:px-8 ${s.color}`}
-                    >
-                      <Icon size={26} className="text-white/90" strokeWidth={1.5} />
-                      <span className="cd-display text-[22px] text-white md:text-[26px]" style={{ letterSpacing: "-1px" }}>
-                        {s.title}
-                      </span>
-                    </div>
-                  )}
-                  {/* Card header */}
-                  <div className="p-6 md:p-8 border-b border-gray-50">
-                    <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm shrink-0" style={{ background: "var(--w-primary)" }}>
-                        <Icon size={22} className="text-white" strokeWidth={1.5} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className={`px-2 py-0.5 rounded-full ${s.color} text-white text-[11px] font-black`}>
-                            {s.tag}
-                          </span>
-                          <span className="text-[11px] text-gray-500 flex items-center gap-1">
-                            <Clock size={10} />
-                            {s.timeline}
-                          </span>
-                        </div>
-                        <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-1">{s.title}</h2>
-                        <p className="text-sm font-semibold text-blue-600 mb-2">{s.subtitle}</p>
-                        <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Deliverables */}
-                  <div className="p-6 md:p-8 border-b border-gray-50 bg-gray-50/50">
-                    <h3 className="text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
-                      <Package size={12} />받게 되는 것
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      {s.deliverables.map((d) => (
-                        <div key={d.label} className="bg-white rounded-xl p-4 border border-gray-100">
-                          <div className="text-[11px] text-gray-500 mb-1">{d.label}</div>
-                          <div className="text-base font-black text-gray-900">{d.value}</div>
-                          <div className="text-[11px] text-gray-500 mt-0.5">{d.note}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Features + rec */}
-                  <div className="p-6 md:p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-6">
-                      <div>
-                        <h3 className="text-xs font-black text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                          <BarChart3 size={12} />포함 서비스
-                        </h3>
-                        <ul className="space-y-2">
-                          {s.features.map((f) => (
-                            <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
-                              <CheckCircle2 size={14} className="text-blue-500 mt-0.5 shrink-0" strokeWidth={2.5} />
-                              {f}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="space-y-3">
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
-                          <div className="text-[11px] font-bold text-blue-600 mb-1 flex items-center gap-1">
-                            <Users size={10} />이런 분께 추천
-                          </div>
-                          <p className="text-xs text-blue-800 leading-relaxed">{s.rec}</p>
-                        </div>
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
-                          <div className="text-[11px] font-bold text-blue-600 mb-1 flex items-center gap-1">
-                            <TrendingUp size={10} />기대 성과
-                          </div>
-                          <p className="text-xs text-blue-800 leading-relaxed font-semibold">{s.result}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {s.id === 'photo' && <nav aria-label="사진촬영 상세 안내" className="mt-6 flex flex-wrap gap-3">{[['가격표', '/services/photo/price'], ['음식점 촬영 사례', '/services/photo/food'], ['시설·숙박 촬영 사례', '/services/photo/stay']].map(([label, href]) => <Link key={href} href={href} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--w-line)] px-4 py-2 text-sm font-semibold text-[var(--w-primary)]">{label}<ArrowRight size={14} /></Link>)}</nav>}
-                    {/* 별도 상세페이지가 있는 서비스만 노출 */}
-                    {"href" in s && s.href && (
-                      <Link
-                        href={s.href}
-                        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-blue-700 sm:w-auto"
-                      >
-                        {"hrefLabel" in s && s.hrefLabel ? s.hrefLabel : "상품 상세 · 가격 보기"} <ArrowRight size={14} />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* ══ 업종별 추천 ══ */}
-        <section className="py-14 md:py-18 bg-white border-t border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">업종별 추천</p>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900">내 업종엔 어떤 서비스가 맞나요?</h2>
-              <p className="text-gray-500 text-sm mt-2">업종별로 성과가 가장 빠른 서비스를 먼저 추천합니다</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {INDUSTRY_RECS.map((ind) => (
-                <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <div className="px-4 py-3" style={{ backgroundColor: "var(--w-primary)" }}>
-                    <div className="font-black text-white text-sm">{ind.industry}</div>
-                    <div className="text-white text-[11px] mt-0.5">{ind.result}</div>
-                  </div>
-                  <div className="p-4">
-                    <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">우선 추천</div>
-                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-black mb-3">
-                      {ind.firstRec}
-                    </div>
-                    <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">추가 옵션</div>
-                    <div className="flex gap-1 flex-wrap">
-                      {ind.recs.map((r) => (
-                        <span key={r} className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-[11px] font-medium">{r}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-6">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-colors shadow-sm">
-                내 업종 맞춤 추천 받기 <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ══ 순위표 ══ 2026-09-17 (목) 대표 지시 : 진행사례뿐 아니라 서비스에도 보이게
+        {/* 순위 · 2026-09-17 (목) 대표 지시 : 진행사례뿐 아니라 서비스에도 보이게.
             광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
         {LANDING_RANK_PROOF && (
-          <PlaceRankTable
-            align="center"
-            width="5xl"
-            tone="gray"
-            limit={10}
-            more={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
-          />
+          <RankSection label="업종별" title="키워드별 순위, 잰 그대로 적었습니다" more={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }} />
         )}
 
-        {/* ══ 가격 산출 근거 ══ */}
-        <section id="pricing" className="py-14 md:py-20 bg-white scroll-mt-32">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10 md:mb-12">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">가격 산출 근거</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">필요한 일을 먼저 고르고, 금액은 그 합으로 정합니다</h2>
-              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
-                항목별 단가를 정해두고 매장에 필요한 항목만 더해 견적을 냅니다.
-                아래 단가는 실제로 나간 견적서에 쓰인 금액 그대로이고, 계산 과정도 그대로 공개합니다.
-              </p>
-            </div>
+        {/* 가격 산출 근거 · 홈과 업종 페이지가 /services#pricing 으로 온다. 단가 · 부가세 문구는 그대로 */}
+        <Section
+          id="pricing"
+          soft={!LANDING_RANK_PROOF}
+          eyebrow="가격 산출 근거"
+          title="필요한 일을 먼저 고르고, 금액은 그 합으로 정합니다"
+          desc="항목별 단가를 정해두고 매장에 필요한 항목만 더해 견적을 냅니다. 아래 단가는 실제로 나간 견적서에 쓰인 금액 그대로이고, 계산 과정도 그대로 공개합니다."
+        >
+          <Table
+            label="항목별 단가"
+            head={["항목", "단위", "단가"]}
+            rows={UNIT_PRICES.map((u) => [
+              <span key="i"><span className="font-semibold" style={block}>{u.item}</span>{u.note && <small style={block}>{u.note}</small>}</span>,
+              u.unit,
+              <span key="p" className="font-semibold" style={{ whiteSpace: "nowrap" }}>{u.price}</span>,
+            ])}
+          />
+          <p className={s.note}>모든 금액은 부가세 별도입니다. 네이버·인스타 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.</p>
 
-            {/* 1) 항목별 단가 */}
-            <div className="mb-12 md:mb-14">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-                  <Calculator size={15} className="text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-base md:text-lg font-black text-gray-900">1) 항목별 단가</h3>
+          <Fold summary="실제 견적 3건이 어떻게 나왔는가">
+            {CALC_EXAMPLES.map((c) => (
+              <div key={c.title} style={{ marginBottom: 24 }}>
+                <p><span className="font-semibold">{c.title}</span> · {c.sub}</p>
+                <Table
+                  label={c.title}
+                  head={["항목", "계산", "금액"]}
+                  rows={[
+                    ...c.lines.map((l) => [l.label, l.calc, l.amount]),
+                    [<span key="t" className="font-semibold">월 합계</span>, "", <span key="v" className="font-semibold">{c.total}원</span>],
+                  ]}
+                />
+                <p className={s.note}>{c.note}</p>
               </div>
-              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-                <table className="w-full min-w-[520px] text-sm">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-200">
-                      <th className="text-left font-black text-gray-700 px-4 py-3">항목</th>
-                      <th className="text-left font-black text-gray-700 px-4 py-3 whitespace-nowrap">단위</th>
-                      <th className="text-right font-black text-gray-700 px-4 py-3 whitespace-nowrap">단가</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {UNIT_PRICES.map((u) => (
-                      <tr key={u.item} className="border-b border-gray-100 last:border-0 bg-white">
-                        <td className="px-4 py-3 text-gray-800 font-bold">
-                          {u.item}
-                          {u.note && (
-                            <span className="block mt-1 text-[11px] font-normal leading-relaxed text-gray-500">{u.note}</span>
-                          )}
-                        </td>
-                        <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{u.unit}</td>
-                        <td className="px-4 py-3 text-right font-black text-gray-900 tabular-nums whitespace-nowrap">{u.price}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
-                모든 금액은 부가세 별도입니다. 네이버·인스타 광고 집행비는 매체에 직접 나가는 실비라 대행료에 넣지 않습니다.
-              </p>
-            </div>
+            ))}
+          </Fold>
+          <Fold summary="필요한 것만 골라서 조합합니다">
+            <ItemList one items={HOW_WE_COMPOSE.map((c) => ({ title: `${c.step} · ${c.title}`, desc: c.body }))} />
+            <p className={s.note}>그래서 &lsquo;월 얼마짜리 패키지&rsquo; 를 미리 만들어두지 않습니다. 같은 예산이어도 매장 상황에 따라 들어가는 항목이 달라지기 때문입니다.</p>
+          </Fold>
+          <Fold summary="업종마다 구성이 달라지는 지점">
+            <Table
+              label="업종마다 구성이 달라지는 지점"
+              head={["업종", "고객이 검색하는 방식", "주력 채널", "월 물량"]}
+              rows={INDUSTRY_PRICE_DIFF.map((r) => [r.industry, r.behavior, r.channel, r.volume])}
+            />
+            <p className={s.note}>같은 예산이어도 업종에 따라 쓰는 곳이 달라집니다. 음식점은 배포 건수로, 청소업은 블로그 편수로, 카페는 사진과 인스타로 갑니다.</p>
+          </Fold>
+          <Fold summary="가격이 다를 수밖에 없는 이유">
+            <ItemList one items={WHY_PRICE_DIFFERS.map((w) => ({ title: w.title, desc: w.body }))} />
+          </Fold>
+          <p className={s.note}>
+            그래서 홈페이지에는 항목별 기준 단가를 공개하고, 월 금액은 현황을 먼저 본 뒤 필요한 항목만 골라 견적을 냅니다.
+            진단과 견적은 0원이고, 견적을 받고 안 하셔도 됩니다.
+          </p>
+        </Section>
 
-            {/* 2) 산출 예시 */}
-            <div className="mb-12 md:mb-14">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-                  <Package size={15} className="text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-base md:text-lg font-black text-gray-900">2) 실제 견적 3건이 어떻게 나왔는가</h3>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5 items-start">
-                {CALC_EXAMPLES.map((c) => (
-                  <div key={c.title} className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden">
-                    <div className="px-5 py-4 border-b border-gray-100 bg-gray-50">
-                      <h4 className="font-black text-gray-900 text-sm mb-1">{c.title}</h4>
-                      <p className="text-xs text-gray-500 leading-relaxed">{c.sub}</p>
-                    </div>
-                    <div className="px-5 py-4">
-                      <ul className="space-y-2.5 mb-3">
-                        {c.lines.map((l) => (
-                          <li key={l.label} className="flex items-start justify-between gap-3 text-xs">
-                            <span className="text-gray-700 leading-snug">{l.label}</span>
-                            <span className="text-gray-500 tabular-nums whitespace-nowrap shrink-0">{l.calc}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="flex items-center justify-between border-t border-gray-200 pt-3">
-                        <span className="text-xs font-black text-gray-500">월 합계</span>
-                        <span className="text-lg font-black text-blue-600 tabular-nums">{c.total}원</span>
-                      </div>
-                      <p className="text-[11px] text-gray-500 mt-2 leading-relaxed">{c.note}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <Section
+          eyebrow="구성 예시"
+          title="실제로 이런 조합으로 계약합니다"
+          desc="세 가지 중 하나를 고르는 게 아니라, 여기서 필요 없는 항목은 빼고 부족한 항목은 더해 매장에 맞게 다시 짜드립니다."
+        >
+          <ItemList one items={COMBOS.map((c) => ({ title: c.title, desc: `${c.desc}. ${c.services.join(" · ")}. 목표: ${c.result}` }))} />
+          <p className={s.note}>실제 계약·견적 9건에서 뽑은 구성입니다. 항목마다 물량은 매장마다 다르게 잡으므로 진단 후에 항목별로 다시 계산합니다.</p>
+        </Section>
 
-            {/* 3) 조합 방식 — 월 금액 구간표를 걷어낸 자리 */}
-            <div className="mb-12 md:mb-14">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-                  <ListChecks size={15} className="text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-base md:text-lg font-black text-gray-900">3) 필요한 것만 골라서 조합합니다</h3>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-                {HOW_WE_COMPOSE.map((c, i) => (
-                  <div key={c.step} className="rounded-2xl border border-gray-200 bg-white shadow-sm p-4 md:p-5">
-                    <div className="flex items-center gap-2 mb-2.5">
-                      <span className="w-5 h-5 rounded-md bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0 tabular-nums">
-                        {i + 1}
-                      </span>
-                      <span className="text-[11px] font-black text-blue-700 tracking-wide">{c.step}</span>
-                    </div>
-                    <h4 className="font-black text-gray-900 text-sm mb-1.5 leading-snug">{c.title}</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed">{c.body}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
-                그래서 &lsquo;월 얼마짜리 패키지&rsquo; 를 미리 만들어두지 않습니다. 같은 예산이어도 매장 상황에 따라 들어가는 항목이 달라지기 때문입니다.
-              </p>
-            </div>
-            {/* 4) 업종별 차이 */}
-            <div className="mb-12 md:mb-14">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-                  <Layers size={15} className="text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-base md:text-lg font-black text-gray-900">4) 업종마다 구성이 달라지는 지점</h3>
-              </div>
-              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-                <table className="w-full min-w-[640px] text-sm">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-200">
-                      <th className="text-left font-black text-gray-700 px-4 py-3 whitespace-nowrap">업종</th>
-                      <th className="text-left font-black text-gray-700 px-4 py-3">고객이 검색하는 방식</th>
-                      <th className="text-left font-black text-gray-700 px-4 py-3">주력 채널</th>
-                      <th className="text-left font-black text-gray-700 px-4 py-3">월 물량</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {INDUSTRY_PRICE_DIFF.map((r) => (
-                      <tr key={r.industry} className="border-b border-gray-100 last:border-0 bg-white">
-                        <td className="px-4 py-3 font-black text-gray-900 whitespace-nowrap">{r.industry}</td>
-                        <td className="px-4 py-3 text-gray-600">{r.behavior}</td>
-                        <td className="px-4 py-3 text-gray-600">{r.channel}</td>
-                        <td className="px-4 py-3 text-gray-600">{r.volume}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-[11px] text-gray-500 mt-2.5 leading-relaxed">
-                같은 예산이어도 업종에 따라 쓰는 곳이 달라집니다. 음식점은 배포 건수로, 청소업은 블로그 편수로, 카페는 사진과 인스타로 갑니다.
-              </p>
-            </div>
+        <Section soft eyebrow="진행 순서" title="계약 후 무엇이 언제 진행되나요?" desc="성과가 나는 시점을 약속드리는 표가 아니라, 작업이 진행되는 순서입니다.">
+          <Steps steps={TIMELINE} />
+        </Section>
 
-            {/* 5) 왜 다를 수밖에 없는가 */}
-            <div>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-                  <TrendingUp size={15} className="text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-base md:text-lg font-black text-gray-900">5) 가격이 다를 수밖에 없는 이유</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                {WHY_PRICE_DIFFERS.map((w, i) => (
-                  <div
-                    key={w.title}
-                    className={`rounded-2xl border border-gray-200 bg-white shadow-sm p-4 md:p-5 ${i === WHY_PRICE_DIFFERS.length - 1 ? "md:col-span-2" : ""}`}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="w-5 h-5 rounded-md bg-blue-50 text-blue-700 text-[11px] font-black flex items-center justify-center shrink-0 tabular-nums">
-                        {i + 1}
-                      </span>
-                      <h4 className="font-black text-gray-900 text-sm">{w.title}</h4>
-                    </div>
-                    <p className="text-xs md:text-[13px] text-gray-600 leading-relaxed">{w.body}</p>
-                  </div>
-                ))}
-              </div>
+        <Section eyebrow="하랑의 약속" title="결과를 숫자로 말하는 대행사입니다" desc="결과가 없으면 전략을 바꾸고, 실패하면 솔직히 말하는 것이 하랑의 방식입니다.">
+          <ItemList one items={PROMISES} />
+          <LineList items={["상담 비용 0원 · 부담 없이 시작", "카카오톡 접수 24시간 · 하루 이내 답변"]} />
+        </Section>
 
-              <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
-                <p className="text-sm text-blue-900 leading-relaxed flex-1">
-                  그래서 홈페이지에는 항목별 기준 단가를 공개하고, 월 금액은 현황을 먼저 본 뒤 필요한 항목만 골라 견적을 냅니다.
-                  진단과 견적은 0원이고, 견적을 받고 안 하셔도 됩니다.
-                </p>
-                <Link
-                  href="/contact"
-                  className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-black transition-colors"
-                >
-                  내 매장 견적 받기
-                  <ArrowRight size={15} strokeWidth={2.5} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Section soft eyebrow="왜 하랑인가" title="일반 대행사와 무엇이 다른가요?" desc="클라이언트가 바꾸고 나서 가장 많이 하는 말을 정리했습니다">
+          <Table label="일반 대행사와 하랑마케팅 비교" head={["비교 항목", "일반 대행사", "하랑마케팅"]} rows={COMPARE} />
+          <p className={s.note}>기존 작업 내역을 먼저 확인한 뒤 필요한 항목만 제안합니다.</p>
+        </Section>
 
-        {/* ══ 하랑의 약속 ══ */}
-        <section className="py-14 md:py-20 bg-gray-50 border-t border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">하랑의 약속</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
-                결과를 숫자로 말하는 대행사입니다
-              </h2>
-              <p className="text-gray-500 text-sm max-w-xl mx-auto">
-                결과가 없으면 전략을 바꾸고, 실패하면 솔직히 말하는 것이 하랑의 방식입니다.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              {[
-                {
-                  icon: "01",
-                  title: "월 1회 성과 리포트",
-                  desc: "순위 · 리뷰 수 · 게시 URL 처럼 직접 잰 숫자를 매월 그대로 공유합니다. 좋은 숫자만 보여드리지 않습니다.",
-                  color: "from-blue-500 to-blue-700",
-                },
-                {
-                  icon: "02",
-                  title: "목표 미달 시 전략 즉시 조정",
-                  desc: "매월 순위 기록을 함께 보고, 목표에 못 미치는 부분은 다음 달 작업 계획에서 바로 고칩니다.",
-                  color: "from-blue-600 to-indigo-700",
-                },
-                {
-                  icon: "03",
-                  title: "계약 강요 없는 상담",
-                  desc: "상담 후 진행이 어렵다고 판단되면 직접 말씀드립니다. 계약을 위한 과장된 약속은 드리지 않습니다.",
-                  color: "from-blue-500 to-blue-700",
-                },
-              ].map((item) => (
-                <div key={item.icon} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-black mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                    {item.icon}
-                  </div>
-                  <h3 className="font-black text-gray-900 text-sm mb-2">{item.title}</h3>
-                  <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+        <Section
+          id="faq"
+          title="자주 묻는 질문"
+          desc="상담 전에 가장 많이 물어보시는 내용을 정리했습니다."
+          more={{ href: "/faq", label: "비용·계약·효과 등 전체 FAQ 보기" }}
+          footer={<CostLine text="진단과 견적은 0원이고, 견적을 받고 안 하셔도 됩니다." link={{ href: "#pricing", label: "항목별 단가 보기" }} />}
+        >
+          <QuestionList items={FAQS} />
+        </Section>
+
+        {/* 용어 정의 · definitionsLd("/services") 와 짝. 홈의 「마케팅 용어」 접힌 목록이 여기를 전체 화면으로 가리킨다 */}
+        <Section soft id="glossary" title="마케팅 용어, 쉽게 정리했습니다" desc="상담 중 가장 많이 나오는 용어를 대표님 눈높이에서 풀어썼습니다.">
+          <Fold summary={`용어 ${DEFINITIONS.length}개 전체 보기`}>
+            <dl className={`${s.items} ${s.items1}`}>
+              {DEFINITIONS.map((d) => (
+                <div key={d.term}>
+                  <dt>{d.term}</dt>
+                  <dd className="speakable">{d.definition}</dd>
                 </div>
               ))}
-            </div>
-            {/* 신뢰 수치 */}
-            <div className="bg-gray-950 rounded-2xl p-6 md:p-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                {[
-                  { val: `${companyYear()}년차`, label: "업력", sub: "2020년 개업" },
-                  { val: "500건", label: "누적 프로젝트", sub: "10년 경력 누적" },
-                  { val: "0원", label: "상담 비용", sub: "부담 없이 시작" },
-                  { val: "24시간", label: "카카오톡 접수", sub: "하루 이내 답변" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.val}</div>
-                    <div className="text-xs font-bold text-gray-300">{s.label}</div>
-                    <div className="text-[11px] text-gray-400 mt-0.5">{s.sub}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+            </dl>
+          </Fold>
+          <LinkList links={[
+            { href: "https://blog.naver.com/harangmarketing", label: "네이버 블로그 운영 사례" },
+            { href: "https://www.instagram.com/harang.marketing/", label: "인스타그램 운영 사례" },
+          ]} />
+        </Section>
 
-        {/* SNS section */}
-        <section className="py-8 md:py-10 bg-gray-50 border-y border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="flex-1">
-                <h3 className="font-black text-gray-800 text-base mb-1">마케팅 사례가 궁금하시면</h3>
-                <p className="text-xs text-gray-500">네이버 블로그와 인스타그램에서 실제 운영 사례를 확인하세요</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <a href="https://blog.naver.com/harangmarketing" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-green-50 border border-green-100 text-green-700 text-xs font-bold hover:bg-green-100 transition-colors">
-                  <span className="w-5 h-5 rounded bg-green-700 text-white text-[11px] font-black flex items-center justify-center">N</span>
-                  네이버 블로그
-                </a>
-                <a href="https://www.instagram.com/harang.marketing/" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-50 border border-purple-100 text-purple-700 text-xs font-bold hover:bg-purple-100 transition-colors">
-                  <span className="w-5 h-5 rounded bg-purple-600 text-white text-[11px] font-black flex items-center justify-center">I</span>
-                  인스타그램
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 성과 타임라인 */}
-        <section className="py-14 md:py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">진행 순서</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">계약 후 무엇이 언제 진행되나요?</h2>
-              <p className="text-gray-500 text-sm">성과가 나는 시점을 약속드리는 표가 아니라, 작업이 진행되는 순서입니다.</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {[
-                { period: "1주차", title: "분석 완료", desc: "업종·키워드·경쟁사 분석 리포트 + 전략 미팅", color: "bg-gray-900", dot: "bg-gray-400" },
-                { period: "2~4주", title: "첫 콘텐츠 발행", desc: "블로그·플레이스 초기 콘텐츠 세팅, 첫 글 발행과 노출 위치 확인 시작", color: "bg-blue-600", dot: "bg-blue-400" },
-                { period: "1~2개월", title: "순위 계측 공개", desc: "키워드별 순위를 정해진 시각에 재서 저장하고 월간 리포트로 확인", color: "bg-indigo-600", dot: "bg-indigo-400" },
-                { period: "3개월+", title: "누적 콘텐츠 관리", desc: "발행물이 쌓이며 검색 유입 경로가 늘어나는 구간", color: "bg-blue-800", dot: "bg-blue-600" },
-              ].map((step, i) => (
-                <div key={i} className="relative bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-                  <div className={`${step.color} px-4 py-3`}>
-                    <div className="text-[11px] font-black text-white uppercase tracking-widest mb-0.5">STEP {i + 1}</div>
-                    <div className="text-white font-black text-sm">{step.period}</div>
-                  </div>
-                  <div className="p-4">
-                    <div className="font-black text-gray-900 text-sm mb-1.5">{step.title}</div>
-                    <div className="text-gray-500 text-xs leading-relaxed">{step.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 구성 예시 — 금액을 걸지 않는다 (대표 지시 2026-08-23) */}
-        <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">구성 예시</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">실제로 이런 조합으로 계약합니다</h2>
-              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
-                세 가지 중 하나를 고르는 게 아니라, 여기서 필요 없는 항목은 빼고 부족한 항목은 더해 매장에 맞게 다시 짜드립니다.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {[
-                {
-                  tier: "한 채널 집중",
-                  desc: "이미 순위가 어느 정도 나오거나, 한 곳만 확실히 잡으면 되는 매장",
-                  highlight: false,
-                  services: ["플레이스 SEO 최적화 1회", "대표키워드 정보 정비·계측", "리뷰 유도 동선 설계", "순위 모니터링 · 경쟁업체 분석", "월 성과 리포트"],
-                  result: "대표 키워드 한 곳에 집중",
-                },
-                {
-                  tier: "두세 채널 묶음",
-                  desc: "검색 유입부터 만들어야 하는 매장 · 기본으로 권해 드리는 구성",
-                  highlight: true,
-                  services: ["플레이스 SEO 최적화", "블로그 관리대행", "파워컨텐츠 원고 설계 · 검수 대응", "네이버 광고 세팅 · 운영대행", "월 성과 리포트"],
-                  result: "검색 유입부터 문의 동선까지 한 번에 세팅",
-                },
-                {
-                  tier: "전 채널 통합",
-                  desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
-                  highlight: false,
-                  services: ["블로그 · 카페 배포", "파워컨텐츠 원고", "플레이스 SEO · 주간 순위 관리", "인스타 피드 · 릴스", "광고 운영 (집행비 별도)", "주간 성과 리포트"],
-                  result: "지역 키워드 여러 구간 동시 공략",
-                },
-              ].map((pkg) => (
-                <div
-                  key={pkg.tier}
-                  className={`rounded-2xl overflow-hidden border ${pkg.highlight ? "border-blue-200 shadow-xl shadow-blue-100/50 scale-[1.02]" : "border-gray-100 shadow-sm"} transition-all`}
-                >
-                  <div className={`px-6 py-6 ${pkg.highlight ? "bg-blue-600" : "bg-gray-900"}`}>
-                    {pkg.highlight && (
-                      <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/20 text-white text-[11px] font-black mb-3">
-                        기본 추천
-                      </div>
-                    )}
-                    <div className="text-xl font-black text-white mb-2">{pkg.tier}</div>
-                    <p className="text-white text-xs leading-relaxed">{pkg.desc}</p>
-                  </div>
-                  <div className="bg-white p-6">
-                    <ul className="space-y-2 mb-5">
-                      {pkg.services.map((s) => (
-                        <li key={s} className="flex items-center gap-2 text-sm text-gray-700">
-                          <div className="w-4 h-4 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-                            <svg className="w-2.5 h-2.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-[11px] text-blue-600 font-bold bg-blue-50 rounded-xl px-3 py-2 border border-blue-100 mb-4">
-                      목표: {pkg.result}
-                    </div>
-                    <Link
-                      href="/contact"
-                      className={`flex items-center justify-center gap-1.5 w-full py-3 rounded-xl text-sm font-black transition-colors ${pkg.highlight ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
-                    >
-                      이 구성으로 상담 신청
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-[11px] text-gray-500 mt-6 leading-relaxed">
-              * 실제 계약·견적 9건에서 뽑은 구성입니다. 항목마다 물량은 매장마다 다르게 잡으므로 진단 후에 항목별로 다시 계산합니다.
-            </p>
-          </div>
-        </section>
-        {/* 비교표 */}
-        <section className="py-14 md:py-20 bg-gray-50 border-t border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">왜 하랑인가</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">일반 대행사와 무엇이 다른가요?</h2>
-              <p className="text-gray-500 text-sm">클라이언트가 바꾸고 나서 가장 많이 하는 말을 정리했습니다</p>
-            </div>
-
-            <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-w-[480px]">
-              {/* Header row */}
-              <div className="grid grid-cols-[1fr_1fr_1fr] border-b border-gray-100">
-                <div className="px-4 py-4 text-xs font-black text-gray-500 uppercase tracking-wider">비교 항목</div>
-                <div className="px-4 py-4 text-center bg-gray-50 border-l border-gray-100">
-                  <div className="text-xs font-black text-gray-500 uppercase tracking-wider">일반 대행사</div>
-                </div>
-                <div className="px-4 py-4 text-center bg-blue-600 border-l border-blue-500">
-                  <div className="text-xs font-black text-white uppercase tracking-wider">하랑마케팅</div>
-                </div>
-              </div>
-
-              {/* Rows */}
-              {[
-                {
-                  label: "담당자",
-                  other: "신입·인턴 가능, 자주 교체",
-                  harang: "대표가 직접 관리 · 누적 500건",
-                  highlight: true,
-                },
-                {
-                  label: "전략",
-                  other: "일괄 패키지 적용",
-                  harang: "업종별 맞춤 전략 설계",
-                  highlight: false,
-                },
-                {
-                  label: "성과 보고",
-                  other: "월 1회 수치 리포트",
-                  harang: "직접 잰 순위 기록 + 게시 URL 전체 전달",
-                  highlight: true,
-                },
-                {
-                  label: "소통",
-                  other: "이메일·티켓 시스템",
-                  harang: "카카오 직통 · 하루 이내 답변",
-                  highlight: false,
-                },
-                {
-                  label: "계약",
-                  other: "6개월~1년 장기 의무",
-                  harang: "월 단위 · 처음이면 2~3개월 이상",
-                  highlight: true,
-                },
-              ].map((row, i) => (
-                <div key={row.label} className={`grid grid-cols-[1fr_1fr_1fr] border-b border-gray-50 last:border-b-0 ${i % 2 === 0 ? "" : "bg-gray-50/50"}`}>
-                  <div className="px-4 py-4 text-sm font-bold text-gray-700 flex items-center">{row.label}</div>
-                  <div className="px-4 py-4 text-sm text-gray-500 border-l border-gray-100 flex items-center bg-gray-50/30">
-                    {row.other}
-                  </div>
-                  <div className={`px-4 py-4 text-sm border-l border-blue-100 flex items-center gap-1.5 ${row.highlight ? "bg-blue-50 font-black text-blue-700" : "font-semibold text-gray-800"}`}>
-                    <svg className="w-3.5 h-3.5 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {row.harang}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            </div>
-            <p className="text-center text-xs text-gray-500 mt-5">기존 작업 내역을 먼저 확인한 뒤 필요한 항목만 제안합니다.</p>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section id="faq" className="py-14 md:py-20 bg-white scroll-mt-32">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 items-start">
-              <div className="lg:sticky lg:top-24">
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
-                <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-3">자주 묻는 질문</h2>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">상담 전에 가장 많이 물어보시는 내용을 정리했습니다.</p>
-                <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 min-h-11 md:min-h-0 rounded-xl bg-yellow-400 text-gray-900 text-xs font-bold hover:bg-yellow-300 transition-colors">
-                  <MessageSquare size={12} />더 물어보기
-                </a>
-              </div>
-              <div className="space-y-2">
-                {FAQS.map((faq, i) => (
-                  <details key={i} className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors">
-                    <summary className="flex items-center justify-between gap-3 p-5 cursor-pointer font-bold text-gray-800 text-[15px] list-none select-none hover:bg-white transition-colors">
-                      <span className="flex items-start gap-3">
-                        <span className="text-[11px] font-black text-blue-700 bg-blue-50 rounded-lg px-2 py-1 shrink-0 mt-0.5">Q{i + 1}</span>
-                        {faq.q}
-                      </span>
-                      <ChevronDown size={16} className="text-gray-500 group-open:rotate-180 transition-transform shrink-0" />
-                    </summary>
-                    <div className="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-100 pt-4 ml-[52px]">
-                      {faq.a}
-                    </div>
-                  </details>
-                ))}
-              </div>
-            </div>
-            <div className="text-center mt-6">
-              <Link href="/faq" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-blue-600 font-semibold text-sm hover:underline">
-                비용·계약·효과 등 전체 FAQ 보기 <ArrowRight size={13} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-14 md:py-20 relative overflow-hidden" style={{ background: "var(--h-dark)" }}>
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-purple-600/8 rounded-full blur-3xl" />
-          </div>
-          <div className="relative max-w-3xl mx-auto px-4 md:px-6 text-center">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">무료 진단</p>
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
-              어떤 서비스가 맞는지<br />모르겠다면?
-            </h2>
-            <p className="text-gray-300 text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed">
-              업종·예산·목표를 알려주시면 최적의 서비스 조합을<br className="hidden sm:block" />무료로 추천해드립니다. 비용·계약 강요 없습니다.
-            </p>
-
-            {/* 미니 신뢰지표 */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {[
-                { label: "상담 비용", value: "0원" },
-                { label: "계약 강요", value: "없음" },
-                { label: "카카오톡 문의", value: "24시간 접수" },
-                { label: "대표 경력", value: "10년" },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/8 border border-white/12 text-xs">
-                  <CheckCircle2 size={11} className="text-blue-400" strokeWidth={2.5} />
-                  <span className="text-gray-400">{item.label}</span>
-                  <span className="text-white font-bold">{item.value}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-sm">
-                무료 전략 진단 신청 <ArrowRight size={15} />
-              </Link>
-              <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-yellow-400 text-gray-900 font-bold hover:bg-yellow-300 transition-colors">
-                <MessageSquare size={14} />카카오톡 바로 상담
-              </a>
-            </div>
-          </div>
-        </section>
-        {/* ══ 견적 계산기 CTA ══ */}
-        <section className="py-10 bg-blue-50 border-t border-blue-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
-              <div className="flex-1">
-                <p className="text-xs font-black text-blue-600 uppercase tracking-widest mb-2">상담 0원 · 카카오톡 문의 24시간 접수</p>
-                <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1">
-                  우리 매장엔 뭐가 필요한지 모르겠다면?
-                </h3>
-                <p className="text-sm text-gray-600">
-                  업종·상권·경쟁 상황마다 필요한 게 다릅니다. 매장을 보고 맞춤으로 제안드립니다.
-                </p>
-              </div>
-              <Link href="/contact"
-                className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-sm">
-                무료 진단 신청 <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 용어 정의 — definitionsLd("/services") 와 짝 */}
-        <GlossarySection />
-
-        {/* 업종별 전문 페이지 링크 */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">업종별 전문 전략 보기</h2>
-              <p className="text-gray-500 text-sm">업종마다 효과적인 채널과 전략이 다릅니다. 내 업종 전용 페이지를 확인하세요</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {INDUSTRY_LINKS.map(ind => (
-                <Link key={ind.name} href={ind.href}
-                  className="group flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-gray-200 hover:bg-white hover:shadow-md transition-all">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                    <ArrowRight size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-black text-gray-900 text-sm">{ind.name}</div>
-                    <div className="text-xs text-gray-500 truncate">{ind.desc}</div>
-                  </div>
-                  <ArrowRight size={14} className="text-gray-500 group-hover:text-gray-700 shrink-0 ml-auto transition-colors" />
-                </Link>
-              ))}
-            </div>
-
-            {/* 병원 홈페이지 허브 (TR-0080 · 제목 C-01 · 설명 C-02 · 진우 10/27 통과) */}
-            <Link
-              href="/services/homepage/clinic"
-              className="group mt-4 flex items-start gap-4 p-4 md:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-white hover:shadow-md transition-all"
-            >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                <Globe2 size={16} className="text-white" strokeWidth={2.5} />
-              </div>
-              <div className="min-w-0">
-                <div className="font-black text-gray-900 text-sm flex items-center gap-1.5">
-                  병원 홈페이지 · AI 읽기 정비
-                  <ArrowRight size={14} className="text-gray-500 group-hover:text-gray-700 transition-colors" />
-                </div>
-                <div className="text-xs text-gray-500 mt-1 leading-relaxed">
-                  진료 정보를 글자와 구조화 데이터로 정리하는 홈페이지 제작과 정비
-                </div>
-              </div>
-            </Link>
-
-            {/* 병·의원 자료 — 본문은 /services/clinic/medical-ad-guide 가 정본이다 (HP/MED) */}
-            <Link
-              href="/services/clinic/medical-ad-guide"
-              className="group mt-4 flex items-start gap-4 p-4 md:p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-white hover:shadow-md transition-all"
-            >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                <ScrollText size={16} className="text-white" strokeWidth={2.5} />
-              </div>
-              <div className="min-w-0">
-                <div className="font-black text-gray-900 text-sm flex items-center gap-1.5">
-                  의료광고 심의 대상 판정 자료
-                  <ArrowRight size={14} className="text-gray-500 group-hover:text-gray-700 transition-colors" />
-                </div>
-                <div className="text-xs text-gray-500 mt-1 leading-relaxed">
-                  병원 · 치과 · 한의원 광고에서 어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 조문 번호와 함께 정리했습니다
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="어떤 서비스가 맞는지 모르겠다면?"
+          text="업종·예산·목표를 알려주시면 최적의 서비스 조합을 무료로 추천해드립니다. 비용·계약 강요 없습니다."
+          primary={{ href: "/contact", label: "무료 전략 진단 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

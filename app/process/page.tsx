@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
-import AnswerBlock from "../components/AnswerBlock";
-import { SITE, howToLd, webPageLd, updatedAt, breadcrumbLd, faqLd, ogImage } from "../lib/seo";
 import {
-  Phone, MessageCircle, ArrowRight, CheckCircle2, Clock,
-  Search, FileText, TrendingUp, BarChart3, Handshake,
-  ShieldCheck, Star,
-} from "lucide-react";
+  SianMain, PageHead, AnswerRow, Section, ItemList, Steps, QuestionList, CostLine, CloseBand, Fold,
+} from "../components/sian/Sian";
+import { SITE, howToLd, webPageLd, updatedAt, breadcrumbLd, faqLd, ogImage } from "../lib/seo";
 
 export const metadata: Metadata = {
   title: "진행 과정 | 상담부터 성과까지 6단계",
@@ -38,8 +34,6 @@ export const metadata: Metadata = {
  */
 const STEPS = [
   {
-    number: "01",
-    icon: Phone,
     title: "무료 상담 신청",
     duration: "D-Day",
     desc: "카카오톡 또는 전화로 연락하시면 됩니다. 상담 비용은 0원이며, 부담 없이 현재 상황을 말씀해 주세요.",
@@ -50,8 +44,6 @@ const STEPS = [
     ],
   },
   {
-    number: "02",
-    icon: Search,
     title: "무료 경쟁사 분석",
     duration: "D+1~2",
     desc: "네이버 플레이스·블로그·SNS 현황과 경쟁사를 비교 분석한 리포트를 무료로 제공합니다.",
@@ -62,8 +54,6 @@ const STEPS = [
     ],
   },
   {
-    number: "03",
-    icon: FileText,
     title: "맞춤 전략 제안",
     duration: "D+3",
     desc: "월 금액은 매장마다 다릅니다. 진단 결과에서 이 매장에 꼭 필요한 항목만 골라, 항목별 단가와 물량을 그대로 적은 견적서를 드립니다.",
@@ -74,8 +64,6 @@ const STEPS = [
     ],
   },
   {
-    number: "04",
-    icon: Handshake,
     title: "계약 및 킥오프",
     duration: "D+4~7",
     desc: "계약 후 즉시 킥오프 미팅에서 세부 실행 계획을 확정합니다. 대표가 직접 관리합니다.",
@@ -86,8 +74,6 @@ const STEPS = [
     ],
   },
   {
-    number: "05",
-    icon: TrendingUp,
     title: "실행 및 콘텐츠 제작",
     duration: "1개월~",
     desc: "블로그·플레이스·SNS 채널별 콘텐츠를 제작·배포하고, 리뷰·체험단 캠페인과 스마트스토어 상세페이지 작업을 계약한 항목대로 가동합니다.",
@@ -99,8 +85,6 @@ const STEPS = [
     ],
   },
   {
-    number: "06",
-    icon: BarChart3,
     title: "월간 성과 리포트",
     duration: "매월 말",
     desc: "순위·방문자·리뷰·문의 등 핵심 KPI를 매월 리포트로 공유하고 다음 달 전략을 조정합니다.",
@@ -112,10 +96,11 @@ const STEPS = [
   },
 ];
 
+/* 머리 아래 신뢰 줄 · 예전 아이콘 줄에서 글만 옮겼다 */
 const TRUST_POINTS = [
-  { icon: ShieldCheck, label: "게시 URL 전체 전달 · 작업 내역 공개" },
-  { icon: Star, label: "10년 경력 누적 500건 프로젝트" },
-  { icon: Clock, label: "카카오톡 24시간 접수" },
+  "게시 URL 전체 전달 · 작업 내역 공개",
+  "10년 경력 누적 500건 프로젝트",
+  "카카오톡 24시간 접수",
 ];
 
 const FAQS = [
@@ -162,55 +147,13 @@ export default function ProcessPage() {
     <>
       <JsonLd data={PROCESS_LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero — 다크. 사이트 문법이 '히어로만 다크, 본문은 라이트' 라 여기까지만 어둡다.
-            orb·격자는 /process 만의 장식이 아니라 형제 페이지 7곳·14곳이 함께 쓰는
-            관용구다. 여기서만 걷어내면 고치는 게 아니라 이 페이지만 튄다.
-            불투명도만 최빈값(/8)으로 맞췄다 — 혼자 /6 이라 옅었다. */}
-        <section className="bg-gray-950 py-16 md:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-5">Process</p>
-              <h1 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
-                상담부터 성과까지<br />
-                <span className="text-blue-400">6단계, 투명하게</span>
-              </h1>
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
-                어떻게 진행되는지 미리 알고 오시면 더 빠르게 시작할 수 있습니다.
-                숨기는 단계 없이 전부 공개합니다.
-              </p>
-
-              {/* Trust strip */}
-              <div className="flex flex-wrap gap-4 mb-8">
-                {TRUST_POINTS.map(t => (
-                  <div key={t.label} className="flex items-center gap-2">
-                    <t.icon size={13} className="text-blue-400" strokeWidth={2.5} />
-                    <span className="text-gray-400 text-xs font-medium">{t.label}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-sm transition-colors shadow-lg shadow-blue-900/30">
-                  지금 무료 상담 신청 <ArrowRight size={15} />
-                </Link>
-                <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-black text-sm transition-colors">
-                  <MessageCircle size={15} />
-                  카카오로 먼저 물어보기
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* AEO — 절차형 질의 한 줄 정답 */}
-        <AnswerBlock
-          question="하랑마케팅 마케팅 대행은 어떻게 진행되나요?"
-          answer="하랑마케팅의 마케팅 대행은 6단계로 진행됩니다. 1) 무료 상담 신청(당일), 2) 무료 경쟁사 분석 리포트 제공(1~2일), 3) 필요한 항목만 골라 항목별 단가를 더한 견적 제안(3일), 4) 계약 및 킥오프 후 당일 실행 착수(4~7일), 5) 계약한 항목·물량대로 콘텐츠 제작·배포와 리뷰 캠페인 가동(1개월~), 6) 매월 말 성과 리포트와 전략 조정 순입니다. 상담과 분석 단계는 비용이 0원이며 계약을 강요하지 않습니다. 미리 정해둔 월 정액 금액은 없습니다."
+      <SianMain>
+        <PageHead
+          where="Process · 진행 과정"
+          title={<>상담부터 성과까지<br />6단계, 투명하게</>}
+          lead={<>어떻게 진행되는지 미리 알고 오시면 더 빠르게 시작할 수 있습니다. 숨기는 단계 없이 전부 공개합니다.<br />{TRUST_POINTS.join(" · ")}</>}
+          primary={{ href: "/contact", label: "지금 무료 상담 신청" }}
+          link={{ href: "/free-check", label: "무료 플레이스 진단" }}
           facts={[
             { label: "상담·분석 비용", value: "0원" },
             { label: "카카오톡 문의 접수", value: "24시간" },
@@ -219,109 +162,37 @@ export default function ProcessPage() {
           ]}
         />
 
-        {/* Timeline — 라이트. 배경은 위 AnswerBlock 과 같은 --h-surface 다.
-            흰 배경에 흰 카드를 올리면 카드를 카드로 만드는 게 3% 선과 5% 그림자뿐이라
-            밝은 모니터에서 흰 판 하나로 뭉갠다. AnswerBlock 이 이미 같은 조합
-            (--h-surface 위 흰 카드)으로 전 페이지에 나가 있어 그대로 쓴다.
-            연결선은 단색 1px 이다. 예전 그라데이션 선은 다크 배경에서 '빛나는 선' 으로
-            보이려던 장치라 라이트로 내리면 근거가 사라진다. */}
-        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div>
-              {STEPS.map((step, i) => {
-                const isLast = i === STEPS.length - 1;
-                return (
-                  <div key={step.number} className="flex gap-5 md:gap-6">
-                    {/* Step icon — 단색 배경 + Primary 아이콘. 그라데이션 박스 금지(WDS).
-                        연결선은 이 칸 안에서 아이콘 아래로 흘러 다음 아이콘까지 닿는다.
-                        바깥에 절대배치로 한 줄 긋던 방식은 마지막 카드가 길어지면
-                        선이 145px 남아 흘렀다 — top-10 bottom-10 은 아이콘이 아니라
-                        묶음 상자를 기준으로 재기 때문이다. 행 간격을 margin 이 아니라
-                        바깥여백으로 둬야 칸 안의 선이 끊기지 않는다 — 행 안쪽여백은
-                        칸 높이 밖이라 선이 다음 아이콘에 16px 못 미친다. */}
-                    <div className="shrink-0 flex flex-col items-center">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
-                        <step.icon size={16} style={{ color: "var(--h-blue)" }} strokeWidth={2.5} />
-                      </div>
-                      {!isLast && <div className="w-px flex-1 mt-2 bg-gray-200" />}
-                    </div>
+        {/* AEO · 절차형 질의 한 줄 정답 (speakable) */}
+        <AnswerRow
+          question="하랑마케팅 마케팅 대행은 어떻게 진행되나요?"
+          answer="하랑마케팅의 마케팅 대행은 6단계로 진행됩니다. 1) 무료 상담 신청(당일), 2) 무료 경쟁사 분석 리포트 제공(1~2일), 3) 필요한 항목만 골라 항목별 단가를 더한 견적 제안(3일), 4) 계약 및 킥오프 후 당일 실행 착수(4~7일), 5) 계약한 항목·물량대로 콘텐츠 제작·배포와 리뷰 캠페인 가동(1개월~), 6) 매월 말 성과 리포트와 전략 조정 순입니다. 상담과 분석 단계는 비용이 0원이며 계약을 강요하지 않습니다. 미리 정해둔 월 정액 금액은 없습니다."
+        />
 
-                    {/* Content card */}
-                    <div className={`flex-1 min-w-0 bg-white border border-gray-100 rounded-2xl shadow-sm p-4 md:p-6 ${isLast ? "" : "mb-4"}`}>
-                      <div className="flex items-start justify-between gap-2 mb-3">
-                        <div className="min-w-0">
-                          <span
-                            className="text-[11px] font-semibold uppercase tracking-widest tabular-nums"
-                            style={{ color: "var(--h-blue)" }}
-                          >
-                            Step {step.number}
-                          </span>
-                          <h3 className="text-base md:text-lg font-bold text-gray-900 leading-tight">{step.title}</h3>
-                        </div>
-                        <span className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-gray-100 bg-gray-50 text-gray-600 text-[11px] font-bold">
-                          <Clock size={10} strokeWidth={2.5} />
-                          {step.duration}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-3">{step.desc}</p>
-                      <ul className="space-y-1.5">
-                        {step.details.map((d) => (
-                          <li key={d} className="flex items-start gap-2 text-xs text-gray-500">
-                            <CheckCircle2 size={12} className="shrink-0 mt-0.5" style={{ color: "var(--h-blue)" }} strokeWidth={2.5} />
-                            {d}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        {/* 6단계 · HowTo 단계 url(#step-1 …)이 가리키는 자리 */}
+        <Section soft title="상담부터 성과까지 6단계" desc="단계마다 걸리는 시점을 함께 적었습니다. 세부 항목은 아래에서 펼쳐 보실 수 있습니다.">
+          <Steps idPrefix="step-" steps={STEPS.map((st) => ({ title: `${st.title} · ${st.duration}`, desc: st.desc }))} />
+          <Fold summary="단계별 세부 항목">
+            <ItemList one items={STEPS.map((st) => ({ title: st.title, desc: st.details.join(" · ") }))} />
+          </Fold>
+        </Section>
 
-        {/* FAQ — 라이트 */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">자주 묻는 질문</h2>
-            <p className="text-gray-500 text-sm text-center mb-10">진행 과정에서 가장 많이 물어보시는 것들</p>
-            <div className="space-y-3">
-              {FAQS.map((faq, i) => (
-                <details key={i} className="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-                  <summary className="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
-                    <span className="font-bold text-gray-900 text-sm">{faq.q}</span>
-                    <svg className="shrink-0 w-4 h-4 text-gray-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </summary>
-                  <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
-                    {faq.a}
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section
+          id="faq"
+          title="자주 묻는 질문"
+          desc="진행 과정에서 가장 많이 물어보시는 것들"
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+          footer={<CostLine text="월 정액이 아니라 필요한 항목만 골라 항목별 단가를 더해 견적을 냅니다." />}
+        >
+          <QuestionList items={FAQS} />
+        </Section>
 
-        {/* CTA */}
-        <section className="py-14 bg-blue-600">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">준비됐다면, 지금 바로 시작하세요</h2>
-            <p className="text-blue-50 text-sm mb-7">상담 비용 0원 · 계약 강요 없음 · 카카오톡 24시간 접수</p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 font-black px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm">
-                무료 상담 신청 <ArrowRight size={15} />
-              </Link>
-              <Link href="/free-check"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-medium px-7 py-3.5 rounded-xl hover:bg-white/10 transition-colors text-sm">
-                무료 플레이스 진단
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="준비됐다면, 지금 바로 시작하세요"
+          text="상담 비용 0원 · 계약 강요 없음 · 카카오톡 24시간 접수"
+          primary={{ href: "/contact", label: "무료 상담 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

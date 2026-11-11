@@ -5,14 +5,16 @@ import { useSearchParams } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
-  Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2,
-  Clock, ArrowRight, ChevronRight, AlertCircle,
+  Phone, MessageCircle, Send, CheckCircle2,
+  ArrowRight, AlertCircle,
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle, Sparkles,
   Handshake,
 } from "lucide-react";
 import { GA_EVENTS, newEventId } from "../components/Analytics";
 import { attributionLabel } from "../lib/attribution";
 import KakaoSendNotice from "../components/KakaoSendNotice";
+import { SianMain, PageHead, Section, LineList, Steps, Table, CloseBand } from "../components/sian/Sian";
+import s from "../components/sian/sian.module.css";
 
 import { best, fmt, clinicFact, SNAPSHOT_DATE } from "../lib/rank-records";
 import { LANDING_RANK_PROOF } from "../lib/landing-gate";
@@ -59,10 +61,10 @@ const GOALS = [
 ];
 
 const PROCESS_STEPS = [
-  { step: "01", title: "상담 신청", desc: "신청 24시간 접수" },
-  { step: "02", title: "현황 무료 분석", desc: "업종·경쟁사 분석" },
-  { step: "03", title: "전략 제안", desc: "맞춤 견적 제안" },
-  { step: "04", title: "즉시 시작", desc: "계약 당일 착수" },
+  { title: "상담 신청", desc: "신청 24시간 접수" },
+  { title: "현황 무료 분석", desc: "업종·경쟁사 분석" },
+  { title: "전략 제안", desc: "맞춤 견적 제안" },
+  { title: "즉시 시작", desc: "계약 당일 착수" },
 ];
 
 /**
@@ -176,67 +178,29 @@ export default function ContactPage() {
         <ChecklistParam onCount={setChecklistCount} />
       </Suspense>
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section className="bg-[var(--h-dark)] py-14 md:py-20 relative overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            {checklistCount >= 3 && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30 mb-5">
-                <span className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-blue-200 text-sm font-bold">자가진단에서 {checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.</span>
-              </div>
-            )}
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Contact</p>
-            <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
-              무료 전략 진단 신청
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
-              업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.<br />
-              <span className="text-blue-300 font-semibold">실패를 경험한 하랑 대표가 직접 대표님 매장을 분석합니다.</span>
-            </p>
-            <div className="flex flex-wrap gap-3 text-sm">
-              {[
-                { icon: CheckCircle2, text: "상담 비용 0원" },
-                { icon: CheckCircle2, text: "계약 강요 없음" },
-                { icon: Clock, text: "신청 24시간 접수 · 하랑 대표 직접 연락" },
-                { icon: CheckCircle2, text: "게시 URL 전체 전달" },
-              ].map(({ icon: Icon, text }) => (
-                <span key={text} className="flex items-center gap-1.5 text-gray-300">
-                  <Icon size={14} className="text-blue-400" strokeWidth={2.5} /> {text}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+      <SianMain>
+        <PageHead
+          where="Contact"
+          title="무료 전략 진단 신청"
+          lead={<>업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다. <span className="font-semibold">실패를 경험한 하랑 대표가 직접 대표님 매장을 분석합니다.</span></>}
+          primary={{ href: "#form", label: "무료 전략 진단 신청하기" }}
+          link={{ href: "#direct", label: "지금 바로 연락하기" }}
+          facts={[
+            { value: "0원", label: "상담 비용" },
+            { value: "없음", label: "계약 강요" },
+            { value: "24시간", label: "신청 접수 · 하랑 대표 직접 연락" },
+            { value: "전체 전달", label: "게시 URL" },
+          ]}
+        />
 
-        {/* Process bar */}
-        <section className="py-6 bg-white border-b border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex items-center justify-between md:justify-start md:gap-8">
-              {PROCESS_STEPS.map((s, i) => (
-                <div key={s.step} className="flex items-center gap-2 md:gap-3">
-                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 transition-colors ${
-                    (step === "form" && i <= 1) || step === "done" ? "bg-blue-600 text-white" : i === 0 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"
-                  }`}>
-                    {s.step}
-                  </div>
-                  <div className="hidden sm:block">
-                    <div className="text-xs font-bold text-gray-700">{s.title}</div>
-                    <div className="text-[11px] text-gray-600">{s.desc}</div>
-                  </div>
-                  {i < PROCESS_STEPS.length - 1 && <ChevronRight size={12} className="text-gray-200 hidden md:block" />}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-10 md:py-14 bg-gray-50">
-          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 md:gap-8">
-
-              {/* Main form area */}
+        {/* 신청서 · 업종 선택 → 연락처 → 완료 흐름과 입력칸 · 검증 · 전송은 그대로다 (2026-11-12 시안은 둘레만 바꿨다) */}
+        <Section
+          id="form"
+          title="무료 진단 신청"
+          desc={checklistCount >= 3
+            ? `자가진단에서 ${checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.`
+            : "신청은 24시간 접수하고 하랑 대표가 직접 연락드립니다 · 상담 비용 0원"}
+        >
               <div>
                 {/* Step 1: 업종 선택 */}
                 {step === "industry" && (
@@ -491,114 +455,70 @@ export default function ContactPage() {
                   </div>
                 )}
               </div>
+        </Section>
 
-              {/* Sidebar */}
-              <div className="space-y-4">
-                {/* Direct contact */}
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <h3 className="font-bold text-gray-900 text-sm mb-4">지금 바로 연락하기</h3>
-                  <div className="space-y-2.5">
-                    <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3.5 rounded-xl bg-yellow-50 hover:bg-yellow-100 transition-colors group">
-                      <div className="w-9 h-9 rounded-xl bg-yellow-400 flex items-center justify-center shadow-sm shrink-0">
-                        <MessageCircle size={16} className="text-gray-900" strokeWidth={2.5} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">카카오톡 채널</div>
-                        <div className="text-xs text-gray-500">하루 이내 답변</div>
-                      </div>
-                      <ArrowRight size={13} className="text-gray-500 group-hover:text-yellow-500 transition-colors" />
-                    </a>
-                    <a href="tel:010-7541-9054"
-                      className="flex items-center gap-3 p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
-                      <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm shrink-0">
-                        <Phone size={16} className="text-white" strokeWidth={2.5} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">010-7541-9054</div>
-                        <div className="text-xs text-gray-600">평일 09:00~18:00</div>
-                      </div>
-                      <ArrowRight size={13} className="text-gray-600 group-hover:text-blue-500 transition-colors" />
-                    </a>
-                    <a href="mailto:harangmarketing@naver.com"
-                      className="flex items-center gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
-                      <div className="w-9 h-9 rounded-xl bg-gray-600 flex items-center justify-center shadow-sm shrink-0">
-                        <Mail size={16} className="text-white" strokeWidth={2.5} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">이메일 문의</div>
-                        <div className="text-xs text-gray-500 truncate">harangmarketing@naver.com</div>
-                      </div>
-                      <ArrowRight size={13} className="text-gray-500 group-hover:text-gray-700 transition-colors" />
-                    </a>
-                  </div>
-                </div>
+        <Section soft title="신청 후 진행 순서">
+          <Steps steps={PROCESS_STEPS} />
+        </Section>
 
-                {/* Address */}
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-slate-600 flex items-center justify-center shadow-sm shrink-0">
-                      <MapPin size={15} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900 text-sm mb-1">주소</div>
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        경기 고양시 일산동구 장백로19<br />더루벤투스카운티 501호
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Industry results mini · 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
-                {LANDING_RANK_PROOF && (
-                  <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                    <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
-                    <div className="space-y-2.5">
-                      {[
-                        { ind: "음식점·식당", industry: "음식점" },
-                        { ind: "청소·시설관리", industry: "청소" },
-                        { ind: "카페·베이커리", industry: "카페" },
-                        { ind: "의원·치과", industry: "치과", clinic: true },
-                      ].flatMap((row) => {
-                        const r = best(row.industry);
-                        if (!r) return [];
-                        return [
-                          <div key={row.ind} className="flex items-center gap-2">
-                            <div className="flex-1 min-w-0">
-                              <div className="text-xs font-bold text-gray-800 truncate">{row.ind}</div>
-                              <div className="text-[11px] text-gray-600">{r.keyword}</div>
-                            </div>
-                            <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
-                              {row.clinic
-                                ? (r.heldPage1 ? `${r.days}일 계측 동안 1페이지 · ${SNAP_M}월 ${SNAP_D}일 ${r.to}위` : clinicFact(r))
-                                : `${r.days}일 계측 ${fmt(r)}`}
-                            </div>
-                          </div>,
-                        ];
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* What you get */}
-                <div className="bg-blue-600 rounded-2xl p-5">
-                  <h4 className="font-bold text-white text-sm mb-3">무료 진단에서 받는 것</h4>
-                  <ul className="space-y-2">
-                    {["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "현실적인 목표 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"].map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-xs text-blue-50">
-                        <CheckCircle2 size={12} className="text-blue-300 shrink-0" strokeWidth={2.5} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-              </div>
+        <Section id="direct" title="지금 바로 연락하기" desc="카카오톡 채널은 하루 이내 답변 · 전화는 평일 09:00~18:00">
+          <dl className={s.items}>
+            <div>
+              <dt><a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer">카카오톡 채널</a></dt>
+              <dd>하루 이내 답변</dd>
             </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+            <div>
+              <dt><a href="tel:010-7541-9054">010-7541-9054</a></dt>
+              <dd>평일 09:00~18:00</dd>
+            </div>
+            <div>
+              <dt><a href="mailto:harangmarketing@naver.com">이메일 문의</a></dt>
+              <dd>harangmarketing@naver.com</dd>
+            </div>
+            <div>
+              <dt>주소</dt>
+              <dd>경기 고양시 일산동구 장백로19 더루벤투스카운티 501호</dd>
+            </div>
+          </dl>
+        </Section>
+
+        {/* 업종별 순위 계측 기록 · 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
+        {LANDING_RANK_PROOF && (
+          <Section soft title="업종별 순위 계측 기록">
+            <Table
+              label="업종별 순위 계측 기록"
+              head={["업종", "키워드", "기록"]}
+              rows={[
+                { ind: "음식점·식당", industry: "음식점" },
+                { ind: "청소·시설관리", industry: "청소" },
+                { ind: "카페·베이커리", industry: "카페" },
+                { ind: "의원·치과", industry: "치과", clinic: true },
+              ].flatMap((row) => {
+                const r = best(row.industry);
+                if (!r) return [];
+                return [[
+                  row.ind,
+                  r.keyword,
+                  row.clinic
+                    ? (r.heldPage1 ? `${r.days}일 계측 동안 1페이지 · ${SNAP_M}월 ${SNAP_D}일 ${r.to}위` : clinicFact(r))
+                    : `${r.days}일 계측 ${fmt(r)}`,
+                ]];
+              })}
+            />
+          </Section>
+        )}
+
+        <Section title="무료 진단에서 받는 것">
+          <LineList items={["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "현실적인 목표 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"]} />
+        </Section>
+
+        <CloseBand
+          title="제출하셔도 아무런 계약 의무가 없습니다"
+          text="분석 리포트와 전략을 먼저 확인하신 후 진행 여부를 결정하세요."
+          primary={{ href: "#form", label: "무료 전략 진단 신청하기" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

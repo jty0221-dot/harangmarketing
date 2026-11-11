@@ -31,7 +31,7 @@ export default function ResultCaseGrid({ cards }: { cards: ResultCaseCard[] }) {
   return (
     <>
       {kinds.length > 1 && (
-        <div className="-mx-5 mb-5 overflow-x-auto px-5 scrollbar-hide" role="group" aria-label="사례 종류로 보기">
+        <div className="mb-5 overflow-x-auto scrollbar-hide" role="group" aria-label="사례 종류로 보기">
           <div className="flex w-max gap-1.5">
             {(["all", ...kinds] as const).map((k) => (
               <button
@@ -48,10 +48,10 @@ export default function ResultCaseGrid({ cards }: { cards: ResultCaseCard[] }) {
           </div>
         </div>
       )}
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {shown.map((c) => (
           <li key={c.id} className="min-w-0">
-            <Link href={`/portfolio/cases/${c.id}`} className="w-card flex h-full flex-col p-5 md:p-6">
+            <Link href={`/portfolio/cases/${c.id}`} className="flex h-full flex-col rounded-2xl border p-5 md:p-6" style={{ borderColor: "var(--w-line)", background: "var(--w-bg)" }}>
               <div className="flex flex-wrap items-center gap-1.5">
                 <span className="w-chip w-chip-blue">{c.industry}</span>
                 <span className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>{c.period}</span>

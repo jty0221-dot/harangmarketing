@@ -265,7 +265,7 @@ export default function PlaceServicePage() {
         <Section
           id="faq"
           title="네이버 플레이스, 자주 묻는 질문"
-          desc="상담 때 가장 많이 나오는 여섯 가지입니다."
+          desc={`상담 때 가장 많이 나오는 ${["", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열"][FAQS.length] ?? FAQS.length} 가지입니다.`}
           more={{ href: "/faq", label: "전체 질문 보기" }}
           footer={<CostLine
             text="진행 범위와 비용은 업종과 현재 상태에 따라 달라집니다. 같은 업종이어도 경쟁 강도가 다르면 해야 할 일이 다릅니다."

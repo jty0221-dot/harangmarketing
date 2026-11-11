@@ -4,10 +4,13 @@ import { useMemo, useState } from "react";
 import { ExternalLink, Search } from "lucide-react";
 import type { PortfolioIndustry } from "../lib/portfolio";
 
-/** 업종 탭 + 검색으로 사례를 걸러 보여준다 */
+const PAGE = 12;
+
+/** 업종 탭 + 검색으로 사례를 걸러 보여준다 · 처음 12건, 「더 보기」로 12건씩 (서버 HTML 에는 처음 12건) */
 export default function PortfolioGrid({ industries }: { industries: PortfolioIndustry[] }) {
   const [tab, setTab] = useState<string>("all");
   const [q, setQ] = useState("");
+  const [limit, setLimit] = useState(PAGE);
 
   const all = useMemo(
     () => industries.flatMap((i) => i.cases.map((c) => ({ ...c, industry: i.name, slug: i.slug }))),
@@ -40,7 +43,7 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
         />
         <input
           value={q}
-          onChange={(e) => setQ(e.target.value)}
+          onChange={(e) => { setQ(e.target.value); setLimit(PAGE); }}
           placeholder="업종·키워드로 검색 (예: 치과, 플레이스, 청소)"
           className="w-input"
           style={{ paddingLeft: 44 }}
@@ -48,9 +51,11 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
       </div>
 
       {/* 업종 탭 */}
-      <div className="mb-6 flex flex-wrap gap-1.5">
+      <div className="mb-6 flex flex-wrap gap-1.5" role="group" aria-label="업종으로 보기">
         <button
-          onClick={() => setTab("all")}
+          type="button"
+          aria-pressed={tab === "all"}
+          onClick={() => { setTab("all"); setLimit(PAGE); }}
           className="w-btn w-btn-sm"
           style={
             tab === "all"
@@ -63,7 +68,9 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
         {industries.map((i) => (
           <button
             key={i.slug}
-            onClick={() => setTab(i.slug)}
+            type="button"
+            aria-pressed={tab === i.slug}
+            onClick={() => { setTab(i.slug); setLimit(PAGE); }}
             className="w-btn w-btn-sm"
             style={
               tab === i.slug
@@ -83,13 +90,14 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
         </p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map((c) => (
+          {visible.slice(0, limit).map((c) => (
             <a
               key={c.logNo}
               href={c.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-card group flex flex-col overflow-hidden transition-shadow hover:shadow-[var(--w-shadow-md)]"
+              className="group flex flex-col overflow-hidden rounded-2xl border"
+              style={{ borderColor: "var(--w-line)", background: "var(--w-bg)" }}
             >
               {c.image && (
                 /* 블로그에서 받아 720px 로 줄여 저장한 대표 이미지 */
@@ -133,6 +141,18 @@ export default function PortfolioGrid({ industries }: { industries: PortfolioInd
               </div>
             </a>
           ))}
+        </div>
+      )}
+      {visible.length > limit && (
+        <div className="mt-6 text-center">
+          <button
+            type="button"
+            onClick={() => setLimit((n) => n + PAGE)}
+            className="w-btn w-btn-sm min-h-11"
+            style={{ background: "var(--w-bg)", color: "var(--w-label-strong)", border: "1px solid var(--w-line-strong)" }}
+          >
+            더 보기 <span className="w-num" style={{ color: "var(--w-label-alt)" }}>{Math.min(limit, visible.length)} / {visible.length}</span>
+          </button>
         </div>
       )}
     </>

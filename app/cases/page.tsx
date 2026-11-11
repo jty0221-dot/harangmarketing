@@ -1,31 +1,19 @@
-"use client";
-
-import { useState } from "react";
-import type { FC } from "react";
-import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { ArrowRight, MessageCircle, Filter, Search, X, Handshake, Store } from "lucide-react";
-import AnimatedCounter from "../components/AnimatedCounter";
 import JsonLd from "../components/JsonLd";
-import AnswerBlock from "../components/AnswerBlock";
+import {
+  SianMain, PageHead, AnswerRow, Section, LinkList, RankSection, Fold, CloseBand,
+} from "../components/sian/Sian";
 import { companyYear, itemListLd, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
-import { PlaceRankCaseCards } from "../components/PlaceRankCases";
-import PlaceRankTable from "../components/PlaceRankTable";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import {
   PLACE_RANK_AS_OF,
-  PLACE_RANK_BIGGEST_GAIN,
   PLACE_RANK_CASES,
-  PLACE_RANK_INDUSTRIES,
-  PLACE_RANK_LABEL_NOTE,
-  PLACE_RANK_NOTE,
   PLACE_RANK_GENERATED,
   PLACE_RANK_TOP_LINES,
-  bestCase,
-  fmtArrow,
   fmtMoveDays,
 } from "../lib/place-rank-cases";
+import CasesFilter from "./CasesFilter";
 
 /*
  * 이 페이지가 인용하는 대장은 하나다 — app/lib/place-rank-cases.ts.
@@ -50,7 +38,10 @@ import {
  * 대신 매일 잰 순위 기록을 싣는다. 카드 하나가 키워드 하나이고, 한 매장이 키워드 셋을
  * 올렸으면 카드도 셋이다 (2026-09-04 (금) 대표 지시 — 겹치는 게 있다면 그래도 추가해).
  */
-const CATEGORIES = ["전체", ...PLACE_RANK_INDUSTRIES];
+/*
+ * 2026-11-12 시안 틀로 다시 짰다. 업종 탭과 검색은 CasesFilter(클라이언트)로 빼고 이 파일은 서버에서 그린다.
+ * 예전 순위표(PlaceRankTable)는 순위 절(RankSection)과 겹쳐 뺐고, 키워드 카드 전체는 접힌 목록으로 남겼다 (ItemList 항목과 짝).
+ */
 
 /*
  * 회사 연차 타일은 app/lib/seo.ts 의 companyYear() 를 쓴다 — 개업한 해를 1년차로 센다 (2020년 개업 → 2026년 7년차 · 전역 규칙 1-C).
@@ -85,350 +76,98 @@ const CASES_LD = [
   ]),
 ];
 
-const CasesPage: FC = () => {
-  const [active, setActive] = useState("전체");
-  const [query, setQuery] = useState("");
+/* 내 업종 안내 · 예전 업종 버튼 여섯 개를 링크 목록으로 옮겼다 */
+const INDUSTRY_LINKS = [
+  { name: "카페·베이커리", result: "플레이스 SEO" },
+  { name: "음식점·식당", result: "리뷰 마케팅" },
+  { name: "미용·뷰티", result: "인스타그램" },
+  { name: "의원·한의원", result: "블로그 마케팅" },
+  { name: "학원·교육", result: "맘카페 바이럴" },
+  { name: "온라인 쇼핑몰", result: "블로그 SEO" },
+].map((ind) => ({ href: `/contact?industry=${encodeURIComponent(ind.name)}`, label: `${ind.name} · ${ind.result}` }));
 
-  const filtered = PLACE_RANK_CASES.filter((c) => {
-    const matchCat = active === "전체" || c.industry === active;
-    const q = query.trim().toLowerCase();
-    const matchQ =
-      !q ||
-      c.industry.toLowerCase().includes(q) ||
-      c.label.toLowerCase().includes(q) ||
-      c.keywords.some((k) => k.detail.toLowerCase().includes(q));
-    return matchCat && matchQ;
-  });
-
+export default function CasesPage() {
   return (
     <>
       <JsonLd data={CASES_LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section className="bg-[var(--h-dark)] py-20 md:py-28 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-blue-600/8 rounded-full blur-3xl" />
-          </div>
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Cases</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
-              직접 잰 순위를<br /><span className="text-blue-400">그대로 옮긴 기록</span>
-            </h1>
-            <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
-              키워드 하나가 몇 위에서 몇 위가 됐는지, 며칠 걸렸는지만 적었습니다.
-            </p>
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xl mt-4">
-              상호와 지역명은 적지 않고 업종과 행정단위까지만 적었습니다. 방문객과 매출은 계측 대상이 아니어서
-              수치로 적지 않습니다. 몇 위까지 올려 드린다는 말을 하지 않습니다.
-            </p>
-          </div>
-        </section>
-
-        {/* Summary */}
-        <section className="py-8 bg-white border-b border-gray-100">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {[
-                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 누적", color: "text-blue-600" },
-                { to: companyYear(), suffix: "년차", decimals: 0, label: "개업", sub: "2020년 4월 개업", color: "text-blue-600" },
-                { to: 6, suffix: "개+", decimals: 0, label: "특화 업종", sub: "카페·음식점·미용 등", color: "text-indigo-600" },
-                { to: TRACK_TOTALS.stores, suffix: "곳", decimals: 0, label: "맡아온 매장", sub: "계약 서류로 확인한 것만", color: "text-blue-700" },
-              ].map((s) => (
-                <div key={s.label} className="text-center py-2">
-                  <div className={`text-2xl md:text-3xl font-black ${s.color} mb-0.5`}>
-                    <AnimatedCounter to={s.to} suffix={s.suffix} decimals={s.decimals} duration={1400} />
-                  </div>
-                  <div className="text-xs md:text-sm font-bold text-gray-700 mb-0.5">{s.label}</div>
-                  <div className="text-[11px] text-gray-600">{s.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* AEO — 성과 질의 한 줄 정답 */}
-        <AnswerBlock
-          question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
-          answer={`하랑마케팅이 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. 순위는 정해진 시각에 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 여기 실린 카드는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아닙니다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳, 업종은 ${TRACK_TOTALS.trades}종입니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
+      <SianMain>
+        {/* 머리 사실 줄 · 예전 요약 타일 네 칸을 옮겼다 */}
+        <PageHead
+          where="진행 사례 · 순위 계측 기록"
+          title={<>직접 잰 순위를<br />그대로 옮긴 기록</>}
+          lead="키워드 하나가 몇 위에서 몇 위가 됐는지, 며칠 걸렸는지만 적었습니다. 상호와 지역명은 적지 않고 업종과 행정단위까지만 적었습니다. 방문객과 매출은 계측 대상이 아니어서 수치로 적지 않습니다. 몇 위까지 올려 드린다는 말을 하지 않습니다."
+          primary={{ href: "/contact", label: "무료 진단 신청하기" }}
+          link={{ href: "/cases/place-rank", label: "계측 방법과 제외 기준 보기" }}
           facts={[
-            { label: "완료 프로젝트", value: "500건+" },
-            { label: "개업", value: "2020년 4월" },
-            { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
-            { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종` },
+            { label: "완료 프로젝트 · 10년 누적", value: "500+" },
+            { label: "개업 · 2020년 4월", value: `${companyYear()}년차` },
+            { label: "특화 업종", value: "6개+" },
+            { label: "맡아온 매장 · 계약 서류로 확인한 것만", value: `${TRACK_TOTALS.stores}곳` },
           ]}
         />
 
-        {/* 순위표 : 아래 카드와 같은 계측값을 한 표로 먼저 보여 준다 (2026-09-17 (목) 대표 지시) */}
-        <PlaceRankTable />
+        {/* AEO · 성과 질의 한 줄 정답 (speakable) */}
+        <AnswerRow
+          question="하랑마케팅의 실제 마케팅 성과는 어느 정도인가요?"
+          answer={`하랑마케팅이 계측하는 네이버 플레이스 순위 기록입니다. ${PLACE_RANK_TOP_LINES}. 순위는 정해진 시각에 저장한 스냅샷 실측값이며 업종·지역 경쟁 강도에 따라 달라집니다. 여기 실린 카드는 ${PLACE_RANK_AS_OF} 계측분에서 고른 발췌이고 하랑마케팅이 맡아 온 전체 물량이 아닙니다. 맡아 온 매장은 ${TRACK_TOTALS.stores}곳, 업종은 ${TRACK_TOTALS.trades}종입니다. 방문객과 매출은 계측 대상이 아니어서 수치로 제시하지 않습니다.`}
+        />
 
-        {/* Filter + Cases */}
-        <section className="py-12 md:py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            {/* 섹션 머리 — 무엇을 세었는지 먼저 말한다 */}
-            <div className="mb-6 md:mb-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "var(--w-primary)" }}>
-                Place Rank
-              </p>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900">키워드마다 한 장씩 실은 계측 기록</h2>
-              <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-                마지막 계측에서 1~5위 안에 있던 키워드를(가장 최근 계측 {PLACE_RANK_AS_OF}) 한 장에 하나씩 옮겼습니다.
-                카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 카드도 셋으로 남습니다.
-              </p>
-              <Link
-                href="/cases/place-rank"
-                className="inline-flex items-center gap-1.5 mt-3 text-sm font-bold min-h-11 hover:underline"
-                style={{ color: "var(--w-primary)" }}
-              >
-                계측 방법과 제외 기준 보기 <ArrowRight size={13} />
-              </Link>
-            </div>
+        {/* 순위 · 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다. 전체 목록과 계측 방법은 /cases/place-rank */}
+        <RankSection
+          soft
+          label="업종"
+          title="키워드별 플레이스 순위"
+          desc="검색수가 큰 키워드부터 넷을 옮겼습니다. 줄 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다."
+          more={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
+        />
 
-            {/* Search */}
-            <div className="relative mb-4 max-w-sm">
-              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" strokeWidth={2} />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="업종, 지역, 서비스로 검색..."
-                className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white text-base md:text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
-              />
-              {query && (
-                <button
-                  onClick={() => setQuery("")}
-                  className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-11 text-gray-400 hover:text-gray-700 transition-colors"
-                >
-                  <X size={13} />
-                </button>
-              )}
-            </div>
+        <Section
+          id="place-rank-cards"
+          title="키워드마다 한 장씩 실은 계측 기록"
+          desc={`마지막 계측에서 1~5위 안에 있던 키워드를(가장 최근 계측 ${PLACE_RANK_AS_OF}) 한 장에 하나씩 옮겼습니다. 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 카드도 셋으로 남습니다.`}
+          more={{ href: "/cases/place-rank", label: "계측 방법과 제외 기준 보기" }}
+        >
+          <Fold summary="업종별로 골라 보기">
+            <CasesFilter />
+          </Fold>
+        </Section>
 
-            {/* Filter tabs */}
-            <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
-              <Filter size={14} className="text-gray-500 shrink-0 mr-1" />
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActive(cat)}
-                  className={`inline-flex items-center px-4 py-2 min-h-11 md:min-h-0 rounded-xl text-sm font-bold whitespace-nowrap transition-all shrink-0 ${
-                    active === cat
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "bg-white text-gray-500 border border-gray-200 hover:border-blue-200 hover:text-blue-600"
-                  }`}
-                >
-                  {cat}
-                  {cat !== "전체" && (
-                    <span className={`ml-1.5 text-xs ${active === cat ? "text-white" : "text-gray-500"}`}>
-                      {PLACE_RANK_CASES.filter((c) => c.industry === cat).length}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
+        {/* 관리 매장 이력 요약 · 전체 행은 /portfolio 에 있다 */}
+        <Section
+          soft
+          id="track-record"
+          title="순위 말고, 맡아온 매장 자체를 세어 봤습니다"
+          desc="계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호 · 지점명 · 지역은 밝히지 않고 업종과 맡아서 한 일만 적습니다."
+          more={{ href: "/portfolio", label: "업종별 매장과 진행 항목 전부 보기" }}
+        >
+          <ul className="space-y-3">
+            <li className="font-semibold" style={{ color: "var(--w-label-strong)" }}>
+              맡아온 매장 {TRACK_TOTALS.stores}곳 · 업종 {TRACK_TOTALS.trades}종 · 맡아서 한 일 {TRACK_TOTALS.workKinds}종
+            </li>
+            {TRACK_RECORD.map((group) => (
+              <li key={group.key} className="border-t pt-3" style={{ borderColor: "var(--w-line)" }}>
+                {group.name} <span className="w-num" style={{ color: "var(--w-label-alt)" }}>{group.items.length}곳</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
 
-            {/* Result count */}
-            {query && (
-              <p className="text-sm text-gray-500 mb-4">
-                <span className="font-bold text-gray-800">&lsquo;{query}&rsquo;</span> 검색 결과 {filtered.length}건
-                {filtered.length === 0 && (
-                  <span className="ml-2 text-blue-600 font-semibold cursor-pointer hover:underline" onClick={() => setQuery("")}>검색어 지우기</span>
-                )}
-              </p>
-            )}
+        <Section
+          id="my-industry"
+          title="내 업종은 무엇부터 해야 할까요?"
+          desc="업종별 상권 난이도와 추천 서비스를 무료로 안내해드립니다"
+        >
+          <LinkList links={INDUSTRY_LINKS} />
+        </Section>
 
-            {/* Empty state */}
-            {filtered.length === 0 && (
-              <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
-                <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                  <Search size={22} className="text-gray-500" strokeWidth={1.5} />
-                </div>
-                <p className="font-bold text-gray-700 mb-1">검색 결과가 없습니다</p>
-                <p className="text-sm text-gray-500 mb-4">다른 키워드나 카테고리를 선택해보세요</p>
-                <button
-                  onClick={() => { setQuery(""); setActive("전체"); }}
-                  className="inline-flex items-center px-4 py-2 min-h-11 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors"
-                >
-                  전체 기록 보기
-                </button>
-              </div>
-            )}
-
-            {/* 카드 — 숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
-            <PlaceRankCaseCards cases={filtered} columns={3} />
-
-            {filtered.length > 0 && (
-              <p className="mt-5 text-xs text-gray-500 leading-relaxed">
-                가장 최근 계측은 {PLACE_RANK_AS_OF} 이고, 카드마다 마지막으로 잰 날짜를 적었습니다. {PLACE_RANK_NOTE} {PLACE_RANK_LABEL_NOTE}
-              </p>
-            )}
-
-            {/* 상담 CTA — 그라데이션을 쓰지 않는다 (WDS) */}
-            <div
-              className="mt-8 rounded-2xl p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-              style={{ backgroundColor: "var(--h-navy)" }}
-            >
-              <div className="min-w-0">
-                <p className="text-blue-200 text-xs font-semibold mb-1">위 기록이 내 업종과 비슷하다면</p>
-                <h3 className="text-white font-black text-base md:text-lg mb-1">내 매장은 지금 몇 위인가요?</h3>
-                <p className="text-blue-100 text-xs">무료 진단에서 업종·경쟁 상황을 함께 보고 지금 어디가 비어 있는지 알려드립니다</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-2 shrink-0">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 min-h-11 rounded-xl bg-white text-blue-700 font-black text-sm hover:bg-blue-50 transition-colors whitespace-nowrap"
-                >
-                  무료 진단 신청 <ArrowRight size={13} />
-                </Link>
-                <a
-                  href="https://pf.kakao.com/_MuUkG/chat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 min-h-11 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors whitespace-nowrap"
-                >
-                  <MessageCircle size={13} />카카오 문의
-                </a>
-              </div>
-            </div>
-
-            {/* My industry CTA */}
-            <div className="mt-10 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-              <div className="bg-gray-900 px-6 py-5">
-                <h3 className="font-black text-white text-lg mb-1">내 업종은 무엇부터 해야 할까요?</h3>
-                <p className="text-gray-400 text-sm">업종별 상권 난이도와 추천 서비스를 무료로 안내해드립니다</p>
-              </div>
-              <div className="p-6">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-5">
-                  {[
-                    { name: "카페·베이커리", result: "플레이스 SEO" },
-                    { name: "음식점·식당", result: "리뷰 마케팅" },
-                    { name: "미용·뷰티", result: "인스타그램" },
-                    { name: "의원·한의원", result: "블로그 마케팅" },
-                    { name: "학원·교육", result: "맘카페 바이럴" },
-                    { name: "온라인 쇼핑몰", result: "블로그 SEO" },
-                  ].map((ind) => (
-                    <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`}
-                      className="flex flex-col p-3 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-all group">
-                      <span className="text-xs font-bold text-gray-700 group-hover:text-blue-700">{ind.name}</span>
-                      <span className="text-[11px] text-blue-600 font-black mt-0.5">{ind.result}</span>
-                    </Link>
-                  ))}
-                </div>
-                <Link href="/contact" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors">
-                  내 업종 무료 사례 문의 <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ══ 관리 매장 이력 요약 ══ */}
-        {/* 전체 99행은 홈과 /portfolio 에 있다. 여기서는 순위 카드와 목록이 서로 잡아먹지 않게
-            합계와 업종 그룹만 놓고 넘긴다 (2026-09-05 (토) 대표 지시 · 관리 매장을 최대한 많이 보이게). */}
-        <section className="py-12 md:py-16 bg-white border-t border-gray-100">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "var(--w-primary)" }}>
-              Track Record
-            </p>
-            <h2 className="text-xl md:text-2xl font-black text-gray-900">순위 말고, 맡아온 매장 자체를 세어 봤습니다</h2>
-            <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-              계약 대장과 계약 서류에서 확인한 것만 옮겼습니다. 상호 · 지점명 · 지역은 밝히지 않고 업종과 맡아서 한
-              일만 적습니다.
-            </p>
-
-            <div className="mt-6 grid grid-cols-3 gap-3">
-              {[
-                { value: TRACK_TOTALS.stores, unit: "곳", label: "맡아온 매장" },
-                { value: TRACK_TOTALS.trades, unit: "종", label: "업종" },
-                { value: TRACK_TOTALS.workKinds, unit: "종", label: "맡아서 한 일" },
-              ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-gray-100 bg-gray-50 p-4 md:p-5">
-                  <p className="text-2xl md:text-3xl font-black text-gray-900 tabular-nums leading-none">
-                    {s.value}<span className="text-base md:text-lg font-bold ml-0.5">{s.unit}</span>
-                  </p>
-                  <p className="mt-2 text-[13px] font-bold text-gray-700">{s.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <ul className="mt-5 flex flex-wrap gap-1.5 md:gap-2">
-              {TRACK_RECORD.map((group) => (
-                <li
-                  key={group.key}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-100 bg-gray-50 px-2.5 py-1.5"
-                >
-                  <Store size={12} className="text-gray-400" strokeWidth={2.5} />
-                  <span className="text-[12px] md:text-[13px] font-semibold text-gray-700">{group.name}</span>
-                  <span className="text-[11px] font-bold tabular-nums" style={{ color: "var(--w-primary)" }}>
-                    {group.items.length}곳
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold min-h-11 hover:underline"
-              style={{ color: "var(--w-primary)" }}
-            >
-              업종별 매장과 진행 항목 전부 보기 <ArrowRight size={13} />
-            </Link>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-16 md:py-20 bg-gray-950 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <div className="flex items-center justify-center gap-1.5 mb-4">
-                <Handshake size={15} className="text-yellow-300" strokeWidth={2.5} />
-                <span className="text-gray-400 text-xs">10년 경력 누적 500건 프로젝트</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-snug">
-                다음 성공 사례의 주인공이 되세요
-              </h2>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto">
-                상담과 진단은 0원입니다.<br />
-                카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 연락드립니다.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-              {/* 업종 이름도 대장에서 온다. 없는 업종을 적어 두면 남의 기록이 그 자리에 붙는다 */}
-              {PLACE_RANK_INDUSTRIES.flatMap((industry) => {
-                const c = bestCase(industry);
-                return c ? [{ ind: industry, result: fmtArrow(c.best), time: `${c.best.days}일 계측` }] : [];
-              }).map((r) => (
-                <div key={r.ind} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-                  <div className="text-lg font-black text-white tabular-nums mb-0.5">{r.result}</div>
-                  <div className="text-xs text-gray-400 font-medium">{r.ind}</div>
-                  <div className="text-[11px] text-gray-400 mt-1">{r.time}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-blue-600 text-white font-black hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/30">
-                무료 진단 신청하기 <ArrowRight size={15} />
-              </Link>
-              <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-yellow-400 text-gray-900 font-black hover:bg-yellow-300 transition-colors">
-                <MessageCircle size={15} /> 카카오 바로 상담
-              </a>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-bold hover:bg-white/15 transition-colors">
-                상담 신청 <ArrowRight size={15} />
-              </Link>
-            </div>
-            <p className="text-center text-[11px] text-gray-400 mt-4">상담 비용 0원 · 계약 강요 없음 · 카카오톡 24시간 접수</p>
-
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="다음 성공 사례의 주인공이 되세요"
+          text="상담과 진단은 0원입니다. 카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 연락드립니다."
+          primary={{ href: "/contact", label: "무료 진단 신청하기" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
-};
-
-export default CasesPage;
+}

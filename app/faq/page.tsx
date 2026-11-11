@@ -2,15 +2,10 @@ import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
-import AnswerBlock from "../components/AnswerBlock";
+import { SianMain, PageHead, AnswerRow, Section, LinkList, CloseBand } from "../components/sian/Sian";
+import s from "../components/sian/sian.module.css";
 import { SITE, ANSWER_SENTENCES, CORE_FAQ, PAGE_UPDATED, faqLd, webPageLd, breadcrumbLd, type FaqItem, ogImage } from "../lib/seo";
 import { BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIER_MIN, won } from "../lib/cafe-distribution";
-import Link from "next/link";
-import {
-  ArrowRight, MessageCircle, Phone, CheckCircle2,
-  Clock, DollarSign, Users, TrendingUp, FileText,
-  MapPin, HelpCircle, ShieldCheck, Calculator, Stethoscope,
-} from "lucide-react";
 
 // FAQ JSON-LD will be injected in the component for rich results
 
@@ -44,9 +39,7 @@ const CLINIC_FAQ = CLINIC_FAQ_QS
 const FAQ_CATEGORIES = [
   {
     id: "cost",
-    icon: DollarSign,
     label: "비용·가격",
-    color: "from-blue-500 to-blue-700",
     questions: [
       {
         q: "마케팅 상담 비용이 있나요?",
@@ -76,9 +69,7 @@ const FAQ_CATEGORIES = [
   },
   {
     id: "contract",
-    icon: FileText,
     label: "계약·진행",
-    color: "from-blue-500 to-blue-700",
     questions: [
       {
         q: "계약 기간은 최소 얼마나 되나요?",
@@ -100,9 +91,7 @@ const FAQ_CATEGORIES = [
   },
   {
     id: "result",
-    icon: TrendingUp,
     label: "효과·성과",
-    color: "from-blue-600 to-indigo-700",
     questions: [
       {
         q: "효과가 언제 나오나요?",
@@ -128,9 +117,7 @@ const FAQ_CATEGORIES = [
   },
   {
     id: "industry",
-    icon: Users,
     label: "업종·규모",
-    color: "from-blue-500 to-blue-700",
     questions: [
       {
         q: "작은 매장도 효과가 있나요?",
@@ -152,16 +139,12 @@ const FAQ_CATEGORIES = [
   },
   {
     id: "clinic",
-    icon: Stethoscope,
     label: "병원·치과·피부과",
-    color: "from-blue-600 to-blue-800",
     questions: CLINIC_FAQ,
   },
   {
     id: "process",
-    icon: Clock,
     label: "상담·진행 방식",
-    color: "from-blue-700 to-indigo-800",
     questions: [
       {
         q: "상담은 어디서 어떻게 진행되나요?",
@@ -189,9 +172,7 @@ const FAQ_CATEGORIES = [
   },
   {
     id: "platform",
-    icon: MapPin,
     label: "플랫폼·채널",
-    color: "from-blue-500 to-indigo-600",
     questions: [
       {
         q: "네이버 플레이스 순위는 얼마나 올릴 수 있나요?",
@@ -221,9 +202,7 @@ const FAQ_CATEGORIES = [
   },
   {
     id: "estimate",
-    icon: Calculator,
     label: "견적·패키지",
-    color: "from-blue-700 to-blue-900",
     questions: [
       {
         q: "가장 저렴하게 시작할 수 있는 방법은 무엇인가요?",
@@ -264,147 +243,52 @@ export default function FAQPage() {
     <>
       <JsonLd data={FAQ_LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section className="bg-[var(--h-dark)] py-14 md:py-20 relative overflow-hidden">
-          <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">FAQ</p>
-            <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
-              상담 전 궁금한 것들,<br /><span className="text-blue-400">미리 확인하세요</span>
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
-              하랑 대표가 10년 동안 상담에서 가장 많이 받은 질문들을 주제별로 정리했습니다.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {FAQ_CATEGORIES.map((cat) => {
-                const Icon = cat.icon;
-                return (
-                  <a key={cat.id} href={`#${cat.id}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-11 md:min-h-0 rounded-xl bg-white/10 border border-white/15 text-white text-xs font-semibold hover:bg-white/20 transition-colors">
-                    <Icon size={11} />
-                    {cat.label}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Quick trust bar */}
-        <section className="py-5 bg-white border-b border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {[
-                { icon: ShieldCheck, text: "상담 비용 0원", color: "text-blue-500" },
-                { icon: CheckCircle2, text: "계약 강요 없음", color: "text-blue-500" },
-                { icon: Clock, text: "카카오톡 24시간 접수", color: "text-blue-500" },
-                { icon: HelpCircle, text: "더 궁금하면 카카오 문의", color: "text-blue-500" },
-              ].map(({ icon: Icon, text, color }) => (
-                <span key={text} className="flex items-center gap-1.5 text-xs text-gray-500">
-                  <Icon size={13} className={color} strokeWidth={2.5} />
-                  {text}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* AEO — 가장 많이 묻는 두 질문의 한 줄 정답 */}
-        <AnswerBlock
-          question="하랑마케팅 마케팅 비용은 얼마이고, 상담은 유료인가요?"
-          answer={ANSWER_SENTENCES.price}
+      <SianMain>
+        <PageHead
+          where="FAQ"
+          title={<>상담 전 궁금한 것들,<br />미리 확인하세요</>}
+          lead="하랑 대표가 10년 동안 상담에서 가장 많이 받은 질문들을 주제별로 정리했습니다."
+          primary={{ href: "/contact", label: "무료 진단 신청" }}
+          link={{ href: "#cost", label: "비용 질문부터 보기" }}
           facts={[
             { label: "견적 방식", value: "항목 조합형" },
-            { label: "기준 단가", value: "블로그 편당 평균 3~5만원 · 업종마다 다름" },
+            { label: "블로그 편당 평균 · 업종마다 다름", value: "3~5만원" },
             { label: "월 금액", value: "업체별 맞춤" },
             { label: "상담·진단", value: "0원" },
           ]}
         />
 
-        {/* FAQ Categories */}
-        <section className="py-12 md:py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 space-y-10">
-            {FAQ_CATEGORIES.map((cat) => {
-              const Icon = cat.icon;
-              return (
-                <div key={cat.id} id={cat.id} className="scroll-mt-24">
-                  {/* Category header */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm" style={{ background: "var(--w-primary)" }}>
-                      <Icon size={16} className="text-white" strokeWidth={2} />
-                    </div>
-                    <h2 className="text-lg font-black text-gray-900">{cat.label}</h2>
-                    <div className="h-px flex-1 bg-gray-200" />
-                  </div>
+        {/* AEO · 가장 많이 묻는 질문의 한 줄 정답 (speakable) */}
+        <AnswerRow
+          question="하랑마케팅 마케팅 비용은 얼마이고, 상담은 유료인가요?"
+          answer={ANSWER_SENTENCES.price}
+        />
 
-                  {/* Questions */}
-                  <div className="space-y-2">
-                    {cat.questions.map((faq, i) => (
-                      <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors shadow-sm">
-                        <summary className="flex items-start gap-3 p-5 cursor-pointer list-none select-none hover:bg-blue-50/30 transition-colors">
-                          <div className="w-5 h-5 rounded-lg text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5" style={{ background: "var(--w-primary)" }}>
-                            Q
-                          </div>
-                          <h3 className="font-bold text-gray-800 text-sm flex-1 leading-snug">{faq.q}</h3>
-                          <svg className="w-4 h-4 text-gray-500 shrink-0 mt-0.5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </summary>
-                        <div className="speakable px-5 pb-5 pt-3 ml-8 text-sm text-gray-500 leading-relaxed border-t border-blue-50">
-                          {faq.a}
-                        </div>
-                      </details>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+        <Section soft title="주제별로 바로 가기" desc="상담 비용 0원 · 계약 강요 없음 · 카카오톡 24시간 접수">
+          <LinkList links={FAQ_CATEGORIES.map((cat) => ({ href: `#${cat.id}`, label: cat.label }))} />
+        </Section>
 
-        {/* Still have questions CTA */}
-        <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center mx-auto mb-5 shadow-lg">
-              <HelpCircle size={24} className="text-white" strokeWidth={2} />
+        {/* 분류마다 한 절. FAQPage 와 같은 배열이라 질문 전부가 summary 로 화면에 있다 */}
+        {FAQ_CATEGORIES.map((cat, ci) => (
+          <Section key={cat.id} id={cat.id} soft={ci % 2 === 1} title={cat.label}>
+            <div className={s.acc}>
+              {cat.questions.map((faq) => (
+                <details key={faq.q}>
+                  <summary>{faq.q}</summary>
+                  <p className="speakable">{faq.a}</p>
+                </details>
+              ))}
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
-              더 궁금한 것이 있으신가요?
-            </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-md mx-auto">
-              위 내용으로 해결이 안 된 경우 바로 물어보세요.<br />
-              카카오톡 24시간 접수 · 하루 이내 답변
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="https://pf.kakao.com/_MuUkG/chat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-black text-sm transition-colors shadow-sm"
-              >
-                <MessageCircle size={15} strokeWidth={2.5} />
-                카카오톡으로 바로 질문하기
-              </a>
-              <a
-                href="tel:010-7541-9054"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-bold text-sm transition-colors"
-              >
-                <Phone size={15} strokeWidth={2.5} />
-                010-7541-9054
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm"
-              >
-                무료 진단 신청 <ArrowRight size={14} />
-              </Link>
-            </div>
-            <p className="text-xs text-gray-500 mt-5">상담 비용 없음 · 계약 강요 없음 · 대표가 직접 연락</p>
-          </div>
-        </section>
-      </main>
-      <Footer />
+          </Section>
+        ))}
+
+        <CloseBand
+          title="더 궁금한 것이 있으신가요?"
+          text="위 내용으로 해결이 안 된 경우 바로 물어보세요. 카카오톡 24시간 접수 · 하루 이내 답변 · 상담 비용 없음 · 계약 강요 없음 · 대표가 직접 연락"
+          primary={{ href: "/contact", label: "무료 진단 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }
