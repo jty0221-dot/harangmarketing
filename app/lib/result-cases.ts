@@ -1,4 +1,6 @@
 import raw from "../../content/result-cases.json";
+import { KIND_LABEL, type CaseKind } from "./case-kinds";
+export { FILTER_KINDS, KIND_LABEL, type CaseKind } from "./case-kinds";
 
 /**
  * 성과 사례 — 고객에게 드린 결과 보고서를 상호 · 지역을 가려 다시 쓴 것 (2026-11-11 (수) 대표 지시).
@@ -15,6 +17,7 @@ export interface ResultRow {
 }
 
 export interface ResultCase {
+  kind?: CaseKind[];
   id: string;
   sample?: boolean;
   label: string;
@@ -59,6 +62,9 @@ export const RESULT_CASES_INTRO = [
   "좋았던 날만 고르지 않았습니다. 순위가 내려간 날과 아직 돌아오지 못한 숫자도 같은 그래프와 표에 그대로 남겼습니다.",
   "순위는 검색하는 위치와 시간에 따라 달라지며, 같은 결과를 약속드리는 자료가 아닙니다.",
 ];
+
+/** 종류 칸이 없던 옛 사례는 플레이스 순위 관리로 읽는다 */
+export const caseKinds = (c: ResultCase): CaseKind[] => (c.kind?.length ? c.kind.filter((k) => k in KIND_LABEL) : ["place"]);
 
 /** 화면에 내도 되는 견적 항목만 */
 export const visibleQuoteItems = (c: ResultCase) => (c.quoteItems ?? []).filter((q) => !q.sensitive);

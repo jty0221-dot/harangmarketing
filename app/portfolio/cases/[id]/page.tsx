@@ -8,7 +8,7 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import { breadcrumbLd, webPageLd, ogImage, SITE } from "../../../lib/seo";
-import { RESULT_CASES, getResultCase, leadFigure, otherCases, serviceLinks, visibleQuoteItems } from "../../../lib/result-cases";
+import { KIND_LABEL, RESULT_CASES, caseKinds, getResultCase, leadFigure, otherCases, serviceLinks, visibleQuoteItems } from "../../../lib/result-cases";
 
 type Params = Promise<{ id: string }>;
 
@@ -88,6 +88,9 @@ export default async function ResultCasePage({ params }: { params: Params }) {
             <div className="flex flex-wrap items-center gap-2">
               <span className="w-chip w-chip-blue">{c.industry}</span>
               <span className="w-chip w-chip-neutral">{c.period}</span>
+              {caseKinds(c).map((k) => (
+                <span key={k} className="w-chip w-chip-neutral">{KIND_LABEL[k]}</span>
+              ))}
               {c.sample && <span className="w-chip w-chip-neutral">가상 시안</span>}
             </div>
             <h1 className="w-heading-1 mt-3" style={{ color: "var(--w-label-strong)" }}>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Briefcase, LineChart, Store, TrendingUp } from "lucide-react";
-import { RESULT_CASES, RESULT_CASES_INTRO, leadFigure, serviceNames } from "../lib/result-cases";
+import { RESULT_CASES, RESULT_CASES_INTRO, caseKinds, leadFigure, serviceNames } from "../lib/result-cases";
+import ResultCaseGrid from "./ResultCaseGrid";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getPortfolio } from "../lib/portfolio";
@@ -90,39 +91,19 @@ export default function PortfolioPage() {
                   ))}
                 </div>
               </div>
-              <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {RESULT_CASES.map((c) => {
-                  const f = leadFigure(c);
-                  return (
-                    <li key={c.id} className="min-w-0">
-                      <Link href={`/portfolio/cases/${c.id}`} className="w-card flex h-full flex-col p-5 md:p-6">
-                        <div className="flex flex-wrap items-center gap-1.5">
-                          <span className="w-chip w-chip-blue">{c.industry}</span>
-                          <span className="w-caption-1" style={{ color: "var(--w-label-assistive)" }}>{c.period}</span>
-                          {c.sample && <span className="w-chip w-chip-neutral">가상 시안</span>}
-                        </div>
-                        <h3 className="w-title-3 mt-3" style={{ color: "var(--w-label-strong)" }}>{c.label}</h3>
-                        {f && (
-                          <div className="mt-4 border-t pt-4" style={{ borderColor: "var(--w-line)" }}>
-                            <p className="w-heading-2 w-num" style={{ color: "var(--w-primary)" }}>{f.value}</p>
-                            <p className="w-caption-1 mt-1" style={{ color: "var(--w-label-alt)" }}>{f.label}</p>
-                          </div>
-                        )}
-                        <p className="w-body-2 mt-4 line-clamp-2" style={{ color: "var(--w-label)" }}>{c.summary}</p>
-                        {serviceNames(c).length > 0 && (
-                          <p className="w-caption-1 mt-3 line-clamp-2" style={{ color: "var(--w-label-assistive)" }}>
-                            {serviceNames(c).join(" · ")}
-                          </p>
-                        )}
-                        <span className="mt-auto inline-flex min-h-11 items-center gap-1 pt-4 text-sm font-semibold" style={{ color: "var(--w-primary)" }}>
-                          사례 보기
-                          <ArrowRight size={14} />
-                        </span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+              <ResultCaseGrid
+                cards={RESULT_CASES.map((c) => ({
+                  id: c.id,
+                  label: c.label,
+                  industry: c.industry,
+                  period: c.period,
+                  sample: c.sample,
+                  figure: leadFigure(c),
+                  summary: c.summary,
+                  services: serviceNames(c),
+                  kinds: caseKinds(c),
+                }))}
+              />
             </section>
           )}
 
