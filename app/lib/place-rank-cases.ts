@@ -162,6 +162,12 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
 /** 검색수를 잰 날 */
 export const PLACE_RANK_VOLUME_AS_OF = FILE.volumeAsOf;
 
+/**
+ * 지금 순위를 재고 있는 규모 (매장 · 키워드 · 그 가운데 1~5위). 생성기가 대장에서 센다.
+ * 화면에 실은 카드 장수가 아니라 계측 대상 전체다. 카드 장수는 아래 지시대로 세지 않는다.
+ */
+export const PLACE_RANK_MONITORING = FILE.monitoring;
+
 /*
  * 화면에 실은 카드가 몇 장인지 세는 값은 두지 않는다 (2026-09-07 (월) 대표 지시).
  *   「이런 멘트 자체를 넣지마 고객이 보았을 때 이것밖에 안하는 매장처럼 보이잖아」

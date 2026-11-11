@@ -187,8 +187,8 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 ${open || dropdownOpen ? "z-[10000]" : "z-50"}`} onKeyDown={event => { if (event.key === 'Escape') { setOpen(false); setDropdownOpen(false); if (open) menuButton.current?.focus(); } }}>
-      {/* Announcement Bar */}
-      {!annClosed && (
+      {/* Announcement Bar · 홈에서는 띄우지 않는다. 경쟁사 분석 리포트 한 줄은 홈 첫 화면으로 옮겼다 (2026-11-12 시안) */}
+      {!annClosed && !isHome && (
         <div className="relative bg-gray-950 border-b border-white/5">
           <div className="max-w-6xl mx-auto pl-4 pr-11 md:pr-12 py-2 md:py-2.5 flex items-center justify-center gap-2 md:gap-4">
             <div className="hidden sm:flex items-center gap-1.5 shrink-0">
@@ -238,7 +238,8 @@ export default function Header() {
           ? "bg-white/96 backdrop-blur-md shadow-sm border-b border-gray-100"
           : "bg-transparent"
       }`}>
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+        {/* 홈은 본문(1200px)과 왼쪽 끝을 맞춘다 · app/home.module.css 의 .wrap 과 같은 값 */}
+        <div className={isHome ? "mx-auto w-full max-w-[1248px] px-5 md:px-6" : "max-w-6xl mx-auto px-4 md:px-6 lg:px-8"}>
           <div className="flex items-center justify-between h-16 md:h-[68px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group min-h-11">
@@ -355,9 +356,12 @@ export default function Header() {
                 href="https://pf.kakao.com/_MuUkG/chat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome || open ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
+                /* 홈에서는 노란 단추 대신 글자 링크로 둔다 · 한 화면에 눈에 띄는 단추는 하나 (2026-11-12 시안) */
+                className={isHome
+                  ? `ml-2 flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${scrolled || open ? "text-gray-600 hover:text-gray-900" : "text-gray-300 hover:text-white"}`
+                  : "ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors bg-yellow-400 text-gray-900 hover:bg-yellow-300"}
               >
-                <MessageCircle size={13} strokeWidth={2.5} />
+                {!isHome && <MessageCircle size={13} strokeWidth={2.5} />}
                 <span className="hidden lg:inline">카카오 상담</span>
               </a>
               <Link

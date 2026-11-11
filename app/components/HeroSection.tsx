@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Pause, Play } from "lucide-react";
 
 import { SITE, companyYear } from "../lib/seo";
+import s from "../home.module.css";
 
 /**
  * 동작 줄이기 설정. 켜 둔 방문자에게는 배경 영상을 처음부터 멈춘 채로 보여준다 (WCAG 2.2.2).
@@ -27,17 +28,21 @@ function companyYearText(): string {
   return `${companyYear()}년차`;
 }
 
-interface HeroSectionProps {
-  videoSpeed?: number;
-  showCta?: boolean;
-  filmGrain?: boolean;
-}
+/**
+ * 첫 화면 아래 네 칸. 숫자는 SITE 상수와 개업 연도에서만 온다 (1-C · 회사 나이와 대표 경력은 다른 숫자다).
+ */
+const FACTS = [
+  { value: `${SITE.foundingDate.slice(0, 4)}년 개업`, sub: `올해 ${companyYearText()}` },
+  { value: `마케터 경력 ${SITE.stats.years}`, sub: "대행사 팀장 출신 대표가 직접" },
+  { value: `누적 프로젝트 ${SITE.stats.projects}`, sub: `${SITE.stats.years} 경력 동안` },
+  { value: "상담 · 진단 0원", sub: "계약 여부는 상담 뒤에 결정" },
+];
 
-export default function HeroSection({
-  videoSpeed = 1,
-  showCta = true,
-  filmGrain = true,
-}: HeroSectionProps) {
+/**
+ * 홈 첫 화면 (2026-11-12 시안). 떠다니는 숫자 카드 · SCROLL 표시 · 문구 위 꾸밈 줄은 걷었다.
+ * 경쟁사 분석 리포트 한 줄은 홈에서만 숨긴 상단 공지 띠에서 옮겨 왔다.
+ */
+export default function HeroSection({ videoSpeed = 1 }: { videoSpeed?: number }) {
   const vidRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useSyncExternalStore(subscribeReducedMotion, getReducedMotion, getReducedMotionOnServer);
   // null 이면 방문자가 아직 버튼을 누르지 않은 것이다. 그때는 동작 줄이기 설정을 따른다
@@ -114,430 +119,43 @@ export default function HeroSection({
   }, [videoSpeed]);
 
   return (
-    <>
-      <style>{`
-        /* 히어로 문구 하단 여백. 데스크톱은 기존 값 그대로 두고,
-           1023px 이하에서는 우하단 상담 위젯이 CTA 버튼을 덮지 않도록 더 띄운다 */
-        .ha-hero-copy { bottom: clamp(40px,7vh,86px); }
-        @media (max-width: 1023px) {
-          .ha-hero-copy { bottom: 176px; }
-        }
-        /* 배경 영상 멈춤 단추. 아래쪽은 상담 위젯과 문구가 차지하므로 고정 헤더 바로 아래 오른쪽에 둔다 */
-        .ha-hero-pause { position: absolute; top: 116px; right: clamp(16px,4vw,72px); z-index: 6; }
-        @media (min-width: 768px) {
-          .ha-hero-pause { top: 124px; }
-        }
-        @media (max-width: 767px) { .ha-film-grain { display: none; } }
-        @keyframes haFadeUp {
-          from { opacity: 0; transform: translateY(26px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        /* H1 전용 : 투명도는 건드리지 않고 위치만 올린다. 투명하게 시작한 글자는 LCP(가장 큰 그림) 후보에서 빠져
-           화면이 붙은 뒤에 뜨는 공지 띠가 LCP 로 잡혔다 (2026-10-07 라이트하우스 실측 · 모바일 7.0초) */
-        @keyframes haRise {
-          from { transform: translateY(26px); }
-          to   { transform: translateY(0); }
-        }
-        @keyframes haLineGrow {
-          from { transform: scaleX(0); }
-          to   { transform: scaleX(1); }
-        }
-        @keyframes haZoom {
-          from { transform: scale(1.0); }
-          to   { transform: scale(1.07); }
-        }
-        @keyframes haGrainShift {
-          0%   { transform: translate(0,0); }
-          25%  { transform: translate(-3%,2%); }
-          50%  { transform: translate(2%,-3%); }
-          75%  { transform: translate(-2%,-2%); }
-          100% { transform: translate(0,0); }
-        }
-        @keyframes haCue {
-          0%,100% { transform: translateY(0);  opacity: .55; }
-          50%     { transform: translateY(7px); opacity: 1;   }
-        }
-        @keyframes haFloat0 {
-          0%,100% { transform: perspective(600px) rotateX(4deg) rotateY(-6deg) translateY(0px); }
-          50%     { transform: perspective(600px) rotateX(2deg) rotateY(-4deg) translateY(-10px); }
-        }
-        @keyframes haFloat1 {
-          0%,100% { transform: perspective(600px) rotateX(-3deg) rotateY(5deg) translateY(0px); }
-          50%     { transform: perspective(600px) rotateX(-5deg) rotateY(3deg) translateY(-12px); }
-        }
-        @keyframes haFloat2 {
-          0%,100% { transform: perspective(600px) rotateX(5deg) rotateY(4deg) translateY(0px); }
-          50%     { transform: perspective(600px) rotateX(3deg) rotateY(6deg) translateY(-8px); }
-        }
-        @keyframes haStatIn {
-          from { opacity: 0; transform: perspective(600px) rotateX(20deg) translateY(30px); }
-          to   { opacity: 1; }
-        }
-      `}</style>
+    <section className={s.hero}>
+      {/* autoPlay 속성은 두지 않는다. load() 가 자동 재생 표시를 다시 켜서, 멈춘 뒤에도 영상이 저절로 다시 돈다.
+          재생은 위 효과의 tryPlay 가 멈춤 여부를 확인하고 맡는다 */}
+      <video ref={vidRef} muted loop playsInline preload="none" poster="/hero-v4-poster.jpg" aria-hidden="true">
+        <source src="/hero-v4.mp4" type="video/mp4" />
+      </video>
 
-      <section
-        style={{
-          position: "relative",
-          width: "100%",
-          minHeight: "100dvh",
-          overflow: "hidden",
-          background: "#001536",
-          fontFamily: "'Pretendard','Apple SD Gothic Neo',sans-serif",
-          WebkitFontSmoothing: "antialiased",
-        }}
+      {/* 5초 넘게 움직이는 화면은 멈출 수 있어야 한다 (WCAG 2.2.2) */}
+      <button
+        type="button"
+        onClick={() => setPauseChoice(!paused)}
+        aria-label={paused ? "배경 영상 재생" : "배경 영상 멈춤"}
+        className={s.pause}
       >
-        {/* ── 배경 동영상 ──
-            autoPlay 속성은 두지 않는다. load() 가 자동 재생 표시를 다시 켜서, 멈춘 뒤에도 영상이 저절로 다시 돈다.
-            재생은 위 효과의 tryPlay 가 멈춤 여부를 확인하고 맡는다 */}
-        <video
-          ref={vidRef}
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster="/hero-v4-poster.jpg"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "50% 46%",
-            willChange: "transform",
-            animation: "haZoom 34s ease-in-out infinite alternate",
-            animationPlayState: paused ? "paused" : "running",
-          }}
-        >
-          <source src="/hero-v4.mp4" type="video/mp4" />
-        </video>
+        {paused ? <Play size={16} strokeWidth={2.5} aria-hidden="true" /> : <Pause size={16} strokeWidth={2.5} aria-hidden="true" />}
+      </button>
 
-        {/* ── 배경 움직임 멈춤·재생 (5초 넘게 움직이는 화면은 멈출 수 있어야 한다 · WCAG 2.2.2) ──
-            키보드 초점이 CTA 보다 먼저 닿도록 영상 바로 뒤에 둔다. 영상과 함께 확대·그레인·통계 카드·스크롤 표시도 멈춘다 */}
-        <button
-          type="button"
-          onClick={() => setPauseChoice(!paused)}
-          aria-label={paused ? "배경 영상 재생" : "배경 영상 멈춤"}
-          className="ha-hero-pause inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-black/35 text-white shadow-sm backdrop-blur-sm transition-colors hover:bg-black/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          {paused ? (
-            <Play size={16} strokeWidth={2.5} aria-hidden="true" />
-          ) : (
-            <Pause size={16} strokeWidth={2.5} aria-hidden="true" />
-          )}
-        </button>
-
-        {/* ── 우하단 블러 코너 ── */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            width: "clamp(165px,18%,310px)",
-            height: "clamp(115px,20%,245px)",
-            pointerEvents: "none",
-            zIndex: 3,
-            backdropFilter: "blur(37px) brightness(0.78)",
-            WebkitBackdropFilter: "blur(37px) brightness(0.78)",
-            background:
-              "radial-gradient(118% 118% at 100% 100%, rgba(0,21,54,0.92) 0%, rgba(0,21,54,0.78) 32%, rgba(0,21,54,0.3) 58%, rgba(0,21,54,0) 80%)",
-            WebkitMaskImage:
-              "radial-gradient(150% 150% at 100% 100%, #000 45%, transparent 100%)",
-            maskImage:
-              "radial-gradient(150% 150% at 100% 100%, #000 45%, transparent 100%)",
-          }}
-        />
-
-        {/* ── 그라디언트 오버레이들 ── */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "radial-gradient(125% 120% at 52% 40%, rgba(0,21,54,0) 46%, rgba(0,21,54,0.4) 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "linear-gradient(94deg, rgba(0,25,64,0.86) 0%, rgba(0,25,64,0.46) 32%, rgba(0,25,64,0.06) 60%, rgba(0,25,64,0) 76%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "linear-gradient(0deg, rgba(0,21,54,0.76) 0%, rgba(0,21,54,0.18) 36%, rgba(0,21,54,0) 56%)",
-          }}
-        />
-
-        {/* ── 필름 그레인 ── */}
-        {filmGrain && (
-          <div
-            className="ha-film-grain"
-            style={{
-              position: "absolute",
-              inset: "-6%",
-              pointerEvents: "none",
-              opacity: 0.09,
-              mixBlendMode: "overlay",
-              animation: "haGrainShift 1.6s steps(2) infinite",
-              animationPlayState: paused ? "paused" : "running",
-              backgroundImage:
-                "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22140%22 height=%22140%22 filter=%22url(%23n)%22/></svg>')",
-            }}
-          />
-        )}
-
-        {/* ── 텍스트 콘텐츠 ── */}
-        <div
-          className="ha-hero-copy"
-          style={{
-            position: "absolute",
-            left: "clamp(24px,4vw,72px)",
-            right: "clamp(24px,4vw,72px)",
-            zIndex: 5,
-          }}
-        >
-          {/* 에이블 문구 */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              marginBottom: "clamp(16px,2vh,24px)",
-              animation: "haFadeUp .8s cubic-bezier(.2,.7,.2,1) .15s both",
-            }}
-          >
-            <span
-              style={{
-                display: "block",
-                width: 34,
-                height: 2,
-                background: "#fff",
-                transformOrigin: "left",
-                animation: "haLineGrow .7s ease .5s both",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                color: "rgba(255,255,255,0.9)",
-                fontSize: "clamp(11px,1.05vw,15px)",
-                fontWeight: 600,
-                letterSpacing: "0.14em",
-              }}
-            >
-              현재 상태부터 확인하는 마케팅
-            </span>
-          </div>
-
-          {/* H1 */}
-          <h1
-            style={{
-              margin: 0,
-              color: "#fff",
-              fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: "-0.03em",
-              fontSize: "clamp(28px,4.7vw,74px)",
-              textShadow: "0 2px 30px rgba(5,12,32,0.4)",
-              animation: "haRise .9s cubic-bezier(.2,.7,.2,1) .28s both",
-            }}
-          >
-            광고비를 더 쓰기 전에,<br />
-            고객을 놓치는 곳부터 확인하세요.
-          </h1>
-
-          {/* 서브 1 */}
-          <p
-            style={{
-              margin: "clamp(16px,2.2vh,26px) 0 0",
-              color: "#fff",
-              fontWeight: 600,
-              lineHeight: 1.45,
-              letterSpacing: "-0.015em",
-              fontSize: "clamp(15px,1.9vw,30px)",
-              wordBreak: "keep-all",
-              overflowWrap: "break-word",
-              animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .44s both",
-            }}
-          >
-            지금 어디에 있고, 무엇부터 해야 하는지 함께 정리합니다.
-          </p>
-
-          {/* 서브 2 */}
-          <p
-            style={{
-              margin: "clamp(10px,1.4vh,16px) 0 0",
-              color: "rgba(255,255,255,0.86)",
-              fontWeight: 400,
-              lineHeight: 1.5,
-              letterSpacing: "-0.01em",
-              fontSize: "clamp(13px,1.45vw,22px)",
-              wordBreak: "keep-all",
-              overflowWrap: "break-word",
-              animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .58s both",
-            }}
-          >
-            현재 상태와 먼저 할 일, 다음에 확인할 숫자를 하랑 대표가 직접 설명합니다.
-          </p>
-
-          {/* CTA 버튼 */}
-          {showCta && (
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: 14,
-                marginTop: "clamp(24px,3.2vh,40px)",
-                animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .7s both",
-              }}
-            >
-              <Link
-                href="/free-check"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 9,
-                  background: "#fff",
-                  color: "#001536",
-                  fontWeight: 700,
-                  fontSize: "clamp(13px,1.15vw,18px)",
-                  padding: "15px 28px",
-                  borderRadius: 999,
-                  boxShadow: "0 12px 34px rgba(6,14,40,0.4)",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                내 매장 현재 상태 확인하기
-                <span style={{ fontSize: "1.1em", lineHeight: 1 }}>→</span>
-              </Link>
-              <Link
-                href="/cases"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  color: "#fff",
-                  fontWeight: 600,
-                  fontSize: "clamp(13px,1.15vw,18px)",
-                  padding: "15px 26px",
-                  borderRadius: 999,
-                  border: "1.5px solid rgba(255,255,255,0.5)",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                실제 계측 사례 보기
-              </Link>
-            </div>
-          )}
+      <div className={s.wrap}>
+        <h1>
+          광고비를 더 쓰기 전에,<br />
+          고객을 놓치는 곳부터 확인하세요.
+        </h1>
+        <p className={s.lead}>현재 상태와 먼저 할 일, 다음에 확인할 숫자를 하랑 대표가 직접 설명합니다.</p>
+        <div className={s.acts}>
+          <Link href="/free-check" className={`${s.btn} ${s.btnWhite}`}>내 매장 현재 상태 확인하기</Link>
+          <Link href="/cases/place-rank" className={s.textLink}>실제 계측 사례 보기</Link>
         </div>
-
-        {/* ── 3D 떠다니는 통계 카드 (데스크톱만) ── */}
-        <div
-          style={{
-            position: "absolute",
-            right: "clamp(24px,5vw,80px)",
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 5,
-            flexDirection: "column",
-            gap: 16,
-            pointerEvents: "none",
-          }}
-          className="hidden lg:flex"
-        >
-          {[
-            { value: "500건", label: "누적 프로젝트", sub: "10년 경력 동안", delay: "1s", anim: "haFloat0" },
-            { value: `${SITE.foundingDate.slice(0, 4)}년`, label: "개업", sub: companyYearText(), delay: "1.15s", anim: "haFloat1" },
-            { value: "10년", label: "현장 마케팅 경력", sub: "대행사 팀장 출신", delay: "1.3s", anim: "haFloat2" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              style={{
-                background: "rgba(255,255,255,0.07)",
-                backdropFilter: "blur(18px)",
-                WebkitBackdropFilter: "blur(18px)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                borderRadius: 16,
-                padding: "16px 22px",
-                minWidth: 160,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15)",
-                animation: `haStatIn .9s cubic-bezier(.2,.7,.2,1) ${stat.delay} both, ${stat.anim} 5s ease-in-out ${stat.delay} infinite`,
-                // 등장(haStatIn)은 끝까지 보내고 떠다니는 반복만 멈춘다
-                animationPlayState: paused ? "running, paused" : "running, running",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "clamp(20px,1.8vw,28px)",
-                  fontWeight: 800,
-                  color: "#fff",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1,
-                  marginBottom: 4,
-                  textShadow: "0 2px 12px rgba(0,0,0,0.3)",
-                }}
-              >
-                {stat.value}
-              </div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.9)", marginBottom: 2 }}>
-                {stat.label}
-              </div>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em" }}>
-                {stat.sub}
-              </div>
+        <p className={s.gift}>상담을 신청하시면 경쟁사 분석 리포트를 드립니다. 계약 전에 확인하실 수 있습니다.</p>
+        <dl className={s.facts}>
+          {FACTS.map((f) => (
+            <div key={f.value}>
+              <dt>{f.value}</dt>
+              <dd>{f.sub}</dd>
             </div>
           ))}
-        </div>
-
-        {/* ── 스크롤 큐 ── */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 24,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 5,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 7,
-            animation: "haFadeUp 1s ease 1s both",
-          }}
-        >
-          <span
-            style={{
-              color: "rgba(255,255,255,0.6)",
-              fontSize: 11,
-              letterSpacing: "0.22em",
-              fontWeight: 600,
-            }}
-          >
-            SCROLL
-          </span>
-          <span
-            style={{
-              color: "rgba(255,255,255,0.7)",
-              fontSize: 16,
-              lineHeight: 1,
-              animation: "haCue 1.8s ease-in-out infinite",
-              animationPlayState: paused ? "paused" : "running",
-            }}
-          >
-            ↓
-          </span>
-        </div>
-      </section>
-    </>
+        </dl>
+      </div>
+    </section>
   );
 }
