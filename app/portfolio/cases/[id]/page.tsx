@@ -129,9 +129,10 @@ export default async function ResultCasePage({ params }: { params: Params }) {
                 위로 갈수록 높은 순위입니다. 계측하지 않은 날은 선을 잇지 않았습니다.
               </p>
               <RankChart series={c.series} />
-              {c.series_note && (
-                <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-assistive)" }}>{c.series_note}</p>
-              )}
+              <p className="w-caption-1 mt-2" style={{ color: "var(--w-label-assistive)" }}>
+                {c.series_note && <>{c.series_note} </>}
+                그래프에는 며칠 간격으로 골라 점을 찍었습니다.
+              </p>
             </Card>
           )}
 
@@ -140,12 +141,12 @@ export default async function ResultCasePage({ params }: { params: Params }) {
               <ul className="mt-4 space-y-6">
                 {c.beforeAfter.map((b) => (
                   <li key={b.before}>
-                    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
                       {[
                         ["전", b.beforeDate, b.before],
                         ["후", b.afterDate, b.after],
                       ].map(([k, when, src]) => (
-                        <figure key={k} className="min-w-0">
+                        <figure key={k} className="min-w-0 md:max-w-[360px]">
                           <p className="w-caption-1 font-semibold" style={{ color: k === "후" ? "var(--w-primary)" : "var(--w-label-alt)" }}>
                             {k} · {when}
                           </p>

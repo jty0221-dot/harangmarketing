@@ -9,7 +9,7 @@ const STYLES = [
 
 const W = 480;
 const H = 260;
-const PAD = { top: 16, right: 16, bottom: 34, left: 52 };
+const PAD = { top: 16, right: 18, bottom: 44, left: 60 };
 
 /** 세로축 눈금 4개 안팎. 1 은 순위의 꼭대기라 항상 넣는다 */
 function ticks(min: number, max: number) {
@@ -59,11 +59,12 @@ export default function RankChart({ series }: { series: RankSeries[] }) {
         ))}
       </ul>
       <div className="mx-auto mt-3 w-full max-w-[640px]">
-        <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-label={`날짜별 ${lines.map((s) => s.label).join(" · ")} 그래프. 같은 값은 아래 표에 있습니다`}>
+        <svg viewBox={`0 0 ${W} ${H}`} /* 폰에서는 그림이 줄어드는 만큼 축 글자를 키운다 (SVG 글자 크기는 viewBox 단위) */
+          className="block h-auto w-full text-[19px] md:text-[13px]" role="img" aria-label={`날짜별 ${lines.map((s) => s.label).join(" · ")} 그래프. 같은 값은 아래 표에 있습니다`}>
           {yTicks.map((t) => (
             <g key={t}>
               <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} stroke="var(--w-line-strong)" strokeWidth="1" />
-              <text x={PAD.left - 8} y={y(t)} dy="0.35em" textAnchor="end" fontSize="13" fill="var(--w-label-alt)">
+              <text x={PAD.left - 8} y={y(t)} dy="0.35em" textAnchor="end" fill="var(--w-label-alt)">
                 {t}{unit}
               </text>
             </g>
@@ -71,7 +72,7 @@ export default function RankChart({ series }: { series: RankSeries[] }) {
           {days.map((d, i) =>
             // 마지막 날짜는 늘 쓰고, 그 바로 앞 눈금은 겹치면 뺀다
             (i % xLabelEvery === 0 && days.length - 1 - i >= xLabelEvery) || i === days.length - 1 ? (
-              <text key={d} x={x(i)} y={H - 10} textAnchor="middle" fontSize="13" fill="var(--w-label-alt)">
+              <text key={d} x={x(i)} y={H - 10} textAnchor={i === days.length - 1 && i > 0 ? "end" : "middle"} fill="var(--w-label-alt)">
                 {d}
               </text>
             ) : null,
