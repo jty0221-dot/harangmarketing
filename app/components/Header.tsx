@@ -9,6 +9,7 @@ import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock } from "l
 import { SITE } from "../lib/seo";
 import { SNS_STORE_ENABLED } from "../lib/feature-flags";
 import { activeNotices, kstToday, type SiteNotice } from "../lib/site-notice";
+import { SIAN_ROUTES } from "./sian/routes";
 
 /** 켜진 공지가 없을 때의 닫기 기록 이름. 공지가 켜지면 공지 id 로 만든 이름을 쓴다 (lib/site-notice.ts) */
 const ANN_KEY = "harang_ann_v1";
@@ -182,13 +183,14 @@ export default function Header() {
     return () => { desktop.removeEventListener('change', closeOnDesktop); document.body.style.overflow = previous; };
   }, [open]);
 
-  const isHome = pathname === "/";
+  /* 홈과 2026-11-12 시안 틀로 옮긴 페이지 · 공지 띠 없음 · 어두운 머리 위에 투명한 머리글 (app/components/sian/routes.ts) */
+  const isSian = SIAN_ROUTES.has(pathname ?? "");
   const msg = annItems[annIdx] ?? annItems[0];
 
   return (
     <header className={`fixed top-0 left-0 right-0 ${open || dropdownOpen ? "z-[10000]" : "z-50"}`} onKeyDown={event => { if (event.key === 'Escape') { setOpen(false); setDropdownOpen(false); if (open) menuButton.current?.focus(); } }}>
-      {/* Announcement Bar · 홈에서는 띄우지 않는다. 경쟁사 분석 리포트 한 줄은 홈 첫 화면으로 옮겼다 (2026-11-12 시안) */}
-      {!annClosed && !isHome && (
+      {/* Announcement Bar · 홈과 시안 틀 페이지에서는 띄우지 않는다. 경쟁사 분석 리포트 한 줄은 홈 첫 화면으로 옮겼다 (2026-11-12 시안) */}
+      {!annClosed && !isSian && (
         <div className="relative bg-gray-950 border-b border-white/5">
           <div className="max-w-6xl mx-auto pl-4 pr-11 md:pr-12 py-2 md:py-2.5 flex items-center justify-center gap-2 md:gap-4">
             <div className="hidden sm:flex items-center gap-1.5 shrink-0">
@@ -234,20 +236,20 @@ export default function Header() {
 
       {/* Nav Bar */}
       <div className={`transition-all duration-300 ${
-        scrolled || !isHome || open
+        scrolled || !isSian || open
           ? "bg-white/96 backdrop-blur-md shadow-sm border-b border-gray-100"
           : "bg-transparent"
       }`}>
         {/* 홈은 본문(1200px)과 왼쪽 끝을 맞춘다 · app/home.module.css 의 .wrap 과 같은 값 */}
-        <div className={isHome ? "mx-auto w-full max-w-[1248px] px-5 md:px-6" : "max-w-6xl mx-auto px-4 md:px-6 lg:px-8"}>
+        <div className={isSian ? "mx-auto w-full max-w-[1248px] px-5 md:px-6" : "max-w-6xl mx-auto px-4 md:px-6 lg:px-8"}>
           <div className="flex items-center justify-between h-16 md:h-[68px]">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group min-h-11">
-              <img src={scrolled || !isHome || open ? "/harang-icon.svg" : "/harang-icon-on-dark.svg"} alt="하랑마케팅 로고" width={32} height={32} className="w-8 h-8" />
+              <img src={scrolled || !isSian || open ? "/harang-icon.svg" : "/harang-icon-on-dark.svg"} alt="하랑마케팅 로고" width={32} height={32} className="w-8 h-8" />
               <div>
                 <span
                   className={`font-black text-[17px] tracking-tight transition-colors ${
-                    scrolled || !isHome || open ? "text-gray-900" : "text-white"
+                    scrolled || !isSian || open ? "text-gray-900" : "text-white"
                   }`}
                 >
                   {/* '마케팅'은 배경에 따라 색을 바꾼다.
@@ -255,13 +257,13 @@ export default function Header() {
                   하랑
                   <span
                     style={{
-                      color: scrolled || !isHome || open ? "var(--w-blue-40)" : "var(--w-blue-70)",
+                      color: scrolled || !isSian || open ? "var(--w-blue-40)" : "var(--w-blue-70)",
                     }}
                   >
                     마케팅
                   </span>
                 </span>
-                {(scrolled || !isHome || open) && (
+                {(scrolled || !isSian || open) && (
                   <div className="text-[11px] font-bold leading-none mt-0.5 tracking-tight" style={{ color: "var(--h-navy)" }}>
                     10년 경력 · 대표가 직접 관리
                   </div>
@@ -289,10 +291,10 @@ export default function Header() {
                       href={item.href}
                       className={`flex items-center gap-1 whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                         pathname.startsWith(item.href)
-                          ? scrolled || !isHome || open
+                          ? scrolled || !isSian || open
                             ? "text-[#0C2351]"
                             : "text-blue-200"
-                          : scrolled || !isHome || open
+                          : scrolled || !isSian || open
                           ? "text-gray-600 hover:text-gray-900"
                           : "text-gray-300 hover:text-white"
                       }`}
@@ -327,14 +329,14 @@ export default function Header() {
                     href={item.href}
                     className={`relative whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                       pathname === item.href
-                        ? scrolled || !isHome || open
+                        ? scrolled || !isSian || open
                           ? ""
                           : "bg-white/10 text-white"
                         : item.accent
-                        ? scrolled || !isHome || open
+                        ? scrolled || !isSian || open
                           ? "font-bold text-blue-700 hover:text-blue-800 hover:bg-blue-50"
                           : "font-bold text-blue-300 hover:text-blue-200 hover:bg-white/8"
-                        : scrolled || !isHome || open
+                        : scrolled || !isSian || open
                         ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                         : "text-gray-300 hover:text-white hover:bg-white/8"
                     }`}
@@ -347,7 +349,7 @@ export default function Header() {
                   번호는 상단 공지·카카오 버튼·푸터에도 있어 2xl 부터만 보인다. */}
               <a
                 href="tel:010-7541-9054"
-                className={`hidden 2xl:flex items-center gap-1.5 whitespace-nowrap px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome || open ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
+                className={`hidden 2xl:flex items-center gap-1.5 whitespace-nowrap px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isSian || open ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
               >
                 <Phone size={13} strokeWidth={2} />
                 <span className="font-semibold text-xs">010-7541-9054</span>
@@ -357,11 +359,11 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 /* 홈에서는 노란 단추 대신 글자 링크로 둔다 · 한 화면에 눈에 띄는 단추는 하나 (2026-11-12 시안) */
-                className={isHome
+                className={isSian
                   ? `ml-2 flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${scrolled || open ? "text-gray-600 hover:text-gray-900" : "text-gray-300 hover:text-white"}`
                   : "ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors bg-yellow-400 text-gray-900 hover:bg-yellow-300"}
               >
-                {!isHome && <MessageCircle size={13} strokeWidth={2.5} />}
+                {!isSian && <MessageCircle size={13} strokeWidth={2.5} />}
                 <span className="hidden lg:inline">카카오 상담</span>
               </a>
               <Link
@@ -377,7 +379,7 @@ export default function Header() {
             <button
               onClick={() => { setOpen(!open); setMobileServicesOpen(false); }}
               className={`lg:hidden inline-flex items-center justify-center min-w-11 min-h-11 rounded-lg transition-colors ${
-                scrolled || !isHome || open
+                scrolled || !isSian || open
                   ? "text-gray-700 hover:bg-gray-100"
                   : "text-white hover:bg-white/10"
               }`}

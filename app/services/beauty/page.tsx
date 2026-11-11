@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import IndustrySteps from "../../components/IndustrySteps";
-import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import AnswerBlock from "../../components/AnswerBlock";
-import RankRecords from "../../components/RankRecords";
-import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
-import Link from "next/link";
 import {
-  CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Scissors, MessageSquare, Camera,
-} from "lucide-react";
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
+  RankSection, QuestionList, CostLine, CloseBand,
+} from "../../components/sian/Sian";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 
 const PAGE_TITLE = "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단";
 const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 정보 정비, 방문 후기 안내로 손님이 예약 전에 보는 자리를 채웁니다.";
@@ -31,26 +26,18 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   {
-    icon: MapPin,
-    color: "from-pink-500 to-rose-600",
     title: "플레이스 SEO",
     desc: "헤어·네일·피부 키워드 최적화 · 지역·매장 정보 정비",
   },
   {
-    icon: Camera,
-    color: "from-purple-500 to-purple-700",
     title: "인스타그램 마케팅",
     desc: "시술 전후 사진 콘텐츠 · 릴스 · 팔로워 유입",
   },
   {
-    icon: Star,
-    color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
     desc: "뷰티 체험단 모집 · 실제 방문 후기 안내 전략",
   },
   {
-    icon: MessageSquare,
-    color: "from-blue-500 to-blue-700",
     title: "블로그 마케팅",
     desc: "시술 후기 · 포트폴리오 블로그 · 맘카페 바이럴",
   },
@@ -95,137 +82,77 @@ const SERVICE_FAQ: FaqItem[] = [
   },
 ];
 
+
+
+/* 머리 사실 줄 · 예전 정답 상자 아래 숫자 줄을 그대로 옮겼다 */
+const BEAUTY_FACTS = [
+  { label: "주력 채널", value: "인스타 릴스" },
+  { label: "보조 채널", value: "비포애프터 포트폴리오" },
+  { label: "순위 계측", value: "스냅샷 저장" },
+  { label: "상담 · 진단", value: "0원" },
+];
+
+/* place-rank-cases.ts 의 업종 표기 그대로 */
+const BEAUTY_INDUSTRIES = ["미용실", "네일숍", "피부관리실", "속눈썹 연장숍"];
+
+const BEAUTY_QUESTIONS = [...SERVICE_FAQ, ...INDUSTRY_EXTRA.beauty.faqs];
+
 export default function BeautyLandingPage() {
   return (
     <>
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section className="bg-[var(--h-dark)] py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-pink-500/20 border border-pink-500/30 text-pink-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
-              <Scissors size={12} strokeWidth={2.5} />
-              미용실 · 네일 · 피부샵 전문
-            </div>
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
-              뷰티샵 예약을<br />
-              <span className="text-pink-400">인스타·플레이스로 받으세요</span>
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-              헤어·네일·피부 업종 특화 콘텐츠 전략.<br />
-              인스타그램 · 네이버 플레이스 한 번에 관리.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-pink-700 hover:bg-pink-800 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                무료 상담 신청 <ArrowRight size={15} />
-              </Link>
-              <Link
-                href="/free-check"
-                className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                내 샵 무료 진단
-              </Link>
-            </div>
-            <p className="mt-4 text-sm">
-              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
-                항목별 비용 보기
-              </Link>
-            </p>
-          </div>
-        </section>
+      <SianMain>
+        <PageHead
+          where="업종별 · 미용실 · 네일 · 피부샵"
+          title={<>뷰티샵 예약을<br />인스타·플레이스로 받으세요</>}
+          lead="헤어·네일·피부 업종 특화 콘텐츠 전략. 인스타그램 · 네이버 플레이스 한 번에 관리."
+          primary={{ href: "/free-check", label: "내 샵 무료 진단" }}
+          link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
+          facts={BEAUTY_FACTS}
+        />
 
-        {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
-        <AnswerBlock
+        {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
+        <AnswerRow
           question="미용실·네일샵 마케팅은 어떤 채널이 가장 효과적인가요?"
           answer="미용·네일·뷰티 업종은 인스타그램 릴스와 비포애프터 포트폴리오가 가장 효과적입니다. 시술 결과를 눈으로 확인해야 예약으로 이어지는 업종이기 때문입니다. 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 뷰티 마케팅 비용은 시술 구성과 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다."
-          facts={[
-            { label: "주력 채널", value: "인스타 릴스" },
-            { label: "보조 채널", value: "비포애프터 포트폴리오" },
-            { label: "순위 계측", value: "스냅샷 저장" },
-            { label: "상담·진단", value: "0원" },
-          ]}
         />
 
+        <Section soft title="이 중 하나라도 해당되면 지금 바로 시작하세요" desc="예쁜 시술 사진이 있어도 노출이 안 되면 소용없습니다.">
+          <LineList items={CHECKLIST} />
+        </Section>
 
-        {/* 체크리스트 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
-              이 중 하나라도 해당되면 지금 바로 시작하세요
-            </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">예쁜 시술 사진이 있어도 노출이 안 되면 소용없습니다</p>
-            <div className="space-y-3">
-              {CHECKLIST.map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                  <CheckCircle2 size={18} className="text-pink-500 flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-gray-800 text-sm font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* 뷰티 업종에서 잰 줄만 싣는다. 없으면 절이 빠진다 · 남의 업종 줄은 빌려오지 않는다 */}
+        <RankSection industries={BEAUTY_INDUSTRIES} label="뷰티샵" />
 
-        {/* 순위 계측 — 뷰티 업종은 공개할 기록이 없다. 남의 업종 숫자를 빌려오지 않는다 */}
-        <RankRecords industries={[]} industryLabel="미용·네일·뷰티" />
+        <Section soft title="뷰티 전용 마케팅 패키지">
+          <ItemList items={SERVICES} />
+        </Section>
 
-        {/* 서비스 구성 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-8">뷰티 전용 마케팅 패키지</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {SERVICES.map((s, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
-                    <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
-                    <p className="text-xs text-gray-500">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section title={`${INDUSTRY_EXTRA.beauty.label} 진행 순서`} desc="하랑 대표가 상담부터 계측까지 직접 맡습니다.">
+          <Steps steps={INDUSTRY_EXTRA.beauty.steps} />
+        </Section>
 
-        <IndustrySteps industry="beauty" />
-
-        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        {/* 질문 · 상담 질문과 「진행 전에 확인하실 것」을 한 목록으로 합쳤다. FAQPage 와 같은 항목 */}
         <JsonLd data={webPageLd({ path: "/services/beauty", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/beauty") })} />
-        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.beauty.faqs], `${SITE.base}/services/beauty`)} />
-        <FaqAccordion
-          items={SERVICE_FAQ}
+        <JsonLd data={faqLd(BEAUTY_QUESTIONS, `${SITE.base}/services/beauty`)} />
+        <Section
+          soft
+          id="faq"
           title="미용실 · 네일샵 대표님들이 가장 많이 묻는 질문"
-          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
-          showMoreHref="/faq"
-        />
+          desc="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+          footer={<CostLine text={INDUSTRY_EXTRA.beauty.price} />}
+        >
+          <QuestionList items={BEAUTY_QUESTIONS} />
+        </Section>
 
-        {/* CTA */}
-        <section className="py-14 md:py-20 bg-pink-700">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
-              <TrendingUp size={22} className="text-white" strokeWidth={2.5} />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-              내 샵 마케팅, 어디서부터 시작할지 모르겠다면
-            </h2>
-            <p className="text-pink-100 text-sm mb-7">
-              지금 바로 무료 상담 신청하면<br />
-              현재 순위·리뷰·인스타 분석 후 맞춤 전략 제안.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-pink-700 font-bold px-7 py-3.5 rounded-xl hover:bg-pink-50 transition-colors text-sm"
-            >
-              뷰티샵 마케팅 무료 상담 <ArrowRight size={15} />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="내 샵 마케팅, 어디서부터 시작할지 모르겠다면"
+          text="지금 바로 무료 상담 신청하면 현재 순위·리뷰·인스타 분석 후 맞춤 전략 제안."
+          primary={{ href: "/contact", label: "뷰티샵 마케팅 무료 상담" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

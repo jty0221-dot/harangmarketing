@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import IndustrySteps from "../../components/IndustrySteps";
 import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import AnswerBlock from "../../components/AnswerBlock";
-import RankRecords from "../../components/RankRecords";
-import PlaceRankCasesSection from "../../components/PlaceRankCases";
-import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
-import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
-import { byIndustry, PLACE_RANK_AS_OF } from "../../lib/place-rank-cases";
-import { byKeyword, fmt, fmtSentence } from "../../lib/rank-records";
-import Link from "next/link";
 import {
-  CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Coffee, MessageSquare, BarChart3,
-} from "lucide-react";
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
+  RankSection, QuestionList, CostLine, CloseBand,
+} from "../../components/sian/Sian";
+import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
+import { fmtMove } from "../../lib/place-rank-cases";
+import { byKeyword, fmtSentence } from "../../lib/rank-records";
 
 /*
  * 순위 문장 — 손으로 적지 않는다.
@@ -40,14 +34,14 @@ const CAFE_DURATIONS = [
   .filter(Boolean)
   .join(", ");
 
+/* 머리 사실 줄 · 예전 정답 상자 아래 숫자 줄을 옮겼다. 시안대로 네 칸 (디저트카페 기록은 정답 문장에 그대로 있다) */
 const CAFE_FACTS = [
-  ...(CAFE ? [{ label: CAFE.keyword, value: fmt(CAFE) }] : []),
-  ...(DESSERT ? [{ label: DESSERT.keyword, value: fmt(DESSERT) }] : []),
+  ...(CAFE ? [{ label: CAFE.keyword, value: fmtMove(CAFE) }] : []),
   ...(CAFE || DESSERT
     ? [{ label: "계측 기간", value: `${Math.max(CAFE?.days ?? 0, DESSERT?.days ?? 0)}일` }]
     : []),
-  { label: "순위 계측", value: "스냅샷 저장" },
-  { label: "상담·진단", value: "0원" },
+  { label: "순위 계측 방식", value: "스냅샷 저장" },
+  { label: "상담 · 진단", value: "0원" },
 ];
 
 const PAGE_TITLE = "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그";
@@ -67,26 +61,18 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   {
-    icon: MapPin,
-    color: "from-blue-500 to-blue-700",
     title: "플레이스 SEO",
     desc: "카페 키워드 최적화 · 정보 정비 · 경쟁사 분석",
   },
   {
-    icon: Star,
-    color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
     desc: "음료·디저트 체험단 운영 · 실제 방문 후기 안내",
   },
   {
-    icon: MessageSquare,
-    color: "from-purple-500 to-purple-700",
     title: "블로그 · SNS",
     desc: "맛집 블로그 포스팅 · 인스타그램 바이럴",
   },
   {
-    icon: BarChart3,
-    color: "from-green-500 to-green-700",
     title: "월간 성과 리포트",
     desc: "순위 변화 · 방문객 추이 · 다음 달 전략",
   },
@@ -131,143 +117,65 @@ const SERVICE_FAQ: FaqItem[] = [
   },
 ];
 
+const CAFE_QUESTIONS = [...SERVICE_FAQ, ...INDUSTRY_EXTRA.cafe.faqs];
+
 export default function CafeLandingPage() {
   return (
     <>
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section className="bg-[var(--h-dark)] py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-600/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
-              <Coffee size={12} strokeWidth={2.5} />
-              카페 · 디저트 전문
-            </div>
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
-              카페 마케팅,<br />
-              <span className="text-blue-400">이렇게 하면 됩니다</span>
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-              네이버 플레이스 정보 정비부터 실제 방문 후기 안내까지.<br />
-              전국 카페 30곳 이상을 직접 진행하며 정리한 전략.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                무료 상담 신청 <ArrowRight size={15} />
-              </Link>
-              <Link
-                href="/free-check"
-                className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                내 카페 무료 진단
-              </Link>
-            </div>
-            <p className="mt-4 text-sm">
-              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
-                항목별 비용 보기
-              </Link>
-            </p>
-          </div>
-        </section>
-
-        {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
-        <AnswerBlock
-          question="카페 마케팅은 어떻게 해야 효과가 있나요?"
-          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 인스타그램 비주얼 콘텐츠 세 가지입니다. 손님이 방문 전에 매장과 메뉴를 확인할 수 있게 자료를 정리합니다. ${CAFE_STORY} 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+      <SianMain>
+        <PageHead
+          where="업종별 · 카페 · 디저트"
+          title={<>카페 마케팅,<br />이렇게 하면 됩니다</>}
+          lead="네이버 플레이스 정보 정비부터 실제 방문 후기 안내까지. 전국 카페 30곳 이상을 직접 진행하며 정리한 전략."
+          primary={{ href: "/free-check", label: "내 카페 무료 진단" }}
+          link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={CAFE_FACTS}
         />
 
-
-        {/* 체크리스트 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
-              이 중 하나라도 해당되면 지금 바로 시작하세요
-            </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">방치할수록 경쟁 카페에 자리를 뺏깁니다</p>
-            <div className="space-y-3">
-              {CHECKLIST.map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                  <CheckCircle2 size={18} className="text-blue-600 flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-gray-800 text-sm font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        <RankRecords industries={["카페"]} industryLabel="카페·베이커리" />
-
-        {/* 카페 업종 계측 — 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
-        <PlaceRankCasesSection
-          cases={byIndustry("카페")}
-          eyebrow="Place Rank"
-          title="카페 매장에서 잰 순위"
-          description={`${PLACE_RANK_AS_OF} 기준으로 카페 업종에서 잰 기록입니다. 카드 하나가 키워드 하나입니다.`}
-          cta={{ href: "/cases/place-rank", label: "다른 업종 기록도 보기" }}
-          columns={2}
-          background="bg-gray-50"
+        {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
+        <AnswerRow
+          question="카페 마케팅은 어떻게 해야 효과가 있나요?"
+          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 인스타그램 비주얼 콘텐츠 세 가지입니다. 손님이 방문 전에 매장과 메뉴를 확인할 수 있게 자료를 정리합니다. ${CAFE_STORY} 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
         />
 
-        {/* 서비스 구성 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-8">카페 전용 마케팅 패키지</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {SERVICES.map((s, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
-                    <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
-                    <p className="text-xs text-gray-500">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section soft title="이 중 하나라도 해당되면 지금 바로 시작하세요" desc="방치할수록 경쟁 카페에 자리를 뺏깁니다.">
+          <LineList items={CHECKLIST} />
+        </Section>
 
-        <IndustrySteps industry="cafe" />
+        {/* 카페 업종 계측 · 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
+            예전 「카페·베이커리 순위 계측 기록 (09-23 스냅샷)」 절은 머리 사실 줄과 이 표로 합쳤다 */}
+        <RankSection industries={["카페"]} label="카페" />
 
-        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        <Section soft title="카페 전용 마케팅 패키지">
+          <ItemList items={SERVICES} />
+        </Section>
+
+        <Section title={`${INDUSTRY_EXTRA.cafe.label} 진행 순서`} desc="하랑 대표가 상담부터 계측까지 직접 맡습니다.">
+          <Steps steps={INDUSTRY_EXTRA.cafe.steps} />
+        </Section>
+
+        {/* 질문 · 상담 질문과 「진행 전에 확인하실 것」을 한 목록으로 합쳤다. FAQPage 와 같은 항목 */}
         <JsonLd data={webPageLd({ path: "/services/cafe", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/cafe") })} />
-        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.cafe.faqs], `${SITE.base}/services/cafe`)} />
-        <FaqAccordion
-          items={SERVICE_FAQ}
+        <JsonLd data={faqLd(CAFE_QUESTIONS, `${SITE.base}/services/cafe`)} />
+        <Section
+          soft
+          id="faq"
           title="카페 대표님들이 가장 많이 묻는 질문"
-          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
-          showMoreHref="/faq"
-        />
+          desc="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+          footer={<CostLine text={INDUSTRY_EXTRA.cafe.price} />}
+        >
+          <QuestionList items={CAFE_QUESTIONS} />
+        </Section>
 
-        {/* CTA */}
-        <section className="py-14 md:py-20 bg-blue-600">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
-              <TrendingUp size={22} className="text-white" strokeWidth={2.5} />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-              내 카페도 가능한지 먼저 확인하세요
-            </h2>
-            <p className="text-blue-50 text-sm mb-7">
-              무료 진단 후 가능성이 없으면 솔직히 말씀드립니다.<br />
-              부담 없이 연락 주세요.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm"
-            >
-              카페 마케팅 무료 상담 <ArrowRight size={15} />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="내 카페도 가능한지 먼저 확인하세요"
+          text="무료 진단 후 가능성이 없으면 솔직히 말씀드립니다. 부담 없이 연락 주세요."
+          primary={{ href: "/contact", label: "카페 마케팅 무료 상담" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

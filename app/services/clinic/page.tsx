@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import AnswerBlock from "../../components/AnswerBlock";
-import RankRecords from "../../components/RankRecords";
-import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
+import {
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, LinkList, Steps,
+  QuestionList, CloseBand,
+} from "../../components/sian/Sian";
 import { SITE, ORG_ID, LOCAL_ID, faqLd, webPageLd, breadcrumbLd, type FaqItem, PAGE_UPDATED, ogImage } from "../../lib/seo";
 import {
-  byKeyword, clinicFact,
-  CLINIC_INDUSTRIES, CLINIC_LINES, CLINIC_NOTE,
+  byKeyword, clinicFact, MEASURE_NOTE,
+  CLINIC_LINES, CLINIC_NOTE,
   CLINIC_KEYWORDS, CLINIC_SUMMARY, CLINIC_STATUS_LINES, CLINIC_STATUS_CAPTION,
 } from "../../lib/rank-records";
 
@@ -104,13 +105,8 @@ const CLINIC_FACTS = [
   { label: "순위 계측", value: "스냅샷 기록" },
   { label: "상담·진단", value: "0원" },
 ];
-import Link from "next/link";
-import {
-  CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
-  Stethoscope, MessageSquare,
-  ShieldCheck, ScrollText,
-  Globe2 } from "lucide-react";
 import { MEDICAL_PROCESS } from "../../lib/medical-process";
+import ss from "../../components/sian/sian.module.css";
 import { C04, C05, CLINIC_HUB_PATH, CLINIC_GEO_PATH } from "../../lib/clinic-homepage";
 
 // 의료광고 검수 공정 네 줄은 app/lib/medical-process.ts (허브와 같이 쓴다 · 글자 변경 0)
@@ -129,32 +125,22 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   {
-    icon: MapPin,
-    color: "from-blue-500 to-blue-700",
     title: "플레이스 SEO",
     desc: "진료과목 키워드 최적화 · 지역+과목 검색어 세팅",
   },
   {
-    icon: Star,
-    color: "from-blue-600 to-orange-600",
     title: "리뷰 답글 관리",
     desc: "리뷰 답글 작성 · 부정 리뷰 대응 전략",
   },
   {
-    icon: MessageSquare,
-    color: "from-purple-500 to-purple-700",
     title: "의료법 준수 블로그",
     desc: "의료광고 심의 대상 판정 · 원장님 명의 진료 정보 글 기획",
   },
   {
-    icon: ShieldCheck,
-    color: "from-green-500 to-green-700",
     title: "신뢰도 콘텐츠",
     desc: "원장님 진료 원칙 소개 · 진료 과정 안내 콘텐츠",
   },
   {
-    icon: Globe2,
-    color: "",
     title: "병원 홈페이지 · AI 읽기 정비", // C-01
     desc: "진료 정보를 글자와 구조화 데이터로 정리하는 홈페이지 제작과 정비", // C-02
     href: CLINIC_HUB_PATH,
@@ -202,325 +188,134 @@ const SERVICE_FAQ: FaqItem[] = [
   },
 ];
 
+
+
+/* 검수 공정 절 아래 자료 두 곳 · 문구는 옮기기 전 카드와 글자까지 같다 */
+const CLINIC_GUIDES = [
+  {
+    title: "의료광고 심의 대상 판정 자료",
+    href: "/services/clinic/medical-ad-guide",
+    desc: "어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 의료법 제57조와 시행령 제24조 순서대로 정리했습니다. 채널 16곳 판정과 금지 15가지, 전후 사진 요건, 심의 유효기간까지 조문 번호와 함께 적었습니다.",
+  },
+  {
+    title: "병원 홈페이지 제작",
+    href: "/services/homepage/clinic",
+    desc: "진료과목 · 의료진 · 진료시간 · 오시는 길을 환자가 찾기 쉽게 정리하고, 의료법 문구 검수와 검색 기본 세팅을 함께 합니다. 플레이스와 홈페이지의 병원 정보를 같게 맞춥니다.",
+  },
+];
+
+const CLINIC_NEXT = [
+  { label: "병원 홈페이지 제작", href: CLINIC_HUB_PATH },
+  { label: "병원 GEO · AEO 세팅", href: CLINIC_GEO_PATH },
+  { label: "의료광고 심의 판정 자료", href: "/services/clinic/medical-ad-guide" },
+  { label: "네이버 플레이스 SEO", href: "/services/place" },
+];
+
 export default function ClinicLandingPage() {
   return (
     <>
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        {/* Hero */}
-        <section className="bg-[var(--h-dark)] py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
-              <Stethoscope size={12} strokeWidth={2.5} />
-              의원 · 한의원 마케팅
-            </div>
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
-              병원 검색 마케팅은<br />
-              <span className="text-blue-400">잰 숫자로 말합니다</span>
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-              의료법 제56조와 제57조를 기준으로 원고를 검수합니다.<br />
-              순위는 저장해 둔 스냅샷 그대로 월 리포트로 보여드립니다.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                무료 상담 신청 <ArrowRight size={15} />
-              </Link>
-              <Link
-                href="/free-check"
-                className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
-              >
-                내 의원 무료 진단
-              </Link>
-            </div>
-            <p className="mt-4 text-sm">
-              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
-                항목별 비용 보기
-              </Link>
-            </p>
-          </div>
-        </section>
-
-        {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
-        <AnswerBlock
-          question="병원·의원 마케팅은 무엇이 중요한가요?"
-          answer={`의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장님의 이력과 진료 과목을 사실대로 정리한 블로그 콘텐츠가 가장 중요합니다. 치료경험담은 의료법 제56조 제2항이 금지하는 항목이라 후기를 만들어 내는 방식은 쓰지 않습니다. ${CLINIC_STORY} 네이버 플레이스 순위는 저장한 스냅샷 그대로 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료법 제56조와 제57조를 기준으로 원고를 검수한 뒤 병원 명의 채널에 올립니다. 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다.`}
+      <SianMain>
+        {/* 병·의원 화면은 진우 검수 문구다. 2026-11-12 시안 틀로 배치만 바꿨고 글자는 그대로 옮겼다 (C-50) */}
+        <PageHead
+          where="의원 · 한의원 마케팅"
+          title={<>병원 검색 마케팅은<br />잰 숫자로 말합니다</>}
+          lead={<>의료법 제56조와 제57조를 기준으로 원고를 검수합니다.<br />순위는 저장해 둔 스냅샷 그대로 월 리포트로 보여드립니다.</>}
+          primary={{ href: "/free-check", label: "내 의원 무료 진단" }}
+          link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={CLINIC_FACTS}
         />
 
+        {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
+        <AnswerRow
+          question="병원·의원 마케팅은 무엇이 중요한가요?"
+          answer={`의원·한의원·피부과 마케팅은 신뢰도가 전부이므로 원장님의 이력과 진료 과목을 사실대로 정리한 블로그 콘텐츠가 가장 중요합니다. 치료경험담은 의료법 제56조 제2항이 금지하는 항목이라 후기를 만들어 내는 방식은 쓰지 않습니다. ${CLINIC_STORY} 네이버 플레이스 순위는 저장한 스냅샷 그대로 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 의료법 제56조와 제57조를 기준으로 원고를 검수한 뒤 병원 명의 채널에 올립니다. 비용은 진료 과목과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다.`}
+        />
 
-        {/* 체크리스트 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
-              이 중 하나라도 해당되면 플레이스 정보부터 점검해 보세요
-            </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">플레이스에 비어 있는 칸부터 무료로 확인해 드립니다</p>
-            <div className="space-y-3">
-              {CHECKLIST.map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                  <CheckCircle2 size={18} className="text-blue-500 flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-gray-800 text-sm font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        {/* 진료과를 늘리려면 진우 판정이 먼저다. 생성기 MED_OK 와 CLINIC_INDUSTRIES 를 같이 늘린다 (C-50) */}
-        <RankRecords industries={CLINIC_INDUSTRIES} industryLabel="병·의원" />
+        <Section soft title="이 중 하나라도 해당되면 플레이스 정보부터 점검해 보세요" desc="플레이스에 비어 있는 칸부터 무료로 확인해 드립니다">
+          <LineList items={CHECKLIST} />
+        </Section>
 
         {/*
-          병·의원 순위 현황 — 진우 인계서 3-C 다섯 문장 + 3-D 표 (D-0280 · D-0282).
+          병·의원 순위 현황 · 진우 인계서 3-C 다섯 문장 + 3-D 표 (D-0280 · D-0282).
           문장도 숫자도 app/lib/rank-records.ts 에서 온다. 화면에서 만들지 않는다.
-          위 RankRecords 는 진우 판정을 통과한 진료과의 개선 카드고, 여기는 골라 실은 키워드와 잰 날짜다 (H-1143).
+          예전 RankRecords 카드(진료과 개선 기록)는 머리 사실 줄(CLINIC_FACTS · clinicFact)로 옮겼다. 계측 안내 한 줄(MEASURE_NOTE)은 표 아래에 남겼다.
+          진료과를 늘리려면 진우 판정이 먼저다. 생성기 MED_OK 와 CLINIC_INDUSTRIES 를 같이 늘린다 (C-50).
           계약 대장을 못 읽으면 생성기가 아무것도 쓰지 않고 멈춰 이 절이 통째로 사라진다.
         */}
         {CLINIC_SUMMARY.keywords > 0 && (
-          <section className="py-12 md:py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4 md:px-6">
-              <div className="text-center mb-8 md:mb-10">
-                <div
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mb-3"
-                  style={{ background: "#F0F6FF", color: "var(--w-primary-strong)" }}
-                >
-                  <Stethoscope size={13} strokeWidth={2.5} />
-                  <span className="text-xs font-bold">병·의원</span>
-                </div>
-                <h2 className="text-xl md:text-2xl font-black text-gray-900">플레이스 순위 기록</h2>
+          <Section id="rank" eyebrow="병·의원" title="플레이스 순위 기록">
+            <div className={ss.clinicLines}>
+              {CLINIC_STATUS_LINES.map((line, i) => (
+                <p key={i} className={i === 3 ? "font-semibold" : undefined}>{line}</p>
+              ))}
+            </div>
+            <div className={ss.rank} role="table" aria-label="병·의원 플레이스 순위 기록" style={{ marginTop: 40 }}>
+              <div className={`${ss.clinicRow} ${ss.rankHead}`} role="row">
+                <span role="columnheader">병원</span>
+                <span role="columnheader">키워드</span>
+                <span role="columnheader" style={{ textAlign: "right" }}>순위</span>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 md:gap-6 items-start">
-                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 md:p-7 shadow-sm space-y-2">
-                  {CLINIC_STATUS_LINES.map((line, i) => (
-                    <p
-                      key={i}
-                      className={
-                        i === 3
-                          ? "text-sm md:text-[15px] leading-relaxed text-gray-900 font-semibold"
-                          : "text-sm md:text-[15px] leading-relaxed text-gray-700"
-                      }
-                    >
-                      {line}
-                    </p>
-                  ))}
-                </div>
-
-                <div className="min-w-0">
-                  <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <table className="w-full text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>
-                      <thead className="bg-gray-50 text-gray-500 text-xs">
-                        <tr>
-                          <th className="text-left font-semibold px-4 py-2.5">병원</th>
-                          <th className="text-left font-semibold px-4 py-2.5">키워드</th>
-                          <th className="text-right font-semibold px-4 py-2.5">순위</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {CLINIC_KEYWORDS.map((k, i) => (
-                          <tr key={i} className="border-t border-gray-100">
-                            <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">{k.display}</td>
-                            <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{k.shape}</td>
-                            <td
-                              className="px-4 py-3 text-right font-black whitespace-nowrap"
-                              style={{ color: k.page1 ? "var(--w-primary)" : "#70737C" }}
-                            >
-                              {k.rank === null ? "계측 중" : `${k.rank}위`}
-                              <span className="block text-[11px] font-medium text-gray-500">{clinicDay(k.measuredOn)}</span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+              {CLINIC_KEYWORDS.map((k, i) => (
+                <div key={i} className={ss.clinicRow} role="row">
+                  <div className={ss.kw} role="cell">{k.display}</div>
+                  <div className={ss.vol} role="cell">{k.shape}</div>
+                  <div className={ss.days} role="cell">
+                    <strong style={{ color: k.page1 ? "var(--blue)" : "#70737C" }}>{k.rank === null ? "계측 중" : `${k.rank}위`}</strong>
+                    <small>{clinicDay(k.measuredOn)}</small>
                   </div>
-                  <p className="text-xs text-gray-500 mt-3">{CLINIC_STATUS_CAPTION}</p>
                 </div>
-              </div>
+              ))}
             </div>
-          </section>
+            <p className={ss.note}>{CLINIC_STATUS_CAPTION}</p>
+            <p className={ss.note}>{MEASURE_NOTE}</p>
+          </Section>
         )}
-        {/* 서비스 구성 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-8">의원 전용 마케팅 패키지</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {SERVICES.map((s, i) => {
-                const body = (
-                  <>
-                    <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
-                      <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
-                      <p className="text-xs text-gray-500">{s.desc}</p>
-                    </div>
-                  </>
-                );
-                const cls = "bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4";
-                return s.href ? (
-                  <Link key={i} href={s.href} className={`${cls} hover:border-blue-200 transition-colors`}>{body}</Link>
-                ) : (
-                  <div key={i} className={cls}>{body}</div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+
+        <Section soft title="의원 전용 마케팅 패키지">
+          <ItemList items={SERVICES} />
+        </Section>
 
         {/* 의료광고 검수 공정 + 심의 판정 자료.
             순위는 위 「플레이스 순위 기록」 절이 보여 준다 (진우 2026-10-03 · 현황은 지금이라는 말이라 쓰지 않는다). 진우 판단으로 공정 설명을 가운데 둔다.
             자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
-        <section className="py-12 md:py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-8 md:mb-10">
-              <div
-                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mb-3"
-                style={{ background: "#F0F6FF", color: "var(--w-primary-strong)" }}
-              >
-                <ShieldCheck size={13} strokeWidth={2.5} />
-                <span className="text-xs font-bold">의료광고 검수 공정</span>
-              </div>
-              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">
-                병원 · 의원은 한 단계를 더 거칩니다
-              </h2>
-              <p className="text-sm text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                의료광고는 표현이 틀리면 광고 심사에서 반려되는 것으로 끝나지 않고 원장님이 행정처분을 받습니다.
-                그래서 하랑마케팅은 원고를 쓰는 사람과 그 원고가 의료법에 걸리는지 보는 사람을 따로 둡니다.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {MEDICAL_PROCESS.map((m, i) => (
-                <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div
-                    className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
-                    style={{ background: "var(--w-primary)" }}
-                  >
-                    <m.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-bold text-gray-900 text-sm mb-1">{m.title}</p>
-                    <p className="text-xs md:text-[13px] text-gray-600 leading-relaxed">{m.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <Link
-              href="/services/clinic/medical-ad-guide"
-              className="group block mt-4 bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
-            >
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
-                  style={{ background: "var(--w-primary)" }}
-                >
-                  <ScrollText size={16} className="text-white" strokeWidth={2.5} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-base md:text-lg font-black text-gray-900 mb-1.5 flex items-center gap-1.5">
-                    의료광고 심의 대상 판정 자료
-                    <ArrowRight
-                      size={15}
-                      className="text-gray-500 group-hover:text-blue-600 transition-colors"
-                    />
-                  </p>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    어느 채널이 사전심의 대상인지, 심의 없이 쓸 수 있는 항목이 무엇인지를 의료법 제57조와
-                    시행령 제24조 순서대로 정리했습니다. 채널 16곳 판정과 금지 15가지, 전후 사진 요건,
-                    심의 유효기간까지 조문 번호와 함께 적었습니다.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              href="/services/homepage/clinic"
-              className="group block mt-4 bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
-            >
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
-                  style={{ background: "var(--w-primary)" }}
-                >
-                  <Globe2 size={16} className="text-white" strokeWidth={2.5} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-base md:text-lg font-black text-gray-900 mb-1.5 flex items-center gap-1.5">
-                    병원 홈페이지 제작
-                    <ArrowRight
-                      size={15}
-                      className="text-gray-500 group-hover:text-blue-600 transition-colors"
-                    />
-                  </p>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    진료과목 · 의료진 · 진료시간 · 오시는 길을 환자가 찾기 쉽게 정리하고, 의료법 문구 검수와
-                    검색 기본 세팅을 함께 합니다. 플레이스와 홈페이지의 병원 정보를 같게 맞춥니다.
-                  </p>
-                </div>
-              </div>
-            </Link>
+        <Section
+          eyebrow="의료광고 검수 공정"
+          title="병원 · 의원은 한 단계를 더 거칩니다"
+          desc="의료광고는 표현이 틀리면 광고 심사에서 반려되는 것으로 끝나지 않고 원장님이 행정처분을 받습니다. 그래서 하랑마케팅은 원고를 쓰는 사람과 그 원고가 의료법에 걸리는지 보는 사람을 따로 둡니다."
+        >
+          <Steps steps={MEDICAL_PROCESS} />
+          <div style={{ marginTop: 48 }}>
+            <ItemList one items={CLINIC_GUIDES} />
           </div>
-        </section>
+        </Section>
 
         {/* 이어서 볼 곳 (세팅안 다-5 · N-32) */}
-        <section className="py-10 md:py-12 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6">
-            <h2 className="text-lg md:text-xl font-black text-gray-900 mb-4">이어서 볼 곳</h2>
-            <div className="flex flex-wrap gap-2">
-              {[
-                { label: "병원 홈페이지 제작", href: CLINIC_HUB_PATH },
-                { label: "병원 GEO · AEO 세팅", href: CLINIC_GEO_PATH },
-                { label: "의료광고 심의 판정 자료", href: "/services/clinic/medical-ad-guide" },
-                { label: "네이버 플레이스 SEO", href: "/services/place" },
-              ].map((l) => (
-                <Link key={l.href} href={l.href} className="inline-flex items-center min-h-11 px-4 rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 hover:border-blue-300 hover:text-blue-700 transition-colors">
-                  {l.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section soft title="이어서 볼 곳">
+          <LinkList links={CLINIC_NEXT} />
+        </Section>
 
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
         <JsonLd data={CLINIC_SERVICE_LD} />
         <JsonLd data={CLINIC_CRUMB_LD} />
         <JsonLd data={CLINIC_PAGE_LD} />
         <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/clinic`)} />
-        <FaqAccordion
-          items={SERVICE_FAQ}
+        <Section
+          id="faq"
           title="병원 · 의원에서 가장 많이 받는 질문"
-          subtitle="의료법과 심의 기준이 걸리는 질문을 조문과 함께 정리했습니다. 상담 전에 미리 확인해보세요."
-          showMoreHref="/faq"
-        />
+          desc="의료법과 심의 기준이 걸리는 질문을 조문과 함께 정리했습니다. 상담 전에 미리 확인해보세요."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+        >
+          <QuestionList items={SERVICE_FAQ} />
+        </Section>
 
-        {/* CTA */}
-        <section className="py-14 md:py-20 bg-blue-600">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5">
-              <TrendingUp size={22} className="text-white" strokeWidth={2.5} />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-              우리 의원에 맞는 전략이 궁금하신가요?
-            </h2>
-            <p className="text-blue-50 text-sm mb-7">
-              진료과목 · 지역 · 경쟁 현황을 분석해서<br />
-              맞춤 전략을 무료로 제안해드립니다.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm"
-            >
-              의원 마케팅 무료 상담 <ArrowRight size={15} />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="우리 의원에 맞는 전략이 궁금하신가요?"
+          text={<>진료과목 · 지역 · 경쟁 현황을 분석해서<br />맞춤 전략을 무료로 제안해드립니다.</>}
+          primary={{ href: "/contact", label: "의원 마케팅 무료 상담" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

@@ -20,10 +20,15 @@ function isNewBadgeActive(): boolean {
   return todayKst <= NEW_BADGE_UNTIL;
 }
 
-export default function Footer() {
+/**
+ * bands=false 는 위의 띠 두 줄(배포 상품 띠 · 무료 진단 띠)을 뺀다.
+ * 2026-11-12 시안 틀 페이지는 본문 끝에 맺음 띠를 하나 두므로 띠가 셋 겹치지 않게 한다.
+ */
+export default function Footer({ bands = true }: { bands?: boolean } = {}) {
   const showNewBadge = isNewBadgeActive();
   return (
     <footer className="bg-gray-950 text-gray-400">
+      {bands && (<>
       {/* 배포 상품 띠배너 — 모든 페이지 하단에서 상세페이지로 보내는 진입점 */}
       <Link
         href="/services/cafe-distribution"
@@ -86,6 +91,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      </>)}
 
       {/* Top band */}
       <div className="border-b border-white/5">

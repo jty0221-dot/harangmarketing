@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import IndustrySteps from "../../components/IndustrySteps";
-import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import AnswerBlock from "../../components/AnswerBlock";
-import RankRecords from "../../components/RankRecords";
-import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
+import {
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
+  RankSection, QuestionList, CostLine, CloseBand,
+} from "../../components/sian/Sian";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED, ogImage } from "../../lib/seo";
-import { byIndustry, byKeyword, fmt, fmtSentence, gap } from "../../lib/rank-records";
+import { byIndustry, byKeyword, fmtSentence, gap } from "../../lib/rank-records";
+import { fmtMove } from "../../lib/place-rank-cases";
 
 /*
  * 순위 문장 — 손으로 적지 않는다.
@@ -42,9 +43,9 @@ const FOOD_STORY = [
 const FOOD_STORY_SP = FOOD_STORY ? `${FOOD_STORY} ` : "";
 
 const FOOD_FACTS = [
-  ...(FOOD_1 ? [{ label: FOOD_1.keyword, value: fmt(FOOD_1) }, { label: "계측 기간", value: `${FOOD_1.days}일` }] : []),
+  ...(FOOD_1 ? [{ label: FOOD_1.keyword, value: fmtMove(FOOD_1) }, { label: "계측 기간", value: `${FOOD_1.days}일` }] : []),
   { label: "순위 계측", value: "순위 스냅샷" },
-  { label: "상담·진단", value: "0원" },
+  { label: "상담 · 진단", value: "0원" },
 ];
 
 /*
@@ -58,8 +59,6 @@ const FOOD_PAGE_LD = webPageLd({
   description: `음식점·식당 전문 마케팅. 플레이스 리뷰 전략, 맘카페 바이럴, 블로그 맛집 등록. ${FOOD_STORY_SP}방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다.`,
   dateModified: PAGE_UPDATED["/services/restaurant"],
 });
-import Link from "next/link";
-import { ArrowRight, UtensilsCrossed, TrendingUp, Star, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "음식점마케팅 · 식당 마케팅 대행사 | 네이버 플레이스 정보 정비",
@@ -82,13 +81,6 @@ const CHECKLIST = [
   "주변 경쟁 식당보다 검색 순위가 항상 낮다",
 ];
 
-/* 카페·치과 기록이 음식점 페이지 히어로에 걸려 있던 것을 음식점 기록으로 바꾼다.
-   숫자 정본은 app/lib/rank-records.ts — 손으로 고치지 않는다 */
-const RESULTS = byIndustry("음식점").slice(0, 3).map((r) => ({
-  label: `${r.keyword}-${r.from}`,
-  value: `${r.to}위`,
-  sub: `${r.from}위에서 · ${r.days}일`,
-}));
 
 /* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
    (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
@@ -122,127 +114,76 @@ const SERVICE_FAQ: FaqItem[] = [
   },
 ];
 
+
+
+const SOLUTIONS = [
+  { title: "네이버 플레이스 SEO", desc: "지역 키워드 '맛집', '역세권 맛집' 등 롱테일 키워드 공략. 리뷰 수·답글률·사진 수를 알고리즘 기준에 맞춰 최적화합니다." },
+  { title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아니라 콘텐츠를 꾸준히 쌓아 검색에 걸릴 글을 늘립니다." },
+  { title: "지역 맘카페 바이럴", desc: "동네 맘카페와 지역 커뮤니티에 매장 소식을 배포합니다. 게시 URL 과 매체사 전달 내역을 그대로 드립니다." },
+];
+
+/* place-rank-cases.ts 의 업종 표기 그대로 · 음식점 계열만 */
+const FOOD_INDUSTRIES = ["횟집", "고깃집", "샤브샤브집", "한식당", "돈가스집", "일식당", "요리주점", "소고기집"];
+
+const FOOD_QUESTIONS = [...SERVICE_FAQ, ...INDUSTRY_EXTRA.restaurant.faqs];
+
 export default function RestaurantPage() {
   return (
     <>
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        <section className="bg-gray-950 py-16 md:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-              <UtensilsCrossed size={12} className="text-orange-400" />
-              <span className="text-gray-400 text-xs font-medium">음식점·식당 전문 마케팅</span>
-            </div>
-            <h1 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
-              음식점 마케팅,<br />
-              <span className="text-orange-400">네이버부터</span> 제대로 합니다
-            </h1>
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              네이버 플레이스 SEO부터 블로그 체험단, 지역 맘카페 바이럴까지, 손님이 가게를 고르는 자리에 집중하는 마케팅만 합니다.
-            </p>
-            {RESULTS.length > 0 && (
-              <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
-                {RESULTS.map(r => (
-                  <div key={r.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
-                    <div className="text-xl font-black text-orange-400 mb-0.5">{r.value}</div>
-                    <div className="text-[11px] text-gray-400 leading-tight">{r.sub}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/contact?industry=음식점"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm transition-colors">
-                음식점 무료 상담 <ArrowRight size={15} />
-              </Link>
-              <Link href="/free-check"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-colors">
-                내 가게 무료 진단
-              </Link>
-            </div>
-            <p className="mt-4 text-sm">
-              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
-                항목별 비용 보기
-              </Link>
-            </p>
-          </div>
-        </section>
-
-        {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
-        <AnswerBlock
-          question="음식점·식당 마케팅은 무엇부터 해야 하나요?"
-          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY_SP}네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+      <SianMain>
+        <PageHead
+          where="업종별 · 음식점 · 식당"
+          title={<>음식점 마케팅,<br />네이버부터 제대로 합니다</>}
+          lead="네이버 플레이스 SEO부터 블로그 체험단, 지역 맘카페 바이럴까지, 손님이 가게를 고르는 자리에 집중하는 마케팅만 합니다."
+          primary={{ href: "/free-check", label: "내 가게 무료 진단" }}
+          link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={FOOD_FACTS}
         />
 
-        {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        <RankRecords industries={["음식점"]} industryLabel="음식점·식당" />
-
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-              <div>
-                <h2 className="text-2xl font-black text-gray-900 mb-2">이런 문제 겪고 계신가요?</h2>
-                <p className="text-gray-500 text-sm mb-6">음식점 대표님들이 가장 많이 말씀하시는 고민들입니다</p>
-                <div className="space-y-3">
-                  {CHECKLIST.map(item => (
-                    <div key={item} className="flex items-start gap-3 p-3 bg-orange-50 border border-orange-100 rounded-xl">
-                      <CheckCircle2 size={15} className="text-orange-500 mt-0.5 shrink-0" strokeWidth={2.5} />
-                      <span className="text-sm text-gray-700">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h2 className="text-2xl font-black text-gray-900 mb-2">이렇게 해결합니다</h2>
-                <p className="text-gray-500 text-sm mb-6">음식점 채널별 맞춤 전략</p>
-                <div className="space-y-4">
-                  {[
-                    { icon: TrendingUp, color: "from-blue-500 to-indigo-600", title: "네이버 플레이스 SEO", desc: "지역 키워드 '맛집', '역세권 맛집' 등 롱테일 키워드 공략. 리뷰 수·답글률·사진 수를 알고리즘 기준에 맞춰 최적화합니다." },
-                    { icon: Star, color: "from-blue-600 to-orange-500", title: "블로그 체험단 운영", desc: "파워블로거, 인플루언서 체험단 섭외·운영. 1회성이 아니라 콘텐츠를 꾸준히 쌓아 검색에 걸릴 글을 늘립니다." },
-                    { icon: Users, color: "from-blue-500 to-blue-700", title: "지역 맘카페 바이럴", desc: "동네 맘카페와 지역 커뮤니티에 매장 소식을 배포합니다. 게시 URL 과 매체사 전달 내역을 그대로 드립니다." },
-                  ].map(s => (
-                    <div key={s.title} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                        <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                      </div>
-                      <div>
-                        <div className="font-black text-gray-900 text-sm mb-1">{s.title}</div>
-                        <div className="text-xs text-gray-500 leading-relaxed">{s.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <IndustrySteps industry="restaurant" />
-
-        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
-        <JsonLd data={FOOD_PAGE_LD} />
-        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.restaurant.faqs], `${SITE.base}/services/restaurant`)} />
-        <FaqAccordion
-          items={SERVICE_FAQ}
-          title="음식점 대표님들이 가장 많이 묻는 질문"
-          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
-          showMoreHref="/faq"
+        {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
+        <AnswerRow
+          question="음식점·식당 마케팅은 무엇부터 해야 하나요?"
+          answer={`음식점·식당 마케팅은 네이버 플레이스 맛집 키워드 노출, 플레이스 리뷰 관리, 지역 맘카페 바이럴 순으로 접근하는 것이 효과적입니다. 검색해서 찾아오는 손님은 순위와 리뷰를 먼저 보기 때문입니다. ${FOOD_STORY_SP}네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 음식점 마케팅 비용은 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
         />
 
-        <section className="py-14 bg-gray-950">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">음식점 무료 진단 받기</h2>
-            <p className="text-gray-400 text-sm mb-7">현재 검색 순위 확인부터 경쟁 식당 비교까지 0원.</p>
-            <Link href="/contact?industry=음식점"
-              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm">
-              무료 상담 신청 <ArrowRight size={15} />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <Section soft title="이런 문제 겪고 계신가요?" desc="음식점 대표님들이 가장 많이 말씀하시는 고민들입니다.">
+          <LineList items={CHECKLIST} />
+        </Section>
+
+        {/* 음식점 업종에서 잰 줄 · 숫자는 app/lib/place-rank-cases.ts 한 곳에서만 온다.
+            예전 「음식점·식당 순위 계측 기록 (09-23 스냅샷)」 절과 머리의 순위 칸 셋은 머리 사실 줄과 이 표로 합쳤다 */}
+        <RankSection industries={FOOD_INDUSTRIES} label="음식점" />
+
+        <Section soft title="이렇게 해결합니다" desc="음식점 채널별 맞춤 전략.">
+          <ItemList items={SOLUTIONS} one />
+        </Section>
+
+        <Section title={`${INDUSTRY_EXTRA.restaurant.label} 진행 순서`} desc="하랑 대표가 상담부터 계측까지 직접 맡습니다.">
+          <Steps steps={INDUSTRY_EXTRA.restaurant.steps} />
+        </Section>
+
+        {/* 질문 · 상담 질문과 「진행 전에 확인하실 것」을 한 목록으로 합쳤다. FAQPage 와 같은 항목 */}
+        <JsonLd data={FOOD_PAGE_LD} />
+        <JsonLd data={faqLd(FOOD_QUESTIONS, `${SITE.base}/services/restaurant`)} />
+        <Section
+          soft
+          id="faq"
+          title="음식점 대표님들이 가장 많이 묻는 질문"
+          desc="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+          footer={<CostLine text={INDUSTRY_EXTRA.restaurant.price} />}
+        >
+          <QuestionList items={FOOD_QUESTIONS} />
+        </Section>
+
+        <CloseBand
+          title="음식점 무료 진단 받기"
+          text="현재 검색 순위 확인부터 경쟁 식당 비교까지 0원."
+          primary={{ href: "/contact?industry=음식점", label: "무료 상담 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

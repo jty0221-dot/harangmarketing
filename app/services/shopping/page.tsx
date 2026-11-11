@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import IndustrySteps from "../../components/IndustrySteps";
-import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import AnswerBlock from "../../components/AnswerBlock";
-import RankRecords from "../../components/RankRecords";
-import FaqAccordion from "../../components/FaqAccordion";
 import JsonLd from "../../components/JsonLd";
+import {
+  SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
+  QuestionList, CostLine, CloseBand,
+} from "../../components/sian/Sian";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
-import { TRACK_TOTALS } from "../../lib/track-record";
-import Link from "next/link";
-import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
 const PAGE_TITLE = "쇼핑몰·소매점 마케팅 대행사 | 스마트스토어 · 인스타 · 플레이스";
 const PAGE_DESCRIPTION = "쇼핑몰·소매점 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO로 온라인 스토어와 오프라인 매장을 한 흐름으로 묶어 설계합니다.";
@@ -27,14 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-/* 온라인 쇼핑몰 업종은 공개할 순위 기록이 없다.
-   히어로에 다른 업종 기록을 걸어 두었던 것을 회사가 맡아 온 규모로 바꾼다.
-   숫자 정본은 app/lib/track-record.ts — 손으로 고치지 않는다 */
-const RESULTS = [
-  { label: "맡아온 매장", value: `${TRACK_TOTALS.stores}곳`, sub: "지금까지 맡아 온 곳" },
-  { label: "업종", value: `${TRACK_TOTALS.trades}종`, sub: "업종마다 따로 설계" },
-  { label: "맡아서 한 일", value: `${TRACK_TOTALS.workKinds}종`, sub: "플레이스 · 블로그 · 영상 등" },
-];
 
 /* 화면에 보이는 문답을 그대로 FAQPage 로 내보낸다.
    (구조화 데이터와 본문이 어긋나면 구글이 리치 결과를 제거한다)
@@ -67,137 +56,86 @@ const SERVICE_FAQ: FaqItem[] = [
   },
 ];
 
+
+
+/* 머리 사실 줄 · 예전 정답 상자 아래 숫자 줄을 그대로 옮겼다 */
+const SHOPPING_FACTS = [
+  { label: "주력 채널", value: "상품 키워드 블로그 SEO" },
+  { label: "보조 채널", value: "체험단 후기" },
+  { label: "순위 계측", value: "스냅샷 저장" },
+  { label: "상담 · 진단", value: "0원" },
+];
+
+const CHECKLIST = [
+  "스마트스토어 일 방문자가 30명 미만인가요?",
+  "인스타그램 팔로워가 500명 미만인가요?",
+  "제품 사진은 있는데 구매 전환이 안 되나요?",
+  "오프라인 매장인데 온라인에서 아예 안 보이나요?",
+  "SNS 운영이 불규칙하거나 월 4개 미만인가요?",
+];
+
+const STRATEGY = [
+  { title: "스마트스토어 최적화", desc: "상품 태그, 상세페이지 카피, 리뷰 관리, 스토어 SEO. 검색 유입부터 결제 버튼까지 가는 흐름을 손봅니다." },
+  { title: "인스타그램 쇼핑 운영", desc: "제품 사진 기획, 릴스 콘텐츠, 쇼핑 태그 설정, 팔로워가 상품 페이지로 넘어가는 동선 세팅. 브랜드 이미지와 구매 동선을 함께 쌓습니다." },
+  { title: "오프라인 집객 마케팅", desc: "네이버 플레이스·카카오맵 최적화로 근처 검색에 매장이 보이도록 세팅합니다. 오프라인 손님이 온라인 스토어도 찾을 수 있게 연결합니다." },
+];
+
+const SHOPPING_QUESTIONS = [...SERVICE_FAQ, ...INDUSTRY_EXTRA.shopping.faqs];
+
 export default function ShoppingPage() {
   return (
     <>
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        <section className="bg-gray-950 py-16 md:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-              <ShoppingBag size={12} className="text-purple-400" />
-              <span className="text-gray-400 text-xs font-medium">쇼핑몰·소매점 전문 마케팅</span>
-            </div>
-            <h1 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
-              쇼핑몰 매출,<br />
-              <span className="text-purple-400">온·오프라인 동시에</span>
-            </h1>
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-              스마트스토어·인스타그램 쇼핑부터 오프라인 매장 집객까지, 쇼핑몰과 소매점의 두 채널을 한 흐름으로 묶습니다.
-            </p>
-            <div className="grid grid-cols-3 gap-4 max-w-sm mb-8">
-              {RESULTS.map(r => (
-                <div key={r.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
-                  <div className="text-xl font-black text-purple-400 mb-0.5">{r.value}</div>
-                  <div className="text-[11px] text-gray-400 leading-tight">{r.sub}</div>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/contact?industry=쇼핑몰"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition-colors">
-                쇼핑몰 무료 상담 <ArrowRight size={15} />
-              </Link>
-              <Link href="/free-check"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-colors">
-                내 매장 무료 진단
-              </Link>
-            </div>
-            <p className="mt-4 text-sm">
-              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
-                항목별 비용 보기
-              </Link>
-            </p>
-          </div>
-        </section>
+      <SianMain>
+        <PageHead
+          where="업종별 · 쇼핑몰 · 소매점"
+          title={<>쇼핑몰 매출,<br />온·오프라인 동시에</>}
+          lead="스마트스토어·인스타그램 쇼핑부터 오프라인 매장 집객까지, 쇼핑몰과 소매점의 두 채널을 한 흐름으로 묶습니다."
+          primary={{ href: "/free-check", label: "내 매장 무료 진단" }}
+          link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
+          facts={SHOPPING_FACTS}
+        />
 
-        {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
-        <AnswerBlock
+        {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
+        <AnswerRow
           question="온라인 쇼핑몰 마케팅은 무엇부터 시작해야 하나요?"
           answer="온라인 쇼핑몰은 오프라인 매장과 달리 지역 키워드가 없으므로 상품 키워드 블로그 SEO와 체험단 후기 확보가 출발점입니다. 검색으로 유입된 고객이 후기를 보고 구매를 결정하기 때문입니다. 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 쇼핑몰 마케팅은 전국 어디서나 비대면으로 진행되며, 비용은 상품군과 진행 범위에 따라 달라져 현황 진단 후 안내드립니다. 상담과 진단은 0원입니다."
-          facts={[
-            { label: "주력 채널", value: "상품 키워드 블로그 SEO" },
-            { label: "보조 채널", value: "체험단 후기" },
-            { label: "순위 계측", value: "스냅샷 저장" },
-            { label: "상담·진단", value: "0원" },
-          ]}
         />
 
+        <Section soft title="이 중 하나라도 해당되면 지금 바로 시작하세요" desc="유입이 없으면 좋은 상품도 팔리지 않습니다.">
+          <LineList items={CHECKLIST} />
+        </Section>
 
-        {/* 순위 계측 — 이 업종은 공개할 기록이 없다. 남의 업종 숫자를 빌려오지 않는다 */}
-        <RankRecords industries={[]} industryLabel="온라인 쇼핑몰" />
+        {/* 순위 절 없음 · 온라인 쇼핑몰은 플레이스 순위 기록이 없다. 남의 업종 줄은 빌려오지 않는다 */}
 
-        {/* 체크리스트 */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 md:px-6">
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
-              이 중 하나라도 해당되면 지금 바로 시작하세요
-            </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">유입이 없으면 좋은 상품도 팔리지 않습니다</p>
-            <div className="space-y-3">
-              {[
-                "스마트스토어 일 방문자가 30명 미만인가요?",
-                "인스타그램 팔로워가 500명 미만인가요?",
-                "제품 사진은 있는데 구매 전환이 안 되나요?",
-                "오프라인 매장인데 온라인에서 아예 안 보이나요?",
-                "SNS 운영이 불규칙하거나 월 4개 미만인가요?",
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-                  <CheckCircle2 size={18} className="text-purple-500 flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-gray-800 text-sm font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section title="쇼핑몰 마케팅 핵심 전략" desc="온라인과 오프라인을 연결하는 통합 마케팅.">
+          <ItemList items={STRATEGY} one />
+        </Section>
 
-        <section className="py-14 md:py-20 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="text-2xl font-black text-gray-900 mb-2 text-center">쇼핑몰 마케팅 핵심 전략</h2>
-            <p className="text-gray-500 text-sm text-center mb-10">온라인과 오프라인을 연결하는 통합 마케팅</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {[
-                { icon: Package, color: "from-purple-500 to-purple-700", title: "스마트스토어 최적화", desc: "상품 태그, 상세페이지 카피, 리뷰 관리, 스토어 SEO. 검색 유입부터 결제 버튼까지 가는 흐름을 손봅니다." },
-                { icon: TrendingUp, color: "from-pink-500 to-rose-500", title: "인스타그램 쇼핑 운영", desc: "제품 사진 기획, 릴스 콘텐츠, 쇼핑 태그 설정, 팔로워가 상품 페이지로 넘어가는 동선 세팅. 브랜드 이미지와 구매 동선을 함께 쌓습니다." },
-                { icon: Star, color: "from-blue-600 to-orange-500", title: "오프라인 집객 마케팅", desc: "네이버 플레이스·카카오맵 최적화로 근처 검색에 매장이 보이도록 세팅합니다. 오프라인 손님이 온라인 스토어도 찾을 수 있게 연결합니다." },
-              ].map(s => (
-                <div key={s.title} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: "var(--w-primary)" }}>
-                    <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <h3 className="font-black text-gray-900 text-sm mb-2">{s.title}</h3>
-                  <p className="text-xs text-gray-500 leading-relaxed">{s.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section soft title={`${INDUSTRY_EXTRA.shopping.label} 진행 순서`} desc="하랑 대표가 상담부터 계측까지 직접 맡습니다.">
+          <Steps steps={INDUSTRY_EXTRA.shopping.steps} />
+        </Section>
 
-        <IndustrySteps industry="shopping" />
-
-        {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
+        {/* 질문 · 상담 질문과 「진행 전에 확인하실 것」을 한 목록으로 합쳤다. FAQPage 와 같은 항목 */}
         <JsonLd data={webPageLd({ path: "/services/shopping", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/shopping") })} />
-        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.shopping.faqs], `${SITE.base}/services/shopping`)} />
-        <FaqAccordion
-          items={SERVICE_FAQ}
+        <JsonLd data={faqLd(SHOPPING_QUESTIONS, `${SITE.base}/services/shopping`)} />
+        <Section
+          id="faq"
           title="쇼핑몰 운영에서 가장 많이 받는 질문"
-          subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
-          showMoreHref="/faq"
-        />
+          desc="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+          footer={<CostLine text={INDUSTRY_EXTRA.shopping.price} />}
+        >
+          <QuestionList items={SHOPPING_QUESTIONS} />
+        </Section>
 
-        <section className="py-14 bg-gray-950">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-3">쇼핑몰 무료 진단 받기</h2>
-            <p className="text-gray-400 text-sm mb-7">온·오프라인 채널 분석부터 판매 동선 전략까지 0원.</p>
-            <Link href="/contact?industry=쇼핑몰"
-              className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-7 py-3.5 rounded-xl transition-colors text-sm">
-              무료 상담 신청 <ArrowRight size={15} />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <CloseBand
+          title="쇼핑몰 무료 진단 받기"
+          text="온·오프라인 채널 분석부터 판매 동선 전략까지 0원."
+          primary={{ href: "/contact?industry=쇼핑몰", label: "무료 상담 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }
