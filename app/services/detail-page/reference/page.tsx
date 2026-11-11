@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: URL },
   openGraph: {
-    title: "상세페이지 레퍼런스 | 종류별 상세페이지 실물",
+    title: "처음부터 끝까지 펼쳐 보는 상세페이지 레퍼런스 · 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 종류 ${REF_TOTAL}건의 상세페이지를 처음부터 끝까지 펼쳐 보여드립니다.`,
     url: URL,
     images: [ogImage("하랑마케팅 상세페이지 레퍼런스")],

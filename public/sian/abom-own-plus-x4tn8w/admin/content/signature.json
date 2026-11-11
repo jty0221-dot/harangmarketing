@@ -1,0 +1,117 @@
+{
+ "title": "Singnature",
+ "subtitle": "에이봄 시그니처 시술",
+ "banner": "/img/ba2900c5ddbf0.webp",
+ "items": [
+  {
+   "id": "3",
+   "name": "리팟레이저",
+   "summary": "흑자 치료에 탁월한 선택 reepot",
+   "priceLabel": "",
+   "thumb": "/img/c42c8b5926bff_845d25f1_png.webp",
+   "path": "44",
+   "menuName": "흑자레이저 리팟",
+   "image": "/img/c42c8b5926bff_a432e92b_png.webp",
+   "detail": "<p><img src=\"/img/ff3e4abaa9560.jpg\" alt=\"리팟레이저 상세 이미지 1\" loading=\"lazy\"></p><p><img src=\"/img/7739920f94bdf.jpg\" alt=\"리팟레이저 상세 이미지 2\" loading=\"lazy\"></p><p><img src=\"/img/906e02109bfa9.jpg\" alt=\"리팟레이저 상세 이미지 3\" loading=\"lazy\"></p><p><img src=\"/img/cdc434dd172ee.jpg\" alt=\"리팟레이저 상세 이미지 4\" loading=\"lazy\"></p><p><br></p>"
+  },
+  {
+   "id": "11",
+   "name": "루비레이저",
+   "summary": "",
+   "priceLabel": "",
+   "thumb": "/img/a0715a3e1f6c6_845d25f1_png.webp",
+   "path": "54",
+   "menuName": "루비레이저",
+   "image": "/img/a0715a3e1f6c6_a432e92b_png.webp",
+   "detail": ""
+  },
+  {
+   "id": "4",
+   "name": "울쎄라피프라임",
+   "summary": "정확하게 피부층을 타겟하는 강력한 리프팅 효과",
+   "priceLabel": "가격문의",
+   "thumb": "/img/6144cedef3950_845d25f1_jpg.webp",
+   "path": "45",
+   "menuName": "울쎄라피프라임",
+   "image": "/img/6144cedef3950_a432e92b_jpg.webp",
+   "detail": "<p>피부 속을 직접 보며 진행되는 강력한 초음파 리프팅</p><p>에이봄의원의 의료진은 정확하게 피부층을 타겟팅하여 한 샷의 낭비도 없이 <strong>원칙을 지키는 시술</strong>을 시행하고 있습니다.</p><p><br></p><p>시술받는 개인의 통증 민감도에 따라 연고 마취, 국소신경 마취, 수면마취 등 다양한 마취 방법을 동원하여 사려깊은 치료를 제공합니다.</p>"
+  },
+  {
+   "id": "5",
+   "name": "써마지 FLX",
+   "summary": "콜라겐 생성을 통한 탄력증진 프리미엄 고주파 리프팅",
+   "priceLabel": "가격문의",
+   "thumb": "/img/e9fe3cf29e5c9_845d25f1_jpg.webp",
+   "path": "46",
+   "menuName": "써마지 FLX",
+   "image": "/img/e9fe3cf29e5c9_a432e92b_jpg.webp",
+   "detail": "<p>써마지 FLX 는 미국 FDA, 한국 식품의약품안전처 허가와 20여 년간 임상,연구 개발로 안전성과 유효성이 검증된 프리미엄 리프팅의 대명사입니다.</p><p>고주파에너지를 통해 콜라겐 생성을 촉진시켜 탄력 및 주름개선 효과를 보입니다.</p>"
+  },
+  {
+   "id": "6",
+   "name": "티타늄 리프팅",
+   "summary": "즉각적인 3파장 리프팅 레이저",
+   "priceLabel": "가격문의",
+   "thumb": "/img/5f16ad4aae4bd_845d25f1_jpg.webp",
+   "path": "47",
+   "menuName": "티타늄 리프팅",
+   "image": "/img/5f16ad4aae4bd_a432e92b_jpg.webp",
+   "detail": "<p style=\"text-align: left\">티타늄 레이저는 이스라엘 Alma 사에서 출시한 프리미엄 리프팅 기기로 755nm, 810nm, 1064nm의 세 가지 파장을 동시에 조사하여 피부진피층, 근막층, 지지인대까지 에너지가 도달하여 인대 수축 및 콜라겐 재생 효과를 통해 피프팅 효과를 얻는 시술입니다.</p><p style=\"text-align: left\"><br></p><p style=\"text-align: left\">즉각적인 리프팅 효과 뿐 아니라 미백효과까지 같이 볼 수 있어 중요한 일을 앞두고 받기에 적합한 시술입니다.</p><p><img src=\"/img/950714c6c6356.png\" alt=\"티타늄 리프팅 상세 이미지 1\" loading=\"lazy\"></p>"
+  },
+  {
+   "id": "10",
+   "name": "엠페이스",
+   "summary": "",
+   "priceLabel": "",
+   "thumb": "/img/813361e2474b3_845d25f1_jpg.webp",
+   "path": "1847059257",
+   "menuName": "엠페이스",
+   "image": "/img/813361e2474b3_a432e92b_jpg.webp",
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "name": "쥬브젠",
+   "summary": "",
+   "priceLabel": "",
+   "thumb": "/img/7345bc57656ae_845d25f1_jpg.webp",
+   "path": "52",
+   "menuName": "쥬브젠 자가진피재생술",
+   "image": "/img/7345bc57656ae_a432e92b_jpg.webp",
+   "detail": ""
+  },
+  {
+   "id": "7",
+   "name": "포텐자 엑소좀",
+   "summary": "포텐자펌핑팁 +  ASCE+엑소좀",
+   "priceLabel": "",
+   "thumb": "/img/58b35ad48b6de_845d25f1_png.webp",
+   "path": "48",
+   "menuName": "포텐자 엑소좀",
+   "image": "/img/58b35ad48b6de_a432e92b_png.webp",
+   "detail": "<p>포텐자는 고주파바늘치료 기기로서</p><p>에이봄의원에서는 ASCE+ 엑소좀과 함께 치료하여 </p><p>여드름, 여드름흉터, 홍조, 피부재생에 탁월한 효과를 보이고 있습니다.</p>"
+  },
+  {
+   "id": "8",
+   "name": "쥬베룩",
+   "summary": "자가콜라겐 합성을 유도하는 콜라겐부스터",
+   "priceLabel": "",
+   "thumb": "/img/e301d6835e346_845d25f1_jpg.webp",
+   "path": "49",
+   "menuName": "쥬베룩",
+   "image": "/img/e301d6835e346_a432e92b_jpg.webp",
+   "detail": "<p>쥬베룩볼륨은 콜라겐 합성을 유도하는 성분을 주사하여 꺼져있던 볼륨을 만들어줍니다.<br>필러, 지방이식에 비해 시술 즉시 효과가 나타나지는 않지만, 천천히 볼륨이 살아나면서 아주 자연스러운 볼륨감을 얻을 수 있습니다. </p>"
+  },
+  {
+   "id": "9",
+   "name": "레디어스",
+   "summary": "피부 코어부터 채우는 콜라겐부스터",
+   "priceLabel": "",
+   "thumb": "/img/a8f9391d916c4_845d25f1_jpg.webp",
+   "path": "50",
+   "menuName": "레디어스",
+   "image": "/img/a8f9391d916c4_a432e92b_jpg.webp",
+   "detail": "<p><img src=\"/img/2cc5a9e00f1ca.jpg\" alt=\"레디어스 상세 이미지 1\" loading=\"lazy\"></p>"
+  }
+ ]
+}

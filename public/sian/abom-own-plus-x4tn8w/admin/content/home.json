@@ -1,0 +1,153 @@
+{
+ "hero": {
+  "pc": "/img/2d86a5b7da942.webp",
+  "mobile": "/img/77d218f149ff9.webp",
+  "title": [
+   "개개인에 맞춘",
+   "자연스러운 아름다움"
+  ],
+  "bold": [
+   1
+  ],
+  "text": [
+   "건강하고 아름다운 피부, 내 생의 최고의 피부를",
+   "찾을 수 있도록 에이봄이 함께 하겠습니다."
+  ]
+ },
+ "about": {
+  "bg": "/img/3a7e2f02c5aea.webp",
+  "bgM": "/img/63382d9b25d01.webp",
+  "title": "About us",
+  "text": [
+   "당신의 아름다움,에이봄이 늘 함께하겠습니다.",
+   "처음 손끝이 닿는 순간부터 마지막까지",
+   "대표원장의 정성어린 손길로 최선을 다하겠습니다."
+  ],
+  "button": {
+   "label": "View more",
+   "href": "/About/"
+  },
+  "textMobile": [
+   "당신의 아름다움,",
+   "에이봄이 늘 함께하겠습니다.",
+   "처음 손끝이 닿는 순간부터 마지막까지",
+   "대표원장의 정성어린 손길로",
+   "최선을 다하겠습니다."
+  ]
+ },
+ "clinic": {
+  "title": "A.BOM Clinic",
+  "cards": [
+   {
+    "image": "/img/7931bf4545f7e.webp",
+    "imageM": "/img/0d67d24b653e2.webp",
+    "title": "A.BOM clinic",
+    "text": "여의사가 진심을 다해 진료하고 시술합니다."
+   },
+   {
+    "image": "/img/9ba18c960584e.webp",
+    "imageM": "/img/16c10c565ead2.webp",
+    "title": "대표원장과 상담을 어렵지 않게 할 수 있는 의원",
+    "text": "상담실장이 대부분의 상담을 진행하는 다른 의원들과는 다릅니다. 대표원장이 직접 내원하신 분들의 니즈와 문제점을 파악하여 필요한 시술이나 치료방법을 추천합니다."
+   },
+   {
+    "image": "/img/129b44e4f7dd9.webp",
+    "imageM": "/img/3830c086589e4.webp",
+    "title": "항상 연구과 공부를 끊임없이 진행합니다.",
+    "text": "다양한 학회활동을 통한 지식 함양과 블로그와 유튜브 등을 통한 시술케이스 공유 및 피부과 상식 공유를 통해 끊임없이 노력합니다."
+   },
+   {
+    "image": "/img/036705e5ae49c.webp",
+    "imageM": "/img/a9b071fd1402d.webp",
+    "title": "철저한 사후관리",
+    "text": "피부과 시술은 정확하고 안전하게 진행하는 것도 중요하지만 시술이 진행된 후에 사후관리도 매우 중요합니다. 보완의 보완을 거듭한 사후관리 시스템을 통해 시술후에도 최고의 결과를 얻을 수 있도록 합니다."
+   }
+  ]
+ },
+ "youtube": {
+  "title": "Official YouTube",
+  "text": "에이봄의원 공식 채널을 통해 피부과 팁을 확인해보세요",
+  "items": [
+   {
+    "thumb": "/img/1e314bd520b4d.webp",
+    "thumbM": "/img/44206828a4f21.webp",
+    "open": "/img/149d74d24255f.jpg",
+    "caption": "https://youtu.be/cjqCn9piop0?si=r5JRSLBOnn3KAhuC"
+   },
+   {
+    "thumb": "/img/df2b03356e533.webp",
+    "thumbM": "/img/c431b7af6190b.webp",
+    "open": "/img/1b99d2bf7d80f.png",
+    "caption": "https://youtu.be/GftKmlYdGuk?si=qQP4UgqkSfI0EZrm"
+   },
+   {
+    "thumb": "/img/dded439d537b1.webp",
+    "thumbM": "/img/753be9e98bafb.webp",
+    "video": "LJyBQ7hv8nU"
+   },
+   {
+    "thumb": "/img/0c4fce570feff.webp",
+    "thumbM": "/img/44ca3fac4bf43.webp",
+    "video": "JBcZFGC8AFQ"
+   },
+   {
+    "thumb": "/img/490934b192cf0.webp",
+    "thumbM": "/img/ba60ec44d6daf.webp",
+    "video": "BXb5XsVRBCA"
+   },
+   {
+    "thumb": "/img/3c92cf82ba220.webp",
+    "thumbM": "/img/7e9e91b98ad47.webp",
+    "video": "lv7CCAwFxBM"
+   }
+  ]
+ },
+ "banners": [
+  {
+   "bg": "/img/2e1a382806820.webp",
+   "bgM": "/img/1eb4f615acaa0.webp",
+   "title": [
+    "새로운 이름, 새로운 시작",
+    "에이봄의원 리뉴얼 이벤트"
+   ],
+   "bold": [],
+   "text": "리뉴얼 오픈 기념 시술 할인 이벤트 진행",
+   "button": {
+    "label": "자세히보기",
+    "href": "/PROMOTION/"
+   },
+   "boldWord": "에이봄의원"
+  },
+  {
+   "bg": "/img/5ce713eca4b42.webp",
+   "bgM": "/img/a551b3982e966.webp",
+   "title": [
+    "자연스러운 아름다움",
+    "대표원장이 직접 시술합니다"
+   ],
+   "bold": [],
+   "text": "에이봄의원 대표원장 박상아",
+   "button": {
+    "label": "자세히보기",
+    "href": "/About/"
+   },
+   "boldWord": "자연스러운"
+  }
+ ],
+ "notice": {
+  "title": "Notice",
+  "text": [
+   "에이봄의원 시술가격 안내 및",
+   "다양한 프로모션 내용을 확인하세요"
+  ],
+  "button": {
+   "label": "View more",
+   "href": "/PROMOTION/"
+  },
+  "mobileButton": {
+   "label": "View more",
+   "href": "/Notice/"
+  },
+  "count": 5
+ }
+}

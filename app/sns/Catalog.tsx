@@ -103,7 +103,7 @@ export default function Catalog() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="상품 검색 (예: 한국인 팔로워, 조회수)"
-          className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-base focus:border-blue-400 focus:outline-none transition-colors"
+          className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-2.5 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
         />
       </div>
 

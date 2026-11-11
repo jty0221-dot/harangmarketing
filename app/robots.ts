@@ -14,17 +14,19 @@ import { SNS_STORE_ENABLED } from "./lib/feature-flags";
 
 // 관리자·API·디자인 미리보기·클라이언트 보고서·SNS 기능 화면은 인덱스에서 뺀다 (메타 noindex 와 이중 방어).
 // "/admin" 은 끝 슬래시 없이 — "/admin/" 은 bare /admin 경로와 매칭되지 않는다.
+// 시안은 noindex 응답을 검색 봇이 읽도록 허용한다. 지정 AI/SNS 봇의 기존 제한은 보존한다.
 // "/r/" 은 끝 슬래시 필수 — "/r" 로 쓰면 /refund·/rss.xml 까지 막힌다.
 // SNS 부스트 스토어를 감춘 동안에는 "/sns" 하나로 통째 차단한다 (app/lib/feature-flags.ts).
 // "/sns" 로 시작하는 다른 경로는 없어서 접두어 차단이 안전하다 (해시 /services#sns 는 경로가 아니다).
 const BLOCKED = SNS_STORE_ENABLED
-  ? ["/admin", "/api/", "/preview/", "/r/", "/sns/order", "/sns/track", "/sns/charge", "/sns/login", "/sns/signup", "/sns/me"]
-  : ["/admin", "/api/", "/preview/", "/r/", "/sns"];
+  ? ["/admin", "/api/", "/preview/", "/r/", "/sian/", "/sns/order", "/sns/track", "/sns/charge", "/sns/login", "/sns/signup", "/sns/me"]
+  : ["/admin", "/api/", "/preview/", "/r/", "/sian/", "/sns"];
 
 /** 생성형 AI 검색·학습 크롤러 (GEO 핵심) */
 const AI_BOTS = [
   "GPTBot",            // OpenAI 학습
   "OAI-SearchBot",     // ChatGPT 검색 인덱스
+  "OAI-AdsBot",        // ChatGPT 광고 랜딩 심사. 막히면 광고 승인이 안 난다 (help.openai.com 20001212)
   "ChatGPT-User",      // ChatGPT 사용자 실시간 열람
   "ClaudeBot",         // Anthropic 학습
   "Claude-Web",        // Anthropic 웹 열람
@@ -75,11 +77,12 @@ export default function robots(): MetadataRoute.Robots {
     disallow: BLOCKED,
   });
 
+  const searchable = BLOCKED.filter(path => path !== "/sian/");
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: BLOCKED },
+      { userAgent: "*", allow: "/", disallow: searchable },
       ...AI_BOTS.map(allow),
-      ...SEARCH_BOTS.map(allow),
+      ...SEARCH_BOTS.map(userAgent => ({userAgent,allow:"/",disallow:searchable})),
       ...SOCIAL_BOTS.map(allow),
     ],
     sitemap: [`${SITE.base}/sitemap.xml`, `${SITE.base}/rss.xml`],

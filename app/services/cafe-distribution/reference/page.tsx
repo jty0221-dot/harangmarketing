@@ -13,19 +13,18 @@ const URL = `${SITE.base}${PATH}`;
 
 export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
-  title: "카페 배포 레퍼런스 | 업종별 카페 상위노출 실사 캡처",
-  description: `카페 배포 레퍼런스입니다. 사진관·헬스·인테리어·반려동물·뷰티·여행·가구 등 ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 상위노출 캡처입니다.`,
+  title: "카페 배포 레퍼런스 | 업종별 카페 검색 결과 실사 캡처",
+  description: `카페 배포 레퍼런스입니다. 사진관·헬스·인테리어·반려동물·뷰티·여행·가구 등 ${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 검색 결과 캡처입니다.`,
   keywords: [
-    "카페 배포 레퍼런스", "카페 상위노출 사례", "네이버 카페 노출 실적",
-    "카페 배포 후기", "카페 마케팅 사례", "키워드 상위노출 캡처",
-    "하랑마케팅 레퍼런스",
+    "카페 배포 레퍼런스", "카페 배포 협력망 노출 캡처",
+    "카페 배포 후기", "카페 마케팅 사례", "키워드 검색 결과 캡처",
   ],
   alternates: { canonical: URL },
   openGraph: {
-    title: "카페 배포 레퍼런스 | 업종별 상위노출 실사 캡처",
+    title: "검색 화면 그대로 보는 카페 배포 레퍼런스 · 하랑마케팅",
     description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 노출 화면을 그대로 공개합니다.`,
     url: URL,
-    images: [ogImage("하랑마케팅 카페 배포 레퍼런스")],
+    images: [ogImage("카페 배포 협력망 노출 캡처")],
   },
 };
 
@@ -36,7 +35,7 @@ const LD = [
     path: PATH,
     type: "CollectionPage",
     name: "카페 배포 레퍼런스 | 하랑마케팅",
-    description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 상위노출 실사 캡처 모음.`,
+    description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 카페 영역 검색 결과 실사 캡처 모음. 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다.`,
     dateModified: updatedAt(PATH),
   }),
   breadcrumbLd([
@@ -49,7 +48,7 @@ const LD = [
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${URL}#keywords`,
-    name: "카페 상위노출 진행 키워드",
+    name: "카페 검색 결과 진행 키워드",
     numberOfItems: REF_TOTAL,
     publisher: { "@id": ORG_ID },
     itemListElement: REF_CATEGORIES.map((c, i) => ({
@@ -87,19 +86,19 @@ export default async function ReferencePage({
         {/* ══ 배너 ══ */}
         <div className="px-3 pt-5 md:px-8 md:pt-8">
           <div className="mx-auto w-full max-w-[1080px] overflow-hidden rounded-t-[20px] md:rounded-t-[26px]">
-            {/* 상단 그라디언트 라인 */}
-            <div className="h-3" style={{ background: "linear-gradient(90deg,#2f6bf5,#7fa6ff)" }} />
+            {/* 상단 띠 */}
+            <div className="h-3" style={{ background: "var(--cd-primary-lt)" }} />
 
             <div
               className="px-5 py-10 text-center md:px-12 md:py-14"
-              style={{ background: "linear-gradient(165deg,#1655e8,#1449c8 60%,#0f42c0)" }}
+              style={{ background: "var(--cd-primary-deep)" }}
             >
               <Link
                 href="/services/cafe-distribution"
                 className="mx-auto mb-6 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-[14px] font-black transition-opacity hover:opacity-90 md:text-[15px]"
                 style={{ color: "var(--cd-primary-deep)" }}
               >
-                <img src="/harang-icon.svg" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
+                <img src="/harang-icon-solid.svg" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
                 하랑마케팅
               </Link>
 
@@ -107,7 +106,7 @@ export default async function ReferencePage({
                 className="mx-auto mb-7 w-full max-w-[560px] rounded-full px-5 py-3 text-[14px] font-bold text-white md:text-[17px]"
                 style={{ background: "rgba(255,255,255,.14)", border: "1px solid rgba(255,255,255,.35)" }}
               >
-                카페배포 상위 노출 캡처 모음
+                카페배포 검색 결과 캡처 모음
               </p>
 
               <h1
@@ -152,7 +151,7 @@ export default async function ReferencePage({
         {/* ══ 하단 CTA ══ */}
         <section
           className="px-5 py-14 text-center md:px-8 md:py-20"
-          style={{ background: "linear-gradient(165deg,#101a36,#0b1226)" }}
+          style={{ background: "var(--cd-dark-2)" }}
         >
           <div className="mx-auto w-full max-w-[720px]">
             <h2 className="text-[20px] font-bold leading-[1.4] text-white md:text-[26px]">
@@ -166,7 +165,7 @@ export default async function ReferencePage({
               <Link
                 href="/contact?service=cafe-distribution"
                 className="flex items-center justify-center gap-2 rounded-full py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:py-5 md:text-[21px]"
-                style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+                style={{ background: "var(--cd-primary)" }}
               >
                 카페 배포 문의 바로가기 <ArrowRight size={17} />
               </Link>

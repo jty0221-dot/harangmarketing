@@ -10,9 +10,12 @@ import {
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle, Sparkles,
   Handshake,
 } from "lucide-react";
-import { GA_EVENTS } from "../components/Analytics";
+import { GA_EVENTS, newEventId } from "../components/Analytics";
+import { attributionLabel } from "../lib/attribution";
+import KakaoSendNotice from "../components/KakaoSendNotice";
 
 import { best, fmt, clinicFact, SNAPSHOT_DATE } from "../lib/rank-records";
+import { LANDING_RANK_PROOF } from "../lib/landing-gate";
 
 const [, SNAP_M, SNAP_D] = SNAPSHOT_DATE.split("-").map(Number);
 
@@ -21,22 +24,26 @@ const [, SNAP_M, SNAP_D] = SNAPSHOT_DATE.split("-").map(Number);
  * 여기 숫자를 직접 써 뒀더니 스냅샷이 6회에서 11회로 바뀌는 동안 넷이 틀린 값이 됐다
  * (치과 5위 → 1위는 RECORDS 에서 사라진 기록이었다). rank-records 에서 그때그때 만든다.
  */
-const rank = (industry: string) => {
-  const r = best(industry);
+/*
+ * 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts).
+ * 꺼져 있으면 순위 대신 다른 업종 칸과 같은 꼴 (진행 방향 · 무료 진단 후 목표 설정) 으로 적는다.
+ */
+const rank = (industry: string, direction: string) => {
+  const r = LANDING_RANK_PROOF ? best(industry) : undefined;
   return r
     ? { result: fmt(r), case: `${r.keyword} · ${r.days}일 계측` }
-    : { result: "무료 진단 후 목표 설정", case: "계측 기록 준비 중" };
+    : { result: direction, case: "무료 진단 후 목표 설정" };
 };
 
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], ...rank("카페"), color: "from-blue-500 to-blue-700" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·식당", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점"), color: "from-blue-600 to-indigo-700" },
-  { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소"), color: "from-blue-600 to-blue-800" },
-  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-blue-700" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "의료법 검수 후 진행", case: "게시 전 의료광고 심의 대상 확인", color: "from-blue-600 to-blue-800" },
-  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정", color: "from-blue-700 to-indigo-800" },
-  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정", color: "from-blue-500 to-indigo-600" },
-  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], ...rank("카페", "플레이스 SEO 중심") },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·식당", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], ...rank("음식점", "리뷰 마케팅 중심") },
+  { id: "clean", icon: Sparkles, label: "청소·시설관리", rec: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"], ...rank("청소", "플레이스 SEO 중심") },
+  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "인스타그램 중심", case: "무료 진단 후 목표 설정" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "리뷰 답글 관리", "플레이스 SEO"], result: "의료법 검수 후 진행", case: "게시 전 의료광고 심의 대상 확인" },
+  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "맘카페 바이럴 중심", case: "무료 진단 후 목표 설정" },
+  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "블로그 SEO 중심", case: "무료 진단 후 목표 설정" },
+  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립" },
 ];
 
 const BUDGETS = [
@@ -84,6 +91,8 @@ export default function ContactPage() {
   const [step, setStep] = useState<"industry" | "form" | "done" | "blocked">("industry");
   // 접수가 막혔을 때 사장님이 적은 내용을 그대로 다시 보낼 수 있게 링크를 들고 있는다
   const [kakaoUrl, setKakaoUrl] = useState("");
+  // 신청 내용을 손님 클립보드에 복사했는지 · 완료 화면이 붙여넣기 안내를 붙일지 정한다
+  const [kakaoCopied, setKakaoCopied] = useState(false);
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
@@ -113,8 +122,12 @@ export default function ContactPage() {
     const budgetText = form.budget ? `\n예산: ${form.budget}` : "";
     const msgText = form.message ? `\n메모: ${form.message}` : "";
 
-    const kakaoMsg = encodeURIComponent(
-      `[하랑마케팅 상담 신청]\n이름/업체명: ${form.name}\n연락처: ${form.phone}\n업종: ${indLabel}${budgetText}${goalsText}${msgText}`
+    const kakaoPlain = `[하랑마케팅 상담 신청]\n이름/업체명: ${form.name}\n연락처: ${form.phone}\n업종: ${indLabel}${budgetText}${goalsText}${msgText}`;
+    const kakaoMsg = encodeURIComponent(kakaoPlain);
+    // 채널 주소의 text 미리 채우기는 카카오가 보장하지 않는다. 붙여넣기로도 보낼 수 있게 같은 내용을 복사해 둔다
+    navigator.clipboard?.writeText(kakaoPlain).then(
+      () => setKakaoCopied(true),
+      () => setKakaoCopied(false)
     );
 
     GA_EVENTS.contactFormSubmit(indLabel);
@@ -127,6 +140,8 @@ export default function ContactPage() {
 
     // 서버 접수 (저장 + 알림). 카톡 창이 막혀도 이 길이 살아 있으면 접수된 것이다
     let saved = false;
+    // 픽셀과 서버 전환이 같은 신청을 하나로 세도록 같은 id 를 쓴다
+    const eventId = newEventId();
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -138,10 +153,14 @@ export default function ContactPage() {
           budget: form.budget,
           goals: selectedGoals,
           message: form.message,
+          // 광고 유입 경로. 없으면 서버가 'web' 으로 둔다
+          source: attributionLabel() ? `web · ${attributionLabel()}` : "web",
           website,
+          eventId,
         }),
       });
       saved = res.ok;
+      if (saved) GA_EVENTS.leadSaved("contact", attributionLabel() || "direct", eventId);
     } catch {
       saved = false;
     }
@@ -159,7 +178,7 @@ export default function ContactPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
+        <section className="bg-[var(--h-dark)] py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             {checklistCount >= 3 && (
@@ -231,6 +250,8 @@ export default function ContactPage() {
                         return (
                           <button
                             key={ind.id}
+                            type="button"
+                            aria-pressed={selectedIndustry === ind.id}
                             onClick={() => setSelectedIndustry(ind.id)}
                             className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all text-center ${
                               selectedIndustry === ind.id
@@ -249,9 +270,9 @@ export default function ContactPage() {
 
                     {selectedInd && (
                       <div className="rounded-xl border border-blue-100 overflow-hidden mb-6">
-                        <div className={`bg-gradient-to-r ${selectedInd.color} px-4 py-3 flex items-center justify-between`}>
+                        <div className="bg-blue-600 px-4 py-3 flex items-center justify-between">
                           <div>
-                            <p className="text-[11px] font-black text-white/70 uppercase tracking-wider">유사 사례 실적</p>
+                            <p className="text-[11px] font-black text-white/70 uppercase tracking-wider">업종별 진행 방향</p>
                             <p className="text-white font-black text-base">{selectedInd.result}</p>
                           </div>
                           <p className="text-white/70 text-[11px] text-right">{selectedInd.case}</p>
@@ -268,13 +289,15 @@ export default function ContactPage() {
                     )}
 
                     <div className="mb-6">
-                      <h3 className="text-sm font-black text-gray-700 mb-3">마케팅 목표를 선택해주세요 (복수 선택 가능)</h3>
-                      <div className="flex flex-wrap gap-2">
+                      <h3 id="contact-goal-label" className="text-sm font-black text-gray-700 mb-3">마케팅 목표를 선택해주세요 (복수 선택 가능)</h3>
+                      <div role="group" aria-labelledby="contact-goal-label" className="flex flex-wrap gap-2">
                         {GOALS.map((g) => (
                           <button
                             key={g}
+                            type="button"
+                            aria-pressed={selectedGoals.includes(g)}
                             onClick={() => toggleGoal(g)}
-                            className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                            className={`inline-flex items-center gap-1 min-h-11 px-3 py-2 rounded-xl border text-xs font-medium transition-all ${
                               selectedGoals.includes(g)
                                 ? "border-blue-500 bg-blue-50 text-blue-700 font-bold"
                                 : "border-gray-200 text-gray-500 hover:border-blue-200"
@@ -287,6 +310,7 @@ export default function ContactPage() {
                     </div>
 
                     <button
+                      type="button"
                       onClick={() => setStep("form")}
                       disabled={!selectedIndustry}
                       className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold text-base transition-colors"
@@ -302,7 +326,7 @@ export default function ContactPage() {
                 {step === "form" && (
                   <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                     <div className="flex items-center gap-3 mb-5">
-                      <button onClick={() => setStep("industry")} className="text-xs text-blue-600 font-bold hover:underline">
+                      <button type="button" onClick={() => setStep("industry")} className="inline-flex items-center min-h-11 text-xs text-blue-600 font-bold hover:underline">
                         ← 업종 다시 선택
                       </button>
                       {selectedInd && (
@@ -329,17 +353,17 @@ export default function ContactPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="contact-name" className="block text-xs font-bold text-gray-700 mb-1.5">이름 / 업체명 <span className="text-blue-500">*</span></label>
-                          <input id="contact-name" type="text" required value={form.name}
+                          <input id="contact-name" type="text" required autoComplete="name" value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             placeholder="홍길동 / 하랑카페"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition placeholder:text-gray-300" />
                         </div>
                         <div>
                           <label htmlFor="contact-phone" className="block text-xs font-bold text-gray-700 mb-1.5">연락처 <span className="text-blue-500">*</span></label>
-                          <input id="contact-phone" type="tel" required value={form.phone}
+                          <input id="contact-phone" type="tel" required autoComplete="tel" inputMode="tel" value={form.phone}
                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
                             placeholder="010-0000-0000"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition placeholder:text-gray-300" />
                         </div>
                       </div>
 
@@ -347,8 +371,8 @@ export default function ContactPage() {
                         <span id="contact-budget-label" className="block text-xs font-bold text-gray-700 mb-2">예상 월 예산</span>
                         <div role="group" aria-labelledby="contact-budget-label" className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {BUDGETS.map((b) => (
-                            <button key={b} type="button" onClick={() => setForm({ ...form, budget: b })}
-                              className={`px-3 py-2 rounded-xl border text-xs font-medium transition-all ${form.budget === b ? "border-blue-500 bg-blue-50 text-blue-700 font-bold" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
+                            <button key={b} type="button" aria-pressed={form.budget === b} onClick={() => setForm({ ...form, budget: b })}
+                              className={`min-h-11 px-3 py-2 rounded-xl border text-xs font-medium transition-all ${form.budget === b ? "border-blue-500 bg-blue-50 text-blue-700 font-bold" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
                               {b}
                             </button>
                           ))}
@@ -360,7 +384,7 @@ export default function ContactPage() {
                         <textarea id="contact-message" rows={3} value={form.message}
                           onChange={(e) => setForm({ ...form, message: e.target.value })}
                           placeholder="현재 상황, 가장 큰 고민, 기대하는 결과 등을 자유롭게 적어주세요"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none placeholder:text-gray-300" />
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition resize-none placeholder:text-gray-300" />
                       </div>
 
                       {selectedGoals.length > 0 && (
@@ -401,9 +425,11 @@ export default function ContactPage() {
                     </div>
                     <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                      <span className="font-black text-gray-800">{form.name || "사장님"}</span>, 소중한 신청 감사합니다.<br />
+                      <span className="font-black text-gray-800">{form.name || "대표님"}</span>, 소중한 신청 감사합니다.<br />
                       신청은 24시간 접수되며, <span className="font-semibold text-blue-600">하랑 대표가 직접</span> 확인하고 연락드립니다.
                     </p>
+
+                    <KakaoSendNotice href={kakaoUrl || "https://pf.kakao.com/_MuUkG/chat"} copied={kakaoCopied} />
 
                     {/* 다음 단계 안내 */}
                     <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
@@ -479,7 +505,7 @@ export default function ContactPage() {
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">카카오톡 채널</div>
-                        <div className="text-xs text-gray-500">평균 응답 10분 이내</div>
+                        <div className="text-xs text-gray-500">하루 이내 답변</div>
                       </div>
                       <ArrowRight size={13} className="text-gray-500 group-hover:text-yellow-500 transition-colors" />
                     </a>
@@ -523,34 +549,36 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Industry results mini */}
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
-                  <div className="space-y-2.5">
-                    {[
-                      { ind: "음식점·식당", industry: "음식점" },
-                      { ind: "청소·시설관리", industry: "청소" },
-                      { ind: "카페·베이커리", industry: "카페" },
-                      { ind: "의원·치과", industry: "치과", clinic: true },
-                    ].flatMap((row) => {
-                      const r = best(row.industry);
-                      if (!r) return [];
-                      return [
-                        <div key={row.ind} className="flex items-center gap-2">
-                          <div className="flex-1 min-w-0">
-                            <div className="text-xs font-bold text-gray-800 truncate">{row.ind}</div>
-                            <div className="text-[11px] text-gray-600">{r.keyword}</div>
-                          </div>
-                          <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
-                            {row.clinic
-                              ? (r.heldPage1 ? `${r.days}일 계측 동안 1페이지 · ${SNAP_M}월 ${SNAP_D}일 ${r.to}위` : clinicFact(r))
-                              : `${r.days}일 계측 ${fmt(r)}`}
-                          </div>
-                        </div>,
-                      ];
-                    })}
+                {/* Industry results mini · 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
+                {LANDING_RANK_PROOF && (
+                  <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 순위 계측 기록</h4>
+                    <div className="space-y-2.5">
+                      {[
+                        { ind: "음식점·식당", industry: "음식점" },
+                        { ind: "청소·시설관리", industry: "청소" },
+                        { ind: "카페·베이커리", industry: "카페" },
+                        { ind: "의원·치과", industry: "치과", clinic: true },
+                      ].flatMap((row) => {
+                        const r = best(row.industry);
+                        if (!r) return [];
+                        return [
+                          <div key={row.ind} className="flex items-center gap-2">
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-bold text-gray-800 truncate">{row.ind}</div>
+                              <div className="text-[11px] text-gray-600">{r.keyword}</div>
+                            </div>
+                            <div className="shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black text-blue-700 bg-blue-50 border-blue-100 tabular-nums">
+                              {row.clinic
+                                ? (r.heldPage1 ? `${r.days}일 계측 동안 1페이지 · ${SNAP_M}월 ${SNAP_D}일 ${r.to}위` : clinicFact(r))
+                                : `${r.days}일 계측 ${fmt(r)}`}
+                            </div>
+                          </div>,
+                        ];
+                      })}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* What you get */}
                 <div className="bg-blue-600 rounded-2xl p-5">

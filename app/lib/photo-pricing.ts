@@ -4,7 +4,7 @@ export type PhotoPlan = {
   time: string; days: string; cuts: string; retouch: string; model?: string; area?: string;
 };
 
-// 판매가 정본 · 2026-09-22 대표 확정 · 부가세 별도.
+// 판매가 정본 · 2026-09-22 대표 확정 · 부가세 별도. 2026-10-27 (화) 대표 지시 「부가세별도로 전부 통일해」 로 10/18 부가세 포함 계산(photoPriceWithVat)을 걷었다.
 // 화면과 JSON-LD, FAQ 의 금액은 전부 이 상수에서 파생한다 · 손으로 적지 않는다.
 export const FOOD_PLANS: PhotoPlan[] = [
   { code: 'STANDARD', name: '기본', price: 300000, image: '/photo-pricing/standard.jpg', width: 1280, height: 853, alt: '만둣국과 반찬을 담은 메뉴 촬영 사진', description: '메뉴판과 플레이스에 사용할 메뉴 사진과 매장 인테리어 사진을 촬영합니다.', includes: ['메뉴 10개 촬영, 메뉴 사진 10컷', '인테리어 사진 A컷 5장'], extra: '컷 추가는 상담 때 안내드립니다', time: '90분 이내', days: '5일', cuts: '메뉴 10컷 + 인테리어 A컷 5장', retouch: '진행' },

@@ -9,6 +9,7 @@
  * 팝업은 그것을 읽어서 보여준다. 두 곳에 숫자를 적으면 한쪽만 고쳐진다.
  */
 
+import { todayKst } from "./search-care-offer";
 import { CAFE_TIERS } from "./cafe-distribution";
 
 /** 카페 한 곳. 줄 하나가 표의 한 행이 된다 */
@@ -266,8 +267,17 @@ export function noticeShowsOn(pathname: string): boolean {
 export function noticeOccupies(pathname: string): boolean {
   if (!noticeShowsOn(pathname)) return false;
   try {
-    return !localStorage.getItem(NOTICE_STORAGE_KEY);
+    return localStorage.getItem(NOTICE_STORAGE_KEY) !== todayKst();
   } catch {
     return true;
   }
 }
+
+/**
+ * 공지를 닫았다는 신호. 같은 자리를 기다리던 통합검색 안내(SearchCarePopup)가 받아서 이어서 뜬다.
+ *
+ * 2026-10-16 (금) 대표 지시 「레퍼런스에도 같이 뜨게 해줘 이전공지도 마찬가지고」 로 닫기 기록을
+ * 영구에서 하루로 바꿨다. 값은 닫은 날짜(YYYY-MM-DD · 한국 시간)이고 자정이 지나면 다시 뜬다.
+ * 9/10 이후 「1」 로 남은 옛 기록은 오늘 날짜와 다르니 한 번 더 뜬다.
+ */
+export const NOTICE_CLOSED_EVENT = "harang:cafe-notice-closed";

@@ -24,9 +24,9 @@ const FOOD_LD_LINE = (() => {
 })();
 
 export const metadata: Metadata = {
-  title: "음식점·식당 마케팅 대행 | 네이버 플레이스 상위노출 전문",
+  title: "음식점·식당 마케팅 대행 | 네이버 플레이스 정보 정비·순위 계측",
   description: joinSentences("음식점·식당 마케팅은 플레이스 리뷰·맘카페 바이럴·블로그 맛집 등록입니다.", FOOD_LINE, "상담 0원."),
-  keywords: ["음식점 마케팅", "식당 마케팅", "맛집 마케팅", "식당 플레이스 상위노출", "음식점 리뷰 마케팅", "맛집 블로그 마케팅", "음식점 체험단", "맛집 맘카페 바이럴"],
+  keywords: ["음식점 마케팅", "식당 마케팅", "맛집 마케팅", "식당 플레이스 정보 정비", "음식점 리뷰 마케팅", "맛집 블로그 마케팅", "음식점 체험단", "맛집 맘카페 바이럴"],
   alternates: { canonical: "https://www.harangmarketing.com/services/restaurant" },
   openGraph: {
     title: "음식점·식당 마케팅 대행 | 하랑마케팅",

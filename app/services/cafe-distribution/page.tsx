@@ -6,6 +6,7 @@ import { SITE, ORG_ID, LOCAL_ID, PAGE_UPDATED, faqLd, breadcrumbLd, webPageLd, t
 import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-notice";
 import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import CafeNoticeReopen from "../../components/CafeNoticeReopen";
+import { SEARCH_CARE_OFFER } from "../../lib/search-care-offer";
 import {
   PACKAGES,
   PACKAGE_SIZES,
@@ -27,16 +28,13 @@ import {
   GUARANTEES,
   PRICE_REVISED_AT,
   PRICE_NOTICE,
-  MONTHLY_MIN,
-  MONTHLY_GROUPS,
-  MONTHLY_TERMS,
   CAFE_HOW,
   type CafePackage,
   type CafeTier,
 } from "../../lib/cafe-distribution";
 
 /**
- * 최적화 블로그 · 카페 배포 상품 상세페이지
+ * 블로그 원고 · 카페 게시 대행 상품 상세페이지
  *
  * design_handoff_cafe_distribution 의 Cafe-Detail-Page 를 그대로 재현한다.
  * - 기준 폭 860px 중앙 정렬 (모바일에서만 폭·패딩 축소)
@@ -76,27 +74,27 @@ const LD = [
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${URL}#service`,
-    name: "최적화 블로그 · 카페 배포",
-    alternateName: ["카페 배포", "최적화 블로그 배포", "최블 카페 배포"],
+    name: "블로그 원고 · 카페 게시 대행",
+    alternateName: ["카페 배포", "블로그 원고·게시 대행", "최블 카페 배포"],
     serviceType: "네이버 카페·블로그 배포 대행",
     provider: { "@id": LOCAL_ID },
     brand: { "@id": ORG_ID },
     url: URL,
     inLanguage: "ko-KR",
     description:
-      "네이버 최적화 블로그 배포와 카페 배포를 함께 진행해 블로그 탭과 카페 탭에 동시 노출시키는 서비스입니다. 업종·지역·목표 키워드에 맞는 카페에 순차 게시하고 전체 게시 URL을 정리해 전달합니다.",
+      "블로그 원고를 작성하고 게시가 허용된 채널에 정한 건수만큼 게시하는 서비스입니다. 업종·지역·목표 키워드에 맞는 카페에 순차 게시하고 전체 게시 URL을 정리해 전달합니다.",
     areaServed: { "@type": "Country", name: "대한민국" },
     serviceOutput: {
       "@type": "Thing",
-      name: "카페 상위노출 실적",
-      description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 모바일 통합검색 카페 영역 노출 실사 캡처를 레퍼런스로 공개합니다.`,
+      name: "카페 배포 협력망 노출 캡처",
+      description: `${REF_CATEGORIES.length}개 업종 ${REF_TOTAL}개 키워드의 네이버 모바일 통합검색 카페 영역 노출 실사 캡처를 공개합니다. 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다.`,
     },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "KRW",
       lowPrice: PRICE_MIN,
       highPrice: PRICE_MAX,
-      offerCount: PACKAGES.length * 2 + CAFE_TIERS.length + 1,
+      offerCount: PACKAGES.length * 2 + CAFE_TIERS.length,
       description: "표기 금액은 부가세 별도입니다.",
       offers: [
         ...PACKAGES.map((p) => ({
@@ -123,35 +121,27 @@ const LD = [
           description: `${t.desc} 건당 금액, 원고 작성까지 맡기면 ${CAFE_COPY_FEE.toLocaleString("ko-KR")}원 추가.`,
           availability: "https://schema.org/InStock",
         })),
-        {
-          "@type": "Offer",
-          name: "지역 + 업종 키워드 월 단위 진행",
-          price: MONTHLY_MIN,
-          priceCurrency: "KRW",
-          description: "키워드 하나를 한 달 단위로 블로그 탭과 카페 탭에 노출 관리하는 월 시작가. 지역 · 키워드에 따라 달라질 수 있어 진행 전 상담에서 확정합니다.",
-          availability: "https://schema.org/InStock",
-        },
       ],
     },
   },
   webPageLd({
     path: PATH,
-    name: "최적화 블로그 · 카페 배포 | 하랑마케팅",
+    name: "블로그 원고 · 카페 게시 대행 | 하랑마케팅",
     description:
-      "블로그 탭과 카페 탭에 동시 노출하는 배포 상품. 구성별 가격과 업종별 실사 레퍼런스를 공개합니다.",
+      "원고 작성과 블로그·카페 게시 대행 상품. 구성별 가격과 업종별 실사 레퍼런스를 공개합니다.",
     dateModified: PAGE_UPDATED[PATH],
   }),
   faqLd(PAGE_FAQ, URL),
   breadcrumbLd([
     { name: "홈", path: "/" },
     { name: "서비스", path: "/services" },
-    { name: "최적화 블로그 · 카페 배포", path: PATH },
+    { name: "블로그 원고 · 카페 게시 대행", path: PATH },
   ]),
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${URL}#reference-categories`,
-    name: "카페 상위노출 레퍼런스 업종",
+    name: "카페 정보 정비 레퍼런스 업종",
     numberOfItems: REF_CATEGORIES.length,
     itemListElement: REF_CATEGORIES.map((c, i) => ({
       "@type": "ListItem",
@@ -174,7 +164,7 @@ function PackageRow({ p }: { p: CafePackage }) {
       className="rounded-[20px] bg-white md:rounded-[16px]"
       style={
         p.featured
-          ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(22,85,232,.14)" }
+          ? { border: "2px solid var(--cd-primary)", boxShadow: "0 14px 34px rgba(0,102,255,.14)" }
           : { border: "1px solid var(--cd-border)" }
       }
     >
@@ -278,7 +268,7 @@ export default function CafeDistributionPage() {
         {/* ══ 1. 히어로 ══ */}
         <section
           className="px-5 py-14 text-center md:px-[60px] md:pb-[90px] md:pt-[70px]"
-          style={{ background: "linear-gradient(160deg,#111 0%,#16224a 55%,#0b1226 100%)" }}
+          style={{ background: "var(--cd-dark-2)" }}
         >
           <div className="mx-auto w-full max-w-[860px]">
             <div className="mb-7 flex justify-start">
@@ -295,13 +285,13 @@ export default function CafeDistributionPage() {
               className="inline-block rounded-full px-6 py-2.5 text-[15px] font-black text-white md:px-[34px] md:py-3 md:text-[19px]"
               style={{ background: "var(--cd-primary-lt)" }}
             >
-              네이버 최적화 블로그 · 카페 배포
+              네이버 블로그 원고 · 카페 게시 대행
             </span>
 
             {/* 로고 카드 — 로고가 흰 배경 JPG라 반드시 흰 카드 안에 넣는다 */}
             <div
               className="mx-auto mt-8 flex h-[128px] w-[128px] items-center justify-center rounded-[26px] bg-white md:mt-10 md:h-[172px] md:w-[172px] md:rounded-[34px]"
-              style={{ boxShadow: "0 18px 50px rgba(22,85,232,.35)" }}
+              style={{ boxShadow: "0 18px 50px rgba(0,102,255,.35)" }}
             >
               <img
                 src="/harang-icon.svg"
@@ -316,7 +306,7 @@ export default function CafeDistributionPage() {
               className="cd-display mt-8 text-[40px] leading-[1.06] text-white md:mt-10 md:text-[62px]"
               style={{ letterSpacing: "-2px" }}
             >
-              최적화 블로그 · 카페 배포
+              블로그 원고 · 카페 게시 대행
               <br />
               <span style={{ color: "var(--cd-primary-lt3)" }}>발행 뒤 노출 확인까지</span>
             </h1>
@@ -328,7 +318,7 @@ export default function CafeDistributionPage() {
             </p>
 
             <div className="mx-auto mt-7 flex max-w-[620px] flex-col gap-3 md:mt-8">
-              {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고", `월 단위 진행 · 월 ${won(MONTHLY_MIN)}부터`].map((t) => (
+              {["10건 · 30건 패키지 · 원고 포함 / 직접 제공", "발행한 건마다 노출 위치와 게시 URL 보고"].map((t) => (
                 <span
                   key={t}
                   className="rounded-full px-5 py-3 text-[15px] font-bold text-white md:px-8 md:py-3.5 md:text-[21px]"
@@ -410,13 +400,13 @@ export default function CafeDistributionPage() {
 
               <div
                 className="rounded-[18px] p-5 md:p-7"
-                style={{ background: "rgba(22,85,232,.18)", border: "1px solid rgba(127,166,255,.45)" }}
+                style={{ background: "rgba(0,102,255,.18)", border: "1px solid rgba(127,166,255,.45)" }}
               >
                 <p className="mb-2 text-[13px] font-bold" style={{ color: "var(--cd-primary-lt3)" }}>
                   카페 배포를 함께 했을 때
                 </p>
                 <p className="cd-display text-[22px] leading-tight text-white md:text-[26px]">
-                  블로그 + 카페 양쪽 노출
+                  블로그와 카페에 게시
                 </p>
                 <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: "var(--cd-on-dark)" }}>
                   어느 탭을 열든 우리 이야기가 한 번은 보입니다.
@@ -484,7 +474,7 @@ export default function CafeDistributionPage() {
               </h2>
               <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
                 아래는 네이버 모바일 통합검색에서 카페 영역에 노출된 실제 화면입니다.
-                보정하지 않았고, 진행 건마다 이런 캡처와 게시 URL을 함께 드립니다.
+                보정하지 않았습니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 이런 캡처와 게시 URL을 함께 드립니다.
               </p>
               <p className="mt-3 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
                 몇 건 올렸는지보다 어디에 떴는지가 결과를 가릅니다. 그래서 발행 뒤 키워드마다 노출 위치를 확인하고 캡처와 URL을 남깁니다.
@@ -566,7 +556,7 @@ export default function CafeDistributionPage() {
                 <Link
                   href={`${PATH}/reference`}
                   className="inline-flex w-full shrink-0 items-center justify-center rounded-full px-6 py-3 text-[15px] font-black text-white transition-opacity hover:opacity-90 sm:w-auto"
-                  style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+                  style={{ background: "var(--cd-primary)" }}
                 >
                   레퍼런스 {REF_TOTAL}건 전체 보기
                 </Link>
@@ -585,7 +575,7 @@ export default function CafeDistributionPage() {
               구성과 가격
             </h2>
             <p className="mt-4 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
-              금액을 먼저 공개합니다. 10건 · 30건 패키지는 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다. 월 보장은 표기 금액이 시작가이고, 키워드를 확인한 뒤 확정합니다.
+              금액을 먼저 공개합니다. 10건 · 30건 패키지는 상담 뒤에 견적이 달라지지 않도록 표에 적힌 기준 그대로 안내합니다. 통합검색 월 관리는 키워드마다 단가가 달라 키워드를 받은 뒤 안내합니다.
               10건과 30건, 두 크기에서 최적화 블로그와 카페의 비율을 고릅니다.
               원고 작성을 맡기는 경우와 원고를 직접 주시는 경우의 금액을 나란히 적었습니다.
             </p>
@@ -633,6 +623,10 @@ export default function CafeDistributionPage() {
                 </div>
               </div>
             ))}
+
+            <p className="mt-6 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
+              표에 없는 건수도 상담에서 조합해 드립니다.
+            </p>
 
             <div className="mt-12">
               <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
@@ -698,107 +692,15 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 6-B. MONTHLY · 지역 + 업종 키워드를 월 단위로 이어서 관리한다 (2026-09-08 (화) 대표 지시) ══ */}
-        <section className="bg-white py-14 md:py-[66px]" style={{ borderBottom: "1px solid var(--cd-border)" }}>
+        <section className="bg-white py-10" style={{ borderBottom: "1px solid var(--cd-border)" }}>
           <div className={INNER}>
-            <p className="mb-3 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
-              MONTHLY
+            <h2 className="text-xl font-bold" style={{ color: "var(--cd-ink)" }}>건수 패키지와 통합검색 월 관리, 두 가지로 진행합니다</h2>
+            <p className="mt-4 text-sm leading-relaxed" style={{ color: "var(--cd-body-2)" }}>
+              건수 패키지는 위 표대로 정한 건수의 원고를 쓰고 게시한 뒤 게시 주소를 보고합니다.
+              통합검색 월 관리는 키워드 하나를 25일 동안 매일 확인해 기록으로 보고하고, 기록을 확인하신 뒤 정산합니다.
+              월 {SEARCH_CARE_OFFER.price}이고 키워드마다 진행 가능 여부와 단가를 먼저 확인합니다.
+              검색 결과의 위치는 네이버가 정합니다. 몇 위에 오른다고 약속드리지 않습니다.
             </p>
-            <h2 className="cd-display text-[28px] leading-[1.25] md:text-[38px]" style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}>
-              월 단위로도 진행합니다
-            </h2>
-            <p className="mt-5 text-[15px] leading-[1.8] md:text-[16px]" style={{ color: "var(--cd-body-2)" }}>
-              건수로 끊는 패키지와 별도로, 지역과 업종을 붙인 키워드 하나를 달마다 이어서 관리하는 방식입니다.{" "}
-              정한 키워드로 검색했을 때 블로그 탭과 카페 탭에 우리 글이 떠 있도록 한 달 단위로 관리하고,{" "}
-              매달 노출 위치를 확인해 보고드립니다.{" "}
-              카페 마케팅에서 월 보장이라고 부르는 방식이 이것입니다. 보장하는 것은 순위가 아니라 기간이라,{" "}
-              노출이 확인되지 않은 날은 그만큼 진행 기간을 더해 채워 드립니다.
-            </p>
-
-            {/* 시작가 카드. 숫자는 MONTHLY_MIN 한 곳에서만 온다 */}
-            <div
-              className="mt-8 flex flex-col gap-4 rounded-[20px] px-6 py-6 md:flex-row md:items-center md:justify-between md:px-8 md:py-7"
-              style={{ background: "var(--cd-dark-2)" }}
-            >
-              <div>
-                <p className="text-[13px] font-bold md:text-[14px]" style={{ color: "var(--cd-on-dark-3)" }}>
-                  지역 + 업종 키워드 1개 · 한 달
-                </p>
-                <p className="mt-1 text-[15px] md:text-[16px]" style={{ color: "var(--cd-on-dark)" }}>
-                  블로그 탭 · 카페 탭 노출 관리 · 매달 노출 보고
-                </p>
-              </div>
-              <div className="md:text-right">
-                <p className="text-[13px]" style={{ color: "var(--cd-on-dark-3)" }}>
-                  시작가 · 부가세 별도
-                </p>
-                <p className="cd-num mt-1 whitespace-nowrap text-[30px] leading-none text-white md:text-[36px]">
-                  월 {won(MONTHLY_MIN)}
-                  <span className="ml-1 text-[15px] font-bold md:text-[16px]">부터</span>
-                </p>
-              </div>
-            </div>
-
-            {/* 먼저 밝히는 조건 넷. 셋째가 노출이 확인되지 않은 날의 처리다 */}
-            <div className="mt-5 flex flex-col gap-3">
-              {MONTHLY_TERMS.map((t) => (
-                <div
-                  key={t.title}
-                  className="flex items-start gap-4 rounded-[16px] p-5 md:p-6"
-                  style={{ background: "var(--cd-tint-2)", border: "1px solid var(--cd-border-2)" }}
-                >
-                  <span
-                    className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "var(--cd-primary)" }}
-                  >
-                    <Check size={15} className="text-white" strokeWidth={3} />
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="mb-1 text-[16px] font-bold md:text-[18px]" style={{ color: "var(--cd-ink-2)" }}>
-                      {t.title}
-                    </h3>
-                    <p className="text-[14px] leading-[1.7] md:text-[15px]" style={{ color: "var(--cd-body-2)" }}>
-                      {t.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 지역 + 업종 묶음 여섯. 예시일 뿐 전부가 아니다. 없는 업종은 상담에서 확인한다 */}
-            <div className="mt-10">
-              <h3 className="text-[20px] font-black md:text-[24px]" style={{ color: "var(--cd-ink)", letterSpacing: "-0.5px" }}>
-                지역 + 업종으로 잡는 키워드
-              </h3>
-              <p className="mt-2 text-[14px] leading-[1.75] md:text-[15px]" style={{ color: "var(--cd-muted-2)" }}>
-                동네 이름 뒤에 업종을 붙인 형태로 키워드를 정합니다. 아래는 자주 진행하는 묶음이고,{" "}
-                여기 없는 업종도 키워드를 알려주시면 진행 가능 여부와 금액을 확인해 드립니다.
-              </p>
-              <div className="mt-5 grid grid-cols-1 gap-[14px] md:grid-cols-2">
-                {MONTHLY_GROUPS.map((g) => (
-                  <div
-                    key={g.label}
-                    className="rounded-[18px] px-6 py-5 md:px-7 md:py-6"
-                    style={{ background: "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}
-                  >
-                    <h4 className="text-[16px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>
-                      지역 + {g.label}
-                    </h4>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {g.keywords.map((k) => (
-                        <span
-                          key={k}
-                          className="rounded-full px-3 py-1.5 text-[13px] font-bold"
-                          style={{ background: "#fff", border: "1px solid var(--cd-border)", color: "var(--cd-body-2)" }}
-                        >
-                          {k}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -921,7 +823,7 @@ export default function CafeDistributionPage() {
             </h2>
             <p className="mb-7 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-body-2)" }}>
               업종 {REF_CATEGORIES.length}개 · 키워드 {REF_TOTAL}개의 네이버 모바일 통합검색 카페 영역 노출 캡처를
-              그대로 공개합니다. 진행 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다.
+              그대로 공개합니다. 여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. 하랑이 진행한 건은 건별 게시 URL과 검색 결과 캡처를 함께 전달드립니다.
             </p>
 
             {/* 업종이 14개라 정식 라벨을 쓰면 칩이 서너 줄로 늘어진다. 축약 라벨 사용. */}
@@ -943,7 +845,7 @@ export default function CafeDistributionPage() {
             <Link
               href={`${PATH}/reference`}
               className="inline-flex w-full items-center justify-center rounded-full px-8 py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:w-auto md:text-[19px]"
-              style={{ background: "linear-gradient(90deg,#1655e8,#5b8dfa)" }}
+              style={{ background: "var(--cd-primary)" }}
             >
               업종별 레퍼런스 전체 보기
             </Link>
@@ -994,7 +896,7 @@ export default function CafeDistributionPage() {
         {/* ══ 9. CTA ══ */}
         <section
           className="px-5 py-16 text-center md:px-[60px] md:py-20"
-          style={{ background: "linear-gradient(160deg,#111,#16224a 60%,#0b1226)" }}
+          style={{ background: "var(--cd-dark-2)" }}
         >
           <div className="mx-auto w-full max-w-[860px]">
             <span
@@ -1005,9 +907,9 @@ export default function CafeDistributionPage() {
             </span>
 
             <h2 className="text-[24px] font-bold leading-[1.4] text-white md:text-[30px]">
-              카페 + 블로그 동시 노출로
+              블로그와 카페 게시 대행으로
               <br />
-              검색 노출 구조를 넓혀보세요
+              원고와 게시 계획을 상담하세요
             </h2>
 
             <p className="mt-4 text-[15px] md:text-[16px]" style={{ color: "var(--cd-on-dark-2)" }}>
@@ -1018,7 +920,7 @@ export default function CafeDistributionPage() {
               <Link
                 href={CTA_HREF}
                 className="block rounded-full py-5 text-[20px] font-black text-white md:py-6 md:text-[24px]"
-                style={{ background: "linear-gradient(90deg,#2f6bf5,#7fa6ff)" }}
+                style={{ background: "var(--cd-primary-lt)" }}
               >
                 구성 상담 신청하기
               </Link>

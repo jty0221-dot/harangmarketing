@@ -33,9 +33,10 @@ export default function AnimatedCounter({ to, duration = 1800, suffix = "", pref
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
 
-  /* 화면을 칠하기 직전에 출발선으로 되돌린다. 움직임을 원치 않는 방문자에게는 되돌리지 않는다 */
+  /* 화면을 칠하기 직전에 출발선으로 되돌린다. 움직임 스위치(<html class="mo"> · layout head)가 꺼져 있으면
+     (동작 줄이기 · 자동 캡처 · ?nomo) 되돌리지 않는다 · TR-0057 */
   useBeforePaint(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!document.documentElement.classList.contains("mo")) {
       started.current = true;
       return;
     }
@@ -46,6 +47,14 @@ export default function AnimatedCounter({ to, duration = 1800, suffix = "", pref
   useEffect(() => {
     const el = ref.current;
     if (!el || started.current) return;
+
+    // 인쇄할 때 아직 안 센 숫자가 0 으로 찍히지 않게 완성값으로 둔다
+    const done = () => {
+      started.current = true;
+      setFlipped(true);
+      setValue(to);
+    };
+    window.addEventListener("beforeprint", done);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -69,7 +78,10 @@ export default function AnimatedCounter({ to, duration = 1800, suffix = "", pref
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("beforeprint", done);
+    };
   }, [to, duration, decimals]);
 
   return (

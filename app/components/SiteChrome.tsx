@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import FloatingCTA from "./FloatingCTA";
 import CafeNoticePopup from "./CafeNoticePopup";
+import SearchCarePopup from "./SearchCarePopup";
+import AttributionTracker from "./AttributionTracker";
 
 /**
  * 화면에 떠 있는 요소들(하단 CTA 바 · 운영 공지)을 한곳에서 관리한다.
@@ -18,7 +20,7 @@ import CafeNoticePopup from "./CafeNoticePopup";
  * CafeNoticePopup 만 성격이 다르다. 영업이 아니라 운영 공지라서 위 조건과 별개로
  * 뜨는 경로를 스스로 고른다. 그 목록은 app/lib/cafe-notice.ts 의 NOTICE_PATHS 다.
  */
-const HIDE_ON = ["/r/", "/admin"];
+const HIDE_ON = ["/r/", "/admin", "/dontstop-lecture", "/tools/procurement"];
 
 export default function SiteChrome() {
   const pathname = usePathname() || "";
@@ -28,6 +30,10 @@ export default function SiteChrome() {
     <>
       <FloatingCTA />
       <CafeNoticePopup />
+      {/* 블로그 마케팅 · 카페 배포에서만 뜨는 통합검색 월 관리 안내. 경로는 app/lib/search-care-offer.ts */}
+      <SearchCarePopup />
+      {/* 광고 유입 경로 저장 + 카카오·전화 클릭 측정. 고객 전용 화면에서는 잴 이유가 없어 위 조건 뒤에 둔다 */}
+      <AttributionTracker />
     </>
   );
 }

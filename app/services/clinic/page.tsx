@@ -29,6 +29,12 @@ const DERMA = byKeyword("지역 피부과 키워드");
 /** 병·의원 서술문 — 공통 한 줄 뒤에 업종 줄이 붙는다 */
 const CLINIC_STORY = [CLINIC_NOTE, ...CLINIC_LINES].filter(Boolean).join(" ");
 
+/** `2026-09-23` → `9월 23일 측정` · 현황표 순위마다 잰 날짜를 붙인다 (H-1143) */
+const clinicDay = (iso: string) => {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${m}월 ${d}일 측정`;
+};
+
 /*
  * WebPage 구조화 데이터 - 이 페이지가 무엇인지 · 언제 바뀌었는지 · 어느 문장을 소리 내 읽어도 되는지(speakable) 를
  * AI 검색과 답변 엔진에 알린다 (2026-09-20 · 요청 68 · D-0290). 문장은 layout metadata 와 CLINIC_ 상수를 그대로
@@ -103,46 +109,18 @@ import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Stethoscope, MessageSquare,
   ShieldCheck, ScrollText,
-  ClipboardCheck, Images, UserX, CalendarClock,
-} from "lucide-react";
+  Globe2 } from "lucide-react";
+import { MEDICAL_PROCESS } from "../../lib/medical-process";
+import { C04, C05, CLINIC_HUB_PATH, CLINIC_GEO_PATH } from "../../lib/clinic-homepage";
 
-/*
- * 의료광고 검수 공정 — 진우(병·의원 팀장) 인계서 제5절 문장 그대로다.
- * 정본 : E:\하랑\본부장\병의원\인계_홈페이지_병의원_2026-09-05.md
- *
- * 읽기 좋게 다듬지 않는다. 네 줄은 의료법 조문에서 나온 것이라
- * 문장을 부드럽게 고치는 순간 우리가 지키겠다고 적은 것과 실제가 어긋난다.
- * 고치려면 진우 검수가 먼저다 (C-50).
- */
-const MEDICAL_PROCESS = [
-  {
-    icon: ClipboardCheck,
-    title: "쓰는 사람과 보는 사람을 나눕니다",
-    desc: "병원 · 의원 원고는 의료법 검수를 따로 거칩니다.",
-  },
-  {
-    icon: Images,
-    title: "전후 사진은 세 가지가 함께 있어야 합니다",
-    desc: "전후 사진은 시술명 · 시술일자 · 부작용 경고 세 가지가 함께 있어야 게시합니다.",
-  },
-  {
-    icon: UserX,
-    title: "체험단은 병원에 제안하지 않습니다",
-    desc: "치료경험담을 대가로 받는 체험단은 병원에 제안하지 않습니다.",
-  },
-  {
-    icon: CalendarClock,
-    title: "심의 유효기간을 대장으로 셈니다",
-    desc: "사전심의 대상 광고는 승인 유효기간 3년을 대장으로 관리합니다.",
-  },
-];
+// 의료광고 검수 공정 네 줄은 app/lib/medical-process.ts (허브와 같이 쓴다 · 글자 변경 0)
 
 export const metadata: Metadata = {
-  title: "의원·한의원·피부과 마케팅 | 의료법 준수 · 플레이스 SEO · 블로그",
-  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 무료 상담이 가능합니다.",
-  keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행"],
+  title: "병원마케팅 · 치과 · 피부과 · 한의원 · 의료법 검수 플레이스 · 블로그 · 홈페이지", // C-03
+  description: "의원·한의원·피부과 전문 마케팅입니다. 의료법을 준수하는 블로그와 플레이스 SEO, 리뷰 답글 관리를 진행하며 상담과 진단은 0원입니다.", // N-31 · layout 과 한 벌
+  keywords: ["병원마케팅", "치과마케팅", "의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "병원 마케팅 대행", "병원마케팅 대행사"],
   openGraph: {
-    title: "의원·한의원·피부과 마케팅 | 하랑마케팅",
+    title: "의료법 검수부터 거치는 병원마케팅 · 하랑마케팅",
     description: "의료법을 준수하며 진행하는 병원 마케팅 전략입니다.",
     url: "https://www.harangmarketing.com/services/clinic",
     images: [ogImage()],
@@ -173,6 +151,13 @@ const SERVICES = [
     color: "from-green-500 to-green-700",
     title: "신뢰도 콘텐츠",
     desc: "원장님 진료 원칙 소개 · 진료 과정 안내 콘텐츠",
+  },
+  {
+    icon: Globe2,
+    color: "",
+    title: "병원 홈페이지 · AI 읽기 정비", // C-01
+    desc: "진료 정보를 글자와 구조화 데이터로 정리하는 홈페이지 제작과 정비", // C-02
+    href: CLINIC_HUB_PATH,
   },
 ];
 
@@ -208,6 +193,8 @@ const SERVICE_FAQ: FaqItem[] = [
     a:
       CLINIC_RANK_ANSWER,
   },
+  C04,
+  C05,
   {
     q: "광고에 문제가 생기면 누가 책임지나요?",
     a:
@@ -221,7 +208,7 @@ export default function ClinicLandingPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-blue-950 via-indigo-950 to-gray-950 py-16 md:py-24">
+        <section className="bg-[var(--h-dark)] py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Stethoscope size={12} strokeWidth={2.5} />
@@ -249,6 +236,11 @@ export default function ClinicLandingPage() {
                 내 의원 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -285,7 +277,7 @@ export default function ClinicLandingPage() {
         {/*
           병·의원 순위 현황 — 진우 인계서 3-C 다섯 문장 + 3-D 표 (D-0280 · D-0282).
           문장도 숫자도 app/lib/rank-records.ts 에서 온다. 화면에서 만들지 않는다.
-          위 RankRecords 는 진우 판정을 통과한 진료과의 개선 카드고, 여기는 계약 키워드 전체 집계다.
+          위 RankRecords 는 진우 판정을 통과한 진료과의 개선 카드고, 여기는 골라 실은 키워드와 잰 날짜다 (H-1143).
           계약 대장을 못 읽으면 생성기가 아무것도 쓰지 않고 멈춰 이 절이 통째로 사라진다.
         */}
         {CLINIC_SUMMARY.keywords > 0 && (
@@ -299,7 +291,7 @@ export default function ClinicLandingPage() {
                   <Stethoscope size={13} strokeWidth={2.5} />
                   <span className="text-xs font-bold">병·의원</span>
                 </div>
-                <h2 className="text-xl md:text-2xl font-black text-gray-900">플레이스 순위 현황</h2>
+                <h2 className="text-xl md:text-2xl font-black text-gray-900">플레이스 순위 기록</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 md:gap-6 items-start">
@@ -324,7 +316,7 @@ export default function ClinicLandingPage() {
                       <thead className="bg-gray-50 text-gray-500 text-xs">
                         <tr>
                           <th className="text-left font-semibold px-4 py-2.5">병원</th>
-                          <th className="text-left font-semibold px-4 py-2.5">계약 키워드</th>
+                          <th className="text-left font-semibold px-4 py-2.5">키워드</th>
                           <th className="text-right font-semibold px-4 py-2.5">순위</th>
                         </tr>
                       </thead>
@@ -338,6 +330,7 @@ export default function ClinicLandingPage() {
                               style={{ color: k.page1 ? "var(--w-primary)" : "#70737C" }}
                             >
                               {k.rank === null ? "계측 중" : `${k.rank}위`}
+                              <span className="block text-[11px] font-medium text-gray-500">{clinicDay(k.measuredOn)}</span>
                             </td>
                           </tr>
                         ))}
@@ -355,23 +348,31 @@ export default function ClinicLandingPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-8">의원 전용 마케팅 패키지</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {SERVICES.map((s, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4">
-                  <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
-                    <s.icon size={16} className="text-white" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
-                    <p className="text-xs text-gray-500">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
+              {SERVICES.map((s, i) => {
+                const body = (
+                  <>
+                    <div className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0" style={{ background: "var(--w-primary)" }}>
+                      <s.icon size={16} className="text-white" strokeWidth={2.5} />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900 text-sm mb-0.5">{s.title}</p>
+                      <p className="text-xs text-gray-500">{s.desc}</p>
+                    </div>
+                  </>
+                );
+                const cls = "bg-white border border-gray-200 rounded-2xl p-5 shadow-sm flex items-start gap-4";
+                return s.href ? (
+                  <Link key={i} href={s.href} className={`${cls} hover:border-blue-200 transition-colors`}>{body}</Link>
+                ) : (
+                  <div key={i} className={cls}>{body}</div>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* 의료광고 검수 공정 + 심의 판정 자료.
-            순위는 위 「플레이스 순위 현황」 절이 집계로 보여 준다. 진우 판단으로 공정 설명을 가운데 둔다.
+            순위는 위 「플레이스 순위 기록」 절이 보여 준다 (진우 2026-10-03 · 현황은 지금이라는 말이라 쓰지 않는다). 진우 판단으로 공정 설명을 가운데 둔다.
             자료 본문은 /services/clinic/medical-ad-guide 가 정본이다 */}
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
@@ -436,6 +437,52 @@ export default function ClinicLandingPage() {
                 </div>
               </div>
             </Link>
+
+            <Link
+              href="/services/homepage/clinic"
+              className="group block mt-4 bg-gray-50 hover:bg-white border border-gray-200 hover:border-blue-200 rounded-2xl p-5 md:p-7 shadow-sm transition-colors"
+            >
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-9 h-9 rounded-xl shadow-sm flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--w-primary)" }}
+                >
+                  <Globe2 size={16} className="text-white" strokeWidth={2.5} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-base md:text-lg font-black text-gray-900 mb-1.5 flex items-center gap-1.5">
+                    병원 홈페이지 제작
+                    <ArrowRight
+                      size={15}
+                      className="text-gray-500 group-hover:text-blue-600 transition-colors"
+                    />
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    진료과목 · 의료진 · 진료시간 · 오시는 길을 환자가 찾기 쉽게 정리하고, 의료법 문구 검수와
+                    검색 기본 세팅을 함께 합니다. 플레이스와 홈페이지의 병원 정보를 같게 맞춥니다.
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+
+        {/* 이어서 볼 곳 (세팅안 다-5 · N-32) */}
+        <section className="py-10 md:py-12 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6">
+            <h2 className="text-lg md:text-xl font-black text-gray-900 mb-4">이어서 볼 곳</h2>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { label: "병원 홈페이지 제작", href: CLINIC_HUB_PATH },
+                { label: "병원 GEO · AEO 세팅", href: CLINIC_GEO_PATH },
+                { label: "의료광고 심의 판정 자료", href: "/services/clinic/medical-ad-guide" },
+                { label: "네이버 플레이스 SEO", href: "/services/place" },
+              ].map((l) => (
+                <Link key={l.href} href={l.href} className="inline-flex items-center min-h-11 px-4 rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  {l.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

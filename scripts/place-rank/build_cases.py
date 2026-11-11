@@ -149,6 +149,9 @@ for kw, unit, detail, why in plain(MASK, 4):
 
 # ---------- 6. 스냅샷 — 현재 순위 ----------
 SRC = {"애드랭크": MON / "snapshots", "루메인": MON / "snapshots_lumain"}
+# 스냅샷에 매장 이름이 업종명으로만 적힌 줄을 대장의 매장 이름에 잇는다 (키워드까지 맞을 때만).
+# 같은 업종명 매장이 여럿이라 이름만으로는 잇지 않는다. 근거 : 세영 확인 2026-11-10 (화).
+STORE_ALIAS = {("입주청소", "군포입주청소"): "두꺼비홈케어"}
 seen = collections.defaultdict(dict)    # (매장, 키워드) -> {출처: (날짜, 오늘)}
 covered = collections.defaultdict(set)  # 출처 -> {(매장, 키워드)}
 # 스냅샷에도 시작 · 시작일 칸이 있다. 대장에 없는 키워드도 이걸로 상승 판정이 된다.
@@ -162,6 +165,7 @@ for src, folder in SRC.items():
         day = path.stem
         for r in rows(path):
             store, kw, today = r.get("매장", ""), r.get("키워드", ""), r.get("오늘", "")
+            store = STORE_ALIAS.get((store, kw), store)
             if not store or not kw or not today.strip().isdigit():
                 continue
             covered[src].add((store, kw))
@@ -242,6 +246,10 @@ cands = [CAND[_key] for _key in sorted(CAND)]
 
 # ---------- 7. 판정 ----------
 MEDICAL = {"치과", "피부과", "한의원", "의원", "성형외과", "정형외과"}
+# 같은 /portfolio 쪽에 익명 분석 사례(content/site-audit-cases.json)가 있는 업종 (2026-10-23 (금) · 민수)
+# 분석 사례는 지역을 비공개로 실었다. 이 업종 순위 카드가 00시 세무사 처럼 행정단위를 달고 오르면
+# 두 카드를 맞대서 업체가 드러날 수 있어, 이 업종은 행정단위까지 빼고 키워드 유형만 남긴다.
+AUDIT_ANON = ("세무",)
 passed, held = [], []
 
 for c in cands:
@@ -249,7 +257,10 @@ for c in cands:
     tag = wid + " " + store + " · " + kw
 
     d = deal.get(store)
-    if d is None or d["kind"] not in DEAL_OK:
+    # 대표 지시 2026-11-10 (화) '애드랭크에 있는 것들 잘 가져와서 올려' —
+    # 계약구분이 미확인 · 없음이어도 애드랭크가 재고 있는 매장 키워드는 싣는다. 대대행은 그대로 막는다.
+    adrank_ok = (store, kw) in covered["애드랭크"] and (d is None or d["kind"] == "미확인")
+    if (d is None or d["kind"] not in DEAL_OK) and not adrank_ok:
         kind = d["kind"] if d else "없음"
         # 막는 이유가 구분마다 다르다. 한 문장으로 뭉치면 대장이 거짓을 적는다 —
         # 대대행은 우리가 올린 순위가 맞고, 그 가게가 우리 고객이 아닌 것이다.
@@ -286,6 +297,9 @@ for c in cands:
         held.append((tag, "애드랭크가 이 키워드를 재고 있지 않다 — 루메인만 있다"))
         continue
 
+    # 계측이 끝난 키워드도 오른 것은 싣는다 — 카드마다 마지막으로 잰 날짜가 붙는다
+    # (대표 지시 2026-11-10 (화) '계측 끝난건 순위 상승 된거 쭉 올려')
+
     start = c["start"]
     if cur["rank"] > start:
         held.append((tag, "현재 " + str(cur["rank"]) + "위로 시작 " + str(start)
@@ -300,7 +314,8 @@ for c in cands:
         "store": store,  # 내부 확인용 — JSON 으로 나가지 않는다
         "industry": ind,
         "storeLabel": "00" + ind.replace(" ", ""),
-        "keywordLabel": ("00" + unit + " " + detail) if unit else ("00 " + detail),
+        "keywordLabel": ("00 " + detail) if any(w in ind for w in AUDIT_ANON)
+                        else (("00" + unit + " " + detail) if unit else ("00 " + detail)),
         "from": start,
         "to": cur["rank"],
         # 올라간 건과 지킨 건을 한 칸으로 구분한다. 화면에서 문장이 달라진다 —

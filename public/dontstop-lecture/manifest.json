@@ -1,0 +1,112 @@
+{
+  "version": "20261013-profile-v6",
+  "documents": [
+    {
+      "id": "profile-institution",
+      "title": "강사 소개 · 기관 제출 준비",
+      "audience": "시드니대학교 졸업 · 해외 생활 경험 · 2쪽 소개",
+      "pdf": "profile-institution.pdf",
+      "docx": "profile-institution.docx",
+      "pages": 2
+    },
+    {
+      "id": "profile-friendly",
+      "title": "강사 소개 · 요약본",
+      "audience": "확인된 학력과 해외 생활 경험 · 1쪽 소개",
+      "pdf": "profile-friendly.pdf",
+      "docx": "profile-friendly.docx",
+      "pages": 1
+    },
+    {
+      "id": "proposal-institution",
+      "title": "중장년·어르신 생활·여행 영어",
+      "audience": "기관 단체 특강 제안서",
+      "pdf": "proposal-institution.pdf",
+      "docx": "proposal-institution.docx",
+      "pptx": "proposal-institution.pptx",
+      "pages": 8,
+      "format": "A4 세로 편집형 제안서",
+      "wordFormat": "제안서 원문 수정용",
+      "pptFormat": "발표용 · PDF 페이지 이미지 기반"
+    },
+    {
+      "id": "proposal-small-group",
+      "title": "친구·가족과 작은 영어 모임",
+      "audience": "두세 분이 함께하는 수업 제안",
+      "pdf": "proposal-small-group.pdf",
+      "docx": "proposal-small-group.docx",
+      "pptx": "proposal-small-group.pptx",
+      "pages": 6,
+      "format": "A4 세로 편집형 제안서",
+      "wordFormat": "제안서 원문 수정용",
+      "pptFormat": "발표용 · PDF 페이지 이미지 기반"
+    }
+  ],
+  "files": [
+    {
+      "name": "institution-preview.jpg",
+      "bytes": 121736,
+      "sha256": "0cf85f9c4d5dbe15b49887831fdeeed48df3fff1133e138dd95055429f229b6e"
+    },
+    {
+      "name": "lecture-kit.zip",
+      "bytes": 14772821,
+      "sha256": "d3878f5003fd18338a29377bb866259f1b4e9cd0371989bf67daed65a8c859af"
+    },
+    {
+      "name": "profile-friendly.docx",
+      "bytes": 36977,
+      "sha256": "f866b36c105b3e16d2ae6acd3294a822a8df45343fbbd3f822415f6960c7f494"
+    },
+    {
+      "name": "profile-friendly.pdf",
+      "bytes": 64999,
+      "sha256": "383c13c963c49ad54a386921dea8f91d6f07244c4e6de0977358d662fc465ae8"
+    },
+    {
+      "name": "profile-institution.docx",
+      "bytes": 37264,
+      "sha256": "b826f376a9d693991c04d1cd43e53b88ebf24aa6d815548b611cc4511e51e281"
+    },
+    {
+      "name": "profile-institution.pdf",
+      "bytes": 79120,
+      "sha256": "18a37cc5a4b012c469be41cda5f4f817b4e03f7c25501be8cbd227325c011bcf"
+    },
+    {
+      "name": "proposal-institution.docx",
+      "bytes": 38750,
+      "sha256": "4d458e9b9a91911e629b7716f54f63caff1c20254dbafffd62c7019d4c91e264"
+    },
+    {
+      "name": "proposal-institution.pdf",
+      "bytes": 5776614,
+      "sha256": "979cd19935be234fb4654b1331bf31e6857da26d13dd37c59424f6780dec2388"
+    },
+    {
+      "name": "proposal-institution.pptx",
+      "bytes": 2504470,
+      "sha256": "042ef15a04f60e4236e646947c6dd51fc26f2466e7e0b6b3dd16ee261b8c23fa"
+    },
+    {
+      "name": "proposal-small-group.docx",
+      "bytes": 38172,
+      "sha256": "d27848307e9cd36cfc8af4ff18d9d909e9bc15bebfefb73b052e2a7cdb9e399e"
+    },
+    {
+      "name": "proposal-small-group.pdf",
+      "bytes": 4326920,
+      "sha256": "4c46777ccb08eaac7953737e93f11c96ef6524b4f3575816aa245d0da692bd5b"
+    },
+    {
+      "name": "proposal-small-group.pptx",
+      "bytes": 1911362,
+      "sha256": "a36ed36025f1cd80908d4a2827e01e7f882cc4a1d24b3a7c6689dc38a43e9a3f"
+    },
+    {
+      "name": "small-group-preview.jpg",
+      "bytes": 120810,
+      "sha256": "50aa56d470a243d13fd4475f82e8c753a2e73781ae7d5ae2e22f6b08d0c80c36"
+    }
+  ]
+}

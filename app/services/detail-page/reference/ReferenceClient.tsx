@@ -27,6 +27,11 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
   /** 열려 있는 작업물의 현재 탭 내 위치. 닫혀 있으면 -1 */
   const [open, setOpen] = useState(-1);
   const listTop = useRef<HTMLDivElement>(null);
+  /** 확대를 연 카드. 닫으면 키보드 초점을 이 카드로 돌려준다 */
+  const trigger = useRef<HTMLElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const isOpen = open >= 0;
 
   const tab = REF_TABS[active];
   const works = tab.works;
@@ -58,6 +63,21 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
       if (e.key === "Escape") setOpen(-1);
       else if (e.key === "ArrowRight") move(1);
       else if (e.key === "ArrowLeft") move(-1);
+      else if (e.key === "Tab") {
+        // 창이 떠 있는 동안 Tab 이 뒤쪽 목록으로 빠지지 않게 창 안의 버튼 셋만 돈다
+        const buttons = dialogRef.current?.querySelectorAll<HTMLButtonElement>("button");
+        if (!buttons || buttons.length === 0) return;
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        const inside = dialogRef.current?.contains(document.activeElement);
+        if (!inside || (e.shiftKey && document.activeElement === first)) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => {
@@ -65,6 +85,16 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
       window.removeEventListener("keydown", onKey);
     };
   }, [open, move]);
+
+  // 열 때는 닫기 단추로 초점을 옮기고, 닫으면 연 카드로 돌려준다.
+  // 좌우로 넘길 때마다 초점이 튀지 않도록 열림 여부에만 반응한다.
+  useEffect(() => {
+    if (!isOpen) return;
+    closeRef.current?.focus();
+    return () => {
+      trigger.current?.focus();
+    };
+  }, [isOpen]);
 
   const shown: RefWork | null = open >= 0 ? works[open] : null;
 
@@ -120,7 +150,11 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
               {works.map((w, i) => (
                 <li key={w.slug}>
                   <button
-                    onClick={() => setOpen(i)}
+                    type="button"
+                    onClick={(e) => {
+                      trigger.current = e.currentTarget;
+                      setOpen(i);
+                    }}
                     className="group block w-full overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-sm transition-colors hover:border-blue-300"
                   >
                     <span className="relative block aspect-[3/4] overflow-hidden bg-gray-100">
@@ -156,6 +190,7 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
       {/* 확대 — 상세페이지 한 장을 통째로 세로로 펼친다 */}
       {shown && (
         <div
+          ref={dialogRef}
           className="fixed inset-0 z-50 overflow-y-auto bg-gray-950/95"
           role="dialog"
           aria-modal="true"
@@ -164,7 +199,8 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
         >
           <div className="sticky top-0 z-10 flex items-center gap-2 border-b border-white/10 bg-gray-950/90 px-4 py-3 backdrop-blur md:gap-3 md:px-6">
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-bold text-white md:text-base">{shown.title}</p>
+              {/* 화살표로 넘길 때 바뀐 작업물 이름을 화면 낭독기가 읽도록 알림 영역으로 둔다 */}
+              <p aria-live="polite" aria-atomic="true" className="truncate text-sm font-bold text-white md:text-base">{shown.title}</p>
               <p className="truncate text-[11px] text-gray-400 md:text-xs">
                 {tab.label} · {shown.when} · 하랑마케팅
               </p>
@@ -184,6 +220,8 @@ export default function ReferenceClient({ initialSlug }: { initialSlug: string }
               <ChevronRight size={18} strokeWidth={2.5} />
             </button>
             <button
+              ref={closeRef}
+              type="button"
               onClick={(e) => { e.stopPropagation(); setOpen(-1); }}
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white transition-colors hover:bg-white/20"
               aria-label="닫기"

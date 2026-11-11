@@ -88,6 +88,38 @@ OURS = {"직계약", "자사"}                          # 대대행 · 미확인
 # 화면 표기는 업종 앞에 OO 두 글자뿐이다 (2026-09-06 (일) 대표 지시 · D-0282). 지역도 키워드도 안 적는다.
 CLINIC_DISPLAY = lambda ind: "OO" + ind
 
+# 병·의원 현황표에 싣는 줄 — (매장 · 키워드 · 잰 날짜). 2026-10-03 (토) 대표 결정 H-1143.
+# 대표 지시 원문 `잘 됬을 때 기준으로 해, 그리고 다른 키워드나 병원들 순위 되어 있는거 많은데 왜 굳이`.
+# 최신 스냅샷의 계약 키워드 전부를 세던 방식을 버리고, 잘 나온 날의 실측값을 그 날짜와 함께 싣는다.
+# 순위는 여기 적지 않는다 — 그 날짜 스냅샷 파일에서 읽는다. 파일이 없거나 순위가 비었거나
+# 1페이지 밖이거나 매장이 직계약·자사가 아니면 아무것도 쓰지 않고 멈춘다 (C-42).
+# 줄을 바꾸면 진우 검수가 먼저다 (C-50 · D-0177). 상호는 화면에 나가지 않는다 (OO 표기).
+# 진해치과는 넣지 않는다 (진우 2026-10-03 (토) 18:29 수정필요) : 순위 계약이 없는 매장을 우리 성과표에 실으면
+# 플레이스를 안 맡은 사실을 가린다 (표시광고법 제3조 제1항 제2호). 블로그 배포 글 대조가 닫히고
+# 대표가 `블로그만 맡은 병원 순위도 싣는다` 한 줄을 주면 `블로그만 맡은 곳` 표기와 함께 다시 올린다.
+# 넷째 칸은 병원 구분 표기다 (Q-0550). 같은 `OO치과` 가 겹치면 한 병원으로 읽혀 병원마다 A · B 를 붙인다.
+CLINIC_PICK = [
+    ("미소나무치과의원 수원망포점", "망포치과", "2026-10-03", "A"),
+    ("미소나무치과의원 수원망포점", "망포역치과", "2026-10-03", "A"),
+]
+
+# 스냅샷만으로 못 만드는 줄 (Q-0550 · 2026-10-04 (일)). 숫자는 세영 정본에서 옮기고 출처를 같이 적는다.
+# 대표 지시 원문 `바른약속은 다시 플레이스만 진행하게 되었고 현시점 순위 변화 애드랭크에 있으니 추적해서 ... 홈페이지도 반영하고`.
+# 10-03 은 스냅샷 4위 · 애드랭크 화면 5위 중 낮은 쪽 5위로 고정한다 (--write 가 스냅샷 4위를 쓰지 않게 여기 적는다).
+# 시작값(09-10 15위)은 싣지 않는다 (진우 2026-10-04 (일) 01:27) : 한 줄에 시작값과 지금 값이 서면 올렸다로 읽히고,
+# 계약 전에 이미 오르고 있어 우리 몫을 가를 수 없다 (표시광고법 제3조 제1항 제2호 · D-0177).
+# 날짜는 세 줄 모두 10-03 하나로 맞춘다 (줄마다 좋은 날을 골랐다는 의심을 막는다).
+# 계약구분은 세영이 일부러 `미확인` 으로 둔다 (자동 사례가 카운팅 전 기준점으로 나가는 것을 막으려고) → OURS 게이트를 안 거친다.
+# 대신 그날 스냅샷 순위가 이 값보다 나쁘면(숫자가 크면) 멈춘다 — 낮은 쪽을 쓴다는 규칙의 검산이다.
+# 마곡점(마곡치과 1위 → 2위)은 상승 사례가 아니라 넣지 않는다 (세영 권고). 2025 년 옛 계약 숫자도 넣지 않는다.
+CLINIC_MANUAL = [
+    {
+        "store": "바른약속치과의원", "kw": "부천치과", "label": "B",
+        "rank": 5, "day": "2026-10-03",
+        "source": "E:/하랑/본부장/플레이스/바른약속치과_재계약_순위추적_2026-10-04.md 맨 위 표",
+    },
+]
+
 KIND = [
     ("입주청소", "입주청소", "입주청소"),
     ("상가청소", "상가청소", "청소"),
@@ -435,43 +467,67 @@ def main():
     ])
     print("\n" + B["SUMMARY"])
 
-    # 병·의원 현황표 (D-0280 · D-0282 · 2026-09-06 (일) 대표 지시) — 위 RECORDS 와 층이 다르다.
-    # RECORDS 는 병원 하나의 개선 카드라 진우 판정(MED_OK)을 거친 것만 실리고, 여기는 계약 키워드
-    # 전체의 순위를 한 표로 세는 집계라 병원을 특정하지 않는다. 그래서 MED_OK 게이트를 안 거친다.
-    # 관측용 서브 키워드를 세면 「3개 전부 1페이지」가 「4개 중 3개」로 바뀐다 (D-0282 한계 1).
-    cmap = contract_keywords()
-    clinic = []
-    if cmap is None:
-        print("\n[중단] 계약 대장을 못 읽었다 (%s · %s). 병·의원 현황표를 만들지 않는다" % (ROSTER_TSV, DEAL_TSV))
-    else:
-        for r in last:
-            store, kw = r["매장"], r["키워드"]
-            _, ind = kind(kw)
-            if ind not in MED or kw not in cmap.get(store, set()):
-                continue
+    # 병·의원 현황표 (D-0280 · D-0282 · H-1143) — 위 RECORDS 와 층이 다르다.
+    # RECORDS 는 병원 하나의 개선 카드라 진우 판정(MED_OK)을 거친 것만 실리고, 여기는 CLINIC_PICK 에
+    # 고른 줄을 그 날짜 스냅샷에서 읽어 잰 날짜와 함께 싣는다. 병원을 특정하지 않는다.
+    by_date = dict(snaps)
+    deal = load_plain(DEAL_TSV)
+    ours = None if deal is None else {c[0].strip() for c in deal if len(c) >= 2 and c[1].strip() in OURS}
+    clinic, bad = [], []
+    if ours is None:
+        bad.append("계약 대장을 못 읽었다 (%s)" % DEAL_TSV)
+    for store, kw, day, label in CLINIC_PICK if ours is not None else []:
+        _, ind = kind(kw)
+        rows = [r for r in by_date.get(day, []) if r["매장"] == store and r["키워드"] == kw]
+        t = num(rows[0].get("오늘")) if rows else None
+        if store not in ours:
+            bad.append("%s · 직계약·자사가 아니다" % kw)
+        elif ind not in MED:
+            bad.append("%s · 병·의원 키워드가 아니다" % kw)
+        elif day not in by_date:
+            bad.append("%s · %s 스냅샷이 없다" % (kw, day))
+        elif t is None or t > 5:
+            bad.append("%s · %s 순위가 1페이지 밖이거나 비었다 (%s)" % (kw, day, t))
+        else:
             suf = kw_suffix(kw) or ""
             shape = "지역 + 진료과" if kw[: len(kw) - len(suf)].strip() else "진료과"
-            clinic.append((CLINIC_DISPLAY(ind), shape, num(r.get("오늘")), store))
-        # 순위 오름차순. 계측이 빠진 날은 맨 뒤 (null 로 나가고 화면은 「계측 중」으로 읽는다)
-        clinic.sort(key=lambda x: (x[2] is None, x[2] or 0, x[0]))
+            clinic.append((CLINIC_DISPLAY(ind) + " " + label, shape, t, store, day))
+    for m in CLINIC_MANUAL:
+        _, ind = kind(m["kw"])
+        rows = [r for r in by_date.get(m["day"], []) if r["매장"] == m["store"] and r["키워드"] == m["kw"]]
+        t = num(rows[0].get("오늘")) if rows else None
+        if ind not in MED:
+            bad.append("%s · 병·의원 키워드가 아니다" % m["kw"])
+        elif m["rank"] > 5:
+            bad.append("%s · 1페이지 밖이다 (%s)" % (m["kw"], m["rank"]))
+        elif t is not None and t > m["rank"]:
+            bad.append("%s · %s 스냅샷 %s위가 적은 값 %s위보다 나쁘다" % (m["kw"], m["day"], t, m["rank"]))
+        else:
+            suf = kw_suffix(m["kw"]) or ""
+            shape = "지역 + 진료과" if m["kw"][: len(m["kw"]) - len(suf)].strip() else "진료과"
+            clinic.append((CLINIC_DISPLAY(ind) + " " + m["label"], shape, m["rank"], m["store"], m["day"]))
+    if bad:
+        print("\n[중단] 병·의원 현황표를 만들지 않는다 — " + " / ".join(bad))
+    else:
+        # 순위 오름차순
+        clinic.sort(key=lambda x: (x[2], x[0]))
         B["CLINIC"] = "\n".join(
             ["export const CLINIC_KEYWORDS: ClinicKeyword[] = ["]
             + [
-                '  { display: "%s", shape: "%s", rank: %s, page1: %s },'
-                % (d, sh, "null" if t is None else t, "true" if t is not None and t <= 5 else "false")
-                for d, sh, t, _ in clinic
+                '  { display: "%s", shape: "%s", rank: %d, page1: true, measuredOn: "%s" },' % (d, sh, t, day)
+                for d, sh, t, _, day in clinic
             ]
             + ["];"]
         )
         B["CLINIC_SUMMARY"] = "\n".join([
             "export const CLINIC_SUMMARY = {",
-            "  /** 플레이스 순위 계약이 있는 병·의원 수 */",
+            "  /** 표에 실은 병·의원 수 */",
             "  stores: %d," % len({x[3] for x in clinic}),
-            "  /** 계약 키워드 수 (관측용 서브 키워드는 세지 않는다) */",
+            "  /** 표에 실은 키워드 수 */",
             "  keywords: %d," % len(clinic),
-            "  /** 기준일에 1페이지(1~5위) 안에 있는 계약 키워드 수 */",
-            "  page1: %d," % sum(1 for x in clinic if x[2] is not None and x[2] <= 5),
-            "  /** 기준일에 1위인 계약 키워드 수 */",
+            "  /** 그중 잰 날 1페이지(1~5위) 안이었던 키워드 수 */",
+            "  page1: %d," % len(clinic),
+            "  /** 그중 잰 날 1위였던 키워드 수 */",
             "  top1: %d," % sum(1 for x in clinic if x[2] == 1),
             "};",
         ])

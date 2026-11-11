@@ -1,4 +1,4 @@
-import { PUBLIC_SERVICES } from "./service-catalog";
+import { PUBLIC_SERVICES, isProgram } from "./service-catalog";
 /**
  * 하랑마케팅 SEO · AEO · GEO 공용 모듈
  *
@@ -15,6 +15,7 @@ import { PUBLIC_SERVICES } from "./service-catalog";
  *    AI 는 이 파일의 문장을 요약하지 않고 통째로 따가므로 여기가 제일 먼 곳까지 나간다 (C-50).
  */
 
+import { CLINIC_DEFINITIONS } from "./clinic-homepage";
 import { CLINIC_NOTE } from "./rank-records";
 import { BLOG_UNIT_WITH_COPY, BLOG_UNIT_WITHOUT_COPY, CAFE_TIER_MIN, won } from "./cafe-distribution";
 import { TRACK_TOTALS } from "./track-record";
@@ -24,7 +25,7 @@ export const SITE = {
   name: "하랑마케팅",
   nameEn: "Harang Marketing",
   legalName: "하랑마케팅",
-  tagline: "소상공인 전문 마케팅 대행사",
+  tagline: "직접 확인하고 솔직하게 설명하는 소상공인 마케팅",
   founder: "전태영",
   foundingDate: "2020-04-15",
   phone: "010-7541-9054",
@@ -33,7 +34,7 @@ export const SITE = {
   kakao: "https://pf.kakao.com/_MuUkG",
   kakaoChat: "https://pf.kakao.com/_MuUkG/chat",
   naverBlog: "https://blog.naver.com/harangmarketing",
-  instagram: "https://www.instagram.com/jty0221/",
+  instagram: "https://www.instagram.com/harang.marketing/",
   youtube: "https://www.youtube.com/@madaenam",
   address: {
     street: "장백로19 더루벤투스카운티 501호",
@@ -64,10 +65,14 @@ export const SITE = {
   },
 } as const;
 
+/** 한국 시간 기준 올해 · 저작권 연도와 업력이 같은 시계를 쓴다 (2026-09-30) */
+export function kstYear(): number {
+  return Number(new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 4));
+}
+
 /** 회사 연차 · KST 연도 - 개업 연도 + 1 (2026년 = 7년차 · 1-C) */
 export function companyYear(): number {
-  const year = Number(new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 4));
-  return year - Number(SITE.foundingDate.slice(0, 4)) + 1;
+  return kstYear() - Number(SITE.foundingDate.slice(0, 4)) + 1;
 }
 
 export const ORG_ID = `${SITE.base}/#organization`;
@@ -81,7 +86,9 @@ export const LOCAL_ID = `${SITE.base}/#localbusiness`;
  * openGraph.images 에는 ogImage(alt) 를, 문자열 배열을 받는 twitter.images 에는 OG_IMAGE.url 을 넣는다.
  * alt 를 안 넘기면 alt 없이 나간다. 예전에 alt 를 적지 않던 페이지는 그대로 ogImage() 로 둔다.
  */
-export const OG_IMAGE = { url: "/og-image.png", width: 1200, height: 630 } as const;
+// ?v= 는 공유 미리보기(카카오톡 · 문자 · 페이스북)가 예전 그림을 붙잡지 않게 하는 표시다. 그림을 바꾸면 날짜도 같이 바꾼다.
+// app/layout.tsx 와 app/about/page.tsx 의 openGraph 주소도 같은 날짜를 쓴다.
+export const OG_IMAGE = { url: "/og-image.png?v=20261001", width: 1200, height: 630 } as const;
 
 export function ogImage(alt?: string): { url: string; width: number; height: number; alt?: string } {
   return alt === undefined ? { ...OG_IMAGE } : { ...OG_IMAGE, alt };
@@ -89,46 +96,57 @@ export function ogImage(alt?: string): { url: string; width: number; height: num
 
 /**
  * 페이지가 마지막으로 바뀐 날 (ISO 날짜). sitemap 의 lastModified 와 각 페이지 WebPage 의 dateModified 가
- * 이 표 한 곳을 읽는다 (2026-09-20 · 요청 68). 표에 없는 경로는 sitemap 이 오늘 날짜를 쓴다.
+ * 이 표 한 곳을 읽는다 (2026-09-20 · 요청 68). 표에 없는 경로는 sitemap 에 수정일을 생략한다.
  * 값은 git 의 마지막 커밋일이다. 손으로 앞당기지 않는다. 순위 사례처럼 코드는 그대로인데 데이터 파일만
  * 새로 재는 페이지는 아래 updatedAt 으로 데이터 날짜까지 같이 본다 (2026-09-20 · 요청 69).
  */
 export const PAGE_UPDATED: Record<string, string> = {
-  "/": "2026-09-23",
-  "/about": "2026-09-23",
-  "/services": "2026-09-24",
-  "/services/cafe": "2026-09-18",
-  "/services/clinic": "2026-09-20",
-  "/services/clinic/medical-ad-guide": "2026-09-07",
-  "/services/beauty": "2026-09-05",
-  "/services/restaurant": "2026-09-20",
+  "/": "2026-10-28",
+  "/about": "2026-10-02",
+  "/services": "2026-10-28",
+  "/services/cafe": "2026-10-02",
+  "/services/clinic": "2026-10-28",
+  "/services/clinic/medical-ad-guide": "2026-10-28",
+  "/services/beauty": "2026-10-02",
+  "/services/restaurant": "2026-10-02",
   "/services/photo": "2026-09-24",
   "/services/photo/price": "2026-09-24",
   "/services/photo/food": "2026-09-23",
   "/services/photo/stay": "2026-09-24",
-  "/services/academy": "2026-09-07",
-  "/services/shopping": "2026-09-07",
-  "/services/review": "2026-09-24",
-  "/services/place": "2026-09-24",
+  "/services/academy": "2026-09-25",
+  "/services/shopping": "2026-10-02",
+  "/services/review": "2026-10-02",
+  "/services/blog-marketing": "2026-10-08",
+  "/services/powercontents": "2026-10-08",
+  "/services/place": "2026-10-02",
   "/services/instagram": "2026-09-24",
-  "/services/detail-page": "2026-09-24",
-  "/services/detail-page/reference": "2026-09-05",
-  "/services/cafe-distribution": "2026-09-24",
-  "/services/cafe-distribution/reference": "2026-09-21",
-  "/studio": "2026-09-05",
-  "/sns": "2026-09-07",
-  "/portfolio": "2026-09-18",
-  "/cases": "2026-09-18",
-  "/cases/place-rank": "2026-09-20",
-  "/contact": "2026-09-10",
-  "/free-check": "2026-09-10",
-  "/process": "2026-09-05",
-  "/faq": "2026-09-23",
-  "/blog": "2026-09-05",
-  "/location": "2026-09-05",
-  "/location/gyeonggi": "2026-09-10",
-  "/location/seoul": "2026-09-05",
-  "/location/incheon": "2026-09-04",
+  "/services/detail-page": "2026-10-02",
+  "/services/homepage/tax": "2026-10-23",
+  "/services/homepage/clinic": "2026-10-28",
+  "/services/homepage/clinic/geo": "2026-10-28",
+  "/services/homepage/clinic/dental": "2026-10-28",
+  "/services/homepage/clinic/derma": "2026-10-28",
+  "/services/homepage/clinic/plastic": "2026-10-28",
+  "/services/homepage/clinic/oriental": "2026-10-28",
+  "/services/homepage": "2026-10-27",
+  "/services/detail-page/reference": "2026-09-30",
+  "/services/cafe-distribution": "2026-10-02",
+  "/services/cafe-distribution/reference": "2026-10-01",
+  "/studio": "2026-10-02",
+  "/kakao-sender": "2026-10-04",
+  "/sns": "2026-09-25",
+  "/portfolio": "2026-10-23",
+  "/cases": "2026-10-01",
+  "/cases/place-rank": "2026-09-25",
+  "/contact": "2026-10-02",
+  "/free-check": "2026-10-02",
+  "/process": "2026-10-02",
+  "/faq": "2026-10-02",
+  "/blog": "2026-10-01",
+  "/location": "2026-09-24",
+  "/location/gyeonggi": "2026-10-01",
+  "/location/seoul": "2026-10-01",
+  "/location/incheon": "2026-10-01",
 };
 
 /**
@@ -146,7 +164,7 @@ export function updatedAt(path: string, ...dataDates: (string | undefined)[]): s
  * 개수는 세어 두지 않고 배열 길이에서 만든다. 여섯 개일 때 적은 '6가지' 가 열 개가 된 뒤에도 남아 있었다.
  * 항목을 더하거나 빼면 layout.tsx 의 Offer 도 같이 맞춘다.
  */
-export const SERVICE_NAMES = PUBLIC_SERVICES.filter(service => service.id !== 'studio').map(service => service.title);
+export const SERVICE_NAMES = PUBLIC_SERVICES.filter(service => !isProgram(service.id)).map(service => service.title);
 
 /* ────────────────────────────────────────────────────────────
    AEO 핵심 — 한 줄 정답 문장 (Answer-first sentences)
@@ -160,7 +178,7 @@ export const ANSWER_SENTENCES = {
   whatWeDo:
     `하랑마케팅의 서비스는 ${SERVICE_NAMES.join(", ")} ${SERVICE_NAMES.length}가지입니다. 온라인 마케팅은 비대면으로 진행하며 사진촬영과 방문 상담은 지역과 일정을 협의합니다.`,
   price:
-    `하랑마케팅은 항목별 단가를 조합해 견적을 내고, 카페 배포 10건 · 30건, 상세페이지, 사진 촬영처럼 구성이 정해진 상품은 패키지 금액을 따로 공개합니다. 플레이스 SEO 최적화 10~15만원(1회), 대표키워드 관리는 키워드를 확인한 뒤 안내드리고, 블로그 관리대행 4만원(편), 최적화 블로그 배포 ${won(BLOG_UNIT_WITH_COPY)}(건 · 원고 포함) · ${won(BLOG_UNIT_WITHOUT_COPY)}(건 · 원고 직접 제공), 카페 배포 ${won(CAFE_TIER_MIN)}부터(건), 파워컨텐츠 5만원(편)이 기준 단가이며 모두 부가세 별도입니다. 기준 단가는 고정가가 아니라 업종과 난이도에 따라 오르내립니다. 블로그 원고는 물량이 많거나 내용이 단순한 업종이면 4만원보다 낮아지고, 병의원처럼 의료광고 심의와 전문 용어 확인이 필요한 업종은 4만원보다 높아집니다. 월 계약 금액은 매장마다 다릅니다. 현황을 진단해 꼭 필요한 항목만 고르고 상권 경쟁도에 맞춰 물량을 정한 뒤 그 항목만 더해 산출합니다. 카페 월 보장처럼 시작 금액을 공개한 상품은 그 금액부터입니다. 광고 집행비는 실비로 별도이고 상담과 진단은 0원입니다.`,
+    `하랑마케팅은 항목별 단가를 조합해 견적을 내고, 카페 배포 10건 · 30건, 상세페이지, 사진 촬영처럼 구성이 정해진 상품은 패키지 금액을 따로 공개합니다. 플레이스 SEO 최적화 10~15만원(1회 · 업종별), 대표키워드 관리는 키워드를 확인한 뒤 안내드리고, 블로그 관리대행 평균 3~5만원(편), 블로그 원고·게시 대행 ${won(BLOG_UNIT_WITH_COPY)}(건 · 원고 포함) · ${won(BLOG_UNIT_WITHOUT_COPY)}(건 · 원고 직접 제공), 카페 단건 배포 ${won(CAFE_TIER_MIN)}부터(건), 파워컨텐츠 5만원(편)이 기준 단가이며 모두 부가세 별도입니다. 기준 단가는 고정가가 아니라 업종과 난이도에 따라 오르내립니다. 블로그 원고는 병원 · 법률처럼 단가가 높은 키워드면 따로 안내하고, 플레이스 SEO 도 음식점 · 카페처럼 메뉴를 전부 넣고 메뉴마다 설명을 써야 하는 업종은 작업이 더 많습니다. 월 계약 금액은 매장마다 다릅니다. 현황을 진단해 꼭 필요한 항목만 고르고 상권 경쟁도에 맞춰 물량을 정한 뒤 그 항목만 더해 산출합니다. 카페 게시 대행은 확정한 게시 건수와 원고 범위로 안내합니다. 광고 집행비는 실비로 별도이고 상담과 진단은 0원입니다.`,
   timeline:
     "네이버 플레이스 순위가 움직이기 시작하는 시점은 업종과 상권 경쟁도에 따라 크게 달라집니다. 하랑마케팅은 몇 개월 안에 몇 위를 만들어 드리겠다고 미리 약속하지 않습니다. 대신 계약 전 진단에서 이 상권이 어느 정도 걸리는 자리인지 먼저 말씀드리고, 매월 리포트에 실제 순위가 몇 위에서 몇 위로 움직였는지 숫자로 적어 드립니다.",
   contact:
@@ -170,7 +188,7 @@ export const ANSWER_SENTENCES = {
   clinic:
     `하랑마케팅은 병·의원 원고를 의료법 검수를 거쳐 내보내는 마케팅 대행사입니다. 의료광고 사전심의 대상 여부를 원고를 쓰기 전에 판정하고, 심의를 받은 광고는 승인일부터 3년인 유효기간을 대장으로 관리합니다. ${CLINIC_NOTE} 앞으로 몇 위가 될지는 말씀드리지 않습니다. 방문 환자와 예약 건수 · 매출은 저희가 계측할 수 있는 값이 아니라서 수치로 제시하지 않습니다.`,
   blogPriceByIndustry:
-    "하랑마케팅의 블로그 관리대행 단가는 1편 4만원이 기준값이며 고정가가 아닙니다. 물량이 많거나 원고가 단순한 업종은 4만원보다 낮아지고, 병의원처럼 의료광고 사전심의와 전문 용어·효능 표현 확인이 필요한 업종은 원고 한 편에 드는 손이 달라 4만원보다 높아집니다.",
+    "하랑마케팅의 블로그 관리대행 단가는 1편 평균 3~5만원이며 업종마다 다릅니다. 병원 · 법률처럼 단가가 높은 키워드는 원고 한 편에 확인할 것이 많아 따로 안내하고, 특히 병의원은 의료광고 사전심의와 전문 용어·효능 표현 확인이 필요합니다.",
 } as const;
 
 /* ────────────────────────────────────────────────────────────
@@ -181,12 +199,12 @@ export const DEFINITIONS: { term: string; definition: string }[] = [
   {
     term: "네이버 플레이스 SEO",
     definition:
-      "네이버 플레이스 SEO는 네이버 지도·검색에서 내 매장이 지역 키워드 상위에 노출되도록 최적화하는 작업입니다. 리뷰 수, 답글률, 사진 업데이트 주기, 저장 수, 키워드 일치도가 순위를 결정하는 핵심 요소입니다.",
+      "네이버 플레이스 SEO는 매장 소개와 영업시간, 사진, 찾아오는 길을 정비하고 검색 결과의 변화를 관측하는 작업입니다. 검색 위치와 노출 여부는 네이버가 정하며 특정 순위나 유지를 약속하지 않습니다.",
   },
   {
     term: "블로그 마케팅",
     definition:
-      "블로그 마케팅은 네이버 검색에서 지역명+업종 키워드로 블로그 글이 상위에 노출되도록 최적화하는 마케팅입니다. 하랑마케팅은 지역 키워드 순위를 재서 변화를 숫자로 보여 드립니다.",
+      "블로그 마케팅은 고객 질문과 업체의 실제 서비스에 맞는 원고를 작성하고 게시 내역을 관리하는 업무입니다. 검색 노출 여부와 순위를 보장하지 않습니다.",
   },
   {
     term: "체험단 마케팅",
@@ -206,7 +224,7 @@ export const DEFINITIONS: { term: string; definition: string }[] = [
   {
     term: "홈페이지형 블로그",
     definition:
-      "홈페이지형 블로그는 네이버 블로그를 홈페이지처럼 디자인해 메뉴·예약·오시는길을 한 화면에 배치한 형태입니다. 별도 홈페이지 제작비 없이, 검색으로 들어온 손님에게 매장 정보를 한 화면에 정리해 보여 줍니다.",
+      "홈페이지형 블로그는 네이버 블로그를 홈페이지처럼 디자인해 메뉴·예약·오시는길을 한 화면에 배치한 형태입니다. 홈페이지를 만들기 전 단계에서 검색으로 들어온 손님에게 매장 정보를 한 화면에 정리해 보여 줍니다. 홈페이지가 필요해지면 업종별 시안으로 따로 만들어 드립니다.",
   },
   {
     term: "스마트스토어 상세페이지",
@@ -234,6 +252,8 @@ export const DEFINITIONS: { term: string; definition: string }[] = [
     definition:
       "환자가 치료 경험이나 결과를 말하는 내용. 의료법 제56조 제2항 제2호가 금지하는 광고 유형이며, 병원이 대가를 주고 받은 후기는 제27조 제3항의 유인에 해당할 수 있다.",
   },
+  /* GEO · AEO · llms.txt 정의 셋 (세팅안 C-07 ~ C-09 · 진우 10/27 판정 통과 · 글자는 lib/clinic-homepage.ts 한 곳) */
+  ...CLINIC_DEFINITIONS,
 ];
 
 /* ────────────────────────────────────────────────────────────
@@ -253,15 +273,15 @@ export const CORE_FAQ: FaqItem[] = [
   },
   {
     q: "소상공인 마케팅 비용은 얼마인가요?",
-    a: "마케팅 비용은 업종과 진행 범위에 따라 달라집니다. 블로그 관리대행 편당 4만원처럼 항목별 기준 단가는 서비스 안내에 공개해 두었습니다. 월 금액은 현황 진단 뒤 매장에 꼭 필요한 항목만 더해 정합니다. 단독 서비스, 2~3개 묶음 패키지, 전체 통합 관리 세 가지 형태 중에서 맞는 구성을 제안드리며 상담과 진단은 무료입니다.",
+    a: "마케팅 비용은 업종과 진행 범위에 따라 달라집니다. 블로그 관리대행 편당 평균 3~5만원처럼 항목별 기준 단가는 서비스 안내에 공개해 두었습니다. 월 금액은 현황 진단 뒤 매장에 꼭 필요한 항목만 더해 정합니다. 단독 서비스, 2~3개 묶음 패키지, 전체 통합 관리 세 가지 형태 중에서 맞는 구성을 제안드리며 상담과 진단은 무료입니다.",
   },
   {
-    q: "네이버 플레이스 상위 노출 방법은 무엇인가요?",
-    a: "네이버 플레이스 상위 노출의 핵심은 리뷰 수와 답글률, 사진 업데이트 주기, 키워드 최적화, 저장 수 증가입니다. 하랑마케팅은 이 다섯 요소를 통합 관리하고 순위는 정해진 시각에 계측해 리포트로 공개합니다. 몇 주에 몇 위라고 미리 약속드리지는 않습니다.",
+    q: "네이버 플레이스 정보 정비 방법은 무엇인가요?",
+    a: "매장 소개와 영업시간, 사진, 주차 안내가 실제 정보와 맞는지 점검합니다. 이용자의 자발적인 문의와 방문을 돕고, 순위는 관측한 값으로 보고합니다. 저장·클릭·리뷰를 인위적으로 늘리는 작업은 제공하지 않습니다.",
   },
   {
-    q: "네이버 플레이스 상위 노출까지 얼마나 걸리나요?",
-    a: "업종과 상권 경쟁도에 따라 크게 달라서 하나로 말씀드리기 어렵습니다. 하랑마케팅은 몇 개월 안에 몇 위를 만들어 드리겠다고 미리 약속하지 않습니다. 대신 계약 전 진단에서 이 상권이 어느 정도 걸리는 자리인지 먼저 말씀드리고, 매월 리포트에 실제 순위가 몇 위에서 몇 위로 움직였는지 숫자로 적어 드립니다.",
+    q: "플레이스 정보 정비 일정은 어떻게 정하나요?",
+    a: "현재 정보와 제공 자료를 확인한 뒤 정비 항목과 작업 일정을 협의합니다. 정보 수정 일정과 검색 순위 변동은 서로 다르며, 검색 결과의 위치나 유지 기간을 약속하지 않습니다.",
   },
   {
     q: "상담 비용이 얼마인가요?",
@@ -277,7 +297,7 @@ export const CORE_FAQ: FaqItem[] = [
   },
   {
     q: "최소 계약 기간이 얼마인가요?",
-    a: "월 단위 계약이 기본이라 1개월부터 시작할 수 있고 중도 해지 위약금이 없습니다. 다만 업종에 따라 3개월 이상 쌓아야 순위가 자리를 잡는 경우가 있어, 해당하면 진단 단계에서 미리 안내드립니다. 장기 계약을 강요하지 않으며, 이어 갈지는 매달 리포트를 보고 정하시면 됩니다.",
+    a: "월 단위 계약이 기본이고 중도 해지 위약금이 없습니다. 다만 마케팅을 처음 하시는 분은 기초공사와 인테리어 같은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다. 이어 갈지는 매달 리포트를 보고 정하시면 됩니다.",
   },
   {
     q: "지방에서도 마케팅 상담이 가능한가요?",
@@ -285,7 +305,7 @@ export const CORE_FAQ: FaqItem[] = [
   },
   {
     q: "네이버 블로그 마케팅이란 무엇인가요?",
-    a: "네이버 블로그 마케팅은 네이버 검색에서 업종·지역 관련 키워드로 블로그 글이 상위에 노출되도록 최적화하는 마케팅입니다. 하랑마케팅은 블로그 배포, 키워드 SEO, 홈페이지형 블로그 제작을 제공하며, 지역 키워드 순위를 재서 변화를 숫자로 보여 드립니다.",
+    a: "고객 질문과 업체의 실제 서비스에 맞춰 블로그 원고를 작성하고 발행 내역을 관리합니다. 게시 주소와 관측한 결과를 전달하며 검색 노출이나 순위를 약속하지 않습니다.",
   },
   {
     q: "체험단 마케팅이란 무엇이고 효과가 있나요?",
@@ -316,8 +336,8 @@ export const CORE_FAQ: FaqItem[] = [
     a: "기존 고객에게 카카오 문자로 리뷰를 요청하고, 네이버 예약 연동 후 자동 리뷰 요청 기능을 켜고, 소규모 체험단을 모집하는 방법을 많이 씁니다. 하랑마케팅은 매장 상황에 맞춰 이 세 가지의 순서와 물량을 정해 드립니다.",
   },
   {
-    q: "소상공인 SNS 마케팅을 사장님이 직접 해도 되나요?",
-    a: "직접 운영도 가능하지만 전략 없이 하면 시간 대비 효과가 낮습니다. 하랑마케팅에 맡기면 콘텐츠 기획, 촬영 가이드, 업로드 최적화까지 대행하므로 사장님은 매장 운영에 집중할 수 있습니다.",
+    q: "소상공인 SNS 마케팅을 대표님이 직접 해도 되나요?",
+    a: "직접 운영도 가능하지만 전략 없이 하면 시간 대비 효과가 낮습니다. 하랑마케팅에 맡기면 콘텐츠 기획, 촬영 가이드, 업로드 최적화까지 대행하므로 대표님은 매장 운영에 집중할 수 있습니다.",
   },
   {
     q: "경기도 마케팅 대행사를 찾고 있습니다",
@@ -365,6 +385,11 @@ export const CORE_FAQ: FaqItem[] = [
   {
     q: "병원에 체험단을 쓸 수 있나요?",
     a: "하랑마케팅은 병원에 체험단을 제안하지 않습니다. 후기는 의료법 제56조 제2항 제2호가 금지하는 치료경험담에 해당하고, 시술이나 진료를 대가로 후기를 받는 구조는 제27조 제3항의 유인에 해당해 제안한 대행사도 함께 문제가 됩니다. 대신 원장님 명의의 진료 정보 글과 주차·대기시간·예약 편의 같은 비진료 영역, 자연히 쌓인 리뷰 관리로 진행합니다.",
+  },
+  /* C-10 · 진우 10/27 판정 통과 · 맨 끝에 둔다 (홈 FAQ 묶음이 번호로 고른다 · app/page.tsx) */
+  {
+    q: "하랑마케팅은 병원 홈페이지도 만드나요?",
+    a: "만듭니다. 진료과목별 시안에서 골라 진료 정보를 글자와 구조화 데이터로 정리하고, 문구는 의료법 검수를 거친 뒤 원장님 확인을 받아 공개합니다. 제작 기간은 계약금 입금일부터 15영업일이고 도메인은 원장님 명의로 등록합니다.",
   },
 ];
 
@@ -512,3 +537,7 @@ export function itemListLd(opts: {
     })),
   };
 }
+
+
+/* meta description · og:description 80자 상한 (2026-10-28 · 네이버 서치어드바이저 경고). 본체는 meta-length.ts */
+export { META_DESC_MAX, metaDesc, fitDesc } from "./meta-length";

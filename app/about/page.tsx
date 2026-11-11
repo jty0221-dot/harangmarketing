@@ -4,16 +4,19 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import {
   Shield, Target, TrendingUp, MessageCircle, Heart,
-  CheckCircle2, ArrowRight, Quote, Star,
+  CheckCircle2, ArrowRight, Quote,
   Phone, BookOpen, MapPin, AtSign, Coffee, Users,
 } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import YouTubeSection from "../components/YouTubeSection";
 import JsonLd from "../components/JsonLd";
 import AnswerBlock from "../components/AnswerBlock";
-import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd } from "../lib/seo";
+import { SITE, ORG_ID, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, companyYear } from "../lib/seo";
 
 const BASE = SITE.base;
 const SHOW_CI_GUIDE = false;
+/** 대표 사진이 아직 없다 (2026-09-30 대표 확인) · 사진이 들어오면 true 로 바꾼다 */
+const SHOW_PHOTO = false;
 
 /* 회사소개 구조화 데이터
 
@@ -52,7 +55,7 @@ const ABOUT_LD = [
     knowsLanguage: ["ko"],
     knowsAbout: [
       "네이버 플레이스 SEO",
-      "네이버 플레이스 상위 노출",
+      "네이버 플레이스 정보 정비",
       "소상공인 마케팅",
       "블로그 마케팅",
       "체험단 마케팅",
@@ -67,7 +70,7 @@ const ABOUT_LD = [
 
 export const metadata: Metadata = {
   title: "회사소개 | 소상공인 전문 마케팅 대행사 · 대표 10년 경력",
-  description: "해병대 장교 출신 대표가 직접 운영. 카페 창업 실패를 딛고, 개업 전 경력까지 합쳐 10년 동안 누적 500건 프로젝트를 맡아 온 하랑마케팅 대표의 진짜 이야기.",
+  description: "하랑마케팅 회사소개. 해병대 장교 출신 대표가 카페 창업 실패를 딛고 10년 경력 누적 500건을 직접 맡아 온 이야기입니다.",
   keywords: [
     "하랑마케팅 소개", "소상공인 마케팅 대행사", "마케팅 대행사 신뢰", "투명한 마케팅",
     "마케팅 대행사 대표", "전태영", "전국 마케팅 대행사", "경기 마케팅 대행사", "수도권 마케팅 대행사",
@@ -75,10 +78,10 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
-    title: "하랑마케팅 | 대표가 직접 관리, 결과 없으면 솔직히 말씀드립니다",
+    title: "10년 경력 대표가 직접 맡는 마케팅 회사소개 · 하랑마케팅",
     description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: `${BASE}/about`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
+    images: [{ url: "/og-image.png?v=20261001", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
   },
 };
 
@@ -126,11 +129,11 @@ const PROMISES = [
 ];
 
 const SERVICES_LIST = [
-  { icon: MapPin, color: "from-blue-500 to-blue-700", title: "네이버 플레이스 SEO", items: ["SEO 최적화", "상위 노출", "순위 관리", "네이버 예약 연동 세팅"] },
-  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 상위 노출", "최상위 블로그 배포", "기자단 배포"] },
+  { icon: MapPin, color: "from-blue-500 to-blue-700", title: "네이버 플레이스 SEO", items: ["SEO 최적화", "정보 정비", "순위 계측", "네이버 예약 연동 세팅"] },
+  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 원고 작성·게시 보고", "블로그 원고 배포", "기자단 배포"] },
   { icon: Users, color: "from-blue-500 to-blue-700", title: "바이럴 마케팅", items: ["맘카페 입소문 마케팅", "체험단 모집 (실사용자 기반)", "지역 커뮤니티 바이럴"] },
-  { icon: AtSign, color: "from-blue-700 to-indigo-700", title: "SNS 마케팅", items: ["인스타그램 계정 육성", "인기 게시물 노출", "리그램", "하이라이트 세팅"] },
-  { icon: MapPin, color: "from-blue-600 to-blue-800", title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 리뷰 (실유저)", "카카오맵 상위 노출"] },
+  { icon: AtSign, color: "from-blue-700 to-indigo-700", title: "SNS 마케팅", items: ["인스타그램 계정 육성", "게시물 구성·발행", "리그램", "하이라이트 세팅"] },
+  { icon: MapPin, color: "from-blue-600 to-blue-800", title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 후기 확인·답글", "카카오맵 정보 정비"] },
   { icon: Coffee, color: "from-blue-500 to-indigo-600", title: "창업 지원", items: ["홈페이지형 블로그 제작", "로고·명함 디자인", "메뉴판 제작"] },
 ];
 
@@ -149,11 +152,11 @@ const FAQS = [
   },
   {
     q: "광고비가 비싸지는 않나요?",
-    a: "싼 것이 늘 좋은 것은 아닙니다. 1년 계약에 120만원(월 10만원)처럼 금액만 보고 고르면 필요한 작업이 빠지거나 필요 없는 작업이 들어가기 쉽습니다. 하랑은 불필요한 서비스를 빼고 필요한 항목에만 비용을 쓰도록 구성합니다.",
+    a: "싼 것이 늘 좋은 것은 아닙니다. 금액만 보고 고르면 필요한 작업이 빠지거나 필요 없는 작업이 들어가기 쉽습니다. 하랑은 불필요한 서비스를 빼고 필요한 항목에만 비용을 쓰도록 구성합니다.",
   },
   {
     q: "계약 기간은 어떻게 되나요?",
-    a: "월 단위 계약이 기본이라 1개월부터 가능하고 중도 해지 위약금도 없습니다. 다만 마케팅도 다이어트처럼 꾸준한 관리가 핵심이라, 3개월 이상 쌓아야 결과가 보이는 업종이면 미리 말씀드립니다.",
+    a: "월 단위 계약이 기본이고 중도 해지 위약금도 없습니다. 다만 마케팅을 처음 하시는 분은 기초공사와 인테리어 같은 기본 세팅부터 잡아야 해서 2~3개월 이상은 진행하셔야 합니다.",
   },
 ];
 
@@ -167,12 +170,12 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="bg-gray-950 py-20 md:py-32 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-blue-600/7 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-indigo-600/7 rounded-full blur-3xl" />
+            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[var(--w-primary)]/7 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-[var(--w-primary)]/7 rounded-full blur-3xl" />
             <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           </div>
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-6">About Us</p>
+            <p className="text-xs font-bold text-[var(--w-blue-70)] uppercase tracking-[0.2em] mb-6">About Us</p>
             <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-black text-white mb-6 leading-[1.05] tracking-tight">
               결과가 없으면<br />솔직히 말씀드립니다
             </h1>
@@ -182,9 +185,9 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-3 gap-4 max-w-md">
               {[
-                { val: "500+", label: "누적 프로젝트" },
-                { val: "7년차", label: "2020년 개업" },
-                { val: "10년+", label: "경력" },
+                { val: "500건", label: "누적 프로젝트" },
+                { val: `${companyYear()}년차`, label: "2020년 개업" },
+                { val: "10년", label: "경력" },
               ].map(s => (
                 <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 text-center">
                   {/* 375px 3칸에서 칸 안쪽이 71px 뿐이라 '97.4%' 의 % 가 둘째 줄로 떨어졌다.
@@ -200,7 +203,7 @@ export default function AboutPage() {
         {/* AEO — 회사·대표 정체성 한 줄 정답 */}
         <AnswerBlock
           question="하랑마케팅 대표는 누구이고, 회사는 어떤 곳인가요?"
-          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 사장님 입장을 겪어본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
+          answer={`${ANSWER_SENTENCES.whoWeAre} 대표 전태영은 해병대 장교로 복무 후 2018년 전역했고, 직접 카페를 창업해 실패한 경험과 마케팅 대행사 팀장 경력을 바탕으로 2020년 4월 하랑마케팅을 설립했습니다. 매장을 직접 운영해 본 사람이 마케팅을 맡는다는 것이 하랑마케팅의 출발점입니다.`}
           facts={[
             { label: "대표", value: "전태영" },
             { label: "설립", value: "2020.04.15" },
@@ -235,6 +238,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 md:gap-14 items-start">
               {/* Photo */}
               <div className="flex flex-col items-center gap-4">
+                {SHOW_PHOTO && (
                 <PhotoPlaceholder
                   label="대표 전태영 프로필 사진"
                   hint="정장 또는 캐주얼 정장 / 밝은 배경 / 세로형 인물 사진"
@@ -242,49 +246,46 @@ export default function AboutPage() {
                   height="h-64"
                   className="rounded-2xl"
                 />
-                <div className="w-full bg-blue-50 border border-blue-100 rounded-2xl p-4 text-center">
+                )}
+                <div className="w-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-4 text-center">
                   <div className="font-black text-gray-900 text-base mb-0.5">전태영</div>
-                  <div className="text-xs text-blue-600 font-bold">하랑마케팅 대표</div>
-                  <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년+ · 7년차 대표</div>
-                  <div className="flex gap-0.5 justify-center mt-2">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={11} className="text-blue-600 fill-blue-600" />
-                    ))}
-                  </div>
+                  <div className="text-xs text-[var(--w-primary-strong)] font-bold">하랑마케팅 대표</div>
+                  <div className="text-[11px] text-gray-600 mt-1">해병대 장교 출신 · 마케팅 경력 10년 · {companyYear()}년차 대표</div>
                 </div>
               </div>
 
               {/* Story */}
               <div>
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">대표 스토리</p>
+                <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-4">대표 스토리</p>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 leading-snug">
-                  실패해 본 마케터가<br /><span className="text-blue-600">성공하는 길을 가장 잘 압니다</span>
+                  실패해 본 마케터가<br /><span className="text-[var(--w-primary)]">성공하는 길을 가장 잘 압니다</span>
                 </h2>
                 <div className="space-y-4 text-gray-600 text-base leading-relaxed">
                   <p>대학교 시절 서포터즈 활동을 시작으로 마케팅의 길에 들어섰고, <strong className="text-gray-900">2018년 해병대 장교로 전역한 후 전 재산을 털어 카페를 창업했다가 실패의 쓴맛을 봤습니다.</strong> 마케팅을 제대로 몰랐던 저는 금방 망했습니다.</p>
                   <p>이후 마케팅 대행사에 취업해 팀장까지 올라갔습니다. 그런데 내부에서 보이는 현실은 충격이었습니다. <strong className="text-gray-900">고객을 대충 대하고, 성과도 없으면서 돈만 받는 방식.</strong> 그 모습에 혐오감을 느꼈고, &lsquo;내가 직접 제대로 된 대행사를 만들자&rsquo;는 결심으로 2020년 4월 하랑마케팅을 설립했습니다.</p>
                   <p>카페를 직접 운영해 봤고, 대행사의 내부도 봤기에 <strong className="text-gray-900">대표님의 답답함과 대행사의 문제를 누구보다 잘 압니다.</strong> 그래서 하랑은 다릅니다.</p>
+                  <p>하랑이라는 이름은 순우리말로 <strong className="text-gray-900">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 뜻입니다.</p>
                 </div>
 
-                <div className="mt-7 p-5 rounded-2xl bg-blue-50 border border-blue-100">
-                  <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center mb-3 shadow-sm">
+                <div className="mt-7 p-5 rounded-2xl bg-[var(--w-blue-95)] border border-[var(--w-blue-90)]">
+                  <div className="w-7 h-7 rounded-lg bg-[var(--w-primary)] flex items-center justify-center mb-3 shadow-sm">
                     <Quote size={12} className="text-white" />
                   </div>
-                  <p className="text-sm text-blue-800 leading-relaxed font-medium italic">
+                  <p className="text-sm text-[var(--w-primary-heavy)] leading-relaxed font-medium italic">
                     &lsquo;음식점은 맛이 본질이고, 마케팅은 그 본질을 빛나게 하는 도구입니다. 본질이 훌륭하다면, 그 가치를 세상에 알리는 일은 전문가에게 맡겨주세요.&rsquo;
                   </p>
-                  <p className="text-xs text-blue-600 mt-2 font-bold">대표 전태영</p>
+                  <p className="text-xs text-[var(--w-primary-strong)] mt-2 font-bold">대표 전태영</p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
-                    { val: "10년+", label: "마케팅 경력" },
-                    { val: "500+", label: "누적 프로젝트" },
-                    { val: "7년차", label: "2020년 개업" },
+                    { val: "10년", label: "마케팅 경력" },
+                    { val: "500건", label: "누적 프로젝트" },
+                    { val: `${companyYear()}년차`, label: "2020년 개업" },
                     { val: "24시간", label: "카카오톡 접수" },
                   ].map((s) => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center">
-                      <div className="text-lg font-black text-blue-600">{s.val}</div>
+                      <div className="text-lg font-black text-[var(--w-primary)]">{s.val}</div>
                       <div className="text-[11px] text-gray-500">{s.label}</div>
                     </div>
                   ))}
@@ -298,7 +299,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">하랑의 약속</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">하랑의 약속</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">왜 하랑마케팅을 선택해야 할까요?</h2>
               <p className="text-gray-500 text-sm mt-2">미사여구보다, 대표님이 가장 안심할 수 있는 5가지 약속을 드립니다</p>
             </div>
@@ -318,7 +319,7 @@ export default function AboutPage() {
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="text-lg font-black hidden sm:block" style={{ color: "var(--w-label-alt)" }}>{p.num}</span>
                           <h3 className="font-black text-gray-900 text-base">{p.title}</h3>
-                          <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-black">{p.badge}</span>
+                          <span className="px-2 py-0.5 rounded-full bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] text-[var(--w-primary-strong)] text-[11px] font-black">{p.badge}</span>
                         </div>
                         <p className="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
                       </div>
@@ -334,7 +335,7 @@ export default function AboutPage() {
         <section className="py-16 md:py-24 bg-white border-t border-gray-100">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">All-in-One 서비스</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">All-in-One 서비스</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">하랑을 통하면 원스텝으로 해결됩니다</h2>
               <p className="text-gray-500 text-sm mt-2">복잡한 마케팅 채널, 필요한 것만 골라 내 업체에 맞게 설계합니다</p>
             </div>
@@ -351,7 +352,7 @@ export default function AboutPage() {
                       <ul className="space-y-1">
                         {s.items.map((item) => (
                           <li key={item} className="flex items-center gap-1.5 text-xs text-gray-500">
-                            <CheckCircle2 size={11} className="text-blue-400 shrink-0" strokeWidth={2.5} />
+                            <CheckCircle2 size={11} className="text-[var(--w-blue-70)] shrink-0" strokeWidth={2.5} />
                             {item}
                           </li>
                         ))}
@@ -362,41 +363,44 @@ export default function AboutPage() {
               })}
             </div>
             <div className="mt-8 text-center">
-              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm">
+              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-bold text-sm transition-colors shadow-sm">
                 서비스 상세 보기 <ArrowRight size={14} />
               </Link>
             </div>
           </div>
         </section>
 
+        {/* 유튜브 최신 영상 (채널 RSS 로 자동 갱신) */}
+        <YouTubeSection variant="latest" />
+
         {/* CEO Letter */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 relative overflow-hidden">
+        <section className="py-16 md:py-20 bg-[var(--w-primary)] relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[var(--w-blue-70)]/10 rounded-full blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="w-10 h-10 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center mb-6 shadow-sm">
               <Quote size={17} className="text-white" />
             </div>
-            <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-5">대표의 편지</p>
+            <p className="text-xs font-bold text-white uppercase tracking-widest mb-5">대표의 편지</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-6 leading-relaxed">
               광고비는 나가는데 전화는 울리지 않던 달, 저도 겪었습니다
             </h2>
-            <div className="space-y-4 text-blue-100 text-base leading-relaxed mb-8">
+            <div className="space-y-4 text-white text-base leading-relaxed mb-8">
               <p>가게 문을 닫고 그날 매출을 정산하다 보면 압니다. 오늘 들어온 손님 중에 처음 온 사람이 몇인지. 그 숫자가 며칠째 그대로일 때의 기분을요. 저는 그게 맛 때문인 줄 알았습니다. 아니었습니다. 그 골목에 우리 가게가 있다는 걸 아무도 몰랐을 뿐입니다.</p>
               <p>그때 맡겨봤던 대행사는 물어봐야 답이 왔습니다. 이번 달에 무엇을 했고 무엇이 달라졌는지는 끝까지 알 수 없었습니다. 나중에 그 안으로 들어가 일해보고 나서야 알았습니다. <strong className="text-white">답을 안 준 게 아니라, 보여드릴 것이 없었던 겁니다.</strong></p>
               <p>그래서 하랑은 순서를 뒤집었습니다. 물어보시기 전에 먼저 말씀드리고, 안 된 것은 안 됐다고 적습니다. 순위가 내려간 주에도 그대로 보내드립니다. 좋은 소식만 골라 보내면 그건 보고가 아니라 광고입니다.</p>
               <p>전화를 받는 사람도 접니다. 상담한 사람이 그대로 끝까지 맡습니다. 계약하자마자 처음 보는 담당자로 바뀌는 일은 없습니다.</p>
             </div>
-            <div className="bg-white/10 border border-white/20 rounded-2xl p-5 mb-8">
-              <p className="text-sm text-blue-100 font-medium leading-relaxed">
+            <div className="bg-black/10 border border-white/20 rounded-2xl p-5 mb-8">
+              <p className="text-sm text-white font-medium leading-relaxed">
                 오늘 계약하지 않으셔도 됩니다. 지금 어디에서 돈이 새고 있는지만 듣고 가셔도 괜찮습니다. 대표님이 지금 넣고 계신 그 돈이, 제가 카페에 넣었던 돈과 다르지 않다는 걸 아니까요.
               </p>
-              <p className="text-xs text-blue-300 mt-2 font-bold">하랑마케팅 대표 전태영</p>
+              <p className="text-xs text-[var(--w-blue-80)] mt-2 font-bold">하랑마케팅 대표 전태영</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-blue-700 font-black text-sm hover:bg-blue-50 transition-colors shadow-lg">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[var(--w-primary-strong)] font-black text-sm hover:bg-[var(--w-blue-95)] transition-colors shadow-lg">
                 무료 상담 신청 <ArrowRight size={14} />
               </Link>
               <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
@@ -412,13 +416,13 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { value: "10년+", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
-                { value: "500+", label: "누적 프로젝트", sub: "대표 경력 10년 합산" },
-                { value: "7년차", label: "업력", sub: "2020년 4월 개업" },
+                { value: "10년", label: "마케팅 경력", sub: "서포터즈 활동부터 현재까지" },
+                { value: "500건", label: "누적 프로젝트", sub: "대표 경력 10년 합산" },
+                { value: `${companyYear()}년차`, label: "업력", sub: "2020년 4월 개업" },
                 { value: "0원", label: "상담 비용", sub: "계약 강요 없음" },
               ].map((s) => (
                 <div key={s.label} className="bg-white rounded-2xl p-4 md:p-5 text-center border border-gray-100 shadow-sm">
-                  <div className="text-2xl md:text-3xl font-black text-blue-600 mb-0.5">{s.value}</div>
+                  <div className="text-2xl md:text-3xl font-black text-[var(--w-primary)] mb-0.5">{s.value}</div>
                   <div className="text-xs font-black text-gray-800">{s.label}</div>
                   <div className="text-[11px] text-gray-500 mt-0.5">{s.sub}</div>
                 </div>
@@ -431,11 +435,11 @@ export default function AboutPage() {
         <section className="py-14 md:py-20 bg-white border-t border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Why Harang</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">Why Harang</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
                 대행사, 어디를 골라야 할까요?
               </h2>
-              <p className="text-gray-500 text-sm">실제 소상공인 사장님들이 대행사 선택에서 가장 많이 겪는 문제와 하랑의 차이를 정직하게 비교했습니다.</p>
+              <p className="text-gray-500 text-sm">실제 소상공인 대표님들이 대행사 선택에서 가장 많이 겪는 문제와 하랑의 차이를 정직하게 비교했습니다.</p>
             </div>
             <div className="overflow-x-auto -mx-4 md:mx-0">
               <div className="min-w-[600px] md:min-w-0 px-4 md:px-0">
@@ -443,7 +447,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mb-1">
                   <div className="py-3 px-4 text-xs font-black text-gray-500 uppercase tracking-widest">항목</div>
                   <div className="py-3 px-4 rounded-t-2xl bg-gray-100 text-center text-xs font-black text-gray-600 uppercase tracking-widest">일반 대행사</div>
-                  <div className="py-3 px-4 rounded-t-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
+                  <div className="py-3 px-4 rounded-t-2xl bg-[var(--w-primary)] text-center text-xs font-black text-white uppercase tracking-widest">하랑마케팅</div>
                 </div>
                 {[
                   { item: "담당자", general: "자주 바뀜 (이직·인수인계)", harang: "대표가 직접 관리 (처음부터 끝까지)" },
@@ -452,7 +456,7 @@ export default function AboutPage() {
                   { item: "작업 투명성", general: "게시 위치를 확인하기 어려운 경우가 있음", harang: "게시 URL 전체 전달" },
                   { item: "부적합 시", general: "계약 기간 강제 유지", harang: "성과 미달 시 전략 즉시 수정 · 중도 해지 위약금 없음" },
                   { item: "순위 약속", general: "몇 위까지 올려준다고 약속", harang: "약속 대신 정해진 시각 계측 · 잰 숫자 그대로 공개" },
-                  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 1개월부터 가능" },
+                  { item: "최소 계약", general: "6개월~1년", harang: "월 단위 · 처음이면 2~3개월 이상" },
                 ].map((row, i) => (
                   <div key={i} className={`grid grid-cols-[1fr_1fr_1fr] gap-0 ${i % 2 === 0 ? "bg-gray-50/50" : "bg-white"}`}>
                     <div className="py-4 px-4 text-sm font-bold text-gray-700 flex items-center border-b border-gray-100">{row.item}</div>
@@ -460,8 +464,8 @@ export default function AboutPage() {
                       <CheckCircle2 size={13} className="text-gray-600 shrink-0 mr-2" strokeWidth={2.5} />
                       {row.general}
                     </div>
-                    <div className="py-4 px-4 text-sm text-blue-700 font-semibold flex items-center border-b border-blue-50 bg-blue-50/50">
-                      <CheckCircle2 size={13} className="text-blue-500 shrink-0 mr-2" strokeWidth={2.5} />
+                    <div className="py-4 px-4 text-sm text-[var(--w-primary-strong)] font-semibold flex items-center border-b border-[var(--w-blue-95)] bg-[var(--w-blue-99)]">
+                      <CheckCircle2 size={13} className="text-[var(--w-blue-60)] shrink-0 mr-2" strokeWidth={2.5} />
                       {row.harang}
                     </div>
                   </div>
@@ -470,13 +474,13 @@ export default function AboutPage() {
                 <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 mt-1">
                   <div />
                   <div className="rounded-b-2xl bg-gray-100 py-3 px-4 text-center text-xs text-gray-600 font-semibold">일반 대행사</div>
-                  <div className="rounded-b-2xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
+                  <div className="rounded-b-2xl bg-[var(--w-primary)] py-3 px-4 text-center text-xs text-white font-black">하랑마케팅</div>
                 </div>
               </div>
             </div>
             <div className="mt-8 text-center">
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm transition-colors shadow-sm">
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-black text-sm transition-colors shadow-sm">
                 무료 상담으로 직접 확인하기 <ArrowRight size={14} />
               </Link>
             </div>
@@ -487,20 +491,20 @@ export default function AboutPage() {
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">자주 묻는 질문</p>
+              <p className="text-xs font-bold text-[var(--w-primary-strong)] uppercase tracking-widest mb-3">자주 묻는 질문</p>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900">상담 전 미리 확인하세요</h2>
             </div>
             <div className="space-y-3">
               {FAQS.map((faq, i) => (
-                <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors">
+                <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-[var(--w-blue-90)] transition-colors">
                   <summary className="flex items-center gap-3 p-5 cursor-pointer list-none select-none">
-                    <span className="w-6 h-6 rounded-lg bg-blue-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
+                    <span className="w-6 h-6 rounded-lg bg-[var(--w-primary)] text-white text-[11px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
                     <span className="font-bold text-gray-800 text-sm flex-1">Q. {faq.q}</span>
                     <svg className="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
-                  <div className="px-5 pb-5 pt-3 ml-9 text-sm text-gray-500 leading-relaxed border-t border-blue-50">
+                  <div className="px-5 pb-5 pt-3 ml-9 text-sm text-gray-500 leading-relaxed border-t border-[var(--w-blue-95)]">
                     {faq.a}
                   </div>
                 </details>
@@ -522,11 +526,11 @@ export default function AboutPage() {
                     { year: "2026", event: "대표 10년 경력 누적 500건 프로젝트", note: "7년차 · 대표가 직접 관리 원칙 유지 중" },
                   ].map((item) => (
                     <div key={item.year} className="flex gap-5 relative pl-10">
-                      <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
-                        <span className="text-[11px] font-black text-blue-600">{item.year.slice(2)}</span>
+                      <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-[var(--w-blue-60)] flex items-center justify-center shrink-0 z-10">
+                        <span className="text-[11px] font-black text-[var(--w-primary-strong)]">{item.year.slice(2)}</span>
                       </div>
                       <div className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                        <div className="text-[11px] font-bold text-blue-600 mb-1">{item.year}</div>
+                        <div className="text-[11px] font-bold text-[var(--w-primary-strong)] mb-1">{item.year}</div>
                         <div className="font-black text-gray-900 text-sm mb-1">{item.event}</div>
                         <div className="text-xs text-gray-500">{item.note}</div>
                       </div>
@@ -536,7 +540,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center">
+            <div className="mt-8 bg-[var(--w-blue-95)] border border-[var(--w-blue-90)] rounded-2xl p-6 text-center">
               <p className="text-sm font-black text-gray-900 mb-1">더 궁금한 것이 있으신가요?</p>
               <p className="text-xs text-gray-600 mb-4">카카오톡 문의는 24시간 접수하고, 하랑 대표가 직접 답변드립니다</p>
               <div className="flex flex-col sm:flex-row gap-2 justify-center">
@@ -545,7 +549,7 @@ export default function AboutPage() {
                   <MessageCircle size={14} /> 카카오톡 문의
                 </a>
                 <a href="tel:010-7541-9054"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors">
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--w-primary)] hover:bg-[var(--w-primary-strong)] text-white font-bold text-sm transition-colors">
                   <Phone size={14} /> 010-7541-9054
                 </a>
               </div>
@@ -561,15 +565,15 @@ export default function AboutPage() {
             {/* 헤더 */}
             <div className="mb-14">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-6 h-[2px] bg-blue-600" />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-blue-600">Corporate Identity</span>
-                <div className="w-6 h-[2px] bg-blue-600" />
+                <div className="w-6 h-[2px] bg-[var(--w-primary)]" />
+                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[var(--w-primary-strong)]">Corporate Identity</span>
+                <div className="w-6 h-[2px] bg-[var(--w-primary)]" />
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3" style={{ letterSpacing: "-0.03em" }}>CI 소개</h2>
               <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl">
-                하랑마케팅의 CI는 <strong className="text-gray-700">함께 더 높이</strong>라는 슬로건을 담아,
+                하랑마케팅의 CI는 <strong className="text-gray-700">하늘 아래 높은 뜻을 가진 사람들의 모임</strong>이라는 이름의 뜻을 담아,
                 두 사람이 서로를 이어주는 모습을 형상화했습니다.
-                사장님과 함께 성장하는 하랑마케팅의 철학을 상징합니다.
+                대표님과 함께 성장하는 하랑마케팅의 철학을 상징합니다.
               </p>
             </div>
 
@@ -591,7 +595,7 @@ export default function AboutPage() {
                 </div>
                 {/* 블루 배경 */}
                 <div className="rounded-2xl border border-gray-100 overflow-hidden">
-                  <div className="flex items-center justify-center h-44 px-10 py-6" style={{ background: "#1A56FF" }}>
+                  <div className="flex items-center justify-center h-44 px-10 py-6" style={{ background: "var(--w-primary)" }}>
                     <img src="/ci/ci-logo-h-blue.jpg" alt="하랑마케팅 가로형 로고 블루배경" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="px-4 py-3 border-t border-gray-100">
@@ -645,8 +649,8 @@ export default function AboutPage() {
               <p className="text-sm text-gray-500 mb-8">하랑마케팅의 핵심 가치를 담은 브랜드 슬로건입니다.</p>
               <div className="rounded-2xl border border-gray-100 bg-gray-50 flex items-center justify-center py-12 px-6">
                 <div className="text-center">
-                  <p className="text-3xl md:text-5xl font-black text-blue-600 tracking-tight mb-3">하랑, 함께 더 높이</p>
-                  <p className="text-sm text-gray-500">사장님과 함께, 더 높은 곳을 향해 성장합니다</p>
+                  <p className="text-2xl md:text-4xl font-black text-[var(--w-primary)] tracking-tight break-keep mb-3">직접 확인하고 솔직하게 설명하는 소상공인 마케팅</p>
+                  <p className="text-sm text-gray-500">하랑마케팅이 일하는 방식을 한 줄로 담았습니다</p>
                 </div>
               </div>
             </div>
@@ -657,28 +661,29 @@ export default function AboutPage() {
               <p className="text-sm text-gray-500 mb-8">하랑마케팅의 공식 브랜드 컬러입니다. CI 적용 시 아래 색상 규정을 준수해야 합니다.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* CMYK 는 화면 색을 단순 환산한 참고값이다. 인쇄하거나 SHOW_CI_GUIDE 를 켜기 전에 인쇄소 기준으로 다시 확인한다. */}
                 {[
                   {
                     name: "Harang Blue",
-                    hex: "#1A56FF",
-                    rgb: "RGB 26, 86, 255",
-                    cmyk: "CMYK 90, 66, 0, 0",
+                    hex: "#0066FF",
+                    rgb: "RGB 0, 102, 255",
+                    cmyk: "CMYK 100, 60, 0, 0",
                     desc: "신뢰, 전문성, 성장, 안정감",
                     dark: true,
                   },
                   {
-                    name: "Harang Light Blue",
-                    hex: "#7BA8FF",
-                    rgb: "RGB 123, 168, 255",
-                    cmyk: "CMYK 52, 34, 0, 0",
+                    name: "Harang Light Blue · 표식 띠 전용",
+                    hex: "#69A5FF",
+                    rgb: "RGB 105, 165, 255",
+                    cmyk: "CMYK 59, 35, 0, 0",
                     desc: "따뜻함, 동반, 함께, 부드러움",
                     dark: false,
                   },
                   {
                     name: "Harang Dark",
                     hex: "#001536",
-                    rgb: "RGB 26, 26, 46",
-                    cmyk: "CMYK 43, 43, 0, 82",
+                    rgb: "RGB 0, 21, 54",
+                    cmyk: "CMYK 100, 61, 0, 79",
                     desc: "권위, 전문성, 신중함, 무게감",
                     dark: true,
                   },

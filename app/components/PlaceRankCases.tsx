@@ -144,7 +144,7 @@ export default function PlaceRankCasesSection({
         <PlaceRankCaseCards cases={cases} columns={columns} />
 
         <p className="mt-5 text-xs text-gray-500 leading-relaxed">
-          {PLACE_RANK_AS_OF} 기준 계측값입니다. {PLACE_RANK_NOTE}
+          가장 최근 계측은 {PLACE_RANK_AS_OF} 이고, 카드마다 마지막으로 잰 날짜를 적었습니다. {PLACE_RANK_NOTE}
           {!compact && ` ${PLACE_RANK_LABEL_NOTE}`}
         </p>
       </div>

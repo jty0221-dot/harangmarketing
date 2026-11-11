@@ -1,10 +1,26 @@
-import { PUBLIC_SERVICES } from "./lib/service-catalog";
+import { PUBLIC_SERVICES, isProgram } from "./lib/service-catalog";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./wds.css";   // WDS 컴포넌트 계층(.w-card/.w-btn/.w-input/타이포 별칭) — 전역에서 쓴다
 import SiteChrome from "./components/SiteChrome";
+import Motion from "./components/Motion";
 import JsonLd from "./components/JsonLd";
-import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES } from "./lib/seo";
+import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES, companyYear } from "./lib/seo";
+import { OPENAI_MEASUREMENT_ON } from "./lib/ads-measurement";
+import { Black_Han_Sans } from "next/font/google";
+
+/**
+ * Black Han Sans — 카페 배포 상세 · 레퍼런스 · 서비스 허브의 대형 헤드라인 · 숫자 전용 (본문 사용 금지).
+ * 빌드 때 받아 우리 주소에서 낸다. 한글 글꼴이라 미리 받기(preload)는 끈다 (쓰는 페이지에서만 글자 범위별로 받는다).
+ * globals.css 의 .cd-display · .cd-num 이 --font-black-han 을 쓴다.
+ */
+const blackHanSans = Black_Han_Sans({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  variable: "--font-black-han",
+});
 
 /**
  * GA4 측정 ID.
@@ -17,6 +33,18 @@ import { SITE, ORG_ID, SITE_ID, LOCAL_ID, ANSWER_SENTENCES } from "./lib/seo";
  */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-L1NX7TPP9Z";
 
+/**
+ * ChatGPT 광고 측정 픽셀 ID.
+ * 광고관리자(ads.openai.com) > 도구 > 전환 > 데이터 소스에서 만든 값을
+ * Vercel 환경변수 NEXT_PUBLIC_OPENAI_PIXEL_ID 에 넣으면 그때부터 심긴다. 비어 있으면 아무것도 넣지 않는다.
+ * 브라우저에 그대로 보이는 공개 식별자다 (API 키와 다르다).
+ * 형식이 아닌 값이 들어가 스크립트 문자열이 깨지지 않게 영문·숫자·_- 만 통과시킨다.
+ */
+// 측정 스위치가 꺼져 있으면 환경변수가 있어도 심지 않는다 (app/lib/ads-measurement.ts · D-0619)
+const OPENAI_PIXEL_ID = OPENAI_MEASUREMENT_ON && /^[A-Za-z0-9_-]{4,80}$/.test(process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID ?? "")
+  ? process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID
+  : undefined;
+
 /** Bing Webmaster Tools 소유권 확인 코드 (구글 서치콘솔 Import 로 인증했다면 불필요) */
 const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_VERIFICATION;
 
@@ -27,20 +55,20 @@ export const metadata: Metadata = {
     template: "%s | 하랑마케팅",
   },
   description:
-    "플레이스 SEO, 블로그·체험단·인스타그램, 네이버 광고, 매장 사진촬영과 상세페이지 제작. 10년 경력 대표가 상담부터 관리까지 맡습니다. 상담 무료.",
+    "소상공인 마케팅 대행사. 플레이스 SEO, 블로그·체험단·인스타그램, 네이버 광고, 사진촬영. 10년 경력 대표가 상담부터 관리까지 맡습니다.",
   keywords: [
     "마케팅대행사", "소상공인마케팅", "자영업자마케팅",
-    "네이버플레이스", "플레이스SEO", "플레이스상위노출",
-    "블로그마케팅", "블로그상위노출", "블로그배포",
+    "네이버플레이스", "플레이스SEO", "플레이스정보관리",
+    "블로그마케팅", "블로그원고작성", "블로그배포",
     "체험단모집", "체험단대행", "리뷰마케팅",
     "인스타그램마케팅", "SNS마케팅", "맘카페바이럴",
     "하랑마케팅", "카페마케팅", "음식점마케팅",
     "학원마케팅", "미용실마케팅", "피부과마케팅",
     "카카오맵마케팅", "지역마케팅", "소상공인광고",
-    "네이버플레이스순위올리기", "플레이스마케팅", "소상공인블로그",
+    "네이버플레이스순위확인", "플레이스마케팅", "소상공인블로그",
     "서울마케팅대행사", "경기마케팅대행사", "전국마케팅대행사",
     "소상공인플레이스", "담당자직접관리마케팅",
-    "카페플레이스상위노출", "음식점플레이스", "학원블로그마케팅",
+    "카페플레이스정보관리", "음식점플레이스", "학원블로그마케팅",
     "치과마케팅", "병원플레이스순위", "카페배포", "인스타그램계정관리", "상세페이지제작",
   ],
   authors: [{ name: "하랑마케팅", url: "https://www.harangmarketing.com/about" }],
@@ -60,16 +88,16 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: "https://www.harangmarketing.com",
     siteName: "하랑마케팅",
-    title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
+    title: "손님이 검색하는 자리부터 채우는 소상공인 마케팅 · 하랑마케팅",
     description:
-      "검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 2020년 개업 7년차, 상담 무료.",
+      `검색 마케팅부터 매장 사진촬영, 상세페이지와 홈페이지형 블로그 제작까지. 품목별 구성과 실제 사례를 확인하세요. 2020년 개업 ${companyYear()}년차.`,
     images: [
       {
-        url: "https://www.harangmarketing.com/og-image.png",
+        url: "https://www.harangmarketing.com/og-image.png?v=20261001",
         width: 1200,
         height: 630,
         type: "image/png",
-        alt: "하랑마케팅 · 소상공인 전문 마케팅 대행사. 2020년 개업 · 대표 10년 경력",
+        alt: "하랑마케팅 · 직접 확인하고 솔직하게 설명하는 소상공인 마케팅 · harangmarketing.com",
       },
     ],
   },
@@ -80,6 +108,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
@@ -112,7 +141,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#2563EB",
+  themeColor: "#0066FF",
 };
 
 export default function RootLayout({
@@ -121,26 +150,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full">
+    <html lang="ko" className={`h-full ${blackHanSans.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        <link
-          rel="preload"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
-          as="style"
+        {/* 움직임 스위치 (TR-0057 · 기준 홈페이지공장\움직임_적용기준.md). 이 클래스가 있을 때만 스크롤 전 요소를 숨긴다.
+            동작 줄이기 · 자동 캡처(navigator.webdriver) · ?nomo 면 붙이지 않아 처음부터 다 보인다.
+            화면을 그리기 전에 붙여야 깜빡이지 않아서 head 에 둔다. suppressHydrationWarning 은 이 클래스 때문이다 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!navigator.webdriver&&"IntersectionObserver" in window&&location.search.indexOf("nomo")<0)document.documentElement.classList.add("mo")}catch(e){}`,
+          }}
         />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
-        />
-        {/* Black Han Sans — 카페 배포 상세/레퍼런스의 대형 헤드라인·숫자 전용 (본문 사용 금지) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
-        />
+        {/* ChatGPT 광고 측정 픽셀 — 문서 권고대로 head 맨 위. 랜딩 URL 의 oppref 를 __oppref 쿠키로 받아 둔다.
+            코드 출처: developers.openai.com/ads/measurement-pixel (2026-10-02 확인) */}
+        {OPENAI_PIXEL_ID && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var js=d.createElement(s);js.async=true;js.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(js,f);})(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}"});`,
+            }}
+          />
+        )}
+        {/* Black Han Sans 는 next/font 로 빌드 때 받아 우리 주소에서 낸다 (위 blackHanSans).
+            구글 폰트 CSS 를 모든 페이지에서 렌더 차단으로 받던 것을 걷어냈다 (2026-10-07 라이트하우스 실측) */}
         {/* 네이버 서치어드바이저 소유권 확인 */}
         <meta name="naver-site-verification" content="5e058632e3ac9891ac91638c144b083a4d694d0b" />
         {/* Bing Webmaster Tools — NEXT_PUBLIC_BING_VERIFICATION 설정 시에만 삽입 */}
@@ -212,12 +243,12 @@ gtag('config', '${GA_ID}');`,
               alternateName: SITE.nameEn,
               legalName: SITE.legalName,
               url: SITE.base,
-              slogan: "상담한 대표가 끝까지 맡는 소상공인 마케팅",
+              slogan: "직접 확인하고 솔직하게 설명하는 소상공인 마케팅",
               logo: {
                 "@type": "ImageObject",
-                url: `${SITE.base}/favicon.svg`,
-                width: 400,
-                height: 400,
+                url: `${SITE.base}/harang-logo-square.png`,
+                width: 512,
+                height: 512,
               },
               image: `${SITE.base}/og-image.png`,
               description: ANSWER_SENTENCES.whoWeAre,
@@ -257,7 +288,6 @@ gtag('config', '${GA_ID}');`,
                   email: SITE.email,
                   availableLanguage: ["ko"],
                   areaServed: "KR",
-                  contactOption: "TollFree",
                   hoursAvailable: {
                     "@type": "OpeningHoursSpecification",
                     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -269,7 +299,7 @@ gtag('config', '${GA_ID}');`,
               areaServed: ["대한민국", "서울특별시", "경기도", "인천광역시"],
               knowsAbout: [
                 "네이버 플레이스 SEO",
-                "네이버 플레이스 상위 노출",
+                "네이버 플레이스 정보 정비",
                 "블로그 마케팅",
                 "블로그 배포",
                 "체험단 마케팅",
@@ -285,13 +315,12 @@ gtag('config', '${GA_ID}');`,
                 "피부과 마케팅",
                 "치과 마케팅",
                 "네이버 플레이스 순위 계측",
-                "최적화 블로그 · 카페 배포",
+                "블로그 원고 · 카페 게시 대행",
                 "인스타그램 계정 관리",
                 "스마트스토어 상세페이지 제작",
               ],
               knowsLanguage: ["ko"],
               sameAs: [SITE.naverBlog, SITE.instagram, SITE.youtube, SITE.kakao],
-              numberOfEmployees: { "@type": "QuantitativeValue", value: 5 },
               subjectOf: {
                 "@type": "WebContent",
                 name: "하랑마케팅 AI 요약본 (llms.txt)",
@@ -307,7 +336,7 @@ gtag('config', '${GA_ID}');`,
               "@id": LOCAL_ID,
               name: SITE.name,
               image: `${SITE.base}/og-image.png`,
-              logo: `${SITE.base}/favicon.svg`,
+              logo: `${SITE.base}/harang-logo-square.png`,
               url: SITE.base,
               telephone: SITE.phone,
               email: SITE.email,
@@ -346,7 +375,7 @@ gtag('config', '${GA_ID}');`,
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "하랑마케팅 서비스",
-                itemListElement: PUBLIC_SERVICES.filter(service => service.id !== 'studio').map(service => ({
+                itemListElement: PUBLIC_SERVICES.filter(service => !isProgram(service.id)).map(service => ({
                   '@type': 'Offer', url: SITE.base + service.href,
                   itemOffered: { '@type': 'Service', name: service.title, description: service.desc, url: SITE.base + service.href },
                 })),
@@ -373,7 +402,7 @@ gtag('config', '${GA_ID}');`,
                 { name: "진행 과정", path: "/process" },
                 { name: "자주 묻는 질문", path: "/faq" },
                 { name: "마케팅 인사이트", path: "/blog" },
-                { name: "최적화 블로그 · 카페 배포", path: "/services/cafe-distribution" },
+                { name: "블로그 원고 · 카페 게시 대행", path: "/services/cafe-distribution" },
                 { name: "인스타그램 계정 관리", path: "/services/instagram" },
                 { name: "의원·한의원·피부과 마케팅", path: "/services/clinic" },
                 { name: "플레이스 순위 계측 사례", path: "/cases/place-rank" },
@@ -390,6 +419,7 @@ gtag('config', '${GA_ID}');`,
         {children}
         {/* 영업용 플로팅 요소 — 고객 전용 보고서(/r/…)에서는 뜨지 않는다 */}
         <SiteChrome />
+        <Motion />
       </body>
     </html>
   );

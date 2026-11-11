@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, BookOpen, TrendingUp, MapPin, Star, MessageCircle } from "lucide-react";
 import BlogListClient from "./BlogListClient";
 import { getAllPosts } from "../lib/blog-posts";
+import { BLOG_META } from "../lib/blog-meta";
 import { getNaverBlogPosts } from "../lib/naver-blog";
 import { ogImage } from "../lib/seo";
 
@@ -17,14 +18,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.harangmarketing.com/blog" },
   openGraph: {
     title: "하랑마케팅 블로그 | 소상공인 실전 마케팅 인사이트",
-    description: "플레이스 SEO, 블로그, 리뷰 관리 등 실제 성과로 검증된 소상공인 마케팅 노하우를 무료로 공유합니다.",
+    description: "플레이스 SEO, 블로그, 리뷰 관리 등 실제 진행하며 확인한 소상공인 마케팅 노하우를 무료로 공유합니다.",
     url: "https://www.harangmarketing.com/blog",
     images: [ogImage("하랑마케팅 블로그")],
   },
 };
 
 export default async function BlogPage() {
-  const dynamicPosts = getAllPosts().map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, date: p.date }));
+  // 사이트 안 글 (관리자 작성 + 코드에 있는 글) 을 목록에 그린다. 내린 글(unlisted)은 뺀다.
+  // 2026-10-08 전 페이지 점검 : 이 목록이 네이버 블로그 글(바깥 링크)만 그려서 사이트 안 글 14편이
+  // 어느 페이지에서도 링크되지 않았다 (검색로봇이 사이트맵으로만 찾았다)
+  const seen = new Set<string>();
+  const dynamicPosts = [
+    ...getAllPosts().map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, date: p.date })),
+    ...BLOG_META.filter((m) => !m.unlisted).map((m) => ({ slug: m.slug, title: m.title, excerpt: m.excerpt, date: m.date })),
+  ]
+    .filter((p) => (seen.has(p.slug) ? false : (seen.add(p.slug), true)))
+    .sort((a, b) => b.date.localeCompare(a.date));
   const naverPosts = await getNaverBlogPosts();
 
   return (
@@ -32,7 +42,7 @@ export default async function BlogPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
+        <section className="bg-[var(--h-dark)] py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Blog</p>
@@ -41,14 +51,14 @@ export default async function BlogPage() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
               10년 경력 실무진이 직접 쓰는 소상공인 마케팅 노하우.
-              이론이 아닌 실제 성과로 검증된 방법만 담습니다.
+              이론이 아니라 실제 진행하며 확인한 방법만 정리합니다.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
                 href="https://blog.naver.com/harangmarketing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-600 text-white font-bold text-sm hover:bg-green-500 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-700 text-white font-bold text-sm hover:bg-green-800 transition-colors shadow-sm"
               >
                 <span className="w-5 h-5 rounded bg-white/20 flex items-center justify-center font-black text-xs">N</span>
                 네이버 블로그 전체 보기
@@ -70,8 +80,8 @@ export default async function BlogPage() {
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               {[
                 { icon: BookOpen, text: "실무진 직접 집필" },
-                { icon: TrendingUp, text: "실제 성과 기반" },
-                { icon: Star, text: "500+ 프로젝트 경험" },
+                { icon: TrendingUp, text: "진행 기록 기반" },
+                { icon: Star, text: "누적 500건 프로젝트 경험" },
                 { icon: MapPin, text: "소상공인 전문" },
               ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs text-gray-500">
@@ -105,12 +115,12 @@ export default async function BlogPage() {
         </section>
 
         {/* 매주 팁 받기 */}
-        <section className="py-10 bg-gradient-to-r from-blue-600 to-indigo-700">
+        <section className="py-10 bg-[var(--w-primary)]">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-5 md:gap-10">
             <div className="flex-1 text-center md:text-left">
-              <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>
+              <p className="text-white text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>
               <h3 className="text-white font-black text-lg md:text-xl mb-1">매주 소상공인 마케팅 인사이트를 카카오로 받아보세요</h3>
-              <p className="text-blue-100 text-sm">매주 1회 · 10년 경력 실무진 직접 작성 · 비용 없음</p>
+              <p className="text-white text-sm">매주 1회 · 10년 경력 실무진 직접 작성 · 비용 없음</p>
             </div>
             <a
               href="https://pf.kakao.com/_MuUkG/chat"

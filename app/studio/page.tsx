@@ -47,7 +47,7 @@ const LD = [
     author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     description:
-      "현장 사진을 한 번에 보정하고 영상을 GIF로 바꾸는 윈도우 프로그램입니다. " +
+      "이미 촬영한 사진·동영상을 보정·압축하고 GIF로 변환하는 윈도우 프로그램입니다. AI 영상 생성은 제공하지 않습니다. " +
       "파일을 외부 서버에 올리지 않고 사용자 컴퓨터 안에서 처리합니다. " +
       "사진 세탁, 워터마크, 비포·애프터 붙이기, 영상에서 사진 뽑기, 영상 압축을 하나로 묶었습니다.",
     featureList: FEATURES.map((f) => f.title),
@@ -73,7 +73,7 @@ const LD = [
     path: PATH,
     name: "하랑 스튜디오 | 동영상 GIF 변환 · 사진 세탁 프로그램",
     description:
-      `현장 사진 ${STUDIO.trialCount}장을 1분 안에 정리하고 영상을 움짤로 바꾸는 윈도우 프로그램. ` +
+      `이미 촬영한 사진·동영상을 보정·압축하고 GIF로 변환하는 윈도우 프로그램. AI 영상 생성은 제공하지 않습니다. ` +
       `업로드 없이 내 컴퓨터에서 처리합니다. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
     dateModified: updatedAt(PATH),
   }),
@@ -93,7 +93,7 @@ export default function StudioPage() {
       {/* 헤더가 고정이라 본문을 그만큼 내린다. 사이트 공통 값 */}
       <main className="pt-[104px] md:pt-[108px]">
         {/* ───────────────────────── 첫 화면 ───────────────────────── */}
-        <section className="bg-gradient-to-b from-slate-50 to-white pt-10 pb-12 md:pt-16 md:pb-16">
+        <section className="bg-slate-50 pt-10 pb-12 md:pt-16 md:pb-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-center">
               <div>
@@ -103,15 +103,17 @@ export default function StudioPage() {
                 </div>
 
                 <h1 className="mt-4 text-[28px] leading-[1.25] font-black tracking-tight text-gray-900 md:text-[40px] md:leading-[1.2]">
-                  동영상 GIF 변환,
+                  촬영한 영상은 GIF로,
                   <br />
-                  <span className="text-blue-600">사진 세탁</span>까지 한 번에
+                  <span className="text-blue-600">사진은 한 번에 보정</span>
                 </h1>
 
                 <p className="speakable mt-4 text-[15px] leading-relaxed text-gray-600 md:text-base">
-                  하랑 스튜디오는 현장 사진 {STUDIO.trialCount}장을 1분 안에 보정하고, 영상을 끌어다 놓으면
-                  움짤로 바꿔주는 윈도우 프로그램입니다. 파일을 어디에도 올리지 않고 내 컴퓨터
-                  안에서 처리하므로 클라이언트 사진이 밖으로 나가지 않습니다.
+                  하랑 스튜디오는 이미 촬영한 사진·동영상을 보정·압축하고 GIF로 변환하는 윈도우 프로그램입니다.
+                  파일은 외부 서버에 올리지 않고 내 컴퓨터에서 처리합니다.
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                  사진이나 글로 새 영상을 만드는 AI 영상 생성 기능은 제공하지 않습니다.
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -133,7 +135,7 @@ export default function StudioPage() {
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-blue-700"
                   >
                     <Download size={16} strokeWidth={2.2} />
-                    무료 체험판 받기
+                    윈도우 변환 프로그램 체험판 받기
                   </a>
                   <a
                     href="#price"
@@ -152,15 +154,7 @@ export default function StudioPage() {
 
               {/* 실제 화면이 넘어가는 움짤 */}
               <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200">
-                <img
-                  src="/studio/demo-flow.gif"
-                  alt="하랑 스튜디오 사용 순서. 사진을 넣고 세탁 강도를 고르고 실행합니다"
-                  width={1000}
-                  height={633}
-                  loading="eager"
-                  decoding="async"
-                  className="block w-full"
-                />
+                <p className="p-6 text-sm leading-relaxed text-gray-700">기존 사진의 밝기와 크기를 조정하고, 촬영한 동영상에서 GIF와 사진을 추출합니다. 원본은 보존하고 결과물을 별도로 저장합니다.</p>
                 <div className="border-t border-gray-100 px-4 py-3 text-xs text-gray-500">
                   사진을 넣고, 강도를 고르고, 실행을 누르면 끝입니다
                 </div>
@@ -242,7 +236,7 @@ export default function StudioPage() {
                       </ul>
                     </div>
                     <div className={`bg-gray-50 p-4 md:p-5 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                      <img
+                      {f.shot && <img
                         src={`/studio/${f.shot}`}
                         alt={f.alt}
                         width={1500}
@@ -250,7 +244,7 @@ export default function StudioPage() {
                         loading="lazy"
                         decoding="async"
                         className="block w-full rounded-xl ring-1 ring-gray-200"
-                      />
+                      />}
                     </div>
                   </div>
                 </article>
@@ -260,13 +254,17 @@ export default function StudioPage() {
             {/* 프로그램이 만든 결과물 */}
             <div className="mt-8 overflow-hidden rounded-2xl bg-gray-50 ring-1 ring-gray-200 md:mt-10">
               <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr]">
-                <img
-                  src="/studio/demo-gif.gif"
-                  alt="현장 영상을 GIF로 바꾼 결과"
+                <video
+                  src="/studio/demo-gif.mp4"
+                  poster="/studio/demo-gif.jpg"
+                  aria-label="현장 영상을 GIF로 바꾼 결과"
                   width={560}
                   height={316}
-                  loading="lazy"
-                  decoding="async"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
                   className="block w-full"
                 />
                 <div className="p-5 md:p-7">
@@ -445,8 +443,7 @@ export default function StudioPage() {
                     각 플랫폼의 기준은 공개되어 있지 않고 저희도 확인할 방법이 없습니다.
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-gray-700">
-                    다만 {STUDIO.trialCount}장이 1분 안에 끝난다는 것과 결과물이 서로 다른
-                    파일이라는 것, 이 두 가지는 프로그램이 직접 보여드립니다.
+                    사진의 밝기와 크기를 조정하고 GIF로 변환하는 기능을 체험판에서 직접 확인하세요.
                     무료 {STUDIO.trialCount}장으로 그 부분만 확인해 보시고 판단하시면 됩니다.
                   </p>
                 </div>
@@ -576,7 +573,7 @@ export default function StudioPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-black text-blue-700 shadow-sm transition hover:bg-blue-50"
               >
                 <MessageCircle size={16} strokeWidth={2.2} />
-                카카오톡으로 체험판 받기
+                윈도우 변환 프로그램 체험판 받기
               </a>
               <a
                 href={TEL}

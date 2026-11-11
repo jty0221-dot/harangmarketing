@@ -40,5 +40,10 @@ export function normalizeInquiryMemo(v: unknown): string | null {
 export function inquirySourceLabel(source: string | null): string {
   if (!source || source === "web") return "상담 신청 폼";
   if (source === "free-check") return "무료 진단";
+  // 광고 유입이 붙은 값: 'web · chatgpt / cpc / place-check' (app/lib/attribution.ts)
+  const [form, via] = source.split(" · ");
+  if (via && (form === "web" || form === "free-check")) {
+    return `${form === "web" ? "상담 신청 폼" : "무료 진단"} · ${via}`;
+  }
   return source;
 }

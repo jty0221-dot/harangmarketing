@@ -1,0 +1,8 @@
+# 에이봄의원 robots.txt · 최종 도메인 https://abomclinic.com 기준 (seo_extras.py 생성)
+# 확인용 주소(/sian/...)에서는 이 파일이 사이트 루트에 있지 않아 쓰이지 않는다.
+# 확인용 쪽은 각 쪽의 noindex 메타로 색인을 막는다. 운영 전환 때 --strip-noindex 로 그 메타를 뺀다.
+# 검색엔진과 AI 검색 수집기(Yeti · Googlebot · GPTBot · OAI-SearchBot · PerplexityBot 등)를 막지 않는다.
+User-agent: *
+Allow: /
+
+Sitemap: https://abomclinic.com/sitemap.xml

@@ -21,7 +21,7 @@ const CURRICULUM = [
     stepColor: "bg-blue-600",
     videoId: "1oiqvVTtF_w",
     title: "네이버 플레이스 등록부터 SEO 최적화 세팅까지, 이 영상 하나로 종결",
-    desc: "플레이스 신규 등록 방법과 상위 노출을 위한 SEO 세팅 완전 정복. 대행사에 맡기기 전 이것만 알아도 됩니다.",
+    desc: "플레이스 신규 등록 방법과 정보 정비를 위한 SEO 세팅 완전 정복. 대행사에 맡기기 전 이것만 알아도 됩니다.",
     duration: "11분 43초",
     badge: "플레이스 기초",
   },
@@ -48,13 +48,14 @@ const CURRICULUM = [
     stepColor: "bg-blue-600",
     videoId: "YA2mETS3y0w",
     title: "마케팅 대행사에 300만 원 입금 전, 제발 이 영상 보세요 (2026 최신 사기수법)",
-    desc: "'월 5만 원에 상위노출 보장' 그 말 믿고 입금하는 순간 돈은 사라집니다. 사기꾼들의 3가지 수법 폭로.",
+    desc: "'월 5만 원에 정보 정비 보장' 그 말 믿고 입금하는 순간 돈은 사라집니다. 사기꾼들의 3가지 수법 폭로.",
     duration: "11분 25초",
     badge: "주의 필독",
   },
 ];
 
-export default function YouTubeSection() {
+// variant="latest" 는 최신 영상 칸만 그린다 (회사소개 등 다른 페이지용). 커리큘럼·구독 배너는 홈 전용.
+export default function YouTubeSection({ variant = "full" }: { variant?: "full" | "latest" }) {
   // 초기엔 최신 fallback 을 보여주고(SSR·즉시 표시), 마운트 후 API 로 실시간 최신을 받아 교체한다.
   // 채널에 새 영상이 올라오면 별도 배포 없이 최대 1시간 안에 자동 반영된다.
   const [latest, setLatest] = useState<YTVideo[]>(FALLBACK_LATEST);
@@ -127,9 +128,9 @@ export default function YouTubeSection() {
         </div>
       </section>
 
+      {variant === "full" && (<>
       {/* 2. 구독 유도 CTA 배너 */}
       <section className="relative overflow-hidden bg-red-600">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #fff 0%, transparent 60%), radial-gradient(circle at 80% 20%, #fff 0%, transparent 50%)" }} />
         <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
             <p className="text-white text-xs font-bold uppercase tracking-widest mb-1.5">무료 마케팅 강의</p>
@@ -172,7 +173,7 @@ export default function YouTubeSection() {
               <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
             </div>
             <h2 className="text-2xl md:text-3xl font-black mb-2" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
-              사장님이 꼭 봐야 할 영상 4편
+              대표님이 꼭 봐야 할 영상 4편
             </h2>
             <p className="text-sm" style={{ color: "var(--h-muted)" }}>
               순서대로 보시면 네이버 플레이스 마케팅의 전체 그림이 잡힙니다
@@ -201,6 +202,7 @@ export default function YouTubeSection() {
           </div>
         </div>
       </section>
+      </>)}
     </>
   );
 }

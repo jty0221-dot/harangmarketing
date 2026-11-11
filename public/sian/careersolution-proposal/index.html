@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>커리어솔루션 홈페이지 제안 | 하랑마케팅</title>
+<meta name="description" content="커리어솔루션 대표 신형섭님께 드리는 홈페이지 제안서. 왜 지금 필요한지, 무엇을 만드는지, 제작비와 월 관리비.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--red:#D61F26;--red-ink:#C41C22;--ink:#1f2226;--sub:#5b6068;--mute:#8a9099;--line:#e3e5e9;--soft:#f5f6f8;--white:#fff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--soft);color:var(--ink);font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;font-size:16px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header.top{background:var(--white);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.brand{font-weight:800;letter-spacing:.02em}
+.brand small{font-weight:500;color:var(--mute);margin-left:8px;font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:10px;font-size:15px}
+.btn.line{background:var(--white);color:var(--ink);border:1px solid var(--line)}
+.hero{background:var(--ink);color:#fff;padding:64px 0 56px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;color:#ff8a8e;margin-bottom:14px}
+.hero h1{font-size:clamp(28px,5vw,42px);line-height:1.3;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+.hero p{color:#c9ccd2;margin:0;max-width:640px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+section{padding:56px 0;border-bottom:1px solid var(--line);background:var(--white)}
+section.alt{background:var(--soft)}
+.num{display:inline-block;color:var(--red-ink);font-weight:800;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+h2{font-size:clamp(22px,3.6vw,30px);line-height:1.35;margin:0 0 14px;letter-spacing:-.02em}
+.lead{color:var(--sub);margin:0 0 24px;max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card h3{margin:0 0 8px;font-size:17px;line-height:1.45}
+.card p{margin:0;color:var(--sub);font-size:15px}
+.card .tag{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:10px}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 22px}
+.flow div{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;font-weight:700;font-size:15px}
+.flow div span{display:block;color:var(--mute);font-weight:500;font-size:12.5px;margin-top:4px}
+.flow div.gap{background:#fff1f1;border-color:#f4c2c4;color:var(--red-ink)}
+.src{font-size:12.5px;color:var(--mute);margin-top:12px}
+table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line)}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:15px;vertical-align:top}
+th{background:var(--soft);font-size:13px;color:var(--sub)}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr.disc td{background:#fff6f6;color:var(--red-ink)}
+tr.tot td{font-weight:800;background:var(--soft)}
+.svc{color:var(--red-ink);font-weight:700}
+.tiers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tier{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+.tier.pick{border:2px solid var(--red)}
+.tier h3{margin:0 0 4px}
+.tier .badge{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;border-radius:20px;padding:3px 10px;margin-bottom:10px}
+.tier .price{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.tier .price small{font-size:13px;color:var(--mute);font-weight:500}
+.tier ul{margin:12px 0 0;padding-left:18px;color:var(--sub);font-size:14.5px}
+.tier li{margin:4px 0}
+.note{font-size:13.5px;color:var(--sub);margin-top:14px}
+.note li{margin:3px 0}
+.total{background:var(--ink);color:#fff;border-radius:16px;padding:24px 26px;margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.total div span{display:block;color:#aeb3bb;font-size:13px}
+.total div strong{font-size:24px}
+.total div em{display:block;font-style:normal;color:#ff8a8e;font-size:13px}
+.close{background:var(--red);color:#fff;padding:56px 0;border:0}
+.close h2{color:#fff}
+.close p{color:#ffe1e2;max-width:680px}
+.close .btn{background:#fff;color:var(--red-ink)}
+footer{padding:28px 0 40px;font-size:13px;color:var(--mute);background:var(--soft)}
+@media(max-width:720px){.grid,.tiers,.total{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}section{padding:44px 0}th,td{padding:10px;font-size:14px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><span class="brand">하랑마케팅<small>커리어솔루션 홈페이지 제안</small></span><a class="btn" href="/sian/benz-shin">시안 보기</a></div></header>
+
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">PROPOSAL · 2026.10</span>
+  <h1>대표님이 18년 동안 쌓으신 것을<br>커리어솔루션 한 곳에 모으는 일</h1>
+  <p>영상도, 블로그도, 다시 찾아 주시는 고객도 이미 있습니다. 비어 있는 것은 손님이 마지막에 확인하러 오는 공식 페이지 한 곳입니다. 왜 지금 필요한지, 무엇을 만드는지, 얼마인지 한 장에 정리했습니다.</p>
+  <div class="acts"><a class="btn" href="/sian/benz-shin">홈페이지 시안 보기</a><a class="btn line" href="/sian/benz-shin/admin-preview">관리자 화면 보기</a></div>
+</div></div>
+
+<section><div class="wrap">
+  <span class="num">01</span>
+  <h2>손님이 차를 고르는 순서가 바뀌었습니다</h2>
+  <p class="lead">예전에는 네이버에서 바로 찾았다면, 요즘은 AI 에게 먼저 묻고 네이버에서 영상과 블로그로 확인한 뒤 연락합니다. 그 마지막 확인 자리에 커리어솔루션 이름으로 된 공식 페이지가 아직 없습니다.</p>
+  <div class="flow">
+    <div>AI 에게 묻기<span>믿을 만한 벤츠 상담은?</span></div>
+    <div>네이버에서 확인<span>영상 · 블로그 · 후기</span></div>
+    <div class="gap">공식 페이지 확인<span>지금 비어 있는 자리</span></div>
+    <div>연락<span>전화 · 상담 신청</span></div>
+  </div>
+  <p class="src">참고 · 네이버 AI 브리핑은 2026년 4월 한 달 동안 창작자 글을 3억 5천만 건 인용했습니다 (서울경제 보도). AI 는 답을 만들 때 공식 출처를 찾아 읽는 편이라, 출처가 없으면 다른 곳을 소개하게 됩니다.</p>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <span class="num">02</span>
+  <h2>지금 홈페이지가 필요한 이유 여섯 가지</h2>
+  <div class="grid">
+    <div class="card"><span class="tag">흩어진 자산</span><h3>대표님 이름이 네 곳에 흩어져 있습니다</h3><p>유튜브 · 인스타 · 블로그 · 스레드에 따로 있습니다. 손님이 한 번에 확인할 곳이 없고, AI 가 대표님을 설명할 근거도 전부 남의 플랫폼에만 있습니다.</p></div>
+    <div class="card"><span class="tag">신뢰</span><h3>무자격 에이전시와 구분되는 자리</h3><p>대표님이 직접 경고해 오신 무자격 · 불법 에이전시와 다르다는 것을, 18년 이력과 상담 방식으로 한 페이지에서 보여 드립니다.</p></div>
+    <div class="card"><span class="tag">상담의 질</span><h3>조건이 정리된 상담이 들어옵니다</h3><p>손님이 차종 페이지에서 구매 방식 · 기간 · 선납금 · 주행거리를 고르고 신청합니다. 첫 통화에서 조건부터 다시 묻지 않으셔도 됩니다.</p></div>
+    <div class="card"><span class="tag">영상의 집</span><h3>이미 찍으신 영상이 일을 더 합니다</h3><p>새로 찍으실 것은 없습니다. 지금까지의 릴스 · 쇼츠 · 블로그가 차종 페이지와 출고 이야기로 모여 홈페이지 안에서 다시 읽힙니다.</p></div>
+    <div class="card"><span class="tag">내 것</span><h3>플랫폼이 바뀌어도 남는 공간</h3><p>인스타 · 블로그는 정책이 바뀌면 노출이 흔들립니다. 홈페이지는 도메인과 서버를 대표님 명의로 등록해 드려서 계약이 끝나도 대표님 것입니다.</p></div>
+    <div class="card"><span class="tag">검색 · AI</span><h3>AI 가 읽는 구조로 처음부터</h3><p>차종마다 따로 검색에 걸리게 나누고, 회사 · 대표 정보를 AI 가 읽는 형식으로 넣습니다. 새 페이지는 매일 네이버 · 구글에 자동으로 알립니다.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="num">03</span>
+  <h2>무엇을 만들어 드리나</h2>
+  <p class="lead">시안에 이미 들어가 있는 구성 그대로입니다. 링크를 눌러 휴대폰으로 먼저 보시는 걸 권합니다.</p>
+  <div class="grid">
+    <div class="card"><h3>차종별 견적 페이지 16개</h3><p>A · C · E · S · CLE · GLA · GLB · GLC · GLE · GLS · G · EQ 계열 · AMG · 마이바흐. 세단 · SUV · 전기 · AMG 로 골라 봅니다.</p></div>
+    <div class="card"><h3>조건별 견적 박스</h3><p>조건을 고르면 오른쪽 요약이 바로 바뀌고, 그 조건 그대로 신청이 들어옵니다. 금액은 그 시점 공식 조건으로 견적서를 보내 드리는 방식입니다.</p></div>
+    <div class="card"><h3>관리자 화면</h3><p>문의함에서 조건까지 한 번에 보시고, 차종 사진 · 이벤트 · 출고 이야기 · 자주 묻는 질문을 직접 올리고 고치십니다.</p></div>
+    <div class="card"><h3>빠른 상담 · 전화 · 문자</h3><p>화면 구석의 빠른 상담 버튼과 휴대폰 하단 고정 바. 첫 화면에는 대표님 말씀 '차 빼놓고 기다리겠습니다' 를 세웠습니다.</p></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <span class="num">04</span>
+  <h2>제작비</h2>
+  <p class="lead">하랑 홈페이지 기준 단가로 항목마다 나눠 적었습니다. 금액은 공급가이며 부가세는 별도입니다.</p>
+  <table>
+    <thead><tr><th>항목</th><th>산정</th><th style="text-align:right">공급가</th></tr></thead>
+    <tbody>
+      <tr><td>메인 페이지 (기획 · 디자인 · 반응형)</td><td>1식</td><td class="n">700,000</td></tr>
+      <tr><td>일반 페이지 (소개 · 차량 목록 · 진행 · 커뮤니티 · 자주 묻는 질문 · 상담)</td><td>6장 × 100,000</td><td class="n">600,000</td></tr>
+      <tr><td>차종 견적 페이지 16개 (같은 틀로 만듭니다)</td><td>16장 × 50,000</td><td class="n">800,000</td></tr>
+      <tr><td>조건별 견적 박스 · 빠른 상담 · 문의함</td><td>1식</td><td class="n">300,000</td></tr>
+      <tr><td>관리자 화면 (차종 · 이벤트 · 후기 · 자주 묻는 질문)</td><td>1식</td><td class="n">200,000</td></tr>
+      <tr><td>검색 노출 세팅 (네이버 · 구글 등록 · AI 구조 · 매일 자동 색인 요청)</td><td>200,000</td><td class="n svc">서비스</td></tr>
+      <tr><td>도메인 · 서버 연결 · 사용 교육 · 오픈 뒤 3개월 오류 무상 수정</td><td>150,000</td><td class="n svc">서비스</td></tr>
+      <tr><td>소계</td><td></td><td class="n">2,600,000</td></tr>
+      <tr class="disc"><td>기존 고객 할인 (영상 · 블로그를 함께 맡겨 주셔서)</td><td>10%</td><td class="n">−260,000</td></tr>
+      <tr class="tot"><td>제작비 합계</td><td>부가세 별도</td><td class="n">2,340,000</td></tr>
+    </tbody>
+  </table>
+  <ul class="note">
+    <li>계약금 50% 입금일이 착수일이고, 착수부터 15영업일 안에 오픈합니다. 잔금은 오픈 때 받습니다.</li>
+    <li>도메인 연 2만원 안팎 · 서버 월 1~2만원 · 보안인증서 연 4만원 안팎은 대표님 명의로 직접 결제하시는 실비입니다.</li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <span class="num">05</span>
+  <h2>월 관리비</h2>
+  <p class="lead">오픈한 다음 달부터 시작하고, 월 단위라 다음 달부터 언제든 해지하실 수 있습니다. 공급가이며 부가세는 별도입니다.</p>
+  <div class="tiers">
+    <div class="tier">
+      <h3>스탠다드</h3>
+      <div class="price">100,000<small>원 / 월</small></div>
+      <ul>
+        <li>도메인 · 서버 갱신 관리 · 보안 점검 · 장애 대응</li>
+        <li>검색 수집 상태 점검 (서치어드바이저 · 서치콘솔)</li>
+        <li>문의 폼 · 알림 점검 · 블로그 연동 유지</li>
+        <li>키워드 노출 리포트 월 1회</li>
+        <li>문구 수정 월 3회</li>
+      </ul>
+    </div>
+    <div class="tier pick">
+      <span class="badge">권해 드립니다</span>
+      <h3>프리미엄</h3>
+      <div class="price">200,000<small>원 / 월</small></div>
+      <ul>
+        <li>스탠다드 전부</li>
+        <li>새 콘텐츠 페이지 월 1장 (출고 이야기 · 차종 안내)</li>
+        <li>AI 검색 답변 노출 점검 (GEO · AEO)</li>
+        <li>월 1회 개선 상담</li>
+        <li>문구 수정 월 10회</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">차종 페이지가 16개라 새 차가 나오거나 조건이 바뀔 때 손볼 곳이 많습니다. 출고 이야기를 매달 한 장씩 쌓는 프리미엄을 권해 드립니다.</p>
+  <div class="total">
+    <div><span>처음 한 번 · 제작비</span><strong>2,340,000원</strong><em>부가세 포함 2,574,000원</em></div>
+    <div><span>오픈 다음 달부터 · 월 관리비 (프리미엄)</span><strong>200,000원</strong><em>부가세 포함 220,000원 · 스탠다드는 110,000원</em></div>
+  </div>
+</div></section>
+
+<section class="close"><div class="wrap">
+  <h2>시안부터 휴대폰으로 한 번 열어 봐 주세요</h2>
+  <p>바꾸고 싶은 부분만 말씀 주시면 바로 고쳐 드립니다. 10분 정도 통화 가능하신 시간 알려 주시면 하랑 대표가 직접 전화 드리겠습니다.</p>
+  <div class="acts"><a class="btn" href="/sian/benz-shin">홈페이지 시안 보기</a><a class="btn" href="tel:01075419054">하랑 대표 010-7541-9054</a></div>
+</div></section>
+
+<footer><div class="wrap">하랑마케팅 · 대표 전태영 · 010-7541-9054 · 이 제안서는 2026-11-12 (목) 까지 유효합니다. 검색 순위와 문의 건수는 약속드리지 않습니다.</div></footer>
+</body>
+</html>

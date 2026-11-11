@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts/pretendard.css";
 
 :root {
   --background: #ffffff;
@@ -69,9 +70,26 @@ details summary::-webkit-details-marker { display: none; }
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--w-primary, #0066FF);
   outline-offset: 2px;
   border-radius: 6px;
+}
+/* The ticker pause button sits on navy, where the blue ring disappears. */
+.ticker-toggle:focus-visible { outline-color: #fff; outline-offset: -4px; }
+
+/* 새 창으로 열리는 링크는 화면낭독기에 「새 창」 을 덧붙여 읽힌다.
+   화면에는 보이지 않는다 (Tailwind sr-only 와 같은 방식). aria-label 이 있는 링크는 그 이름이 우선한다. */
+a[target="_blank"]::after {
+  content: "(새 창)";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Prevent orphan words in headings */
@@ -172,26 +190,6 @@ body { overflow-x: hidden; }
   background-size: 60px 60px;
 }
 
-/* ── Hero text gradient ── */
-.hero-gradient-text {
-  background: linear-gradient(130deg, #60A5FA 0%, #818CF8 45%, #A78BFA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-}
-
-/* ── Hero CTA primary ── */
-.hero-cta-primary {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-  box-shadow: 0 0 28px rgba(37, 99, 235, 0.45), 0 4px 14px rgba(37, 99, 235, 0.3);
-  transition: box-shadow 0.25s ease, transform 0.2s ease;
-}
-.hero-cta-primary:hover {
-  box-shadow: 0 0 50px rgba(37, 99, 235, 0.65), 0 8px 24px rgba(37, 99, 235, 0.4);
-  transform: translateY(-2px);
-}
-
 /* ── Hero CTA secondary ── */
 .hero-cta-secondary {
   border: 1.5px solid rgba(255,255,255,0.18);
@@ -263,7 +261,7 @@ body { overflow-x: hidden; }
 /* ═══════════════════════════════════════
    SCROLL REVEAL
 ═══════════════════════════════════════ */
-.reveal-item {
+.mo .reveal-item {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
@@ -273,7 +271,7 @@ body { overflow-x: hidden; }
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-left {
+.mo .reveal-left {
   opacity: 0;
   transform: translateX(-32px);
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
@@ -283,7 +281,7 @@ body { overflow-x: hidden; }
   opacity: 1;
   transform: translateX(0);
 }
-.reveal-right {
+.mo .reveal-right {
   opacity: 0;
   transform: translateX(32px);
   transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
@@ -293,7 +291,7 @@ body { overflow-x: hidden; }
   opacity: 1;
   transform: translateX(0);
 }
-.reveal-scale {
+.mo .reveal-scale {
   opacity: 0;
   transform: scale(0.92);
   transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
@@ -317,8 +315,26 @@ body { overflow-x: hidden; }
   1023px 이하에서는 좌우 이동을 세로 페이드로 대체해 넘침을 원천 차단한다.
 */
 @media (max-width: 1023px) {
-  .reveal-left, .reveal-right { transform: translateY(24px); }
+  .mo .reveal-left, .mo .reveal-right { transform: translateY(24px); }
   .reveal-left.revealed, .reveal-right.revealed { transform: translateY(0); }
+}
+
+/*
+  움직임 (TR-0057 · 2026-10-24). 위 .reveal-* 와 아래 [data-fx] 는 <html class="mo"> 일 때만 숨긴다.
+  mo 는 layout head 스크립트가 붙인다 (동작 줄이기 · 자동 캡처 · ?nomo 면 안 붙음 → 처음부터 보임).
+  JS 가 안 돌아도 글은 보인다. transform · opacity 만 쓴다 (CLS 0).
+  [data-fx] 는 components/Motion.tsx 가 붙이고, 다 나타나면 걷는다. 길이 0.7s 는 Motion.tsx 의 DUR 과 같아야 한다.
+  transition 의 !important 는 카드(Card3DTilt)가 인라인으로 거는 transition 을 나타나는 동안만 이기려고 둔다.
+*/
+.mo [data-fx] {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--mo-delay, 0s),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--mo-delay, 0s) !important;
+}
+.mo [data-fx="up"] { transform: translateY(24px); }
+.mo [data-fx].in { opacity: 1; transform: none; }
+@media print {
+  .reveal-item, .reveal-left, .reveal-right, .reveal-scale, [data-fx] { opacity: 1 !important; transform: none !important; }
 }
 
 /* ═══════════════════════════════════════
@@ -347,13 +363,6 @@ body { overflow-x: hidden; }
 ═══════════════════════════════════════ */
 .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
-
-.gradient-text {
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
 /* ═══════════════════════════════════════
    MOTION ENHANCEMENTS
@@ -487,16 +496,6 @@ body { overflow-x: hidden; }
   margin-bottom: -1px;
 }
 
-/* Shimmer text */
-.shimmer-text {
-  background: linear-gradient(90deg, #2563EB 25%, #818CF8 50%, #2563EB 75%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -523,16 +522,18 @@ body { overflow-x: hidden; }
 
 /* ─────────────────────────────────────────────────────────────
    카페 배포 상세 · 레퍼런스 페이지 전용 토큰
-   design_handoff_cafe_distribution/README.md 의 Design Tokens 값 그대로.
-   사이트 공통 토큰(--h-*)과 별개다 — 임의로 통합하지 말 것.
+   처음 값은 design_handoff_cafe_distribution/README.md 의 Design Tokens 다.
+   2026-10-03 (토) 대표 「나머지들 전부 진행해」 (카페 배포 색을 WDS 로 합칠지 여쭌 것에 대한 답) 로
+   파랑과 어두운 바탕만 WDS 토큰으로 맞췄다. 회색 계열(옅은 바탕 · 테두리 · 글자)은 인계값 그대로다.
+   인계값으로 되돌릴 때는 각 줄 끝 주석의 옛 값을 쓴다. 그 밖의 통합은 따로 정한다.
    ───────────────────────────────────────────────────────────── */
 .cafe-dist {
-  --cd-primary:      #1655e8;
-  --cd-primary-deep: #1449c8;
-  --cd-primary-dark: #0f42c0;
-  --cd-primary-lt:   #2f6bf5;
-  --cd-primary-lt2:  #5b8dfa;
-  --cd-primary-lt3:  #7fa6ff;
+  --cd-primary:      var(--w-primary);         /* 옛 #1655e8 */
+  --cd-primary-deep: var(--w-primary-strong);  /* 옛 #1449c8 */
+  --cd-primary-dark: var(--w-primary-heavy);   /* 옛 #0f42c0 */
+  --cd-primary-lt:   var(--w-blue-55);         /* 옛 #2f6bf5 */
+  --cd-primary-lt2:  var(--w-blue-65);         /* 옛 #5b8dfa */
+  --cd-primary-lt3:  var(--w-blue-70);         /* 옛 #7fa6ff */
 
   --cd-tint:    #f3f6fc;
   --cd-tint-2:  #eaf1ff;
@@ -552,9 +553,9 @@ body { overflow-x: hidden; }
   --cd-muted-2: #5f6880;
   --cd-muted-3: #6a7389;
 
-  --cd-dark:   #0b1226;
-  --cd-dark-2: #101a36;
-  --cd-dark-3: #16224a;
+  --cd-dark:   var(--w-blue-10);                                 /* 옛 #0b1226 */
+  --cd-dark-2: color-mix(in srgb, var(--w-blue-10) 96%, white);  /* 옛 #101a36 · 어두운 구역끼리 층을 나누는 한 단계 밝은 남색 */
+  --cd-dark-3: color-mix(in srgb, var(--w-blue-10) 90%, white);  /* 옛 #16224a */
 
   --cd-on-dark:   #c6cfe4;
   --cd-on-dark-2: #98a3bc;
@@ -565,12 +566,12 @@ body { overflow-x: hidden; }
 /* 대형 헤드라인·숫자 전용 디스플레이 서체.
    한글 대형 텍스트는 letter-spacing 음수값이 필수 — 빠지면 완전히 다른 디자인이 된다. */
 .cd-display {
-  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-family: var(--font-black-han), "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
   font-weight: 400;
   letter-spacing: -0.03em;
 }
 .cd-num {
-  font-family: "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
+  font-family: var(--font-black-han), "Black Han Sans", "Noto Sans KR", var(--font-sans, sans-serif);
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;

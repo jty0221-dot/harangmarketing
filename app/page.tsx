@@ -9,6 +9,7 @@ import {
   ShieldCheck, Clock, Handshake,
   Coffee, Scissors, GraduationCap, Stethoscope,
   UtensilsCrossed, ShoppingBag, Sparkles, Store,
+  Pause, Play,
 } from "lucide-react";
 import ServiceFinder from "./components/ServiceFinder";
 import PhotoServicePreview from "./components/PhotoServicePreview";
@@ -37,7 +38,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import {
   fmt, byKeyword, BIGGEST_GAIN,
-  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES,
+  SNAPSHOT_DATE, FIRST_SNAPSHOT_DATE, SUMMARY, CLINIC_NOTE, CLINIC_SUMMARY, CLINIC_ALL_PAGE1, CLINIC_INDUSTRIES, CLINIC_MEASURED_ON, CLINIC_LAST_ON, CLINIC_DAYS,
 } from "./lib/rank-records";
 import { TRACK_RECORD, TRACK_TOTALS } from "./lib/track-record";
 
@@ -84,16 +85,23 @@ const koMonthDay = (iso: string) => {
   return `${m}월 ${d}일`;
 };
 function clinicCells() {
-  const asOf = koMonthDay(SNAPSHOT_DATE);
-  const result = CLINIC_ALL_PAGE1
-    ? `${asOf} 기준 1페이지`
-    : CLINIC_SUMMARY.page1 > 0
-      ? `${asOf} 기준 ${CLINIC_SUMMARY.page1}개 1페이지`
-      : "계측 중";
+  // 결과 칸 날짜는 현황표 숫자를 잰 날이다 (H-1143). 여럿이면 날짜를 하나로 말하지 않는다
+  const when = CLINIC_MEASURED_ON
+    ? `${koMonthDay(CLINIC_MEASURED_ON)} 측정 `
+    : `${CLINIC_DAYS.map(koMonthDay).join(" · ")} 측정 `;
+  // 고른 줄이라 「모두 · 전부」 대신 잰 순위로 닫는다 (진우 2026-10-03 (토) 18:29)
+  const result = CLINIC_SUMMARY.keywords > 0 && CLINIC_SUMMARY.top1 === CLINIC_SUMMARY.keywords
+    ? `${when}1위`
+    : CLINIC_ALL_PAGE1
+      ? `${when}1페이지`
+      : CLINIC_SUMMARY.page1 > 0
+        ? `${when}${CLINIC_SUMMARY.page1}개 1페이지`
+        : "계측 중";
   return {
     result,
-    resultLabel: `계약 키워드 ${CLINIC_SUMMARY.keywords}개`,
-    duration: `${koMonthDay(FIRST_SNAPSHOT_DATE)}부터 ${asOf}까지 스냅샷 ${SUMMARY.snapshots}회 계측`,
+    resultLabel: `골라 실은 키워드 ${CLINIC_SUMMARY.keywords}개`,
+    // 끝은 표에서 가장 늦게 잰 날 (Q-0550). 줄마다 출처가 달라 스냅샷 회차는 걸지 않는다
+    duration: `${koMonthDay(FIRST_SNAPSHOT_DATE)}부터 ${koMonthDay(CLINIC_LAST_ON)}까지 계측`,
     ...(CLINIC_NOTE ? { note: CLINIC_NOTE } : {}),
   };
 }
@@ -152,7 +160,7 @@ import {
 const HOME_LD = [
   webPageLd({
     path: "/",
-    name: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
+    name: "하랑마케팅 | 소상공인 마케팅 대행사",
     description: ANSWER_SENTENCES.whoWeAre,
     dateModified: PAGE_UPDATED["/"],
   }),
@@ -295,17 +303,17 @@ const PACKAGES = [
     name: "전 채널 통합",
     desc: "경쟁이 촘촘한 상권 · 지점이 여러 곳인 브랜드",
     roi: "지역 키워드 여러 구간 동시 공략",
-    features: ["블로그·카페 배포 월 15~30건", "파워컨텐츠 월 5편", "플레이스 SEO·트래픽·길찾기", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
+    features: ["블로그·카페 배포 월 10~30건", "파워컨텐츠 월 5편", "플레이스 SEO·주간 순위 관리", "인스타 피드·릴스 월 8~20건", "주간 최적화 리포트"],
     popular: false,
   },
 ];
 
 
 const TRUST_ITEMS = [
-  { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
-  { icon: Handshake, title: "하랑 대표 직접 관리", desc: "상담한 사람이 계약부터 끝까지 그대로 맡습니다.", color: "from-blue-500 to-blue-700" },
-  { icon: Clock, title: "카카오톡 24시간 접수", desc: "남겨 주신 문의는 하랑 대표가 직접 확인하고 연락합니다.", color: "from-blue-600 to-indigo-700" },
-  { icon: TrendingUp, title: "손님 동선 중심 관리", desc: "노출 수보다 손님이 검색하고 고르는 동선을 기준으로 운영", color: "from-blue-700 to-indigo-800" },
+  { icon: ShieldCheck, title: "검증된 10년 경력", desc: "대학생 서포터즈부터 시작해 누적 500건 프로젝트 직접 진행" },
+  { icon: Handshake, title: "하랑 대표 직접 관리", desc: "상담한 사람이 계약부터 끝까지 그대로 맡습니다." },
+  { icon: Clock, title: "카카오톡 24시간 접수", desc: "남겨 주신 문의는 하랑 대표가 직접 확인하고 하루 이내 연락합니다." },
+  { icon: TrendingUp, title: "손님 동선 중심 관리", desc: "노출 수보다 손님이 검색하고 고르는 동선을 기준으로 운영" },
 ];
 
 /**
@@ -324,7 +332,7 @@ const TICKER = [
   "정해진 시각 순위 계측 · 월 리포트 제공",
   "상담 비용 0원 · 계약 강요 없음",
   ...tickerLine("지역 정기청소 키워드"),
-  "10년+ 경력 · 업종별 맞춤 전략",
+  "10년 경력 · 업종별 맞춤 전략",
   "카카오톡 문의 24시간 접수",
   `맡아온 매장 ${TRACK_TOTALS.stores}곳 · 업종 ${TRACK_TOTALS.trades}종`,
   "네이버 플레이스 순위 스냅샷 기록",
@@ -332,9 +340,51 @@ const TICKER = [
   `1페이지 진입 기록 중 최대 상승폭 ${fmt(BIGGEST_GAIN)}`,
 ];
 
+/**
+ * 흐르는 신뢰 띠. 5초 넘게 움직이는 문구에는 멈출 수단이 있어야 한다 (WCAG 2.2.2).
+ * 움직임 줄이기를 켠 방문자에게는 globals.css 가 애니메이션을 끄므로 단추도 숨긴다.
+ * 끊김 없이 흐르게 두 벌 그리는 뒤쪽 한 벌은 화면 낭독기가 두 번 읽지 않게 가린다.
+ */
+function TrustTicker() {
+  const [paused, setPaused] = React.useState(false);
+  return (
+    <div className="flex items-stretch" style={{ background: "var(--h-navy)" }}>
+      <div className="flex-1 min-w-0 overflow-hidden py-3">
+        <div
+          className="flex animate-marquee whitespace-nowrap"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
+          {[...TICKER, ...TICKER].map((text, i) => (
+            <span
+              key={i}
+              aria-hidden={i >= TICKER.length ? true : undefined}
+              className="flex items-center gap-3 px-6 text-xs text-white font-semibold"
+            >
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${i % 2 ? "bg-blue-200" : "bg-white/60"}`} />
+              {text}
+            </span>
+          ))}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        aria-label="흐르는 문구 멈추기"
+        title={paused ? "다시 흐르게 하기" : "흐르는 문구 멈추기"}
+        className="ticker-toggle shrink-0 w-11 min-h-11 flex items-center justify-center border-l border-white/15 text-white/80 hover:text-white transition-colors motion-reduce:hidden"
+      >
+        {paused ? <Play size={16} strokeWidth={2.5} /> : <Pause size={16} strokeWidth={2.5} />}
+      </button>
+    </div>
+  );
+}
+
 // 메인은 서비스 선택과 검증에 집중한다. 회사 소개·진행 과정·채널 콘텐츠처럼
 // 전용 페이지가 있는 보조 내용은 해당 페이지에서 제공한다.
 const SHOW_SECONDARY_HOME_CONTENT = false;
+/** 대표 사진이 아직 없다 (2026-09-30 대표 확인) · 사진이 들어오면 true 로 바꾼다 */
+const SHOW_PHOTO = false;
 
 
 export default function HomePage() {
@@ -362,16 +412,7 @@ export default function HomePage() {
         <CustomerConfidenceSection />
 
         {/* ══ 신뢰 마퀸 배너 ══ */}
-        <div className="py-3 overflow-hidden" style={{ background: "var(--h-navy)" }}>
-          <div className="flex animate-marquee whitespace-nowrap">
-            {[...TICKER, ...TICKER].map((text, i) => (
-              <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
-                <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${i % 2 ? "bg-blue-200" : "bg-white/60"}`} />
-                {text}
-              </span>
-            ))}
-          </div>
-        </div>
+        <TrustTicker />
 
         {/* ══ 플랫폼 신뢰 스트립 ══ */}
         <section className="py-7 bg-white border-b" style={{ borderColor: "var(--h-border)" }}>
@@ -407,7 +448,7 @@ export default function HomePage() {
           cases={byVolume()}
           eyebrow="Place Rank"
           title="키워드별 순위, 잰 그대로 적었습니다"
-          description={`정해진 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. ${PLACE_RANK_AS_OF} 계측분입니다.`}
+          description={`정해진 시각에 잰 네이버 플레이스 순위를 그대로 옮겼습니다. 카드 하나가 키워드 하나이고, 상호와 지역명은 적지 않습니다. 카드마다 마지막으로 잰 날짜를 적었고, 가장 최근 계측은 ${PLACE_RANK_AS_OF} 입니다.`}
           cta={{ href: "/cases/place-rank", label: "계측 사례 전체 보기" }}
           compact
         />
@@ -608,7 +649,7 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-[2px]" style={{ background: "var(--h-navy)" }} />
-                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>실제 성과 데이터</p>
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-navy)" }}>업종별 진행 기록</p>
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                     내 업종에도<br />효과가 있을까요?
@@ -723,7 +764,7 @@ export default function HomePage() {
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
               </div>
               <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>이런 고민, 해결된 증거 있습니다</h2>
-              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 사장님들이 가장 많이 하는 말, 하랑이 어떻게 바꿨는지</p>
+              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 대표님들이 가장 많이 하는 말, 하랑이 어떻게 바꿨는지</p>
             </div>
             </RevealOnScroll>
             <div className="space-y-4">
@@ -832,7 +873,7 @@ export default function HomePage() {
                     { label: "해병대 장교 출신", sub: "책임감·원칙" },
                     { label: "카페 창업 실패", sub: "현장 공감" },
                     { label: "대행사 팀장 출신", sub: "내부 구조 파악" },
-                    { label: "500+ 프로젝트", sub: "10년 경력 누적" },
+                    { label: "누적 500건", sub: "10년 경력 합산" },
                     { label: "매달 계측 보고", sub: "순위 그대로 공유" },
                     { label: "대표 책임 관리", sub: "상담부터 결과 설명까지" },
                   ].map((b) => (
@@ -853,6 +894,7 @@ export default function HomePage() {
 
               {/* Photo */}
               <RevealOnScroll from="right"><div>
+                {SHOW_PHOTO && (
                 <PhotoPlaceholder
                   label="대표 프로필 사진"
                   hint="실제 사진으로 교체 예정 · 세로 비율 (3:4) 권장"
@@ -860,11 +902,12 @@ export default function HomePage() {
                   height="h-[440px]"
                   className="rounded-2xl shadow-lg"
                 />
+                )}
                 <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                   {[
-                    { val: "10년+", label: "마케팅 경력" },
+                    { val: "10년", label: "마케팅 경력" },
                     { val: "2020년", label: "개업" },
-                    { val: "500+", label: "완료 프로젝트" },
+                    { val: "500건", label: "누적 프로젝트" },
                   ].map(s => (
                     <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
                       <div className="text-base font-black text-gray-900">{s.val}</div>
@@ -893,9 +936,9 @@ export default function HomePage() {
                 모바일 2x2 에서는 3·4번째 칸에 가로선을 넣어 행을 나눈다. */}
             <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderLeft: "1px solid var(--h-border)" }}>
               {[
-                { to: 500, suffix: "+", decimals: 0, label: "완료 프로젝트", sub: "10년 경력 누적" },
+                { to: 500, suffix: "건", decimals: 0, label: "누적 프로젝트", sub: "10년 경력 합산" },
                 { to: TRACK_TOTALS.stores, suffix: "곳", decimals: 0, label: "맡아온 매장", sub: "계약 서류로 확인한 것만" },
-                { to: 10, suffix: "년+", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
+                { to: 10, suffix: "년", decimals: 0, label: "마케팅 경력", sub: "플레이스·블로그 실무" },
                 { to: companyYear(), suffix: "년차", decimals: 0, label: "회사 운영", sub: "2020년 4월 개업" },
               ].map((item, i) => (
                 <RevealOnScroll
@@ -1176,7 +1219,7 @@ export default function HomePage() {
                   sub: "작업 포트폴리오",
                   desc: "진행 현장·성공 사례·최신 소식",
                   preview: "팔로우하면 매주 마케팅 팁 무료 제공",
-                  href: "https://www.instagram.com/jty0221/",
+                  href: "https://www.instagram.com/harang.marketing/",
                   logo: "instagram" as PlatformId,
                 },
               ].map((s) => (
@@ -1254,10 +1297,10 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
               <div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-4" style={{ background: "var(--h-surface)", color: "var(--h-navy)", border: "1px solid var(--h-border)" }}>
-                  <Search size={10} strokeWidth={2.5} /> 10년 분석 인사이트
+                  <Search size={10} strokeWidth={2.5} /> 10년 노하우
                 </span>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-5 leading-snug">
-                  네이버 플레이스 상위 노출,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
+                  네이버 플레이스 정보 정비,<br /><span style={{ color: "var(--h-navy)" }}>이 3가지가 핵심입니다</span>
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   많은 분들이 &lsquo;사진만 예쁘게 올리면 되는 거 아닌가요?&rsquo;라고 물어보세요.
@@ -1265,9 +1308,9 @@ export default function HomePage() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { rank: "1위", factor: "리뷰 수 · 최신성", desc: "리뷰가 많고 최근에 달린 매장이 위에 자주 보입니다. 답글까지 함께 챙깁니다." },
+                    { rank: "1위", factor: "리뷰 수 · 최신성", desc: "실제 방문자의 후기를 확인하고 문의와 답글을 챙깁니다. 리뷰 작성이나 평가를 강요하지 않습니다." },
                     { rank: "2위", factor: "키워드 일치도", desc: "업체명 · 카테고리 · 소개글에 검색어와 맞는 키워드가 들어 있는지 봅니다." },
-                    { rank: "3위", factor: "저장수 · 클릭률", desc: "저장과 클릭이 쌓인 매장이 위에 자주 보입니다." },
+                    { rank: "3위", factor: "문의 동선 · 정보 정확성", desc: "전화와 예약 링크가 작동하고 영업시간과 주차 안내가 실제 매장과 맞는지 확인합니다." },
                   ].map((f) => (
                     <div key={f.rank} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                       <div className="flex items-center justify-between mb-2">
@@ -1339,7 +1382,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
                   { label: "견적 방식", value: "항목 조합", note: "필요한 항목만 합산" },
-                  { label: "기준 단가", value: "블로그 4만원", note: "1편 기준 · 업종별 조정 · 부가세 별도" },
+                  { label: "기준 단가", value: "블로그 3~5만원", note: "1편 평균 · 업종마다 다름 · 부가세 별도" },
                   { label: "상담 · 현황 진단", value: "0원", note: "견적 받고 안 하셔도 됩니다" },
                 ].map((item) => (
                   <div key={item.label}>
@@ -1509,7 +1552,7 @@ export default function HomePage() {
                 전체 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5" data-stagger>
               {CASE_CARDS.map((c) => {
                 const Icon = c.icon;
                 return (
@@ -1579,14 +1622,14 @@ export default function HomePage() {
                   className="font-black leading-tight"
                   style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-0.03em", color: "var(--h-dark)" }}
                 >
-                  실제 사장님들의<br />성장 이야기
+                  실제 대표님들의<br />성장 이야기
                 </h2>
               </div>
               <div className="flex items-center gap-8 shrink-0">
                 {[
-                  { val: "10년+", label: "대표 경력" },
+                  { val: "10년", label: "대표 경력" },
                   { val: "2020년", label: "개업" },
-                  { val: "500+", label: "누적 프로젝트" },
+                  { val: "500건", label: "누적 프로젝트" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div className="text-2xl md:text-3xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>
@@ -1665,9 +1708,9 @@ export default function HomePage() {
             { label: '상담 · 진행 · 개업 준비', items: [0, 8, 14, 15, 18].map(index => CORE_FAQ[index]) },
             { label: '검색 노출 · 성과', items: [2, 3, 5, 6, 16, 21].map(index => CORE_FAQ[index]) },
             { label: '채널별 마케팅', items: [9, 10, 11, 12, 13, 17].map(index => CORE_FAQ[index]) },
-            { label: '병원 · 치과 마케팅', items: [22, 23, 24].map(index => CORE_FAQ[index]) },
+            { label: '병원 · 치과 마케팅', items: [22, 23, 24, 25].map(index => CORE_FAQ[index]) },
           ]}
-          title="사장님들이 가장 많이 묻는 질문"
+          title="대표님들이 가장 많이 묻는 질문"
           subtitle="궁금한 주제를 선택해 질문을 확인하세요."
           showMoreHref="/faq"
         />
@@ -1730,7 +1773,6 @@ export default function HomePage() {
 
           <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               <span className="text-gray-400 text-xs font-medium">상담 신청 24시간 접수</span>
             </div>
 

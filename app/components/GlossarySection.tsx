@@ -25,7 +25,7 @@ export default function GlossarySection() {
           </h2>
         </div>
         <p className="text-sm md:text-[15px] mb-6 leading-relaxed" style={{ color: "var(--h-muted)" }}>
-          상담 중 가장 많이 나오는 용어를 사장님 눈높이에서 풀어썼습니다.
+          상담 중 가장 많이 나오는 용어를 대표님 눈높이에서 풀어썼습니다.
         </p>
 
         <dl className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">

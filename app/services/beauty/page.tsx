@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import IndustrySteps from "../../components/IndustrySteps";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
@@ -13,14 +15,14 @@ import {
 } from "lucide-react";
 
 const PAGE_TITLE = "미용·네일·피부샵 마케팅 | 플레이스 SEO · 인스타그램 · 체험단";
-const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 상위 노출, 포토리뷰 확보로 손님이 예약 전에 보는 자리를 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 포트폴리오, 플레이스 정보 정비, 방문 후기 안내로 손님이 예약 전에 보는 자리를 채웁니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["미용실 마케팅", "네일샵 마케팅", "피부샵 마케팅", "뷰티샵 플레이스 SEO", "헤어샵 인스타그램"],
   openGraph: {
-    title: "미용·네일·피부샵 마케팅 | 하랑마케팅",
+    title: "예약 전에 손님이 보는 곳을 채우는 미용실 마케팅 · 하랑마케팅",
     description: "손님이 예약 전에 보는 인스타그램·플레이스를 함께 채우는 뷰티샵 마케팅.",
     url: "https://www.harangmarketing.com/services/beauty",
     images: [ogImage()],
@@ -32,7 +34,7 @@ const SERVICES = [
     icon: MapPin,
     color: "from-pink-500 to-rose-600",
     title: "플레이스 SEO",
-    desc: "헤어·네일·피부 키워드 최적화 · 지역 상위 노출",
+    desc: "헤어·네일·피부 키워드 최적화 · 지역·매장 정보 정비",
   },
   {
     icon: Camera,
@@ -44,7 +46,7 @@ const SERVICES = [
     icon: Star,
     color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
-    desc: "뷰티 체험단 모집 · 포토리뷰 확보 전략",
+    desc: "뷰티 체험단 모집 · 실제 방문 후기 안내 전략",
   },
   {
     icon: MessageSquare,
@@ -69,7 +71,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "미용실 인스타그램은 팔로워를 늘려야 예약이 늘어나나요?",
     a:
-      "팔로워 수와 예약 수는 생각보다 붙어 있지 않습니다. 예약은 대부분 지역 검색과 저장에서 오고, 인스타그램은 시술 결과를 확인하는 자리로 쓰입니다. 그래서 저희는 팔로워를 사거나 이벤트로 숫자만 올리는 방식을 쓰지 않습니다. 시술 카테고리별로 결과 사진을 정리해 두는 쪽이 예약까지 훨씬 짧게 갑니다.",
+      "팔로워 수와 예약 수는 생각보다 붙어 있지 않습니다. 예약은 대부분 지역 검색과 저장에서 오고, 인스타그램은 시술 결과를 확인하는 자리로 쓰입니다. 그래서 팔로워 숫자부터 무작정 늘리지 않고, 시술 카테고리별로 결과 사진을 정리해 두는 일을 먼저 합니다. 그쪽이 예약까지 훨씬 짧게 갑니다. 좋아요와 팔로워는 계정 세팅이 끝난 뒤 매장 상황에 맞을 때만 보조로 쓰고, 수치를 약속하지 않습니다.",
   },
   {
     q: "네일샵도 네이버 플레이스가 중요한가요?",
@@ -89,7 +91,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "예약이 꽉 차면 마케팅을 멈춰야 하나요?",
     a:
-      "멈추기보다 방향을 바꾸는 편이 낫습니다. 예약이 찼다는 것은 지금 손님이 온다는 뜻이지 다음 달에도 온다는 뜻은 아니고, 플레이스 순위는 손을 놓으면 다시 내려갑니다. 이럴 때는 신규 유입을 늘리는 대신 단가가 높은 시술을 앞으로 빼고 재방문을 붙이는 쪽으로 옮깁니다. 실제로 그렇게 조정한 곳이 있고 판단은 사장님과 같이 합니다.",
+      "멈추기보다 방향을 바꾸는 편이 낫습니다. 예약이 찼다는 것은 지금 손님이 온다는 뜻이지 다음 달에도 온다는 뜻은 아니고, 플레이스 순위는 손을 놓으면 다시 내려갑니다. 이럴 때는 신규 유입을 늘리는 대신 단가가 높은 시술을 앞으로 빼고 재방문을 붙이는 쪽으로 옮깁니다. 실제로 그렇게 조정한 곳이 있고 판단은 대표님과 같이 합니다.",
   },
 ];
 
@@ -99,7 +101,7 @@ export default function BeautyLandingPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24">
+        <section className="bg-[var(--h-dark)] py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-pink-500/20 border border-pink-500/30 text-pink-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Scissors size={12} strokeWidth={2.5} />
@@ -127,6 +129,11 @@ export default function BeautyLandingPage() {
                 내 샵 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -184,12 +191,14 @@ export default function BeautyLandingPage() {
           </div>
         </section>
 
+        <IndustrySteps industry="beauty" />
+
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
         <JsonLd data={webPageLd({ path: "/services/beauty", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/beauty") })} />
-        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/beauty`)} />
+        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.beauty.faqs], `${SITE.base}/services/beauty`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
-          title="미용실 · 네일샵 사장님들이 가장 많이 묻는 질문"
+          title="미용실 · 네일샵 대표님들이 가장 많이 묻는 질문"
           subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 상담 전에 미리 확인해보세요."
           showMoreHref="/faq"
         />

@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      { source: "/sian/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }] },
       {
         source: "/hero-v4.mp4",
         headers: [
@@ -57,6 +58,18 @@ const nextConfig: NextConfig = {
           { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
         ],
+      },
+      {
+        // /p 아래 고객 전달 페이지(제안 · 견적)는 검색에 나오지 않게 한다 (H-1087 무2 · D-0414 한계).
+        // robots.txt 로 막으면 크롤러가 페이지 안 noindex 를 못 읽어 주소가 남을 수 있어 응답 헤더로 준다.
+        // 헤더는 파일 시스템보다 먼저 확인되어 public/p 정적 파일에도 붙는다.
+        source: "/p/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+      },
+      {
+        // 홈페이지 제작 시안 (가상 업체) : 보이되 검색에는 안 잡히게. 갤러리는 /services/homepage
+        source: "/sian/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
       },
       {
         // 이노페이 결제창 복귀 지점만 프레임 허용 — 전역 SAMEORIGIN 을 이 한 경로에서 푼다.

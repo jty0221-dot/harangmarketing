@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import IndustrySteps from "../../components/IndustrySteps";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
@@ -11,14 +13,14 @@ import Link from "next/link";
 import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
 
 const PAGE_TITLE = "쇼핑몰·소매점 마케팅 대행사 | 스마트스토어 · 인스타 · 플레이스";
-const PAGE_DESCRIPTION = "의류·잡화·소매점·옷가게 맞춤 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO 전문. 온라인 스토어와 오프라인 매장을 한 흐름으로 묶어 설계합니다.";
+const PAGE_DESCRIPTION = "쇼핑몰·소매점 마케팅. 네이버 스마트스토어, 인스타그램 쇼핑, 플레이스 SEO로 온라인 스토어와 오프라인 매장을 한 흐름으로 묶어 설계합니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["쇼핑몰 마케팅", "소매점 마케팅", "의류 마케팅 대행사", "스마트스토어 마케팅", "인스타 쇼핑 마케팅"],
   openGraph: {
-    title: "쇼핑몰·소매점 마케팅 대행사 | 하랑마케팅",
+    title: "스마트스토어와 매장을 한 흐름으로, 쇼핑몰 마케팅 · 하랑마케팅",
     description: "스마트스토어부터 매장 집객까지 온·오프라인을 함께 챙기는 쇼핑몰 마케팅.",
     url: "https://www.harangmarketing.com/services/shopping",
     images: [ogImage("쇼핑몰 마케팅 하랑마케팅")],
@@ -56,7 +58,7 @@ const SERVICE_FAQ: FaqItem[] = [
   {
     q: "식품을 파는데 표시사항은 어떻게 해야 하나요?",
     a:
-      "원재료와 용량 · 소비기한 · 보관방법 · 제조원 · 알레르기 유발 물질은 빠뜨릴 수 없는 법정 항목입니다. 이 값은 저희가 추측해서 채우지 않고 사장님께 확인받은 것만 넣습니다. 틀린 값은 빈 값보다 위험해서, 모르면 비워두고 여쭤봅니다. 효능이나 질병 예방을 말하는 표현도 쓰지 않습니다.",
+      "원재료와 용량 · 소비기한 · 보관방법 · 제조원 · 알레르기 유발 물질은 빠뜨릴 수 없는 법정 항목입니다. 이 값은 저희가 추측해서 채우지 않고 대표님께 확인받은 것만 넣습니다. 틀린 값은 빈 값보다 위험해서, 모르면 비워두고 여쭤봅니다. 효능이나 질병 예방을 말하는 표현도 쓰지 않습니다.",
   },
   {
     q: "스마트스토어와 자사몰 중 어디에 힘을 써야 하나요?",
@@ -102,6 +104,11 @@ export default function ShoppingPage() {
                 내 매장 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -167,9 +174,11 @@ export default function ShoppingPage() {
           </div>
         </section>
 
+        <IndustrySteps industry="shopping" />
+
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
         <JsonLd data={webPageLd({ path: "/services/shopping", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/shopping") })} />
-        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/shopping`)} />
+        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.shopping.faqs], `${SITE.base}/services/shopping`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
           title="쇼핑몰 운영에서 가장 많이 받는 질문"

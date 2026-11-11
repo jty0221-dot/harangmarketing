@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "imweb Sans";
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url(https://static.imweb.me/design-system/imweb-sans/imweb-sans-600.woff2) format("woff2"),
+    url(https://static.imweb.me/design-system/imweb-sans/imweb-sans-600.woff) format("woff");
+}
+
+@font-face {
+  font-family: "imweb Sans";
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url(https://static.imweb.me/design-system/imweb-sans/imweb-sans-400.woff2) format("woff2"),
+    url(https://static.imweb.me/design-system/imweb-sans/imweb-sans-400.woff) format("woff");
+}
+
+@font-face {
+  font-family: "imweb Sans";
+  font-weight: 200;
+  font-display: swap;
+  src:
+    url(https://static.imweb.me/design-system/imweb-sans/imweb-sans-200.woff2) format("woff2"),
+    url(https://static.imweb.me/design-system/imweb-sans/imweb-sans-200.woff) format("woff");
+}

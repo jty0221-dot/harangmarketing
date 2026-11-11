@@ -106,7 +106,7 @@ const CasesPage: FC = () => {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-20 md:py-28 relative overflow-hidden">
+        <section className="bg-[var(--h-dark)] py-20 md:py-28 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-blue-600/8 rounded-full blur-3xl" />
           </div>
@@ -172,7 +172,7 @@ const CasesPage: FC = () => {
               </p>
               <h2 className="text-xl md:text-2xl font-black text-gray-900">키워드마다 한 장씩 실은 계측 기록</h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-2xl">
-                {PLACE_RANK_AS_OF} 계측분에서 1~5위 안에 있던 키워드를 한 장에 하나씩 옮겼습니다.
+                마지막 계측에서 1~5위 안에 있던 키워드를(가장 최근 계측 {PLACE_RANK_AS_OF}) 한 장에 하나씩 옮겼습니다.
                 카드 하나가 키워드 하나여서, 한 매장이 키워드 셋을 올렸으면 카드도 셋으로 남습니다.
               </p>
               <Link
@@ -192,7 +192,7 @@ const CasesPage: FC = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="업종, 지역, 서비스로 검색..."
-                className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white text-base md:text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-100 transition-colors"
+                className="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white text-base md:text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
               />
               {query && (
                 <button
@@ -259,7 +259,7 @@ const CasesPage: FC = () => {
 
             {filtered.length > 0 && (
               <p className="mt-5 text-xs text-gray-500 leading-relaxed">
-                {PLACE_RANK_AS_OF} 기준 계측값입니다. {PLACE_RANK_NOTE} {PLACE_RANK_LABEL_NOTE}
+                가장 최근 계측은 {PLACE_RANK_AS_OF} 이고, 카드마다 마지막으로 잰 날짜를 적었습니다. {PLACE_RANK_NOTE} {PLACE_RANK_LABEL_NOTE}
               </p>
             )}
 

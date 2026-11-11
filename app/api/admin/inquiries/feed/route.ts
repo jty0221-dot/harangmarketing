@@ -4,6 +4,7 @@ import { verifySessionToken, ADMIN_COOKIE_NAME } from "../../../../lib/admin-aut
 import { listInquiries } from "../../../../lib/inquiries";
 import { INQUIRY_STATUS_LABEL, inquirySourceLabel } from "../../../../lib/inquiry-status";
 import { buildInquiryReply } from "../../../../lib/inquiry-reply";
+import { getPublicInquiryKnowledge } from "../../../../lib/inquiry-knowledge";
 
 /**
  * 홈페이지 문의 피드 (관리자 전용 · 읽기만)
@@ -71,6 +72,7 @@ export async function GET(req: NextRequest) {
   try {
     const rows = await listInquiries(MAX_ROWS);
     const sinceMs = since.getTime();
+    const knowledge = rows.some(row => buildInquiryReply(row).assessment?.intents.includes("price")) ? await getPublicInquiryKnowledge() : null;
     const inquiries = rows
       .filter((r) => new Date(r.createdAt).getTime() >= sinceMs)
       // 메모는 관리자 화면 안에서만 보는 내부 기록이라 피드로 내보내지 않는다
@@ -80,7 +82,7 @@ export async function GET(req: NextRequest) {
         sourceLabel: inquirySourceLabel(r.source),
         statusLabel: INQUIRY_STATUS_LABEL[r.status],
         // 관리자 화면과 같은 문안. 같은 문의면 같은 글이 나온다
-        reply: buildInquiryReply(r),
+        reply: buildInquiryReply({ ...r, knowledge }),
       }));
     return NextResponse.json({
       ok: true,

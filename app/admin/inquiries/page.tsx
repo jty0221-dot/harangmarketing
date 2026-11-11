@@ -10,7 +10,9 @@ import { AdminHeader, AdminFooter } from "../AdminNav";
 import {
   INQUIRY_MEMO_MAX, INQUIRY_STATUS_LABEL, inquirySourceLabel, type InquiryStatus,
 } from "../../lib/inquiry-status";
-import { buildInquiryReply, smsHref } from "../../lib/inquiry-reply";
+import { buildInquiryReply, smsHref, type InquiryReply } from "../../lib/inquiry-reply";
+import { type InquiryResearch } from "../../lib/inquiry-links";
+import { inquiryServiceLabel } from "../../lib/inquiry-understanding";
 
 /**
  * 홈페이지 문의 목록 (관리자)
@@ -37,7 +39,8 @@ interface Inquiry {
   createdAt: string;
 }
 
-type Filter = InquiryStatus | "all";
+/** open = 진행 중 (새 문의 + 확인함). 처음 화면이 open 이라 응대 완료로 바꾼 건은 목록에서 빠지고 응대 완료 탭으로 간다 */
+type Filter = InquiryStatus | "all" | "open";
 type ReplyChannel = "kakao" | "sms";
 
 const STATUS_CHIP: Record<InquiryStatus, string> = {
@@ -47,10 +50,11 @@ const STATUS_CHIP: Record<InquiryStatus, string> = {
 };
 
 const FILTERS: { key: Filter; label: string }[] = [
-  { key: "all", label: "전체" },
+  { key: "open", label: "진행 중" },
   { key: "new", label: INQUIRY_STATUS_LABEL.new },
   { key: "checked", label: INQUIRY_STATUS_LABEL.checked },
   { key: "done", label: INQUIRY_STATUS_LABEL.done },
+  { key: "all", label: "전체" },
 ];
 
 function fmt(iso: string) {
@@ -63,11 +67,13 @@ export default function AdminInquiriesPage() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<number | null>(null);
-  const [filter, setFilter] = useState<Filter>("all");
+  const [filter, setFilter] = useState<Filter>("open");
   const [message, setMessage] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
   const [replyChannel, setReplyChannel] = useState<ReplyChannel>("kakao");
   const [copied, setCopied] = useState<string | null>(null);
+  const [researchedReplies, setResearchedReplies] = useState<Record<number, { reply: InquiryReply; research: InquiryResearch }>>({});
+  const [researchErrors, setResearchErrors] = useState<Record<number, string>>({});
   // 저장 전 메모 입력값 (문의 번호별). 저장하면 지운다
   const [memoDrafts, setMemoDrafts] = useState<Record<number, string>>({});
   const [memoBusy, setMemoBusy] = useState<number | null>(null);
@@ -75,19 +81,39 @@ export default function AdminInquiriesPage() {
   // 링크로 들어온 문의 번호 · 목록이 오면 그 카드로 한 번 스크롤한다
   const scrollTo = useRef<number | null>(null);
 
-  const load = useCallback(async () => {
+  useEffect(() => {
+    if (openId === null || researchedReplies[openId] || researchErrors[openId]) return;
+    const q = inquiries.find(row => row.id === openId);
+    if (!q || !buildInquiryReply(q).needsResearch || buildInquiryReply(q).reviewed) return;
+    const controller = new AbortController();
+    fetch(`/api/admin/inquiries/research?id=${q.id}`, { cache: "no-store", signal: controller.signal })
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || "링크 내용을 확인하지 못했습니다");
+        if (!controller.signal.aborted) setResearchedReplies(prev => ({ ...prev, [q.id]: { reply: data.reply, research: data.research } }));
+      })
+      .catch(error => {
+        if (!controller.signal.aborted) setResearchErrors(prev => ({ ...prev, [q.id]: error instanceof Error ? error.message : "링크 내용을 확인하지 못했습니다" }));
+      });
+    return () => controller.abort();
+  }, [openId, inquiries, researchedReplies, researchErrors]);
+
+  const load = useCallback(async (): Promise<Inquiry[] | null> => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/inquiries", { cache: "no-store" });
       if (res.status === 401) {
         router.push("/admin/login");
-        return;
+        return null;
       }
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "목록을 불러오지 못했습니다");
-      setInquiries(data.inquiries as Inquiry[]);
+      const list = data.inquiries as Inquiry[];
+      setInquiries(list);
+      return list;
     } catch (e) {
       setMessage(e instanceof Error ? e.message : String(e));
+      return null;
     } finally {
       setLoading(false);
     }
@@ -98,11 +124,15 @@ export default function AdminInquiriesPage() {
     const t = setTimeout(() => {
       const raw = new URLSearchParams(window.location.search).get("id");
       const id = raw ? Number(raw) : NaN;
-      if (Number.isInteger(id) && id > 0) {
-        setOpenId(id);
-        scrollTo.current = id;
+      const linked = Number.isInteger(id) && id > 0 ? id : null;
+      if (linked != null) {
+        setOpenId(linked);
+        scrollTo.current = linked;
       }
-      void load();
+      void load().then((list) => {
+        // 링크로 연 문의가 이미 응대 완료면 처음 화면 (진행 중) 에는 없으므로 응대 완료 탭을 연다
+        if (linked != null && list?.some((q) => q.id === linked && q.status === "done")) setFilter("done");
+      });
     }, 0);
     return () => clearTimeout(t);
   }, [load]);
@@ -110,9 +140,11 @@ export default function AdminInquiriesPage() {
   useEffect(() => {
     if (loading || scrollTo.current == null) return;
     const el = document.getElementById(`inq-${scrollTo.current}`);
+    // 아직 화면에 없으면 (응대 완료 탭으로 넘어가기 전) 다음 렌더에서 다시 찾는다
+    if (!el) return;
     scrollTo.current = null;
-    el?.scrollIntoView({ block: "center" });
-  }, [loading, inquiries]);
+    el.scrollIntoView({ block: "center" });
+  }, [loading, inquiries, filter]);
 
   async function setStatus(id: number, status: InquiryStatus) {
     setBusy(id);
@@ -130,6 +162,7 @@ export default function AdminInquiriesPage() {
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "상태를 바꾸지 못했습니다");
       setInquiries((prev) => prev.map((q) => (q.id === id ? { ...q, status } : q)));
+      if (status === "done") setMessage("응대 완료로 옮겼습니다. 응대 완료 탭에서 다시 볼 수 있습니다.");
     } catch (e) {
       setMessage(e instanceof Error ? e.message : String(e));
     } finally {
@@ -183,9 +216,18 @@ export default function AdminInquiriesPage() {
     }
   }
 
-  const counts: Record<Filter, number> = { all: inquiries.length, new: 0, checked: 0, done: 0 };
+  const counts: Record<Filter, number> = { all: inquiries.length, open: 0, new: 0, checked: 0, done: 0 };
   for (const q of inquiries) counts[q.status] += 1;
-  const shown = filter === "all" ? inquiries : inquiries.filter((q) => q.status === filter);
+  counts.open = counts.new + counts.checked;
+  const openList = inquiries.filter((q) => q.status !== "done");
+  const doneList = inquiries.filter((q) => q.status === "done");
+  // 전체에서는 응대 완료를 아래로 모은다 (각 묶음 안은 최신순 그대로)
+  const shown =
+    filter === "open"
+      ? openList
+      : filter === "all"
+        ? [...openList, ...doneList]
+        : inquiries.filter((q) => q.status === filter);
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -195,7 +237,7 @@ export default function AdminInquiriesPage() {
           <div className="min-w-0">
             <h1 className="text-xl font-black text-gray-900">홈페이지 문의</h1>
             <p className="text-xs text-gray-400 mt-0.5">
-              상담 신청 폼과 무료 진단으로 들어온 문의입니다. 확인한 건은 상태를 바꿔 두면 새 문의만 골라 볼 수 있습니다.
+              상담 신청 폼과 무료 진단으로 들어온 문의입니다. 처음 화면은 진행 중 (새 문의 · 확인함) 만 보여 주고, 응대 완료로 바꾼 건은 응대 완료 탭으로 옮겨집니다.
             </p>
           </div>
           <button
@@ -246,14 +288,19 @@ export default function AdminInquiriesPage() {
             {shown.map((q) => {
               const open = openId === q.id;
               const working = busy === q.id;
-              const reply = open ? buildInquiryReply(q) : null;
+              const reply = open ? researchedReplies[q.id]?.reply || buildInquiryReply(q) : null;
+              const researching = open && !!reply?.needsResearch && !reply.reviewed && !researchedReplies[q.id] && !researchErrors[q.id];
               const replyText = reply ? (replyChannel === "kakao" ? reply.kakao : reply.sms) : "";
               const copiedThis = copied === `${q.id}:${replyChannel}`;
               const memoText = memoDrafts[q.id] ?? q.memo ?? "";
               const memoDirty = memoText.trim() !== (q.memo ?? "");
               const memoWorking = memoBusy === q.id;
               return (
-                <div key={q.id} id={`inq-${q.id}`} className="bg-white rounded-2xl ring-1 ring-gray-100 overflow-hidden">
+                <div
+                  key={q.id}
+                  id={`inq-${q.id}`}
+                  className={`rounded-2xl ring-1 ring-gray-100 overflow-hidden ${q.status === "done" && !open ? "bg-gray-50 opacity-70" : "bg-white"}`}
+                >
                   <button
                     type="button"
                     onClick={() => setOpenId(open ? null : q.id)}
@@ -317,6 +364,30 @@ export default function AdminInquiriesPage() {
                       </div>
                       {reply && (
                         <div className="rounded-xl bg-white ring-1 ring-gray-100 p-3 space-y-2">
+                          {reply.assessment && (
+                            <div className="rounded-lg bg-gray-50 p-3 text-xs text-gray-600 space-y-1">
+                              {reply.assessment.services.length > 0 && <p>문의 서비스: {reply.assessment.services.map(inquiryServiceLabel).join(" · ")}</p>}
+                              {reply.assessment.supplied.length > 0 && <p>이미 받은 정보: {reply.assessment.supplied.join(" · ")}</p>}
+                              {reply.assessment.needsHumanReview && !reply.reviewed && <p className="text-amber-700">대표 확인 필요: {reply.assessment.reviewReasons.join(" · ")}</p>}
+                              {researching && <p>공개 안내와 제공 자료를 확인하고 있습니다.</p>}
+                              {researchErrors[q.id] && !reply.providedLinks.length && <p className="text-amber-700">{researchErrors[q.id]} 공개 안내를 직접 대조한 뒤 보내주세요.</p>}
+                            </div>
+                          )}
+                          {reply.providedLinks.length > 0 && (
+                            <div className="rounded-lg bg-blue-50 p-3 text-xs text-gray-700 space-y-2">
+                              <p>{reply.reviewed ? "담당자가 실제 페이지를 확인한 검토 문안입니다." : researching ? "보내주신 링크 내용을 읽고 있습니다." : "고객이 보내주신 링크를 기준으로 검토합니다."}</p>
+                              {reply.providedLinks.map(url => {
+                                const evidence = researchedReplies[q.id]?.research.links.find(item => item.url === url);
+                                return <div key={url} className="break-all">
+                                  <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">{url}</a>
+                                  <p className="mt-1 text-gray-500">{reply.reviewed ? "담당자 검토 문안에 반영" : evidence ? (evidence.state === "read" ? `읽은 공개 정보: ${evidence.title || "소개 정보"}` : evidence.reason) : "페이지 내용 확인 전"}</p>
+                                  {evidence?.description && <p className="mt-1">{evidence.description}</p>}
+                                </div>;
+                              })}
+                              {researchedReplies[q.id]?.research.truncated && <p>앞의 다섯 링크를 확인했습니다. 나머지는 링크를 열어 검토해 주세요.</p>}
+                              {researchErrors[q.id] && <p className="text-amber-700">{researchErrors[q.id]} 제공된 링크를 직접 열어 확인해 주세요. 아래 문안은 문의 내용에 근거한 초안입니다.</p>}
+                            </div>
+                          )}
                           <div className="flex items-center justify-between gap-2 flex-wrap">
                             <div className="flex items-center gap-1.5 text-xs font-black text-gray-700">
                               <Send size={13} className="text-gray-400" />
@@ -346,13 +417,14 @@ export default function AdminInquiriesPage() {
                           <div className="flex flex-wrap gap-2">
                             <button
                               type="button"
+                              disabled={researching}
                               onClick={() => copyReply(q.id, replyChannel, replyText)}
-                              className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-black text-white hover:bg-blue-700"
+                              className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-black text-white hover:bg-blue-700 disabled:opacity-50"
                             >
                               {copiedThis ? <ClipboardCheck size={13} /> : <Copy size={13} />}
                               {copiedThis ? "복사했습니다" : "문안 복사"}
                             </button>
-                            {q.phone && (
+                            {q.phone && !researching && (
                               <a
                                 href={smsHref(q.phone, reply.sms)}
                                 className="flex items-center gap-1.5 rounded-xl bg-white ring-1 ring-gray-200 px-4 py-2.5 text-xs font-black text-gray-600 hover:bg-gray-100"

@@ -9,8 +9,7 @@ export const metadata: Metadata = {
   // 루트 layout 의 title.template 이 " | 하랑마케팅" 을 붙이므로 여기서는 브랜드명을 넣지 않는다
   title: "동영상 GIF 변환 · 사진 세탁 프로그램 | 하랑 스튜디오",
   description:
-    `사진 세탁·동영상 GIF 변환 윈도우 프로그램입니다. 현장 사진 100장을 1분 안에 정리하며 ` +
-    `무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원입니다.`,
+    `동영상 GIF 변환과 사진 보정·압축을 하는 윈도우 프로그램. AI 영상 생성은 제공하지 않습니다. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
   keywords: [
     "동영상 gif 변환", "동영상 gif 변환 프로그램", "gif 변환 프로그램",
     "움짤 만들기", "움짤 만들기 프로그램", "영상 움짤 변환",
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "하랑 스튜디오 | 동영상 GIF 변환 · 사진 세탁 프로그램",
     description:
-      `현장 사진 100장이 1분, 영상은 끌어다 놓으면 움짤. 업로드 없이 내 컴퓨터에서. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
+      `동영상 GIF 변환과 사진 보정·압축을 하는 윈도우 프로그램. AI 영상 생성은 제공하지 않습니다. 무료 ${STUDIO.trialCount}장 체험 후 한 달 ${won(CHEAPEST.price)}원.`,
     url: URL,
     images: [{ url: "/studio/og-studio.png", width: 1080, height: 1080, alt: "하랑 스튜디오" }],
   },

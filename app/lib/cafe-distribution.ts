@@ -1,5 +1,5 @@
 /**
- * 최적화 블로그 · 카페 배포 상품 데이터 (서버·클라이언트 공용, 순수 데이터만)
+ * 블로그 원고 · 카페 게시 대행 상품 데이터 (서버·클라이언트 공용, 순수 데이터만)
  *
  * 상세페이지 · 레퍼런스 페이지 · 구조화 데이터 · llms.txt 가 모두 이 파일을 참조한다.
  * 가격이나 수량을 바꿀 때는 여기만 고치면 전부 따라간다.
@@ -8,11 +8,14 @@
  * 가격 갱신: 2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS
  */
 
+import { SEARCH_CARE_OFFER } from "./search-care-offer";
+
 /* ─────────────────────────────────────────────────────────
    패키지 가격 (2026-09-07 (월) 대표 지시 · 매입 단가 기준 20% 마진 · 근거는 본부장 DECISIONS)
 
    구성은 사는 것과 파는 것을 같게 둔다 — 10건 · 30건 × 최블형 · 혼합형 · 카페형.
    가격은 두 열이다 : 원고 작성을 맡기는 경우(withCopy) · 원고를 직접 주는 경우(withoutCopy).
+   금액은 부가세 별도(공급가)로 적는다 (2026-10-16 (금) 대표 결정 「전부 부가세 미포함 기준으로 작성해」). 2026-10-16 (금) 부터 건당 가격(UNIT_PRICE) × 건수로 만든다.
    이벤트가 · 회차 · 잔여 슬롯 같은 장치는 두지 않는다 — 화면에 적힌 숫자는 대표가 한 약속이 된다.
    ───────────────────────────────────────────────────────── */
 export type PackageSize = 10 | 30;
@@ -35,15 +38,37 @@ export interface CafePackage {
   featured?: boolean;
 }
 
+/**
+ * 건당 가격 (원 · 원고 작성 포함 · 부가세 별도) · 2026-10-16 (금) 대표 결정 「이걸로 반영」
+ *
+ * 10건과 30건에 같은 마진을 얹으면 30건이 싼 정도가 실행사 할인율(5~8%)과 같아져
+ * 큰 묶음을 살 이유가 없었다 (대표 지적 「더 많은 걸 구매할 때 의미가 없을꺼」).
+ * 그래서 10건은 지금 가격 그대로(마진 약 20%) 두고, 30건은 마진을 약 12~13% 로 낮춰 건당 단가를 내렸다.
+ * 패키지 금액은 건당 가격 × 건수다. 화면에 적힌 계산이 곧 견적이다.
+ * 원가 대조와 마진 계산은 본부장\홈페이지\전달_2026-10-16_민수→준수_카페배포_가격개편.md
+ */
+export const UNIT_PRICE: Record<PackageSize, { blog: number; cafe: number }> = {
+  10: { blog: 37000, cafe: 66000 },
+  30: { blog: 33000, cafe: 58000 },
+};
+
+/** 원고를 직접 주실 때 건당 빠지는 금액 (원 · 부가세 별도). 실행가가 건당 5,000원 줄어드는 몫이다 */
+export const COPY_DISCOUNT_PER_ITEM = 6000;
+
+function pkg(size: PackageSize, kind: PackageKind, blog: number, cafe: number, featured?: boolean): CafePackage {
+  const withCopy = blog * UNIT_PRICE[size].blog + cafe * UNIT_PRICE[size].cafe;
+  return { size, kind, blog, cafe, withCopy, withoutCopy: withCopy - size * COPY_DISCOUNT_PER_ITEM, ...(featured ? { featured } : {}) };
+}
+
 export const PACKAGES: CafePackage[] = [
-  { size: 10, kind: "최블형", blog: 10, cafe: 0,  withCopy: 336000,  withoutCopy: 276000 },
-  { size: 10, kind: "혼합형", blog: 5,  cafe: 5,  withCopy: 456000,  withoutCopy: 396000, featured: true },
-  { size: 10, kind: "카페형", blog: 0,  cafe: 10, withCopy: 600000,  withoutCopy: 540000 },
-  { size: 30, kind: "최블형", blog: 30, cafe: 0,  withCopy: 960000,  withoutCopy: 780000 },
-  { size: 30, kind: "혼합형", blog: 20, cafe: 10, withCopy: 1200000, withoutCopy: 1020000 },
-  { size: 30, kind: "혼합형", blog: 15, cafe: 15, withCopy: 1260000, withoutCopy: 1080000 },
-  { size: 30, kind: "혼합형", blog: 10, cafe: 20, withCopy: 1440000, withoutCopy: 1260000, featured: true },
-  { size: 30, kind: "카페형", blog: 0,  cafe: 30, withCopy: 1680000, withoutCopy: 1500000 },
+  pkg(10, "최블형", 10, 0),
+  pkg(10, "혼합형", 5, 5, true),
+  pkg(10, "카페형", 0, 10),
+  pkg(30, "최블형", 30, 0),
+  pkg(30, "혼합형", 20, 10),
+  pkg(30, "혼합형", 15, 15),
+  pkg(30, "혼합형", 10, 20, true),
+  pkg(30, "카페형", 0, 30, true),
 ];
 
 export const PACKAGE_SIZES: PackageSize[] = [10, 30];
@@ -115,7 +140,7 @@ export const CAFE_HOW: { title: string; desc: string }[] = [
   },
   {
     title: "삭제를 줄이는 게시 방식",
-    desc: "카페마다 게시 규칙이 달라 원고 형식과 올리는 시간대를 맞춥니다. 홍보 티를 줄인 원고라야 글이 남고 사람이 읽습니다.",
+    desc: "카페마다 게시 규칙이 달라 원고 형식과 올리는 시간대를 맞춥니다. 광고·협찬 표시와 게시판 규정을 지키는 원고로 게시합니다.",
   },
   {
     title: "사진 · 원고 · 댓글을 주시면 그대로 올립니다",
@@ -128,14 +153,15 @@ export const CAFE_HOW: { title: string; desc: string }[] = [
 ];
 
 /** 단가 개정 시점 · 사유 — 히어로 · 달라진 점 · 가격표 안내 · FAQ · 메타 설명이 같은 문장을 쓴다 (2026-09-08 (화) 대표 지시 · 같은 날 사유를 경쟁 심화 → 물가 상승 → 네이버 로직 변화 순으로 바꿈 · 금액은 그대로) */
-export const PRICE_REVISED_AT = "2026년 9월";
+export const PRICE_REVISED_AT = "2026년 10월";
 export const PRICE_REVISION_REASON =
-  "네이버 로직이 바뀌면서 카페 게시 자리를 확보하고 발행 뒤 노출을 확인하는 작업이 늘었습니다. 그 작업 비용을 반영해 단가를 조정했습니다.";
+  "건당 가격을 기준으로 단가를 다시 정리했습니다. 30건은 건당 가격을 낮춰 많이 맡기실수록 덜 드시게 했습니다.";
 
 export const PRICE_NOTE = [
   `${PRICE_REVISED_AT}에 개정한 단가입니다.`,
   "표기 금액은 부가세 별도입니다.",
-  "원고를 직접 주시면 오른쪽 금액이 적용됩니다.",
+  "패키지 금액은 건당 가격 × 건수입니다. 30건은 건당 가격이 더 낮습니다.",
+  `원고를 직접 주시면 건당 ${won(COPY_DISCOUNT_PER_ITEM)}씩 빠진 오른쪽 금액이 적용됩니다.`,
   "카페만 진행할 때는 카페 등급별 건당 단가가 적용됩니다.",
 ];
 
@@ -146,8 +172,8 @@ export const PRICE_NOTE = [
    시작가만 적는다. 금액은 지역 · 키워드마다 다르므로 상담에서 확정한다.
    ───────────────────────────────────────────────────────── */
 
-/** 월 단위 진행 시작가 (원 · 월 · 부가세 별도) */
-export const MONTHLY_MIN = 396000;
+/** 월 단위 진행 시작가 (원 · 월 · 부가세 별도) · 10건 혼합형을 원고 직접 제공으로 진행하는 금액과 같다 */
+export const MONTHLY_MIN = (PACKAGES.find((p) => p.size === 10 && p.kind === "혼합형") ?? PACKAGES[0]).withoutCopy;
 
 export interface MonthlyGroup {
   /** 묶음 이름. 화면에는 앞에 '지역 + ' 를 붙여 보여준다 */
@@ -168,30 +194,15 @@ export const MONTHLY_GROUPS: MonthlyGroup[] = [
 
 /** 월 단위 진행에서 먼저 밝히는 조건 넷. 셋째가 노출이 확인되지 않은 날의 처리다 (2026-09-09 (수) 대표 지시). 화면과 FAQ 가 같은 문장을 쓴다 */
 export const MONTHLY_TERMS: { title: string; desc: string }[] = [
-  {
-    title: "금액은 지역 · 키워드에 따라 달라질 수 있습니다",
-    desc: "같은 업종이라도 지역마다 경쟁 정도가 다릅니다. 표기 금액은 시작가이고, 키워드를 확인한 뒤 금액을 확정해 안내합니다.",
-  },
-  {
-    title: "진행 전 상담은 필수입니다",
-    desc: "키워드와 금액, 노출 확인 기준을 상담에서 먼저 정하고 시작합니다. 상담 없이 결제부터 받지 않습니다.",
-  },
-  {
-    title: "월 보장 · 노출이 확인되지 않은 날은 하루씩 연장합니다",
-    desc: "카페 마케팅에서 월 보장이라고 부르는 방식입니다. 보장하는 것은 순위가 아니라 기간입니다. 정한 키워드로 매일 검색해 노출을 확인하고, 확인되지 않은 날은 진행 기간을 하루 더합니다. 따로 말씀하지 않으셔도 자동으로 붙고, 며칠이 더해졌는지 월 보고에 적어 드립니다. 몇 위까지 올려 드린다는 약속은 하지 않습니다.",
-  },
-  {
-    title: "매달 노출 위치를 확인해 보고드립니다",
-    desc: "그 키워드로 검색해 블로그 탭과 카페 탭 어디에 떠 있는지 확인하고 캡처와 함께 전달합니다. 다음 달 진행 여부는 그 보고를 보고 정하시면 됩니다.",
-  },
+  { title: "통합검색 월 관리는 별도 상품입니다", desc: "키워드 하나를 25일 동안 매일 확인해 기록으로 보고하고, 기록을 확인하신 뒤 정산합니다. 검색 결과의 위치는 네이버가 정하므로 순위를 약속하지 않습니다." },
 ];
 
 /** 카페 배포가 필요한 이유 */
 export const WHY_CAFE = [
   {
     no: "01",
-    title: "노출 면적 확대",
-    desc: "블로그 + 카페 동시 노출로 같은 키워드에서 진입 경로를 늘립니다.",
+    title: "게시 자료 활용",
+    desc: "업체의 실제 서비스에 맞는 원고를 만들고 게시 허용 범위에 맞춰 전달합니다.",
   },
   {
     no: "02",
@@ -215,6 +226,7 @@ export const PROCESS_STEPS = [
 
 /** 상세페이지 FAQ — FAQPage 구조화 데이터와 공용 */
 export const CAFE_FAQ = [
+  { q: "통합검색에 일정 기간 보이도록 관리하는 상품도 있나요?", a: `있습니다. 통합검색 월 관리로 진행합니다. 키워드 하나를 25일 동안 매일 확인해 기록으로 보고하고, 선입금 없이 기록을 확인하신 뒤 정산합니다. 월 ${SEARCH_CARE_OFFER.price}이고 키워드마다 진행 가능 여부와 단가를 먼저 확인해 드립니다. 검색 결과의 위치는 네이버가 정하므로 순위를 약속하지는 않습니다.` },
   {
     q: "카페 배포 건은 어느 카페에 올라가나요?",
     a: "업종과 지역, 목표 키워드를 기준으로 주제가 맞는 카페에 배정합니다. 진행 후 게시 URL을 전달드리므로 결과를 직접 확인하실 수 있습니다.",
@@ -225,11 +237,11 @@ export const CAFE_FAQ = [
   },
   {
     q: "원고를 직접 주면 얼마나 달라지나요?",
-    a: `같은 구성에서 10건은 ${won(copyDiscount(10))}, 30건은 ${won(copyDiscount(30))}이 내려갑니다. 초안이 이미 있거나 직접 쓰시는 사장님께 맞습니다. 카페별 게시 형식에 맞춘 편집은 그대로 하랑마케팅이 합니다.`,
+    a: `같은 구성에서 10건은 ${won(copyDiscount(10))}, 30건은 ${won(copyDiscount(30))}이 내려갑니다. 초안이 이미 있거나 직접 쓰시는 대표님께 맞습니다. 카페별 게시 형식에 맞춘 편집은 그대로 하랑마케팅이 합니다.`,
   },
   {
-    q: "가격이 전보다 올랐는데 이유가 있나요?",
-    a: `네이버 로직이 바뀌면서 카페 게시 자리를 확보하고 발행 뒤 노출을 확인하는 작업이 늘었습니다. ${PRICE_REVISED_AT}부터 그 작업 비용을 반영해 단가를 조정했습니다. 대신 원고를 직접 주시면 10건 ${won(copyDiscount(10))}, 30건 ${won(copyDiscount(30))}이 내려가고, 카페만 필요하면 등급별 단건 단가로 진행할 수 있습니다. 표에 적힌 금액이 그대로 견적 기준입니다.`,
+    q: "10건과 30건은 건당 가격이 왜 다른가요?",
+    a: `${PRICE_REVISED_AT}부터 건당 가격으로 정리했고, 많이 맡기실수록 건당 가격을 낮췄습니다. 최블은 10건 패키지 건당 ${won(UNIT_PRICE[10].blog)} · 30건 패키지 건당 ${won(UNIT_PRICE[30].blog)}, 카페는 10건 건당 ${won(UNIT_PRICE[10].cafe)} · 30건 건당 ${won(UNIT_PRICE[30].cafe)}입니다. 원고를 직접 주시면 건당 ${won(COPY_DISCOUNT_PER_ITEM)}씩 빠지고, 카페만 필요하면 등급별 단건 단가로 진행할 수 있습니다. 표에 적힌 금액이 그대로 견적 기준입니다.`,
   },
   {
     q: "수량을 나눠서 진행할 수 있나요?",
@@ -237,27 +249,15 @@ export const CAFE_FAQ = [
   },
   {
     q: "카페 배포는 블로그 배포와 무엇이 다른가요?",
-    a: "블로그 배포는 네이버 블로그 탭에, 카페 배포는 카페 탭에 노출됩니다. 카페 탭은 실사용자 후기가 모이는 영역으로 인식되어 신뢰도가 높고, 두 영역에 함께 노출되면 같은 키워드에서 고객이 유입될 경로가 늘어납니다.",
+    a: "블로그와 카페는 게시 채널과 게시판 규정이 다릅니다. 각 채널의 허용 범위를 확인해 게시하며 검색 탭에 노출된다고 약속하지 않습니다.",
   },
   {
     q: "카페만 따로 진행할 수 있나요?",
     a: `가능합니다. 카페 등급별 건당 단가로 진행하고, 원고 작성까지 맡기시면 건당 ${won(CAFE_COPY_FEE)}이 더해집니다.`,
   },
   {
-    q: "월 단위로도 진행할 수 있나요?",
-    a: `가능합니다. 지역과 업종을 붙인 키워드 하나를 정해 한 달 단위로 블로그 탭과 카페 탭 노출을 관리하는 방식이고, 월 ${won(MONTHLY_MIN)}부터 시작합니다. 금액은 지역과 키워드의 경쟁 정도에 따라 달라질 수 있어, 진행 전 상담에서 키워드와 금액, 노출 확인 기준을 먼저 확정합니다. 노출이 확인되지 않은 날은 진행 기간을 하루씩 자동으로 연장하고, 매달 노출 위치를 확인해 보고드립니다.`,
-  },
-  {
-    q: "월 보장은 무슨 뜻인가요?",
-    a: "카페 마케팅에서 월 단위로 노출을 이어서 관리하는 방식을 그렇게 부릅니다. 보장하는 것은 순위가 아니라 기간입니다. 정한 키워드로 매일 검색해 블로그 탭과 카페 탭 노출을 확인하고, 확인되지 않은 날이 나오면 그만큼 진행 기간을 더해 채워 드립니다. 몇 위까지 올려 드린다거나 언제까지 몇 등이 된다는 약속이 아닙니다. 순위는 네이버가 정합니다.",
-  },
-  {
     q: "대표 카페는 어떤 카페인가요?",
     a: "그 주제에서 회원이 많고 매일 새 글이 올라오는 카페입니다. 결혼 준비, 지역 맘카페, 쇼핑 정보, 취미와 문화 카페가 여기에 듭니다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정하고, 게시한 뒤 노출 위치와 게시 URL 을 보고드립니다.",
-  },
-  {
-    q: "월 단위 진행 중에 노출이 안 되는 날은 어떻게 되나요?",
-    a: "그날은 진행 기간에서 빼고 하루를 더합니다. 정한 키워드로 블로그 탭과 카페 탭 노출을 확인하는데, 확인되지 않은 날이 나오면 따로 말씀하지 않으셔도 그만큼 기간이 자동으로 늘어납니다. 며칠이 더해졌는지는 월 보고에 함께 적어 드립니다.",
   },
   {
     q: "발행했는데 노출이 안 되면 어떻게 되나요?",
@@ -283,7 +283,7 @@ export const PRICE_NOTICE = {
   title: "표에 적힌 금액이 최신입니다",
   lines: [
     `${PRICE_REVISION_REASON} ${PRICE_REVISED_AT}부터 적용된 금액입니다.`,
-    "이벤트가나 남은 자리 안내는 두지 않습니다. 언제 문의하셔도 표에 적힌 금액이 그대로 견적 기준입니다. 월 보장은 표기 금액이 시작가이고 키워드를 확인한 뒤 확정합니다.",
+    "이벤트가나 남은 자리 안내는 두지 않습니다. 언제 문의하셔도 표에 적힌 금액이 그대로 견적 기준입니다. 통합검색 월 관리는 키워드마다 단가가 달라 키워드를 받은 뒤 안내합니다.",
   ],
 } as const;
 
@@ -295,15 +295,17 @@ export interface RefCategory {
   crumb: string;
   imagePrefix: string;
   keywords: string[];
+  /** 화면에 남는 캡처 경로 (keywords 와 같은 순서). 숨김 목록을 거른 뒤 채운다 */
+  images?: string[];
 }
 
 /**
- * 업종별 카페 상위노출 레퍼런스 (실사 캡처)
+ * 업종별 카페 정보 정비 레퍼런스 (실사 캡처)
  *
  * 캡처에서 판독한 실제 노출 키워드이므로 임의로 수정하지 말 것.
  * 이미지 경로 = imagePrefix + 2자리 인덱스 + ".png"
  */
-export const REF_CATEGORIES: RefCategory[] = [
+const REF_CATEGORIES_ALL: RefCategory[] = [
   {
     slug: "restaurant",
     short: "맛집·카페",
@@ -1382,6 +1384,50 @@ export const REF_CATEGORIES: RefCategory[] = [
  * 업종을 직접 나열하지 않고 REF_CATEGORIES 에서 뽑는다.
  * 업종이 추가되거나 키워드 순서가 바뀌어도 자동으로 따라간다.
  */
+/*
+ * 레퍼런스 캡처 숨김 목록 (2026-10-03 · H-1147).
+ * 캡처 파일 이름은 키워드 순번으로 붙어서 키워드를 배열에서 지우면 뒤 캡처가 한 칸씩 밀린다.
+ * 그래서 지우지 않고 여기서 거른다. 거른 뒤의 키워드 수 · 합계가 화면 숫자가 된다.
+ * 묶음마다 on 을 대표 결정에 맞춰 켠다. 파일 이름만 적는다 (업체 · 지역은 적지 않는다).
+ */
+const REF_HIDE_GROUPS: { on: boolean; why: string; files: string[] }[] = [
+  {
+    on: true,
+    why: "보청기 체험담 · 진우 판정 게시불가 (의료기기법 · D-0588)",
+    files: ["ref-h-01", "ref-h-02", "ref-h-16", "ref-h-18", "ref-h-20", "ref-h-21"],
+  },
+  {
+    on: true,
+    why: "미리보기에 남의 업체 연락처가 보임 (H-1147 · 갈래와 무관하게 숨김 권고)",
+    files: ["ref-p-52", "ref-p-103", "ref-c-01", "ref-h-08", "ref-h-09"],
+  },
+  {
+    on: true,
+    why: "미리보기에 광고 표기가 안 보이는 후기 (대표 「H-1147 숨겨」 2026-10-03)",
+    files: ["ref-x-38", "ref-x-40", "refs-30", "refs-31", "refs-32", "refs-85", "refs-86", "refs-90"],
+  },
+  {
+    on: true,
+    why: "장례 캡처 사진에 업체 대표번호가 보임 (대표 「대표번호도 숨겨」 2026-10-03)",
+    files: [
+      "ref-h-03", "ref-h-04", "ref-h-05", "ref-h-06", "ref-h-10", "ref-h-11", "ref-h-12",
+      "ref-h-14", "ref-h-15", "ref-h-22", "ref-h-23", "ref-h-24", "ref-h-26",
+    ],
+  },
+];
+const REF_HIDDEN = new Set(REF_HIDE_GROUPS.filter((g) => g.on).flatMap((g) => g.files));
+
+/** 화면에 쓰는 레퍼런스. 숨긴 캡처는 키워드째 빠지고 남은 캡처 경로가 images 에 붙는다 */
+export const REF_CATEGORIES: RefCategory[] = REF_CATEGORIES_ALL.map((c) => {
+  const kept = c.keywords
+    .map((keyword, i) => ({ keyword, image: `${c.imagePrefix}${String(i + 1).padStart(2, "0")}.png` }))
+    .filter((r) => !REF_HIDDEN.has(r.image.replace(/^.*\//, "").replace(/\.png$/, "")));
+  return { ...c, keywords: kept.map((r) => r.keyword), images: kept.map((r) => r.image) };
+});
+
+/** 메인 페이지 업종 대표 캡처에서 뺄 업종. 병원은 광고 표기와 연락처 둘 다 통과하는 캡처가 없어 비워 둔다 (H-1147) */
+const PROOF_SKIP_SLUGS = new Set(["clinic"]);
+
 export interface ProofSample {
   keyword: string;
   image: string;
@@ -1394,7 +1440,7 @@ export interface ProofSample {
 
 /** 업종별 대표 캡처 1장씩 (업종 순서 = REF_CATEGORIES 순서) */
 export const PROOF_SAMPLES: ProofSample[] = REF_CATEGORIES
-  .filter((c) => c.keywords.length > 0)
+  .filter((c) => c.keywords.length > 0 && !PROOF_SKIP_SLUGS.has(c.slug))
   .map((c) => ({
     keyword: c.keywords[0],
     image: refImage(c, 0),
@@ -1416,6 +1462,8 @@ export const REF_TOTAL = REF_CATEGORIES.reduce((n, c) => n + c.keywords.length, 
 
 /** 인덱스 → 캡처 이미지 경로 */
 export function refImage(cat: RefCategory, index: number): string {
+  // 숨김 목록을 거친 카테고리는 images 가 정답이다 (거른 뒤 순번과 파일 번호가 다르다)
+  if (cat.images && cat.images[index]) return cat.images[index];
   return `${cat.imagePrefix}${String(index + 1).padStart(2, "0")}.png`;
 }
 

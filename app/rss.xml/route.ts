@@ -1,5 +1,7 @@
 import { getBlogIndex } from "../lib/blog-index";
 import { PLACE_RANK_GENERATED } from "../lib/place-rank-cases";
+import { CLINIC_LINE_PAGES } from "../lib/clinic-homepage";
+import { PAGE_UPDATED } from "../lib/seo";
 
 export const revalidate = 86400;
 
@@ -49,23 +51,33 @@ export async function GET() {
     })
     .join("\n");
 
-  const items = [rankItem, postItems].filter(Boolean).join("\n");
+  // 병원 홈페이지 라인 여섯 쪽 (TR-0080) · RSS 를 서치어드바이저에 내면 사이트맵과 별도로 발견 경로가 하나 더 생긴다
+  const clinicItems = CLINIC_LINE_PAGES.map((p) => `    <item>
+      <title>${escapeXml(p.title)}</title>
+      <link>${BASE}${p.path}</link>
+      <description>${escapeXml(p.desc)}</description>
+      ${PAGE_UPDATED[p.path] ? `<pubDate>${toRfc822(PAGE_UPDATED[p.path])}</pubDate>` : ""}
+      <guid isPermaLink="false">${BASE}${p.path}?d=${PAGE_UPDATED[p.path] ?? ""}</guid>
+      <category>서비스 안내</category>
+    </item>`).join("\n");
 
-  // 계측 기록이 글보다 최신일 수 있어 둘 중 나중 날짜를 쓴다 (YYYY-MM-DD 는 사전순 = 시간순)
-  const newest = [PLACE_RANK_GENERATED, sorted[0]?.date]
+  const items = [rankItem, clinicItems, postItems].filter(Boolean).join("\n");
+
+  // 피드에 포함된 글·계측·서비스 안내의 실제 수정일을 모두 반영한다.
+  const newest = [PLACE_RANK_GENERATED, ...sorted.map(post => post.date), ...CLINIC_LINE_PAGES.map(page => PAGE_UPDATED[page.path])]
     .filter((d): d is string => Boolean(d))
     .sort()
     .pop();
-  const lastBuild = toRfc822(newest ?? new Date().toISOString());
+  const lastBuild = newest ? toRfc822(newest) : undefined;
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>하랑마케팅 — 소상공인 마케팅 인사이트</title>
+    <title>하랑마케팅 · 소상공인 마케팅 인사이트</title>
     <link>${BASE}/blog</link>
     <description>10년 경력 실무진이 직접 쓰는 네이버 플레이스·블로그·SNS 마케팅 실전 노하우</description>
     <language>ko</language>
-    <lastBuildDate>${lastBuild}</lastBuildDate>
+    ${lastBuild ? `<lastBuildDate>${lastBuild}</lastBuildDate>` : ""}
     <atom:link href="${BASE}/rss.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>${BASE}/icon-192.png</url>

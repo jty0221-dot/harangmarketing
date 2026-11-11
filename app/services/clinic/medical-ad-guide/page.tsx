@@ -53,7 +53,6 @@ export const metadata: Metadata = {
     "병원마케팅",
     "치과마케팅",
     "한의원 마케팅",
-    "병원 홈페이지 제작",
     "병원 개원 광고",
     "의료법 제56조",
     "의료법 제57조",
@@ -61,7 +60,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE.base}${PATH}` },
   openGraph: {
-    title: "의료광고 심의 대상 판정 자료 | 하랑마케팅",
+    title: "심의가 필요한 의료광고인지 먼저 보는 판정 자료 · 하랑마케팅",
     description: DESCRIPTION,
     url: `${SITE.base}${PATH}`,
     images: [ogImage("하랑마케팅 의료광고 심의 판정 자료")],
@@ -375,6 +374,7 @@ const GUIDE_FAQ: FaqItem[] = [
 
 const NEXT_LINKS = [
   { href: "/services/clinic", label: "병원과 의원 마케팅", desc: "진행 범위와 순위 계측 기록을 봅니다" },
+  { href: "/services/homepage/clinic", label: "병원 홈페이지 제작", desc: "진료 정보를 글자로 정리하는 홈페이지를 봅니다" }, // C-06
   { href: "/services/place", label: "네이버 플레이스 SEO", desc: "플레이스 기본 정보와 순위 작업을 봅니다" },
   { href: "/faq", label: "자주 묻는 질문", desc: "계약과 비용에서 많이 받는 질문입니다" },
   { href: "/contact", label: "상담 신청", desc: "지금 글이 위반 상태인지부터 봅니다" },

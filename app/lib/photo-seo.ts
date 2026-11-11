@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
-import { SITE, LOCAL_ID } from './seo';
+import { SITE, LOCAL_ID, metaDesc } from './seo';
 import { FOOD_PLANS, STAY_PLANS } from './photo-pricing';
 import { PHOTO_TYPES, type PhotoPortfolio, type PhotoType } from './photo-portfolios';
 
 export const PHOTO_UPDATED = '2026-09-23';
-export function photoMetadata(path: string, title: string, description: string, image: string): Metadata {
+export function photoMetadata(path: string, title: string, rawDescription: string, image: string, ogTitle: string = title): Metadata {
   const url = SITE.base + path;
+  const description = metaDesc(rawDescription); // 80자 넘으면 빌드에서 멈춘다 (meta-length.ts)
   return {
     title, description, alternates: { canonical: url },
-    openGraph: { type: 'website', locale: 'ko_KR', siteName: '하랑마케팅', title, description, url, images: [{ url: image, alt: title }] },
-    twitter: { card: 'summary_large_image', title, description, images: [image] },
+    openGraph: { type: 'website', locale: 'ko_KR', siteName: '하랑마케팅', title: ogTitle, description, url, images: [{ url: image, alt: title }] },
+    twitter: { card: 'summary_large_image', title: ogTitle, description, images: [image] },
   };
 }
 

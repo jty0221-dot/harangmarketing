@@ -15,7 +15,7 @@ export interface BlogMeta {
 export const BLOG_META: BlogMeta[] = [
   {
     slug: "naver-place-algorithm",
-    title: "2024 네이버 플레이스 상위 노출 알고리즘 완전 분석",
+    title: "2024 네이버 플레이스 정보 정비 알고리즘 완전 분석",
     excerpt: "리뷰 수, 답글률, 사진 개수, 저장 수 · 플레이스 순위를 결정하는 7가지 요소를 실제 데이터로 분석했습니다.",
     tag: "플레이스 SEO",
     date: "2024-11-01",

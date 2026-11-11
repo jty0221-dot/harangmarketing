@@ -7,6 +7,8 @@ import Footer from "../components/Footer";
 import { getPortfolio } from "../lib/portfolio";
 import { TRACK_RECORD, TRACK_TOTALS } from "../lib/track-record";
 import PortfolioGrid from "./PortfolioGrid";
+import HighlightCase from "./HighlightCase";
+import SiteAuditCase from "./SiteAuditCase";
 import { PlaceRankCaseCards } from "../components/PlaceRankCases";
 import JsonLd from "../components/JsonLd";
 import { breadcrumbLd, webPageLd, updatedAt, ogImage } from "../lib/seo";
@@ -16,7 +18,7 @@ import {
 
 const PORTFOLIO_TITLE = "업종별 마케팅 사례";
 const PORTFOLIO_DESCRIPTION =
-  "음식점·카페·병원·미용실·학원부터 인테리어·여행까지, 하랑마케팅이 직접 진행한 업종별 마케팅 사례를 모았습니다.";
+  "업종별 마케팅 사례. 음식점·카페·병원·미용실·학원부터 인테리어·여행까지 하랑마케팅이 직접 진행한 일과 결과를 업종별로 모았습니다.";
 const PORTFOLIO_URL = "https://www.harangmarketing.com/portfolio";
 
 export const metadata: Metadata = {
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
   description: PORTFOLIO_DESCRIPTION,
   alternates: { canonical: PORTFOLIO_URL },
   openGraph: {
-    title: `${PORTFOLIO_TITLE} | 하랑마케팅`,
+    title: "우리 업종에서 한 일과 결과를 보는 마케팅 사례 · 하랑마케팅",
     description: PORTFOLIO_DESCRIPTION,
     url: PORTFOLIO_URL,
     images: [ogImage("하랑마케팅 업종별 마케팅 사례")],
@@ -126,6 +128,12 @@ export default function PortfolioPage() {
 
           <PortfolioGrid industries={industries} />
 
+          {/* 인스타그램 하이라이트 세팅 사례 · 2026-10-22 · 이미지와 칸 이름은 HL_WORKS 에서 온다 */}
+          <HighlightCase />
+
+          {/* 홈페이지 분석 · 개선안 사례 · 2026-10-23 · consent 가 있는 것만 content/site-audit-cases.json 에서 온다 */}
+          <SiteAuditCase />
+
           {/* 순위 계측 사례 — 블로그 사례와 채널이 다른 실적이다.
               숫자와 표기는 app/lib/place-rank-cases.ts 한 곳에서만 온다 */}
           <section className="mt-16">
@@ -139,7 +147,7 @@ export default function PortfolioPage() {
               </h2>
               <p className="w-body-2 mt-3 max-w-[680px]" style={{ color: "var(--w-label-alt)" }}>
                 위가 블로그에 글로 공개한 사례라면, 여기는 순위를 재서 스냅샷으로 남긴 기록입니다.
-                {" "}오후 2~3시에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나입니다. {PLACE_RANK_AS_OF} 계측분입니다.
+                {" "}오후 2~3시에 잰 순위를 그대로 옮겼고, 카드 하나가 키워드 하나이고, 카드마다 마지막으로 잰 날짜를 적었습니다(가장 최근 계측 {PLACE_RANK_AS_OF}).
                 {" "}{PLACE_RANK_LABEL_NOTE}
               </p>
             </div>

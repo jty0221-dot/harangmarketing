@@ -9,11 +9,15 @@ import {
 } from "lucide-react";
 
 import { best, fmt } from "../lib/rank-records";
+import { LANDING_RANK_PROOF } from "../lib/landing-gate";
+import { GA_EVENTS, newEventId } from "../components/Analytics";
+import { attributionLabel } from "../lib/attribution";
+import KakaoSendNotice from "../components/KakaoSendNotice";
 const CHECKS = [
   { icon: Search, label: "플레이스 현재 순위", desc: "주요 키워드 Top 10 진입 여부" },
   { icon: Star, label: "리뷰 수·평점 분석", desc: "경쟁사 대비 리뷰 부족분 파악" },
   { icon: BarChart3, label: "콘텐츠 포화도", desc: "블로그·SNS 노출 공백 확인" },
-  { icon: Users, label: "경쟁사 3곳 비교", desc: "상위 노출 경쟁사 전략 분석" },
+  { icon: Users, label: "경쟁사 3곳 비교", desc: "정보 정비 경쟁사 전략 분석" },
   { icon: TrendingUp, label: "목표 기간 산정", desc: "이 상권이 어느 정도 걸리는 자리인지" },
 ];
 
@@ -55,6 +59,8 @@ export default function FreeCheckPage() {
   // 카톡 창도 막히고 서버 접수도 안 닿은 상태. 이때는 완료라고 하지 않는다
   const [blocked, setBlocked] = useState(false);
   const [kakaoUrl, setKakaoUrl] = useState("");
+  // 신청 내용을 손님 클립보드에 복사했는지 · 완료 화면이 붙여넣기 안내를 붙일지 정한다
+  const [kakaoCopied, setKakaoCopied] = useState(false);
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,8 +68,12 @@ export default function FreeCheckPage() {
     if (sending) return;
     setSending(true);
     const rankInfo = rank ? `\n현재 플레이스 순위: ${rank}위권` : "";
-    const msg = encodeURIComponent(
-      `[무료 진단 신청]\n사장님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`
+    const plain = `[무료 진단 신청]\n대표님 성함: ${name}\n매장명·업종: ${business}\n연락처: ${phone}${rankInfo}`;
+    const msg = encodeURIComponent(plain);
+    // 채널 주소의 text 미리 채우기는 카카오가 보장하지 않는다. 붙여넣기로도 보낼 수 있게 같은 내용을 복사해 둔다
+    navigator.clipboard?.writeText(plain).then(
+      () => setKakaoCopied(true),
+      () => setKakaoCopied(false)
     );
 
     /* 팝업 차단이나 인앱 브라우저에서는 창이 안 열리고 null 이 돌아온다.
@@ -75,6 +85,8 @@ export default function FreeCheckPage() {
     /* 서버 접수 (저장 + 알림).
        예전에는 이 길이 아예 없어서 카톡 창이 막히면 접수 경로가 0 개였다. */
     let saved = false;
+    // 픽셀과 서버 전환이 같은 신청을 하나로 세도록 같은 id 를 쓴다
+    const eventId = newEventId();
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -84,10 +96,12 @@ export default function FreeCheckPage() {
           phone,
           industry: business,
           message: rank ? `현재 플레이스 순위: ${rank}위권` : "",
-          source: "free-check",
+          source: attributionLabel() ? `free-check · ${attributionLabel()}` : "free-check",
+          eventId,
         }),
       });
       saved = res.ok;
+      if (saved) GA_EVENTS.leadSaved("free-check", attributionLabel() || "direct", eventId);
     } catch {
       saved = false;
     }
@@ -105,8 +119,8 @@ export default function FreeCheckPage() {
       {/* Top bar */}
       <div className="bg-gray-950 border-b border-white/5 py-3 px-4 flex items-center justify-between max-w-5xl mx-auto">
         <Link href="/" className="flex items-center gap-2 min-h-11">
-          <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-7 h-7" />
-          <span className="text-white font-black text-[15px]">하랑<span className="text-blue-400">마케팅</span></span>
+          <img src="/harang-icon-on-dark.svg" alt="하랑마케팅 로고" width={28} height={28} className="w-7 h-7" />
+          <span className="text-white font-black text-[15px]">하랑<span className="text-[var(--w-blue-70)]">마케팅</span></span>
         </Link>
         <a
           href="tel:010-7541-9054"
@@ -190,22 +204,24 @@ export default function FreeCheckPage() {
               </div>
             </div>
 
-            {/* Cases */}
-            <div>
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 실제 성과</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {CASES.map((c) => (
-                  <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
-                    <div className="flex items-center gap-1.5 mb-1.5">
-                      <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
-                      <span className="text-[11px] text-gray-400">{c.loc}</span>
+            {/* Cases · 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
+            {LANDING_RANK_PROOF && CASES.length > 0 && (
+              <div>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 진행 기록</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {CASES.map((c) => (
+                    <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
+                      <div className="flex items-center gap-1.5 mb-1.5">
+                        <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
+                        <span className="text-[11px] text-gray-400">{c.loc}</span>
+                      </div>
+                      <p className="font-black text-white text-sm">{c.result}</p>
+                      <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
                     </div>
-                    <p className="font-black text-white text-sm">{c.result}</p>
-                    <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right: Form */}
@@ -238,6 +254,7 @@ export default function FreeCheckPage() {
                 </div>
                 <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>
                 <p className="text-gray-500 text-sm mb-6">카카오톡 채널에서 신청이 접수됩니다.<br />접수는 24시간 받고, 하랑 대표가 직접 확인해 연락드립니다.</p>
+                <KakaoSendNotice href={kakaoUrl || "https://pf.kakao.com/_MuUkG/chat"} copied={kakaoCopied} />
                 <Link
                   href="/"
                   className="inline-flex items-center gap-2 min-h-11 md:min-h-0 text-blue-600 font-bold text-sm hover:underline"
@@ -248,7 +265,7 @@ export default function FreeCheckPage() {
             ) : (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Form header */}
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-5">
+                <div className="bg-[var(--w-primary)] px-6 py-5">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Handshake size={12} className="text-yellow-300" strokeWidth={2.5} />
                     <span className="text-blue-200 text-[11px]">10년 경력 누적 500건 프로젝트</span>
@@ -259,15 +276,16 @@ export default function FreeCheckPage() {
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   <div>
-                    <label htmlFor="check-name" className="block text-xs font-bold text-gray-700 mb-1.5">사장님 성함</label>
+                    <label htmlFor="check-name" className="block text-xs font-bold text-gray-700 mb-1.5">대표님 성함</label>
                     <input
                       id="check-name"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="홍길동"
+                      autoComplete="name"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                     />
                   </div>
                   <div>
@@ -278,8 +296,9 @@ export default function FreeCheckPage() {
                       value={business}
                       onChange={(e) => setBusiness(e.target.value)}
                       placeholder="예: 하랑카페 / 카페"
+                      autoComplete="organization"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                     />
                   </div>
                   <div>
@@ -290,8 +309,10 @@ export default function FreeCheckPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="010-0000-0000"
+                      autoComplete="tel"
+                      inputMode="tel"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                     />
                   </div>
                   <div>
@@ -306,7 +327,8 @@ export default function FreeCheckPage() {
                         onChange={(e) => setRank(e.target.value)}
                         placeholder="예: 15"
                         min="1"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
+                        inputMode="numeric"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[var(--w-primary)] focus:ring-[3px] focus:ring-[rgba(0,102,255,0.12)] transition-colors"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500">위</span>
                     </div>
@@ -362,7 +384,7 @@ export default function FreeCheckPage() {
                     전국 어디든
                   </span>
                   <span className="text-[11px] text-gray-600">10년 경력</span>
-                  <span className="text-[11px] text-gray-600">500+ 프로젝트</span>
+                  <span className="text-[11px] text-gray-600">누적 500건</span>
                 </div>
               </div>
             )}

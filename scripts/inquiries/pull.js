@@ -242,6 +242,24 @@ async function main() {
   const write = args.includes('--write')
 
   const { json, site } = await fetchFeed(since)
+  // Research the newest linked inquiries before producing a copyable draft.
+  // Bound work per pull; older linked inquiries remain explicitly unreviewed.
+  const linked = (json.inquiries || []).filter(q => q.reply?.needsResearch).slice(0, 5)
+  for (const q of linked) {
+    try {
+      const response = await fetch(site + '/api/admin/inquiries/research?id=' + encodeURIComponent(q.id), {
+        headers: { Authorization: 'Bearer ' + env('REPORTS_API_TOKEN') },
+        signal: AbortSignal.timeout(55000),
+      })
+      const result = await response.json()
+      if (response.ok && result.ok) {
+        q.reply = result.reply
+        q.research = result.research
+      } else q.researchError = '링크 조사 실패. 페이지 내용 확인 전 초안입니다.'
+    } catch {
+      q.researchError = '링크 조사 실패. 페이지 내용 확인 전 초안입니다.'
+    }
+  }
   const now = new Date()
 
   if (asJson) {

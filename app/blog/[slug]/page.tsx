@@ -4,10 +4,11 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollProgressBar from "../../components/ScrollProgressBar";
+import JsonLd from "../../components/JsonLd";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "../../lib/blog-posts";
 import { BLOG_META } from "../../lib/blog-meta";
-import { ogImage } from "../../lib/seo";
+import { ogImage, fitDesc } from "../../lib/seo";
 
 const POSTS: Record<string, {
   title: string;
@@ -20,7 +21,7 @@ const POSTS: Record<string, {
   cta: string;
 }> = {
   "naver-place-algorithm": {
-    title: "2024 네이버 플레이스 상위 노출 알고리즘 완전 분석",
+    title: "2024 네이버 플레이스 정보 정비 알고리즘 완전 분석",
     tag: "플레이스 SEO",
     tagColor: "bg-blue-50 text-blue-600",
     readTime: "8분",
@@ -195,7 +196,7 @@ const POSTS: Record<string, {
     sections: [
       {
         heading: "배달앱 알고리즘의 비밀",
-        body: "배달의민족·쿠팡이츠·요기요는 모두 비슷한 기준으로 매장을 순위에 올립니다. 광고비(울트라콜, 오픈리스트)가 상위 노출에 도움이 되지만 리뷰 수와 평점이 더 장기적으로 중요합니다. 리뷰가 많은 매장은 광고비를 줄여도 노출이 유지됩니다.",
+        body: "배달의민족·쿠팡이츠·요기요는 모두 비슷한 기준으로 매장을 순위에 올립니다. 광고비(울트라콜, 오픈리스트)가 정보 정비에 도움이 되지만 리뷰 수와 평점이 더 장기적으로 중요합니다. 리뷰가 많은 매장은 광고비를 줄여도 노출이 유지됩니다.",
         tips: [
           "리뷰 수 · 동일 카테고리 상위 20%가 기본 조건",
           "평점 4.5 이상 유지 · 한 번 내려가면 되돌리는 데 오래 걸린다",
@@ -277,7 +278,7 @@ const POSTS: Record<string, {
         heading: "왜 맘카페인가요?",
         body: "맘카페는 네이버 카페 중에서도 지역 기반 주부 커뮤니티입니다. '동네 맛집 어디가 좋아요?', '어린이집 어디가 좋아요?'처럼 실생활 구매 결정을 하는 곳입니다. 이 채널의 가장 큰 장점은 신뢰도입니다. 광고가 아닌 '이웃의 추천'으로 받아들여지기 때문에 거부감이 적습니다.",
         tips: [
-          "카페·음식점·학원·키즈 관련 업종에 특히 효과적",
+          "카페·음식점·학원·키즈 업종과 잘 맞는 채널",
           "주부 타겟 고객이 많은 뷰티·네일 업종에 맞는 채널",
           "게시글 하나가 같은 동네 회원에게 바로 닿는 고밀도 채널",
         ],
@@ -289,7 +290,7 @@ const POSTS: Record<string, {
           "대가를 받고 쓴 글에는 그 사실을 표시해야 합니다 (표시광고법)",
           "구체적인 경험 서술 · '맛있었어요'가 아닌 '2시에 갔더니 대기 20분이었고 떡볶이가...'",
           "자연스러운 질문글 활용 · '이 근처 카페 어디 좋아요?' 답변으로 삽입",
-          "1회성이 아닌 2~3주에 걸친 분산 게시 (집중하면 어뷰징으로 신고됨)",
+          "게시판의 홍보 허용 규정과 광고·협찬 표시를 확인한 뒤 합의한 일정으로 게시",
         ],
       },
       {
@@ -328,7 +329,7 @@ const POSTS: Record<string, {
         heading: "왜 리뷰 100개가 기준선인가요?",
         body: "네이버 플레이스 알고리즘에서 리뷰 수는 가장 직관적인 신뢰 지표입니다. 100개가 '마법의 숫자'는 아니지만, 대부분의 업종에서 심리적 신뢰 임계점이 되는 기준입니다.",
         tips: [
-          "리뷰 50개 미만 · 검색 상위 노출 불리, 신규 방문객 전환율 낮음",
+          "리뷰 50개 미만 · 검색 정보 정비 불리, 신규 방문객 전환율 낮음",
           "리뷰 50~100개 · 경쟁사 대비 기본 신뢰 확보, Top 10~20 가능",
           "리뷰 100개 이상 · 신규 고객의 '여기 믿어도 되겠다' 심리 자동 형성",
           "리뷰 200개+ · 지역 대표 매장 포지션, 광고 없이도 꾸준한 유입",
@@ -594,7 +595,7 @@ const POSTS: Record<string, {
         tips: [
           "네이버 검색창 자동완성 · '지역명+업종'을 입력하면 실제 검색어가 나옴",
           "연관검색어 하단 리스트 · 실제 사용자가 이어서 찾는 키워드",
-          "네이버 VIEW 탭 · 상위 노출된 블로그 제목에서 키워드 역추적",
+          "네이버 VIEW 탭 · 정보 정비된 블로그 제목에서 키워드 역추적",
           "경쟁사 블로그 태그·카테고리 분석 · 그들이 쓰는 키워드 체크",
         ],
       },
@@ -664,7 +665,7 @@ const POSTS: Record<string, {
         heading: "학원 마케팅의 결정적 채널 3가지",
         body: "학부모가 학원을 선택하는 과정은 정해져 있습니다. 네이버 검색 → 블로그 후기 확인 → 맘카페 추천 여부 확인 → 전화 상담. 이 세 채널을 모두 잡아야 합니다.",
         tips: [
-          "네이버 플레이스: '지역명+학원' 검색 시 상위 노출이 첫 관문",
+          "네이버 플레이스: '지역명+학원' 검색 시 정보 정비이 첫 관문",
           "블로그: 원장님 전문성을 드러내는 교육 철학·수업 방식 콘텐츠",
           "맘카페: 학부모가 '우리 동네 학원 추천' 글에서 내 학원이 언급되어야 함",
         ],
@@ -707,13 +708,13 @@ export async function generateMetadata(
   if (dynamicPost) {
     return {
       title: `${dynamicPost.title} · 하랑마케팅 블로그`,
-      description: dynamicPost.excerpt,
+      description: fitDesc(dynamicPost.excerpt),
       keywords: ["소상공인 마케팅", "하랑마케팅", "마케팅 노하우", dynamicPost.title],
       authors: [{ name: "하랑마케팅" }],
       alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
       openGraph: {
         title: dynamicPost.title,
-        description: dynamicPost.excerpt,
+        description: fitDesc(dynamicPost.excerpt),
         url: `https://www.harangmarketing.com/blog/${slug}`,
         type: "article",
         publishedTime: dynamicPost.date,
@@ -730,13 +731,14 @@ export async function generateMetadata(
     title: `${post.title} · 하랑마케팅 블로그`,
     // 내린 글은 URL 은 살아 있으나 검색엔진에 올리지 않는다 (H-0081)
     robots: meta?.unlisted ? { index: false, follow: false } : undefined,
-    description: post.summary,
+    // 검색 결과 설명은 80자 안 (2026-10-28 · 네이버 서치어드바이저). 요약을 문장 경계에서 자르고, 남는 자리에만 주제 한 줄을 붙인다
+    description: fitDesc(post.summary, `${post.tag} 실무 노하우를 하랑마케팅이 정리했습니다.`),
     keywords: ["소상공인 마케팅", "하랑마케팅", post.tag, "마케팅 노하우", post.title],
     authors: [{ name: "하랑마케팅" }],
     alternates: { canonical: `https://www.harangmarketing.com/blog/${slug}` },
     openGraph: {
       title: post.title,
-      description: post.summary,
+      description: fitDesc(post.summary),
       url: `https://www.harangmarketing.com/blog/${slug}`,
       type: "article",
       publishedTime: meta?.date,
@@ -767,7 +769,7 @@ function blogPostingLd(slug: string, title: string, excerpt: string, tag: string
       "@type": "Organization",
       "name": "하랑마케팅",
       "url": BASE,
-      "logo": { "@type": "ImageObject", "url": `${BASE}/favicon.svg` },
+      "logo": { "@type": "ImageObject", "url": `${BASE}/harang-logo-square.png`, "width": 512, "height": 512 },
     },
     "image": `${BASE}/og-image.png`,
     "inLanguage": "ko-KR",
@@ -794,11 +796,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (dynamicPost) {
     return (
       <>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd(slug, dynamicPost.title, dynamicPost.excerpt, "마케팅 인사이트", dynamicPost.date)) }} />
+        <JsonLd data={blogPostingLd(slug, dynamicPost.title, dynamicPost.excerpt, "마케팅 인사이트", dynamicPost.date)} />
         <ScrollProgressBar />
         <Header />
         <main className="pt-[104px] md:pt-[108px]">
-          <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
+          <section className="bg-[var(--h-dark)] py-12 md:py-20">
             <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
               <Link href="/blog" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
                 <ArrowLeft size={13} /> 블로그 목록으로
@@ -838,7 +840,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
           </article>
-          <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
+          <section className="py-12 bg-[var(--w-primary)]">
             <div className="max-w-2xl mx-auto px-4 text-center">
               <h2 className="text-xl md:text-2xl font-black text-white mb-3">글을 읽고 직접 적용이 어려우신가요?</h2>
               <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 카카오톡 24시간 접수</p>
@@ -873,15 +875,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd(slug, post.title, post.summary, post.tag, meta?.date)) }}
-      />
+      <JsonLd data={blogPostingLd(slug, post.title, post.summary, post.tag, meta?.date)} />
       <ScrollProgressBar />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
+        <section className="bg-[var(--h-dark)] py-12 md:py-20">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
             <Link href="/blog" className="inline-flex items-center gap-1.5 min-h-11 md:min-h-0 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
               <ArrowLeft size={13} /> 블로그 목록으로
@@ -947,7 +946,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
 
         {/* CTA */}
-        <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
+        <section className="py-12 bg-[var(--w-primary)]">
           <div className="max-w-2xl mx-auto px-4 text-center">
             <h2 className="text-xl md:text-2xl font-black text-white mb-3">{post.cta}</h2>
             <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 카카오톡 24시간 접수</p>

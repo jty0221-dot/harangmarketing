@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import IndustrySteps from "../../components/IndustrySteps";
+import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AnswerBlock from "../../components/AnswerBlock";
@@ -49,15 +51,15 @@ const CAFE_FACTS = [
 ];
 
 const PAGE_TITLE = "카페·베이커리 마케팅 | 플레이스 SEO · 리뷰 · 블로그";
-const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 상위 노출, 포토리뷰 확보, 블로그·인스타 바이럴로 손님이 카페를 고르는 자리를 채웁니다. 무료 상담 가능.";
+const PAGE_DESCRIPTION = "카페·베이커리 전문 마케팅. 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 블로그·인스타 바이럴로 손님이 카페를 고르는 자리를 채웁니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: ["카페 마케팅", "카페 플레이스 SEO", "카페 리뷰 마케팅", "베이커리 마케팅", "네이버 플레이스 카페"],
   openGraph: {
-    title: "카페·베이커리 마케팅 | 하랑마케팅",
-    description: "플레이스 상위 노출부터 포토리뷰 확보까지. 카페 전문 마케팅 전략.",
+    title: "손님이 카페를 고르는 자리를 채우는 카페 마케팅 · 하랑마케팅",
+    description: "플레이스 정보 정비부터 실제 방문 후기 안내까지. 카페 전문 마케팅 전략.",
     url: "https://www.harangmarketing.com/services/cafe",
     images: [ogImage()],
   },
@@ -68,13 +70,13 @@ const SERVICES = [
     icon: MapPin,
     color: "from-blue-500 to-blue-700",
     title: "플레이스 SEO",
-    desc: "카페 키워드 최적화 · 상위 노출 · 경쟁사 분석",
+    desc: "카페 키워드 최적화 · 정보 정비 · 경쟁사 분석",
   },
   {
     icon: Star,
     color: "from-blue-600 to-orange-600",
     title: "리뷰 · 체험단",
-    desc: "음료·디저트 체험단 운영 · 포토리뷰 확보",
+    desc: "음료·디저트 체험단 운영 · 실제 방문 후기 안내",
   },
   {
     icon: MessageSquare,
@@ -135,7 +137,7 @@ export default function CafeLandingPage() {
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24">
+        <section className="bg-[var(--h-dark)] py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-600/30 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
               <Coffee size={12} strokeWidth={2.5} />
@@ -146,8 +148,8 @@ export default function CafeLandingPage() {
               <span className="text-blue-400">이렇게 하면 됩니다</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-              네이버 플레이스 상위 노출부터 포토리뷰 확보까지.<br />
-              전국 카페 30곳 이상 실제 성과로 검증된 전략.
+              네이버 플레이스 정보 정비부터 실제 방문 후기 안내까지.<br />
+              전국 카페 30곳 이상을 직접 진행하며 정리한 전략.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
@@ -163,13 +165,18 @@ export default function CafeLandingPage() {
                 내 카페 무료 진단
               </Link>
             </div>
+            <p className="mt-4 text-sm">
+              <Link href="/services#pricing" className="inline-flex items-center min-h-11 text-gray-300 underline underline-offset-4 hover:text-white transition-colors">
+                항목별 비용 보기
+              </Link>
+            </p>
           </div>
         </section>
 
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock
           question="카페 마케팅은 어떻게 해야 효과가 있나요?"
-          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 상위 노출, 포토리뷰 확보, 인스타그램 비주얼 콘텐츠 세 가지입니다. 사진 품질과 포토리뷰 수가 카페 업종의 플레이스 순위를 가장 크게 좌우하기 때문입니다. ${CAFE_STORY} 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
+          answer={`카페·베이커리 마케팅의 핵심은 네이버 플레이스 정보 정비, 실제 방문 후기 안내, 인스타그램 비주얼 콘텐츠 세 가지입니다. 손님이 방문 전에 매장과 메뉴를 확인할 수 있게 자료를 정리합니다. ${CAFE_STORY} 네이버 플레이스 순위는 스냅샷으로 저장해 월 리포트로 공유합니다. 방문객·매출·예약 건수는 계측 대상이 아니어서 수치로 제시하지 않습니다. 카페 마케팅 비용은 상권 경쟁 강도와 진행 범위에 따라 달라져 현황 진단 후 안내드리며, 상담과 진단은 0원입니다.`}
           facts={CAFE_FACTS}
         />
 
@@ -226,12 +233,14 @@ export default function CafeLandingPage() {
           </div>
         </section>
 
+        <IndustrySteps industry="cafe" />
+
         {/* 자주 묻는 질문 - 화면 노출 + FAQPage 구조화 데이터 */}
         <JsonLd data={webPageLd({ path: "/services/cafe", name: `${PAGE_TITLE} | 하랑마케팅`, description: PAGE_DESCRIPTION, dateModified: updatedAt("/services/cafe") })} />
-        <JsonLd data={faqLd(SERVICE_FAQ, `${SITE.base}/services/cafe`)} />
+        <JsonLd data={faqLd([...SERVICE_FAQ, ...INDUSTRY_EXTRA.cafe.faqs], `${SITE.base}/services/cafe`)} />
         <FaqAccordion
           items={SERVICE_FAQ}
-          title="카페 사장님들이 가장 많이 묻는 질문"
+          title="카페 대표님들이 가장 많이 묻는 질문"
           subtitle="상담에서 실제로 나온 질문을 그대로 옮겼습니다. 순위 숫자는 저장해 둔 스냅샷 실측값입니다."
           showMoreHref="/faq"
         />
