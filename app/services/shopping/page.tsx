@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 
@@ -95,6 +96,15 @@ export default function ShoppingPage() {
           link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={SHOPPING_FACTS}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="온라인 가게의 상품 화면과 인스타그램을 정리하고, 오프라인 매장이 있으면 지도 검색에서도 찾을 수 있게 하는 일입니다."
+          who="스마트스토어나 매장을 열었는데 들어오는 사람이 적거나, 들어와도 사지 않고 나가는 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.smartstore, PLAIN_TERMS.detailPage, PLAIN_TERMS.conversion, PLAIN_TERMS.place]}
+        >
+          <SearchSketch focus={["site", "place"]} />
+        </Plain>
 
         {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
         <AnswerRow

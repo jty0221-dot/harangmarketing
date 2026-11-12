@@ -1,10 +1,11 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, ItemList, Steps, Table,
   QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, updatedAt, howToLd, type FaqItem,
 } from "../../lib/seo";
@@ -194,6 +195,15 @@ export default function ReviewServicePage() {
             { label: "상담 비용", value: "0원" },
           ]}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="블로거와 인플루언서를 모집해 매장에 직접 방문하게 하고, 방문 확인과 후기 글 주소 회수까지 맡는 일입니다."
+          who="문을 연 지 얼마 안 됐거나 후기가 적어서, 손님이 검색해도 참고할 글이 없는 매장 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.review, PLAIN_TERMS.place, PLAIN_TERMS.exposure]}
+        >
+          <SearchSketch focus={["post"]} />
+        </Plain>
 
         <AnswerRow
           question="체험단 대행은 무엇을 해주나요?"

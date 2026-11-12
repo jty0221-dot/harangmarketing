@@ -2,10 +2,11 @@ import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import {
+import { Plain,
   SianMain, PageHead, AnswerRow, Section, ItemList, Steps,
   QuestionList, CostLine, CloseBand, Fold, Table,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, itemListLd, type FaqItem, PAGE_UPDATED,
 } from "../../lib/seo";
@@ -342,6 +343,13 @@ export default function InstagramServicePage() {
             { label: "하이라이트", value: "업종별 칸 구성" },
             { label: "상담·진단", value: "0원" },
           ]}
+        />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="인스타그램 프로필과 하이라이트, 게시물을 정리해서 들어온 사람이 무슨 가게인지 바로 알고 문의까지 갈 수 있게 하는 일입니다."
+          who="계정은 있는데 올려도 반응이 없거나, 프로필을 본 사람이 예약과 문의로 이어지지 않는 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.highlight, PLAIN_TERMS.conversion]}
         />
 
         <AnswerRow

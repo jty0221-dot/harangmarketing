@@ -23,6 +23,7 @@ export const SIAN_ROUTES: ReadonlySet<string> = new Set([
   "/services",
   "/about",
   "/cases",
+  "/cases/place-rank",
   "/portfolio",
   "/process",
   "/faq",

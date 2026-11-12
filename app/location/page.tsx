@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { SianMain, PageHead, AnswerRow, Section, ItemList, CloseBand } from "../components/sian/Sian";
+import { SearchSketch, TermList, SianMain, PageHead, AnswerRow, Section, ItemList, CloseBand } from "../components/sian/Sian";
+import { PLAIN_TERMS } from "../lib/plain-terms";
 import { SITE, ogImage } from "../lib/seo";
 
 const BASE = SITE.base;
@@ -105,7 +106,13 @@ export default function LocationHubPage() {
           answer="하랑마케팅은 전국 소상공인을 지원합니다. 지금까지 맡은 매장이 부산·대구·제주·세종을 포함해 14개 시·도에 있습니다. 고양·일산·파주·김포·부천 등 경기 북서부는 사무실이 가까워 방문 상담이 가능하고, 그 밖의 지역은 카카오톡·전화·화상으로 상담합니다. 온라인 마케팅 작업 자체는 지역과 상관없이 동일하게 진행하며, 지역마다 검색 패턴이 달라 상권을 먼저 분석한 뒤 키워드를 정합니다. 상담 비용은 0원입니다."
         />
 
-        <Section soft title="지역별 전략 보기" desc="지역을 고르면 그 지역 상권에서 실제로 만든 성과를 볼 수 있습니다">
+        {/* 지역 이름을 붙여 검색했을 때 보이는 화면 그림 · 처음 보는 대표님용 */}
+        <Section soft title="동네 이름을 붙여 검색하면 이런 화면이 나옵니다" desc="손님은 가게 이름보다 동네 이름과 업종을 먼저 칩니다. 그래서 지역마다 채워야 하는 자리가 다릅니다.">
+          <SearchSketch focus={["place", "post"]} />
+          <TermList terms={[PLAIN_TERMS.keyword, PLAIN_TERMS.place]} />
+        </Section>
+
+        <Section title="지역별 전략 보기" desc="지역을 고르면 그 지역 상권에서 실제로 만든 성과를 볼 수 있습니다">
           <ItemList one items={AREAS.map((a) => ({ title: `${a.name} · ${a.head}`, desc: `${a.body} (${a.spots})`, href: a.href }))} />
         </Section>
 

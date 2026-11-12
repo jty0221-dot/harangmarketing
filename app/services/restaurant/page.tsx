@@ -3,10 +3,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import CaseShots from "../../components/sian/CaseShots";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import { SITE, faqLd, webPageLd, type FaqItem, PAGE_UPDATED, ogImage } from "../../lib/seo";
 import { byIndustry, byKeyword, fmtSentence, gap } from "../../lib/rank-records";
@@ -141,6 +142,15 @@ export default function RestaurantPage() {
           link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={FOOD_FACTS}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="손님이 동네 맛집을 검색했을 때 우리 가게가 보이도록 네이버 플레이스 정보와 사진, 방문 후기, 지역 커뮤니티 글을 채우는 일입니다."
+          who="단골은 있는데 새 손님이 검색으로 들어오지 않는 음식점 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.placeSeo, PLAIN_TERMS.review, PLAIN_TERMS.momcafe]}
+        >
+          <SearchSketch focus={["place", "post"]} />
+        </Plain>
 
         {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
         <AnswerRow

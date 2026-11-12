@@ -8,9 +8,9 @@
 .notice { margin-top: 28px; padding: 20px 0; border-top: 2px solid var(--w-label-strong); border-bottom: 1px solid var(--h-border); color: var(--h-muted); }
 .notice p + p { margin-top: 8px !important; }
 .noticeTitle { font-weight: 700; color: var(--w-label-strong); }
-.best { display: inline-block; margin-left: 8px; font-style: normal; font-size: 13px; font-weight: 700; color: var(--w-primary-strong); white-space: nowrap; }
+.best { display: inline-block; margin-left: 8px; font-style: normal; font-size: 14px; font-weight: 700; color: var(--w-primary-strong); white-space: nowrap; }
 .num { white-space: nowrap; font-variant-numeric: tabular-nums; }
-.topics { display: block; margin-top: 4px; font-size: 13px; color: var(--h-muted); }
+.topics { display: block; margin-top: 4px; font-size: 14px; color: var(--h-muted); }
 .fig { margin: 0 0 16px; border: 1px solid var(--h-border); border-radius: 12px; overflow: hidden; background: #fff; }
 .fig figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 10px 14px; font-size: 14px; font-weight: 700; color: var(--w-label-strong); border-bottom: 1px solid var(--h-border); }
 .fig figcaption a { color: var(--w-primary-strong); white-space: nowrap; }

@@ -4,10 +4,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import CaseShots from "../../components/sian/CaseShots";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 import { fmtMove } from "../../lib/place-rank-cases";
 import { byKeyword, fmtSentence } from "../../lib/rank-records";
@@ -133,6 +134,15 @@ export default function CafeLandingPage() {
           link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={CAFE_FACTS}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="손님이 동네 카페를 검색했을 때 우리 카페가 보이도록 네이버 플레이스 정보와 사진, 방문 후기, 블로그 글을 채우는 일입니다."
+          who="새로 문을 열었거나, 맛에는 자신 있는데 검색하면 주변 카페보다 아래에 나오는 카페 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.placeSeo, PLAIN_TERMS.review, PLAIN_TERMS.snapshot]}
+        >
+          <SearchSketch focus={["place", "post"]} />
+        </Plain>
 
         {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
         <AnswerRow

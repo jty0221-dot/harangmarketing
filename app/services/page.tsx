@@ -15,10 +15,11 @@ import { REF_TOTAL as DP_TOTAL, REF_CUTS as DP_CUTS, REF_CATEGORIES as DP_CATEGO
 import { HL_COVERS, HL_TOTAL, HL_SHOP_TOTAL } from "../lib/highlight-reference";
 import { FOOD_SHOTS, SPACE_SHOTS } from "../lib/photo-reference";
 import { KS, KS_PLANS, won as ksWon } from "../lib/kakao-sender";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, LinkList, Steps,
   RankSection, QuestionList, CostLine, CloseBand, Fold, Table,
 } from "../components/sian/Sian";
+import { PLAIN_TERMS } from "../lib/plain-terms";
 import s from "../components/sian/sian.module.css";
 import { SITE, DEFINITIONS, ANSWER_SENTENCES, webPageLd, updatedAt, breadcrumbLd, definitionsLd, faqLd, OG_IMAGE, ogImage, companyYear } from "../lib/seo";
 import { best, fmtLong } from "../lib/rank-records";
@@ -756,6 +757,8 @@ const COMPARE = [
 ];
 
 const block = { display: "block" } as const;
+/* 용어 사전에서 병·의원 용어가 시작되는 자리 (seo.ts DEFINITIONS 순서) */
+const GENERAL_TERMS = DEFINITIONS.findIndex((d) => d.term === "의료광고 사전심의");
 
 export default function ServicesPage() {
   return (
@@ -776,6 +779,15 @@ export default function ServicesPage() {
             { value: "10년", label: "마케터 경력" },
           ]}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="네이버 지도, 블로그와 후기, 인스타그램, 홈페이지처럼 손님이 가게를 찾고 확인하는 자리를 채우는 일을 합니다. 필요한 것만 골라서 맡기실 수 있습니다."
+          who="무엇부터 해야 할지 모르겠는 대표님은 아래 그림에서 우리 가게가 비어 있는 자리부터 확인해 보세요."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.keyword, PLAIN_TERMS.exposure, PLAIN_TERMS.review]}
+        >
+          <SearchSketch focus={["ad", "place", "post", "site"]} />
+        </Plain>
 
         {/* AEO · 서비스 · 가격 정답 (예전 ServicePriceAnswer 의 speakable 문장 그대로 · 단가는 아래 #pricing 표) */}
         <AnswerRow
@@ -932,9 +944,18 @@ export default function ServicesPage() {
 
         {/* 용어 정의 · definitionsLd("/services") 와 짝. 홈의 「마케팅 용어」 접힌 목록이 여기를 전체 화면으로 가리킨다 */}
         <Section soft id="glossary" title="마케팅 용어, 쉽게 정리했습니다" desc="상담 중 가장 많이 나오는 용어를 대표님 눈높이에서 풀어썼습니다.">
-          <Fold summary={`용어 ${DEFINITIONS.length}개 전체 보기`}>
+          {/* 일반 용어는 펼쳐 둔다 (처음 보는 대표님이 먼저 봐야 하는 칸). 병·의원 · AI 용어만 접는다 */}
+          <dl className={`${s.items} ${s.items1}`}>
+            {DEFINITIONS.slice(0, GENERAL_TERMS).map((d) => (
+              <div key={d.term}>
+                <dt>{d.term}</dt>
+                <dd className="speakable">{d.definition}</dd>
+              </div>
+            ))}
+          </dl>
+          <Fold summary={`병·의원 · AI 검색 용어 ${DEFINITIONS.length - GENERAL_TERMS}개 더 보기`}>
             <dl className={`${s.items} ${s.items1}`}>
-              {DEFINITIONS.map((d) => (
+              {DEFINITIONS.slice(GENERAL_TERMS).map((d) => (
                 <div key={d.term}>
                   <dt>{d.term}</dt>
                   <dd className="speakable">{d.definition}</dd>

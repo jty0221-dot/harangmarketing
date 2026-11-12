@@ -4,10 +4,11 @@ import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import { SITE, ORG_ID, LOCAL_ID, PAGE_UPDATED, faqLd, breadcrumbLd, webPageLd, type FaqItem } from "../../lib/seo";
 import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-notice";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, ItemList, LinkList, Steps,
   QuestionList, CostLine, CloseBand, Fold, Table,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import c from "./cafe-distribution.module.css";
 import CafeNoticeReopen from "../../components/CafeNoticeReopen";
 import { SEARCH_CARE_OFFER } from "../../lib/search-care-offer";
@@ -175,6 +176,15 @@ export default function CafeDistributionPage() {
             { label: "결과", value: "노출 확인 · URL 보고" },
           ]}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="우리 가게 이야기를 담은 글을 네이버 블로그와 네이버 카페에 올리고, 올린 뒤 검색 화면에 보이는지 확인해서 알려 드리는 일입니다."
+          who="손님이 가게 이름이나 동네 업종을 검색했을 때 우리 가게에 대한 글이 거의 나오지 않는 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.cafeTab, PLAIN_TERMS.keyword, PLAIN_TERMS.exposure]}
+        >
+          <SearchSketch focus={["post"]} />
+        </Plain>
 
         <AnswerRow
           question="블로그는 올리고 있는데 왜 문의는 그대로일까요"

@@ -2,10 +2,11 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, ItemList, LinkList, Steps, Table,
   QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, updatedAt, howToLd, type FaqItem } from "../../lib/seo";
 import { getDetailPageCases, INDUSTRY_LABEL } from "../../lib/detail-page-cases";
 import { REF_TOTAL, REF_CATEGORIES } from "../../lib/detail-page-reference";
@@ -282,6 +283,15 @@ export default function DetailPageServicePage() {
             { label: "상담·견적", value: "0원" },
           ]}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="스마트스토어 같은 온라인 가게의 상품 설명 화면을 만드는 일입니다. 무엇을 어떤 순서로 보여 줄지 먼저 정하고 그다음에 이미지를 만듭니다."
+          who="상품은 올렸는데 들어온 사람이 사지 않고 나가는 판매자 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.detailPage, PLAIN_TERMS.smartstore, PLAIN_TERMS.conversion]}
+        >
+          <SearchSketch focus={["site"]} />
+        </Plain>
 
         {/* AEO 한 줄 정답 (speakable) */}
         <AnswerRow

@@ -10,7 +10,7 @@
 .tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; border-top: 2px solid var(--w-label-strong); }
 .tier { padding: 26px 0 28px; border-bottom: 1px solid var(--h-border); }
 .tier h3 { font-size: 22px; font-weight: 800; }
-.tier .tag { margin-left: 8px; font-size: 13px; font-weight: 700; color: var(--w-primary-strong); vertical-align: middle; }
+.tier .tag { margin-left: 8px; font-size: 14px; font-weight: 700; color: var(--w-primary-strong); vertical-align: middle; }
 .tier .pages { margin-top: 4px !important; font-size: 15px; color: var(--h-muted); }
 .tier .build { margin-top: 14px !important; font-size: 28px; font-weight: 800; color: var(--w-label-strong); letter-spacing: -.02em; }
 .tier .monthly { margin-top: 2px !important; font-weight: 700; color: var(--w-primary-strong); }

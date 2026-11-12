@@ -1,7 +1,8 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import { SianMain, PageHead, Section, ItemList, QuestionList, CloseBand } from "../../components/sian/Sian";
+import { Plain, SearchSketch, SianMain, PageHead, Section, ItemList, QuestionList, CloseBand } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { SITE, breadcrumbLd, faqLd, webPageLd, updatedAt } from "../../lib/seo";
 import { HP_DATA_DATE, HP_STATS } from "../../lib/homepage-portfolio";
 import HomepageGallery from "./HomepageGallery";
@@ -109,6 +110,15 @@ export default function HomepageServicePage() {
           link={{ href: "#pricing", label: "제작 · 관리 가격 보기" }}
           facts={facts}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="업종에 맞는 홈페이지를 만들고, 검색엔진과 AI 가 읽을 수 있게 가게 정보를 글자로 정리하는 일입니다. 본 사람이 바로 문의할 수 있는 길도 같이 놓습니다."
+          who="홈페이지가 없거나, 있어도 검색에 잡히지 않고 문의가 오지 않는 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.seo, PLAIN_TERMS.aeo, PLAIN_TERMS.geo]}
+        >
+          <SearchSketch focus={["site"]} />
+        </Plain>
 
         <Section
           title="홈페이지는 고객이 판단하는 기준이 됩니다"

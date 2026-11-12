@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Filter, LineChart } from "lucide-react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import AnswerBlock from "../../components/AnswerBlock";
 import PlaceRankExplorer from "./PlaceRankExplorer";
+import {
+  SianMain, PageHead, AnswerRow, Section, ItemList, QuestionList, CloseBand, SearchSketch, TermList,
+} from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
 import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
-import FaqAccordion from "../../components/FaqAccordion";
 import {
   PLACE_RANK_CASES,
   PLACE_RANK_AS_OF,
@@ -110,38 +110,34 @@ export default function PlaceRankCasesPage() {
       <JsonLd data={LIST_LD} />
       <JsonLd data={CRUMB_LD} />
       <Header />
-      <main className="pt-[104px] md:pt-[108px]">
-        <section className="bg-gray-950 py-14 md:py-20">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-400 mb-4">
-              <LineChart size={13} strokeWidth={2.5} />
-              Place Rank
-            </p>
-            <h1 className="text-2xl md:text-4xl font-black text-white leading-tight">
-              네이버 플레이스 순위,
-              <br />
-              잰 그대로 적었습니다
-            </h1>
-            <p className="mt-5 text-sm md:text-base text-gray-300 leading-relaxed max-w-2xl">
-              하랑마케팅이 관리하는 매장의 네이버 플레이스 순위를 정해진 시각에 재서 남긴 기록입니다.
-              시작 순위와 확인된 순위, 걸린 일수만 적었습니다.
-            </p>
-            <p className="mt-3 text-xs md:text-sm text-gray-400 leading-relaxed max-w-2xl">
-              {PLACE_RANK_LABEL_NOTE}
-            </p>
-          </div>
-        </section>
-
-        <AnswerBlock
-          question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
-          answer={`직접 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. 검색량이 큰 키워드부터 보면 ${PLACE_RANK_CASES.slice(0, 4)
-            .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
-            .join(", ")}. ${PLACE_RANK_NOTE}`}
+      <SianMain>
+        <PageHead
+          where="진행 사례 · 플레이스 순위 기록"
+          title={<>네이버 플레이스 순위,<br />잰 그대로 적었습니다</>}
+          lead={<>
+            하랑마케팅이 관리하는 매장의 네이버 플레이스 순위를 정해진 시각에 재서 남긴 기록입니다.
+            시작 순위와 확인된 순위, 걸린 일수만 적었습니다. {PLACE_RANK_LABEL_NOTE}
+          </>}
+          primary={{ href: "/free-check", label: "내 매장 순위 무료로 재보기" }}
+          link={{ href: "/services/place", label: "이 기록을 만든 작업 보기" }}
           facts={[
             { label: "순위 계측", value: "정해진 시각" },
             { label: "최대 상승", value: PLACE_RANK_BIGGEST_GAIN ? fmtArrow(PLACE_RANK_BIGGEST_GAIN.best) : "계측 중" },
             { label: "기준일", value: PLACE_RANK_AS_OF },
           ]}
+        />
+
+        {/* 처음 보는 대표님용 · 카드 읽는 법. 뜻풀이는 app/lib/plain-terms.ts */}
+        <Section id="plain" eyebrow="처음이시라면" title="이 기록은 이렇게 읽습니다" desc="카드 한 장이 키워드 하나입니다. 상호와 지역명은 적지 않았습니다.">
+          <SearchSketch focus={["place"]} />
+          <TermList terms={[PLAIN_TERMS.place, PLAIN_TERMS.keyword, PLAIN_TERMS.snapshot, PLAIN_TERMS.exposure]} />
+        </Section>
+
+        <AnswerRow
+          question="하랑마케팅의 네이버 플레이스 순위 계측 결과는 어떤가요?"
+          answer={`직접 저장한 네이버 플레이스 순위를 키워드마다 한 장씩 공개합니다. 검색량이 큰 키워드부터 보면 ${PLACE_RANK_CASES.slice(0, 4)
+            .map((c) => `${c.industry} ${c.keywords[0].detail} 키워드 ${fmtMoveDays(c.keywords[0])}`)
+            .join(", ")}. ${PLACE_RANK_NOTE}`}
         />
 
         {/* 올린 뒤에도 계속 재고 있다는 것 — 세는 값 없이 재는 방식만 보여준다 (2026-09-07 (월) 대표 지시) */}
@@ -150,7 +146,7 @@ export default function PlaceRankCasesPage() {
         <section className="py-12 md:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <PlaceRankExplorer />
-            <p className="mt-6 text-xs text-gray-500 leading-relaxed max-w-3xl">
+            <p className="mt-6 text-sm text-gray-500 leading-relaxed max-w-3xl">
               {PLACE_RANK_NOTE}
             </p>
           </div>
@@ -160,77 +156,32 @@ export default function PlaceRankCasesPage() {
           화면에 올리지 않는 것 — /cases 의 「계측 방법과 제외 기준 보기」 가 약속한 쪽.
           문구는 전부 app/lib/place-rank-cases.ts 에서 온다. 여기서 기준을 새로 만들지 않는다.
         */}
-        <section className="py-12 md:py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <p
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: "var(--w-primary)" }}
-            >
-              <Filter size={13} strokeWidth={2.5} />
-              Exclusions
-            </p>
-            <h2 className="text-lg md:text-xl font-black text-gray-900">화면에 올리지 않는 것</h2>
-            <p className="mt-2 text-sm text-gray-600 leading-relaxed max-w-3xl">
-              {PLACE_RANK_EXCLUSIONS_NOTE}
-            </p>
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              {PLACE_RANK_EXCLUSIONS.map((x, i) => (
-                <div
-                  key={x.title}
-                  className="bg-gray-50 border border-gray-100 rounded-2xl p-4 md:p-5"
-                >
-                  <p className="flex items-start gap-2 text-sm font-bold text-gray-900">
-                    <span
-                      className="shrink-0 text-xs font-black tabular-nums"
-                      style={{ color: "var(--w-primary)" }}
-                    >
-                      {i + 1})
-                    </span>
-                    {x.title}
-                  </p>
-                  <p className="mt-2 text-xs md:text-[13px] text-gray-600 leading-relaxed">
-                    {x.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Section title="화면에 올리지 않는 것" desc={PLACE_RANK_EXCLUSIONS_NOTE}>
+          <ItemList items={PLACE_RANK_EXCLUSIONS.map((x) => ({ title: x.title, desc: x.body }))} />
+        </Section>
 
         <JsonLd data={faqLd(RANK_FAQ, `${SITE.base}${PATH}`)} />
-        <FaqAccordion
-          items={RANK_FAQ}
+        <Section
+          soft
+          id="faq"
           title="순위 기록을 보실 때 자주 묻는 것"
-          subtitle="여기 적힌 답은 위 카드와 제외 기준의 문장을 그대로 옮긴 것입니다."
-          showMoreHref="/faq"
-        />
+          desc="여기 적힌 답은 위 카드와 제외 기준의 문장을 그대로 옮긴 것입니다."
+          more={{ href: "/faq", label: "전체 질문 보기" }}
+        >
+          <QuestionList items={RANK_FAQ} />
+        </Section>
 
-        <section className="py-12 md:py-16 bg-white border-t border-gray-100">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="text-lg md:text-xl font-black text-gray-900 mb-5">이어서 볼 곳</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-              {LINKS.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="group bg-gray-50 hover:bg-white border border-gray-100 hover:border-gray-200 rounded-2xl p-4 md:p-5 transition-colors"
-                >
-                  <p className="text-sm font-semibold text-gray-900">{l.label}</p>
-                  <p className="mt-1 text-xs text-gray-500 leading-relaxed">{l.desc}</p>
-                  <span
-                    className="mt-3 inline-flex items-center gap-1 text-xs font-bold"
-                    style={{ color: "var(--w-primary)" }}
-                  >
-                    바로 가기
-                    <ArrowRight size={12} />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
+        <Section title="이어서 볼 곳">
+          <ItemList items={LINKS.map((l) => ({ title: l.label, desc: l.desc, href: l.href }))} />
+        </Section>
+
+        <CloseBand
+          title="지금 우리 매장은 몇 위인지부터 재 봅니다"
+          text="매장명과 지역, 노리는 검색어를 알려 주시면 현재 순위를 재서 알려 드립니다. 상담 비용은 0원입니다."
+          primary={{ href: "/free-check", label: "무료 진단 신청" }}
+        />
+      </SianMain>
+      <Footer bands={false} />
     </>
   );
 }

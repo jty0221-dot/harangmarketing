@@ -264,3 +264,114 @@ export function CloseBand({ title, text, primary }: { title: string; text: React
     </section>
   );
 }
+
+/* ───────── 처음 보는 대표님용 · 2026-11-12 보완 (대표 지시 「초보사장님들이 봐도 잘 알아들을 수 있게」) ───────── */
+
+type Term = { term: string; desc: string };
+
+/** 낱말 풀이 · 어려운 말이 처음 나오는 자리에 둔다 */
+export function TermList({ terms, label = "이 페이지에 나오는 말" }: { terms: readonly Term[]; label?: string }) {
+  return (
+    <div className={s.terms}>
+      <p className={s.termsLabel}>{label}</p>
+      <dl>
+        {terms.map((t) => (
+          <div key={t.term}>
+            <dt>{t.term}</dt>
+            <dd>{t.desc}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+/**
+ * 머리 바로 아래 쉬운 풀이 · 무엇을 하는 일인지 · 누구에게 필요한지 · 그림 · 낱말 풀이.
+ * 병·의원 페이지에는 쓰지 않는다 (검수본 문장을 건드리지 않는다).
+ */
+export function Plain({ what, who, terms = [], children }: {
+  what: string;
+  who: string;
+  terms?: readonly Term[];
+  /** 그림 (SearchSketch 등) */
+  children?: ReactNode;
+}) {
+  return (
+    <Section id="plain" eyebrow="처음이시라면" title="쉽게 말하면 이런 일입니다" desc="어려운 말을 빼고 먼저 정리했습니다. 자세한 내용은 아래에 이어집니다.">
+      <dl className={s.plain}>
+        <div>
+          <dt>무슨 일인가요</dt>
+          <dd>{what}</dd>
+        </div>
+        <div>
+          <dt>누구에게 필요한가요</dt>
+          <dd>{who}</dd>
+        </div>
+      </dl>
+      {children}
+      {terms.length > 0 && <TermList terms={terms} />}
+    </Section>
+  );
+}
+
+export type SketchZone = "ad" | "place" | "post" | "site";
+
+const SKETCH_ZONES: { id: SketchZone; name: string; desc: string }[] = [
+  { id: "ad", name: "광고 자리", desc: "돈을 내면 올라가는 자리입니다. 누른 만큼 광고비가 네이버로 나가고, 멈추면 내려옵니다." },
+  { id: "place", name: "플레이스 (지도와 가게 목록)", desc: "가게 정보, 사진, 리뷰가 쌓여서 순서가 정해지는 자리입니다. 돈으로 사는 자리가 아닙니다." },
+  { id: "post", name: "블로그 · 카페 글", desc: "다녀온 사람의 후기와 정보 글이 실리는 자리입니다. 손님이 가기 전에 여기서 확인합니다." },
+  { id: "site", name: "홈페이지 · 스토어", desc: "눌러서 들어가는 우리 가게 페이지입니다. 문의와 결제가 여기서 일어납니다." },
+];
+
+/**
+ * 네이버에서 동네 가게를 검색하면 보이는 화면을 단순하게 그린 그림 (실제 화면 갈무리가 아니다).
+ * focus 로 넘긴 자리만 파랗게 칠하고 「이 페이지에서 다루는 자리」라고 적는다. 여러 페이지가 이 그림 하나를 같이 쓴다.
+ */
+export function SearchSketch({ focus, query = "동네 이름 + 업종" }: { focus: SketchZone[]; query?: string }) {
+  const on = (z: SketchZone) => (focus.includes(z) ? s.skOn : "");
+  const no = (z: SketchZone) => SKETCH_ZONES.findIndex((x) => x.id === z) + 1;
+  return (
+    <figure className={s.sketch}>
+      <div className={s.skPhone} aria-hidden="true">
+        <div className={s.skSearch}><span>{query}</span><i /></div>
+        <div className={`${s.skZone} ${on("ad")}`}>
+          <b className={s.skNo}>{no("ad")}</b>
+          <div className={s.skRow}><em>광고</em><span className={s.skBar} /></div>
+          <div className={s.skRow}><em>광고</em><span className={`${s.skBar} ${s.skShort}`} /></div>
+        </div>
+        <div className={`${s.skZone} ${on("place")}`}>
+          <b className={s.skNo}>{no("place")}</b>
+          <div className={s.skMap}><i /><i /><i /></div>
+          {[1, 2, 3].map((n) => (
+            <div key={n} className={s.skRow}><strong>{n}</strong><span className={`${s.skBar} ${n === 2 ? s.skShort : ""}`} /><span className={s.skThumb} /></div>
+          ))}
+        </div>
+        <div className={`${s.skZone} ${on("post")}`}>
+          <b className={s.skNo}>{no("post")}</b>
+          <div className={s.skCards}><span /><span /><span /></div>
+        </div>
+        <div className={`${s.skZone} ${on("site")}`}>
+          <b className={s.skNo}>{no("site")}</b>
+          <div className={s.skRow}><span className={s.skDot} /><span className={`${s.skBar} ${s.skShort}`} /></div>
+        </div>
+      </div>
+      <div className={s.skSide}>
+        <p className={s.skTitle}>손님이 네이버에서 가게를 찾을 때 보는 화면</p>
+        <ol className={s.skLegend}>
+          {SKETCH_ZONES.map((z, i) => (
+            <li key={z.id} className={on(z.id)}>
+              <b className={s.skNo}>{i + 1}</b>
+              <div>
+                <strong>{z.name}</strong>
+                {focus.includes(z.id) && <mark>이 페이지에서 다루는 자리</mark>}
+                <p>{z.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <figcaption>이해를 돕기 위한 그림입니다. 실제 네이버 화면이 아니며, 검색어와 업종에 따라 순서와 구성이 달라집니다.</figcaption>
+      </div>
+    </figure>
+  );
+}

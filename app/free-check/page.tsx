@@ -124,7 +124,7 @@ export default function FreeCheckPage() {
         </Link>
         <a
           href="tel:010-7541-9054"
-          className="flex items-center gap-1.5 min-h-11 text-xs text-gray-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 min-h-11 text-sm text-gray-400 hover:text-white transition-colors"
         >
           <Phone size={12} strokeWidth={2.5} />
           010-7541-9054
@@ -139,7 +139,7 @@ export default function FreeCheckPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-500/30 rounded-full px-3 py-1.5 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-              <span className="text-blue-400 text-xs font-bold">무료 · 부담 없음 · 1영업일 내 결과</span>
+              <span className="text-blue-400 text-sm font-bold">무료 · 부담 없음 · 1영업일 내 결과</span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-5">
@@ -153,7 +153,7 @@ export default function FreeCheckPage() {
 
             {/* What we check */}
             <div className="mb-8">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 항목</p>
+              <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">진단 항목</p>
               <div className="space-y-3">
                 {CHECKS.map((c) => {
                   const Icon = c.icon;
@@ -164,7 +164,7 @@ export default function FreeCheckPage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-white">{c.label}</p>
-                        <p className="text-xs text-gray-400">{c.desc}</p>
+                        <p className="text-sm text-gray-400">{c.desc}</p>
                       </div>
                     </div>
                   );
@@ -174,7 +174,7 @@ export default function FreeCheckPage() {
 
             {/* How it works */}
             <div className="mb-8">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진행 방법</p>
+              <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">진행 방법</p>
               <div className="space-y-2.5">
                 {STEPS.map((s) => (
                   <div key={s.n} className="flex items-center gap-3">
@@ -187,7 +187,7 @@ export default function FreeCheckPage() {
 
             {/* What you get */}
             <div className="mb-8">
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 받게 되는 것</p>
+              <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 받게 되는 것</p>
               <div className="space-y-2">
                 {[
                   "플레이스 키워드별 현재 순위 PDF 리포트",
@@ -207,16 +207,16 @@ export default function FreeCheckPage() {
             {/* Cases · 광고 착지 화면이라 순위 사례 스위치를 따른다 (lib/landing-gate.ts) */}
             {LANDING_RANK_PROOF && CASES.length > 0 && (
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 진행 기록</p>
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 진행 기록</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {CASES.map((c) => (
                     <div key={c.category} className="bg-white/5 border border-white/10 rounded-xl p-3">
                       <div className="flex items-center gap-1.5 mb-1.5">
-                        <span className="text-[11px] font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
-                        <span className="text-[11px] text-gray-400">{c.loc}</span>
+                        <span className="text-sm font-bold text-blue-400 bg-blue-500/15 px-1.5 py-0.5 rounded">{c.category}</span>
+                        <span className="text-sm text-gray-400">{c.loc}</span>
                       </div>
                       <p className="font-black text-white text-sm">{c.result}</p>
-                      <p className="text-xs text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
+                      <p className="text-sm text-blue-400 font-bold mt-0.5">{c.metric} · {c.period}</p>
                     </div>
                   ))}
                 </div>
@@ -268,15 +268,15 @@ export default function FreeCheckPage() {
                 <div className="bg-[var(--w-primary)] px-6 py-5">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Handshake size={12} className="text-yellow-300" strokeWidth={2.5} />
-                    <span className="text-blue-200 text-[11px]">10년 경력 누적 500건 프로젝트</span>
+                    <span className="text-blue-200 text-sm">10년 경력 누적 500건 프로젝트</span>
                   </div>
                   <h2 className="text-white font-black text-lg leading-tight">무료 플레이스 진단 신청</h2>
-                  <p className="text-blue-200 text-xs mt-1">비용 0원 · 계약 강요 없음 · 1영업일 내 결과</p>
+                  <p className="text-blue-200 text-sm mt-1">비용 0원 · 계약 강요 없음 · 1영업일 내 결과</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                   <div>
-                    <label htmlFor="check-name" className="block text-xs font-bold text-gray-700 mb-1.5">대표님 성함</label>
+                    <label htmlFor="check-name" className="block text-sm font-bold text-gray-700 mb-1.5">대표님 성함</label>
                     <input
                       id="check-name"
                       type="text"
@@ -289,7 +289,7 @@ export default function FreeCheckPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="check-business" className="block text-xs font-bold text-gray-700 mb-1.5">매장명 · 업종</label>
+                    <label htmlFor="check-business" className="block text-sm font-bold text-gray-700 mb-1.5">매장명 · 업종</label>
                     <input
                       id="check-business"
                       type="text"
@@ -302,7 +302,7 @@ export default function FreeCheckPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="check-phone" className="block text-xs font-bold text-gray-700 mb-1.5">연락처</label>
+                    <label htmlFor="check-phone" className="block text-sm font-bold text-gray-700 mb-1.5">연락처</label>
                     <input
                       id="check-phone"
                       type="tel"
@@ -316,7 +316,7 @@ export default function FreeCheckPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="check-rank" className="block text-xs font-bold text-gray-700 mb-1.5">
+                    <label htmlFor="check-rank" className="block text-sm font-bold text-gray-700 mb-1.5">
                       현재 플레이스 순위 <span className="text-gray-500 font-normal">(선택)</span>
                     </label>
                     <div className="relative">
@@ -332,7 +332,7 @@ export default function FreeCheckPage() {
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500">위</span>
                     </div>
-                    <p className="text-[11px] text-gray-600 mt-1">모르시면 비워두셔도 됩니다</p>
+                    <p className="text-sm text-gray-600 mt-1">모르시면 비워두셔도 됩니다</p>
                   </div>
 
                   {/* Trust indicators */}
@@ -342,7 +342,7 @@ export default function FreeCheckPage() {
                       { icon: Clock, text: "카카오톡 24시간 접수" },
                       { icon: AlertCircle, text: "계약·비용 강요 일절 없음" },
                     ].map(({ icon: Icon, text }) => (
-                      <div key={text} className="flex items-center gap-1.5 text-[11px] text-gray-500">
+                      <div key={text} className="flex items-center gap-1.5 text-sm text-gray-500">
                         <Icon size={10} className="text-gray-500" strokeWidth={2.5} />
                         {text}
                       </div>
@@ -362,7 +362,7 @@ export default function FreeCheckPage() {
                       <div className="w-full border-t border-gray-100" />
                     </div>
                     <div className="relative flex justify-center">
-                      <span className="px-3 bg-white text-[11px] text-gray-500">또는</span>
+                      <span className="px-3 bg-white text-sm text-gray-500">또는</span>
                     </div>
                   </div>
 
@@ -379,12 +379,12 @@ export default function FreeCheckPage() {
 
                 {/* Bottom badge */}
                 <div className="border-t border-gray-100 px-6 py-3 bg-gray-50 flex items-center justify-center gap-4">
-                  <span className="flex items-center gap-1 text-[11px] text-gray-500">
+                  <span className="flex items-center gap-1 text-sm text-gray-500">
                     <MapPin size={10} className="text-blue-500" strokeWidth={2.5} />
                     전국 어디든
                   </span>
-                  <span className="text-[11px] text-gray-600">10년 경력</span>
-                  <span className="text-[11px] text-gray-600">누적 500건</span>
+                  <span className="text-sm text-gray-600">10년 경력</span>
+                  <span className="text-sm text-gray-600">누적 500건</span>
                 </div>
               </div>
             )}

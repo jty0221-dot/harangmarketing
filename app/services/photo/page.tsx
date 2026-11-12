@@ -2,9 +2,10 @@ import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, Section, ItemList, Steps, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { webPageLd, PAGE_UPDATED, ORG_ID, LOCAL_ID, breadcrumbLd } from "../../lib/seo";
 import { FOOD_SHOTS, MENU_SHOTS, SPACE_SHOTS } from "../../lib/photo-reference";
 
@@ -134,6 +135,15 @@ export default function PhotoPage() {
             { label: "상담", value: "0원" },
           ]}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="음식 메뉴와 매장 공간을 직접 찍고, 네이버 플레이스와 블로그, 인스타그램, 상세페이지에 맞는 규격으로 올리는 것까지 하는 일입니다."
+          who="휴대폰으로 찍은 사진만 있거나, 사진이 어두워서 가게가 실제보다 못해 보이는 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.detailPage]}
+        >
+          <SearchSketch focus={["place", "post"]} />
+        </Plain>
 
         <Section title="사진이 먼저 걸립니다">
           <div style={{ display: "grid", gap: 16 }}>

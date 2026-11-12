@@ -3,10 +3,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import CaseShots from "../../components/sian/CaseShots";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 
@@ -111,6 +112,15 @@ export default function BeautyLandingPage() {
           link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={BEAUTY_FACTS}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="예약하려는 손님이 인스타그램과 네이버에서 우리 샵을 찾고 시술 사진을 확인할 수 있게 계정과 플레이스를 정리하는 일입니다."
+          who="시술 사진은 많은데 예약 문의로 이어지지 않는 미용실, 네일샵, 피부샵 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.highlight, PLAIN_TERMS.exposure, PLAIN_TERMS.snapshot]}
+        >
+          <SearchSketch focus={["place", "post"]} />
+        </Plain>
 
         {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
         <AnswerRow

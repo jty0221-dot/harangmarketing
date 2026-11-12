@@ -1,10 +1,11 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, ItemList, Steps, RankSection,
   QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import {
   SITE, ORG_ID, LOCAL_ID, faqLd, breadcrumbLd, webPageLd, howToLd, updatedAt, type FaqItem,
 } from "../../lib/seo";
@@ -209,6 +210,15 @@ export default function PlaceServicePage() {
             { label: "상담", value: "0원" },
           ]}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="네이버 지도에 올린 우리 가게 정보를 빠짐없이 채우고, 손님이 검색했을 때 몇 번째에 보이는지 하루 한 번 재서 알려 드리는 일입니다."
+          who="지도에는 떠 있는데 동네 이름과 업종으로 검색하면 한참 아래에 나오는 매장 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.keyword, PLAIN_TERMS.exposure, PLAIN_TERMS.snapshot]}
+        >
+          <SearchSketch focus={["place"]} />
+        </Plain>
 
         <AnswerRow
           question="네이버 플레이스 정보 정비, 대행을 맡겨야 하나요?"

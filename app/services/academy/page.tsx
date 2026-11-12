@@ -3,10 +3,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import CaseShots from "../../components/sian/CaseShots";
-import {
+import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, LineList, ItemList, Steps,
   RankSection, QuestionList, CostLine, CloseBand,
 } from "../../components/sian/Sian";
+import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { INDUSTRY_EXTRA } from "../../lib/industry-extra";
 import { SITE, faqLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
 
@@ -99,6 +100,15 @@ export default function AcademyPage() {
           link={{ href: "/services#pricing", label: "항목별 비용 보기" }}
           facts={ACADEMY_FACTS}
         />
+
+        {/* 처음 보는 대표님용 쉬운 풀이 · 뜻풀이는 app/lib/plain-terms.ts */}
+        <Plain
+          what="학부모가 동네 학원을 검색했을 때 우리 학원 정보와 설명 글이 보이도록 네이버 플레이스와 블로그, 지역 커뮤니티를 채우는 일입니다."
+          who="소개로만 수강생이 들어오고 검색으로는 문의가 거의 없는 학원, 공부방, 교습소 대표님께 필요합니다."
+          terms={[PLAIN_TERMS.place, PLAIN_TERMS.blog, PLAIN_TERMS.momcafe, PLAIN_TERMS.keyword]}
+        >
+          <SearchSketch focus={["place", "post"]} />
+        </Plain>
 
         {/* AEO · 업종별 한 줄 정답 (AI 답변 엔진 인용 대상 · speakable) */}
         <AnswerRow
