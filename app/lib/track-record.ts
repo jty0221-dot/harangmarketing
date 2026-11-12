@@ -59,6 +59,8 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "치킨 전문점", work: ["플레이스 검색 현황 점검", "플레이스 SEO 최적화", "네이버 광고 최적화"], status: "완료" },
       { trade: "한식당", region: "서울", work: ["플레이스 검색 현황 점검", "플레이스 SEO 최적화", "체험단"], status: "완료" },
       { trade: "돈까스 전문점", region: "서울", work: ["플레이스 SEO 최적화", "사진 촬영"], status: "완료" },
+      // 2026-11-12 (목) 대표 지시 「118곳 보다 더 많으면 숫자 바꾸고」 · 계약 대장 · 11월 계산서로 확인 · 목록에 없던 업종
+      { trade: "횟집", region: "서울", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "토스트 전문점", work: ["블로그 검색 현황 점검"], status: "완료" },
       { trade: "한식당", region: "경남", work: ["플레이스 SEO 최적화"], status: "완료" },
     ],
@@ -143,6 +145,7 @@ export const TRACK_RECORD: TrackRecordGroup[] = [
       { trade: "스카이차", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "소방 설비", work: ["블로그 검색 현황 점검"], status: "진행 중" },
       { trade: "가설재", work: ["플레이스 순위 관리"], status: "진행 중" },
+      { trade: "누수탐지", region: "경기", work: ["플레이스 순위 관리"], status: "진행 중" },
       { trade: "용달 이사", region: "충북", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "주간보호센터", work: ["플레이스 순위 관리"], status: "완료" },
       { trade: "냉난방 공조 설비", region: "충남", work: ["플레이스 검색 현황 점검", "블로그 검색 현황 점검", "플레이스 SEO 최적화", "네이버 광고 최적화", "파워컨텐츠"], status: "완료" },

@@ -121,13 +121,11 @@ const COMPARISONS = [
 const HALF = Math.ceil(PARTNERS.length / 2);
 const LOGO_ROWS = [PARTNERS.slice(0, HALF), PARTNERS.slice(HALF)];
 
-/** 로고가 있으면 이미지, 없으면 같은 칸에 상호를 글자로 적는다 */
+/** 로고 이미지만 싣는다. 상호를 글자로 적지 않는다 (2026-11-12 (목) 대표 지시) */
 function Tile({ p, hidden }: { p: Partner; hidden?: boolean }) {
   return (
     <li aria-hidden={hidden || undefined}>
-      {p.file
-        ? <img src={`/partners/${p.file}`} alt={hidden ? "" : `${p.name} 로고`} width={PARTNER_LOGO.w} height={PARTNER_LOGO.h} loading="lazy" decoding="async" />
-        : <span className={s.word}>{p.name}</span>}
+      <img src={`/partners/${p.file}`} alt={hidden ? "" : `${p.name} 로고`} width={PARTNER_LOGO.w} height={PARTNER_LOGO.h} loading="lazy" decoding="async" />
     </li>
   );
 }

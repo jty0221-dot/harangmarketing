@@ -238,7 +238,7 @@ export default function Header() {
       <div className={`transition-all duration-300 ${
         scrolled || !isSian || open
           ? "bg-white/96 backdrop-blur-md shadow-sm border-b border-gray-100"
-          : "bg-transparent"
+          : "bg-[color-mix(in_srgb,var(--h-dark)_45%,transparent)] backdrop-blur-[2px]"
       }`}>
         {/* 홈은 본문(1200px)과 왼쪽 끝을 맞춘다 · app/home.module.css 의 .wrap 과 같은 값 */}
         <div className={isSian ? "mx-auto w-full max-w-[1248px] px-5 md:px-6" : "max-w-6xl mx-auto px-4 md:px-6 lg:px-8"}>
@@ -296,7 +296,7 @@ export default function Header() {
                             : "text-blue-200"
                           : scrolled || !isSian || open
                           ? "text-gray-600 hover:text-gray-900"
-                          : "text-gray-300 hover:text-white"
+                          : "text-white/90 hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -360,7 +360,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 /* 홈에서는 노란 단추 대신 글자 링크로 둔다 · 한 화면에 눈에 띄는 단추는 하나 (2026-11-12 시안) */
                 className={isSian
-                  ? `ml-2 flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${scrolled || open ? "text-gray-600 hover:text-gray-900" : "text-gray-300 hover:text-white"}`
+                  ? `ml-2 flex items-center whitespace-nowrap px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${scrolled || open ? "text-gray-600 hover:text-gray-900" : "text-white/90 hover:text-white"}`
                   : "ml-2 flex items-center gap-1.5 whitespace-nowrap px-3.5 py-2 rounded-xl text-sm font-bold transition-colors bg-yellow-400 text-gray-900 hover:bg-yellow-300"}
               >
                 {!isSian && <MessageCircle size={13} strokeWidth={2.5} />}
