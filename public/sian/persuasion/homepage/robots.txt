@@ -1,0 +1,6 @@
+# 포트폴리오 시안 (가상 업체) : 수집 금지
+User-agent: *
+Disallow: /
+
+Sitemap: https://www.persuasion-sian.example.kr/sitemap.xml
+Sitemap: https://www.persuasion-sian.example.kr/rss.xml

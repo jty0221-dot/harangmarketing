@@ -1,6 +1,7 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import PersuasionSians from "../../components/PersuasionSians";
 import { Plain, SearchSketch, SianMain, PageHead, Section, ItemList, QuestionList, CloseBand } from "../../components/sian/Sian";
 import { PLAIN_TERMS } from "../../lib/plain-terms";
 import { SITE, breadcrumbLd, faqLd, webPageLd, updatedAt } from "../../lib/seo";
@@ -166,6 +167,16 @@ export default function HomepageServicePage() {
         </Section>
 
         {/* 가격 · 숫자는 HOMEPAGE_TIERS 그대로 (바꾸면 C 결재) */}
+        {/* 설득 공정 시안 · 걱정 세 개부터 정하고 짠 시안 두 벌 (2026-11-12 루미) */}
+        <Section
+          id="persuasion"
+          title="걱정부터 정하고 짠 시안"
+          desc="상세페이지와 홈페이지 첫 화면을 같은 방법으로 짠 시안입니다."
+          more={{ href: "/services/persuasion", label: "방법 자세히 보기" }}
+        >
+          <PersuasionSians />
+        </Section>
+
         <Section
           soft
           id="pricing"

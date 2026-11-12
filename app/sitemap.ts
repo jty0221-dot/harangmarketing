@@ -46,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // 병원 홈페이지 하위 쪽 (TR-0080) · priority 는 세무 하위 쪽과 같은 관례 0.7. 순위를 올리는 값이 아니라 사이트 안 상대 비중 힌트다
     ...CLINIC_LINE_PAGES.filter((p) => p.path !== "/services/homepage/clinic").map((p) => ({ url: `${BASE}${p.path}`, lastModified: lm(p.path), changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${BASE}/services/detail-page`,     lastModified: lm("/services/detail-page"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/services/persuasion`,      lastModified: lm("/services/persuasion"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/services/detail-page/reference`,       lastModified: lm("/services/detail-page/reference"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/services/cafe-distribution`,           lastModified: lm("/services/cafe-distribution"), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/services/cafe-distribution/reference`, lastModified: lm("/services/cafe-distribution/reference"), changeFrequency: "monthly", priority: 0.7 },

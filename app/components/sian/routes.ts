@@ -18,6 +18,7 @@ export const SIAN_ROUTES: ReadonlySet<string> = new Set([
   "/services/instagram",
   "/services/homepage",
   "/services/detail-page",
+  "/services/persuasion",
   "/services/cafe-distribution",
   "/services/photo",
   "/services",

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>생들기름 상세 시안</title>
+<style>
+:root{
+  --paper:#FFFFFF; --ink:#1E1B16; --ink-2:#5E574C; --ink-3:#8C8478;
+  --rule:#ECE6DB; --cream:#F7F2E8; --oil:#8A6A12; --oil-soft:#F3EAD2;
+  --leaf:#3D5A2A; --leaf-soft:#E8EFE0;
+  --shot:#D9D6D0; --shot-ink:#5B5852;
+  --tag:#9A3B1E; --tag-soft:#F8E6DF;
+  --meta:#2C3E8F; --meta-soft:#E7EBF8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#EDEAE4;color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+.page{width:860px;max-width:100%;margin:0 auto;background:var(--paper)}
+.notice{background:var(--ink);color:#fff;font-size:13px;letter-spacing:.02em;padding:10px 24px;display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between}
+.notice b{font-weight:700}
+section{padding:72px 64px;border-bottom:1px solid var(--rule);position:relative}
+.meta{display:inline-flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;font-size:11.5px;font-weight:600}
+.meta span{background:var(--meta-soft);color:var(--meta);border-radius:6px;padding:3px 8px}
+.meta span.worry{background:var(--oil-soft);color:var(--oil)}
+.eyebrow{font-size:14px;font-weight:700;color:var(--oil);letter-spacing:.04em;margin:0 0 10px}
+h1,h2{margin:0;letter-spacing:-.02em;word-break:keep-all}
+h1{font-size:52px;line-height:1.22;font-weight:800}
+h2{font-size:34px;line-height:1.32;font-weight:800}
+p{margin:14px 0 0;font-size:19px;color:var(--ink-2);word-break:keep-all}
+.lead{font-size:22px;color:var(--ink-2)}
+.shot{background:var(--shot);color:var(--shot-ink);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:15px;font-weight:600;margin:32px 0 0;min-height:260px}
+.shot.tall{min-height:520px}
+.shot.wide{min-height:340px}
+.ex{display:inline-block;background:var(--tag-soft);color:var(--tag);font-size:11.5px;font-weight:700;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.hero{background:var(--cream)}
+.hero h1 .accent{color:var(--oil)}
+.who{display:grid;gap:14px;margin:30px 0 0}
+.who div{border:1px solid var(--rule);border-radius:14px;padding:20px 22px;font-size:19px;background:#fff}
+.who b{display:block;font-size:13px;color:var(--oil);margin-bottom:4px;letter-spacing:.04em}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin:32px 0 0}
+.facts div{background:#fff;padding:22px}
+.facts dt{font-size:13px;color:var(--ink-3);font-weight:600}
+.facts dd{margin:6px 0 0;font-size:22px;font-weight:800}
+.reviews{display:grid;gap:14px;margin:30px 0 0}
+.review{background:var(--cream);border-radius:14px;padding:22px 24px}
+.review .who-line{font-size:13px;color:var(--ink-3);font-weight:600}
+.review p{margin:8px 0 0;font-size:18px;color:var(--ink)}
+.use{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0 0}
+.use div{border:1px solid var(--rule);border-radius:14px;padding:20px;text-align:center}
+.use strong{display:block;font-size:26px;color:var(--oil)}
+.use span{font-size:15px;color:var(--ink-2)}
+table{width:100%;border-collapse:collapse;margin:30px 0 0;font-size:18px}
+th,td{padding:16px 14px;border-bottom:1px solid var(--rule);text-align:left}
+th{font-size:14px;color:var(--ink-3);font-weight:600}
+td.price{font-weight:800}
+.steps{counter-reset:s;display:grid;gap:12px;margin:30px 0 0}
+.steps div{counter-increment:s;display:flex;gap:16px;align-items:flex-start;font-size:19px;color:var(--ink)}
+.steps div::before{content:counter(s);flex:0 0 34px;height:34px;border-radius:50%;background:var(--leaf);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
+.card{background:var(--cream);border-radius:14px;padding:26px;margin:30px 0 0}
+.card dl{margin:0;display:grid;grid-template-columns:140px 1fr;gap:10px 16px;font-size:16px}
+.card dt{color:var(--ink-3);font-weight:600}
+.card dd{margin:0}
+.faq{margin:30px 0 0;display:grid;gap:12px}
+.faq div{border:1px solid var(--rule);border-radius:14px;padding:20px 22px}
+.faq .q{font-weight:800;font-size:19px}
+.faq .a{margin:8px 0 0;font-size:17px;color:var(--ink-2)}
+.closing{background:var(--leaf);color:#fff}
+.closing h2{color:#fff}
+.closing p{color:#E3EBD9}
+.closing .meta span{background:rgba(255,255,255,.16);color:#fff}
+.btn{display:inline-block;margin:28px 0 0;background:#fff;color:var(--leaf);font-weight:800;border-radius:12px;padding:16px 28px;font-size:18px}
+.foot{padding:28px 64px 40px;font-size:13px;color:var(--ink-3);background:#FAF8F4}
+.foot p{font-size:13px;color:var(--ink-3);margin:6px 0 0}
+@media (max-width:640px){
+  section{padding:48px 20px}
+  .notice{padding:10px 16px}
+  .foot{padding:24px 20px 32px}
+  h1{font-size:34px}
+  h2{font-size:25px}
+  p,.who div,.steps div{font-size:16.5px}
+  .lead{font-size:18px}
+  .facts{grid-template-columns:1fr}
+  .use{grid-template-columns:1fr}
+  .shot{min-height:200px}
+  .shot.tall{min-height:340px}
+  table{font-size:15.5px}
+  .card dl{grid-template-columns:1fr;gap:2px}
+  .card dd{margin-bottom:10px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="notice"><b>시안 · 업체명과 수치는 가상</b><span>○○농원 A 생들기름 · 원본 폭 860px · 주안 A 12 섹션</span></div>
+
+  <!-- 1 첫 화면 -->
+  <section class="hero">
+    <div class="meta"><span>1 첫 화면</span><span>장치 후킹</span><span class="worry">받는 걱정 1 냄새</span></div>
+    <div class="eyebrow">○○농원 A 생들기름</div>
+    <h1>짠 날짜부터<br><span class="accent">보는 분께</span></h1>
+    <p class="lead">언제 짠 기름인지 병에서 바로 확인하는 생들기름</p>
+    <div class="shot tall">촬영 컷 자리 · 병을 기울여 기름이 숟가락에 떨어지는 순간</div>
+  </section>
+
+  <!-- 2 대표 실사컷 -->
+  <section>
+    <div class="meta"><span>2 대표 실사컷</span><span>장치 후킹 · 신뢰</span></div>
+    <h2>볶지 않은 들깨를<br>그대로 짠 기름입니다</h2>
+    <div class="shot wide">촬영 컷 자리 · 병 정면 · 라벨이 보이게 · 자연광</div>
+  </section>
+
+  <!-- 3 이런 분께 -->
+  <section>
+    <div class="meta"><span>3 이런 분께</span><span>장치 후킹</span><span class="worry">걱정 1 · 2 · 3 예고</span></div>
+    <h2>이런 분이 많이 찾으십니다</h2>
+    <div class="who">
+      <div><b>보내는 분</b>부모님 댁에 바로 보내야 하는데 유리병이라 마음이 쓰이는 분</div>
+      <div><b>조금씩 쓰는 분</b>혼자 살아서 큰 병을 사면 다 못 쓰고 버리게 되는 분</div>
+      <div><b>한 번 실패해 본 분</b>예전에 산 들기름에서 쩐내가 나서 반 병을 버려 본 분</div>
+    </div>
+  </section>
+
+  <!-- 4 언제 짠 기름인가 -->
+  <section>
+    <div class="meta"><span>4 언제 짠 기름인가</span><span>장치 신뢰</span><span class="worry">받는 걱정 1 냄새</span></div>
+    <div class="eyebrow">냄새 걱정부터</div>
+    <h2>언제 짠 기름인지가<br>먼저입니다</h2>
+    <p>들기름 냄새는 짠 뒤 얼마나 지났는지, 연 뒤 어떻게 두었는지에 따라 크게 달라집니다. 그래서 날짜 이야기부터 드립니다.</p>
+    <dl class="facts">
+      <div><dt>짠 날짜</dt><dd>2026.11.03<span class="ex">가상 예시값</span></dd></div>
+      <div><dt>짜는 때</dt><dd>주문 받은 뒤<span class="ex">가상 예시값</span></dd></div>
+      <div><dt>들깨 산지</dt><dd>○○군<span class="ex">가상 예시값</span></dd></div>
+      <div><dt>짜는 방식</dt><dd>볶지 않고 그대로</dd></div>
+    </dl>
+    <div class="shot">촬영 컷 자리 · 라벨의 착유일 칸 접사</div>
+  </section>
+
+  <!-- 5 향과 색 -->
+  <section>
+    <div class="meta"><span>5 향과 색</span><span>장치 신뢰 · 반박 처리</span><span class="worry">받는 걱정 1 냄새</span></div>
+    <h2>향은 순한 쪽입니다</h2>
+    <p>볶은 들기름처럼 진한 향이 확 올라오지는 않습니다. 나물 무침, 들기름 막국수, 두부 부침 위에 마지막으로 두르면 들깨 향이 은은하게 남습니다.</p>
+    <p>진하고 구수한 향을 좋아하신다면 볶은 들기름이 더 맞을 수 있습니다.</p>
+    <div class="shot wide">촬영 컷 자리 · 흰 접시에 따른 기름 색과 들깨 한 줌</div>
+  </section>
+
+  <!-- 6 받아 본 분들 -->
+  <section>
+    <div class="meta"><span>6 받아 본 분들</span><span>장치 신뢰</span><span class="worry">걱정 1 · 2 · 3</span></div>
+    <h2>받아 본 분들 이야기</h2>
+    <p>실제 발행 때는 실제 후기만 싣고, 0건이면 이 섹션을 뺍니다.</p>
+    <div class="reviews">
+      <div class="review"><div class="who-line">선물로 보낸 분<span class="ex">가상</span></div><p>병이 깨질까 봐 내내 신경 쓰였는데 칸막이에 하나씩 끼워져 와서 멀쩡했다고 하시네요.</p></div>
+      <div class="review"><div class="who-line">혼자 사는 분<span class="ex">가상</span></div><p>큰 병은 다 못 쓸 것 같아 작은 병으로 골랐어요. 나물 무칠 때만 써도 금방 비워요.</p></div>
+      <div class="review"><div class="who-line">전에 버려 본 분<span class="ex">가상</span></div><p>예전 것은 열자마자 쩐내가 났는데 이건 열었을 때 고소한 냄새만 나요.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 한 병을 얼마나 쓰나 -->
+  <section>
+    <div class="meta"><span>7 한 병을 얼마나 쓰나</span><span>장치 반박 처리</span><span class="worry">받는 걱정 3 양</span></div>
+    <h2>한 병을<br>얼마나 쓰게 될까요</h2>
+    <p>나물 한 접시를 무칠 때 보통 한두 숟가락이면 됩니다. 일주일에 몇 번 쓰시는지 떠올려 보고 용량을 고르세요.</p>
+    <div class="use">
+      <div><strong>1~2숟가락</strong><span>나물 한 접시</span></div>
+      <div><strong>1숟가락</strong><span>막국수 한 그릇</span></div>
+      <div><strong>2개월 안</strong><span>연 뒤 권장 기간<span class="ex">가상 예시값</span></span></div>
+    </div>
+    <div class="shot">촬영 컷 자리 · 작은 병과 큰 병 나란히 · 손 크기 비교</div>
+  </section>
+
+  <!-- 8 구성 옵션 -->
+  <section>
+    <div class="meta"><span>8 구성 · 옵션</span><span>장치 행동 유도</span><span class="worry">받는 걱정 3 양</span></div>
+    <h2>용량 고르기</h2>
+    <table>
+      <thead><tr><th>구성</th><th>이런 분께</th><th>가격</th></tr></thead>
+      <tbody>
+        <tr><td>180ml 한 병<span class="ex">가상 예시값</span></td><td>혼자 가끔 쓰는 분</td><td class="price">12,900원<span class="ex">가상 예시값</span></td></tr>
+        <tr><td>350ml 한 병<span class="ex">가상 예시값</span></td><td>매주 나물을 무치는 집</td><td class="price">21,900원<span class="ex">가상 예시값</span></td></tr>
+        <tr><td>180ml 두 병 선물 상자<span class="ex">가상 예시값</span></td><td>부모님 댁에 보내는 분</td><td class="price">26,900원<span class="ex">가상 예시값</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 9 포장 -->
+  <section>
+    <div class="meta"><span>9 깨지지 않게 보내는 법</span><span>장치 반박 처리</span><span class="worry">받는 걱정 2 파손</span></div>
+    <div class="eyebrow">유리병이라서</div>
+    <h2>깨지지 않게<br>이렇게 담아 보냅니다</h2>
+    <div class="steps">
+      <div>병마다 칸막이에 하나씩 끼웁니다<span class="ex">가상 예시값</span></div>
+      <div>병 마개를 한 번 더 감싸 새지 않게 합니다<span class="ex">가상 예시값</span></div>
+      <div>깨져서 도착하면 받으신 날 사진 한 장을 톡톡으로 보내 주세요. 처리 기준은 확인 후 적습니다</div>
+    </div>
+    <div class="shot wide">촬영 컷 자리 · 상자를 연 순간 · 칸막이와 완충재가 보이게</div>
+  </section>
+
+  <!-- 10 보관 표시사항 -->
+  <section>
+    <div class="meta"><span>10 받은 뒤 보관 · 표시사항</span><span>장치 신뢰</span><span class="worry">받는 걱정 3 양 · 1 냄새</span></div>
+    <h2>받으신 뒤에는</h2>
+    <p>뚜껑을 꼭 닫고 햇빛이 들지 않는 곳에 두세요. 쓰고 난 뒤 병 입구에 묻은 기름을 닦아 두면 냄새가 덜 뱁니다.</p>
+    <div class="card">
+      <dl>
+        <dt>보관 방법</dt><dd>냉장 보관<span class="ex">가상 예시값</span></dd>
+        <dt>원재료명</dt><dd>들깨<span class="ex">가상 예시값</span></dd>
+        <dt>원산지</dt><dd>확인 후 기재</dd>
+        <dt>내용량</dt><dd>확인 후 기재</dd>
+        <dt>소비기한</dt><dd>확인 후 기재</dd>
+        <dt>제조원</dt><dd>확인 후 기재</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 11 질문 -->
+  <section>
+    <div class="meta"><span>11 사기 전에 많이 묻는 것</span><span>장치 반박 처리</span><span class="worry">걱정 1 · 2 · 3</span></div>
+    <h2>사기 전에 많이 물으시는 것</h2>
+    <div class="faq">
+      <div><div class="q">냉장 보관해야 하나요?</div><div class="a">네, 받으시면 냉장고에 넣어 주세요.<span class="ex">가상 예시값</span></div></div>
+      <div><div class="q">언제 짠 기름이 오나요?</div><div class="a">병 라벨의 날짜를 보시면 됩니다. 주문을 받은 뒤 짜서 보냅니다.<span class="ex">가상 예시값</span></div></div>
+      <div><div class="q">깨져서 오면 어떻게 하나요?</div><div class="a">받으신 날 사진 한 장을 톡톡으로 보내 주세요. 처리 기준은 확인 후 적습니다.</div></div>
+      <div><div class="q">혼자 쓰는데 작은 병으로 충분할까요?</div><div class="a">나물 한 접시에 한두 숟가락 정도라 가끔 쓰신다면 작은 병이 맞습니다.</div></div>
+      <div><div class="q">볶은 들기름이랑 맛이 많이 다른가요?</div><div class="a">향이 더 순합니다. 진하고 구수한 향을 좋아하시면 볶은 들기름이 더 맞을 수 있습니다.</div></div>
+    </div>
+  </section>
+
+  <!-- 12 주문 안내 -->
+  <section class="closing">
+    <div class="meta"><span>12 주문 안내</span><span>장치 행동 유도</span><span>받는 걱정 2 파손</span></div>
+    <h2>받으시는 분 상황에 맞춰<br>보내 드립니다</h2>
+    <p>보내실 곳이 부모님 댁인지, 혼자 쓰실 건지 톡톡으로 남겨 주시면 용량과 포장을 맞춰 안내해 드립니다.</p>
+    <span class="btn">톡톡 문의하기</span>
+  </section>
+
+  <div class="foot">
+    <p>시안 · 업체명과 수치는 가상입니다. 가상 예시값 표시가 붙은 값은 자리를 보여 주려 넣은 값이며 실제 값이 아닙니다.</p>
+    <p>하랑마케팅 상세페이지 설득 공정 시안 · 재료표 4칸과 프롬프트 체인 5단으로 짰습니다.</p>
+  </div>
+
+</div>
+</body>
+</html>

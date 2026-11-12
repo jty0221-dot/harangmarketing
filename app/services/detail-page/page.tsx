@@ -2,6 +2,7 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
+import PersuasionSians from "../../components/PersuasionSians";
 import { Plain, SearchSketch,
   SianMain, PageHead, AnswerRow, Section, ItemList, LinkList, Steps, Table,
   QuestionList, CostLine, CloseBand,
@@ -321,6 +322,16 @@ export default function DetailPageServicePage() {
             ))}
           </ul>
           <p className={d.note}>상호 노출 동의를 받기 전이라 제품 종류만 적습니다. 상호·브랜드는 쓰지 않습니다.</p>
+        </Section>
+
+        {/* 설득 공정 시안 · 걱정 세 개부터 정하고 짠 시안 두 벌 (2026-11-12 루미) */}
+        <Section
+          id="persuasion"
+          title="걱정부터 정하고 짠 시안"
+          desc="상세페이지와 홈페이지 첫 화면을 같은 방법으로 짠 시안입니다."
+          more={{ href: "/services/persuasion", label: "방법 자세히 보기" }}
+        >
+          <PersuasionSians />
         </Section>
 
         {/* 1층 · 공정 9단 */}
