@@ -4,6 +4,9 @@ import {
   type RankRecord,
 } from "../lib/rank-records";
 import { TRACK_TOTALS } from "../lib/track-record";
+import { byIndustry as casesByIndustry, PLACE_RANK_NOTE } from "../lib/place-rank-cases";
+import { PlaceRankCaseCards } from "./PlaceRankCases";
+import Link from "next/link";
 
 /**
  * 업종별 순위 계측 기록 블록.
@@ -23,6 +26,7 @@ export default function RankRecords({
   industries,
   industryLabel,
   limit,
+  caseIndustries,
 }: {
   /** rank-records.ts 의 industry 값. 비우면 집계만 보여준다 */
   industries: string[];
@@ -30,9 +34,34 @@ export default function RankRecords({
   industryLabel: string;
   /** 주지 않으면 그 업종 기록을 전부 그린다 */
   limit?: number;
+  /** place-rank-cases.ts 의 업종 이름. 스냅샷 집계에 기록이 없을 때 순위 페이지와 같은 카드를 보여 준다 */
+  caseIndustries?: string[];
 }) {
   const all: RankRecord[] = byIndustry(...industries);
   const records: RankRecord[] = typeof limit === "number" ? all.slice(0, limit) : all;
+  // 순위 페이지에는 기록이 있는데 여기서 「기록이 없습니다」라고 말하지 않게 한다 (TR-0243 · 2026-11-17).
+  // 그 업종 카드만 쓴다. 다른 업종 기록을 빌려 오지 않는다 (C-42).
+  const cases = records.length === 0 && caseIndustries?.length ? casesByIndustry(...caseIndustries) : [];
+
+  if (cases.length > 0) {
+    return (
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-2">{industryLabel} 순위 계측 기록</h2>
+            <p className="text-gray-500 text-sm">네이버 플레이스 순위 · 카드마다 잰 날짜를 적었습니다</p>
+          </div>
+          <PlaceRankCaseCards cases={cases} columns={cases.length >= 4 ? 4 : cases.length === 3 ? 3 : 2} />
+          <p className="text-xs text-gray-500 leading-relaxed text-center mt-5 max-w-2xl mx-auto">{PLACE_RANK_NOTE}</p>
+          <p className="text-center mt-4">
+            <Link href="/cases/place-rank" className="inline-flex items-center gap-1.5 text-sm font-bold min-h-11 hover:underline" style={{ color: "var(--w-primary)" }}>
+              계측 사례 전체 보기 <ArrowRight size={13} />
+            </Link>
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-12 md:py-16 bg-white">

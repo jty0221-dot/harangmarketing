@@ -183,7 +183,7 @@ export default function BeautyLandingPage() {
         <CaseShots slug="beauty" label="뷰티샵" />
 
         {/* 순위 계측 — 뷰티 업종은 공개할 기록이 없다. 남의 업종 숫자를 빌려오지 않는다 */}
-        <RankRecords industries={[]} industryLabel="미용·네일·뷰티" />
+        <RankRecords industries={[]} industryLabel="미용·네일·뷰티" caseIndustries={["네일숍", "피부관리실"]} />
 
         {/* 서비스 구성 */}
         <section className="py-12 md:py-16 bg-gray-50">

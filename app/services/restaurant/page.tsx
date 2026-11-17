@@ -191,7 +191,7 @@ export default function RestaurantPage() {
         <CaseShots slug="food" label="음식점" />
 
         {/* 순위 계측 기록 — 숫자는 app/lib/rank-records.ts 한 곳에서만 온다 */}
-        <RankRecords industries={["음식점"]} industryLabel="음식점·식당" />
+        <RankRecords industries={["음식점"]} industryLabel="음식점·식당" caseIndustries={["샤브샤브집", "고깃집", "횟집", "돈가스집"]} />
 
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
