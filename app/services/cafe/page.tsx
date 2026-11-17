@@ -90,7 +90,7 @@ const SERVICES = [
     icon: BarChart3,
     color: "from-green-500 to-green-700",
     title: "월간 성과 리포트",
-    desc: "순위 변화 · 방문객 추이 · 다음 달 전략",
+    desc: "순위 변화 · 다음 달 전략",
   },
 ];
 
