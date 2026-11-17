@@ -40,7 +40,7 @@ export interface KeywordServiceData {
   related: { label: string; href: string }[];
 }
 
-export default function KeywordServicePage({ d, children }: { d: KeywordServiceData; children?: React.ReactNode }) {
+export default function KeywordServicePage({ d, children, top }: { d: KeywordServiceData; children?: React.ReactNode; /** 머리 바로 아래 (쉬운 풀이) */ top?: React.ReactNode }) {
   const URL = `${SITE.base}${d.path}`;
   const LD = [
     webPageLd({ path: d.path, name: d.h1, description: d.intro, dateModified: updatedAt(d.path) }),
@@ -108,6 +108,8 @@ export default function KeywordServicePage({ d, children }: { d: KeywordServiceD
             </p>
           </div>
         </section>
+
+        {top}
 
         <AnswerBlock question={d.answer.question} answer={d.answer.answer} facts={d.facts} />
 

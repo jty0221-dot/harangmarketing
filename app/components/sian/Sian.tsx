@@ -288,7 +288,7 @@ export function TermList({ terms, label = "이 페이지에 나오는 말" }: { 
 
 /**
  * 머리 바로 아래 쉬운 풀이 · 무엇을 하는 일인지 · 누구에게 필요한지 · 그림 · 낱말 풀이.
- * 병·의원 페이지에는 쓰지 않는다 (검수본 문장을 건드리지 않는다).
+ * 병·의원 페이지는 진우 판정을 통과한 문장만 넣고, 그림은 SearchSketch clinic 을 쓴다 (2026-11-12 · C-50).
  */
 export function Plain({ what, who, terms = [], children }: {
   what: string;
@@ -324,11 +324,20 @@ const SKETCH_ZONES: { id: SketchZone; name: string; desc: string }[] = [
   { id: "site", name: "홈페이지 · 스토어", desc: "눌러서 들어가는 우리 가게 페이지입니다. 문의와 결제가 여기서 일어납니다." },
 ];
 
+/* 병·의원 쪽 그림 설명 · 진우 판정 통과 문장 (2026-11-12). 일반 문장의 리뷰 · 후기 · 결제는 병원 쪽 게시불가라 따로 둔다 */
+const CLINIC_SKETCH_ZONES: typeof SKETCH_ZONES = [
+  { id: "ad", name: "광고 자리", desc: "네이버에 광고비를 내고 싣는 자리입니다. 의료광고는 병원 명의로만 낼 수 있고, 매체와 내용에 따라 사전심의 대상이 될 수 있습니다." },
+  { id: "place", name: "플레이스 (지도와 병원 목록)", desc: "병원 이름, 주소, 진료시간, 진료과목이 실리는 자리입니다. 보이는 순서는 네이버가 정합니다." },
+  { id: "post", name: "블로그 글", desc: "병원이 자기 명의로 올린 진료 정보 글이 실리는 자리입니다. 치료경험담은 의료법 제56조 제2항 제2호가 금지하는 항목이라 쓰지 않습니다." },
+  { id: "site", name: "병원 홈페이지", desc: "눌러서 들어가는 병원 공식 페이지입니다. 진료과목, 의료진, 진료시간, 오시는 길을 여기서 확인합니다." },
+];
+
 /**
  * 네이버에서 동네 가게를 검색하면 보이는 화면을 단순하게 그린 그림 (실제 화면 갈무리가 아니다).
  * focus 로 넘긴 자리만 파랗게 칠하고 「이 페이지에서 다루는 자리」라고 적는다. 여러 페이지가 이 그림 하나를 같이 쓴다.
  */
-export function SearchSketch({ focus, query = "동네 이름 + 업종" }: { focus: SketchZone[]; query?: string }) {
+export function SearchSketch({ focus, clinic = false, query = clinic ? "동네 이름 + 진료과목" : "동네 이름 + 업종" }: { focus: SketchZone[]; clinic?: boolean; query?: string }) {
+  const zones = clinic ? CLINIC_SKETCH_ZONES : SKETCH_ZONES;
   const on = (z: SketchZone) => (focus.includes(z) ? s.skOn : "");
   const no = (z: SketchZone) => SKETCH_ZONES.findIndex((x) => x.id === z) + 1;
   return (
@@ -357,9 +366,9 @@ export function SearchSketch({ focus, query = "동네 이름 + 업종" }: { focu
         </div>
       </div>
       <div className={s.skSide}>
-        <p className={s.skTitle}>손님이 네이버에서 가게를 찾을 때 보는 화면</p>
+        <p className={s.skTitle}>{clinic ? "환자가 네이버에서 병원을 찾을 때 보는 화면" : "손님이 네이버에서 가게를 찾을 때 보는 화면"}</p>
         <ol className={s.skLegend}>
-          {SKETCH_ZONES.map((z, i) => (
+          {zones.map((z, i) => (
             <li key={z.id} className={on(z.id)}>
               <b className={s.skNo}>{i + 1}</b>
               <div>
@@ -370,7 +379,7 @@ export function SearchSketch({ focus, query = "동네 이름 + 업종" }: { focu
             </li>
           ))}
         </ol>
-        <figcaption>이해를 돕기 위한 그림입니다. 실제 네이버 화면이 아니며, 검색어와 업종에 따라 순서와 구성이 달라집니다.</figcaption>
+        <figcaption>이해를 돕기 위한 그림입니다. 실제 네이버 화면이 아니며, 검색어와 {clinic ? "진료과목" : "업종"}에 따라 순서와 구성이 달라집니다.</figcaption>
       </div>
     </figure>
   );

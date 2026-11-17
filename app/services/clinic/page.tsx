@@ -112,6 +112,8 @@ import {
   Globe2 } from "lucide-react";
 import { MEDICAL_PROCESS } from "../../lib/medical-process";
 import { C04, C05, CLINIC_HUB_PATH, CLINIC_GEO_PATH } from "../../lib/clinic-homepage";
+import { Plain, SearchSketch } from "../../components/PlainBlock";
+import { PLAIN_TERMS, CLINIC_PLAIN_TERMS } from "../../lib/plain-terms";
 
 // 의료광고 검수 공정 네 줄은 app/lib/medical-process.ts (허브와 같이 쓴다 · 글자 변경 0)
 
@@ -243,6 +245,15 @@ export default function ClinicLandingPage() {
             </p>
           </div>
         </section>
+
+        {/* 처음 보는 원장님용 쉬운 풀이 · 문장은 2026-11-12 진우 판정 통과분 그대로다. 글자를 바꾸면 재판정 (C-50 · D-0177) */}
+        <Plain
+          what="병원 이름, 진료과목, 진료시간, 오시는 길 같은 정보를 네이버 지도와 블로그에 빠짐없이 정리하고, 올리는 글이 의료법에 걸리지 않는지 먼저 확인하는 일입니다. 지도 검색 순위는 재서 저장한 기록 그대로 보여 드립니다."
+          who="네이버에 병원 정보가 비어 있거나, 블로그에 무엇을 써도 되는지 의료법 기준을 몰라 손을 못 대고 계신 원장님께 필요합니다."
+          terms={[CLINIC_PLAIN_TERMS.place, CLINIC_PLAIN_TERMS.review, CLINIC_PLAIN_TERMS.testimonial, PLAIN_TERMS.snapshot]}
+        >
+          <SearchSketch clinic focus={["place", "post"]} />
+        </Plain>
 
         {/* AEO — 업종별 한 줄 정답 (AI 답변 엔진 인용 대상) */}
         <AnswerBlock

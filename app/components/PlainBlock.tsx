@@ -6,7 +6,7 @@ import s from "./sian/sian.module.css";
 /*
  * 처음 보는 대표님용 쉬운 풀이 · 진행 사례 사진 (2026-11-12 대표 지시분).
  * 2026-11-17 화면을 예전 카드 방식으로 되돌리면서, 글 줄 틀(sian)에 있던 것을 카드 모양으로 옮겼다.
- * 문장과 뜻풀이는 그대로다 (app/lib/plain-terms.ts). 병·의원 페이지에는 쓰지 않는다 (검수본 문장을 건드리지 않는다).
+ * 문장과 뜻풀이는 그대로다 (app/lib/plain-terms.ts). 병·의원 페이지는 진우 판정 통과 문장(CLINIC_PLAIN_TERMS)과 SearchSketch clinic 만 쓴다 (C-50).
  */
 
 export { SearchSketch };
