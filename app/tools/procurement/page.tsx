@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: '하랑 조달스튜디오',
   description: '프로그램 설치부터 업무 시작까지, 네 단계로 준비하세요.',
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  // 적지 않으면 루트 레이아웃의 홈 주소 canonical 을 물려받아 noindex 와 엇갈린 신호가 된다
+  alternates: { canonical: 'https://www.harangmarketing.com/tools/procurement' },
 };
 
 const steps = [

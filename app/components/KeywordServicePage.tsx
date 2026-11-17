@@ -214,7 +214,10 @@ export default function KeywordServicePage({ d, children }: { d: KeywordServiceD
           </div>
         </section>
 
-        <FaqAccordion items={d.faqs} title={d.faqTitle} subtitle="상담 전에 미리 확인해 보세요." showMoreHref="/faq" />
+        {/* 과목별 쪽이 `…/clinic#faq` 로 건너온다 (subject.tsx). 닻이 없으면 맨 위에 떨어진다 */}
+        <div id="faq" className="scroll-mt-28">
+          <FaqAccordion items={d.faqs} title={d.faqTitle} subtitle="상담 전에 미리 확인해 보세요." showMoreHref="/faq" />
+        </div>
 
         {/* CTA */}
         <section className="py-14 md:py-16 bg-gray-950">

@@ -9,7 +9,7 @@ import { SketchCard, SearchSketch } from "../../components/PlainBlock";
 import { PLAIN_TERMS } from "../../lib/plain-terms";
 import PlaceRankExplorer from "./PlaceRankExplorer";
 import PlaceRankMonitoring from "../../components/PlaceRankMonitoring";
-import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, updatedAt, type FaqItem, ogImage } from "../../lib/seo";
+import { SITE, breadcrumbLd, faqLd, itemListLd, webPageLd, updatedAt, type FaqItem, ogImage, META_DESC_MAX } from "../../lib/seo";
 import FaqAccordion from "../../components/FaqAccordion";
 import {
   PLACE_RANK_CASES,
@@ -51,7 +51,11 @@ const RANK_FAQ: FaqItem[] = [
   { q: "몇 위까지 올려 주시나요?", a: PLACE_RANK_EXCLUSIONS[4].body },
 ];
 /** 업종은 기록에서 뽑는다. 손으로 적으면 기록이 빠진 업종이 설명에 남는다 */
-const DESCRIPTION = `네이버 플레이스 순위 계측 기록입니다. ${PLACE_RANK_INDUSTRIES.join("·")}의 시작 순위와 확인된 순위, 걸린 일수만 적었습니다.`;
+const DESCRIPTION_LISTED = `네이버 플레이스 순위 계측 기록입니다. ${PLACE_RANK_INDUSTRIES.join("·")}의 시작 순위와 확인된 순위, 걸린 일수만 적었습니다.`;
+// 업종이 늘어 80자(META_DESC_MAX · npm run check:meta)를 넘으면 업종 나열만 '업종별' 로 줄인다
+const DESCRIPTION = [...DESCRIPTION_LISTED].length <= META_DESC_MAX
+  ? DESCRIPTION_LISTED
+  : "네이버 플레이스 순위 계측 기록입니다. 업종별 시작 순위와 확인된 순위, 걸린 일수만 적었습니다.";
 
 export const metadata: Metadata = {
   title: "네이버 플레이스 순위 계측 사례 | 업종·지역별 기록",
