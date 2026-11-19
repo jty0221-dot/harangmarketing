@@ -94,7 +94,8 @@ export interface InfluencerRef {
 }
 
 /** 숨길 캡처 파일 이름 (확장자 없이). 지우지 않고 여기서 거른다 (cafe-distribution.ts 의 REF_HIDE_GROUPS 와 같은 방식) */
-const INFLUENCER_HIDDEN = new Set<string>([]);
+// 2026-11-19 대표 지시: 눈썹 · 입술 문신 캡처 4건 제외 (시술 전후 사진이 보인다). 이미지 파일도 지웠다
+const INFLUENCER_HIDDEN = new Set<string>(["inf-002", "inf-013", "inf-015", "inf-029"]);
 
 /** 최신 날짜가 앞에 온다 (apply.py 가 정렬해 둔다) */
 export const INFLUENCER_REFS: InfluencerRef[] = refs
