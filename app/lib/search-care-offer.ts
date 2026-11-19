@@ -43,3 +43,16 @@ export function searchCareShowsOn(pathname: string): boolean {
 export function todayKst(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date());
 }
+
+/** 안내를 닫을 때 쏘는 이벤트. 같은 자리를 이어 쓰는 안내(InfluencerPopup)가 듣는다 */
+export const SEARCH_CARE_CLOSED_EVENT = "harang:search-care-closed";
+
+/** 이 안내가 지금 그 경로에서 뜨는가 (오늘 그만 보기를 누르지 않았는가) */
+export function searchCareOccupies(pathname: string): boolean {
+  if (!searchCareShowsOn(pathname)) return false;
+  try {
+    return localStorage.getItem(SEARCH_CARE_STORAGE_KEY) !== todayKst();
+  } catch {
+    return true;
+  }
+}

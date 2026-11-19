@@ -4,6 +4,8 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import JsonLd from "../../../components/JsonLd";
 import ReferenceClient from "./ReferenceClient";
+import InfluencerReference from "./InfluencerReference";
+import { INFLUENCER_REF_TOTAL, INFLUENCER_REF_LATEST, INFLUENCER_CTA_HREF, shortDate } from "../../../lib/influencer-distribution";
 import { SITE, ORG_ID, breadcrumbLd, webPageLd, updatedAt, ogImage } from "../../../lib/seo";
 import { REF_CATEGORIES, REF_TOTAL } from "../../../lib/cafe-distribution";
 import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
@@ -71,9 +73,11 @@ const LD = [
 export default async function ReferencePage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; page?: string }>;
+  searchParams: Promise<{ category?: string; page?: string; type?: string }>;
 }) {
-  const { category, page } = await searchParams;
+  const { category, page, type } = await searchParams;
+  /* ?type=influencer 면 인플루언서 배포 레퍼런스를 보여 준다. 주소는 하나로 두고 canonical 도 그대로다 */
+  const inf = type === "influencer";
   const initialSlug = category ?? REF_CATEGORIES[0].slug;
   const initialPage = Math.max(1, Number(page) || 1);
 
@@ -106,24 +110,31 @@ export default async function ReferencePage({
                 className="mx-auto mb-7 w-full max-w-[560px] rounded-full px-5 py-3 text-[14px] font-bold text-white md:text-[17px]"
                 style={{ background: "rgba(255,255,255,.14)", border: "1px solid rgba(255,255,255,.35)" }}
               >
-                카페배포 검색 결과 캡처 모음
+                {inf ? "인플루언서 배포 검색 화면 캡처 모음" : "카페배포 검색 결과 캡처 모음"}
               </p>
 
               <h1
                 className="cd-display text-[52px] leading-[.98] text-white md:text-[88px]"
                 style={{ letterSpacing: "-4px", textShadow: "0 8px 0 rgba(0,0,0,.18)" }}
               >
-                카페배포
+                {inf ? "인플루언서" : "카페배포"}
                 <br />
                 레퍼런스
               </h1>
 
               <div className="mx-auto mt-8 flex w-full max-w-[620px] flex-col gap-3">
-                {[
-                  "모바일 통합검색 카페 영역 노출",
-                  "실제 게시 화면을 캡처한 자료",
-                  "지역맘 카페 · 대형 카페 커뮤니티 배포",
-                ].map((t) => (
+                {(inf
+                  ? [
+                      "네이버 인플루언서 계정에 올린 글",
+                      "실제 검색 화면을 캡처한 자료",
+                      `${INFLUENCER_REF_TOTAL}건 · 최근 캡처 ${shortDate(INFLUENCER_REF_LATEST)}`,
+                    ]
+                  : [
+                      "모바일 통합검색 카페 영역 노출",
+                      "실제 게시 화면을 캡처한 자료",
+                      "지역맘 카페 · 대형 카페 커뮤니티 배포",
+                    ]
+                ).map((t) => (
                   <span
                     key={t}
                     className="rounded-full bg-white px-3 py-2.5 text-[12.5px] font-black leading-snug sm:px-4 sm:py-3 sm:text-[14px] md:px-6 md:py-3.5 md:text-[21px]"
@@ -137,16 +148,35 @@ export default async function ReferencePage({
           </div>
         </div>
 
-        {/* ══ 구분 바 ══ */}
-        <div className="px-3 py-7 text-center md:px-8 md:py-9" style={{ background: "var(--cd-dark)" }}>
-          <p className="flex items-center justify-center gap-2 text-[15px] font-black text-white md:text-[26px]">
-            <ChevronDown size={18} strokeWidth={3} className="shrink-0" />
-            <span>인기주제 · 인기카페글 · 인기글 각 영역 레퍼런스</span>
-            <ChevronDown size={18} strokeWidth={3} className="shrink-0" />
-          </p>
+        {/* ══ 카페 · 인플루언서 전환 ══ */}
+        <div className="px-3 py-7 md:px-8 md:py-9" style={{ background: "var(--cd-dark)" }}>
+          <div className="mx-auto flex w-full max-w-[420px] gap-2 rounded-full p-1.5" style={{ background: "var(--cd-dark-3)" }}>
+            {[
+              { href: PATH, label: "카페 배포", n: REF_TOTAL, on: !inf },
+              { href: `${PATH}?type=influencer`, label: "인플루언서 배포", n: INFLUENCER_REF_TOTAL, on: inf },
+            ].map((t) => (
+              <Link
+                key={t.label}
+                href={t.href}
+                aria-current={t.on ? "page" : undefined}
+                className="flex min-h-[44px] flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3 text-[14px] font-bold transition-colors md:text-[15px]"
+                style={t.on ? { background: "var(--cd-primary)", color: "#fff" } : { color: "var(--cd-on-dark)" }}
+              >
+                {t.label}
+                <span className="text-[12px] tabular-nums" style={{ opacity: 0.85 }}>{t.n}</span>
+              </Link>
+            ))}
+          </div>
+          {!inf && (
+            <p className="mt-6 flex items-center justify-center gap-2 text-center text-[15px] font-black text-white md:text-[26px]">
+              <ChevronDown size={18} strokeWidth={3} className="shrink-0" />
+              <span>인기주제 · 인기카페글 · 인기글 각 영역 레퍼런스</span>
+              <ChevronDown size={18} strokeWidth={3} className="shrink-0" />
+            </p>
+          )}
         </div>
 
-        <ReferenceClient initialSlug={initialSlug} initialPage={initialPage} />
+        {inf ? <InfluencerReference /> : <ReferenceClient initialSlug={initialSlug} initialPage={initialPage} />}
 
         {/* ══ 하단 CTA ══ */}
         <section
@@ -163,11 +193,11 @@ export default async function ReferencePage({
 
             <div className="mx-auto mt-8 flex w-full max-w-[520px] flex-col gap-3">
               <Link
-                href="/contact?service=cafe-distribution"
+                href={inf ? INFLUENCER_CTA_HREF : "/contact?service=cafe-distribution"}
                 className="flex items-center justify-center gap-2 rounded-full py-4 text-[17px] font-black text-white transition-opacity hover:opacity-90 md:py-5 md:text-[21px]"
                 style={{ background: "var(--cd-primary)" }}
               >
-                카페 배포 문의 바로가기 <ArrowRight size={17} />
+                {inf ? "인플루언서 배포 견적 문의" : "카페 배포 문의 바로가기"} <ArrowRight size={17} />
               </Link>
               <a
                 href="https://pf.kakao.com/_MuUkG/chat"

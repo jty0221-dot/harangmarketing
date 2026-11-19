@@ -11,6 +11,9 @@
     "refs:collect": "python scripts/cafe-ref/collect.py",
     "refs:apply": "python scripts/cafe-ref/apply.py",
     "refs:verify": "python scripts/cafe-ref/apply.py --verify",
+    "refs:inf:collect": "python scripts/cafe-ref/collect.py --board allinone --category 인플루언서",
+    "refs:inf:apply": "python scripts/cafe-ref/apply.py --board allinone",
+    "refs:inf:verify": "python scripts/cafe-ref/apply.py --board allinone --verify",
     "refs:verify:detail": "python scripts/detail-ref/verify.py",
     "hooks:install": "node scripts/install-hooks.js",
     "prepare": "node scripts/install-hooks.js"

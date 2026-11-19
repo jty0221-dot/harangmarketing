@@ -8,6 +8,7 @@ import { noticeOccupies, NOTICE_CLOSED_EVENT, NOTICE_OPEN_EVENT } from "../lib/c
 import {
   SEARCH_CARE_OFFER as O,
   SEARCH_CARE_STORAGE_KEY,
+  SEARCH_CARE_CLOSED_EVENT,
   searchCareShowsOn,
   todayKst,
 } from "../lib/search-care-offer";
@@ -84,7 +85,10 @@ export default function SearchCarePopup() {
       }
     }
     setClosing(true);
-    setTimeout(() => setOpen(false), 180);
+    setTimeout(() => {
+      setOpen(false);
+      window.dispatchEvent(new Event(SEARCH_CARE_CLOSED_EVENT));
+    }, 180);
   };
 
   if (!open || !onPath) return null;

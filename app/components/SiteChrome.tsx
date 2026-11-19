@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import FloatingCTA from "./FloatingCTA";
 import CafeNoticePopup from "./CafeNoticePopup";
 import SearchCarePopup from "./SearchCarePopup";
+import InfluencerPopup from "./InfluencerPopup";
 import AttributionTracker from "./AttributionTracker";
 
 /**
@@ -32,6 +33,8 @@ export default function SiteChrome() {
       <CafeNoticePopup />
       {/* 블로그 마케팅 · 카페 배포에서만 뜨는 통합검색 월 관리 안내. 경로는 app/lib/search-care-offer.ts */}
       <SearchCarePopup />
+      {/* 인플루언서 배포 안내. 위 두 장이 떠 있으면 기다렸다가 닫힌 자리에 뜬다 (app/lib/influencer-distribution.ts) */}
+      <InfluencerPopup />
       {/* 광고 유입 경로 저장 + 카카오·전화 클릭 측정. 고객 전용 화면에서는 잴 이유가 없어 위 조건 뒤에 둔다 */}
       <AttributionTracker />
     </>

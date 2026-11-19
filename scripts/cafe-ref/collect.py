@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (  # noqa: E402
     PUBLIC_REF, WORK, PENDING, SHEETS, HAMMING,
     MIN_SRC_W, MIN_SRC_H, ahash, hamming, slice_rows,
-    list_categories, list_posts, post_images, get,
+    list_categories, list_posts, post_meta, get,
     load_ledger, save_ledger,
 )
 
@@ -84,6 +84,12 @@ def main():
                     help="한 번에 가져올 최대 조각 수. 판독 부담을 감당할 만큼만 끊어 간다")
     ap.add_argument("--category", default="",
                     help="이 문자열이 들어간 카테고리만 (예: 뷰티)")
+    ap.add_argument("--board", default="cafe", choices=["cafe", "allinone"],
+                    help="수집할 게시판. allinone 은 인플루언서 배포 (common.py 가 경로를 가른다)")
+    ap.add_argument("--max-posts", type=int, default=0,
+                    help="카테고리마다 최신 글 몇 건만 볼지 (0 = 전부)")
+    ap.add_argument("--per-post", type=int, default=0,
+                    help="글 하나에서 고르게 뽑을 조각 수 (0 = 전부)")
     args = ap.parse_args()
 
     os.makedirs(WORK, exist_ok=True)
@@ -99,6 +105,7 @@ def main():
     print(f"게시판 카테고리 {len(cats)}개\n")
 
     fresh, batch_hashes = [], []
+    meta = {}   # 조각 이름 -> {date, post}. allinone 화면이 날짜를 쓴다
     dup_site = dup_batch = 0
 
     stop = False
@@ -109,10 +116,12 @@ def main():
             continue
         ids = list_posts(code, max_pages=args.max_pages)
         todo = [i for i in ids if i not in seen_posts]
+        if args.max_posts:
+            todo = todo[:args.max_posts]
         print(f"{label:20} 전체 {len(ids):3}건 / 새 글 {len(todo):3}건")
         for idx in todo:
             try:
-                urls = post_images(idx)
+                urls, date = post_meta(idx)
             except Exception as e:
                 print(f"    {idx} 본문 실패: {e}")
                 continue
@@ -128,7 +137,11 @@ def main():
                     continue
                 if im.width < MIN_SRC_W or im.height < MIN_SRC_H:
                     continue
-                for crop in slice_rows(im):
+                rows = slice_rows(im)
+                if args.per_post and len(rows) > args.per_post:
+                    step = len(rows) / args.per_post
+                    rows = [rows[int(i * step)] for i in range(args.per_post)]
+                for crop in rows:
                     h = ahash(crop)
                     if any(hamming(h, k) <= HAMMING for k in known):
                         dup_site += 1
@@ -140,6 +153,7 @@ def main():
                     name = f"new_{len(fresh) + 1:04d}.png"
                     crop.save(os.path.join(PENDING, name))
                     fresh.append(name)
+                    meta[name.replace(".png", "")] = {"date": date, "post": idx}
                     if len(fresh) >= args.limit:
                         break
             # 상한에 걸려 중간에 끊긴 글은 기록하지 않는다 — 다음 실행에서 다시 훑어야 한다
@@ -165,6 +179,9 @@ def main():
     with open(kwfile, "w", encoding="utf-8") as f:
         json.dump({n.replace(".png", ""): "" for n in fresh}, f,
                   ensure_ascii=False, indent=1)
+
+    with open(os.path.join(PENDING, "meta.json"), "w", encoding="utf-8") as f:
+        json.dump(meta, f, ensure_ascii=False, indent=1)
 
     print(f"대조표 {sheets}장 -> {SHEETS}")
     print(f"판독표 -> {kwfile}")

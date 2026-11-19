@@ -9,6 +9,18 @@ import { CAFE_GROUPS, CAFE_GROUPS_TOTAL, CAFE_NEW_TOTAL } from "../../lib/cafe-n
 import { ArrowLeft, Check, ChevronDown } from "lucide-react";
 import CafeNoticeReopen from "../../components/CafeNoticeReopen";
 import { SEARCH_CARE_OFFER } from "../../lib/search-care-offer";
+import InfluencerPoster from "../../components/InfluencerPoster";
+import {
+  INFLUENCER_OFFER,
+  INFLUENCER_COMPARE,
+  INFLUENCER_FIT,
+  INFLUENCER_FAQ,
+  INFLUENCER_REFS,
+  INFLUENCER_REF_TOTAL,
+  INFLUENCER_CTA_HREF,
+  INFLUENCER_REF_HREF,
+  shortDate,
+} from "../../lib/influencer-distribution";
 import {
   PACKAGES,
   PACKAGE_SIZES,
@@ -62,6 +74,7 @@ const URL = `${SITE.base}${PATH}`;
  */
 const PAGE_FAQ: FaqItem[] = [
   ...CAFE_FAQ,
+  INFLUENCER_FAQ,
   {
     q: "지금 배포할 수 있는 카페는 어떤 곳인가요?",
     a: `${CAFE_GROUPS.map((g) => `${g.label} ${g.cafes.length}곳`).join(", ")}, 모두 ${CAFE_GROUPS_TOTAL}곳입니다. 그중 ${CAFE_NEW_TOTAL}곳은 새로 더해진 카페입니다. 카페 이름은 이 페이지의 대표카페 운영 변경 안내에 표로 적어 두었고, 이 페이지의 카페 목록 다시 보기 버튼으로 언제든 다시 열 수 있습니다. 어느 카페에 올릴지는 업종과 키워드를 보고 상담에서 정하고, 목록은 카페 규정에 따라 바뀔 수 있어 상담 시점 기준으로 안내드립니다.`,
@@ -712,6 +725,126 @@ export default function CafeDistributionPage() {
               월 {SEARCH_CARE_OFFER.price}이고 키워드마다 진행 가능 여부와 단가를 먼저 확인합니다.
               검색 결과의 위치는 네이버가 정합니다. 몇 위에 오른다고 약속드리지 않습니다.
             </p>
+          </div>
+        </section>
+
+        {/* ══ 관련 상품 — 인플루언서 배포 (2026-11-19 대표 지시 · 금액 미확정이라 견적 문의로 둔다) ══ */}
+        <section id="influencer" className="scroll-mt-28 bg-white py-14 md:py-[66px]">
+          <div className={INNER}>
+            <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
+              RELATED
+            </p>
+            <h2
+              className="cd-display text-[28px] leading-[1.25] md:text-[38px]"
+              style={{ color: "var(--cd-ink)", letterSpacing: "-1.5px" }}
+            >
+              인플루언서 배포도
+              <br />
+              함께 진행합니다
+            </h2>
+            <p className="mt-5 text-[16px] leading-[1.8] md:text-[18px]" style={{ color: "var(--cd-body-2)", textWrap: "pretty" }}>
+              네이버 통합검색에는 인플루언서 글이 따로 모이는 자리가 있습니다. {INFLUENCER_OFFER.lead} 블로그 원고 · 카페 게시와 묶어서 진행할 수 있습니다.
+            </p>
+
+            <div className="mt-8">
+              <InfluencerPoster />
+            </div>
+
+            {/* 최블 · 카페 글과 무엇이 다른가 */}
+            <h3 className="mt-10 text-[18px] font-bold md:text-[20px]" style={{ color: "var(--cd-ink-2)" }}>
+              최적화 블로그 · 카페 글과 다른 점
+            </h3>
+            <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-[18px]">
+              {INFLUENCER_COMPARE.map((c) => {
+                const on = "current" in c;
+                return (
+                  <div
+                    key={c.name}
+                    className="rounded-[18px] px-5 py-6"
+                    style={
+                      on
+                        ? { background: "var(--cd-tint-2)", border: "2px solid var(--cd-primary)" }
+                        : { background: "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }
+                    }
+                  >
+                    <div className="text-[13px] font-bold" style={{ color: "var(--cd-primary)" }}>{c.name}</div>
+                    <div className="mt-1.5 text-[17px] font-bold" style={{ color: "var(--cd-ink-2)" }}>{c.where}</div>
+                    <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: "var(--cd-body-2)" }}>{c.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 이런 대표님께 · 금액 */}
+            <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-[1fr_300px] md:gap-[18px]">
+              <div className="rounded-[18px] px-5 py-6 md:px-6" style={{ border: "1px solid var(--cd-border)" }}>
+                <h3 className="text-[16px] font-bold md:text-[17px]" style={{ color: "var(--cd-ink-2)" }}>이런 대표님께 맞습니다</h3>
+                <ul className="mt-3 space-y-2.5">
+                  {INFLUENCER_FIT.map((t) => (
+                    <li key={t} className="flex items-start gap-2.5">
+                      <Check size={17} strokeWidth={2.5} className="mt-0.5 shrink-0" style={{ color: "var(--cd-primary)" }} />
+                      <span className="text-[15px] leading-[1.65]" style={{ color: "var(--cd-body)" }}>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex flex-col rounded-[18px] px-5 py-6 md:px-6" style={{ background: "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}>
+                <div className="text-[13px] font-bold" style={{ color: "var(--cd-muted)" }}>금액</div>
+                <div className="cd-display mt-1 text-[26px]" style={{ color: "var(--cd-ink)" }}>{INFLUENCER_OFFER.price}</div>
+                <p className="mt-1.5 text-[14px] leading-[1.65]" style={{ color: "var(--cd-body-2)" }}>{INFLUENCER_OFFER.priceNote}</p>
+                <Link
+                  href={INFLUENCER_CTA_HREF}
+                  className="mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full px-5 text-[15px] font-black text-white transition-opacity hover:opacity-90 md:mt-auto"
+                  style={{ background: "var(--cd-primary)" }}
+                >
+                  {INFLUENCER_OFFER.cta}
+                </Link>
+              </div>
+            </div>
+
+            {/* 레퍼런스 맛보기 */}
+            {INFLUENCER_REF_TOTAL > 0 && (
+              <>
+                <div className="mt-10 flex flex-wrap items-end justify-between gap-2">
+                  <h3 className="text-[18px] font-bold md:text-[20px]" style={{ color: "var(--cd-ink-2)" }}>
+                    인플루언서 배포 레퍼런스 {INFLUENCER_REF_TOTAL}건
+                  </h3>
+                  <span className="text-[13px]" style={{ color: "var(--cd-muted)" }}>최근 캡처 {shortDate(INFLUENCER_REFS[0].date)}</span>
+                </div>
+                <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+                  {INFLUENCER_REFS.slice(0, 4).map((r) => (
+                    <figure key={r.image} className="overflow-hidden rounded-[14px]" style={{ border: "1px solid var(--cd-border)" }}>
+                      <figcaption
+                        className="flex items-center justify-between gap-2 px-3 py-2.5"
+                        style={{ background: "var(--cd-tint)", borderBottom: "1px solid var(--cd-border-2)" }}
+                      >
+                        <span className="min-w-0 truncate text-[14px] font-bold" style={{ color: "var(--cd-ink-2)" }}>{r.keyword}</span>
+                        <span className="shrink-0 text-[12px]" style={{ color: "var(--cd-muted)" }}>{shortDate(r.date)} 캡처</span>
+                      </figcaption>
+                      <img
+                        src={r.image}
+                        alt={`'${r.keyword}' 검색 화면의 인플루언서 글 캡처`}
+                        width={r.w}
+                        height={r.h}
+                        loading="lazy"
+                        decoding="async"
+                        className="block h-auto w-full"
+                      />
+                    </figure>
+                  ))}
+                </div>
+                <p className="mt-4 text-[13px] leading-relaxed" style={{ color: "var(--cd-muted-2)" }}>
+                  여기 캡처는 하랑이 함께 쓰는 협력 배포망의 게시 실적입니다. 하랑이 단독으로 진행한 건만 모은 것은 아닙니다. {INFLUENCER_OFFER.footnote}
+                </p>
+                <Link
+                  href={INFLUENCER_REF_HREF}
+                  className="mt-5 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-7 text-[16px] font-black transition-colors md:w-auto"
+                  style={{ background: "#fff", border: "2px solid var(--cd-primary)", color: "var(--cd-primary)" }}
+                >
+                  {INFLUENCER_OFFER.refCta}
+                </Link>
+              </>
+            )}
           </div>
         </section>
 

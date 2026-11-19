@@ -25,8 +25,8 @@ from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (  # noqa: E402
-    PUBLIC_REF, PENDING, TS_FILE, QUANTIZE,
-    read_categories, append_keywords, git_state,
+    PUBLIC_REF, PUBLIC_DIR, PENDING, TS_FILE, QUANTIZE, BOARD, INF_FILE,
+    read_categories, append_keywords, git_state, load_inf,
 )
 from classify import classify  # noqa: E402
 
@@ -95,12 +95,88 @@ def report_uncommitted(uncommitted):
           " scripts/cafe-ref/classify.py")
 
 
+def verify_inf():
+    """allinone 판 3자 대응 검증. 데이터(influencer-ref.json) ↔ 캡처 ↔ git."""
+    referenced = {r["file"] for r in load_inf()}
+    on_disk = ({f for f in os.listdir(PUBLIC_REF) if f.endswith(".png")}
+               if os.path.isdir(PUBLIC_REF) else set())
+    committed, _staged = git_state()
+    uncommitted = None if committed is None else sorted(referenced - committed)
+    return len(referenced), sorted(referenced - on_disk), sorted(on_disk - referenced), uncommitted
+
+
+def print_inf_verify():
+    total, missing, orphan, uncommitted = verify_inf()
+    print(f"인플루언서 레퍼런스 {total}개")
+    print(f"  없는 캡처 {len(missing)}개 {missing[:5]}")
+    print(f"  안 쓰이는 캡처 {len(orphan)}개 {orphan[:5]}")
+    if uncommitted:
+        print(f"  커밋 안 된 캡처 {len(uncommitted)}개 — 이대로 배포하면 배포 화면에서 빈 칸이 됩니다.")
+        print(f"\n  git add {PUBLIC_DIR} app/lib/influencer-ref.json")
+    elif uncommitted is not None:
+        print("  커밋 안 된 캡처 없음")
+    return 1 if (missing or orphan or uncommitted) else 0
+
+
+def apply_inf(dry_run):
+    """allinone 반영. 업종 판정은 카페와 같은 classify 를 쓰고, 데이터는 JSON 맨 앞(최신)에 붙인다."""
+    with open(os.path.join(PENDING, "keywords.json"), encoding="utf-8") as f:
+        raw = json.load(f)
+    with open(os.path.join(PENDING, "meta.json"), encoding="utf-8") as f:
+        meta = json.load(f)
+    data = load_inf()
+    have = {r["keyword"] for r in data}
+    last = max([int(r["file"][4:-4]) for r in data] or [0])
+
+    rows, dup = [], 0
+    for name in sorted(raw):
+        kw = str(raw[name]).strip()
+        if not kw:
+            continue
+        if kw in have:
+            dup += 1
+            continue
+        have.add(kw)
+        rows.append((name, kw, classify(kw), meta.get(name, {}).get("date", "")))
+    blank = sum(1 for v in raw.values() if not str(v).strip())
+    print(f"판독표 {len(raw)}건 — 빈 칸 {blank}건(버림) / 겹쳐 버림 {dup}건 / 실제 추가 {len(rows)}건")
+    for slug, n in collections.Counter(r[2] for r in rows).most_common():
+        print(f"  {slug:14} +{n}")
+    if dry_run or not rows:
+        return 0
+
+    os.makedirs(PUBLIC_REF, exist_ok=True)
+    added = []
+    for i, (name, kw, slug, date) in enumerate(rows):
+        fname = f"inf-{last + i + 1:03d}.png"
+        im = Image.open(os.path.join(PENDING, f"{name}.png")).convert("RGB")
+        im.quantize(colors=QUANTIZE, method=Image.MEDIANCUT).save(
+            os.path.join(PUBLIC_REF, fname), optimize=True)
+        added.append({"file": fname, "keyword": kw, "category": slug, "date": date,
+                      "w": im.width, "h": im.height})
+    data = sorted(added + data, key=lambda r: r["date"], reverse=True)
+    with open(INF_FILE, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    print()
+    return print_inf_verify()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--verify", action="store_true",
                     help="반영은 하지 않고 데이터·캡처·git 대응만 점검한다")
+    ap.add_argument("--board", default="cafe", choices=["cafe", "allinone"])
     args = ap.parse_args()
+
+    if BOARD == "allinone":
+        if args.verify:
+            return print_inf_verify()
+        if not os.path.exists(os.path.join(PENDING, "keywords.json")):
+            print("판독표가 없습니다. 먼저 collect.py --board allinone 을 돌리세요.")
+            return 1
+        return apply_inf(args.dry_run)
 
     if args.verify:
         total, missing, orphan, uncommitted = verify()

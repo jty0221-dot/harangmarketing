@@ -59,6 +59,38 @@ npm run refs:verify
 
 커밋이 빠졌으면 접두어별 범위와 붙여넣을 `git add` 명령을 찍고 **종료코드 1** 로 끝난다.
 
+## 인플루언서 배포(올인원 게시판) 레퍼런스
+
+같은 두 단계를 `--board allinone` 으로 돌린다. 기본값은 `cafe` 라 위 명령은 그대로다.
+작업 폴더(`work/allinone/`) · 캡처(`public/influencer-ref/inf-NNN.png`) ·
+데이터(`app/lib/influencer-ref.json`)가 카페와 따로 있다.
+
+```bash
+# 1) 「인플루언서」 카테고리의 새 글에서 긁어온다 (글마다 6장씩 고르게)
+npm run refs:inf:collect -- --max-posts 14 --per-post 6
+
+# 2) work/allinone/pending 의 조각을 직접 보고 keywords.json 을 채운다 (아래 기준에 걸리면 "" 로 둔다)
+
+# 3) 반영 · 검증
+npm run refs:inf:apply -- --dry-run
+npm run refs:inf:apply
+git add public/influencer-ref app/lib/influencer-ref.json
+git commit
+npm run refs:inf:verify   # 0 이 나와야 한다
+```
+
+카페와 다른 점
+
+- 올인원 캡처는 서로 너무 닮아 해시를 32x32(거리 12)로 쓴다. 12x12 로는 다른 캡처끼리 거리 0 이 나온다.
+- 썸네일 속 초록색이 N 뱃지로 잡혀서 뱃지를 왼쪽 80px 안에서만 찾고, 한 행을 400px 로 막는다.
+- 키워드마다 날짜가 붙는다. 글 제목의 「11월17일」 에서 읽고 화면에 「11/17 캡처」 로 나온다.
+- 업종 탭은 카페와 같은 `classify.py` 를 쓴다.
+- **대조표(sheets)만 보지 말고 조각 전체를 본다.** 아래에 걸리면 빈 칸으로 둬서 버린다 (카페 쪽 숨김 선례와 같은 기준).
+  전화번호 · 주소 · 링크가 보이는 조각 / 발톱 교정 · 의약품 같은 의료 인접 글 / 얼굴이 식별되는 사진 /
+  N 뱃지 없이 확대된 캡처 · 잘린 조각 · 다음 캡처가 꼬리로 붙은 조각 / 한 조각에 키워드가 여러 개인 목록형 글
+- 이미 올린 캡처를 내릴 때는 파일을 지우지 않고 `app/lib/influencer-distribution.ts` 의 `INFLUENCER_HIDDEN` 에 적는다.
+- `pre-push` 훅은 아직 카페 · 상세페이지 두 곳만 본다. 인플루언서 캡처는 커밋 뒤 `refs:inf:verify` 를 직접 돌린다.
+
 ## 자동으로 처리되는 것
 
 - **중복 제거** — 이미 올라간 캡처와 aHash(12x12, 해밍거리 6)로 대조.

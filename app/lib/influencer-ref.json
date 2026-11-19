@@ -1,0 +1,274 @@
+[
+ {
+  "file": "inf-001.png",
+  "keyword": "청주가구거리",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 362
+ },
+ {
+  "file": "inf-002.png",
+  "keyword": "평택눈썹문신",
+  "category": "beauty",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-003.png",
+  "keyword": "하남가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 382
+ },
+ {
+  "file": "inf-004.png",
+  "keyword": "재수기숙학원",
+  "category": "edu",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 386
+ },
+ {
+  "file": "inf-005.png",
+  "keyword": "전시가구",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 350
+ },
+ {
+  "file": "inf-006.png",
+  "keyword": "제주도 바이크 렌탈",
+  "category": "general",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-007.png",
+  "keyword": "종로 금매입",
+  "category": "general",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 386
+ },
+ {
+  "file": "inf-008.png",
+  "keyword": "종로예물",
+  "category": "wedding",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-009.png",
+  "keyword": "진접가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-010.png",
+  "keyword": "의왕가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-011.png",
+  "keyword": "익산가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-012.png",
+  "keyword": "인천공항콜밴",
+  "category": "general",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 310
+ },
+ {
+  "file": "inf-013.png",
+  "keyword": "인천송도입술문신",
+  "category": "beauty",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-014.png",
+  "keyword": "안산 점심",
+  "category": "restaurant",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 352
+ },
+ {
+  "file": "inf-015.png",
+  "keyword": "안양눈썹문신",
+  "category": "beauty",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 398
+ },
+ {
+  "file": "inf-016.png",
+  "keyword": "영천 가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 360
+ },
+ {
+  "file": "inf-017.png",
+  "keyword": "오산가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 362
+ },
+ {
+  "file": "inf-018.png",
+  "keyword": "송파가구거리",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-019.png",
+  "keyword": "수원가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 398
+ },
+ {
+  "file": "inf-020.png",
+  "keyword": "스크래치가구",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 348
+ },
+ {
+  "file": "inf-021.png",
+  "keyword": "실내운동기구",
+  "category": "general",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 314
+ },
+ {
+  "file": "inf-022.png",
+  "keyword": "부천가구할인매장",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 370
+ },
+ {
+  "file": "inf-023.png",
+  "keyword": "분당초등수학학원",
+  "category": "edu",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 358
+ },
+ {
+  "file": "inf-024.png",
+  "keyword": "서귀포 시청 맛집",
+  "category": "restaurant",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-025.png",
+  "keyword": "성북동 맛집",
+  "category": "restaurant",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 362
+ },
+ {
+  "file": "inf-026.png",
+  "keyword": "백구가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 360
+ },
+ {
+  "file": "inf-027.png",
+  "keyword": "부산경락",
+  "category": "beauty",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 384
+ },
+ {
+  "file": "inf-028.png",
+  "keyword": "부안가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 362
+ },
+ {
+  "file": "inf-029.png",
+  "keyword": "대구눈썹문신",
+  "category": "beauty",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 352
+ },
+ {
+  "file": "inf-030.png",
+  "keyword": "대치동중등수학학원",
+  "category": "edu",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-031.png",
+  "keyword": "구리가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-032.png",
+  "keyword": "기계식주차장 관리인교육",
+  "category": "general",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ },
+ {
+  "file": "inf-033.png",
+  "keyword": "남양주가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 388
+ },
+ {
+  "file": "inf-034.png",
+  "keyword": "과천가구단지",
+  "category": "furniture",
+  "date": "2026-11-17",
+  "w": 1000,
+  "h": 380
+ }
+]
