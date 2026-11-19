@@ -80,6 +80,19 @@ export function influencerShowsOn(pathname: string): boolean {
 
 export { todayKst };
 
+/** 안내를 닫을 때 쏘는 이벤트. 같은 자리를 이어 쓰는 통합검색 월 관리 안내(SearchCarePopup)가 듣는다 */
+export const INFLUENCER_CLOSED_EVENT = "harang:influencer-closed";
+
+/** 이 안내가 지금 그 경로에서 뜨는가 (오늘 그만 보기를 누르지 않았는가) */
+export function influencerOccupies(pathname: string): boolean {
+  if (!influencerShowsOn(pathname)) return false;
+  try {
+    return localStorage.getItem(INFLUENCER_STORAGE_KEY) !== todayKst();
+  } catch {
+    return true;
+  }
+}
+
 /* ── 레퍼런스 ─────────────────────────────────────────────── */
 
 export interface InfluencerRef {

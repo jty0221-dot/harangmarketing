@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 import { X, ArrowRight } from "lucide-react";
 import InfluencerPoster from "./InfluencerPoster";
 import { noticeOccupies, NOTICE_CLOSED_EVENT, NOTICE_OPEN_EVENT } from "../lib/cafe-notice";
-import { searchCareOccupies, SEARCH_CARE_CLOSED_EVENT } from "../lib/search-care-offer";
 import {
   INFLUENCER_OFFER as O,
   INFLUENCER_CTA_HREF,
   INFLUENCER_STORAGE_KEY,
+  INFLUENCER_CLOSED_EVENT,
   influencerShowsOn,
   todayKst,
 } from "../lib/influencer-distribution";
@@ -18,12 +18,11 @@ import {
 /**
  * 인플루언서 배포 안내 팝업. 블로그 마케팅 · 카페 배포 페이지에서만 뜬다.
  *
- * 자리는 통합검색 월 관리 안내(SearchCarePopup)와 같은 상자를 쓰고, 앞선 두 장에게 차례를 양보한다.
- *   · 월 관리 안내가 떠 있으면 : 그 안내가 닫힌 뒤(SEARCH_CARE_CLOSED_EVENT) 같은 자리에 뜬다
- *   · 월 관리 안내를 오늘 그만 보기로 닫은 날 : 월 관리 안내가 하던 대로 선다
- *     (넓은 화면은 운영 공지 옆 왼쪽 아래 · 좁은 화면은 운영 공지가 닫힌 뒤)
- *   · 좁은 화면에서 운영 공지와 월 관리 안내가 둘 다 남아 있으면 : 이번 화면에서는 뜨지 않는다.
- *     세 장을 연달아 띄우지 않는다. 같은 내용이 카페 배포 페이지 본문에 카드로 있다
+ * 영업 안내 두 장 가운데 이 안내가 먼저 뜬다 (2026-11-19 대표 지시 「팝업 순서 인플루언서 먼저 뜨게 바꿔」).
+ * 통합검색 월 관리 안내(SearchCarePopup)는 이 안내가 닫힌 뒤(INFLUENCER_CLOSED_EVENT) 같은 자리에 뜬다.
+ * 카페 배포 페이지에서는 운영 공지(CafeNoticePopup)와 같이 뜬다.
+ *   · 넓은 화면(1100px 이상) : 공지는 오른쪽, 이 안내는 왼쪽 아래에 나란히 선다
+ *   · 좁은 화면 : 두 장이 같은 자리라 겹친다. 공지를 닫으면(NOTICE_CLOSED_EVENT) 이어서 뜬다
  *
  * X 는 이번 화면에서만 닫고, 「오늘은 그만 보기」 는 한국 시간 자정까지 다시 띄우지 않는다.
  */
@@ -44,25 +43,22 @@ export default function InfluencerPopup() {
       /* 저장소를 못 쓰는 브라우저. 그냥 띄운다 */
     }
     const notice = noticeOccupies(pathname);
-    const care = searchCareOccupies(pathname);
     const wide = window.matchMedia(SIDE_BY_SIDE_QUERY).matches;
-    if (!wide && notice && care) return;
 
     setLeft(wide && notice);
     let timer: ReturnType<typeof setTimeout> | undefined;
     const show = (delay: number) => {
       timer = setTimeout(() => setOpen(true), delay);
     };
-    // 기다릴 앞 장 : 월 관리 안내가 먼저고, 없으면 좁은 화면의 운영 공지다
-    const waitFor = care ? SEARCH_CARE_CLOSED_EVENT : !wide && notice ? NOTICE_CLOSED_EVENT : "";
-    if (!waitFor) {
+    // 좁은 화면에서만 운영 공지를 기다린다. 넓은 화면은 공지 옆에 바로 선다
+    if (wide || !notice) {
       show(1200);
       return () => clearTimeout(timer);
     }
     const onClosed = () => show(250);
-    window.addEventListener(waitFor, onClosed, { once: true });
+    window.addEventListener(NOTICE_CLOSED_EVENT, onClosed, { once: true });
     return () => {
-      window.removeEventListener(waitFor, onClosed);
+      window.removeEventListener(NOTICE_CLOSED_EVENT, onClosed);
       clearTimeout(timer);
     };
   }, [onPath, pathname]);
@@ -84,7 +80,10 @@ export default function InfluencerPopup() {
       }
     }
     setClosing(true);
-    setTimeout(() => setOpen(false), 180);
+    setTimeout(() => {
+      setOpen(false);
+      window.dispatchEvent(new Event(INFLUENCER_CLOSED_EVENT));
+    }, 180);
   };
 
   if (!open || !onPath) return null;

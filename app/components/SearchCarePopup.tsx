@@ -12,6 +12,7 @@ import {
   searchCareShowsOn,
   todayKst,
 } from "../lib/search-care-offer";
+import { influencerOccupies, INFLUENCER_CLOSED_EVENT } from "../lib/influencer-distribution";
 
 /**
  * 네이버 통합검색 월 관리 안내 팝업. 블로그 마케팅 · 카페 배포 페이지에서만 뜬다.
@@ -22,6 +23,8 @@ import {
  * 「레퍼런스에도 같이 뜨게 해줘 이전공지도 마찬가지고」).
  *   · 넓은 화면(1100px 이상) : 공지는 오른쪽, 이 안내는 왼쪽 아래에 나란히 선다
  *   · 좁은 화면 : 두 장이 같은 자리라 겹친다. 공지를 닫으면(NOTICE_CLOSED_EVENT) 이어서 뜬다
+ * 인플루언서 배포 안내(InfluencerPopup)가 뜨는 날은 그 안내가 먼저다 (2026-11-19 대표 지시).
+ * 그 안내가 닫힌 뒤(INFLUENCER_CLOSED_EVENT) 같은 자리에 뜬다
  *
  * X 는 이번 화면에서만 닫고, 「오늘은 그만 보기」 는 한국 시간 자정까지 다시 띄우지 않는다.
  * 문구와 금액은 app/lib/search-care-offer.ts 에 있다. 이 파일에는 문장을 적지 않는다.
@@ -42,28 +45,29 @@ export default function SearchCarePopup() {
     } catch {
       /* 저장소를 못 쓰는 브라우저. 그냥 띄운다 */
     }
+    const notice = noticeOccupies(pathname);
+    const inf = influencerOccupies(pathname);
+    const wide = window.matchMedia(SIDE_BY_SIDE_QUERY).matches;
+    // 좁은 화면에서 운영 공지와 인플루언서 안내가 둘 다 남아 있으면 이번 화면에서는 뜨지 않는다.
+    // 세 장을 연달아 띄우지 않는다
+    if (!wide && notice && inf) return;
+
+    // 공지가 오른쪽을 쓰면 이 안내는 왼쪽에 선다
+    setLeft(wide && notice);
     let timer: ReturnType<typeof setTimeout> | undefined;
     const show = (delay: number) => {
       timer = setTimeout(() => setOpen(true), delay);
     };
-
-    if (!noticeOccupies(pathname)) {
-      setLeft(false);
+    // 기다릴 앞 장 : 인플루언서 안내가 먼저고(2026-11-19 대표 지시), 없으면 좁은 화면의 운영 공지다
+    const waitFor = inf ? INFLUENCER_CLOSED_EVENT : !wide && notice ? NOTICE_CLOSED_EVENT : "";
+    if (!waitFor) {
       show(1200);
       return () => clearTimeout(timer);
     }
-    if (window.matchMedia(SIDE_BY_SIDE_QUERY).matches) {
-      // 공지가 오른쪽을 쓰니 이 안내는 왼쪽에 선다
-      setLeft(true);
-      show(1200);
-      return () => clearTimeout(timer);
-    }
-    // 좁은 화면 : 공지를 닫으면 같은 자리에 이어서 뜬다
-    setLeft(false);
     const onClosed = () => show(250);
-    window.addEventListener(NOTICE_CLOSED_EVENT, onClosed, { once: true });
+    window.addEventListener(waitFor, onClosed, { once: true });
     return () => {
-      window.removeEventListener(NOTICE_CLOSED_EVENT, onClosed);
+      window.removeEventListener(waitFor, onClosed);
       clearTimeout(timer);
     };
   }, [onPath, pathname]);
