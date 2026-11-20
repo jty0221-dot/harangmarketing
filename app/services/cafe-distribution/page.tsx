@@ -728,7 +728,7 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 관련 상품 — 인플루언서 배포 (2026-11-19 대표 지시 · 금액 미확정이라 견적 문의로 둔다) ══ */}
+        {/* ══ 관련 상품 — 인플루언서 배포 (2026-11-19 대표 지시 · 금액은 2026-11-20 대표 결정 건당 40,000원) ══ */}
         <section id="influencer" className="scroll-mt-28 bg-white py-14 md:py-[66px]">
           <div className={INNER}>
             <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
