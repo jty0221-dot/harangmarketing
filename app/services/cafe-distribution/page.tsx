@@ -728,7 +728,7 @@ export default function CafeDistributionPage() {
           </div>
         </section>
 
-        {/* ══ 관련 상품 — 인플루언서 배포 (2026-11-19 대표 지시 · 금액은 2026-11-20 대표 결정 건당 40,000원) ══ */}
+        {/* ══ 관련 상품 — 인플루언서 배포 (2026-11-19 대표 지시 · 금액은 2026-11-20 대표 결정 건당 준최적화 40,000원 · 최적화 60,000원) ══ */}
         <section id="influencer" className="scroll-mt-28 bg-white py-14 md:py-[66px]">
           <div className={INNER}>
             <p className="mb-4 text-[13px] font-bold tracking-[2px] md:text-[14px]" style={{ color: "var(--cd-primary)" }}>
@@ -790,7 +790,20 @@ export default function CafeDistributionPage() {
               </div>
               <div className="flex flex-col rounded-[18px] px-5 py-6 md:px-6" style={{ background: "var(--cd-tint)", border: "1px solid var(--cd-border-2)" }}>
                 <div className="text-[13px] font-bold" style={{ color: "var(--cd-muted)" }}>금액</div>
-                <div className="cd-display mt-1 text-[26px]" style={{ color: "var(--cd-ink)" }}>{INFLUENCER_OFFER.price}</div>
+                <ul className="mt-2 space-y-2.5">
+                  {INFLUENCER_OFFER.tiers.map((t) => (
+                    <li key={t.name}>
+                      <div className="flex items-center gap-2 text-[14px] font-bold" style={{ color: "var(--cd-body)" }}>
+                        {t.name}
+                        {t.recommended && (
+                          <span className="rounded-md px-1.5 py-0.5 text-[12px] font-bold text-white" style={{ background: "var(--cd-primary)" }}>추천</span>
+                        )}
+                      </div>
+                      <div className="cd-display text-[24px] tabular-nums" style={{ color: "var(--cd-ink)" }}>{t.price}</div>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-[14px] font-semibold leading-[1.65]" style={{ color: "var(--cd-body)" }}>{INFLUENCER_OFFER.recommend}</p>
                 <p className="mt-1.5 text-[14px] leading-[1.65]" style={{ color: "var(--cd-body-2)" }}>{INFLUENCER_OFFER.priceNote}</p>
                 <Link
                   href={INFLUENCER_CTA_HREF}
