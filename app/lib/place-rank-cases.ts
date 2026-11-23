@@ -25,7 +25,8 @@ import raw from "../../content/place-rank-cases.json";
  * 6) 올라간 건과 지키고 있는 건을 함께 싣는다 (2026-09-05 (토) 대표 지시).
  *    시작보다 떨어진 건만 뺀다. trend 가 유지인 카드에 올랐다고 적지 않는다 — 3위에서 3위는 지킨 것이다.
  * 7) 카드 순서의 기본은 그 키워드의 실제 월 검색수다 (2026-11-12 (목) 대표 지시 '검색량이 얼마인지 측정해서').
- *    화면에는 내림한 값(volumeLabel · 월 8만 회 이상)만 적는다. 정확한 값은 지역을 되짚게 해서 내보내지 않는다.
+ *    화면에는 조회한 값 그대로(volumeLabel · 월 87,800회) 적는다 (2026-11-23 (월) 대표 지시 '검색량 그대로 표기하고').
+ *    11/12 부터 11/23 까지는 내림한 값(월 8만 회 이상)만 적었다.
  *    키워드 표기는 00맛집 꼴이고 행정단위도 적지 않는다 (같은 대표 지시).
  *
  * 한 카드가 한 작품이다. 같은 매장이 키워드 셋을 올렸으면 카드도 셋이고,
@@ -41,6 +42,11 @@ export interface PlaceRankKeyword {
   detail: string;
   /** 계측 시작 순위 */
   from: number;
+  /**
+   * 시작 순위 대신 적는 표기. `미노출` · 있으면 화면은 from 숫자 대신 이것을 적는다.
+   * content/place-rank-from-override.tsv 에 카드 ID 로 적어 두면 생성기가 붙인다 (2026-11-23 대표 지시).
+   */
+  fromLabel?: string;
   /** 최신 스냅샷의 현재 순위 */
   to: number;
   /** 계측 시작일부터 그 순위가 확인된 날까지의 일수 */
@@ -67,9 +73,9 @@ export interface PlaceRankCase {
   code: string;
   /** 상승 · 유지 — 떨어진 건은 애초에 오지 않는다 */
   trend: "상승" | "유지";
-  /** 이 키워드의 월 검색수를 내림한 값. 정렬용 */
+  /** 이 키워드의 월 검색수. 정렬용 */
   volume: number;
-  /** 화면에 적는 검색량 문구. `월 8만 회 이상` · 없으면 빈 문자열 */
+  /** 화면에 적는 검색량 문구. `월 87,800회` · 없으면 빈 문자열 */
   volumeLabel: string;
   /** 내려가기 전에 게시한 순위를 그대로 둔 카드인가 */
   kept: boolean;
@@ -83,6 +89,7 @@ interface RawCase {
   storeLabel: string;
   keywordLabel: string;
   from: number;
+  fromLabel?: string;
   to: number;
   days: number;
   startDate: string;
@@ -136,6 +143,7 @@ export const PLACE_RANK_CASES: PlaceRankCase[] = (FILE.cases ?? []).map((c) => {
   const kw: PlaceRankKeyword = {
     detail: c.keywordLabel,
     from: c.from,
+    ...(c.fromLabel ? { fromLabel: c.fromLabel } : {}),
     to: c.to,
     days: c.days,
     grade: c.grade,
@@ -181,6 +189,11 @@ export const PLACE_RANK_MONITORING = FILE.monitoring;
  * 이 삭제와 상관없이 그대로 남는다 (2026-09-07 (월) 대표 지시 「유지하는 것도 올려놔」).
  */
 
+/** 시작 순위 글자. 덮어쓰기 표기(미노출)가 있으면 그것, 없으면 `190위` */
+export function fromText(k: { from: number; fromLabel?: string }): string {
+  return k.fromLabel ?? `${k.from}위`;
+}
+
 /** 계단 수 — 시작 순위에서 현재 순위까지 몇 칸 올라왔나 */
 export const caseGap = (c: PlaceRankCase) => c.best.from - c.best.to;
 
@@ -212,7 +225,7 @@ export const PLACE_RANK_TOP_LINES = [...PLACE_RANK_CASES]
   .filter((c) => c.trend === "상승")
   .sort((a, b) => caseGap(b) - caseGap(a))
   .slice(0, 6)
-  .map((c) => `${c.keywords[0].detail} ${c.keywords[0].from}위에서 ${c.keywords[0].to}위(${c.keywords[0].days}일 계측)`)
+  .map((c) => `${c.keywords[0].detail} ${fromText(c.keywords[0])}에서 ${c.keywords[0].to}위(${c.keywords[0].days}일 계측)`)
   .join(", ");
 
 /** 업종 목록 — 필터 칩에 쓴다 */
@@ -224,19 +237,19 @@ export const PLACE_RANK_INDUSTRIES: string[] = Array.from(
  * `67위에서 3위` · 자리를 지킨 기록은 `3위 유지`.
  * from 과 to 가 같으면 올랐다고 적지 않는다 (2026-09-05 (토) 대표 지시).
  */
-export const fmtMove = (k: { from: number; to: number }) =>
-  k.from === k.to ? `${k.to}위 유지` : `${k.from}위에서 ${k.to}위`;
+export const fmtMove = (k: { from: number; to: number; fromLabel?: string }) =>
+  k.from === k.to ? `${k.to}위 유지` : `${fromText(k)}에서 ${k.to}위`;
 
 /** `67위에서 3위 (21일)` — 밖으로 나갈 수 있는 유일한 형태 */
-export const fmtMoveDays = (k: { from: number; to: number; days: number }) =>
+export const fmtMoveDays = (k: { from: number; to: number; days: number; fromLabel?: string }) =>
   `${fmtMove(k)} (${k.days}일)`;
 
 /**
  * `67위 → 3위` — 좁은 자리에서 쓰는 짧은 형태 (헌장 C-36 예시 표기).
  * 자리를 지킨 기록은 `3위 유지`.
  */
-export const fmtArrow = (k: { from: number; to: number }) =>
-  k.from === k.to ? `${k.to}위 유지` : `${k.from}위 → ${k.to}위`;
+export const fmtArrow = (k: { from: number; to: number; fromLabel?: string }) =>
+  k.from === k.to ? `${k.to}위 유지` : `${fromText(k)} → ${k.to}위`;
 
 /** 업종으로 고른다. 없으면 빈 배열 — 없는 업종에 남의 기록을 붙이지 않는다 */
 export function byIndustry(...industries: string[]): PlaceRankCase[] {

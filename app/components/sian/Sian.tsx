@@ -137,8 +137,8 @@ export function Steps({ steps, idPrefix }: { steps: { title: string; desc: strin
 }
 
 /** `190위에서 5위` 를 lib 문장 그대로 쓰고 끝 순위만 강조한다 (홈과 같은 꼴) */
-function Move({ from, to }: { from: number; to: number }) {
-  const [a, b] = fmtMove({ from, to }).split("에서");
+function Move({ from, to, fromLabel }: { from: number; to: number; fromLabel?: string }) {
+  const [a, b] = fmtMove({ from, to, fromLabel }).split("에서");
   return b === undefined ? <>{a}</> : <>{a}<i>에서</i><b>{b.trim()}</b></>;
 }
 
@@ -183,7 +183,7 @@ export function RankSection({ industries, label, soft, title, desc, more }: {
             <div key={c.code} className={s.rankRow} role="row">
               <div className={s.kw} role="cell">{k.detail}<small>{c.industry}</small></div>
               <div className={s.vol} role="cell">{c.volumeLabel}</div>
-              <div className={s.move} role="cell"><Move from={k.from} to={k.to} /></div>
+              <div className={s.move} role="cell"><Move from={k.from} to={k.to} fromLabel={k.fromLabel} /></div>
               {/* 줄마다 잰 날짜를 붙인다. 내려가기 전 순위를 둔 건이 지금 순위로 읽히지 않게 (규칙 5) */}
               <div className={s.days} role="cell">{k.days}일<small>{c.asOf} 계측</small></div>
             </div>

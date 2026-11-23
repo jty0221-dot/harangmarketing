@@ -215,8 +215,8 @@ def current(store, kw):
 # 표를 다시 뽑으면 asOf 도 같이 움직여야 화면 숫자와 근거 날짜가 어긋나지 않는다.
 #
 # 2026-11-12 (목) 대표 지시 '검색량이 얼마인지 측정해서 대단한것을 보여줘' — 유형값(맛집 전체)이 아니라
-# 그 카드의 실제 키워드 월 검색수를 쓴다. 실제 키워드는 저장소에 남기지 않고, 화면에는 내림한 꼴만 나간다
-# (87,800 → 월 8만 회 이상). 정확한 값을 적으면 검색량으로 지역이 되짚인다.
+# 그 카드의 실제 키워드 월 검색수를 쓴다. 실제 키워드는 저장소에 남기지 않는다.
+# 화면 문구는 2026-11-23 (월) 대표 지시로 조회한 값 그대로다 (월 87,800회 · vol_bucket 참고).
 _vol_files = sorted(VOL_DIR.glob("volume_*.tsv"))
 volume_real = {}
 volume_asof = ""
@@ -228,14 +228,13 @@ if _vol_files:
 
 
 def vol_bucket(v):
-    """내림한 정렬값과 화면 문구 — 정확한 값은 내보내지 않는다"""
-    if v >= 10000:
-        return v // 10000 * 10000, "월 " + str(v // 10000) + "만 회 이상"
-    if v >= 1000:
-        return v // 1000 * 1000, "월 " + str(v // 1000) + "천 회 이상"
+    """정렬값과 화면 문구 — 조회한 월 검색수를 그대로 적는다.
+
+    2026-11-23 (월) 대표 지시 '검색량 그대로 표기하고 다른 포트폴리오들도 업그레이드 해서 해'.
+    그 전(11/12)에는 내림한 꼴(월 8만 회 이상)만 내보냈다. 네이버가 10 미만은 숫자를 주지 않아 그 줄만 남는다.
+    """
     if v >= 10:
-        step = 100 if v >= 100 else 10
-        return v // step * step, "월 " + str(v // step * step) + "회 이상"
+        return v, "월 {:,}회".format(v)
     if v > 0:
         return 1, "월 10회 미만"
     return 0, ""
@@ -456,9 +455,34 @@ pending = [{"id": p["id"],
            for p in passed if p["medical"]]
 
 
+# 시작 순위 대신 적는 표기 (미노출) — content/place-rank-from-override.tsv
+# 카드 ID(P-0074)로 걸지 않는다. P 번호는 자리 순서라 스냅샷이 늘면 바뀐다 (2026-11-23 실제로 바뀌었다).
+# 매장과 키워드로 만든 해시 열쇠로 건다. 이 저장소는 공개라 실제 이름을 적지 않기 위해서다.
+# 열쇠는 `python scripts/place-rank/build_cases.py --keys` 가 카드마다 찍어 준다.
+import hashlib  # noqa: E402
+
+_FROM_FILE = REPO / "content" / "place-rank-from-override.tsv"
+FROM_OVERRIDE = {i.strip(): t.strip() for i, t, _why in plain(_FROM_FILE, 3)} if _FROM_FILE.exists() else {}
+
+
+def card_key(p):
+    return hashlib.sha1((p["store"] + "|" + p["kw"]).encode("utf-8")).hexdigest()[:12]
+
+
+if "--keys" in sys.argv:
+    print("")
+    print("열쇠 (place-rank-from-override.tsv 첫 칸에 적는다)")
+    for p in passed:
+        print("  " + card_key(p) + " " + p["id"] + " " + p["storeLabel"] + " " + p["keywordLabel"])
+_unused = set(FROM_OVERRIDE) - {card_key(p) for p in passed}
+if _unused:
+    print("[주의] 덮어쓰기 표에 있는데 맞는 카드가 없는 열쇠 : " + ", ".join(sorted(_unused)))
+
+
 def public(p):
     """화면으로 나가는 칸만 골라낸다 — store · deal · srcUsed 는 나가지 않는다"""
     return {
+        **({"fromLabel": FROM_OVERRIDE[card_key(p)]} if card_key(p) in FROM_OVERRIDE else {}),
         "id": p["id"],
         "industry": p["industry"],
         "storeLabel": p["storeLabel"],

@@ -4,6 +4,7 @@ import {
   PLACE_RANK_AS_OF,
   PLACE_RANK_LABEL_NOTE,
   PLACE_RANK_NOTE,
+  fromText,
   type PlaceRankCase,
 } from "../lib/place-rank-cases";
 
@@ -74,7 +75,7 @@ export function PlaceRankCaseCards({
             <p className="mt-3 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
               {c.trend === "상승" && (
                 <>
-                  <span className="text-base font-semibold text-gray-500 tabular-nums">{k.from}위</span>
+                  <span className="text-base font-semibold text-gray-500 tabular-nums">{fromText(k)}</span>
                   <span className="text-xs text-gray-500">에서</span>
                 </>
               )}
